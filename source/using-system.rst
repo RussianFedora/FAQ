@@ -218,3 +218,130 @@
 ====================================
 
 См. `здесь <https://www.easycoding.org/2012/10/01/podnimaem-nut-v-linux.html>`_.
+
+.. index:: ssh, keys, error, ошибка
+.. _ssh-keys-error:
+
+При использовании SSH появляется ошибка доступа к ключам. Как исправить?
+===========================================================================
+
+См. `здесь <https://www.easycoding.org/2016/07/31/reshaem-problemu-s-ssh-klyuchami-v-fedora-24.html>`_.
+
+.. index:: slow shutdown, медленное завершение работы
+.. _slow-shutdown:
+
+Система медленно завершает работу. Можно ли это ускорить?
+============================================================
+
+См. `здесь <https://www.easycoding.org/2016/08/08/uskoryaem-zavershenie-raboty-fedora-24.html>`_.
+
+.. index:: journald, журналы, ограничение размера журналов
+.. _journald-limit:
+
+Системные журналы занимают слишком много места. Как их ограничить?
+=====================================================================
+
+См. `здесь <https://www.easycoding.org/2016/08/24/ogranichivaem-sistemnye-zhurnaly-v-fedora-24.html>`_.
+
+.. index:: firewalld, port forwarding, проброс порта
+.. _firewalld-port-forwarding:
+
+Как пробросить локальный порт на удалённый хост?
+====================================================
+
+См. `здесь <https://www.easycoding.org/2017/05/23/probrasyvaem-lokalnyj-port-na-udalyonnyj-xost.html>`_.
+
+.. index:: openvpn
+.. _using-openvpn:
+
+Как поднять OpenVPN сервер в Fedora?
+=======================================
+
+См. `здесь <https://www.easycoding.org/2017/07/24/podnimaem-ovn-server-na-fedora.html>`_. В данной статье вместо **ovn** следует использовать **openvpn** во всех путях и именах юнитов.
+
+.. index:: systemd
+.. _systemd-info:
+
+Что такое systemd и как с ним работать?
+==========================================
+
+См. `здесь <https://www.easycoding.org/2017/11/05/upravlyaem-systemd-v-fedora.html>`_.
+
+.. index:: bug, missing library, libcurl-gnutls
+.. _libcurl-workaround:
+
+Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?
+=====================================================================
+
+См. `здесь <https://www.easycoding.org/2018/04/03/reshaem-problemu-otsutstviya-libcurl-gnutls-v-fedora.html>`_.
+
+.. index:: server, matrix, сервер
+.. _matrix-server:
+
+Как поднять свой сервер Matrix в Fedora?
+===========================================
+
+См. `здесь <https://www.easycoding.org/2018/04/15/podnimaem-sobstvennyj-matrix-server-v-fedora.html>`_.
+
+.. index:: firefox, hardware acceleration
+.. _firefox-hwaccel:
+
+Как активировать аппаратное ускорение в браузере Firefox?
+=============================================================
+
+ля активации аппаратного ускорения рендеринга страниц в Mozilla Firefox на поддерживаемых драйверах необходимо открыть модуль конфигурации **about:config** и исправить значения следующих переменных (при отсутствии создать):
+
+.. code-block:: text
+
+    layers.acceleration.force-enabled = true
+    layers.offmainthreadcomposition.enabled = true
+    webgl.force-enabled = true
+    gfx.xrender.enabled = true
+
+Изменения вступят в силу при следующем запуске браузера.
+
+Внимание! Это не затрагивает аппаратное декодирование мультимедиа средствами видеоускорителя, которое в настоящее время не поддерживается ни в Firefox, ни в Chrome на ОС Linux.
+
+.. index:: gdb, debugging, отладка
+.. _debug-application:
+
+Приложение падает. Как мне его отладить?
+===========================================
+
+Для начала рекомендуется (хотя и не обязательно) установить отладочную информацию для данного пакета:
+
+.. code-block:: bash
+
+    sudo dnf debuginfo-install foo-bar
+
+После завершения процесса отладки символы можно снова удалить.
+
+Чтобы получить бэктрейс падения, нужно выполнить в терминале:
+
+.. code-block:: bash
+
+    gdb /usr/bin/foo-bar 2>&1 | tee ~/backtrace.log
+
+Далее в интерактивной консоли отладчика ввести: **handle SIGPIPE nostop noprint** и затем **run**, дождаться сегфолта и выполнить **bt full** для получения бэктрейса. Теперь можно прописать **quit** для выхода из режима отладки.
+
+Далее получившийся файл **~/backtrace.log** следует загрузить на любой сервис размещения текстовых файлов.
+
+Также рекомендуется ещё сделать трассировку приложения до момента падения:
+
+.. code-block:: bash
+
+    strace -o ~/trace.log /usr/bin/foo-bar
+
+Полученный файл **~/trace.log** также следует загрузить на сервис.
+
+.. index:: fs, caches, сброс кэшей ФС
+.. _drop-fs-caches:
+
+Как очистить кэши и буферы всех файловых систем?
+===================================================
+
+Чтобы очистить кэши и буферы нужно выполнить:
+
+.. code-block:: bash
+
+    sync && echo 3 > /proc/sys/vm/drop_caches && sync

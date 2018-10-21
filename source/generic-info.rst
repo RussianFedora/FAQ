@@ -141,3 +141,11 @@ RFRemix - это ремикс оргинального дистрибутива 
 .. code-block:: bash
 
     sudo dnf distro-sync
+
+.. index:: bug report, сообщить об ошибке
+.. _bug-report:
+
+Я нашёл ошибку в программе. Как мне сообщить о ней?
+======================================================
+
+Для начала следует `создать тикет <https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora>`_ в RHBZ.

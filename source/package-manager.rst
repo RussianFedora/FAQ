@@ -311,3 +311,19 @@ Dnf сохраняет старые ядра. Это нормально?
 ==============================================
 
 См. `здесь <https://www.easycoding.org/2016/01/27/otklyuchaem-avto-obnovlenie-v-dnf-pod-fedora-22.html>`_.
+
+.. index:: dkms, akmods, difference
+.. _dkms-akmods:
+
+Что лучше: dkms или akmods?
+==============================
+
+Конечно akmods, т.к. он автоматически собирает и устанавливает полноценные RPM пакеты.
+
+.. index:: packaging, создание пакета, добавление в репозиторий
+.. _becoming-maintainer:
+
+Как добавить свой пакет в репозиторий Fedora и стать мейнтейнером?
+=====================================================================
+
+См. `здесь <https://www.easycoding.org/2016/06/20/dobavlyaem-paket-v-glavnyj-repozitorij-fedora.html>`_.
