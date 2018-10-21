@@ -351,3 +351,147 @@ Dnf сохраняет старые ядра. Это нормально?
 .. code-block:: bash
 
     sudo dnf repoquery -l foo-bar
+
+.. index:: dnf, package contents, список файлов пакета
+.. _dnf-list-contents:
+
+Как узнать в каком пакете находится конкретный файл?
+=======================================================
+
+Для этого можно воспользоваться плагином dnf repoquery:
+
+.. code-block:: bash
+
+    sudo dnf repoquery -f */имя_файла
+
+Для поиска бинарников и динамических библиотек можно применять альтернативный метод:
+
+.. code-block:: bash
+
+    sudo dnf provides */имя_бинарника
+
+.. index:: dnf, java, alternatives, несколько версий java
+.. _java-multiple:
+
+Можно ли установить несколько версий Java в систему?
+========================================================
+
+Да, это возможно. В настоящее время поддерживаются следующие версии Java. Допускается их одновременная установка.
+
+Java 8:
+
+.. code-block:: bash
+
+    sudo dnf install java-1.8.0-openjdk
+
+Java 9:
+
+.. code-block:: bash
+
+    sudo dnf install java-9-openjdk
+
+Java 11:
+
+.. code-block:: bash
+
+    sudo dnf install java-11-openjdk
+
+.. index:: dnf, java, alternatives, несколько версий java
+.. _alternatives-java:
+
+Как мне выбрать версию Java по умолчанию?
+==============================================
+
+Для выбора дефолтной версии Java следует использовать систему альтернатив:
+
+.. code-block:: bash
+
+    sudo update-alternatives --config java
+
+.. index:: dnf, repository contents, список пакетов репозитория
+.. _dnf-repo-contents:
+
+Как вывести список пакетов из определённого репозитория?
+============================================================
+
+Вывод полного списка пакетов из репозитория (на примере rpmfusion-free):
+
+.. code-block:: bash
+
+    sudo dnf repo-pkgs rpmfusion-free list
+
+Вывод полного списка установленных пакетов из репозитория (также на примере rpmfusion-free):
+
+.. code-block:: bash
+
+    sudo dnf repo-pkgs rpmfusion-free list installed
+
+.. index:: dnf, repository orphans, список пакетов-сирот
+.. _dnf-repo-orphans:
+
+Как вывести список пакетов, установленных не из репозиториев, либо удалённых из них?
+========================================================================================
+
+Выполним в терминале:
+
+.. code-block:: bash
+
+    sudo dnf -C list extras
+
+.. index:: dnf, transactions, history cleanup, очистка истории транзакций
+.. _dnf-transactions-cleanup:
+
+Как очистить журнал транзакций dnf?
+=======================================
+
+Для очистки журнала транзакций dnf history, выполним:
+
+.. code-block:: bash
+
+    sudo rm -rf /var/lib/dnf/history/*
+
+.. index:: dnf, installed list export, экспорт списка установленных пакетов
+.. _dnf-list-export:
+
+Как сохранить список установленных пакетов, чтобы легко установить их после переустановки системы?
+=====================================================================================================
+
+Экспортируем список установленных вручную пакетов:
+
+.. code-block:: bash
+
+    sudo dnf repoquery --qf "%{name}" --userinstalled > ~/packages.lst
+
+Копируем любым способом получившийся файл **~/packages.lst** на другое устройство.
+
+Устанавливаем отсутствующие пакеты:
+
+.. code-block:: bash
+
+    sudo dnf install $(cat ~/packages.lst)
+
+.. index:: dnf, download package only, скачать пакет без установки
+.. _dnf-download-only:
+
+Можно ли скачать, но не устанавливать пакет из репозитория?
+===============================================================
+
+Скачивание пакета foo-bar в текущий рабочий каталог:
+
+.. code-block:: bash
+
+    dnf download foo-bar
+
+Скачивание пакета foo-bar в текущий рабочий каталог вместе со всеми его зависимостями, отсутствующими в системе в настоящий момент:
+
+.. code-block:: bash
+
+    dnf download --resolve foo-bar
+
+Скачивание пакета foo-bar вместе со всеми зависимостями в указанный каталог:
+
+.. code-block:: bash
+
+    dnf download --resolve foo-bar --downloaddir ~/mypkg
+
+Для работы плагина dnf-download права суперпользователя не требуются.
