@@ -7,5 +7,7 @@
    :maxdepth: 2
    :caption: Содержание:
 
-   helloworld.rst
-
+   generic-info.rst
+   installation.rst
+   package-manager.rst
+   security.rst
