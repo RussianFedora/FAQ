@@ -327,3 +327,27 @@ Dnf сохраняет старые ядра. Это нормально?
 =====================================================================
 
 См. `здесь <https://www.easycoding.org/2016/06/20/dobavlyaem-paket-v-glavnyj-repozitorij-fedora.html>`_.
+
+.. index:: package updates, testing, тестовые репозитории
+.. _updates-testing:
+
+Каким способом можно обновить пакет из тестовых репозиториев?
+=================================================================
+
+Чтобы установить обновление из Fedora Testing, необходимо временно подключить соответствующий репозиторий:
+
+.. code-block:: bash
+
+    sudo dnf upgrade --refresh foo-bar* --enablerepo=updates-testing
+
+Репозиторий **updates-testing** подключается однократно, только для данного сеанса работы dnf.
+
+.. index:: dnf, package contents, список файлов пакета
+.. _dnf-list-contents:
+
+Как получить список файлов установленного пакета?
+=====================================================
+
+.. code-block:: bash
+
+    sudo dnf repoquery -l foo-bar
