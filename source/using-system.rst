@@ -172,3 +172,49 @@
 .. code-block:: bash
 
     sudo umount /media/fedora
+
+.. index:: initrd, пересобрать initrd
+.. _initrd-rebuild:
+
+Как мне пересобрать образ initrd?
+====================================
+
+Для пересборки образа initrd следует выполнить:
+
+.. code-block:: bash
+
+    sudo dracut -f
+
+.. index:: boot, загрузчик, grub
+.. _grub-reinstall:
+
+Как мне переустановить Grub 2?
+====================================
+
+См. `здесь <https://fedoraproject.org/wiki/GRUB_2>`_.
+
+.. index:: boot, загрузчик, grub
+.. _grub-rebuild:
+
+Как пересобрать конфиг Grub 2?
+====================================
+
+Пересборка конфига Grub 2 для legacy конфигураций:
+
+.. code-block:: bash
+
+    sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+
+Пересборка конфигра Grub 2 для UEFI конфигураций:
+
+.. code-block:: bash
+
+    sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+
+.. index:: drivers, драйверы, nut, UPS, ИБП
+.. _configure-ups:
+
+Как настроить ИБП (UPS) в Fedora?
+====================================
+
+См. `здесь <https://www.easycoding.org/2012/10/01/podnimaem-nut-v-linux.html>`_.

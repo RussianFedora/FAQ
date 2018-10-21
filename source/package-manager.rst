@@ -187,3 +187,127 @@ Dnf сохраняет старые ядра. Это нормально?
     sudo dnf remove kernel-4.10.14* kernel-core-4.10.14* kernel-modules-4.10.14* kernel-devel-4.10.14*
 
 Здесь **4.10.14** - это версия удаляемого ядра.
+
+.. index:: fonts, шрифты Microsoft
+.. _msttcorefonts:
+
+Как установить шрифты Microsoft в Fedora?
+=============================================
+
+См. `здесь <https://www.easycoding.org/2011/08/14/ustanovka-microsoft-core-fonts-v-fedora.html>`_.
+
+.. index:: repository, сторонние репозитории
+.. _3rd-repositories:
+
+Какие сторонние репозитории лучше всего подключать?
+=======================================================
+
+См. `здесь <https://www.easycoding.org/2017/03/24/poleznye-storonnie-repozitorii-dlya-fedora.html>`_.
+
+.. index:: repository, flatpak, flathub
+.. _flatpak:
+
+Как работать с Flatpak пакетами в Fedora?
+============================================
+
+См. `здесь <https://www.easycoding.org/2018/07/25/rabotaem-s-flatpak-paketami-v-fedora.html>`_.
+
+.. index:: repository, package, packaging, создание пакета
+.. _create-package:
+
+Я хочу создать пакет для Fedora. Что мне следует знать?
+============================================================
+
+См. `здесь <https://docs.fedoraproject.org/quick-docs/en-US/creating-rpm-packages.html>`_ и `здесь <https://www.easycoding.org/2018/06/17/pravilno-paketim-po-dlya-linux.html>`_.
+
+.. index:: repository, codecs, кодеки мультимедиа, multimedia
+.. _multimedia-codecs:
+
+В системе нет кодеков мультимедиа. Как их установить?
+============================================================
+
+Для начала следует подключить репозиторий RPM Fusion и установить кодеки из группы **multimedia**:
+
+.. code-block:: bash
+
+    sudo dnf groupinstall multimedia
+
+.. index:: repository, codecs, кодеки мультимедиа, multimedia, chromium
+.. _chromium-codecs:
+
+Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?
+==============================================================================================================================
+
+Из-за патентных ограничений браузер Chromium в репозиториях Fedora сильно кастрирован. Для восстановления полной функциональности необходимо подключить RPMFusion и установить пакет с кодеками для данного браузера:
+
+.. code-block:: bash
+
+    sudo dnf install chromium-libs-media-freeworld
+
+.. index:: repository, codecs, кодеки мультимедиа, multimedia
+.. _firefox-codecs:
+
+Как активировать все доступные кодеки в браузере Firefox?
+==============================================================
+
+Браузер Mozilla Firefox использует ffmpeg для работы с мультимедийным контентом, поэтому необходимо его установить из репозитория RPM Fusion:
+
+.. code-block:: bash
+
+    sudo dnf install ffmpeg-libs
+
+.. index:: repository, nvidia, drivers, драйверы
+.. _nvidia-drivers:
+
+Как правильно установить драйверы NVIDIA?
+==============================================
+
+См. `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`_.
+
+.. index:: package, packaging, сборка пакета, building
+.. _build-package:
+
+Как собрать RPM пакет в mock?
+==================================
+
+См. `здесь <https://www.easycoding.org/2017/02/22/sobiraem-rpm-pakety-dlya-fedora-v-mock.html>`_.
+
+.. index:: repository, virtualbox
+.. _virtualbox:
+
+Как правильно установить VirtualBox в Fedora?
+================================================
+
+Сначала нужно подключить репозиторий RPM Fusion, затем выполнить:
+
+.. code-block:: bash
+
+    sudo dnf upgrade --refresh
+    sudo dnf install gcc kernel-devel kernel-headers akmod-VirtualBox VirtualBox
+
+Для нормальной работы с USB устройствами потребуется также добавить свой аккаунт в группу **vboxusers**:
+
+.. code-block:: bash
+
+    sudo usermod -a -G vboxusers $(whoami)
+
+.. index:: repository, broadcom, drivers, драйверы
+.. _broadcom-drivers:
+
+Как правильно установить драйверы Wi-Fi модулей Broadcom?
+=============================================================
+
+Сначала нужно подключить RPM Fusion, затем выполнить:
+
+.. code-block:: bash
+
+    sudo dnf upgrade --refresh
+    sudo dnf install gcc kernel-devel kernel-headers akmod-wl
+
+.. index:: dnf, cache, кэши dnf
+.. _dnf-caches:
+
+Как отключить автообновление кэшей dnf?
+==============================================
+
+См. `здесь <https://www.easycoding.org/2016/01/27/otklyuchaem-avto-obnovlenie-v-dnf-pod-fedora-22.html>`_.
