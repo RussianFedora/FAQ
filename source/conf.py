@@ -40,7 +40,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Fedora FAQ RU'
-copyright = '(c) 2018, EasyCoding Team'
+copyright = '2018, EasyCoding Team and contributors'
 author = 'EasyCoding Team and contributors'
 
 # The version info for the project you're documenting, acts as replacement for
