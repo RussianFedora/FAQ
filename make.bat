@@ -1,5 +1,13 @@
 @ECHO OFF
 
+rem Fedora-Faq-Ru (c) 2018, EasyCoding Team and contributors
+rem
+rem Fedora-Faq-Ru is licensed under a
+rem Creative Commons Attribution-ShareAlike 4.0 International License.
+rem
+rem You should have received a copy of the license along with this
+rem work. If not, see <http://creativecommons.org/licenses/by-sa/4.0/>.
+
 pushd %~dp0
 
 REM Command file for Sphinx documentation
