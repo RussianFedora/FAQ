@@ -6,7 +6,7 @@
 # Creative Commons Attribution-ShareAlike 4.0 International License.
 # 
 # You should have received a copy of the license along with this
-# work. If not, see <http://creativecommons.org/licenses/by-sa/4.0/>.
+# work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
 
 # All configuration values have a default; values that are commented out
 # serve to show the default.

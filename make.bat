@@ -6,7 +6,7 @@ rem Fedora-Faq-Ru is licensed under a
 rem Creative Commons Attribution-ShareAlike 4.0 International License.
 rem
 rem You should have received a copy of the license along with this
-rem work. If not, see <http://creativecommons.org/licenses/by-sa/4.0/>.
+rem work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
 
 pushd %~dp0
 
