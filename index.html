@@ -1,0 +1,250 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Большой FAQ по Fedora &#8212; Документация Fedora FAQ RU 2018.10.22</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="Основная информация" href="generic-info.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="faq-fedora">
+<span id="index"></span><h1>Большой FAQ по Fedora<a class="headerlink" href="#faq-fedora" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Содержание:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generic-info.html#fedora">Что есть Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-info.html#releases">Как часто выходят релизы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-info.html#supported">Сколько релизов поддерживаются?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-info.html#differences">В чём отличие от других дистрибутивов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-info.html#download">Где скачать Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-info.html#de">Какие DE поддерживаются?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-info.html#rolling">Я хочу использовать rolling модель обновлений. Это возможно?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-info.html#rawhide">Возможно ли использовать Rawhide на постоянной основе?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-info.html#grub-fedora">Какая версия загрузчика Grub используется в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-info.html#rpm-fusion">Что такое RPM Fusion?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-info.html#russian-fedora">Что такое Russian Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-info.html#copr">Что такое COPR?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-info.html#copr-use">Безопасно ли использовать COPR репозитории?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-info.html#copr-legal">Что разрешается хранить в COPR репозиториях?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-info.html#rfremix">Что такое RFRemix?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-info.html#rfremix-fedora">Как превратить RFRemix в Fedora и наоборот?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-info.html#bug-report">Я нашёл ошибку в программе. Как мне сообщить о ней?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Вопросы, связанные с установкой системы</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#usb-flash">Как мне создать загрузочную флешку?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#package-selection">Есть возможность самому выбрать пакеты для установки?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#web-install">Необходим ли доступ в Интернет при установке?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#automatic-install">Могу ли я автоматизировать установку?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#iso">Могу ли я создать свой собственный ISO образ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#fedora-arm">Можно ли установить Fedora на устройство с ARM?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#secure-boot">Поддерживается ли технология Secure Boot?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#uefi-boot-fedora">Возможно ли настроить порядок загрузки в UEFI Boot из Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#moving-system">Могу я переместить Fedora на другой диск?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#swap-info">У меня 8 ГБ памяти. Нужен ли мне раздел подкачки?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#mem-outage">Что будет если при отсутствующем разделе подкачки закончится память?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#swap-limits">Сколько нужно подкачки для работы гибернации?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#swap-partitions">Что быстрее: раздел подкачки или файл подкачки?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#swappiness">Можно ли сделать так, чтобы подкачка использовалась лишь при исчерпании ОП?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#speedup-main">Как ускорить запуск системы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#ssd">Можно ли не переносить на SSD домашние каталоги пользователей?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#fedora-ssd">Нужно ли как-то настраивать Fedora для работы с SSD?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#fedora-trim">Возможно ли в Fedora включить TRIM в реальном времени?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#fonts-cleartype">Как улучшить отображение шрифтов в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#fonts-console">В консолях фреймбуфера отображаются кракозябры. Как это починить?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="package-manager.html">Вопросы, связанные с пакетным менеджером и установкой пакетов</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#pkg-manager">Какой менеджер пакетов используется в настоящее время?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#yum-fedora">Могу ли я использовать Yum в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#make-install">Можно ли устанавливать программы посредством make install?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#gdm-sddm">У меня в системе используется GDM, но я хочу заменить его на SDDM. Это возможно?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#fedora">Как мне обновить Fedora до новой версии?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#dnf">При обновлении dnf ругается на дубликаты пакетов.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#rpm">База RPM оказалась повреждена. Как восстановить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#dnf-kernel-store">Dnf сохраняет старые ядра. Это нормально?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#dnf-kernel-change">Как можно уменьшить количество сохраняемых ядер?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#dnf-proxy">Как настроить работу dnf через прокси?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#dnf-weakdeps">Как отключить установку слабых зависимостей?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#dnf-pkgupdates">Как мне запретить установку обновлений для ряда пакетов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#dnf-kernel-remove">Как можно вручную удалить старое ядро?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#microsoft-fedora">Как установить шрифты Microsoft в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#rd-repositories">Какие сторонние репозитории лучше всего подключать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#flatpak-fedora">Как работать с Flatpak пакетами в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#create-package">Я хочу создать пакет для Fedora. Что мне следует знать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#multimedia-codecs">В системе нет кодеков мультимедиа. Как их установить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#chromium">Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#firefox">Как активировать все доступные кодеки в браузере Firefox?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#nvidia">Как правильно установить драйверы NVIDIA?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#rpm-mock">Как собрать RPM пакет в mock?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#virtualbox-fedora">Как правильно установить VirtualBox в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#wi-fi-broadcom">Как правильно установить драйверы Wi-Fi модулей Broadcom?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#dnf-caches">Как отключить автообновление кэшей dnf?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#dkms-akmods">Что лучше: dkms или akmods?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#becoming-maintainer">Как добавить свой пакет в репозиторий Fedora и стать мейнтейнером?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#updates-testing">Каким способом можно обновить пакет из тестовых репозиториев?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#dnf-list-contents">Как получить список файлов установленного пакета?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#dnf-find-file">Как узнать в каком пакете находится конкретный файл?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#java">Можно ли установить несколько версий Java в систему?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#alternatives-java">Как мне выбрать версию Java по умолчанию?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#dnf-repo-contents">Как вывести список пакетов из определённого репозитория?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#dnf-repo-orphans">Как вывести список пакетов, установленных не из репозиториев, либо удалённых из них?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#dnf-transactions-cleanup">Как очистить журнал транзакций dnf?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#dnf-list-export">Как сохранить список установленных пакетов, чтобы легко установить их после переустановки системы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package-manager.html#dnf-download-only">Можно ли скачать, но не устанавливать пакет из репозитория?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security.html#selinux">Что такое SELinux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#selinux-temp">Как мне временно отключить SELinux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#selinux-disable">Как мне навсегда отключить SELinux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#selinux-status">Как узнать текущий статус SELinux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#openvpn-selinux">OpenVPN не может получить доступ к сертификатам из-за SELinux. Что делать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#kpti">Можно ли отключить KPTI?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#spectre-v1">Можно ли отключить защиту от Spectre v1?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#spectre-v2">Можно ли отключить защиту от Spectre v2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#spectre-v4">Можно ли отключить защиту от Spectre v4?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#l1tf">Можно ли отключить защиту от L1TF?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#hardware-vuln">Как узнать защищено ли ядро от известных уязвимостей в процессорах?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#selinux-boot-error">При загрузке получаю ошибку SELinux. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#usb">Как можно надёжно зашифровать файлы на USB устройстве?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#luks-home">Можно ли зашифровать домашний раздел уже установленной системы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#firewalld">Что такое Firewalld?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#firewalld-configure">Как можно настраивать Firewalld?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#firewalld-hide-service">Как замаскировать сервис средствами Firewalld?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#ip">Как запретить подключения с конкретных IP-адресов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#gnupg">Как работать с подписями GnuPG?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#gpg-encrypt">Как зашифровать и расшифровать файлы с определённой маской в текущем каталоге?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#admin-vs-user">Чем отличается пользователь-администратор от обычного?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#sudo-su">Какие пароли запрашивают sudo и su?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#root-password">Как мне сменить пароль суперпользователя?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#sudo">Как мне получить доступ к sudo?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#sudo-vs-su">Что лучше: sudo или su?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#sudo-file-manager">Почему я не могу запустить файловый менеджер с правами суперпользователя?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#sudo-edit-config">Как мне отредактировать конфиг, доступный только суперпользователю?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#sudoedit">Sudoedit безопаснее прямого запуска текстового редактора с правами суперпользователя?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#ssh">Как включить и безопасно настроить сервер SSH?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#ssh-sftp">Можно ли разрешить доступ посредством SSH только к файлам, без возможности выполнения команд?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#destroy-file">Как безвозвратно уничтожить файл?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#destroy-disk">Можно лишь уничтожить содержимое всего диска?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#ssd">Как уничтожить файл на SSD?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе и администрированием</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#autocompletion">У меня в системе не работает автодополнение команд. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#kernelpm-once">Как однократно передать параметр ядра?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#kernelpm-perm">Как мне задать параметр ядра для постоянного использования?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#journal-current">Как мне посмотреть текущий журнал работы системы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#journal-history">Как мне посмотреть журналы с прошлых загрузок?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#journal-tofile">Как мне выгрузить журнал в файл?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#backup-system">Можно ли делать резервную копию корневого раздела работающей системы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#backup-home">Как сделать копию домашнего каталога?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#backup-create">Как лучше всего делать резервную копию корневого раздела?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#chroot-liveusb">Как сделать chroot в установленную систему с LiveUSB?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#initrd">Как мне пересобрать образ initrd?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#grub-2">Как мне переустановить Grub 2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#grub-rebuild">Как пересобрать конфиг Grub 2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#ups-fedora">Как настроить ИБП (UPS) в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#ssh">При использовании SSH появляется ошибка доступа к ключам. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#slow-shutdown">Система медленно завершает работу. Можно ли это ускорить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#journald-limit">Системные журналы занимают слишком много места. Как их ограничить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#firewalld-port-forwarding">Как пробросить локальный порт на удалённый хост?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#openvpn-fedora">Как поднять OpenVPN сервер в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#systemd">Что такое systemd и как с ним работать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#libcurl-gnutls-so-4">Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#matrix-fedora">Как поднять свой сервер Matrix в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#firefox">Как активировать аппаратное ускорение в браузере Firefox?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#debug-application">Приложение падает. Как мне его отладить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#drop-fs-caches">Как очистить кэши и буферы всех файловых систем?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#mp3">Как конвертировать множество файлов в mp3 из текущего каталога?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#utc">Как настроить системные часы в UTC или локального времени и наоборот?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#fedora-windows">У меня в дуалбуте с Fedora установлена Windows и часы постоянно сбиваются. В чём дело?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#driver-disable">Как можно навсегда отключить определённый драйвер?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#fedora">Как запустить простейший веб-сервер в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#kde-gtk">Я использую KDE. Как мне настроить скорость двойного клика в GTK приложениях?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#block-screen">Возможно ли заблокировать экран из командной строки?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#change-hostname">Как изменить имя хоста?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#network-configuration">Как лучше настраивать сетевые подключения?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#bash">Можно ли изменить приветствие Bash по умолчанию?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#shell">Можно ли из shell скрипта менять название терминала?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#configure-ntp">Как настроить синхронизацию времени?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#systemd-analyze">Как узнать какой сервис замедляет загрузку системы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#nvidia">Как ускорить кодирование видео с использованием видеокарт NVIDIA?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#lvm">Как мне проверить ФС в составе LVM?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#fs-check-partitions">Как мне проверить ФС при использовании классических разделов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#fs-selection">Какую файловую систему рекомендуется использовать на Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#btrfs">Что вы скажете о BTRFS?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#kde-plasma-5">Как убрать рамки внутри окон в KDE Plasma 5?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#gnome-qt">У меня в Gnome не работает масштабирование окон Qt приложений. Что делать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#dlna">Как поднять DLNA сервер в локальной сети?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="generic-info.html" title="следующая глава">Основная информация</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Искать" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, EasyCoding Team and contributors.
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

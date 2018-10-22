@@ -1,0 +1,223 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Вопросы, связанные с установкой системы &#8212; Документация Fedora FAQ RU 2018.10.22</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="Вопросы, связанные с пакетным менеджером и установкой пакетов" href="package-manager.html" />
+    <link rel="prev" title="Основная информация" href="generic-info.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="installation">
+<span id="id1"></span><h1>Вопросы, связанные с установкой системы<a class="headerlink" href="#installation" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="usb-flash">
+<span id="index-0"></span><span id="id2"></span><h2>Как мне создать загрузочную флешку?<a class="headerlink" href="#usb-flash" title="Ссылка на этот заголовок">¶</a></h2>
+<p>См. <a class="reference external" href="https://www.easycoding.org/2017/07/12/sozdayom-fedora-liveusb.html">здесь</a>.</p>
+</div>
+<div class="section" id="package-selection">
+<span id="index-1"></span><span id="id4"></span><h2>Есть возможность самому выбрать пакеты для установки?<a class="headerlink" href="#package-selection" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, при помощи netinstall образа, но лишь группами.</p>
+</div>
+<div class="section" id="web-install">
+<span id="index-2"></span><span id="id5"></span><h2>Необходим ли доступ в Интернет при установке?<a class="headerlink" href="#web-install" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Только для netinstall образа. Все остальные устанавливаются «как есть», т.е. со стандартным набором пакетов.</p>
+</div>
+<div class="section" id="automatic-install">
+<span id="index-3"></span><span id="id6"></span><h2>Могу ли я автоматизировать установку?<a class="headerlink" href="#automatic-install" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, посредством <a class="reference external" href="https://pykickstart.readthedocs.io/en/latest/">Kickstart</a>.</p>
+</div>
+<div class="section" id="iso">
+<span id="custom-iso"></span><span id="index-4"></span><h2>Могу ли я создать свой собственный ISO образ?<a class="headerlink" href="#iso" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Собственный образ можно создать на базе Kickstart файлов. Более подобную информацию можно найти <a class="reference external" href="https://fedoraproject.org/wiki/Livemedia-creator-_How_to_create_and_use_a_Live_CD">здесь</a>.</p>
+<p>Готовые Kickstart проекты для изучения:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://pagure.io/fedora-kickstarts">Fedora</a>;</li>
+<li><a class="reference external" href="https://github.com/RussianFedora/rfremix-kickstarts">RFRemix</a>.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="fedora-arm">
+<span id="index-5"></span><span id="id8"></span><h2>Можно ли установить Fedora на устройство с ARM?<a class="headerlink" href="#fedora-arm" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Загрузки доступны <a class="reference external" href="https://arm.fedoraproject.org/">здесь</a>.</p>
+</div>
+<div class="section" id="secure-boot">
+<span id="index-6"></span><span id="id10"></span><h2>Поддерживается ли технология Secure Boot?<a class="headerlink" href="#secure-boot" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Полностью.</p>
+</div>
+<div class="section" id="uefi-boot-fedora">
+<span id="uefi-reorder"></span><span id="index-7"></span><h2>Возможно ли настроить порядок загрузки в UEFI Boot из Fedora?<a class="headerlink" href="#uefi-boot-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, при помощи утилиты <strong>efibootmgr</strong>. Вывод текущего списка загрузки UEFI Boot:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo efibootmgr -v
+</pre></div>
+</div>
+<p>Изменение порядка:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo efibootmgr -o <span class="m">0000</span>,0002,0003,0001
+</pre></div>
+</div>
+<p>Здесь <strong>0000</strong> и прочие строки из предыдущего вывода утилиты. Изменения вступают в силу немедленно.</p>
+</div>
+<div class="section" id="moving-system">
+<span id="index-8"></span><span id="id11"></span><h2>Могу я переместить Fedora на другой диск?<a class="headerlink" href="#moving-system" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Алгоритм такой:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>загрузка с LiveUSB;</li>
+<li>создание разделов для новой установки Fedora посредством GParted или любой другой утилиты разбиения дисков;</li>
+<li>монтирование старых и новых разделов;</li>
+<li>копирование всех файлов и каталогов со старого накопителя на новый с сохранением прав доступа посредством <strong>sudo cp</strong> или <strong>sudo rsync</strong>;</li>
+<li>редактирование файла <strong>/etc/fstab</strong> нового накопителя так, чтобы в нём были указаны UUID новых разделов;</li>
+<li>создание в корневом каталоге нового накопителя файла <strong>/.autorelabel</strong> для автоматической установки контекста безопасности SELinux;</li>
+<li>установка загрузчика (если необходимо).</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="swap-info">
+<span id="index-9"></span><span id="id12"></span><h2>У меня 8 ГБ памяти. Нужен ли мне раздел подкачки?<a class="headerlink" href="#swap-info" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для большинства сценариев использования на рабочих станциях 8 ГБ оперативной памяти будет вполне достаточно, поэтому раздел подкачки можно не создавать.</p>
+<p>Внимание! При отключении раздела подкачки перестанет работать функция suspend to disk (гибернация).</p>
+</div>
+<div class="section" id="mem-outage">
+<span id="index-10"></span><span id="id13"></span><h2>Что будет если при отсутствующем разделе подкачки закончится память?<a class="headerlink" href="#mem-outage" title="Ссылка на этот заголовок">¶</a></h2>
+<p>При критическом недостатке оперативной памяти будет задействован механизм ядра OOM Killer, который начнёт завершать самые ресурсоёмкие процессы. Работа системы при этом не будет нарушена.</p>
+</div>
+<div class="section" id="swap-limits">
+<span id="index-11"></span><span id="id14"></span><h2>Сколько нужно подкачки для работы гибернации?<a class="headerlink" href="#swap-limits" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для нормальной работы режима suspend to disk размер подкачки должен быть больше, либо равен объёму установленной в ПК или ноутбуке оперативной памяти.</p>
+</div>
+<div class="section" id="swap-partitions">
+<span id="index-12"></span><span id="id15"></span><h2>Что быстрее: раздел подкачки или файл подкачки?<a class="headerlink" href="#swap-partitions" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Раздел подкачки, т.к. отсутствуют ограничения, накладываемые используемой файловой системой.</p>
+</div>
+<div class="section" id="swappiness">
+<span id="index-13"></span><span id="id16"></span><h2>Можно ли сделать так, чтобы подкачка использовалась лишь при исчерпании ОП?<a class="headerlink" href="#swappiness" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, это возможно. Необходимо выполнить:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w vm.swappiness<span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Изменения вступят в силу немедленно.</p>
+</div>
+<div class="section" id="speedup-main">
+<span id="index-14"></span><span id="id17"></span><h2>Как ускорить запуск системы?<a class="headerlink" href="#speedup-main" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Приобрести в компьютер или ноутбук SSD накопитель и установить операционную систему на него. Это даст колоссальный прирост к скорости запуска.</p>
+</div>
+<div class="section" id="ssd">
+<span id="speedup-home"></span><span id="index-15"></span><h2>Можно ли не переносить на SSD домашние каталоги пользователей?<a class="headerlink" href="#ssd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Можно, но мы не рекомендуем это ибо в таком случае прирост к скорости работы системы будет далеко не таким большим, как мог бы быть. Поэтому мы настоятельно рекомендуем размещать на SSD накопителе как корневой каталог, так и пользовательские.</p>
+</div>
+<div class="section" id="fedora-ssd">
+<span id="ssd-tuning"></span><span id="index-16"></span><h2>Нужно ли как-то настраивать Fedora для работы с SSD?<a class="headerlink" href="#fedora-ssd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Актуальные версии не требуют особой настройки если были сразу установлены на SSD. Достаточно лишь убедиться, что TRIM таймер активен:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl status fstrim.timer
+</pre></div>
+</div>
+<p>Если это не так, нужно активировать его:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl <span class="nb">enable</span> fstrim.timer
+</pre></div>
+</div>
+<p>Процедура TRIM для всех установленных твердотельных накопителей будет выполняться автоматически по расписанию один раз в неделю во время простоя системы.</p>
+</div>
+<div class="section" id="fedora-trim">
+<span id="ssd-trim"></span><span id="index-17"></span><h2>Возможно ли в Fedora включить TRIM в реальном времени?<a class="headerlink" href="#fedora-trim" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, это возможно. При использовании классической схемы с обычными разделами необходимо добавить опцию монтирования <strong>discard</strong> для каждого раздела на SSD в <strong>/etc/fstab</strong>.</p>
+<p>При использовании LVM, следует открыть файл <strong>/etc/lvm/lvm.conf</strong> в текстовом редакторе и прописать:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>issue_discards = 1
+</pre></div>
+</div>
+<p>При использовании зашифрованных LUKS томов следует в файле <strong>/etc/crypttab</strong> добавить опцию <strong>allow-discards</strong> для каждого тома.</p>
+<p>Однако следует помнить, что на некоторых накопителях реалтаймовый TRIM может вызвать сбой в работе контроллера и привести к потере всех данных. Именно поэтому он по умолчанию и не применяется.</p>
+<p>Все изменения вступят в силу при следующей загрузке системы.</p>
+</div>
+<div class="section" id="fonts-cleartype">
+<span id="index-18"></span><span id="id18"></span><h2>Как улучшить отображение шрифтов в Fedora?<a class="headerlink" href="#fonts-cleartype" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По умолчанию пакет freetype в Fedora собран без поддержки субпиксельного сглаживания, поэтому чтобы получить качественный рендеринг шрифтов, необходимо подключить репозиторий RPM Fusion и установить из него специальную freeworld версию:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install freetype-freeworld
+</pre></div>
+</div>
+<p>После этого нужно разрешить использование LCD фильтров, создав символическую ссылку на файл <strong>11-lcdfilter-default.conf</strong> в каталоге <strong>/etc/fonts/conf.d</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ln -s /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d/
+</pre></div>
+</div>
+</div>
+<div class="section" id="fonts-console">
+<span id="index-19"></span><span id="id19"></span><h2>В консолях фреймбуфера отображаются кракозябры. Как это починить?<a class="headerlink" href="#fonts-console" title="Ссылка на этот заголовок">¶</a></h2>
+<p><em>Способ 1</em>. Зададим следующий параметр ядра:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>vconsole.font=latarcyrheb-sun16
+</pre></div>
+</div>
+<p><em>Способ 2</em>. Установим пакет шрифтов Terminus:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install terminus-fonts-console
+</pre></div>
+</div>
+<p>Теперь откроем файл <strong>/etc/vconsole.conf</strong> в текстовом редакторе и активируем их использование:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FONT=ter-v16n
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="generic-info.html" title="предыдущая глава">Основная информация</a></li>
+      <li>Next: <a href="package-manager.html" title="следующая глава">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Искать" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, EasyCoding Team and contributors.
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

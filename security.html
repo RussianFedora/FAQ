@@ -1,0 +1,330 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Вопросы, связанные с безопасностью &#8212; Документация Fedora FAQ RU 2018.10.22</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="Вопросы, связанные с работой в системе и администрированием" href="using-system.html" />
+    <link rel="prev" title="Вопросы, связанные с пакетным менеджером и установкой пакетов" href="package-manager.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="security">
+<span id="id1"></span><h1>Вопросы, связанные с безопасностью<a class="headerlink" href="#security" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="selinux">
+<span id="index-0"></span><span id="id2"></span><h2>Что такое SELinux?<a class="headerlink" href="#selinux" title="Ссылка на этот заголовок">¶</a></h2>
+<p>SELinux - это мандатная система контроля доступа, ограничивающая доступ ряду сервисов к файлам и каталогам. Больше информации <a class="reference external" href="https://ru.wikipedia.org/wiki/SELinux">здесь</a>.</p>
+</div>
+<div class="section" id="selinux-temp">
+<span id="index-1"></span><span id="id4"></span><h2>Как мне временно отключить SELinux?<a class="headerlink" href="#selinux-temp" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Мы настоятельно не рекомендуем этого делать, но если очень хочется, то для временного отключения достаточно выполнить команду:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo setenforce <span class="m">0</span>
+</pre></div>
+</div>
+<p>Для повторной активации:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo setenforce <span class="m">1</span>
+</pre></div>
+</div>
+<p>Также SELinux можно временно отключить при загрузке системы посредством передачи ядру Linux параметра:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>SELINUX=0
+</pre></div>
+</div>
+</div>
+<div class="section" id="selinux-disable">
+<span id="index-2"></span><span id="id5"></span><h2>Как мне навсегда отключить SELinux?<a class="headerlink" href="#selinux-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Достаточно открыть файл конфигурации <cite>/etc/selinux/config</cite> в любом текстовом редакторе и изменить значение директивы <cite>SELINUX</cite>. Допустимые значения:</p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>enforcing</cite> — включён и блокирует всё, что явно не разрешено;</li>
+<li><cite>permissive</cite> — включён, но ничего не блокирует и лишь пишет события в системный журнал;</li>
+<li><cite>disabled</cite> — полностью отключён.</li>
+</ul>
+</div></blockquote>
+<p>Изменения вступят в силу при следующей загрузке системы.</p>
+</div>
+<div class="section" id="selinux-status">
+<span id="index-3"></span><span id="id6"></span><h2>Как узнать текущий статус SELinux?<a class="headerlink" href="#selinux-status" title="Ссылка на этот заголовок">¶</a></h2>
+<p>При помощи команды <strong>getenforce</strong> или <strong>sestatus</strong>.</p>
+</div>
+<div class="section" id="openvpn-selinux">
+<span id="index-4"></span><span id="id7"></span><h2>OpenVPN не может получить доступ к сертификатам из-за SELinux. Что делать?<a class="headerlink" href="#openvpn-selinux" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Это нормально ибо запущенные сервисы не могут получать доступ к каталогам пользователя, однако для OpenVPN сделано исключение в виде каталога <strong>~/.cert</strong>.</p>
+<p>По умолчанию он не существует, поэтому его нужно создать и задать для него контекст безопасности SELinux:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir ~/.cert
+restorecon -Rv ~/.cert
+</pre></div>
+</div>
+<p>Теперь в нём можно размещать сертификаты и приватные ключи.</p>
+</div>
+<div class="section" id="kpti">
+<span id="index-5"></span><span id="id8"></span><h2>Можно ли отключить KPTI?<a class="headerlink" href="#kpti" title="Ссылка на этот заголовок">¶</a></h2>
+<p>KPTI - это новый механизм ядра, направленный на защиту системы от уязвимости <a class="reference external" href="https://ru.wikipedia.org/wiki/Meltdown_(%D1%83%D1%8F%D0%B7%D0%B2%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C)">Meltdown</a> в процессорах Intel. Настоятельно не рекомендуется его отключать, хотя это и возможно. Для этого необходимо и достаточно передать ядру Linux:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nopti
+</pre></div>
+</div>
+<p>Параметр <strong>pti=off</strong> также поддерживается в полной мере.</p>
+</div>
+<div class="section" id="spectre-v1">
+<span id="spectrev1"></span><span id="index-6"></span><h2>Можно ли отключить защиту от Spectre v1?<a class="headerlink" href="#spectre-v1" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Нет. Защита от уязвимости Spectre v1 выполняется напрямую микрокодом процессора.</p>
+</div>
+<div class="section" id="spectre-v2">
+<span id="spectrev2"></span><span id="index-7"></span><h2>Можно ли отключить защиту от Spectre v2?<a class="headerlink" href="#spectre-v2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, при помощи параметра ядра:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nospectre_v2
+</pre></div>
+</div>
+</div>
+<div class="section" id="spectre-v4">
+<span id="spectrev4"></span><span id="index-8"></span><h2>Можно ли отключить защиту от Spectre v4?<a class="headerlink" href="#spectre-v4" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, при помощи параметра ядра:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nospec_store_bypass_disable
+</pre></div>
+</div>
+</div>
+<div class="section" id="l1tf">
+<span id="index-9"></span><span id="id9"></span><h2>Можно ли отключить защиту от L1TF?<a class="headerlink" href="#l1tf" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, при помощи параметров ядра:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>l1tf=off
+</pre></div>
+</div>
+</div>
+<div class="section" id="hardware-vuln">
+<span id="index-10"></span><span id="id10"></span><h2>Как узнать защищено ли ядро от известных уязвимостей в процессорах?<a class="headerlink" href="#hardware-vuln" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Ранее для этого применялись сторонние утилиты, но в современных версиях ядра для этого есть штатный механизм, который можно использовать:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep . /sys/devices/system/cpu/vulnerabilities/*
+</pre></div>
+</div>
+</div>
+<div class="section" id="selinux-boot-error">
+<span id="index-11"></span><span id="id11"></span><h2>При загрузке получаю ошибку SELinux. Как исправить?<a class="headerlink" href="#selinux-boot-error" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Такое бывает если по какой-то причине сбился контекст безопасности SELinux. Исправить это можно двумя различными способами.</p>
+<p><em>Способ первый</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo touch /.autorelabel
+sudo systemctl reboot
+</pre></div>
+</div>
+<p>Внимание! Следующая загрузка системы займёт много времени из-за переустановки контекста для всех файлов и каталогов. Ни в коем случае не следует её прерывать. По окончании система автоматически перезагрузится ещё один раз.</p>
+<p><em>Способ второй</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo restorecon -Rv /
+sudo systemctl reboot
+</pre></div>
+</div>
+<p>После перезагрузки все ошибки, связанные с SELinux, должны исчезнуть.</p>
+</div>
+<div class="section" id="usb">
+<span id="luks-usb"></span><span id="index-12"></span><h2>Как можно надёжно зашифровать файлы на USB устройстве?<a class="headerlink" href="#usb" title="Ссылка на этот заголовок">¶</a></h2>
+<p>См. <a class="reference external" href="https://www.easycoding.org/2016/11/14/shifruem-vneshnij-nakopitel-posredstvom-luks.html">здесь</a>.</p>
+</div>
+<div class="section" id="luks-home">
+<span id="index-13"></span><span id="id13"></span><h2>Можно ли зашифровать домашний раздел уже установленной системы?<a class="headerlink" href="#luks-home" title="Ссылка на этот заголовок">¶</a></h2>
+<p>См. <a class="reference external" href="https://www.easycoding.org/2016/12/09/shifruem-domashnij-razdel-ustanovlennoj-sistemy.html">здесь</a>.</p>
+</div>
+<div class="section" id="firewalld">
+<span id="firewalld-about"></span><span id="index-14"></span><h2>Что такое Firewalld?<a class="headerlink" href="#firewalld" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Firewalld - это современный динамически управляемый брандмауэр с поддержкой зон для интерфейсов.</p>
+<p>Firewalld не является надстройкой над iptables, как многие ошибочно считают. Firewalld - это полнофункциональный самодостаточный фронтенд над ядерным модулем netfilter.</p>
+</div>
+<div class="section" id="firewalld-configure">
+<span id="index-15"></span><span id="id15"></span><h2>Как можно настраивать Firewalld?<a class="headerlink" href="#firewalld-configure" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для настройки применяется либо графическая утилита <strong>system-config-firewall</strong>, либо консольная <strong>firewall-cmd</strong>.</p>
+<p>Документацию можно <a class="reference external" href="https://www.easycoding.org/2016/12/09/shifruem-domashnij-razdel-ustanovlennoj-sistemy.html">найти в Wiki</a>.</p>
+</div>
+<div class="section" id="firewalld-hide-service">
+<span id="index-16"></span><span id="id16"></span><h2>Как замаскировать сервис средствами Firewalld?<a class="headerlink" href="#firewalld-hide-service" title="Ссылка на этот заголовок">¶</a></h2>
+<p>См. <a class="reference external" href="https://www.easycoding.org/2017/06/22/maskiruem-opredelyonnyj-servis-sredstvami-firewalld.html">здесь</a>.</p>
+</div>
+<div class="section" id="ip">
+<span id="firewalld-block"></span><span id="index-17"></span><h2>Как запретить подключения с конкретных IP-адресов?<a class="headerlink" href="#ip" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Достаточно добавить их в специально созданную зону <strong>drop</strong> файрвола:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>firewall-cmd --permanent --zone<span class="o">=</span>drop --add-source<span class="o">=</span><span class="m">1</span>.2.3.4
+</pre></div>
+</div>
+<p>Здесь вместо <strong>1.2.3.4</strong> нужно указать необходимый IP-адрес или подсеть (<strong>1.2.3.0/24</strong>).</p>
+</div>
+<div class="section" id="gnupg">
+<span id="gpg-signatures"></span><span id="index-18"></span><h2>Как работать с подписями GnuPG?<a class="headerlink" href="#gnupg" title="Ссылка на этот заголовок">¶</a></h2>
+<p>См. <a class="reference external" href="https://www.easycoding.org/2018/01/11/rabotaem-s-cifrovymi-podpisyami-gpg.html">здесь</a>.</p>
+</div>
+<div class="section" id="gpg-encrypt">
+<span id="index-19"></span><span id="id19"></span><h2>Как зашифровать и расшифровать файлы с определённой маской в текущем каталоге?<a class="headerlink" href="#gpg-encrypt" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Шифрование всех файлов с маской <em>.7z.</em> (многотомные архивы 7-Zip):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find . -maxdepth <span class="m">1</span> -type f -name <span class="s2">&quot;*.7z.*&quot;</span> -exec gpg2 --out <span class="s2">&quot;{}.asc&quot;</span> --recipient <span class="s2">&quot;example@example.org&quot;</span> --encrypt <span class="s2">&quot;{}&quot;</span> <span class="se">\;</span>
+</pre></div>
+</div>
+<p>Расшифровка:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find . -maxdepth <span class="m">1</span> -type f -name <span class="s2">&quot;*.asc&quot;</span> -exec gpg2 --out <span class="s2">&quot;</span><span class="k">$(</span>basename <span class="o">{}</span><span class="k">)</span><span class="s2">&quot;</span> --decrypt <span class="s2">&quot;{}&quot;</span> <span class="se">\;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="admin-vs-user">
+<span id="index-20"></span><span id="id20"></span><h2>Чем отличается пользователь-администратор от обычного?<a class="headerlink" href="#admin-vs-user" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Администратор (в терминологии программы установки Anaconda) имеет доступ к sudo.</p>
+</div>
+<div class="section" id="sudo-su">
+<span id="sudo-password"></span><span id="index-21"></span><h2>Какие пароли запрашивают sudo и su?<a class="headerlink" href="#sudo-su" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Утилита sudo запрашивает текущий пароль пользователя, а su - рутовый.</p>
+</div>
+<div class="section" id="root-password">
+<span id="index-22"></span><span id="id21"></span><h2>Как мне сменить пароль суперпользователя?<a class="headerlink" href="#root-password" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для смены или установки пароля суперпользователя при наличии доступа к sudo, можно выполнить:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo passwd root
+</pre></div>
+</div>
+</div>
+<div class="section" id="sudo">
+<span id="sudo-access"></span><span id="index-23"></span><h2>Как мне получить доступ к sudo?<a class="headerlink" href="#sudo" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если при установке Fedora, при создании пользователя, не был установлен флажок в чекбокс <strong>Создать администратора</strong>, то необходимо самостоятельно добавить пользовательский аккаунт в группу <strong>wheel</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>su -c <span class="s2">&quot;usermod -a -G wheel </span><span class="k">$(</span>whoami<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sudo-vs-su">
+<span id="index-24"></span><span id="id22"></span><h2>Что лучше: sudo или su?<a class="headerlink" href="#sudo-vs-su" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Sudo ибо позволяет гибко настраивать права доступа, включая список разрешённых команд, а также ведёт полный журнал её использования.</p>
+</div>
+<div class="section" id="sudo-file-manager">
+<span id="index-25"></span><span id="id23"></span><h2>Почему я не могу запустить файловый менеджер с правами суперпользователя?<a class="headerlink" href="#sudo-file-manager" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Это сделано из соображений безопасности. Более подробная информация доступна <a class="reference external" href="https://blog.martin-graesslin.com/blog/2017/02/editing-files-as-root/">здесь</a>.</p>
+</div>
+<div class="section" id="sudo-edit-config">
+<span id="index-26"></span><span id="id25"></span><h2>Как мне отредактировать конфиг, доступный только суперпользователю?<a class="headerlink" href="#sudo-edit-config" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Необходимо использовать <strong>sudoedit</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudoedit /путь/к/файлу/конфигурации.conf
+</pre></div>
+</div>
+</div>
+<div class="section" id="sudoedit">
+<span id="sudoedit-info"></span><span id="index-27"></span><h2>Sudoedit безопаснее прямого запуска текстового редактора с правами суперпользователя?<a class="headerlink" href="#sudoedit" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, намного ибо sudoedit копирует нужный файл во временный каталог и загружает в выбранном по умолчанию текстовом редакторе с обычными правами, а по завершении редактирования копирует на прежнее место.</p>
+</div>
+<div class="section" id="ssh">
+<span id="ssh-install"></span><span id="index-28"></span><h2>Как включить и безопасно настроить сервер SSH?<a class="headerlink" href="#ssh" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Сначала необходимо активировать sshd:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl <span class="nb">enable</span> sshd.service
+</pre></div>
+</div>
+<p>Теперь следует открыть конфиг <strong>/etc/ssh/sshd_config</strong> в любом текстовом редакторе и внести правки.</p>
+<p>Отключение входа суперпользователем:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>PermitRootLogin no
+</pre></div>
+</div>
+<p>Запрет входа по паролям (будет доступна лишь аутентификация по ключам):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>PasswordAuthentication no
+PermitEmptyPasswords no
+</pre></div>
+</div>
+<p>Перезапуск sshd для применения изменений:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl restart sshd.service
+</pre></div>
+</div>
+</div>
+<div class="section" id="ssh-sftp">
+<span id="index-29"></span><span id="id26"></span><h2>Можно ли разрешить доступ посредством SSH только к файлам, без возможности выполнения команд?<a class="headerlink" href="#ssh-sftp" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Для этого создадим специальную группу (например <strong>sftp</strong>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo groupadd sftp
+</pre></div>
+</div>
+<p>Откроем конфиг <strong>/etc/ssh/sshd_config</strong> в текстовом редакторе и в самом конце добавим:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Subsystem sftp internal-sftp
+Match Group sftp
+    ChrootDirectory %h
+    AllowTCPForwarding no
+    ForceCommand internal-sftp
+</pre></div>
+</div>
+<p>Перезапустим sshd для применения изменений:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl restart sshd.service
+</pre></div>
+</div>
+</div>
+<div class="section" id="destroy-file">
+<span id="index-30"></span><span id="id27"></span><h2>Как безвозвратно уничтожить файл?<a class="headerlink" href="#destroy-file" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для уничтожения данных можно использовать штатную утилиту <strong>shred</strong> из пакета GNU Coreutils:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shred -u -v /путь/к/файлу.txt
+</pre></div>
+</div>
+<p>Восстановить такой файл будет практически невозможно ибо сектора диска, на которых он располагался, будут многократно перезаписаны случайной последовательностью, а затем заполнены нулями.</p>
+</div>
+<div class="section" id="destroy-disk">
+<span id="index-31"></span><span id="id28"></span><h2>Можно лишь уничтожить содержимое всего диска?<a class="headerlink" href="#destroy-disk" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, для этого можно использовать уже упомянутую выше утилиту <strong>shred</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo shred -v /dev/sdX
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sdX</strong> — устройство, которое будет очищено. На больших HDD процесс займёт много времени.</p>
+</div>
+<div class="section" id="ssd">
+<span id="destroy-ssd-file"></span><span id="index-32"></span><h2>Как уничтожить файл на SSD?<a class="headerlink" href="#ssd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для безвозвратного удаления файла на SSD накопителе достаточно просто удалить его штатным средством системы и дождаться выполнения процедуры TRIM, которая физически забьёт ячейки, которые им использовались, нулями.</p>
+<p>Если не используется TRIM реального времени, принудительно запустить этот процесс на всех твердотельных накопителях можно так:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl start fstrim.service
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="package-manager.html" title="предыдущая глава">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
+      <li>Next: <a href="using-system.html" title="следующая глава">Вопросы, связанные с работой в системе и администрированием</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Искать" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, EasyCoding Team and contributors.
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
