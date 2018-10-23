@@ -65,8 +65,7 @@ Dnf, являющийся, в свою очередь, форком Yum.
 
 .. code-block:: bash
 
-    sudo systemctl disable gdm
-    sudo systemctl enable sddm
+    sudo systemctl -f enable sddm
 
 Изменения вступят в силу при следующей загрузке системы.
 
