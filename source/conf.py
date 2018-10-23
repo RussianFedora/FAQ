@@ -150,8 +150,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'FedoraFaqRu.tex', 'Fedora FAQ RU',
-     'ProCxx Team', 'manual'),
+    (master_doc, 'fedora-faq-ru.tex', 'Fedora FAQ RU',
+     'EasyCoding Team and contributors', 'manual'),
 ]
 
 
@@ -172,6 +172,6 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc, 'fedora-faq-ru', 'Fedora FAQ RU',
-     author, 'fedora-faq-ru', 'One line description of project.',
+     author, 'fedora-faq-ru', 'Big Fedora FAQ in russian.',
      'Miscellaneous'),
 ]
