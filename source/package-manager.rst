@@ -297,6 +297,7 @@ Dnf сохраняет старые ядра. Это нормально?
 .. code-block:: bash
 
     sudo usermod -a -G vboxusers $(whoami)
+    sudo usermod -a -G vboxsf $(whoami)
 
 .. index:: repository, broadcom, drivers, драйверы
 .. _broadcom-drivers:
