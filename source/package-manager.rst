@@ -65,8 +65,7 @@ Dnf, являющийся, в свою очередь, форком Yum.
 
 .. code-block:: bash
 
-    sudo systemctl disable gdm
-    sudo systemctl enable sddm
+    sudo systemctl -f enable sddm
 
 Изменения вступят в силу при следующей загрузке системы.
 
@@ -292,11 +291,12 @@ Dnf сохраняет старые ядра. Это нормально?
     sudo dnf upgrade --refresh
     sudo dnf install gcc kernel-devel kernel-headers akmod-VirtualBox VirtualBox
 
-Для нормальной работы с USB устройствами потребуется также добавить свой аккаунт в группу **vboxusers**:
+Для нормальной работы с USB устройствами и общими папками потребуется также добавить свой аккаунт в группу **vboxusers** и **vboxsf**:
 
 .. code-block:: bash
 
     sudo usermod -a -G vboxusers $(whoami)
+    sudo usermod -a -G vboxsf $(whoami)
 
 .. index:: repository, broadcom, drivers, драйверы
 .. _broadcom-drivers:
