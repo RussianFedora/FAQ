@@ -291,7 +291,7 @@ Dnf сохраняет старые ядра. Это нормально?
     sudo dnf upgrade --refresh
     sudo dnf install gcc kernel-devel kernel-headers akmod-VirtualBox VirtualBox
 
-Для нормальной работы с USB устройствами и общими папками потребуется также добавить свой аккаунт в группу **vboxusers**:
+Для нормальной работы с USB устройствами и общими папками потребуется также добавить свой аккаунт в группу **vboxusers** и **vboxsf**:
 
 .. code-block:: bash
 
