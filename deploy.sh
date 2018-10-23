@@ -13,6 +13,7 @@ git checkout gh-pages
 
 rm -rf *
 mv $RESDIR/* .
+touch .nojekyll
 git add -A
 git commit -m "Updated FAQ contents."
 git push -u origin gh-pages
