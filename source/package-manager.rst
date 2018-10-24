@@ -502,3 +502,29 @@ Java 11:
     dnf download --resolve foo-bar --downloaddir ~/mypkg
 
 Для работы плагина dnf-download права суперпользователя не требуются.
+
+.. index:: dnf, repositories, управление репозиториями
+.. _dnf-manage-repo:
+
+Как правильно включать или отключать репозитории?
+=========================================================
+
+Включить репозиторий постоянно (на примере *fedora-modular*):
+
+.. code-block:: bash
+
+    sudo dnf config-manager --set-enabled fedora-modular
+
+Отключить репозиторий постоянно:
+
+.. code-block:: bash
+
+    sudo dnf config-manager --set-disabled fedora-modular
+
+Временно подключить репозиторий и установить пакет из него:
+
+.. code-block:: bash
+
+    sudo dnf install --refresh foo-bar --enablerepo=fedora-modular
+
+Опциональный параметр **--refresh** добавляется для принудительного обновления кэшей dnf.
