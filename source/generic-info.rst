@@ -174,3 +174,22 @@ RFRemix - это ремикс оргинального дистрибутива 
 ======================================================
 
 Для начала следует `создать тикет <https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora>`_ в RHBZ.
+
+.. index:: get help, получение помощи
+.. _get-help:
+
+У меня возникло затруднение. Где я могу получить помощь?
+=============================================================
+
+Вы всегда можете обратиться за помощью к другим участникам сообщества.
+
+Чаты и каналы:
+
+ * `Russian Fedora <https://t.me/russianfedora>`_ чат в Telegram;
+ * `Fedora <https://t.me/fedora>`_ чат в Telegram (на английском языке);
+ * `#fedora <https://webchat.freenode.net/?channels=#fedora>`_ в IRC сети FreeNode.
+
+Форумы:
+
+ * `Fedora Ask на русском языке <https://ask.fedoraproject.org/ru/questions/>`_;
+ * `Fedora Ask на английском языке <https://ask.fedoraproject.org/en/questions/>`_.
