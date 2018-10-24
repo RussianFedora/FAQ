@@ -175,7 +175,7 @@ RFRemix - это ремикс оргинального дистрибутива 
 
 Для начала следует `создать тикет <https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora>`_ в RHBZ.
 
-.. index:: get help, получение помощи
+.. index:: get help, получение помощи, telegram, irc, channels, chats
 .. _get-help:
 
 У меня возникло затруднение. Где я могу получить помощь?
