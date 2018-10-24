@@ -474,6 +474,14 @@ sudo systemctl disable zram-swap
 </div>
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
 </div>
+<div class="section" id="exfat-fedora">
+<span id="fedora-exfat"></span><span id="index-52"></span><h2>Почему я не могу использовать файловую систему exFAT в Fedora?<a class="headerlink" href="#exfat-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Файловая система exFAT защищена множеством патентов Microsoft, поэтому она не может быть включена в ядро Linux и соответственно быть доступной в Fedora по умолчанию.</p>
+<p>Для того, чтобы использовать её, необходимо установить пакет <strong>fuse-exfat</strong> из <a class="reference internal" href="package-manager.html#rd-repositories"><span class="std std-ref">репозитория</span></a> RPM Fusion:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install fuse fuse-exfat
+</pre></div>
+</div>
+</div>
 </div>
 
 
