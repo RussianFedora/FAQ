@@ -14,7 +14,6 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
     <link rel="prev" title="Вопросы, связанные с безопасностью" href="security.html" />
@@ -408,11 +407,11 @@ export QT_SCALE_FACTOR=2
 <p>Переменная <strong>QT_SCALE_FACTOR</strong> задаёт коэффициент масштабирования:</p>
 <blockquote>
 <div><ul class="simple">
-<li>1.5 - 150%;</li>
-<li>1.75 - 175%;</li>
-<li>2 - 200%;</li>
-<li>2.5 - 250%;</li>
-<li>3 - 300%.</li>
+<li><strong>1.5</strong> - 150%;</li>
+<li><strong>1.75</strong> - 175%;</li>
+<li><strong>2</strong> - 200%;</li>
+<li><strong>2.5</strong> - 250%;</li>
+<li><strong>3</strong> - 300%.</li>
 </ul>
 </div></blockquote>
 <p>Более подробную информацию можно найти в <a class="reference external" href="https://doc.qt.io/qt-5/highdpi.html">документации Qt</a>.</p>
@@ -420,6 +419,60 @@ export QT_SCALE_FACTOR=2
 <div class="section" id="dlna">
 <span id="dlna-server"></span><span id="index-45"></span><h2>Как поднять DLNA сервер в локальной сети?<a class="headerlink" href="#dlna" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2018/09/08/podnimaem-dlna-server-v-fedora.html">здесь</a>.</p>
+</div>
+<div class="section" id="telegram-desktop-fedora">
+<span id="telegram-fedora"></span><span id="index-46"></span><h2>Как лучше установить Telegram Desktop в Fedora?<a class="headerlink" href="#telegram-desktop-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Мы настоятельно рекомендуем устанавливать данный мессенджер исключительно из <a class="reference internal" href="package-manager.html#rd-repositories"><span class="std std-ref">репозиториев</span></a> RPM Fusion:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install telegram-desktop
+</pre></div>
+</div>
+<p>Данная версия собрана и динамически слинкована с использованием исключительно штатных системных библиотек, доступных в репозиториях Fedora, а не давно устаревших и уязвимых версий из комплекта Ubuntu 14.04, как официальная.</p>
+<p>Сборка Fedora поддерживает системные настройки тем, правильное сглаживание шрифтов (за счёт использование общесистемных настроек) и не имеет проблем со скоростью запуска.</p>
+</div>
+<div class="section" id="telegram-desktop">
+<span id="telegram-cleanup"></span><span id="index-47"></span><h2>Ранее я устанавливал официальную версию Telegram Desktop. Как мне очистить её остатки?<a class="headerlink" href="#telegram-desktop" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Официальная версия с сайта создаёт ярлыки запуска и копирует ряд загруженных бинарных файлов в пользовательский домашний каталог. Избавимся от этого:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>удалим старый бинарник и модуль обновления официального клиента, а также их копии из <strong>~/.local/share/TelegramDesktop</strong> и <strong>~/.local/share/TelegramDesktop/tdata</strong>;</li>
+<li>удалим ярлыки из <strong>~/.local/share/applications</strong>.</li>
+</ol>
+</div></blockquote>
+<p>Теперь можно установить <a class="reference internal" href="#telegram-fedora"><span class="std std-ref">версию</span></a> из RPM Fusion.</p>
+</div>
+<div class="section" id="deduplication-memory">
+<span id="index-48"></span><span id="id41"></span><h2>Возможна ли полная дедупликация оперативной памяти?<a class="headerlink" href="#deduplication-memory" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, дедупликация памяти <a class="reference external" href="https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html">поддерживается</a> в ядре Linux начиная с версии 2.6.32 модулем <a class="reference external" href="https://ru.wikipedia.org/wiki/KSM">KSM</a> и по умолчанию применяется лишь в системах виртуализации, например в KVM.</p>
+</div>
+<div class="section" id="deduplication-disk">
+<span id="index-49"></span><span id="id43"></span><h2>Возможна ли полная дедупликация данных на дисках?<a class="headerlink" href="#deduplication-disk" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Полная автоматическая дедупликация данных на дисках <a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/Deduplication">поддерживается</a> лишь файловой системой <a class="reference internal" href="#fs-btrfs"><span class="std std-ref">BTRFS</span></a>.</p>
+</div>
+<div class="section" id="memory-compression">
+<span id="index-50"></span><span id="id45"></span><h2>Можно ли включить сжатие оперативной памяти?<a class="headerlink" href="#memory-compression" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, в ядро Linux начиная с версии 3.14 по умолчанию входит модуль zram, который позволяет увеличить производительность системы посредством использования вместо дисковой подкачки виртуального устройства в оперативной памяти с активным сжатием.</p>
+<p>Включение zram в Fedora:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl <span class="nb">enable</span> --now zram-swap
+</pre></div>
+</div>
+<p>Отключение zram в Fedora:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl stop zram-swap
+sudo systemctl disable zram-swap
+</pre></div>
+</div>
+<p>После использования вышеуказанных команд рекомендуется выполнить перезагрузку системы.</p>
+</div>
+<div class="section" id="sddm">
+<span id="sddm-disable-vkb"></span><span id="index-51"></span><h2>Как отключить виртуальную клавиатуру в SDDM?<a class="headerlink" href="#sddm" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Чтобы отключить поддержку ввода с виртуальной экранной клавиатуры в менеджере входа в систему SDDM, откроем в текстовом редакторе файл <strong>/etc/sddm.conf</strong>, а затем найдём и удалим следующую строку:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>InputMethod=qtvirtualkeyboard
+</pre></div>
+</div>
+<p>Если она отсутствует, создадим в блоке <strong>[General]</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>InputMethod=
+</pre></div>
+</div>
+<p>Изменения вступят в силу при следующей загрузке системы.</p>
 </div>
 </div>
 

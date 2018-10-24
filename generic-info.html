@@ -14,7 +14,6 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
     <link rel="next" title="Вопросы, связанные с установкой системы" href="installation.html" />
@@ -72,33 +71,42 @@
 <span id="grub-loader"></span><span id="index-8"></span><h2>Какая версия загрузчика Grub используется в Fedora?<a class="headerlink" href="#grub-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Grub 2.</p>
 </div>
+<div class="section" id="software-installation">
+<span id="index-9"></span><span id="id8"></span><h2>Откуда следует устанавливать ПО?<a class="headerlink" href="#software-installation" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В Fedora, а равно как и любых других пакетных дистрибутивах, следует устанавливать программное обеспечение исключительно из репозиториев дистрибутива, <a class="reference internal" href="package-manager.html#rd-repositories"><span class="std std-ref">доверенных сторонних репозиториев</span></a>, либо посредством самодостаточных Flatpak пакетов.</p>
+<p>Ни в коем случае не следует использовать установку посредством <a class="reference internal" href="package-manager.html#make-install"><span class="std std-ref">make install</span></a>, т.к. это породит в системе кучу никем не отслеживаемых зависимостей и создаст множество проблем при дальнейшем использовании системы.</p>
+</div>
+<div class="section" id="fedora-snap">
+<span id="snap"></span><span id="index-10"></span><h2>Можно ли использовать в Fedora Snap пакеты?<a class="headerlink" href="#fedora-snap" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Технически возможно, однако мы настоятельно не рекомендуем этого делать ибо качество большинства Snap пакетов очень низкое, к тому же в некоторых из них <a class="reference external" href="https://xakep.ru/2018/05/14/snap-store-miner/">были обнаружены</a> вредоносные майнеры.</p>
+</div>
 <div class="section" id="rpm-fusion">
-<span id="rpmfusion"></span><span id="index-9"></span><h2>Что такое RPM Fusion?<a class="headerlink" href="#rpm-fusion" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="rpmfusion"></span><span id="index-11"></span><h2>Что такое RPM Fusion?<a class="headerlink" href="#rpm-fusion" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Это самый популярный сторонний репозиторий, содержащий пакеты, которые по какой-то причине нельзя распространять в главном репозитории: кодеки мультимедиа, драйверы, проприетарные прошивки для различных устройств.</p>
 </div>
 <div class="section" id="russian-fedora">
-<span id="index-10"></span><span id="id8"></span><h2>Что такое Russian Fedora?<a class="headerlink" href="#russian-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-12"></span><span id="id10"></span><h2>Что такое Russian Fedora?<a class="headerlink" href="#russian-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Популярный сторонний репозиторий. Содержит большое количество ПО, включая правильно собранные Chromium (с поддержкой всех доступных мультимедийных кодеков), PyCharm Community Edition, Double Commander, а также множество популярного проприетарного ПО: Opera, Viber, Sublime Text 3, Adobe Flash Player, RAR и т.д.</p>
 </div>
 <div class="section" id="copr">
-<span id="index-11"></span><span id="id9"></span><h2>Что такое COPR?<a class="headerlink" href="#copr" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-13"></span><span id="id11"></span><h2>Что такое COPR?<a class="headerlink" href="#copr" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Fedora COPR - это бесплатный хостинг для размещения пользовательских репозиториев (аналог AUR в Arch Linux или PPA в Ubuntu).</p>
 </div>
 <div class="section" id="copr-use">
-<span id="index-12"></span><span id="id10"></span><h2>Безопасно ли использовать COPR репозитории?<a class="headerlink" href="#copr-use" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-14"></span><span id="id12"></span><h2>Безопасно ли использовать COPR репозитории?<a class="headerlink" href="#copr-use" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Т.к. все пакеты в COPR создаются простыми пользователями, их качество значительно отличается. Есть как хорошие репозитории, так и те, что способны вывести систему из строя.</p>
 <p>Перед подключением мы рекомендуем проверить является ли владелец репозитория мейнтейнером Fedora или нет и если нет, то не делать этого.</p>
 </div>
 <div class="section" id="copr-legal">
-<span id="index-13"></span><span id="id11"></span><h2>Что разрешается хранить в COPR репозиториях?<a class="headerlink" href="#copr-legal" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-15"></span><span id="id13"></span><h2>Что разрешается хранить в COPR репозиториях?<a class="headerlink" href="#copr-legal" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Ровно всё то же, что и в основных репозиториях Fedora. Распространение запатентованного и проприетарного программного обеспечения в пользовательских оверлеях не допускается.</p>
 </div>
 <div class="section" id="rfremix">
-<span id="index-14"></span><span id="id12"></span><h2>Что такое RFRemix?<a class="headerlink" href="#rfremix" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-16"></span><span id="id14"></span><h2>Что такое RFRemix?<a class="headerlink" href="#rfremix" title="Ссылка на этот заголовок">¶</a></h2>
 <p>RFRemix - это ремикс оргинального дистрибутива Fedora с использованием репозиториев RPM Fusion и Russian Fedora, адаптированный для российских пользователей. Больше информации можно найти <a class="reference external" href="https://ru.fedoracommunity.org/stories/rfremix/">здесь</a>.</p>
 </div>
 <div class="section" id="rfremix-fedora">
-<span id="rfremix-to-fedora"></span><span id="index-15"></span><h2>Как превратить RFRemix в Fedora и наоборот?<a class="headerlink" href="#rfremix-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="rfremix-to-fedora"></span><span id="index-17"></span><h2>Как превратить RFRemix в Fedora и наоборот?<a class="headerlink" href="#rfremix-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для превращения Fedora в RFRemix необходимо и достаточно подключить репозиторий <strong>russianfedora-branding</strong>, а чтобы вернуть всё назад - отключить его.</p>
 <p>После подключения/отключения необходимо выполнить синхронизацию:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf distro-sync
@@ -106,8 +114,27 @@
 </div>
 </div>
 <div class="section" id="bug-report">
-<span id="index-16"></span><span id="id14"></span><h2>Я нашёл ошибку в программе. Как мне сообщить о ней?<a class="headerlink" href="#bug-report" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-18"></span><span id="id16"></span><h2>Я нашёл ошибку в программе. Как мне сообщить о ней?<a class="headerlink" href="#bug-report" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для начала следует <a class="reference external" href="https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora">создать тикет</a> в RHBZ.</p>
+</div>
+<div class="section" id="get-help">
+<span id="index-19"></span><span id="id18"></span><h2>У меня возникло затруднение. Где я могу получить помощь?<a class="headerlink" href="#get-help" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Вы всегда можете обратиться за помощью к другим участникам сообщества.</p>
+<p>Чаты и каналы:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://t.me/russianfedora">Russian Fedora</a> чат в Telegram;</li>
+<li><a class="reference external" href="https://t.me/fedora">Fedora</a> чат в Telegram (на английском языке);</li>
+<li><a class="reference external" href="https://webchat.freenode.net/?channels=#fedora">#fedora</a> в IRC сети FreeNode.</li>
+</ul>
+</div></blockquote>
+<p>Форумы:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://ask.fedoraproject.org/ru/questions/">Fedora Ask на русском языке</a>;</li>
+<li><a class="reference external" href="https://ask.fedoraproject.org/en/questions/">Fedora Ask на английском языке</a>.</li>
+</ul>
+</div></blockquote>
 </div>
 </div>
 

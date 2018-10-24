@@ -14,7 +14,6 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
     <link rel="next" title="Вопросы, связанные с безопасностью" href="security.html" />
@@ -73,8 +72,7 @@
 </pre></div>
 </div>
 <p>Отключение GDM и активация SDDM:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable gdm
-sudo systemctl <span class="nb">enable</span> sddm
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl -f <span class="nb">enable</span> sddm
 </pre></div>
 </div>
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
@@ -204,8 +202,9 @@ sudo dnf system-upgrade reboot
 sudo dnf install gcc kernel-devel kernel-headers akmod-VirtualBox VirtualBox
 </pre></div>
 </div>
-<p>Для нормальной работы с USB устройствами потребуется также добавить свой аккаунт в группу <strong>vboxusers</strong>:</p>
+<p>Для нормальной работы с USB устройствами и общими папками потребуется также добавить свой аккаунт в группу <strong>vboxusers</strong> и <strong>vboxsf</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G vboxusers <span class="k">$(</span>whoami<span class="k">)</span>
+sudo usermod -a -G vboxsf <span class="k">$(</span>whoami<span class="k">)</span>
 </pre></div>
 </div>
 </div>
@@ -329,6 +328,22 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 </pre></div>
 </div>
 <p>Для работы плагина dnf-download права суперпользователя не требуются.</p>
+</div>
+<div class="section" id="dnf-manage-repo">
+<span id="index-37"></span><span id="id35"></span><h2>Как правильно включать или отключать репозитории?<a class="headerlink" href="#dnf-manage-repo" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Включить репозиторий постоянно (на примере <em>fedora-modular</em>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-enabled fedora-modular
+</pre></div>
+</div>
+<p>Отключить репозиторий постоянно:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-disabled fedora-modular
+</pre></div>
+</div>
+<p>Временно подключить репозиторий и установить пакет из него:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install --refresh foo-bar --enablerepo<span class="o">=</span>fedora-modular
+</pre></div>
+</div>
+<p>Опциональный параметр <strong>–refresh</strong> добавляется для принудительного обновления кэшей dnf.</p>
 </div>
 </div>
 
