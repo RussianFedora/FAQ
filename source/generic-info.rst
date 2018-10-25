@@ -187,7 +187,8 @@ RFRemix - это ремикс оргинального дистрибутива 
 
  * `Russian Fedora <https://t.me/russianfedora>`_ чат в Telegram;
  * `Fedora <https://t.me/fedora>`_ чат в Telegram (на английском языке);
- * `#fedora <https://webchat.freenode.net/?channels=#fedora>`_ в IRC сети FreeNode.
+ * `#russianfedora:matrix.org <https://matrix.to/#/#russianfedora:matrix.org>`_ чат в Matrix;
+ * `#fedora <https://webchat.freenode.net/?channels=#fedora>`_ в IRC сети FreeNode (на английском языке).
 
 Форумы:
 
