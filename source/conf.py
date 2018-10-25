@@ -96,7 +96,7 @@ html_theme_options = {
     'show_powered_by': False,
     'github_user': 'RussianFedora',
     'github_repo': 'FAQ',
-    'github_banner': True
+    'github_banner': 'forkme_right_green.png'
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
