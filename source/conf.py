@@ -93,7 +93,10 @@ html_theme_options = {
     'font_family': 'sans-serif',
     'head_font_family': 'serif',
     'font_size': '16px',
-    'show_powered_by': False
+    'show_powered_by': False,
+    'github_user': 'RussianFedora',
+    'github_repo': 'FAQ',
+    'github_banner': True
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
