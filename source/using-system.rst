@@ -635,7 +635,7 @@
 
 .. code-block:: bash
 
-    cryptsetup luksClose /dev/mapper/storage
+    cryptsetup luksClose /dev/mapper/luks-root
 
 .. index:: file system, выбор файловой системы, файловая система
 .. _fs-selection:
