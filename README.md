@@ -15,7 +15,7 @@ sudo dnf install python3-sphinx
 2. Clone this repository:
 
 ```bash
-git clone https://github.com/xvitaly/fedora-faq-ru.git
+git clone https://github.com/RussianFedora/FAQ.git fedora-faq-ru
 ```
 
 3. Generate HTML from sources:
@@ -42,7 +42,7 @@ sudo dnf install python3-sphinx latexmk texlive-cmap texlive-metafont-bin texliv
 2. Clone this repository:
 
 ```bash
-git clone https://github.com/xvitaly/fedora-faq-ru.git
+git clone https://github.com/RussianFedora/FAQ.git fedora-faq-ru
 ```
 
 3. Generate PDF from sources:
