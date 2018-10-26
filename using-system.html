@@ -361,8 +361,8 @@ gfx.xrender.enabled = true
 <p>Здесь <strong>input.mp4</strong> — имя оригинального файла, который требуется перекодировать, а в <strong>output.mp4</strong> будет сохранён результат.</p>
 <p>Больше информации можно найти <a class="reference external" href="https://trac.ffmpeg.org/wiki/HWAccelIntro">здесь</a>.</p>
 </div>
-<div class="section" id="lvm">
-<span id="fs-check-lvm"></span><span id="index-39"></span><h2>Как мне проверить ФС в составе LVM?<a class="headerlink" href="#lvm" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="lvm-liveusb">
+<span id="fs-check-lvm"></span><span id="index-39"></span><h2>Как мне проверить ФС в составе LVM с LiveUSB?<a class="headerlink" href="#lvm-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если файловая система была повреждена, необходимо запустить <strong>fsck</strong> и разрешить ему исправить её. При использовании настроек по умолчанию (LVM, ФС ext4) это делается так:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/mapper/fedora-root
 fsck -t ext4 /dev/mapper/fedora-home
@@ -370,8 +370,8 @@ fsck -t ext4 /dev/mapper/fedora-home
 </div>
 <p>Если вместо ext4 применяется другая файловая система, необходимо указать её после параметра <strong>-t</strong>.</p>
 </div>
-<div class="section" id="fs-check-partitions">
-<span id="index-40"></span><span id="id38"></span><h2>Как мне проверить ФС при использовании классических разделов?<a class="headerlink" href="#fs-check-partitions" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="liveusb">
+<span id="fs-check-partitions"></span><span id="index-40"></span><h2>Как мне проверить ФС при использовании классических разделов с LiveUSB?<a class="headerlink" href="#liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если используется классическая схема с обычными разделами, то утилите <strong>fsck</strong> необходимо передавать соответствующее блочное устройство, например:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/sda2
 fsck -t ext4 /dev/sda3
@@ -383,21 +383,38 @@ fsck -t ext4 /dev/sda3
 </pre></div>
 </div>
 </div>
+<div class="section" id="luks-liveusb">
+<span id="fs-check-luks"></span><span id="index-41"></span><h2>Как мне проверить ФС на зашифрованном LUKS разделе с LiveUSB?<a class="headerlink" href="#luks-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если используются зашифрованные LUKS разделы, то сначала откроем соответствующее устройство:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cryptsetup luksOpen /dev/sda2 luks-root
+</pre></div>
+</div>
+<p>Здесь вместо <strong>/dev/sda2</strong> следует прописать соответствующее блочное устройство зашифрованного накопителя.</p>
+<p>Теперь запустим проверку файловой системы:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/mapper/luks-root
+</pre></div>
+</div>
+<p>Если вместо <strong>ext4</strong> применяется другая файловая система, необходимо указать её после параметра <strong>-t</strong>.</p>
+<p>По окончании обязательно отключим LUKS том:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cryptsetup luksClose /dev/mapper/storage
+</pre></div>
+</div>
+</div>
 <div class="section" id="fs-selection">
-<span id="index-41"></span><span id="id39"></span><h2>Какую файловую систему рекомендуется использовать на Fedora?<a class="headerlink" href="#fs-selection" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-42"></span><span id="id38"></span><h2>Какую файловую систему рекомендуется использовать на Fedora?<a class="headerlink" href="#fs-selection" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию применяется <a class="reference external" href="https://ru.wikipedia.org/wiki/Ext4">ext4</a>. На наш взгляд, это самая стабильная и популярная файловая система в настоящее время.</p>
 <p>Для хранения больших объёмов данных можно использовать <a class="reference external" href="https://ru.wikipedia.org/wiki/XFS">XFS</a>.</p>
 </div>
 <div class="section" id="btrfs">
-<span id="fs-btrfs"></span><span id="index-42"></span><h2>Что вы скажете о BTRFS?<a class="headerlink" href="#btrfs" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fs-btrfs"></span><span id="index-43"></span><h2>Что вы скажете о BTRFS?<a class="headerlink" href="#btrfs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы настоятельно не рекомендуем её использовать. Данная ФС очень нестабильна и часто приводит к полной потере всех данных на устройстве без возможности восстановления даже в идеальных условиях (было множество случаев у пользователей нашего канала).</p>
 </div>
 <div class="section" id="kde-plasma-5">
-<span id="window-borders"></span><span id="index-43"></span><h2>Как убрать рамки внутри окон в KDE Plasma 5?<a class="headerlink" href="#kde-plasma-5" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="window-borders"></span><span id="index-44"></span><h2>Как убрать рамки внутри окон в KDE Plasma 5?<a class="headerlink" href="#kde-plasma-5" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этого следует открыть <strong>Меню KDE</strong> - <strong>Компьютер</strong> - <strong>Параметры системы</strong> - <strong>Оформление приложений</strong> - страница <strong>Стиль интерфейса</strong> - кнопка <strong>Настроить</strong> - вкладка <strong>Рамки</strong>, <strong>убрать все флажки</strong> из чекбоксов на данной странице и нажать кнопку <strong>OK</strong>.</p>
 </div>
 <div class="section" id="gnome-qt">
-<span id="window-hidpi-qt"></span><span id="index-44"></span><h2>У меня в Gnome не работает масштабирование окон Qt приложений. Что делать?<a class="headerlink" href="#gnome-qt" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="window-hidpi-qt"></span><span id="index-45"></span><h2>У меня в Gnome не работает масштабирование окон Qt приложений. Что делать?<a class="headerlink" href="#gnome-qt" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для активации автоматического масштабирования достаточно прописать в файле <strong>~/.bashrc</strong> следующие строки:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export QT_SCALE_FACTOR=2
@@ -417,11 +434,11 @@ export QT_SCALE_FACTOR=2
 <p>Более подробную информацию можно найти в <a class="reference external" href="https://doc.qt.io/qt-5/highdpi.html">документации Qt</a>.</p>
 </div>
 <div class="section" id="dlna">
-<span id="dlna-server"></span><span id="index-45"></span><h2>Как поднять DLNA сервер в локальной сети?<a class="headerlink" href="#dlna" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="dlna-server"></span><span id="index-46"></span><h2>Как поднять DLNA сервер в локальной сети?<a class="headerlink" href="#dlna" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2018/09/08/podnimaem-dlna-server-v-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="telegram-desktop-fedora">
-<span id="telegram-fedora"></span><span id="index-46"></span><h2>Как лучше установить Telegram Desktop в Fedora?<a class="headerlink" href="#telegram-desktop-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="telegram-fedora"></span><span id="index-47"></span><h2>Как лучше установить Telegram Desktop в Fedora?<a class="headerlink" href="#telegram-desktop-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы настоятельно рекомендуем устанавливать данный мессенджер исключительно из <a class="reference internal" href="package-manager.html#rd-repositories"><span class="std std-ref">репозиториев</span></a> RPM Fusion:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install telegram-desktop
 </pre></div>
@@ -430,7 +447,7 @@ export QT_SCALE_FACTOR=2
 <p>Сборка Fedora поддерживает системные настройки тем, правильное сглаживание шрифтов (за счёт использование общесистемных настроек) и не имеет проблем со скоростью запуска.</p>
 </div>
 <div class="section" id="telegram-desktop">
-<span id="telegram-cleanup"></span><span id="index-47"></span><h2>Ранее я устанавливал официальную версию Telegram Desktop. Как мне очистить её остатки?<a class="headerlink" href="#telegram-desktop" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="telegram-cleanup"></span><span id="index-48"></span><h2>Ранее я устанавливал официальную версию Telegram Desktop. Как мне очистить её остатки?<a class="headerlink" href="#telegram-desktop" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Официальная версия с сайта создаёт ярлыки запуска и копирует ряд загруженных бинарных файлов в пользовательский домашний каталог. Избавимся от этого:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -441,15 +458,15 @@ export QT_SCALE_FACTOR=2
 <p>Теперь можно установить <a class="reference internal" href="#telegram-fedora"><span class="std std-ref">версию</span></a> из RPM Fusion.</p>
 </div>
 <div class="section" id="deduplication-memory">
-<span id="index-48"></span><span id="id41"></span><h2>Возможна ли полная дедупликация оперативной памяти?<a class="headerlink" href="#deduplication-memory" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-49"></span><span id="id40"></span><h2>Возможна ли полная дедупликация оперативной памяти?<a class="headerlink" href="#deduplication-memory" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, дедупликация памяти <a class="reference external" href="https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html">поддерживается</a> в ядре Linux начиная с версии 2.6.32 модулем <a class="reference external" href="https://ru.wikipedia.org/wiki/KSM">KSM</a> и по умолчанию применяется лишь в системах виртуализации, например в KVM.</p>
 </div>
 <div class="section" id="deduplication-disk">
-<span id="index-49"></span><span id="id43"></span><h2>Возможна ли полная дедупликация данных на дисках?<a class="headerlink" href="#deduplication-disk" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-50"></span><span id="id42"></span><h2>Возможна ли полная дедупликация данных на дисках?<a class="headerlink" href="#deduplication-disk" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Полная автоматическая дедупликация данных на дисках <a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/Deduplication">поддерживается</a> лишь файловой системой <a class="reference internal" href="#fs-btrfs"><span class="std std-ref">BTRFS</span></a>.</p>
 </div>
 <div class="section" id="memory-compression">
-<span id="index-50"></span><span id="id45"></span><h2>Можно ли включить сжатие оперативной памяти?<a class="headerlink" href="#memory-compression" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-51"></span><span id="id44"></span><h2>Можно ли включить сжатие оперативной памяти?<a class="headerlink" href="#memory-compression" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, в ядро Linux начиная с версии 3.14 по умолчанию входит модуль zram, который позволяет увеличить производительность системы посредством использования вместо дисковой подкачки виртуального устройства в оперативной памяти с активным сжатием.</p>
 <p>Включение zram в Fedora:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl <span class="nb">enable</span> --now zram-swap
@@ -463,7 +480,7 @@ sudo systemctl disable zram-swap
 <p>После использования вышеуказанных команд рекомендуется выполнить перезагрузку системы.</p>
 </div>
 <div class="section" id="sddm">
-<span id="sddm-disable-vkb"></span><span id="index-51"></span><h2>Как отключить виртуальную клавиатуру в SDDM?<a class="headerlink" href="#sddm" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="sddm-disable-vkb"></span><span id="index-52"></span><h2>Как отключить виртуальную клавиатуру в SDDM?<a class="headerlink" href="#sddm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы отключить поддержку ввода с виртуальной экранной клавиатуры в менеджере входа в систему SDDM, откроем в текстовом редакторе файл <strong>/etc/sddm.conf</strong>, а затем найдём и удалим следующую строку:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>InputMethod=qtvirtualkeyboard
 </pre></div>
@@ -475,7 +492,7 @@ sudo systemctl disable zram-swap
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
 </div>
 <div class="section" id="exfat-fedora">
-<span id="fedora-exfat"></span><span id="index-52"></span><h2>Почему я не могу использовать файловую систему exFAT в Fedora?<a class="headerlink" href="#exfat-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fedora-exfat"></span><span id="index-53"></span><h2>Почему я не могу использовать файловую систему exFAT в Fedora?<a class="headerlink" href="#exfat-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Файловая система exFAT защищена множеством патентов Microsoft, поэтому она не может быть включена в ядро Linux и соответственно быть доступной в Fedora по умолчанию.</p>
 <p>Для того, чтобы использовать её, необходимо установить пакет <strong>fuse-exfat</strong> из <a class="reference internal" href="package-manager.html#rd-repositories"><span class="std std-ref">репозитория</span></a> RPM Fusion:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install fuse fuse-exfat
