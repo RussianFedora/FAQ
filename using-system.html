@@ -396,7 +396,7 @@ fsck -t ext4 /dev/sda3
 </div>
 <p>Если вместо <strong>ext4</strong> применяется другая файловая система, необходимо указать её после параметра <strong>-t</strong>.</p>
 <p>По окончании обязательно отключим LUKS том:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cryptsetup luksClose /dev/mapper/storage
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cryptsetup luksClose /dev/mapper/luks-root
 </pre></div>
 </div>
 </div>
