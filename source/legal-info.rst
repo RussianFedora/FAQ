@@ -10,6 +10,8 @@
 Лицензионное соглашение
 ==============================================
 
+Данный проект лицензируется в соответствии с условиями Creative Commons Attribution Share Alike 4.0 International:
+
 .. include:: ../LICENSE
    :literal:
 
