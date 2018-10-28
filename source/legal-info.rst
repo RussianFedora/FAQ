@@ -11,13 +11,21 @@
 Правовая информация
 *****************************************
 
+.. index:: authors, contributors, авторы
+.. _authors:
+
+Авторы
+===========
+
+Полный список авторов и вклад каждого можно увидеть на странице `Contributors <https://github.com/RussianFedora/FAQ/graphs/contributors>`_ репозитория на GitHub.
+
 .. index:: лицензия, license, соглашение, agreement
 .. _license:
 
 Лицензионное соглашение
-==============================================
+===============================
 
-Данный проект лицензируется в соответствии с условиями Creative Commons Attribution Share Alike 4.0 International:
+Данный проект лицензируется под условиями Creative Commons Attribution Share Alike 4.0 International:
 
 .. include:: ../LICENSE
    :literal:
