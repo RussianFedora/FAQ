@@ -550,3 +550,21 @@ Java 11:
     dnf module install nodejs:6/default
 
 Более подробную информацию о модулях можно найти `здесь <https://docs.fedoraproject.org/en-US/modularity/using-modules/>`_.
+
+.. index:: dnf, modular, modules, модули
+.. _dnf-disable-modules:
+
+Мне не нужна поддержка модулей. Как их можно отключить?
+===========================================================
+
+Отключение репозитория с модулями:
+
+.. code-block:: bash
+
+    sudo dnf config-manager --set-disabled fedora-modular fedora-updates-modular
+
+Повторное включение поддержки модулей:
+
+.. code-block:: bash
+
+    sudo dnf config-manager --set-enabled fedora-modular fedora-updates-modular
