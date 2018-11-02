@@ -509,22 +509,22 @@ Java 11:
 Как правильно включать или отключать репозитории?
 =========================================================
 
-Включить репозиторий постоянно (на примере *fedora-modular*):
+Включить репозиторий постоянно (на примере *foo-bar*):
 
 .. code-block:: bash
 
-    sudo dnf config-manager --set-enabled fedora-modular
+    sudo dnf config-manager --set-enabled foo-bar
 
 Отключить репозиторий постоянно:
 
 .. code-block:: bash
 
-    sudo dnf config-manager --set-disabled fedora-modular
+    sudo dnf config-manager --set-disabled foo-bar
 
 Временно подключить репозиторий и установить пакет из него:
 
 .. code-block:: bash
 
-    sudo dnf install --refresh foo-bar --enablerepo=fedora-modular
+    sudo dnf install --refresh foo-bar --enablerepo=foo-bar
 
 Опциональный параметр **--refresh** добавляется для принудительного обновления кэшей dnf.
