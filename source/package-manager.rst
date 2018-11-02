@@ -528,3 +528,25 @@ Java 11:
     sudo dnf install --refresh foo-bar --enablerepo=foo-bar
 
 Опциональный параметр **--refresh** добавляется для принудительного обновления кэшей dnf.
+
+.. index:: dnf, modular, modules, модули
+.. _dnf-modular:
+
+Что такое модульные репозитории?
+====================================
+
+Репозитории Fedora Modular позволяют установить в систему несколько различных версий определённых пакетов. Они включены по умолчанию начиная с Fedora 29.
+
+Вывод списка доступных модулей:
+
+.. code-block:: bash
+
+    sudo dnf module list
+
+Установка пакета в виде модуля (на примере *nodejs*):
+
+.. code-block:: bash
+
+    dnf module install nodejs:6/default
+
+Более подробную информацию о модулях можно найти `здесь <https://docs.fedoraproject.org/en-US/modularity/using-modules/>`_.
