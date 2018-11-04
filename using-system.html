@@ -502,6 +502,32 @@ sudo systemctl disable zram-swap
 </pre></div>
 </div>
 </div>
+<div class="section" id="fedora-iperf">
+<span id="index-54"></span><span id="id45"></span><h2>Как сделать замеры скорости локальной или беспроводной сети?<a class="headerlink" href="#fedora-iperf" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для точных замеров производительности сети нам потребуется как минимум два компьютера (либо компьютер и мобильное устройство), а также утилита iperf, присутствующая в репозиториях Fedora. Установим её:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install iperf2
+</pre></div>
+</div>
+<p>На первом устройстве запустим сервер iperf:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>iperf -s
+</pre></div>
+</div>
+<p>По умолчанию iperf прослушивает порт <strong>5001/tcp</strong> на всех доступных сетевых соединениях.</p>
+<p>Теперь временно разрешим входящие соединения на данный порт посредством <a class="reference internal" href="security.html#firewalld-about"><span class="std std-ref">Firewalld</span></a> (правило будет действовать до перезагрузки):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --add-port<span class="o">=</span><span class="m">5001</span>/tcp
+</pre></div>
+</div>
+<p>На втором устройстве запустим клиент и подключимся к серверу:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>iperf -c <span class="m">192</span>.168.1.2
+</pre></div>
+</div>
+<p>В качестве клиента может выступать и мобильное устройство на базе ОС Android с установленным <a class="reference external" href="https://play.google.com/store/apps/details?id=net.he.networktools">Network Tools</a>. В этом случае в главном меню программы следует выбрать пункт Iperf2, а в окне подключения ввести:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-c 192.168.1.2
+</pre></div>
+</div>
+<p>Параметр <strong>-c</strong> обязателен. Если он не указан, программа выдаст ошибку.</p>
+<p><strong>192.168.1.2</strong> - это внутренний IP-адрес сервера в ЛВС, на котором запущен сервер. Номер порта указывать не требуется.</p>
+</div>
 </div>
 
 
