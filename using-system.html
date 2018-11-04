@@ -518,15 +518,15 @@ sudo systemctl disable zram-swap
 </pre></div>
 </div>
 <p>На втором устройстве запустим клиент и подключимся к серверу:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>iperf -c <span class="m">192</span>.168.1.2
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>iperf -c 192.168.1.2
 </pre></div>
 </div>
-<p>В качестве клиента может выступать и мобильное устройство на базе ОС Android с установленным <a class="reference external" href="https://play.google.com/store/apps/details?id=net.he.networktools">Network Tools</a>. В этом случае в главном меню программы следует выбрать пункт Iperf2, а в окне подключения ввести:</p>
+<p>В качестве клиента может выступать и мобильное устройство на базе ОС Android с установленным <a class="reference external" href="https://play.google.com/store/apps/details?id=net.he.networktools">Network Tools</a>. В этом случае в главном меню программы следует выбрать пункт <strong>Iperf2</strong>, а в окне подключения ввести:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-c 192.168.1.2
 </pre></div>
 </div>
 <p>Параметр <strong>-c</strong> обязателен. Если он не указан, программа выдаст ошибку.</p>
-<p><strong>192.168.1.2</strong> - это внутренний IP-адрес сервера в ЛВС, на котором запущен сервер. Номер порта указывать не требуется.</p>
+<p><strong>192.168.1.2</strong> - это внутренний IP-адрес устройства в ЛВС, на котором запущен сервер. Номер порта указывать не требуется.</p>
 </div>
 </div>
 
