@@ -85,6 +85,24 @@ Gnome 3 (версия Workstation), KDE, XFCE, LXDE, LXQt, Cinnamon.
 
 Grub 2.
 
+.. index:: repository, installation, установка ПО, software
+.. _software-installation:
+
+Откуда следует устанавливать ПО?
+====================================
+
+В Fedora, а равно как и любых других пакетных дистрибутивах, следует устанавливать программное обеспечение исключительно из репозиториев дистрибутива, :ref:`доверенных сторонних репозиториев <3rd-repositories>`, либо посредством самодостаточных Flatpak пакетов.
+
+Ни в коем случае не следует использовать установку посредством :ref:`make install <make-install>`, т.к. это породит в системе кучу никем не отслеживаемых зависимостей и создаст множество проблем при дальнейшем использовании системы.
+
+.. index:: installation, установка ПО, software, snap
+.. _snap:
+
+Можно ли использовать в Fedora Snap пакеты?
+===============================================
+
+Технически возможно, однако мы настоятельно не рекомендуем этого делать ибо качество большинства Snap пакетов очень низкое, к тому же в некоторых из них `были обнаружены <https://xakep.ru/2018/05/14/snap-store-miner/>`_ вредоносные майнеры.
+
 .. index:: repository, rpmfusion
 .. _rpmfusion:
 
@@ -156,3 +174,23 @@ RFRemix - это ремикс оргинального дистрибутива 
 ======================================================
 
 Для начала следует `создать тикет <https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora>`_ в RHBZ.
+
+.. index:: get help, получение помощи, telegram, irc, channels, chats
+.. _get-help:
+
+У меня возникло затруднение. Где я могу получить помощь?
+=============================================================
+
+Вы всегда можете обратиться за помощью к другим участникам сообщества.
+
+Чаты и каналы:
+
+ * `Russian Fedora <https://t.me/russianfedora>`_ чат в Telegram;
+ * `Fedora <https://t.me/fedora>`_ чат в Telegram (на английском языке);
+ * `#russianfedora:matrix.org <https://matrix.to/#/#russianfedora:matrix.org>`_ чат в Matrix;
+ * `#fedora <https://webchat.freenode.net/?channels=#fedora>`_ в IRC сети FreeNode (на английском языке).
+
+Форумы:
+
+ * `Fedora Ask на русском языке <https://ask.fedoraproject.org/ru/questions/>`_;
+ * `Fedora Ask на английском языке <https://ask.fedoraproject.org/en/questions/>`_.

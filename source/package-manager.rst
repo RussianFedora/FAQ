@@ -502,3 +502,69 @@ Java 11:
     dnf download --resolve foo-bar --downloaddir ~/mypkg
 
 Для работы плагина dnf-download права суперпользователя не требуются.
+
+.. index:: dnf, repositories, управление репозиториями
+.. _dnf-manage-repo:
+
+Как правильно включать или отключать репозитории?
+=========================================================
+
+Включить репозиторий постоянно (на примере *foo-bar*):
+
+.. code-block:: bash
+
+    sudo dnf config-manager --set-enabled foo-bar
+
+Отключить репозиторий постоянно:
+
+.. code-block:: bash
+
+    sudo dnf config-manager --set-disabled foo-bar
+
+Временно подключить репозиторий и установить пакет из него:
+
+.. code-block:: bash
+
+    sudo dnf install --refresh foo-bar --enablerepo=foo-bar
+
+Опциональный параметр **--refresh** добавляется для принудительного обновления кэшей dnf.
+
+.. index:: dnf, modular, modules, модули
+.. _dnf-modular:
+
+Что такое модульные репозитории?
+====================================
+
+Репозитории Fedora Modular позволяют установить в систему несколько различных версий определённых пакетов. Они включены по умолчанию начиная с Fedora 29.
+
+Вывод списка доступных модулей:
+
+.. code-block:: bash
+
+    sudo dnf module list
+
+Установка пакета в виде модуля (на примере *nodejs*):
+
+.. code-block:: bash
+
+    dnf module install nodejs:6/default
+
+Более подробную информацию о модулях можно найти `здесь <https://docs.fedoraproject.org/en-US/modularity/using-modules/>`_.
+
+.. index:: dnf, modular, modules, модули
+.. _dnf-disable-modules:
+
+Мне не нужна поддержка модулей. Как их можно отключить?
+===========================================================
+
+Отключение репозитория с модулями:
+
+.. code-block:: bash
+
+    sudo dnf config-manager --set-disabled fedora-modular fedora-updates-modular
+
+Повторное включение поддержки модулей:
+
+.. code-block:: bash
+
+    sudo dnf config-manager --set-enabled fedora-modular fedora-updates-modular

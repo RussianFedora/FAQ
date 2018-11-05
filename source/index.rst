@@ -19,3 +19,4 @@
    package-manager.rst
    security.rst
    using-system.rst
+   legal-info.rst

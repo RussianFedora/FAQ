@@ -16,7 +16,6 @@ mv $RESDIR/* .
 touch .nojekyll
 git add -A
 git commit -m "Updated FAQ contents."
-git push -u origin gh-pages
 git checkout master
 git reset --hard
 
