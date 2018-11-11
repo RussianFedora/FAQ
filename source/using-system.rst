@@ -851,3 +851,15 @@
 .. code-block:: bash
 
     sudo dnf install texmaker
+
+.. index:: latex, texlive, cyrillic, fonts, шрифты
+.. _latex-cyrillic:
+
+Как установить поддержку кириллических шрифтов для LaTeX?
+=============================================================
+
+Наборы кириллических шрифтов доступны в виде коллекции:
+
+.. code-block:: bash
+
+    sudo dnf install texlive-collection-langcyrillic texlive-cyrillic texlive-russ texlive-babel-russian
