@@ -542,6 +542,26 @@ sudo systemctl disable zram-swap
 </pre></div>
 </div>
 </div>
+<div class="section" id="android-mtp">
+<span id="fuze-mtp"></span><span id="index-57"></span><h2>Как подключить смартфон на Android посредством протокола MTP?<a class="headerlink" href="#android-mtp" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для простой и удобной работы с файловой системой смартфона вне зависимости от используемых приложений, рабочей среды и файлового менеджера, мы рекомендуем использовать основанную на FUSE реализацию.</p>
+<p>Установим пакет <strong>jmtpfs</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install jmtpfs fuse
+</pre></div>
+</div>
+<p>Создадим каталог, в который будет смонтирована ФС смартфона:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/myphone
+</pre></div>
+</div>
+<p>Подключим устройство к компьютеру или ноутбуку по USB, разблокируем его и выберем режим MTP, после чего выполним:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jmtpfs ~/myphone
+</pre></div>
+</div>
+<p>По окончании работы обязательно завершим MTP сессию:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fusermount -u ~/myphone
+</pre></div>
+</div>
+</div>
 </div>
 
 
