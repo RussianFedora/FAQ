@@ -863,3 +863,35 @@
 .. code-block:: bash
 
     sudo dnf install texlive-collection-langcyrillic texlive-cyrillic texlive-russ texlive-babel-russian
+
+.. index:: fuse, file system, mtp, android, phone
+.. _fuze-mtp:
+
+Как подключить смартфон на Android посредством протокола MTP?
+================================================================
+
+Для простой и удобной работы с файловой системой смартфона вне зависимости от используемых приложений, рабочей среды и файлового менеджера, мы рекомендуем использовать основанную на FUSE реализацию.
+
+Установим пакет **jmtpfs**:
+
+.. code-block:: bash
+
+    sudo dnf install jmtpfs fuse
+
+Создадим каталог, в который будет смонтирована ФС смартфона:
+
+.. code-block:: bash
+
+    mkdir -p ~/myphone
+
+Подключим устройство к компьютеру или ноутбуку по USB, разблокируем его и выберем режим MTP, после чего выполним:
+
+.. code-block:: bash
+
+    jmtpfs ~/myphone
+
+По окончании работы обязательно завершим MTP сессию:
+
+.. code-block:: bash
+
+    fusermount -u ~/myphone
