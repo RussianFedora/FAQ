@@ -895,3 +895,23 @@
 .. code-block:: bash
 
     fusermount -u ~/myphone
+
+.. index:: systemd, failed to start modules, kernel, virtualbox
+.. _failed-to-start:
+
+При загрузке системы появляется ошибка Failed to start Load Kernel Modules. Как исправить?
+==============================================================================================
+
+Это известная проблема системы виртуализации VirtualBox, использующей out-of-tree модули ядра, но может также проявляться и у пользователей проприетарных :ref:`драйверов Broadcom <broadcom-drivers>`.
+
+Для исправления необходимо **после каждого обновления ядра** выполнять пересборку initrd:
+
+.. code-block:: bash
+
+    sudo dracut -f
+
+Для вступления изменений в силу требуется перезагрузка:
+
+.. code-block:: bash
+
+    sudo systemctl reboot
