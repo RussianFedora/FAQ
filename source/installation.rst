@@ -152,7 +152,7 @@
 
 .. code-block:: bash
 
-    sudo sysctl -w vm.swappiness=1
+    sudo sysctl -w vm.swappiness=10
 
 Изменения вступят в силу немедленно.
 
