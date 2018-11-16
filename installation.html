@@ -156,14 +156,11 @@
 </div>
 <div class="section" id="fonts-cleartype">
 <span id="index-18"></span><span id="id18"></span><h2>Как улучшить отображение шрифтов в Fedora?<a class="headerlink" href="#fonts-cleartype" title="Ссылка на этот заголовок">¶</a></h2>
-<p>По умолчанию пакет freetype в Fedora собран без поддержки субпиксельного сглаживания, поэтому чтобы получить качественный рендеринг шрифтов, необходимо подключить репозиторий RPM Fusion и установить из него специальную freeworld версию:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install freetype-freeworld
-</pre></div>
-</div>
-<p>После этого нужно разрешить использование LCD фильтров, создав символическую ссылку на файл <strong>11-lcdfilter-default.conf</strong> в каталоге <strong>/etc/fonts/conf.d</strong>:</p>
+<p>В актуальных релизах Fedora пакет freetype уже собран с поддержкой субпиксельного сглаживания, поэтому чтобы получить качественный рендеринг шрифтов, необходимо лишь разрешить использование LCD фильтров, создав символическую ссылку на файл <strong>11-lcdfilter-default.conf</strong> в каталоге <strong>/etc/fonts/conf.d</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ln -s /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d/
 </pre></div>
 </div>
+<p>Для вступления изменений в силу необходимо повторно войти в систему, либо перезагрузить компьютер.</p>
 </div>
 <div class="section" id="fonts-console">
 <span id="index-19"></span><span id="id19"></span><h2>В консолях фреймбуфера отображаются кракозябры. Как это починить?<a class="headerlink" href="#fonts-console" title="Ссылка на этот заголовок">¶</a></h2>

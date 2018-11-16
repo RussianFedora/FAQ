@@ -562,6 +562,18 @@ sudo systemctl disable zram-swap
 </pre></div>
 </div>
 </div>
+<div class="section" id="failed-to-start-load-kernel-modules">
+<span id="failed-to-start"></span><span id="index-58"></span><h2>При загрузке системы появляется ошибка Failed to start Load Kernel Modules. Как исправить?<a class="headerlink" href="#failed-to-start-load-kernel-modules" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Это известная проблема системы виртуализации VirtualBox, использующей out-of-tree модули ядра, но может также проявляться и у пользователей проприетарных <a class="reference internal" href="package-manager.html#broadcom-drivers"><span class="std std-ref">драйверов Broadcom</span></a>.</p>
+<p>Для исправления необходимо <strong>после каждого обновления ядра</strong> выполнять пересборку initrd:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dracut -f
+</pre></div>
+</div>
+<p>Для вступления изменений в силу требуется перезагрузка:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</div>
 </div>
 
 
