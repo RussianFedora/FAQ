@@ -118,10 +118,10 @@
 <div class="section" id="swappiness">
 <span id="index-13"></span><span id="id16"></span><h2>Можно ли сделать так, чтобы подкачка использовалась лишь при исчерпании ОП?<a class="headerlink" href="#swappiness" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, это возможно. Необходимо выполнить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w vm.swappiness<span class="o">=</span><span class="m">1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w vm.swappiness<span class="o">=</span><span class="m">10</span>
 </pre></div>
 </div>
-<p>Изменения вступят в силу немедленно.</p>
+<p>Изменения вступят в силу немедленно и сохранятся до перезагрузки системы. Если нужно сделать это постоянным, см. <a class="reference internal" href="using-system.html#sysctl-permanent"><span class="std std-ref">данное руководство</span></a>.</p>
 </div>
 <div class="section" id="speedup-main">
 <span id="index-14"></span><span id="id17"></span><h2>Как ускорить запуск системы?<a class="headerlink" href="#speedup-main" title="Ссылка на этот заголовок">¶</a></h2>

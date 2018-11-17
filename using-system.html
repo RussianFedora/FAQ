@@ -574,6 +574,39 @@ sudo systemctl disable zram-swap
 </pre></div>
 </div>
 </div>
+<div class="section" id="sysctl">
+<span id="sysctl-temporary"></span><span id="index-59"></span><h2>Как временно изменить параметр sysctl?<a class="headerlink" href="#sysctl" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Временно установить любой параметр ядра возможно через sysctl:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w foo.bar<span class="o">=</span>X
+</pre></div>
+</div>
+<p>Здесь <strong>foo.bar</strong> имя параметра, а <strong>X</strong> - его значение. Изменения вступят в силу немедленно и сохранятся до перезагрузки системы.</p>
+</div>
+<div class="section" id="sysctl-permanent">
+<span id="index-60"></span><span id="id47"></span><h2>Как задать и сохранить параметр sysctl?<a class="headerlink" href="#sysctl-permanent" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Чтобы сохранить параметр ядра, создадим специальный файл <strong>99-foobar.conf</strong> в каталоге <strong>/etc/sysctl.d</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo.bar1=X1
+foo.bar2=X2
+</pre></div>
+</div>
+<p>Каждый параметр должен быть указан с новой строки. Здесь <strong>foo.bar</strong> имя параметра, а <strong>X</strong> - его значение.</p>
+<p>Для вступления изменений в силу требуется перезагрузка:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</div>
+<div class="section" id="sysctl-order">
+<span id="index-61"></span><span id="id48"></span><h2>В каком порядке загружаются sysctl файлы настроек?<a class="headerlink" href="#sysctl-order" title="Ссылка на этот заголовок">¶</a></h2>
+<p>При загрузке ядро проверяет следующие каталоги в поисках <strong>.conf</strong> файлов:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><strong>/usr/lib/sysctl.d</strong> - предустановленные конфиги системы и определённых пакетов;</li>
+<li><strong>/run/sysctl.d</strong> - различные конфиги, сгенерированные в рантайме;</li>
+<li><strong>/etc/sysctl.d</strong> - пользовательские конфиги.</li>
+</ol>
+</div></blockquote>
+<p>Порядок выполнения - в алфавитном порядке, поэтому для его изменения многие конфиги содержат цифры и буквы. Например конфиг <strong>00-foobar.conf</strong> выполнится раньше, чем <strong>zz-foobar.conf</strong>.</p>
+</div>
 </div>
 
 
