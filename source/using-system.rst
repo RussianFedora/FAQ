@@ -915,3 +915,17 @@
 .. code-block:: bash
 
     sudo systemctl reboot
+
+.. index:: sysctl, kernel option
+.. _sysctl-temporary:
+
+Как временно изменить параметр sysctl?
+==========================================
+
+Временно установить любой параметр ядра возможно через sysctl:
+
+.. code-block:: bash
+
+    sudo sysctl -w foo.bar=X
+
+Здесь **foo.bar** имя параметра, а **X** - его значение. Изменения вступят в силу немедленно и сохранятся до перезагрузки системы.
