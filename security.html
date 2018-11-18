@@ -286,6 +286,12 @@ Match Group sftp
 </pre></div>
 </div>
 </div>
+<div class="section" id="newfile-permissions">
+<span id="index-33"></span><span id="id29"></span><h2>Как рассчитываются права доступа для новых файлов и каталогов?<a class="headerlink" href="#newfile-permissions" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Права доступа (chmod) в GNU/Linux рассчитываются в по формуле <strong>$default-chmod - $current-umask</strong>. <strong>$default-chmod</strong> для файлов равен 0666, а для каталогов - 0777.</p>
+<p>В Fedora umask по умолчанию для пользоватьских учётных записей равен <strong>0002</strong> (ведущий нуль в chmod означает использование восьмеричной системы счисления).</p>
+<p>Таким образом, chmod для новых файлов <strong>0666 - 0002 = 0664</strong> (-rw-rw–r–), а для каталогов - <strong>0777 - 0002 = 0775</strong> (drwxrwxr-x).</p>
+</div>
 </div>
 
 

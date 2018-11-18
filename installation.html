@@ -177,6 +177,82 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="fs-convert">
+<span id="index-20"></span><span id="id20"></span><h2>Можно ли без потерь данных преобразовать одну файловую систему в другую?<a class="headerlink" href="#fs-convert" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Нет, конвертирование ФС без потери данных не представляется возможным, поэтому для выполнения данной процедуры необходим другой раздел диска подходящего размера с поддержкой прав доступа Unix. Алгоритм следующий:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>копирование всех данных на другой раздел с сохранением прав доступа посредством cp или rsync;</li>
+<li>форматирование старого раздела с необходимой файловой системой;</li>
+<li>возвращение данных на прежнее место;</li>
+<li>сброс контекста SELinux.</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="fedora-uefi">
+<span id="uefi-boot"></span><span id="index-21"></span><h2>Установить Fedora в UEFI режиме?<a class="headerlink" href="#fedora-uefi" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Загрузка LiveUSB образа должна производиться исключительно в UEFI режиме. На большинстве материнских плат в меню вариантов загрузки требуется выбрать режим <em>UEFI External Drive</em> или <em>UEFI USB HDD</em>.</p>
+<p>Схемой разбиения диска, на который будет установлен дистрибутив, должна быть <strong>GPT</strong>. Проверить можно посредством выполнения <strong>fdisk</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo fdisk -l
+</pre></div>
+</div>
+<p>Если используется классический <strong>MBR</strong> (<strong>msdos</strong>), необходимо запустить утилиту GParted, выбрать диск из списка, затем в меню <strong>Устройство</strong> пункт <strong>Создать таблицу разделов</strong> - <strong>GPT</strong> и запустить процесс кнопкой <strong>Применить изменения</strong>. Все данные на диске будут уничтожены.</p>
+<p>Теперь можно приступать к установке. Автоматическое разбиение в Anaconda произведёт все действия самостоятельно.</p>
+</div>
+<div class="section" id="fedora-partitions">
+<span id="index-22"></span><span id="id21"></span><h2>Как лучше разбить диск самостоятельно?<a class="headerlink" href="#fedora-partitions" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если по какой-то причине не хочется доверять автоматическому разбиению, мы рекомендуем следующую конфигурацию (порядок важен):</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="15%" />
+<col width="13%" />
+<col width="16%" />
+<col width="49%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Порядок</th>
+<th class="head">Файловая система</th>
+<th class="head">Размер раздела</th>
+<th class="head">Точка монтирования</th>
+<th class="head">Описание</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>FAT32 (vfat)</td>
+<td>200 МБ</td>
+<td>/boot/efi</td>
+<td>Служебный ESP (UEFI) раздел.</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>ext4</td>
+<td>1 ГБ</td>
+<td>/boot</td>
+<td>Раздел для хранения ядер и initrd.</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>ext4 или xfs</td>
+<td>20 ГБ</td>
+<td>/</td>
+<td>Корневой раздел для системы и приложений.</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>ext4 или xfs</td>
+<td>всё - swap</td>
+<td>/home</td>
+<td>Раздел для хранения пользовательских файлов.</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>swapfs</td>
+<td>= RAM</td>
+<td>swap</td>
+<td>Раздел подкачки (<a class="reference internal" href="#swap-info"><span class="std std-ref">если необходим</span></a>).</td>
+</tr>
+</tbody>
+</table>
+<p>Здесь <strong>RAM</strong> - объём установленной оперативной памяти.</p>
+</div>
 </div>
 
 

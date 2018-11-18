@@ -207,10 +207,25 @@ gfx.xrender.enabled = true
 </pre></div>
 </div>
 <p>Изменения вступят в силу при следующем запуске браузера.</p>
-<p>Внимание! Это не затрагивает аппаратное декодирование мультимедиа средствами видеоускорителя, которое в настоящее время не поддерживается ни в Firefox, ни в Chrome на ОС Linux.</p>
+<p>Внимание! Это не затрагивает аппаратное декодирование мультимедиа средствами видеоускорителя.</p>
+</div>
+<div class="section" id="browser-hwaccel">
+<span id="index-23"></span><span id="id26"></span><h2>Как активировать аппаратное ускорение декодирования мультимедиа в браузерах?<a class="headerlink" href="#browser-hwaccel" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В настоящее время аппаратное ускорение декодирования мультимедиа «из коробки» в GNU/Linux не поддерживается ни в одном браузере.</p>
+<p>В Mozilla Firefox оно вообще не реализовано: <a class="reference external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=563206">MZBZ#563206</a> и <a class="reference external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=1210727">MZBZ#1210727</a>.</p>
+<p>В Google Chrome и Chromium частично реализовано, но отключено на этапе компиляции и без особых VA-API патчей недоступно. Репозиторий RPM Fusion предоставляет такую сборку Chromium. Для её установки необходимо подключить RPM Fusion и установить пакет <strong>chromium-vaapi</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install chromium-vaapi
+</pre></div>
+</div>
+<p>Далее необходимо запустить его, зайти в <strong>chrome://flags</strong> и установить пункт <strong>Hardware decoding</strong> в значение <strong>Enabled</strong>, после чего перезапустить браузер.</p>
+</div>
+<div class="section" id="video-hwaccel">
+<span id="index-24"></span><span id="id27"></span><h2>В каких проигрывателях реализовано аппаратное ускорение декодирования мультимедиа?<a class="headerlink" href="#video-hwaccel" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Полная поддержка аппаратного декодирования мультимедиа средствами VA-API (Intel, AMD) или VPDAU (NVIDIA) реализована в проигрывателях VLC и mpv.</p>
+<p>Для активации данной функции необходимо в качестве графического бэкэнда вывода изображения указать <strong>vaapi</strong> или <strong>vdpau</strong>, после чего перезапустить плеер.</p>
 </div>
 <div class="section" id="debug-application">
-<span id="index-23"></span><span id="id26"></span><h2>Приложение падает. Как мне его отладить?<a class="headerlink" href="#debug-application" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-25"></span><span id="id28"></span><h2>Приложение падает. Как мне его отладить?<a class="headerlink" href="#debug-application" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для начала рекомендуется (хотя и не обязательно) установить отладочную информацию для данного пакета:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf debuginfo-install foo-bar
 </pre></div>
@@ -229,21 +244,21 @@ gfx.xrender.enabled = true
 <p>Полученный файл <strong>~/trace.log</strong> также следует загрузить на сервис.</p>
 </div>
 <div class="section" id="drop-fs-caches">
-<span id="index-24"></span><span id="id27"></span><h2>Как очистить кэши и буферы всех файловых систем?<a class="headerlink" href="#drop-fs-caches" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-26"></span><span id="id29"></span><h2>Как очистить кэши и буферы всех файловых систем?<a class="headerlink" href="#drop-fs-caches" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы очистить кэши и буферы нужно выполнить:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sync <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="m">3</span> &gt; /proc/sys/vm/drop_caches <span class="o">&amp;&amp;</span> sync
 </pre></div>
 </div>
 </div>
 <div class="section" id="mp3">
-<span id="convert-multiple-files"></span><span id="index-25"></span><h2>Как конвертировать множество файлов в mp3 из текущего каталога?<a class="headerlink" href="#mp3" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="convert-multiple-files"></span><span id="index-27"></span><h2>Как конвертировать множество файлов в mp3 из текущего каталога?<a class="headerlink" href="#mp3" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Конвертируем все файлы с маской *.ogg в mp3 в текущем каталоге:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find . -maxdepth <span class="m">1</span> -type f -name <span class="s2">&quot;*.ogg&quot;</span> -exec ffmpeg -i <span class="s2">&quot;{}&quot;</span> -acodec mp3 -ab 192k <span class="s2">&quot;</span><span class="k">$(</span>basename <span class="o">{}</span><span class="k">)</span><span class="s2">.mp3&quot;</span> <span class="se">\;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="utc">
-<span id="system-time-utc"></span><span id="index-26"></span><h2>Как настроить системные часы в UTC или локального времени и наоборот?<a class="headerlink" href="#utc" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="system-time-utc"></span><span id="index-28"></span><h2>Как настроить системные часы в UTC или локального времени и наоборот?<a class="headerlink" href="#utc" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Переключение аппаратных часов компьютера в UTC из localtime:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo timedatectl set-local-rtc no
 </pre></div>
@@ -254,7 +269,7 @@ gfx.xrender.enabled = true
 </div>
 </div>
 <div class="section" id="fedora-windows">
-<span id="windows-utc"></span><span id="index-27"></span><h2>У меня в дуалбуте с Fedora установлена Windows и часы постоянно сбиваются. В чём дело?<a class="headerlink" href="#fedora-windows" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="windows-utc"></span><span id="index-29"></span><h2>У меня в дуалбуте с Fedora установлена Windows и часы постоянно сбиваются. В чём дело?<a class="headerlink" href="#fedora-windows" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы такого не происходило, обе операционные системы должны хранить время в формате UTC. Для этого в Windows нужно применить следующий файл реестра:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Windows Registry Editor Version 5.00
 
@@ -264,7 +279,7 @@ gfx.xrender.enabled = true
 </div>
 </div>
 <div class="section" id="driver-disable">
-<span id="index-28"></span><span id="id28"></span><h2>Как можно навсегда отключить определённый драйвер?<a class="headerlink" href="#driver-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-30"></span><span id="id30"></span><h2>Как можно навсегда отключить определённый драйвер?<a class="headerlink" href="#driver-disable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы навсегда отключить какой-то драйвер в Linux, необходимо создать файл в каталоге <strong>/etc/modprobe.d</strong> с любым именем, например <strong>disable-nv.conf</strong>, и примерно таким содержанием:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>install nouveau /bin/false
 </pre></div>
@@ -281,7 +296,7 @@ gfx.xrender.enabled = true
 <p>Чтобы отменить действие, достаточно удалить созданный файл и снова пересобрать initrd.</p>
 </div>
 <div class="section" id="fedora">
-<span id="simple-web-server"></span><span id="index-29"></span><h2>Как запустить простейший веб-сервер в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="simple-web-server"></span><span id="index-31"></span><h2>Как запустить простейший веб-сервер в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для запуска простейшего веб-сервера можно использовать Python и модуль, входящий в состав базового пакета:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m http.server <span class="m">8080</span>
 </pre></div>
@@ -289,7 +304,7 @@ gfx.xrender.enabled = true
 <p>Веб-сервер будет запущен на порту <strong>8080</strong>. В качестве webroot будет использоваться текущий рабочий каталог.</p>
 </div>
 <div class="section" id="kde-gtk">
-<span id="double-click-speed"></span><span id="index-30"></span><h2>Я использую KDE. Как мне настроить скорость двойного клика в GTK приложениях?<a class="headerlink" href="#kde-gtk" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="double-click-speed"></span><span id="index-32"></span><h2>Я использую KDE. Как мне настроить скорость двойного клика в GTK приложениях?<a class="headerlink" href="#kde-gtk" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для настройки GTK 2 приложений необходимо открыть файл <strong>~/.gtkrc-2.0</strong> в любом текстовом редакторе (если он отсутствует — создать), затем прописать в самом конце:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gtk-double-click-time=1000
 </pre></div>
@@ -301,14 +316,14 @@ gfx.xrender.enabled = true
 <p>Здесь 1000 — время в миллисекундах до активации двойного клика. Документация с подробным описанием всех переменных данных файлов конфигурации <a class="reference external" href="https://developer.gnome.org/gtk3/stable/GtkSettings.html">здесь</a>.</p>
 </div>
 <div class="section" id="block-screen">
-<span id="index-31"></span><span id="id30"></span><h2>Возможно ли заблокировать экран из командной строки?<a class="headerlink" href="#block-screen" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-33"></span><span id="id32"></span><h2>Возможно ли заблокировать экран из командной строки?<a class="headerlink" href="#block-screen" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>loginctl lock-session
 </pre></div>
 </div>
 </div>
 <div class="section" id="change-hostname">
-<span id="index-32"></span><span id="id31"></span><h2>Как изменить имя хоста?<a class="headerlink" href="#change-hostname" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-34"></span><span id="id33"></span><h2>Как изменить имя хоста?<a class="headerlink" href="#change-hostname" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Изменение имени хоста возможно посредством <strong>hostnamectl</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hostnamectl set-hostname NEW
 </pre></div>
@@ -316,11 +331,11 @@ gfx.xrender.enabled = true
 <p>Здесь вместо <strong>NEW</strong> следует указать новое значение. Изменения вступят в силу немедленно.</p>
 </div>
 <div class="section" id="network-configuration">
-<span id="index-33"></span><span id="id32"></span><h2>Как лучше настраивать сетевые подключения?<a class="headerlink" href="#network-configuration" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-35"></span><span id="id34"></span><h2>Как лучше настраивать сетевые подключения?<a class="headerlink" href="#network-configuration" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В Fedora для настройки сети используется Network Manager. Для работы с ним доступны как графические менеджеры (встроены в каждую DE), так и консольный <strong>nm-cli</strong>.</p>
 </div>
 <div class="section" id="bash">
-<span id="bash-shell"></span><span id="index-34"></span><h2>Можно ли изменить приветствие Bash по умолчанию?<a class="headerlink" href="#bash" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="bash-shell"></span><span id="index-36"></span><h2>Можно ли изменить приветствие Bash по умолчанию?<a class="headerlink" href="#bash" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, необходимо в пользовательский файл <strong>~/.bashrc</strong> добавить строку вида:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export PS1=&quot;\[\e[33m\][\[\e[36m\]\u\[\e[0m\]@\[\e[31m\]\h\[\e[0m\] \[\e[32m\]\W\[\e[33m\]]\[\e[35m\]\$\[\e[0m\] &quot;
 </pre></div>
@@ -328,11 +343,11 @@ gfx.xrender.enabled = true
 <p>Существует удобный онлайн генератор таких строк <a class="reference external" href="http://bashrcgenerator.com/">здесь</a>.</p>
 </div>
 <div class="section" id="shell">
-<span id="bash-title"></span><span id="index-35"></span><h2>Можно ли из shell скрипта менять название терминала?<a class="headerlink" href="#shell" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="bash-title"></span><span id="index-37"></span><h2>Можно ли из shell скрипта менять название терминала?<a class="headerlink" href="#shell" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, при помощи <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B8%D0%B5_%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8_ANSI">управляющих последовательностей</a>. Ими же можно менять цвет текста вывода и многое другое.</p>
 </div>
 <div class="section" id="configure-ntp">
-<span id="index-36"></span><span id="id35"></span><h2>Как настроить синхронизацию времени?<a class="headerlink" href="#configure-ntp" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-38"></span><span id="id37"></span><h2>Как настроить синхронизацию времени?<a class="headerlink" href="#configure-ntp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В Fedora для этой цели используется chronyd, который установлен и запущен по умолчанию.</p>
 <p>Чтобы узнать включена ли синхронизация времени с NTP серверами, можно использовать утилиту <strong>timedatectl</strong>.</p>
 <p>Если синхронизация отключена, нужно убедиться, что сервис chronyd активирован:</p>
@@ -345,13 +360,13 @@ gfx.xrender.enabled = true
 </div>
 </div>
 <div class="section" id="systemd-analyze">
-<span id="index-37"></span><span id="id36"></span><h2>Как узнать какой сервис замедляет загрузку системы?<a class="headerlink" href="#systemd-analyze" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-39"></span><span id="id38"></span><h2>Как узнать какой сервис замедляет загрузку системы?<a class="headerlink" href="#systemd-analyze" title="Ссылка на этот заголовок">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemd-analyze blame
 </pre></div>
 </div>
 </div>
 <div class="section" id="nvidia">
-<span id="nvidia-encoding"></span><span id="index-38"></span><h2>Как ускорить кодирование видео с использованием видеокарт NVIDIA?<a class="headerlink" href="#nvidia" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="nvidia-encoding"></span><span id="index-40"></span><h2>Как ускорить кодирование видео с использованием видеокарт NVIDIA?<a class="headerlink" href="#nvidia" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этого нужно установить ffmpeg, а также проприетарные драйверы NVIDIA из репозиториев RPM Fusion.</p>
 <p>Использование NVENC:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg -i input.mp4 -acodec aac -ac <span class="m">2</span> -ab 128k -vcodec h264_nvenc -profile high444p -pixel_format yuv444p -preset default output.mp4
@@ -365,7 +380,7 @@ gfx.xrender.enabled = true
 <p>Больше информации можно найти <a class="reference external" href="https://trac.ffmpeg.org/wiki/HWAccelIntro">здесь</a>.</p>
 </div>
 <div class="section" id="lvm-liveusb">
-<span id="fs-check-lvm"></span><span id="index-39"></span><h2>Как мне проверить ФС в составе LVM с LiveUSB?<a class="headerlink" href="#lvm-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fs-check-lvm"></span><span id="index-41"></span><h2>Как мне проверить ФС в составе LVM с LiveUSB?<a class="headerlink" href="#lvm-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если файловая система была повреждена, необходимо запустить <strong>fsck</strong> и разрешить ему исправить её. При использовании настроек по умолчанию (LVM, ФС ext4) это делается так:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/mapper/fedora-root
 fsck -t ext4 /dev/mapper/fedora-home
@@ -374,7 +389,7 @@ fsck -t ext4 /dev/mapper/fedora-home
 <p>Если вместо ext4 применяется другая файловая система, необходимо указать её после параметра <strong>-t</strong>.</p>
 </div>
 <div class="section" id="liveusb">
-<span id="fs-check-partitions"></span><span id="index-40"></span><h2>Как мне проверить ФС при использовании классических разделов с LiveUSB?<a class="headerlink" href="#liveusb" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fs-check-partitions"></span><span id="index-42"></span><h2>Как мне проверить ФС при использовании классических разделов с LiveUSB?<a class="headerlink" href="#liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если используется классическая схема с обычными разделами, то утилите <strong>fsck</strong> необходимо передавать соответствующее блочное устройство, например:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/sda2
 fsck -t ext4 /dev/sda3
@@ -387,7 +402,7 @@ fsck -t ext4 /dev/sda3
 </div>
 </div>
 <div class="section" id="luks-liveusb">
-<span id="fs-check-luks"></span><span id="index-41"></span><h2>Как мне проверить ФС на зашифрованном LUKS разделе с LiveUSB?<a class="headerlink" href="#luks-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fs-check-luks"></span><span id="index-43"></span><h2>Как мне проверить ФС на зашифрованном LUKS разделе с LiveUSB?<a class="headerlink" href="#luks-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если используются зашифрованные LUKS разделы, то сначала откроем соответствующее устройство:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cryptsetup luksOpen /dev/sda2 luks-root
 </pre></div>
@@ -404,20 +419,20 @@ fsck -t ext4 /dev/sda3
 </div>
 </div>
 <div class="section" id="fs-selection">
-<span id="index-42"></span><span id="id38"></span><h2>Какую файловую систему рекомендуется использовать на Fedora?<a class="headerlink" href="#fs-selection" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-44"></span><span id="id40"></span><h2>Какую файловую систему рекомендуется использовать на Fedora?<a class="headerlink" href="#fs-selection" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию применяется <a class="reference external" href="https://ru.wikipedia.org/wiki/Ext4">ext4</a>. На наш взгляд, это самая стабильная и популярная файловая система в настоящее время.</p>
 <p>Для хранения больших объёмов данных можно использовать <a class="reference external" href="https://ru.wikipedia.org/wiki/XFS">XFS</a>.</p>
 </div>
 <div class="section" id="btrfs">
-<span id="fs-btrfs"></span><span id="index-43"></span><h2>Что вы скажете о BTRFS?<a class="headerlink" href="#btrfs" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fs-btrfs"></span><span id="index-45"></span><h2>Что вы скажете о BTRFS?<a class="headerlink" href="#btrfs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы настоятельно не рекомендуем её использовать. Данная ФС очень нестабильна и часто приводит к полной потере всех данных на устройстве без возможности восстановления даже в идеальных условиях (было множество случаев у пользователей нашего канала).</p>
 </div>
 <div class="section" id="kde-plasma-5">
-<span id="window-borders"></span><span id="index-44"></span><h2>Как убрать рамки внутри окон в KDE Plasma 5?<a class="headerlink" href="#kde-plasma-5" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="window-borders"></span><span id="index-46"></span><h2>Как убрать рамки внутри окон в KDE Plasma 5?<a class="headerlink" href="#kde-plasma-5" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этого следует открыть <strong>Меню KDE</strong> - <strong>Компьютер</strong> - <strong>Параметры системы</strong> - <strong>Оформление приложений</strong> - страница <strong>Стиль интерфейса</strong> - кнопка <strong>Настроить</strong> - вкладка <strong>Рамки</strong>, <strong>убрать все флажки</strong> из чекбоксов на данной странице и нажать кнопку <strong>OK</strong>.</p>
 </div>
 <div class="section" id="gnome-qt">
-<span id="window-hidpi-qt"></span><span id="index-45"></span><h2>У меня в Gnome не работает масштабирование окон Qt приложений. Что делать?<a class="headerlink" href="#gnome-qt" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="window-hidpi-qt"></span><span id="index-47"></span><h2>У меня в Gnome не работает масштабирование окон Qt приложений. Что делать?<a class="headerlink" href="#gnome-qt" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для активации автоматического масштабирования достаточно прописать в файле <strong>~/.bashrc</strong> следующие строки:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export QT_SCALE_FACTOR=2
@@ -437,11 +452,11 @@ export QT_SCALE_FACTOR=2
 <p>Более подробную информацию можно найти в <a class="reference external" href="https://doc.qt.io/qt-5/highdpi.html">документации Qt</a>.</p>
 </div>
 <div class="section" id="dlna">
-<span id="dlna-server"></span><span id="index-46"></span><h2>Как поднять DLNA сервер в локальной сети?<a class="headerlink" href="#dlna" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="dlna-server"></span><span id="index-48"></span><h2>Как поднять DLNA сервер в локальной сети?<a class="headerlink" href="#dlna" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2018/09/08/podnimaem-dlna-server-v-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="telegram-desktop-fedora">
-<span id="telegram-fedora"></span><span id="index-47"></span><h2>Как лучше установить Telegram Desktop в Fedora?<a class="headerlink" href="#telegram-desktop-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="telegram-fedora"></span><span id="index-49"></span><h2>Как лучше установить Telegram Desktop в Fedora?<a class="headerlink" href="#telegram-desktop-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы настоятельно рекомендуем устанавливать данный мессенджер исключительно из <a class="reference internal" href="package-manager.html#rd-repositories"><span class="std std-ref">репозиториев</span></a> RPM Fusion:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install telegram-desktop
 </pre></div>
@@ -450,7 +465,7 @@ export QT_SCALE_FACTOR=2
 <p>Сборка Fedora поддерживает системные настройки тем, правильное сглаживание шрифтов (за счёт использование общесистемных настроек) и не имеет проблем со скоростью запуска.</p>
 </div>
 <div class="section" id="telegram-desktop">
-<span id="telegram-cleanup"></span><span id="index-48"></span><h2>Ранее я устанавливал официальную версию Telegram Desktop. Как мне очистить её остатки?<a class="headerlink" href="#telegram-desktop" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="telegram-cleanup"></span><span id="index-50"></span><h2>Ранее я устанавливал официальную версию Telegram Desktop. Как мне очистить её остатки?<a class="headerlink" href="#telegram-desktop" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Официальная версия с сайта создаёт ярлыки запуска и копирует ряд загруженных бинарных файлов в пользовательский домашний каталог. Избавимся от этого:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -461,15 +476,15 @@ export QT_SCALE_FACTOR=2
 <p>Теперь можно установить <a class="reference internal" href="#telegram-fedora"><span class="std std-ref">версию</span></a> из RPM Fusion.</p>
 </div>
 <div class="section" id="deduplication-memory">
-<span id="index-49"></span><span id="id40"></span><h2>Возможна ли полная дедупликация оперативной памяти?<a class="headerlink" href="#deduplication-memory" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-51"></span><span id="id42"></span><h2>Возможна ли полная дедупликация оперативной памяти?<a class="headerlink" href="#deduplication-memory" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, дедупликация памяти <a class="reference external" href="https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html">поддерживается</a> в ядре Linux начиная с версии 2.6.32 модулем <a class="reference external" href="https://ru.wikipedia.org/wiki/KSM">KSM</a> и по умолчанию применяется лишь в системах виртуализации, например в KVM.</p>
 </div>
 <div class="section" id="deduplication-disk">
-<span id="index-50"></span><span id="id42"></span><h2>Возможна ли полная дедупликация данных на дисках?<a class="headerlink" href="#deduplication-disk" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-52"></span><span id="id44"></span><h2>Возможна ли полная дедупликация данных на дисках?<a class="headerlink" href="#deduplication-disk" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Полная автоматическая дедупликация данных на дисках <a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/Deduplication">поддерживается</a> лишь файловой системой <a class="reference internal" href="#fs-btrfs"><span class="std std-ref">BTRFS</span></a>.</p>
 </div>
 <div class="section" id="memory-compression">
-<span id="index-51"></span><span id="id44"></span><h2>Можно ли включить сжатие оперативной памяти?<a class="headerlink" href="#memory-compression" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-53"></span><span id="id46"></span><h2>Можно ли включить сжатие оперативной памяти?<a class="headerlink" href="#memory-compression" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, в ядро Linux начиная с версии 3.14 по умолчанию входит модуль zram, который позволяет увеличить производительность системы посредством использования вместо дисковой подкачки виртуального устройства в оперативной памяти с активным сжатием.</p>
 <p>Включение zram в Fedora:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl <span class="nb">enable</span> --now zram-swap
@@ -483,7 +498,7 @@ sudo systemctl disable zram-swap
 <p>После использования вышеуказанных команд рекомендуется выполнить перезагрузку системы.</p>
 </div>
 <div class="section" id="sddm">
-<span id="sddm-disable-vkb"></span><span id="index-52"></span><h2>Как отключить виртуальную клавиатуру в SDDM?<a class="headerlink" href="#sddm" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="sddm-disable-vkb"></span><span id="index-54"></span><h2>Как отключить виртуальную клавиатуру в SDDM?<a class="headerlink" href="#sddm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы отключить поддержку ввода с виртуальной экранной клавиатуры в менеджере входа в систему SDDM, откроем в текстовом редакторе файл <strong>/etc/sddm.conf</strong>, а затем найдём и удалим следующую строку:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>InputMethod=qtvirtualkeyboard
 </pre></div>
@@ -495,7 +510,7 @@ sudo systemctl disable zram-swap
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
 </div>
 <div class="section" id="exfat-fedora">
-<span id="fedora-exfat"></span><span id="index-53"></span><h2>Почему я не могу использовать файловую систему exFAT в Fedora?<a class="headerlink" href="#exfat-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fedora-exfat"></span><span id="index-55"></span><h2>Почему я не могу использовать файловую систему exFAT в Fedora?<a class="headerlink" href="#exfat-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Файловая система exFAT защищена множеством патентов Microsoft, поэтому она не может быть включена в ядро Linux и соответственно быть доступной в Fedora по умолчанию.</p>
 <p>Для того, чтобы использовать её, необходимо установить пакет <strong>fuse-exfat</strong> из <a class="reference internal" href="package-manager.html#rd-repositories"><span class="std std-ref">репозитория</span></a> RPM Fusion:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install fuse fuse-exfat
@@ -503,7 +518,7 @@ sudo systemctl disable zram-swap
 </div>
 </div>
 <div class="section" id="fedora-iperf">
-<span id="index-54"></span><span id="id45"></span><h2>Как сделать замеры скорости локальной или беспроводной сети?<a class="headerlink" href="#fedora-iperf" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-56"></span><span id="id47"></span><h2>Как сделать замеры скорости локальной или беспроводной сети?<a class="headerlink" href="#fedora-iperf" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для точных замеров производительности сети нам потребуется как минимум два компьютера (либо компьютер и мобильное устройство), а также утилита iperf, присутствующая в репозиториях Fedora. Установим её:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install iperf2
 </pre></div>
@@ -529,21 +544,21 @@ sudo systemctl disable zram-swap
 <p><strong>192.168.1.2</strong> - это внутренний IP-адрес устройства в ЛВС, на котором запущен сервер. Номер порта указывать не требуется.</p>
 </div>
 <div class="section" id="latex">
-<span id="latex-editor"></span><span id="index-55"></span><h2>В репозиториях есть полнофункциональные редакторы LaTeX?<a class="headerlink" href="#latex" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="latex-editor"></span><span id="index-57"></span><h2>В репозиториях есть полнофункциональные редакторы LaTeX?<a class="headerlink" href="#latex" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Для работы с документами в формате LaTeX рекомендуется использовать <strong>texmaker</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install texmaker
 </pre></div>
 </div>
 </div>
 <div class="section" id="latex-cyrillic">
-<span id="index-56"></span><span id="id46"></span><h2>Как установить поддержку кириллических шрифтов для LaTeX?<a class="headerlink" href="#latex-cyrillic" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-58"></span><span id="id48"></span><h2>Как установить поддержку кириллических шрифтов для LaTeX?<a class="headerlink" href="#latex-cyrillic" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Наборы кириллических шрифтов доступны в виде коллекции:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install texlive-collection-langcyrillic texlive-cyrillic texlive-russ texlive-babel-russian
 </pre></div>
 </div>
 </div>
 <div class="section" id="android-mtp">
-<span id="fuze-mtp"></span><span id="index-57"></span><h2>Как подключить смартфон на Android посредством протокола MTP?<a class="headerlink" href="#android-mtp" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fuze-mtp"></span><span id="index-59"></span><h2>Как подключить смартфон на Android посредством протокола MTP?<a class="headerlink" href="#android-mtp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для простой и удобной работы с файловой системой смартфона вне зависимости от используемых приложений, рабочей среды и файлового менеджера, мы рекомендуем использовать основанную на FUSE реализацию.</p>
 <p>Установим пакет <strong>jmtpfs</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install jmtpfs fuse
@@ -563,7 +578,7 @@ sudo systemctl disable zram-swap
 </div>
 </div>
 <div class="section" id="failed-to-start-load-kernel-modules">
-<span id="failed-to-start"></span><span id="index-58"></span><h2>При загрузке системы появляется ошибка Failed to start Load Kernel Modules. Как исправить?<a class="headerlink" href="#failed-to-start-load-kernel-modules" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="failed-to-start"></span><span id="index-60"></span><h2>При загрузке системы появляется ошибка Failed to start Load Kernel Modules. Как исправить?<a class="headerlink" href="#failed-to-start-load-kernel-modules" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Это известная проблема системы виртуализации VirtualBox, использующей out-of-tree модули ядра, но может также проявляться и у пользователей проприетарных <a class="reference internal" href="package-manager.html#broadcom-drivers"><span class="std std-ref">драйверов Broadcom</span></a>.</p>
 <p>Для исправления необходимо <strong>после каждого обновления ядра</strong> выполнять пересборку initrd:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dracut -f
@@ -575,7 +590,7 @@ sudo systemctl disable zram-swap
 </div>
 </div>
 <div class="section" id="sysctl">
-<span id="sysctl-temporary"></span><span id="index-59"></span><h2>Как временно изменить параметр sysctl?<a class="headerlink" href="#sysctl" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="sysctl-temporary"></span><span id="index-61"></span><h2>Как временно изменить параметр sysctl?<a class="headerlink" href="#sysctl" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Временно установить любой параметр ядра возможно через sysctl:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w foo.bar<span class="o">=</span>X
 </pre></div>
@@ -583,7 +598,7 @@ sudo systemctl disable zram-swap
 <p>Здесь <strong>foo.bar</strong> имя параметра, а <strong>X</strong> - его значение. Изменения вступят в силу немедленно и сохранятся до перезагрузки системы.</p>
 </div>
 <div class="section" id="sysctl-permanent">
-<span id="index-60"></span><span id="id47"></span><h2>Как задать и сохранить параметр sysctl?<a class="headerlink" href="#sysctl-permanent" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-62"></span><span id="id49"></span><h2>Как задать и сохранить параметр sysctl?<a class="headerlink" href="#sysctl-permanent" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы сохранить параметр ядра, создадим специальный файл <strong>99-foobar.conf</strong> в каталоге <strong>/etc/sysctl.d</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo.bar1=X1
 foo.bar2=X2
@@ -596,7 +611,7 @@ foo.bar2=X2
 </div>
 </div>
 <div class="section" id="sysctl-order">
-<span id="index-61"></span><span id="id48"></span><h2>В каком порядке загружаются sysctl файлы настроек?<a class="headerlink" href="#sysctl-order" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-63"></span><span id="id50"></span><h2>В каком порядке загружаются sysctl файлы настроек?<a class="headerlink" href="#sysctl-order" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При загрузке ядро проверяет следующие каталоги в поисках <strong>.conf</strong> файлов:</p>
 <blockquote>
 <div><ol class="arabic simple">
