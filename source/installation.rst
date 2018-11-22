@@ -17,7 +17,7 @@
 Как мне создать загрузочную флешку?
 ==========================================
 
-См. `здесь <https://www.easycoding.org/2017/07/12/sozdayom-fedora-liveusb.html>`_.
+См. `здесь <https://www.easycoding.org/2017/07/12/sozdayom-fedora-liveusb.html>`__.
 
 .. index:: package, select, пакет, выбор пактов
 .. _package-selection:
@@ -41,7 +41,7 @@
 Могу ли я автоматизировать установку?
 ==========================================================
 
-Да, посредством `Kickstart <https://pykickstart.readthedocs.io/en/latest/>`_.
+Да, посредством `Kickstart <https://pykickstart.readthedocs.io/en/latest/>`__.
 
 .. index:: iso, образ, создание образа
 .. _custom-iso:
@@ -49,12 +49,12 @@
 Могу ли я создать свой собственный ISO образ?
 ==========================================================
 
-Да. Собственный образ можно создать на базе Kickstart файлов. Более подобную информацию можно найти `здесь <https://fedoraproject.org/wiki/Livemedia-creator-_How_to_create_and_use_a_Live_CD>`_.
+Да. Собственный образ можно создать на базе Kickstart файлов. Более подобную информацию можно найти `здесь <https://fedoraproject.org/wiki/Livemedia-creator-_How_to_create_and_use_a_Live_CD>`__.
 
 Готовые Kickstart проекты для изучения:
 
- * `Fedora <https://pagure.io/fedora-kickstarts>`_;
- * `RFRemix <https://github.com/RussianFedora/rfremix-kickstarts>`_.
+ * `Fedora <https://pagure.io/fedora-kickstarts>`__;
+ * `RFRemix <https://github.com/RussianFedora/rfremix-kickstarts>`__.
 
 .. index:: installation, установка, ARM
 .. _fedora-arm:
@@ -62,7 +62,7 @@
 Можно ли установить Fedora на устройство с ARM?
 ==========================================================
 
-Да. Загрузки доступны `здесь <https://arm.fedoraproject.org/>`_.
+Да. Загрузки доступны `здесь <https://arm.fedoraproject.org/>`__.
 
 .. index:: загрузка, boot, secure boot, безопасная загрузка
 .. _secure-boot:

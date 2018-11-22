@@ -49,9 +49,9 @@ Fedora - это bleeding edge дистрибутив. Он всегда нахо
 Где скачать Fedora?
 ==========================================
 
-Загрузить ISO образ дистрибутива можно с `официального сайта <https://getfedora.org/ru/workstation/download/>`_.
+Загрузить ISO образ дистрибутива можно с `официального сайта <https://getfedora.org/ru/workstation/download/>`__.
 
-Также существуют еженедельные `автоматически сборки <https://dl.fedoraproject.org/pub/alt/live-respins/>`_ («respins»), содержащие все выпущенные на данный момент обновления.
+Также существуют еженедельные `автоматически сборки <https://dl.fedoraproject.org/pub/alt/live-respins/>`__ («respins»), содержащие все выпущенные на данный момент обновления.
 
 .. index:: DE, поддерживаемые DE, supported DE
 .. _de-supported:
@@ -101,7 +101,7 @@ Grub 2.
 Можно ли использовать в Fedora Snap пакеты?
 ===============================================
 
-Технически возможно, однако мы настоятельно не рекомендуем этого делать ибо качество большинства Snap пакетов очень низкое, к тому же в некоторых из них `были обнаружены <https://xakep.ru/2018/05/14/snap-store-miner/>`_ вредоносные майнеры.
+Технически возможно, однако мы настоятельно не рекомендуем этого делать ибо качество большинства Snap пакетов очень низкое, к тому же в некоторых из них `были обнаружены <https://xakep.ru/2018/05/14/snap-store-miner/>`__ вредоносные майнеры.
 
 .. index:: repository, rpmfusion
 .. _rpmfusion:
@@ -175,7 +175,7 @@ Fedora COPR - это бесплатный хостинг для размещен
 Что такое RFRemix?
 ======================
 
-RFRemix - это ремикс оргинального дистрибутива Fedora с использованием репозиториев :ref:`RPM Fusion <rpmfusion>` и :ref:`Russian Fedora <russian-fedora>`, адаптированный для российских пользователей. Больше информации можно найти `здесь <https://ru.fedoracommunity.org/stories/rfremix/>`_.
+RFRemix - это ремикс оргинального дистрибутива Fedora с использованием репозиториев :ref:`RPM Fusion <rpmfusion>` и :ref:`Russian Fedora <russian-fedora>`, адаптированный для российских пользователей. Больше информации можно найти `здесь <https://ru.fedoracommunity.org/stories/rfremix/>`__.
 
 .. index:: distribution, russianfedora, rfremix
 .. _rfremix-to-fedora:
@@ -197,7 +197,7 @@ RFRemix - это ремикс оргинального дистрибутива 
 Я нашёл ошибку в программе. Как мне сообщить о ней?
 ======================================================
 
-Для начала следует `создать тикет <https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora>`_ в RHBZ.
+Для начала следует `создать тикет <https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora>`__ в RHBZ.
 
 .. index:: get help, получение помощи, telegram, irc, channels, chats
 .. _get-help:
@@ -209,12 +209,12 @@ RFRemix - это ремикс оргинального дистрибутива 
 
 Чаты и каналы:
 
- * `Russian Fedora <https://t.me/russianfedora>`_ чат в Telegram;
- * `Fedora <https://t.me/fedora>`_ чат в Telegram (на английском языке);
- * `#russianfedora:matrix.org <https://matrix.to/#/#russianfedora:matrix.org>`_ чат в Matrix;
- * `#fedora <https://webchat.freenode.net/?channels=#fedora>`_ в IRC сети FreeNode (на английском языке).
+ * `Russian Fedora <https://t.me/russianfedora>`__ чат в Telegram;
+ * `Fedora <https://t.me/fedora>`__ чат в Telegram (на английском языке);
+ * `#russianfedora:matrix.org <https://matrix.to/#/#russianfedora:matrix.org>`__ чат в Matrix;
+ * `#fedora <https://webchat.freenode.net/?channels=#fedora>`__ в IRC сети FreeNode (на английском языке).
 
 Форумы:
 
- * `Fedora Ask на русском языке <https://ask.fedoraproject.org/ru/questions/>`_;
- * `Fedora Ask на английском языке <https://ask.fedoraproject.org/en/questions/>`_.
+ * `Fedora Ask на русском языке <https://ask.fedoraproject.org/ru/questions/>`__;
+ * `Fedora Ask на английском языке <https://ask.fedoraproject.org/en/questions/>`__.

@@ -200,7 +200,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Как установить шрифты Microsoft в Fedora?
 =============================================
 
-См. `здесь <https://www.easycoding.org/2011/08/14/ustanovka-microsoft-core-fonts-v-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2011/08/14/ustanovka-microsoft-core-fonts-v-fedora.html>`__.
 
 .. index:: repository, сторонние репозитории
 .. _3rd-repositories:
@@ -208,7 +208,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Какие сторонние репозитории лучше всего подключать?
 =======================================================
 
-См. `здесь <https://www.easycoding.org/2017/03/24/poleznye-storonnie-repozitorii-dlya-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2017/03/24/poleznye-storonnie-repozitorii-dlya-fedora.html>`__.
 
 .. index:: repository, flatpak, flathub
 .. _flatpak:
@@ -216,7 +216,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Как работать с Flatpak пакетами в Fedora?
 ============================================
 
-См. `здесь <https://www.easycoding.org/2018/07/25/rabotaem-s-flatpak-paketami-v-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2018/07/25/rabotaem-s-flatpak-paketami-v-fedora.html>`__.
 
 .. index:: repository, package, packaging, создание пакета
 .. _create-package:
@@ -224,7 +224,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Я хочу создать пакет для Fedora. Что мне следует знать?
 ============================================================
 
-См. `здесь <https://docs.fedoraproject.org/quick-docs/en-US/creating-rpm-packages.html>`_ и `здесь <https://www.easycoding.org/2018/06/17/pravilno-paketim-po-dlya-linux.html>`_.
+См. `здесь <https://docs.fedoraproject.org/quick-docs/en-US/creating-rpm-packages.html>`__ и `здесь <https://www.easycoding.org/2018/06/17/pravilno-paketim-po-dlya-linux.html>`__.
 
 .. index:: repository, codecs, кодеки мультимедиа, multimedia
 .. _multimedia-codecs:
@@ -268,7 +268,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Как правильно установить драйверы NVIDIA?
 ==============================================
 
-См. `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
 
 .. index:: package, packaging, сборка пакета, building
 .. _build-package:
@@ -276,7 +276,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Как собрать RPM пакет в mock?
 ==================================
 
-См. `здесь <https://www.easycoding.org/2017/02/22/sobiraem-rpm-pakety-dlya-fedora-v-mock.html>`_.
+См. `здесь <https://www.easycoding.org/2017/02/22/sobiraem-rpm-pakety-dlya-fedora-v-mock.html>`__.
 
 .. index:: repository, virtualbox
 .. _virtualbox:
@@ -317,7 +317,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Как отключить автообновление кэшей dnf?
 ==============================================
 
-См. `здесь <https://www.easycoding.org/2016/01/27/otklyuchaem-avto-obnovlenie-v-dnf-pod-fedora-22.html>`_.
+См. `здесь <https://www.easycoding.org/2016/01/27/otklyuchaem-avto-obnovlenie-v-dnf-pod-fedora-22.html>`__.
 
 .. index:: dkms, akmods, difference
 .. _dkms-akmods:
@@ -333,7 +333,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Как добавить свой пакет в репозиторий Fedora и стать мейнтейнером?
 =====================================================================
 
-См. `здесь <https://www.easycoding.org/2016/06/20/dobavlyaem-paket-v-glavnyj-repozitorij-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2016/06/20/dobavlyaem-paket-v-glavnyj-repozitorij-fedora.html>`__.
 
 .. index:: package updates, testing, тестовые репозитории
 .. _updates-testing:
@@ -549,7 +549,7 @@ Java 11:
 
     dnf module install nodejs:6/default
 
-Более подробную информацию о модулях можно найти `здесь <https://docs.fedoraproject.org/en-US/modularity/using-modules/>`_.
+Более подробную информацию о модулях можно найти `здесь <https://docs.fedoraproject.org/en-US/modularity/using-modules/>`__.
 
 .. index:: dnf, modular, modules, модули
 .. _dnf-disable-modules:

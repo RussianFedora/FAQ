@@ -89,7 +89,7 @@
 
     journalctl -b > ~/abc.txt
 
-Также можно воспользоваться утилитой fpaste для автоматической загрузки файла на сервис `fpaste.org <https://paste.fedoraproject.org/>`_:
+Также можно воспользоваться утилитой fpaste для автоматической загрузки файла на сервис `fpaste.org <https://paste.fedoraproject.org/>`__:
 
 .. code-block:: bash
 
@@ -111,7 +111,7 @@
 Как сделать копию домашнего каталога?
 =========================================
 
-См. `здесь <https://www.easycoding.org/2017/09/03/avtomatiziruem-rezervnoe-kopirovanie-v-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2017/09/03/avtomatiziruem-rezervnoe-kopirovanie-v-fedora.html>`__.
 
 .. index:: резервное копирование, backup
 .. _backup-create:
@@ -198,7 +198,7 @@
 Как мне переустановить Grub 2?
 ====================================
 
-См. `здесь <https://fedoraproject.org/wiki/GRUB_2>`_.
+См. `здесь <https://fedoraproject.org/wiki/GRUB_2>`__.
 
 .. index:: boot, загрузчик, grub
 .. _grub-rebuild:
@@ -224,7 +224,7 @@
 Как настроить ИБП (UPS) в Fedora?
 ====================================
 
-См. `здесь <https://www.easycoding.org/2012/10/01/podnimaem-nut-v-linux.html>`_.
+См. `здесь <https://www.easycoding.org/2012/10/01/podnimaem-nut-v-linux.html>`__.
 
 .. index:: ssh, keys, error, ошибка
 .. _ssh-keys-error:
@@ -232,7 +232,7 @@
 При использовании SSH появляется ошибка доступа к ключам. Как исправить?
 ===========================================================================
 
-См. `здесь <https://www.easycoding.org/2016/07/31/reshaem-problemu-s-ssh-klyuchami-v-fedora-24.html>`_.
+См. `здесь <https://www.easycoding.org/2016/07/31/reshaem-problemu-s-ssh-klyuchami-v-fedora-24.html>`__.
 
 .. index:: slow shutdown, медленное завершение работы
 .. _slow-shutdown:
@@ -240,7 +240,7 @@
 Система медленно завершает работу. Можно ли это ускорить?
 ============================================================
 
-См. `здесь <https://www.easycoding.org/2016/08/08/uskoryaem-zavershenie-raboty-fedora-24.html>`_.
+См. `здесь <https://www.easycoding.org/2016/08/08/uskoryaem-zavershenie-raboty-fedora-24.html>`__.
 
 .. index:: journald, журналы, ограничение размера журналов
 .. _journald-limit:
@@ -248,7 +248,7 @@
 Системные журналы занимают слишком много места. Как их ограничить?
 =====================================================================
 
-См. `здесь <https://www.easycoding.org/2016/08/24/ogranichivaem-sistemnye-zhurnaly-v-fedora-24.html>`_.
+См. `здесь <https://www.easycoding.org/2016/08/24/ogranichivaem-sistemnye-zhurnaly-v-fedora-24.html>`__.
 
 .. index:: firewalld, port forwarding, проброс порта
 .. _firewalld-port-forwarding:
@@ -256,7 +256,7 @@
 Как пробросить локальный порт на удалённый хост?
 ====================================================
 
-См. `здесь <https://www.easycoding.org/2017/05/23/probrasyvaem-lokalnyj-port-na-udalyonnyj-xost.html>`_.
+См. `здесь <https://www.easycoding.org/2017/05/23/probrasyvaem-lokalnyj-port-na-udalyonnyj-xost.html>`__.
 
 .. index:: openvpn
 .. _using-openvpn:
@@ -264,7 +264,7 @@
 Как поднять OpenVPN сервер в Fedora?
 =======================================
 
-См. `здесь <https://www.easycoding.org/2017/07/24/podnimaem-ovn-server-na-fedora.html>`_. В данной статье вместо **ovn** следует использовать **openvpn** во всех путях и именах юнитов.
+См. `здесь <https://www.easycoding.org/2017/07/24/podnimaem-ovn-server-na-fedora.html>`__. В данной статье вместо **ovn** следует использовать **openvpn** во всех путях и именах юнитов.
 
 .. index:: systemd
 .. _systemd-info:
@@ -272,7 +272,7 @@
 Что такое systemd и как с ним работать?
 ==========================================
 
-См. `здесь <https://www.easycoding.org/2017/11/05/upravlyaem-systemd-v-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2017/11/05/upravlyaem-systemd-v-fedora.html>`__.
 
 .. index:: bug, missing library, libcurl-gnutls
 .. _libcurl-workaround:
@@ -280,7 +280,7 @@
 Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?
 =====================================================================
 
-См. `здесь <https://www.easycoding.org/2018/04/03/reshaem-problemu-otsutstviya-libcurl-gnutls-v-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2018/04/03/reshaem-problemu-otsutstviya-libcurl-gnutls-v-fedora.html>`__.
 
 .. index:: server, matrix, сервер
 .. _matrix-server:
@@ -288,7 +288,7 @@
 Как поднять свой сервер Matrix в Fedora?
 ===========================================
 
-См. `здесь <https://www.easycoding.org/2018/04/15/podnimaem-sobstvennyj-matrix-server-v-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2018/04/15/podnimaem-sobstvennyj-matrix-server-v-fedora.html>`__.
 
 .. index:: firefox, hardware acceleration
 .. _firefox-hwaccel:
@@ -317,7 +317,7 @@
 
 В настоящее время аппаратное ускорение декодирования мультимедиа "из коробки" в GNU/Linux не поддерживается ни в одном браузере.
 
-В Mozilla Firefox оно вообще не реализовано: `MZBZ#563206 <https://bugzilla.mozilla.org/show_bug.cgi?id=563206>`_ и `MZBZ#1210727 <https://bugzilla.mozilla.org/show_bug.cgi?id=1210727>`_.
+В Mozilla Firefox оно вообще не реализовано: `MZBZ#563206 <https://bugzilla.mozilla.org/show_bug.cgi?id=563206>`__ и `MZBZ#1210727 <https://bugzilla.mozilla.org/show_bug.cgi?id=1210727>`__.
 
 В Google Chrome и Chromium частично реализовано, но отключено на этапе компиляции и без особых VA-API патчей недоступно. Репозиторий :ref:`RPM Fusion <rpmfusion>` предоставляет такую сборку Chromium. Для её установки необходимо подключить его и установить пакет **chromium-vaapi**:
 
@@ -486,7 +486,7 @@
 
     gtk-double-click-time=1000
 
-Здесь 1000 — время в миллисекундах до активации двойного клика. Документация с подробным описанием всех переменных данных файлов конфигурации `здесь <https://developer.gnome.org/gtk3/stable/GtkSettings.html>`_.
+Здесь 1000 — время в миллисекундах до активации двойного клика. Документация с подробным описанием всех переменных данных файлов конфигурации `здесь <https://developer.gnome.org/gtk3/stable/GtkSettings.html>`__.
 
 .. index:: console, lock screen, lock session, блокировка сессии
 .. _block-screen:
@@ -534,7 +534,7 @@
 
     export PS1="\[\e[33m\][\[\e[36m\]\u\[\e[0m\]@\[\e[31m\]\h\[\e[0m\] \[\e[32m\]\W\[\e[33m\]]\[\e[35m\]\$\[\e[0m\] "
 
-Существует удобный онлайн генератор таких строк `здесь <http://bashrcgenerator.com/>`_.
+Существует удобный онлайн генератор таких строк `здесь <http://bashrcgenerator.com/>`__.
 
 .. index:: bash, title, заголовок оболочки
 .. _bash-title:
@@ -542,7 +542,7 @@
 Можно ли из shell скрипта менять название терминала?
 =======================================================
 
-Да, при помощи `управляющих последовательностей <https://ru.wikipedia.org/wiki/%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B8%D0%B5_%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8_ANSI>`_. Ими же можно менять цвет текста вывода и многое другое.
+Да, при помощи `управляющих последовательностей <https://ru.wikipedia.org/wiki/%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B8%D0%B5_%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8_ANSI>`__. Ими же можно менять цвет текста вывода и многое другое.
 
 .. index:: time, синхронизация времени, ntp
 .. _configure-ntp:
@@ -598,7 +598,7 @@
 
 Здесь **input.mp4** — имя оригинального файла, который требуется перекодировать, а в **output.mp4** будет сохранён результат.
 
-Больше информации можно найти `здесь <https://trac.ffmpeg.org/wiki/HWAccelIntro>`_.
+Больше информации можно найти `здесь <https://trac.ffmpeg.org/wiki/HWAccelIntro>`__.
 
 .. index:: filesystem, check, проверка файловой системы, lvm
 .. _fs-check-lvm:
@@ -671,9 +671,9 @@
 Какую файловую систему рекомендуется использовать на Fedora?
 ================================================================
 
-По умолчанию применяется `ext4 <https://ru.wikipedia.org/wiki/Ext4>`_. На наш взгляд, это самая стабильная и популярная файловая система в настоящее время.
+По умолчанию применяется `ext4 <https://ru.wikipedia.org/wiki/Ext4>`__. На наш взгляд, это самая стабильная и популярная файловая система в настоящее время.
 
-Для хранения больших объёмов данных можно использовать `XFS <https://ru.wikipedia.org/wiki/XFS>`_.
+Для хранения больших объёмов данных можно использовать `XFS <https://ru.wikipedia.org/wiki/XFS>`__.
 
 .. index:: file system, файловая система, btrfs
 .. _fs-btrfs:
@@ -714,7 +714,7 @@
  * **2.5** - 250%;
  * **3** - 300%.
 
-Более подробную информацию можно найти в `документации Qt <https://doc.qt.io/qt-5/highdpi.html>`_.
+Более подробную информацию можно найти в `документации Qt <https://doc.qt.io/qt-5/highdpi.html>`__.
 
 .. index:: multimedia, dlna, server, сервер мультимедиа
 .. _dlna-server:
@@ -722,7 +722,7 @@
 Как поднять DLNA сервер в локальной сети?
 ============================================
 
-См. `здесь <https://www.easycoding.org/2018/09/08/podnimaem-dlna-server-v-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2018/09/08/podnimaem-dlna-server-v-fedora.html>`__.
 
 .. index:: telegram
 .. _telegram-fedora:
@@ -759,7 +759,7 @@
 Возможна ли полная дедупликация оперативной памяти?
 =======================================================
 
-Да, дедупликация памяти `поддерживается <https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html>`_ в ядре Linux начиная с версии 2.6.32 модулем `KSM <https://ru.wikipedia.org/wiki/KSM>`_ и по умолчанию применяется лишь в системах виртуализации, например в KVM.
+Да, дедупликация памяти `поддерживается <https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html>`__ в ядре Linux начиная с версии 2.6.32 модулем `KSM <https://ru.wikipedia.org/wiki/KSM>`__ и по умолчанию применяется лишь в системах виртуализации, например в KVM.
 
 .. index:: disk depuplication, дедупликация данных
 .. _deduplication-disk:
@@ -767,7 +767,7 @@
 Возможна ли полная дедупликация данных на дисках?
 =====================================================
 
-Полная автоматическая дедупликация данных на дисках `поддерживается <https://btrfs.wiki.kernel.org/index.php/Deduplication>`_ лишь файловой системой :ref:`BTRFS <fs-btrfs>`.
+Полная автоматическая дедупликация данных на дисках `поддерживается <https://btrfs.wiki.kernel.org/index.php/Deduplication>`__ лишь файловой системой :ref:`BTRFS <fs-btrfs>`.
 
 .. index:: zram, сжатие памяти, memory compression
 .. _memory-compression:
@@ -858,7 +858,7 @@
 
     iperf -c 192.168.1.2
 
-В качестве клиента может выступать и мобильное устройство на базе ОС Android с установленным `Network Tools <https://play.google.com/store/apps/details?id=net.he.networktools>`_. В этом случае в главном меню программы следует выбрать пункт **Iperf2**, а в окне подключения ввести:
+В качестве клиента может выступать и мобильное устройство на базе ОС Android с установленным `Network Tools <https://play.google.com/store/apps/details?id=net.he.networktools>`__. В этом случае в главном меню программы следует выбрать пункт **Iperf2**, а в окне подключения ввести:
 
 .. code-block:: text
 
