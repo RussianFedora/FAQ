@@ -41,7 +41,7 @@
 <p>SELinux - это мандатная система контроля доступа, ограничивающая доступ ряду сервисов к файлам и каталогам. Больше информации <a class="reference external" href="https://ru.wikipedia.org/wiki/SELinux">здесь</a>.</p>
 </div>
 <div class="section" id="selinux-temp">
-<span id="index-1"></span><span id="id4"></span><h2>Как мне временно отключить SELinux?<a class="headerlink" href="#selinux-temp" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-1"></span><span id="id3"></span><h2>Как мне временно отключить SELinux?<a class="headerlink" href="#selinux-temp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы настоятельно не рекомендуем этого делать, но если очень хочется, то для временного отключения достаточно выполнить команду:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo setenforce <span class="m">0</span>
 </pre></div>
@@ -56,7 +56,7 @@
 </div>
 </div>
 <div class="section" id="selinux-disable">
-<span id="index-2"></span><span id="id5"></span><h2>Как мне навсегда отключить SELinux?<a class="headerlink" href="#selinux-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-2"></span><span id="id4"></span><h2>Как мне навсегда отключить SELinux?<a class="headerlink" href="#selinux-disable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Достаточно открыть файл конфигурации <cite>/etc/selinux/config</cite> в любом текстовом редакторе и изменить значение директивы <cite>SELINUX</cite>. Допустимые значения:</p>
 <blockquote>
 <div><ul class="simple">
@@ -68,11 +68,11 @@
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
 </div>
 <div class="section" id="selinux-status">
-<span id="index-3"></span><span id="id6"></span><h2>Как узнать текущий статус SELinux?<a class="headerlink" href="#selinux-status" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-3"></span><span id="id5"></span><h2>Как узнать текущий статус SELinux?<a class="headerlink" href="#selinux-status" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При помощи команды <strong>getenforce</strong> или <strong>sestatus</strong>.</p>
 </div>
 <div class="section" id="openvpn-selinux">
-<span id="index-4"></span><span id="id7"></span><h2>OpenVPN не может получить доступ к сертификатам из-за SELinux. Что делать?<a class="headerlink" href="#openvpn-selinux" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-4"></span><span id="id6"></span><h2>OpenVPN не может получить доступ к сертификатам из-за SELinux. Что делать?<a class="headerlink" href="#openvpn-selinux" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Это нормально ибо запущенные сервисы не могут получать доступ к каталогам пользователя, однако для OpenVPN сделано исключение в виде каталога <strong>~/.cert</strong>.</p>
 <p>По умолчанию он не существует, поэтому его нужно создать и задать для него контекст безопасности SELinux:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir ~/.cert
@@ -82,7 +82,7 @@ restorecon -Rv ~/.cert
 <p>Теперь в нём можно размещать сертификаты и приватные ключи.</p>
 </div>
 <div class="section" id="kpti">
-<span id="index-5"></span><span id="id8"></span><h2>Можно ли отключить KPTI?<a class="headerlink" href="#kpti" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-5"></span><span id="id7"></span><h2>Можно ли отключить KPTI?<a class="headerlink" href="#kpti" title="Ссылка на этот заголовок">¶</a></h2>
 <p>KPTI - это новый механизм ядра, направленный на защиту системы от уязвимости <a class="reference external" href="https://ru.wikipedia.org/wiki/Meltdown_(%D1%83%D1%8F%D0%B7%D0%B2%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C)">Meltdown</a> в процессорах Intel. Настоятельно не рекомендуется его отключать, хотя это и возможно. Для этого необходимо и достаточно передать ядру Linux:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nopti
 </pre></div>
@@ -108,21 +108,21 @@ restorecon -Rv ~/.cert
 </div>
 </div>
 <div class="section" id="l1tf">
-<span id="index-9"></span><span id="id9"></span><h2>Можно ли отключить защиту от L1TF?<a class="headerlink" href="#l1tf" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-9"></span><span id="id8"></span><h2>Можно ли отключить защиту от L1TF?<a class="headerlink" href="#l1tf" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, при помощи параметров ядра:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>l1tf=off
 </pre></div>
 </div>
 </div>
 <div class="section" id="hardware-vuln">
-<span id="index-10"></span><span id="id10"></span><h2>Как узнать защищено ли ядро от известных уязвимостей в процессорах?<a class="headerlink" href="#hardware-vuln" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-10"></span><span id="id9"></span><h2>Как узнать защищено ли ядро от известных уязвимостей в процессорах?<a class="headerlink" href="#hardware-vuln" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Ранее для этого применялись сторонние утилиты, но в современных версиях ядра для этого есть штатный механизм, который можно использовать:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep . /sys/devices/system/cpu/vulnerabilities/*
 </pre></div>
 </div>
 </div>
 <div class="section" id="selinux-boot-error">
-<span id="index-11"></span><span id="id11"></span><h2>При загрузке получаю ошибку SELinux. Как исправить?<a class="headerlink" href="#selinux-boot-error" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-11"></span><span id="id10"></span><h2>При загрузке получаю ошибку SELinux. Как исправить?<a class="headerlink" href="#selinux-boot-error" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Такое бывает если по какой-то причине сбился контекст безопасности SELinux. Исправить это можно двумя различными способами.</p>
 <p><em>Способ первый</em>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo touch /.autorelabel
@@ -142,7 +142,7 @@ sudo systemctl reboot
 <p>См. <a class="reference external" href="https://www.easycoding.org/2016/11/14/shifruem-vneshnij-nakopitel-posredstvom-luks.html">здесь</a>.</p>
 </div>
 <div class="section" id="luks-home">
-<span id="index-13"></span><span id="id13"></span><h2>Можно ли зашифровать домашний раздел уже установленной системы?<a class="headerlink" href="#luks-home" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-13"></span><span id="id11"></span><h2>Можно ли зашифровать домашний раздел уже установленной системы?<a class="headerlink" href="#luks-home" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2016/12/09/shifruem-domashnij-razdel-ustanovlennoj-sistemy.html">здесь</a>.</p>
 </div>
 <div class="section" id="firewalld">
@@ -150,12 +150,12 @@ sudo systemctl reboot
 <p>Firewalld - это современный динамически управляемый брандмауэр с поддержкой зон для интерфейсов.</p>
 </div>
 <div class="section" id="firewalld-configure">
-<span id="index-15"></span><span id="id15"></span><h2>Как можно настраивать Firewalld?<a class="headerlink" href="#firewalld-configure" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-15"></span><span id="id12"></span><h2>Как можно настраивать Firewalld?<a class="headerlink" href="#firewalld-configure" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для настройки применяется либо графическая утилита <strong>system-config-firewall</strong>, либо консольная <strong>firewall-cmd</strong>.</p>
 <p>Документацию можно <a class="reference external" href="https://fedoraproject.org/wiki/FirewallD/ru">найти в Wiki</a>.</p>
 </div>
 <div class="section" id="firewalld-hide-service">
-<span id="index-16"></span><span id="id16"></span><h2>Как замаскировать сервис средствами Firewalld?<a class="headerlink" href="#firewalld-hide-service" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-16"></span><span id="id13"></span><h2>Как замаскировать сервис средствами Firewalld?<a class="headerlink" href="#firewalld-hide-service" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2017/06/22/maskiruem-opredelyonnyj-servis-sredstvami-firewalld.html">здесь</a>.</p>
 </div>
 <div class="section" id="ip">
@@ -171,7 +171,7 @@ sudo systemctl reboot
 <p>См. <a class="reference external" href="https://www.easycoding.org/2018/01/11/rabotaem-s-cifrovymi-podpisyami-gpg.html">здесь</a>.</p>
 </div>
 <div class="section" id="gpg-encrypt">
-<span id="index-19"></span><span id="id19"></span><h2>Как зашифровать и расшифровать файлы с определённой маской в текущем каталоге?<a class="headerlink" href="#gpg-encrypt" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-19"></span><span id="id14"></span><h2>Как зашифровать и расшифровать файлы с определённой маской в текущем каталоге?<a class="headerlink" href="#gpg-encrypt" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Шифрование всех файлов с маской <em>.7z.</em> (многотомные архивы 7-Zip):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find . -maxdepth <span class="m">1</span> -type f -name <span class="s2">&quot;*.7z.*&quot;</span> -exec gpg2 --out <span class="s2">&quot;{}.asc&quot;</span> --recipient <span class="s2">&quot;example@example.org&quot;</span> --encrypt <span class="s2">&quot;{}&quot;</span> <span class="se">\;</span>
 </pre></div>
@@ -182,7 +182,7 @@ sudo systemctl reboot
 </div>
 </div>
 <div class="section" id="admin-vs-user">
-<span id="index-20"></span><span id="id20"></span><h2>Чем отличается пользователь-администратор от обычного?<a class="headerlink" href="#admin-vs-user" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-20"></span><span id="id15"></span><h2>Чем отличается пользователь-администратор от обычного?<a class="headerlink" href="#admin-vs-user" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Администратор (в терминологии программы установки Anaconda) имеет доступ к sudo.</p>
 </div>
 <div class="section" id="sudo-su">
@@ -190,7 +190,7 @@ sudo systemctl reboot
 <p>Утилита sudo запрашивает текущий пароль пользователя, а su - рутовый.</p>
 </div>
 <div class="section" id="root-password">
-<span id="index-22"></span><span id="id21"></span><h2>Как мне сменить пароль суперпользователя?<a class="headerlink" href="#root-password" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-22"></span><span id="id16"></span><h2>Как мне сменить пароль суперпользователя?<a class="headerlink" href="#root-password" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для смены или установки пароля суперпользователя при наличии доступа к sudo, можно выполнить:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo passwd root
 </pre></div>
@@ -204,15 +204,15 @@ sudo systemctl reboot
 </div>
 </div>
 <div class="section" id="sudo-vs-su">
-<span id="index-24"></span><span id="id22"></span><h2>Что лучше: sudo или su?<a class="headerlink" href="#sudo-vs-su" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-24"></span><span id="id17"></span><h2>Что лучше: sudo или su?<a class="headerlink" href="#sudo-vs-su" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Sudo ибо позволяет гибко настраивать права доступа, включая список разрешённых команд, а также ведёт полный журнал её использования.</p>
 </div>
 <div class="section" id="sudo-file-manager">
-<span id="index-25"></span><span id="id23"></span><h2>Почему я не могу запустить файловый менеджер с правами суперпользователя?<a class="headerlink" href="#sudo-file-manager" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-25"></span><span id="id18"></span><h2>Почему я не могу запустить файловый менеджер с правами суперпользователя?<a class="headerlink" href="#sudo-file-manager" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Это сделано из соображений безопасности. Более подробная информация доступна <a class="reference external" href="https://blog.martin-graesslin.com/blog/2017/02/editing-files-as-root/">здесь</a>.</p>
 </div>
 <div class="section" id="sudo-edit-config">
-<span id="index-26"></span><span id="id25"></span><h2>Как мне отредактировать конфиг, доступный только суперпользователю?<a class="headerlink" href="#sudo-edit-config" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-26"></span><span id="id19"></span><h2>Как мне отредактировать конфиг, доступный только суперпользователю?<a class="headerlink" href="#sudo-edit-config" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Необходимо использовать <strong>sudoedit</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudoedit /путь/к/файлу/конфигурации.conf
 </pre></div>
@@ -244,7 +244,7 @@ PermitEmptyPasswords no
 </div>
 </div>
 <div class="section" id="ssh-sftp">
-<span id="index-29"></span><span id="id26"></span><h2>Можно ли разрешить доступ посредством SSH только к файлам, без возможности выполнения команд?<a class="headerlink" href="#ssh-sftp" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-29"></span><span id="id20"></span><h2>Можно ли разрешить доступ посредством SSH только к файлам, без возможности выполнения команд?<a class="headerlink" href="#ssh-sftp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Для этого создадим специальную группу (например <strong>sftp</strong>):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo groupadd sftp
 </pre></div>
@@ -263,7 +263,7 @@ Match Group sftp
 </div>
 </div>
 <div class="section" id="destroy-file">
-<span id="index-30"></span><span id="id27"></span><h2>Как безвозвратно уничтожить файл?<a class="headerlink" href="#destroy-file" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-30"></span><span id="id21"></span><h2>Как безвозвратно уничтожить файл?<a class="headerlink" href="#destroy-file" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для уничтожения данных можно использовать штатную утилиту <strong>shred</strong> из пакета GNU Coreutils:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shred -u -v /путь/к/файлу.txt
 </pre></div>
@@ -271,7 +271,7 @@ Match Group sftp
 <p>Восстановить такой файл будет практически невозможно ибо сектора диска, на которых он располагался, будут многократно перезаписаны случайной последовательностью, а затем заполнены нулями.</p>
 </div>
 <div class="section" id="destroy-disk">
-<span id="index-31"></span><span id="id28"></span><h2>Можно лишь уничтожить содержимое всего диска?<a class="headerlink" href="#destroy-disk" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-31"></span><span id="id22"></span><h2>Можно лишь уничтожить содержимое всего диска?<a class="headerlink" href="#destroy-disk" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, для этого можно использовать уже упомянутую выше утилиту <strong>shred</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo shred -v /dev/sdX
 </pre></div>
@@ -287,7 +287,7 @@ Match Group sftp
 </div>
 </div>
 <div class="section" id="newfile-permissions">
-<span id="index-33"></span><span id="id29"></span><h2>Как рассчитываются права доступа для новых файлов и каталогов?<a class="headerlink" href="#newfile-permissions" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-33"></span><span id="id23"></span><h2>Как рассчитываются права доступа для новых файлов и каталогов?<a class="headerlink" href="#newfile-permissions" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Права доступа (chmod) в GNU/Linux рассчитываются в по формуле <strong>$default-chmod - $current-umask</strong>. <strong>$default-chmod</strong> для файлов равен 0666, а для каталогов - 0777.</p>
 <p>В Fedora umask по умолчанию для пользоватьских учётных записей равен <strong>0002</strong> (ведущий нуль в chmod означает использование восьмеричной системы счисления).</p>
 <p>Таким образом, chmod для новых файлов <strong>0666 - 0002 = 0664</strong> (-rw-rw–r–), а для каталогов - <strong>0777 - 0002 = 0775</strong> (drwxrwxr-x).</p>
