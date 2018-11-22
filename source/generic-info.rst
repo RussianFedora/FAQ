@@ -129,7 +129,19 @@ Grub 2.
 Что такое Russian Fedora?
 ============================
 
-Популярный сторонний репозиторий. Содержит большое количество ПО, включая правильно собранные Chromium (с поддержкой всех доступных мультимедийных кодеков), PyCharm Community Edition, Double Commander, а также множество популярного проприетарного ПО: Opera, Viber, Sublime Text 3, Adobe Flash Player, RAR и т.д.
+Популярный сторонний репозиторий. Содержит большое количество ПО, включая правильно собранные Chromium (с поддержкой всех доступных мультимедийных кодеков), PyCharm Community Edition, Double Commander, а также множество популярного проприетарного ПО: Opera, Viber, Sublime Text 3, Adobe Flash Player, RAR и т.д. Большая часть представленных здесь пакетов зависит от :ref:`RPM Fusion <rpmfusion>`, поэтому необходимо подключить сначала его.
+
+Подключение репозитория:
+
+.. code-block:: bash
+
+    sudo dnf install --nogpgcheck https://mirror.yandex.ru/fedora/russianfedora/russianfedora/free/fedora/russianfedora-free-release-stable.noarch.rpm https://mirror.yandex.ru/fedora/russianfedora/russianfedora/nonfree/fedora/russianfedora-nonfree-release-stable.noarch.rpm
+
+Отключение репозитория:
+
+.. code-block:: bash
+
+    sudo dnf remove russianfedora-free-release russianfedora-nonfree-release
 
 .. index:: repository, copr, overlay
 .. _copr:
