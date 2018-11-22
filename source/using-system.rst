@@ -319,7 +319,7 @@
 
 В Mozilla Firefox оно вообще не реализовано: `MZBZ#563206 <https://bugzilla.mozilla.org/show_bug.cgi?id=563206>`_ и `MZBZ#1210727 <https://bugzilla.mozilla.org/show_bug.cgi?id=1210727>`_.
 
-В Google Chrome и Chromium частично реализовано, но отключено на этапе компиляции и без особых VA-API патчей недоступно. Репозиторий RPM Fusion предоставляет такую сборку Chromium. Для её установки необходимо подключить RPM Fusion и установить пакет **chromium-vaapi**:
+В Google Chrome и Chromium частично реализовано, но отключено на этапе компиляции и без особых VA-API патчей недоступно. Репозиторий :ref:`RPM Fusion <rpmfusion>` предоставляет такую сборку Chromium. Для её установки необходимо подключить его и установить пакет **chromium-vaapi**:
 
 .. code-block:: bash
 
@@ -582,7 +582,7 @@
 Как ускорить кодирование видео с использованием видеокарт NVIDIA?
 ====================================================================
 
-Для этого нужно установить ffmpeg, а также проприетарные драйверы NVIDIA из репозиториев RPM Fusion.
+Для этого нужно установить ffmpeg, а также проприетарные драйверы NVIDIA из репозиториев :ref:`RPM Fusion <rpmfusion>`.
 
 Использование NVENC:
 
@@ -730,7 +730,7 @@
 Как лучше установить Telegram Desktop в Fedora?
 ===================================================
 
-Мы настоятельно рекомендуем устанавливать данный мессенджер исключительно из :ref:`репозиториев <3rd-repositories>` RPM Fusion:
+Мы настоятельно рекомендуем устанавливать данный мессенджер исключительно из :ref:`RPM Fusion <rpmfusion>`:
 
 .. code-block:: bash
 
@@ -751,7 +751,7 @@
  1. удалим старый бинарник и модуль обновления официального клиента, а также их копии из **~/.local/share/TelegramDesktop** и **~/.local/share/TelegramDesktop/tdata**;
  2. удалим ярлыки из **~/.local/share/applications**.
 
-Теперь можно установить :ref:`версию <telegram-fedora>` из RPM Fusion.
+Теперь можно установить :ref:`версию <telegram-fedora>` из :ref:`RPM Fusion <rpmfusion>`.
 
 .. index:: memory depuplication, дедупликация памяти
 .. _deduplication-memory:
@@ -820,7 +820,7 @@
 
 Файловая система exFAT защищена множеством патентов Microsoft, поэтому она не может быть включена в ядро Linux и соответственно быть доступной в Fedora по умолчанию.
 
-Для того, чтобы использовать её, необходимо установить пакет **fuse-exfat** из :ref:`репозитория <3rd-repositories>` RPM Fusion:
+Для того, чтобы использовать её, необходимо установить пакет **fuse-exfat** из :ref:`репозитория <3rd-repositories>` :ref:`RPM Fusion <rpmfusion>`:
 
 .. code-block:: bash
 
