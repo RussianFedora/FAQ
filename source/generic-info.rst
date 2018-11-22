@@ -175,7 +175,7 @@ Fedora COPR - это бесплатный хостинг для размещен
 Что такое RFRemix?
 ======================
 
-RFRemix - это ремикс оргинального дистрибутива Fedora с использованием репозиториев RPM Fusion и Russian Fedora, адаптированный для российских пользователей. Больше информации можно найти `здесь <https://ru.fedoracommunity.org/stories/rfremix/>`_.
+RFRemix - это ремикс оргинального дистрибутива Fedora с использованием репозиториев :ref:`RPM Fusion <rpmfusion>` и :ref:`Russian Fedora <russian-fedora>`, адаптированный для российских пользователей. Больше информации можно найти `здесь <https://ru.fedoracommunity.org/stories/rfremix/>`_.
 
 .. index:: distribution, russianfedora, rfremix
 .. _rfremix-to-fedora:
