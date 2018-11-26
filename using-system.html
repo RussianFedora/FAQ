@@ -622,6 +622,50 @@ foo.bar2=X2
 </div></blockquote>
 <p>Порядок выполнения - в алфавитном порядке, поэтому для его изменения многие конфиги содержат цифры и буквы. Например конфиг <strong>00-foobar.conf</strong> выполнится раньше, чем <strong>zz-foobar.conf</strong>.</p>
 </div>
+<div class="section" id="kwallet">
+<span id="kwallet-pam"></span><span id="index-64"></span><h2>Как настроить автоматическую разблокировку связки ключей KWallet при входе в систему?<a class="headerlink" href="#kwallet" title="Ссылка на этот заголовок">¶</a></h2>
+<p>KDE предоставляет особый PAM модуль для автоматической разблокировки связки паролей KDE Wallet при входе в систему. Установим его:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install pam-kwallet
+</pre></div>
+</div>
+<p>Запустим менеджер KWallet (<strong>Параметры системы</strong> - группа <strong>Предпочтения пользователя</strong> - <strong>Учётная запись</strong> - страница <strong>Бумажник</strong> - кнопка <strong>Запустить управление бумажниками</strong>), нажмём кнопку <strong>Сменить пароль</strong> и укажем тот же самый пароль, который используется для текущей учётной записи.</p>
+<p>Сохраняем изменения и повторно входим в систему.</p>
+</div>
+<div class="section" id="youtube">
+<span id="youtube-download"></span><span id="index-65"></span><h2>Как скачать видео с Youtube?<a class="headerlink" href="#youtube" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Скачать любое интересующее видео с Youtube, а также ряда других хостингов, можно посредством утилиты <strong>youtube-dl</strong>, доступной в основном репозитории Fedora:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install youtube-dl
+</pre></div>
+</div>
+<p>Скачивание видео с настройками по умолчанию в наилучшем качестве:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>youtube-dl -f bestvideo https://www.youtube.com/watch?v<span class="o">=</span>XXXXXXXXXX
+</pre></div>
+</div>
+<p>Данная утилита имеет множество параметров командной строки, справку по которым можно найти в её странице man:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man youtube-dl
+</pre></div>
+</div>
+<p>Для выхода из окна просмотра справки достаточно нажать <strong>Q</strong>.</p>
+</div>
+<div class="section" id="configure-runlevel">
+<span id="index-66"></span><span id="id33"></span><h2>Как переключить запуск системы в текстовый режим и обратно?<a class="headerlink" href="#configure-runlevel" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Чтобы активировать запуск Fedora в текстовом режиме, нужно переключиться на цель <strong>multi-user.target</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl set-default multi-user.target
+</pre></div>
+</div>
+<p>Чтобы активировать запуск в графическом режиме, необходимо убедиться в том, что установлен какой-либо менеджер графического входа в систему (GDM, SDDM, LightDM и т.д.), а затем переключиться на цель <strong>graphical.target</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl set-default graphical.target
+</pre></div>
+</div>
+<p>Определить используемый в настоящее время режим можно так:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl get-default
+</pre></div>
+</div>
+<p>Изменения вступят в силу лишь после перезапуска системы:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</div>
 </div>
 
 
