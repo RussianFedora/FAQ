@@ -1034,3 +1034,33 @@ KDE предоставляет особый PAM модуль для автома
     man youtube-dl
 
 Для выхода из окна просмотра справки достаточно нажать **Q**.
+
+.. index:: text mode, runlevel
+.. _configure-runlevel:
+
+Как переключить запуск системы в текстовый режим и обратно?
+===============================================================
+
+Чтобы активировать запуск Fedora в текстовом режиме, нужно переключиться на цель **multi-user.target**:
+
+.. code-block:: bash
+
+    sudo systemctl set-default multi-user.target
+
+Чтобы активировать запуск в графическом режиме, необходимо убедиться в том, что установлен какой-либо менеджер графического входа в систему (GDM, SDDM, LightDM и т.д.), а затем переключиться на цель **graphical.target**:
+
+.. code-block:: bash
+
+    sudo systemctl set-default graphical.target
+
+Определить используемый в настоящее время режим можно так:
+
+.. code-block:: bash
+
+    systemctl get-default
+
+Изменения вступят в силу лишь после перезапуска системы:
+
+.. code-block:: bash
+
+    sudo systemctl reboot
