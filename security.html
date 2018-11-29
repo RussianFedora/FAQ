@@ -292,6 +292,10 @@ Match Group sftp
 <p>В Fedora umask по умолчанию для пользоватьских учётных записей равен <strong>0002</strong> (ведущий нуль в chmod означает использование восьмеричной системы счисления).</p>
 <p>Таким образом, chmod для новых файлов <strong>0666 - 0002 = 0664</strong> (-rw-rw–r–), а для каталогов - <strong>0777 - 0002 = 0775</strong> (drwxrwxr-x).</p>
 </div>
+<div class="section" id="fedora">
+<span id="fedora-gost"></span><span id="index-34"></span><h2>Можно ли включить поддержку российской криптографии в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>См. <a class="reference external" href="https://www.easycoding.org/2018/11/28/dobavlyaem-podderzhku-gost-dlya-openssl-v-fedora.html">здесь</a>.</p>
+</div>
 </div>
 
 
@@ -312,7 +316,54 @@ Match Group sftp
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script><div class="relations">
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Навигация</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Вопросы, связанные с установкой системы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package-manager.html">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные с безопасностью</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#selinux">Что такое SELinux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selinux-temp">Как мне временно отключить SELinux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selinux-disable">Как мне навсегда отключить SELinux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selinux-status">Как узнать текущий статус SELinux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#openvpn-selinux">OpenVPN не может получить доступ к сертификатам из-за SELinux. Что делать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kpti">Можно ли отключить KPTI?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spectre-v1">Можно ли отключить защиту от Spectre v1?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spectre-v2">Можно ли отключить защиту от Spectre v2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spectre-v4">Можно ли отключить защиту от Spectre v4?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#l1tf">Можно ли отключить защиту от L1TF?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-vuln">Как узнать защищено ли ядро от известных уязвимостей в процессорах?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selinux-boot-error">При загрузке получаю ошибку SELinux. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usb">Как можно надёжно зашифровать файлы на USB устройстве?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#luks-home">Можно ли зашифровать домашний раздел уже установленной системы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firewalld">Что такое Firewalld?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firewalld-configure">Как можно настраивать Firewalld?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firewalld-hide-service">Как замаскировать сервис средствами Firewalld?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ip">Как запретить подключения с конкретных IP-адресов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gnupg">Как работать с подписями GnuPG?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gpg-encrypt">Как зашифровать и расшифровать файлы с определённой маской в текущем каталоге?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#admin-vs-user">Чем отличается пользователь-администратор от обычного?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sudo-su">Какие пароли запрашивают sudo и su?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#root-password">Как мне сменить пароль суперпользователя?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sudo">Как мне получить доступ к sudo?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sudo-vs-su">Что лучше: sudo или su?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sudo-file-manager">Почему я не могу запустить файловый менеджер с правами суперпользователя?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sudo-edit-config">Как мне отредактировать конфиг, доступный только суперпользователю?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sudoedit">Sudoedit безопаснее прямого запуска текстового редактора с правами суперпользователя?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ssh">Как включить и безопасно настроить сервер SSH?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ssh-sftp">Можно ли разрешить доступ посредством SSH только к файлам, без возможности выполнения команд?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#destroy-file">Как безвозвратно уничтожить файл?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#destroy-disk">Можно лишь уничтожить содержимое всего диска?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ssd">Как уничтожить файл на SSD?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#newfile-permissions">Как рассчитываются права доступа для новых файлов и каталогов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora">Можно ли включить поддержку российской криптографии в Fedora?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе и администрированием</a></li>
+<li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
+</ul>
+
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>

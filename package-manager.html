@@ -406,7 +406,61 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script><div class="relations">
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Навигация</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Вопросы, связанные с установкой системы</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные с пакетным менеджером и установкой пакетов</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pkg-manager">Какой менеджер пакетов используется в настоящее время?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#yum-fedora">Могу ли я использовать Yum в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#make-install">Можно ли устанавливать программы посредством make install?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gdm-sddm">У меня в системе используется GDM, но я хочу заменить его на SDDM. Это возможно?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora">Как мне обновить Fedora до новой версии?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf">При обновлении dnf ругается на дубликаты пакетов.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpm">База RPM оказалась повреждена. Как восстановить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-kernel-store">Dnf сохраняет старые ядра. Это нормально?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-kernel-change">Как можно уменьшить количество сохраняемых ядер?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-proxy">Как настроить работу dnf через прокси?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-weakdeps">Как отключить установку слабых зависимостей?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-pkgupdates">Как мне запретить установку обновлений для ряда пакетов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-kernel-remove">Как можно вручную удалить старое ядро?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#microsoft-fedora">Как установить шрифты Microsoft в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rd-repositories">Какие сторонние репозитории лучше всего подключать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flatpak-fedora">Как работать с Flatpak пакетами в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-package">Я хочу создать пакет для Fedora. Что мне следует знать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multimedia-codecs">В системе нет кодеков мультимедиа. Как их установить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#chromium">Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firefox">Как активировать все доступные кодеки в браузере Firefox?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvidia">Как правильно установить драйверы NVIDIA?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpm-mock">Как собрать RPM пакет в mock?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#virtualbox-fedora">Как правильно установить VirtualBox в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wi-fi-broadcom">Как правильно установить драйверы Wi-Fi модулей Broadcom?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-caches">Как отключить автообновление кэшей dnf?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dkms-akmods">Что лучше: dkms или akmods?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#becoming-maintainer">Как добавить свой пакет в репозиторий Fedora и стать мейнтейнером?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#updates-testing">Каким способом можно обновить пакет из тестовых репозиториев?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-list-contents">Как получить список файлов установленного пакета?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-find-file">Как узнать в каком пакете находится конкретный файл?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#java">Можно ли установить несколько версий Java в систему?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#alternatives-java">Как мне выбрать версию Java по умолчанию?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-repo-contents">Как вывести список пакетов из определённого репозитория?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-repo-orphans">Как вывести список пакетов, установленных не из репозиториев, либо удалённых из них?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-transactions-cleanup">Как очистить журнал транзакций dnf?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-list-export">Как сохранить список установленных пакетов, чтобы легко установить их после переустановки системы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-download-only">Можно ли скачать, но не устанавливать пакет из репозитория?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-manage-repo">Как правильно включать или отключать репозитории?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-modular">Что такое модульные репозитории?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-disable-modules">Мне не нужна поддержка модулей. Как их можно отключить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-gui-updates">Можно ли устанавливать обновления через dnf из графического режима?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#packagekit">Безопасно ли использовать основанные на PackageKit модули обновления из графического режима?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе и администрированием</a></li>
+<li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
+</ul>
+
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
