@@ -12,7 +12,6 @@
 
 .. toctree::
    :maxdepth: 2
-   :caption: Содержание:
 
    generic-info.rst
    installation.rst
