@@ -1064,3 +1064,15 @@ KDE предоставляет особый PAM модуль для автома
 .. code-block:: bash
 
     sudo systemctl reboot
+
+.. index:: iso, write iso, image
+.. _fedora-winiso:
+
+Как из Fedora записать образ с MS Windows на флешку?
+========================================================
+
+К сожалению, :ref:`штатный способ <usb-flash>` записи посредством использования утилиты dd не сработает в случае ISO образов MS Windows, поэтому для этого следует применять утилиту WoeUSB:
+
+.. code-block:: bash
+
+    sudo dnf install WoeUSB
