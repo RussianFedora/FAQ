@@ -1076,3 +1076,41 @@ KDE предоставляет особый PAM модуль для автома
 .. code-block:: bash
 
     sudo dnf install WoeUSB
+
+.. index:: swap, pagefile
+.. _swap-to-file:
+
+Как настроить подкачку в файл в Fedora?
+===========================================
+
+Создадим файл подкачки на 4 ГБ:
+
+.. code-block:: bash
+
+    sudo dd if=/dev/zero of=/media/pagefile count=4096 bs=1M
+
+Установим правильный chmod:
+
+.. code-block:: bash
+
+    sudo chmod 600 /media/pagefile
+
+Подготовим swapfs к работе:
+
+.. code-block:: bash
+
+    sudo mkswap /media/pagefile
+
+Активируем файл подкачки:
+
+.. code-block:: bash
+
+    sudo swapon /media/pagefile
+
+Для того, чтобы подкачка подключалась автоматически при загрузке системы, откроем файл **/etc/fstab** и добавим в него следующую строку:
+
+.. code-block:: text
+
+    /media/pagefile    none    swap    sw    0    0
+
+Действия вступят в силу немедленно.
