@@ -71,6 +71,34 @@ Dnf, являющийся, в свою очередь, форком Yum.
 
 Установленные таким способом модули будут размещены в домашнем каталоге пользователя и не помешают работе системы.
 
+.. index:: installation, pip, venv
+.. _pip-user:
+
+Как правильно применять Python Virtual Environment?
+========================================================
+
+Установим пакеты **python3-virtualenv** и **python3-setuptools**:
+
+.. code-block:: bash
+
+    sudo dnf install python3-setuptools python3-virtualenv
+
+Создадим виртуальное окружение:
+
+.. code-block:: bash
+
+    python3 -m venv foo-bar
+
+Запустим его:
+
+.. code-block:: bash
+
+    source foo-bar/bin/activate
+
+Теперь внутри него допускается использовать любые механизмы установки пакетов Python: pip, install.py и т.д.
+
+Здесь **foo-bar** - название venv контейнера. Допускается создавать неограниченное их количество.
+
 .. index:: DM change, смена менеджера сеансов, менеджер сеансов
 .. _change-dm:
 
