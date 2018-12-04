@@ -49,6 +49,56 @@ Dnf, являющийся, в свою очередь, форком Yum.
  5. при обновлении перезаписываются только изменённые файлы. Более того, может быть скачан и установлен только дифф. изменений;
  6. если при обновлении пакета возникает конфликт какого-то конфига, он не будет молча перезаписан, а будет применён патч на существующий, либо, если это невозможно, будет запрошено действие у пользователя.
 
+.. index:: installation, pip, npm
+.. _using-pip:
+
+Можно ли использовать PIP или NPM для установки программ и модулей?
+=======================================================================
+
+Нет. Глобальная установка чего-либо через pip (pip2, pip3), либо npm, по своей деструктивности аналогична :ref:`make install <make-install>`.
+
+.. index:: installation, pip
+.. _pip-user:
+
+Нужной Python библиотеки нет в репозиториях. Как можно безопасно использовать PIP?
+=======================================================================================
+
+В таком случае рекомендуется либо локальная установка модулей посредством pip с параметром **--user**, либо использование :ref:`Python Virtual Environment <python-venv>`:
+
+.. code-block:: bash
+
+    pip3 --user install foo-bar
+
+Установленные таким способом модули будут размещены в домашнем каталоге пользователя и не помешают работе системы.
+
+.. index:: installation, pip, venv
+.. _python-venv:
+
+Как правильно применять Python Virtual Environment?
+========================================================
+
+Установим пакеты **python3-virtualenv** и **python3-setuptools**:
+
+.. code-block:: bash
+
+    sudo dnf install python3-setuptools python3-virtualenv
+
+Создадим виртуальное окружение:
+
+.. code-block:: bash
+
+    python3 -m venv foo-bar
+
+Запустим его:
+
+.. code-block:: bash
+
+    source foo-bar/bin/activate
+
+Теперь внутри него допускается использовать любые механизмы установки пакетов Python: pip, install.py и т.д.
+
+Здесь **foo-bar** - название venv контейнера. Допускается создавать неограниченное их количество.
+
 .. index:: DM change, смена менеджера сеансов, менеджер сеансов
 .. _change-dm:
 
@@ -200,7 +250,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Как установить шрифты Microsoft в Fedora?
 =============================================
 
-См. `здесь <https://www.easycoding.org/2011/08/14/ustanovka-microsoft-core-fonts-v-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2011/08/14/ustanovka-microsoft-core-fonts-v-fedora.html>`__.
 
 .. index:: repository, сторонние репозитории
 .. _3rd-repositories:
@@ -208,7 +258,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Какие сторонние репозитории лучше всего подключать?
 =======================================================
 
-См. `здесь <https://www.easycoding.org/2017/03/24/poleznye-storonnie-repozitorii-dlya-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2017/03/24/poleznye-storonnie-repozitorii-dlya-fedora.html>`__.
 
 .. index:: repository, flatpak, flathub
 .. _flatpak:
@@ -216,7 +266,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Как работать с Flatpak пакетами в Fedora?
 ============================================
 
-См. `здесь <https://www.easycoding.org/2018/07/25/rabotaem-s-flatpak-paketami-v-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2018/07/25/rabotaem-s-flatpak-paketami-v-fedora.html>`__.
 
 .. index:: repository, package, packaging, создание пакета
 .. _create-package:
@@ -224,7 +274,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Я хочу создать пакет для Fedora. Что мне следует знать?
 ============================================================
 
-См. `здесь <https://docs.fedoraproject.org/quick-docs/en-US/creating-rpm-packages.html>`_ и `здесь <https://www.easycoding.org/2018/06/17/pravilno-paketim-po-dlya-linux.html>`_.
+См. `здесь <https://docs.fedoraproject.org/quick-docs/en-US/creating-rpm-packages.html>`__ и `здесь <https://www.easycoding.org/2018/06/17/pravilno-paketim-po-dlya-linux.html>`__.
 
 .. index:: repository, codecs, кодеки мультимедиа, multimedia
 .. _multimedia-codecs:
@@ -232,7 +282,7 @@ Dnf сохраняет старые ядра. Это нормально?
 В системе нет кодеков мультимедиа. Как их установить?
 ============================================================
 
-Для начала следует подключить репозиторий RPM Fusion и установить кодеки из группы **multimedia**:
+Для начала следует подключить репозиторий :ref:`RPM Fusion <rpmfusion>` и установить кодеки из группы **multimedia**:
 
 .. code-block:: bash
 
@@ -256,7 +306,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Как активировать все доступные кодеки в браузере Firefox?
 ==============================================================
 
-Браузер Mozilla Firefox использует ffmpeg для работы с мультимедийным контентом, поэтому необходимо его установить из репозитория RPM Fusion:
+Браузер Mozilla Firefox использует ffmpeg для работы с мультимедийным контентом, поэтому необходимо его установить из репозитория :ref:`RPM Fusion <rpmfusion>`:
 
 .. code-block:: bash
 
@@ -268,7 +318,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Как правильно установить драйверы NVIDIA?
 ==============================================
 
-См. `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
 
 .. index:: package, packaging, сборка пакета, building
 .. _build-package:
@@ -276,7 +326,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Как собрать RPM пакет в mock?
 ==================================
 
-См. `здесь <https://www.easycoding.org/2017/02/22/sobiraem-rpm-pakety-dlya-fedora-v-mock.html>`_.
+См. `здесь <https://www.easycoding.org/2017/02/22/sobiraem-rpm-pakety-dlya-fedora-v-mock.html>`__.
 
 .. index:: repository, virtualbox
 .. _virtualbox:
@@ -284,7 +334,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Как правильно установить VirtualBox в Fedora?
 ================================================
 
-Сначала нужно подключить репозиторий RPM Fusion, затем выполнить:
+Сначала нужно подключить репозиторий :ref:`RPM Fusion <rpmfusion>`, затем выполнить:
 
 .. code-block:: bash
 
@@ -304,7 +354,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Как правильно установить драйверы Wi-Fi модулей Broadcom?
 =============================================================
 
-Сначала нужно подключить RPM Fusion, затем выполнить:
+Сначала нужно подключить :ref:`RPM Fusion <rpmfusion>`, затем выполнить:
 
 .. code-block:: bash
 
@@ -317,7 +367,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Как отключить автообновление кэшей dnf?
 ==============================================
 
-См. `здесь <https://www.easycoding.org/2016/01/27/otklyuchaem-avto-obnovlenie-v-dnf-pod-fedora-22.html>`_.
+См. `здесь <https://www.easycoding.org/2016/01/27/otklyuchaem-avto-obnovlenie-v-dnf-pod-fedora-22.html>`__.
 
 .. index:: dkms, akmods, difference
 .. _dkms-akmods:
@@ -333,7 +383,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Как добавить свой пакет в репозиторий Fedora и стать мейнтейнером?
 =====================================================================
 
-См. `здесь <https://www.easycoding.org/2016/06/20/dobavlyaem-paket-v-glavnyj-repozitorij-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2016/06/20/dobavlyaem-paket-v-glavnyj-repozitorij-fedora.html>`__.
 
 .. index:: package updates, testing, тестовые репозитории
 .. _updates-testing:
@@ -549,7 +599,7 @@ Java 11:
 
     dnf module install nodejs:6/default
 
-Более подробную информацию о модулях можно найти `здесь <https://docs.fedoraproject.org/en-US/modularity/using-modules/>`_.
+Более подробную информацию о модулях можно найти `здесь <https://docs.fedoraproject.org/en-US/modularity/using-modules/>`__.
 
 .. index:: dnf, modular, modules, модули
 .. _dnf-disable-modules:

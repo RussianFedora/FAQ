@@ -89,7 +89,7 @@
 
     journalctl -b > ~/abc.txt
 
-Также можно воспользоваться утилитой fpaste для автоматической загрузки файла на сервис `fpaste.org <https://paste.fedoraproject.org/>`_:
+Также можно воспользоваться утилитой fpaste для автоматической загрузки файла на сервис `fpaste.org <https://paste.fedoraproject.org/>`__:
 
 .. code-block:: bash
 
@@ -111,7 +111,7 @@
 Как сделать копию домашнего каталога?
 =========================================
 
-См. `здесь <https://www.easycoding.org/2017/09/03/avtomatiziruem-rezervnoe-kopirovanie-v-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2017/09/03/avtomatiziruem-rezervnoe-kopirovanie-v-fedora.html>`__.
 
 .. index:: резервное копирование, backup
 .. _backup-create:
@@ -198,7 +198,7 @@
 Как мне переустановить Grub 2?
 ====================================
 
-См. `здесь <https://fedoraproject.org/wiki/GRUB_2>`_.
+См. `здесь <https://fedoraproject.org/wiki/GRUB_2>`__.
 
 .. index:: boot, загрузчик, grub
 .. _grub-rebuild:
@@ -224,7 +224,7 @@
 Как настроить ИБП (UPS) в Fedora?
 ====================================
 
-См. `здесь <https://www.easycoding.org/2012/10/01/podnimaem-nut-v-linux.html>`_.
+См. `здесь <https://www.easycoding.org/2012/10/01/podnimaem-nut-v-linux.html>`__.
 
 .. index:: ssh, keys, error, ошибка
 .. _ssh-keys-error:
@@ -232,7 +232,7 @@
 При использовании SSH появляется ошибка доступа к ключам. Как исправить?
 ===========================================================================
 
-См. `здесь <https://www.easycoding.org/2016/07/31/reshaem-problemu-s-ssh-klyuchami-v-fedora-24.html>`_.
+См. `здесь <https://www.easycoding.org/2016/07/31/reshaem-problemu-s-ssh-klyuchami-v-fedora-24.html>`__.
 
 .. index:: slow shutdown, медленное завершение работы
 .. _slow-shutdown:
@@ -240,7 +240,7 @@
 Система медленно завершает работу. Можно ли это ускорить?
 ============================================================
 
-См. `здесь <https://www.easycoding.org/2016/08/08/uskoryaem-zavershenie-raboty-fedora-24.html>`_.
+См. `здесь <https://www.easycoding.org/2016/08/08/uskoryaem-zavershenie-raboty-fedora-24.html>`__.
 
 .. index:: journald, журналы, ограничение размера журналов
 .. _journald-limit:
@@ -248,7 +248,7 @@
 Системные журналы занимают слишком много места. Как их ограничить?
 =====================================================================
 
-См. `здесь <https://www.easycoding.org/2016/08/24/ogranichivaem-sistemnye-zhurnaly-v-fedora-24.html>`_.
+См. `здесь <https://www.easycoding.org/2016/08/24/ogranichivaem-sistemnye-zhurnaly-v-fedora-24.html>`__.
 
 .. index:: firewalld, port forwarding, проброс порта
 .. _firewalld-port-forwarding:
@@ -256,7 +256,7 @@
 Как пробросить локальный порт на удалённый хост?
 ====================================================
 
-См. `здесь <https://www.easycoding.org/2017/05/23/probrasyvaem-lokalnyj-port-na-udalyonnyj-xost.html>`_.
+См. `здесь <https://www.easycoding.org/2017/05/23/probrasyvaem-lokalnyj-port-na-udalyonnyj-xost.html>`__.
 
 .. index:: openvpn
 .. _using-openvpn:
@@ -264,7 +264,7 @@
 Как поднять OpenVPN сервер в Fedora?
 =======================================
 
-См. `здесь <https://www.easycoding.org/2017/07/24/podnimaem-ovn-server-na-fedora.html>`_. В данной статье вместо **ovn** следует использовать **openvpn** во всех путях и именах юнитов.
+См. `здесь <https://www.easycoding.org/2017/07/24/podnimaem-ovn-server-na-fedora.html>`__. В данной статье вместо **ovn** следует использовать **openvpn** во всех путях и именах юнитов.
 
 .. index:: systemd
 .. _systemd-info:
@@ -272,7 +272,7 @@
 Что такое systemd и как с ним работать?
 ==========================================
 
-См. `здесь <https://www.easycoding.org/2017/11/05/upravlyaem-systemd-v-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2017/11/05/upravlyaem-systemd-v-fedora.html>`__.
 
 .. index:: bug, missing library, libcurl-gnutls
 .. _libcurl-workaround:
@@ -280,7 +280,7 @@
 Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?
 =====================================================================
 
-См. `здесь <https://www.easycoding.org/2018/04/03/reshaem-problemu-otsutstviya-libcurl-gnutls-v-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2018/04/03/reshaem-problemu-otsutstviya-libcurl-gnutls-v-fedora.html>`__.
 
 .. index:: server, matrix, сервер
 .. _matrix-server:
@@ -288,7 +288,7 @@
 Как поднять свой сервер Matrix в Fedora?
 ===========================================
 
-См. `здесь <https://www.easycoding.org/2018/04/15/podnimaem-sobstvennyj-matrix-server-v-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2018/04/15/podnimaem-sobstvennyj-matrix-server-v-fedora.html>`__.
 
 .. index:: firefox, hardware acceleration
 .. _firefox-hwaccel:
@@ -307,7 +307,35 @@
 
 Изменения вступят в силу при следующем запуске браузера.
 
-Внимание! Это не затрагивает аппаратное декодирование мультимедиа средствами видеоускорителя, которое в настоящее время не поддерживается ни в Firefox, ни в Chrome на ОС Linux.
+Внимание! Это не затрагивает аппаратное декодирование мультимедиа средствами видеоускорителя.
+
+.. index:: firefox, chromium, chrome, hardware acceleration, vaapi
+.. _browser-hwaccel:
+
+Как активировать аппаратное ускорение декодирования мультимедиа в браузерах?
+===============================================================================
+
+В настоящее время аппаратное ускорение декодирования мультимедиа "из коробки" в GNU/Linux не поддерживается ни в одном браузере.
+
+В Mozilla Firefox оно вообще не реализовано: `MZBZ#563206 <https://bugzilla.mozilla.org/show_bug.cgi?id=563206>`__ и `MZBZ#1210727 <https://bugzilla.mozilla.org/show_bug.cgi?id=1210727>`__.
+
+В Google Chrome и Chromium частично реализовано, но отключено на этапе компиляции и без особых VA-API патчей недоступно. Репозиторий :ref:`RPM Fusion <rpmfusion>` предоставляет такую сборку Chromium. Для её установки необходимо подключить его и установить пакет **chromium-vaapi**:
+
+.. code-block:: bash
+
+    sudo dnf install chromium-vaapi
+
+Далее необходимо запустить его, зайти в **chrome://flags** и установить пункт **Hardware decoding** в значение **Enabled**, после чего перезапустить браузер.
+
+.. index:: mpv, video player, hardware acceleration, vaapi, vdpau
+.. _video-hwaccel:
+
+В каких проигрывателях реализовано аппаратное ускорение декодирования мультимедиа?
+=====================================================================================
+
+Полная поддержка аппаратного декодирования мультимедиа средствами VA-API (Intel, AMD) или VPDAU (NVIDIA) реализована в проигрывателях VLC и mpv.
+
+Для активации данной функции необходимо в качестве графического бэкэнда вывода изображения указать **vaapi** или **vdpau**, после чего перезапустить плеер.
 
 .. index:: gdb, debugging, отладка
 .. _debug-application:
@@ -458,7 +486,7 @@
 
     gtk-double-click-time=1000
 
-Здесь 1000 — время в миллисекундах до активации двойного клика. Документация с подробным описанием всех переменных данных файлов конфигурации `здесь <https://developer.gnome.org/gtk3/stable/GtkSettings.html>`_.
+Здесь 1000 — время в миллисекундах до активации двойного клика. Документация с подробным описанием всех переменных данных файлов конфигурации `здесь <https://developer.gnome.org/gtk3/stable/GtkSettings.html>`__.
 
 .. index:: console, lock screen, lock session, блокировка сессии
 .. _block-screen:
@@ -506,7 +534,7 @@
 
     export PS1="\[\e[33m\][\[\e[36m\]\u\[\e[0m\]@\[\e[31m\]\h\[\e[0m\] \[\e[32m\]\W\[\e[33m\]]\[\e[35m\]\$\[\e[0m\] "
 
-Существует удобный онлайн генератор таких строк `здесь <http://bashrcgenerator.com/>`_.
+Существует удобный онлайн генератор таких строк `здесь <http://bashrcgenerator.com/>`__.
 
 .. index:: bash, title, заголовок оболочки
 .. _bash-title:
@@ -514,7 +542,7 @@
 Можно ли из shell скрипта менять название терминала?
 =======================================================
 
-Да, при помощи `управляющих последовательностей <https://ru.wikipedia.org/wiki/%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B8%D0%B5_%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8_ANSI>`_. Ими же можно менять цвет текста вывода и многое другое.
+Да, при помощи `управляющих последовательностей <https://ru.wikipedia.org/wiki/%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B8%D0%B5_%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8_ANSI>`__. Ими же можно менять цвет текста вывода и многое другое.
 
 .. index:: time, синхронизация времени, ntp
 .. _configure-ntp:
@@ -554,7 +582,7 @@
 Как ускорить кодирование видео с использованием видеокарт NVIDIA?
 ====================================================================
 
-Для этого нужно установить ffmpeg, а также проприетарные драйверы NVIDIA из репозиториев RPM Fusion.
+Для этого нужно установить ffmpeg, а также проприетарные драйверы NVIDIA из репозиториев :ref:`RPM Fusion <rpmfusion>`.
 
 Использование NVENC:
 
@@ -570,7 +598,7 @@
 
 Здесь **input.mp4** — имя оригинального файла, который требуется перекодировать, а в **output.mp4** будет сохранён результат.
 
-Больше информации можно найти `здесь <https://trac.ffmpeg.org/wiki/HWAccelIntro>`_.
+Больше информации можно найти `здесь <https://trac.ffmpeg.org/wiki/HWAccelIntro>`__.
 
 .. index:: filesystem, check, проверка файловой системы, lvm
 .. _fs-check-lvm:
@@ -643,9 +671,9 @@
 Какую файловую систему рекомендуется использовать на Fedora?
 ================================================================
 
-По умолчанию применяется `ext4 <https://ru.wikipedia.org/wiki/Ext4>`_. На наш взгляд, это самая стабильная и популярная файловая система в настоящее время.
+По умолчанию применяется `ext4 <https://ru.wikipedia.org/wiki/Ext4>`__. На наш взгляд, это самая стабильная и популярная файловая система в настоящее время.
 
-Для хранения больших объёмов данных можно использовать `XFS <https://ru.wikipedia.org/wiki/XFS>`_.
+Для хранения больших объёмов данных можно использовать `XFS <https://ru.wikipedia.org/wiki/XFS>`__.
 
 .. index:: file system, файловая система, btrfs
 .. _fs-btrfs:
@@ -686,7 +714,7 @@
  * **2.5** - 250%;
  * **3** - 300%.
 
-Более подробную информацию можно найти в `документации Qt <https://doc.qt.io/qt-5/highdpi.html>`_.
+Более подробную информацию можно найти в `документации Qt <https://doc.qt.io/qt-5/highdpi.html>`__.
 
 .. index:: multimedia, dlna, server, сервер мультимедиа
 .. _dlna-server:
@@ -694,7 +722,7 @@
 Как поднять DLNA сервер в локальной сети?
 ============================================
 
-См. `здесь <https://www.easycoding.org/2018/09/08/podnimaem-dlna-server-v-fedora.html>`_.
+См. `здесь <https://www.easycoding.org/2018/09/08/podnimaem-dlna-server-v-fedora.html>`__.
 
 .. index:: telegram
 .. _telegram-fedora:
@@ -702,7 +730,7 @@
 Как лучше установить Telegram Desktop в Fedora?
 ===================================================
 
-Мы настоятельно рекомендуем устанавливать данный мессенджер исключительно из :ref:`репозиториев <3rd-repositories>` RPM Fusion:
+Мы настоятельно рекомендуем устанавливать данный мессенджер исключительно из :ref:`RPM Fusion <rpmfusion>`:
 
 .. code-block:: bash
 
@@ -723,7 +751,7 @@
  1. удалим старый бинарник и модуль обновления официального клиента, а также их копии из **~/.local/share/TelegramDesktop** и **~/.local/share/TelegramDesktop/tdata**;
  2. удалим ярлыки из **~/.local/share/applications**.
 
-Теперь можно установить :ref:`версию <telegram-fedora>` из RPM Fusion.
+Теперь можно установить :ref:`версию <telegram-fedora>` из :ref:`RPM Fusion <rpmfusion>`.
 
 .. index:: memory depuplication, дедупликация памяти
 .. _deduplication-memory:
@@ -731,7 +759,7 @@
 Возможна ли полная дедупликация оперативной памяти?
 =======================================================
 
-Да, дедупликация памяти `поддерживается <https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html>`_ в ядре Linux начиная с версии 2.6.32 модулем `KSM <https://ru.wikipedia.org/wiki/KSM>`_ и по умолчанию применяется лишь в системах виртуализации, например в KVM.
+Да, дедупликация памяти `поддерживается <https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html>`__ в ядре Linux начиная с версии 2.6.32 модулем `KSM <https://ru.wikipedia.org/wiki/KSM>`__ и по умолчанию применяется лишь в системах виртуализации, например в KVM.
 
 .. index:: disk depuplication, дедупликация данных
 .. _deduplication-disk:
@@ -739,7 +767,7 @@
 Возможна ли полная дедупликация данных на дисках?
 =====================================================
 
-Полная автоматическая дедупликация данных на дисках `поддерживается <https://btrfs.wiki.kernel.org/index.php/Deduplication>`_ лишь файловой системой :ref:`BTRFS <fs-btrfs>`.
+Полная автоматическая дедупликация данных на дисках `поддерживается <https://btrfs.wiki.kernel.org/index.php/Deduplication>`__ лишь файловой системой :ref:`BTRFS <fs-btrfs>`.
 
 .. index:: zram, сжатие памяти, memory compression
 .. _memory-compression:
@@ -792,7 +820,7 @@
 
 Файловая система exFAT защищена множеством патентов Microsoft, поэтому она не может быть включена в ядро Linux и соответственно быть доступной в Fedora по умолчанию.
 
-Для того, чтобы использовать её, необходимо установить пакет **fuse-exfat** из :ref:`репозитория <3rd-repositories>` RPM Fusion:
+Для того, чтобы использовать её, необходимо установить пакет **fuse-exfat** из :ref:`репозитория <3rd-repositories>` :ref:`RPM Fusion <rpmfusion>`:
 
 .. code-block:: bash
 
@@ -830,7 +858,7 @@
 
     iperf -c 192.168.1.2
 
-В качестве клиента может выступать и мобильное устройство на базе ОС Android с установленным `Network Tools <https://play.google.com/store/apps/details?id=net.he.networktools>`_. В этом случае в главном меню программы следует выбрать пункт **Iperf2**, а в окне подключения ввести:
+В качестве клиента может выступать и мобильное устройство на базе ОС Android с установленным `Network Tools <https://play.google.com/store/apps/details?id=net.he.networktools>`__. В этом случае в главном меню программы следует выбрать пункт **Iperf2**, а в окне подключения ввести:
 
 .. code-block:: text
 
@@ -915,3 +943,174 @@
 .. code-block:: bash
 
     sudo systemctl reboot
+
+.. index:: sysctl, kernel option
+.. _sysctl-temporary:
+
+Как временно изменить параметр sysctl?
+==========================================
+
+Временно установить любой параметр ядра возможно через sysctl:
+
+.. code-block:: bash
+
+    sudo sysctl -w foo.bar=X
+
+Здесь **foo.bar** имя параметра, а **X** - его значение. Изменения вступят в силу немедленно и сохранятся до перезагрузки системы.
+
+.. index:: sysctl, kernel option
+.. _sysctl-permanent:
+
+Как задать и сохранить параметр sysctl?
+===========================================
+
+Чтобы сохранить параметр ядра, создадим специальный файл **99-foobar.conf** в каталоге **/etc/sysctl.d**:
+
+.. code-block:: text
+
+    foo.bar1=X1
+    foo.bar2=X2
+
+Каждый параметр должен быть указан с новой строки. Здесь **foo.bar** имя параметра, а **X** - его значение.
+
+Для вступления изменений в силу требуется перезагрузка:
+
+.. code-block:: bash
+
+    sudo systemctl reboot
+
+.. index:: sysctl, kernel option
+.. _sysctl-order:
+
+В каком порядке загружаются sysctl файлы настроек?
+======================================================
+
+При загрузке ядро проверяет следующие каталоги в поисках **.conf** файлов:
+
+ 1. **/usr/lib/sysctl.d** - предустановленные конфиги системы и определённых пакетов;
+ 2. **/run/sysctl.d** - различные конфиги, сгенерированные в рантайме;
+ 3. **/etc/sysctl.d** - пользовательские конфиги.
+
+Порядок выполнения - в алфавитном порядке, поэтому для его изменения многие конфиги содержат цифры и буквы. Например конфиг **00-foobar.conf** выполнится раньше, чем **zz-foobar.conf**.
+
+.. index:: keyring, kwallet, wallet
+.. _kwallet-pam:
+
+Как настроить автоматическую разблокировку связки ключей KWallet при входе в систему?
+=========================================================================================
+
+KDE предоставляет особый PAM модуль для автоматической разблокировки связки паролей KDE Wallet при входе в систему. Установим его:
+
+.. code-block:: bash
+
+    sudo dnf install pam-kwallet
+
+Запустим менеджер KWallet (**Параметры системы** - группа **Предпочтения пользователя** - **Учётная запись** - страница **Бумажник** - кнопка **Запустить управление бумажниками**), нажмём кнопку **Сменить пароль** и укажем тот же самый пароль, который используется для текущей учётной записи.
+
+Сохраняем изменения и повторно входим в систему.
+
+.. index:: video, youtube, download
+.. _youtube-download:
+
+Как скачать видео с Youtube?
+=================================
+
+Скачать любое интересующее видео с Youtube, а также ряда других хостингов, можно посредством утилиты **youtube-dl**, доступной в основном репозитории Fedora:
+
+.. code-block:: bash
+
+    sudo dnf install youtube-dl
+
+Скачивание видео с настройками по умолчанию в наилучшем качестве:
+
+.. code-block:: bash
+
+    youtube-dl -f bestvideo https://www.youtube.com/watch?v=XXXXXXXXXX
+
+Данная утилита имеет множество параметров командной строки, справку по которым можно найти в её странице man:
+
+.. code-block:: bash
+
+    man youtube-dl
+
+Для выхода из окна просмотра справки достаточно нажать **Q**.
+
+.. index:: text mode, runlevel
+.. _configure-runlevel:
+
+Как переключить запуск системы в текстовый режим и обратно?
+===============================================================
+
+Чтобы активировать запуск Fedora в текстовом режиме, нужно переключиться на цель **multi-user.target**:
+
+.. code-block:: bash
+
+    sudo systemctl set-default multi-user.target
+
+Чтобы активировать запуск в графическом режиме, необходимо убедиться в том, что установлен какой-либо менеджер графического входа в систему (GDM, SDDM, LightDM и т.д.), а затем переключиться на цель **graphical.target**:
+
+.. code-block:: bash
+
+    sudo systemctl set-default graphical.target
+
+Определить используемый в настоящее время режим можно так:
+
+.. code-block:: bash
+
+    systemctl get-default
+
+Изменения вступят в силу лишь после перезапуска системы:
+
+.. code-block:: bash
+
+    sudo systemctl reboot
+
+.. index:: iso, write iso, image
+.. _fedora-winiso:
+
+Как из Fedora записать образ с MS Windows на флешку?
+========================================================
+
+К сожалению, :ref:`штатный способ <usb-flash>` записи посредством использования утилиты dd не сработает в случае ISO образов MS Windows, поэтому для этого следует применять утилиту WoeUSB:
+
+.. code-block:: bash
+
+    sudo dnf install WoeUSB
+
+.. index:: swap, pagefile
+.. _swap-to-file:
+
+Как настроить подкачку в файл в Fedora?
+===========================================
+
+Создадим файл подкачки на 4 ГБ:
+
+.. code-block:: bash
+
+    sudo dd if=/dev/zero of=/media/pagefile count=4096 bs=1M
+
+Установим правильный chmod:
+
+.. code-block:: bash
+
+    sudo chmod 600 /media/pagefile
+
+Подготовим swapfs к работе:
+
+.. code-block:: bash
+
+    sudo mkswap /media/pagefile
+
+Активируем файл подкачки:
+
+.. code-block:: bash
+
+    sudo swapon /media/pagefile
+
+Для того, чтобы подкачка подключалась автоматически при загрузке системы, откроем файл **/etc/fstab** и добавим в него следующую строку:
+
+.. code-block:: text
+
+    /media/pagefile    none    swap    sw    0    0
+
+Действия вступят в силу немедленно.
