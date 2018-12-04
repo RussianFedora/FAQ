@@ -673,6 +673,30 @@ foo.bar2=X2
 </pre></div>
 </div>
 </div>
+<div class="section" id="swap-to-file">
+<span id="index-68"></span><span id="id34"></span><h2>Как настроить подкачку в файл в Fedora?<a class="headerlink" href="#swap-to-file" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Создадим файл подкачки на 4 ГБ:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/media/pagefile <span class="nv">count</span><span class="o">=</span><span class="m">4096</span> <span class="nv">bs</span><span class="o">=</span>1M
+</pre></div>
+</div>
+<p>Установим правильный chmod:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo chmod <span class="m">600</span> /media/pagefile
+</pre></div>
+</div>
+<p>Подготовим swapfs к работе:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mkswap /media/pagefile
+</pre></div>
+</div>
+<p>Активируем файл подкачки:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo swapon /media/pagefile
+</pre></div>
+</div>
+<p>Для того, чтобы подкачка подключалась автоматически при загрузке системы, откроем файл <strong>/etc/fstab</strong> и добавим в него следующую строку:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/media/pagefile    none    swap    sw    0    0
+</pre></div>
+</div>
+<p>Действия вступят в силу немедленно.</p>
+</div>
 </div>
 
 
@@ -768,6 +792,7 @@ foo.bar2=X2
 <li class="toctree-l2"><a class="reference internal" href="#youtube">Как скачать видео с Youtube?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configure-runlevel">Как переключить запуск системы в текстовый режим и обратно?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora-ms-windows">Как из Fedora записать образ с MS Windows на флешку?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#swap-to-file">Как настроить подкачку в файл в Fedora?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
