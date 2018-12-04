@@ -542,3 +542,45 @@ Sudoedit безопаснее прямого запуска текстового
 ==================================================================
 
 См. `здесь <https://www.easycoding.org/2018/11/28/dobavlyaem-podderzhku-gost-dlya-openssl-v-fedora.html>`__.
+
+.. index:: wi-fi, random mac, mac
+.. _mac-randomize:
+
+Как включить рандомизацию MAC адресов при подключении к Wi-Fi точкам в Fedora?
+==================================================================================
+
+Network Manager поддерживает два сценария рандомизации MAC адресов:
+
+ 1. генерирование уникального псевдослучайного MAC адреса для каждого соединения при загрузке системы (параметр **stable**). Это избавит от проблем с переподключением к публичным хот-спотам и небходимости повторно проходить аутентификацию в captive-порталах;
+ 2. генерирование уникального псевдослучайного MAC адреса для каждого соединения при каждом переподключении (параметр **random**). Наиболее безопасно, но может вызывать описанные выше проблемы.
+
+Профиль **stable**. Файл **00-macrandomize-stable.conf**:
+
+.. code-block:: text
+
+    [device]
+    wifi.scan-rand-mac-address=yes
+    
+    [connection]
+    wifi.cloned-mac-address=stable
+    ethernet.cloned-mac-address=stable
+    connection.stable-id=${CONNECTION}/${BOOT}
+
+Профиль **random**. Файл **00-macrandomize-random.conf**:
+
+.. code-block:: text
+
+    [device]
+    wifi.scan-rand-mac-address=yes
+    
+    [connection]
+    wifi.cloned-mac-address=random
+    ethernet.cloned-mac-address=random
+
+Для применения одной из конфигураций создадим в каталоге **/etc/NetworkManager/conf.d** файл с выбранным профилем, после чего перезапустим Network Manager:
+
+.. code-block:: bash
+
+    sudo systemctl restart NetworkManager
+
+Для отключения рандомизации и возвращения настроек по умолчанию достаточно просто удалить созданный файл и перезапустить Network Manager.
