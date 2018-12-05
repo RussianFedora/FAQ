@@ -641,6 +641,15 @@ foo.bar2=X2
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>youtube-dl -f bestvideo https://www.youtube.com/watch?v<span class="o">=</span>XXXXXXXXXX
 </pre></div>
 </div>
+<p>Иногда при скачивании видео в разрешении 4K с ключом <strong>-f bestvideo</strong> может не работать аппаратное ускорение при воспроизведении из-за того что кодек vp9.2 не поддерживается популярными медиаплеерами. В таких случаях нужно указывать явный кодек, но обычно достаточно указать <strong>-f bestvideo[vcodec=vp9]</strong>.</p>
+<p>Чтобы гарантировано скачать видео с указанным кодеком и со звуком нужно дополнительно установить пакет <strong>ffmpeg</strong> из репозиториев <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install ffmpeg
+</pre></div>
+</div>
+<p>Скачивание видео в наилучшем качестве с возможностью аппаратного ускорения и звуком:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>youtube-dl -f bestvideo<span class="o">[</span><span class="nv">vcodec</span><span class="o">=</span>vp9<span class="o">]</span>+bestaudio https://www.youtube.com/watch?v<span class="o">=</span>XXXXXXXXXX
+</pre></div>
+</div>
 <p>Данная утилита имеет множество параметров командной строки, справку по которым можно найти в её странице man:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man youtube-dl
 </pre></div>
