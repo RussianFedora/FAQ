@@ -434,7 +434,7 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 </div>
 <div class="section" id="dnf-advisory">
 <span id="index-47"></span><span id="id31"></span><h2>Как проще установить определённое обновление из тестового репозитория?<a class="headerlink" href="#dnf-advisory" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Проще всего найти данное обновление в Bodhi, затем выполнить:</p>
+<p>Проще всего найти данное обновление в <a class="reference internal" href="#fedora-bodhi"><span class="std std-ref">Bodhi</span></a>, затем выполнить:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh --enablerepo<span class="o">=</span>updates-testing --advisory<span class="o">=</span>FEDORA-2018-XXXXXXXXX
 </pre></div>
 </div>
@@ -446,11 +446,11 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 </div>
 <div class="section" id="koji-download">
 <span id="index-49"></span><span id="id32"></span><h2>Как скачать определённую сборку пакета из Koji?<a class="headerlink" href="#koji-download" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для начала установим клиент Koji:</p>
+<p>Для начала установим клиент <a class="reference internal" href="#koji-about"><span class="std std-ref">Koji</span></a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install koji
 </pre></div>
 </div>
-<p>Выведем список всех успешно заершённых сборок пакета <strong>kernel</strong> за последнюю неделю:</p>
+<p>Выведем список всех успешно завершённых сборок пакета <strong>kernel</strong> за последнюю неделю:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>koji list-builds --package<span class="o">=</span>kernel --after<span class="o">=</span><span class="k">$(($(</span>date +%s<span class="k">)</span> <span class="o">-</span> <span class="m">604800</span><span class="k">))</span> --state<span class="o">=</span>COMPLETE
 </pre></div>
 </div>
