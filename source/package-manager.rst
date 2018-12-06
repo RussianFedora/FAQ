@@ -683,6 +683,14 @@ Java 11:
 
 Здесь **FEDORA-2018-XXXXXXXXX** - уникальный идентификатор обновления из Bodhi.
 
+.. index:: koji, about
+.. _koji-about:
+
+Что такое Koji?
+===================
+
+`Fedora Koji <https://koji.fedoraproject.org/koji/>`__ - это автоматизированная среда для сборки пакетов для Fedora.
+
 .. index:: koji, builds, testing
 .. _koji-download:
 
