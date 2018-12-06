@@ -142,6 +142,23 @@ Dnf, являющийся, в свою очередь, форком Yum.
 
     sudo dnf clean all
 
+.. index:: upgrade, rawhide
+.. _dist-rawhide:
+
+Как мне обновить Fedora до Rawhide?
+===========================================
+
+Допускается обновление с любой поддерживаемой версии Fedora до Rawhide. Следует помнить, что это действие необратимо. Пути назад на стабильный выпуск без полной переустановки системы уже не будет.
+
+.. code-block:: bash
+
+    sudo dnf upgrade --refresh
+    sudo dnf install dnf-plugin-system-upgrade
+    sudo dnf system-upgrade download --releasever=rawhide
+    sudo dnf system-upgrade reboot
+
+Весь процесс установки будет выполнен во время следующей загрузки системы.
+
 .. index:: dnf, package error, ошибка обновления
 .. _dnf-duplicates:
 
