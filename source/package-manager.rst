@@ -682,3 +682,27 @@ Java 11:
     sudo dnf upgrade --refresh --enablerepo=updates-testing --advisory=FEDORA-2018-XXXXXXXXX
 
 Здесь **FEDORA-2018-XXXXXXXXX** - уникальный идентификатор обновления из Bodhi.
+
+.. index:: koji, builds, testing
+.. _koji-download:
+
+Как скачать определённую сборку пакета из Koji?
+====================================================
+
+Для начала установим клиент Koji:
+
+.. code-block:: bash
+
+    sudo dnf install koji
+
+Выведем список всех успешно заершённых сборок пакета **kernel** за последнюю неделю:
+
+.. code-block:: bash
+
+    koji list-builds --package=kernel --after=$(($(date +%s) - 604800)) --state=COMPLETE
+
+Скачаем выбранную сборку для используемой архитектуры:
+
+.. code-block:: bash
+
+    koji download-build kernel-4.19.7-300.fc29 --arch=$(uname -m)
