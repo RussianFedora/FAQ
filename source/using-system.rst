@@ -1128,3 +1128,32 @@ KDE предоставляет особый PAM модуль для автома
     /media/pagefile    none    swap    sw    0    0
 
 Действия вступят в силу немедленно.
+
+.. index:: xdg, directories
+.. _xdg-reallocate:
+
+Как переместить стандартные каталоги для документов, загрузок и т.д.?
+==========================================================================
+
+Откроем файл **~/.config/user-dirs.dirs** в любом текстовом редакторе и внесём свои правки.
+
+Стандартные настройки:
+
+.. code-block:: ini
+
+    XDG_DESKTOP_DIR="$HOME/Desktop"
+    XDG_DOCUMENTS_DIR="$HOME/Документы"
+    XDG_DOWNLOAD_DIR="$HOME/Загрузки"
+    XDG_MUSIC_DIR="$HOME/Музыка"
+    XDG_PICTURES_DIR="$HOME/Изображения"
+    XDG_PUBLICSHARE_DIR="$HOME/Общедоступные"
+    XDG_TEMPLATES_DIR="$HOME/Шаблоны"
+    XDG_VIDEOS_DIR="$HOME/Видео"
+
+Применим изменения:
+
+.. code-block:: bash
+
+    xdg-user-dirs-update
+
+Убедитесь, что перед применением изменений данные каталоги существуют, иначе будет выполнен сброс на стандартное значение.
