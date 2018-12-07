@@ -706,6 +706,56 @@ foo.bar2=X2
 </div>
 <p>Действия вступят в силу немедленно.</p>
 </div>
+<div class="section" id="xdg-reallocate">
+<span id="index-69"></span><span id="id35"></span><h2>Как переместить стандартные каталоги для документов, загрузок и т.д.?<a class="headerlink" href="#xdg-reallocate" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <strong>~/.config/user-dirs.dirs</strong> в любом текстовом редакторе и внесём свои правки.</p>
+<p>Стандартные настройки:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">XDG_DESKTOP_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Desktop&quot;</span>
+<span class="na">XDG_DOCUMENTS_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Документы&quot;</span>
+<span class="na">XDG_DOWNLOAD_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Загрузки&quot;</span>
+<span class="na">XDG_MUSIC_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Музыка&quot;</span>
+<span class="na">XDG_PICTURES_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Изображения&quot;</span>
+<span class="na">XDG_PUBLICSHARE_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Общедоступные&quot;</span>
+<span class="na">XDG_TEMPLATES_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Шаблоны&quot;</span>
+<span class="na">XDG_VIDEOS_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Видео&quot;</span>
+</pre></div>
+</div>
+<p>Применим изменения:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xdg-user-dirs-update
+</pre></div>
+</div>
+<p>Убедитесь, что перед применением изменений данные каталоги существуют, иначе будет выполнен сброс на стандартное значение.</p>
+</div>
+<div class="section" id="hidpi-sddm">
+<span id="sddm-hidpi"></span><span id="index-70"></span><h2>У меня HiDPI дисплей и в SDDM всё отображается очень мелко. Как настроить?<a class="headerlink" href="#hidpi-sddm" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <strong>/etc/sddm.conf</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/sddm.conf
+</pre></div>
+</div>
+<p>Добавим в самый конец следующие строки:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Wayland]</span>
+<span class="na">EnableHiDPI</span><span class="o">=</span><span class="s">true</span>
+
+<span class="k">[X11]</span>
+<span class="na">EnableHiDPI</span><span class="o">=</span><span class="s">true</span>
+</pre></div>
+</div>
+<p>Сохраним изменения и перезапустим систему.</p>
+</div>
+<div class="section" id="sddm-avatars">
+<span id="index-71"></span><span id="id36"></span><h2>Как отключить отображение пользовательских аватаров в SDDM?<a class="headerlink" href="#sddm-avatars" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Пользовательские аватары представляют собой файл <strong>~/.face.icon</strong>. При запуске SDDM пытается прочитать его для каждого существующего пользователя.</p>
+<p>Для отключения данной функции откроем файл <strong>/etc/sddm.conf</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/sddm.conf
+</pre></div>
+</div>
+<p>Добавим в самый конец следующие строки:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Theme]</span>
+<span class="na">EnableAvatars</span><span class="o">=</span><span class="s">false</span>
+</pre></div>
+</div>
+<p>Сохраним изменения и перезапустим систему.</p>
+</div>
 </div>
 
 
@@ -802,6 +852,9 @@ foo.bar2=X2
 <li class="toctree-l2"><a class="reference internal" href="#configure-runlevel">Как переключить запуск системы в текстовый режим и обратно?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora-ms-windows">Как из Fedora записать образ с MS Windows на флешку?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#swap-to-file">Как настроить подкачку в файл в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#xdg-reallocate">Как переместить стандартные каталоги для документов, загрузок и т.д.?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hidpi-sddm">У меня HiDPI дисплей и в SDDM всё отображается очень мелко. Как настроить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sddm-avatars">Как отключить отображение пользовательских аватаров в SDDM?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
