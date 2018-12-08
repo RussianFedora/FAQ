@@ -403,11 +403,13 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 <div class="section" id="dnf-disable-modules">
 <span id="index-43"></span><span id="id28"></span><h2>Мне не нужна поддержка модулей. Как их можно отключить?<a class="headerlink" href="#dnf-disable-modules" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Отключение репозитория с модулями:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-disabled fedora-modular fedora-updates-modular
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-disabled fedora-modular
+sudo dnf config-manager --set-disabled updates-modular
 </pre></div>
 </div>
 <p>Повторное включение поддержки модулей:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-enabled fedora-modular fedora-updates-modular
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-enabled fedora-modular
+sudo dnf config-manager --set-enabled updates-modular
 </pre></div>
 </div>
 </div>
@@ -456,6 +458,31 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 </div>
 <p>Скачаем выбранную сборку для используемой архитектуры:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>koji download-build kernel-4.19.7-300.fc29 --arch<span class="o">=</span><span class="k">$(</span>uname -m<span class="k">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fedpkg-rebuild">
+<span id="index-50"></span><span id="id33"></span><h2>Хочу внести свои правки в пакет и пересобрать его для личных нужд. Как проще это сделать?<a class="headerlink" href="#fedpkg-rebuild" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим утилиты fedpkg и mock:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install fedpkg mock
+</pre></div>
+</div>
+<p>Скачаем исходники необходимого пакета <strong>foo-bar</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fedpkg clone -a foo-bar
+</pre></div>
+</div>
+<p>Перейдём в каталог с загруженными исходниками и переключимся на ветку для конкретной версии Fedora (если нужна версия из Rawhide - следует использовать <strong>master</strong>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> foo-bar
+fedpkg switch-branch f29
+</pre></div>
+</div>
+<p>Внесём свои правки, сделаем коммит в репозиторий:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add -A
+git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
+</pre></div>
+</div>
+<p>Запустим автоматическую <a class="reference internal" href="#build-package"><span class="std std-ref">сборку в mock</span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fedpkg mockbuild
 </pre></div>
 </div>
 </div>
@@ -534,6 +561,7 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 <li class="toctree-l2"><a class="reference internal" href="#dnf-advisory">Как проще установить определённое обновление из тестового репозитория?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#koji">Что такое Koji?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#koji-download">Как скачать определённую сборку пакета из Koji?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedpkg-rebuild">Хочу внести свои правки в пакет и пересобрать его для личных нужд. Как проще это сделать?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
