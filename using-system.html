@@ -756,16 +756,16 @@ foo.bar2=X2
 </div>
 <p>Сохраним изменения и перезапустим систему.</p>
 </div>
-<div class="section" id="ssh-rsync">
-<span id="index-72"></span><span id="id37"></span><h2>Как передать содержимое каталога на удалённый сервер?<a class="headerlink" href="#ssh-rsync" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="rsync-remote">
+<span id="index-72"></span><span id="id37"></span><h2>Как передать содержимое каталога на удалённый сервер?<a class="headerlink" href="#rsync-remote" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Передача содержимого локального каталога на удалённый сервер посредством rsync:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rsync -chavzP --stats /path/to/local user@example.org:/path/to/remote
 </pre></div>
 </div>
 <p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.</p>
 </div>
-<div class="section" id="id38">
-<span id="id39"></span><h2>Как получить содержимое каталога с удалённого сервера?<a class="headerlink" href="#id38" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="rsync-local">
+<span id="index-73"></span><span id="id38"></span><h2>Как получить содержимое каталога с удалённого сервера?<a class="headerlink" href="#rsync-local" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Получение содержимого каталога с удалённого сервера посредством rsync:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rsync -chavzP --stats user@example.org:/path/to/remote /path/to/local
 </pre></div>
@@ -773,7 +773,7 @@ foo.bar2=X2
 <p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.</p>
 </div>
 <div class="section" id="disk-usage">
-<span id="index-74"></span><span id="id40"></span><h2>Как узнать какой процесс осуществляет запись на диск?<a class="headerlink" href="#disk-usage" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-74"></span><span id="id39"></span><h2>Как узнать какой процесс осуществляет запись на диск?<a class="headerlink" href="#disk-usage" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для мониторинга дисковой активности существуют улититы <strong>iotop</strong> и <strong>fatrace</strong>. Установим их:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install iotop fatrace
 </pre></div>
@@ -890,8 +890,8 @@ foo.bar2=X2
 <li class="toctree-l2"><a class="reference internal" href="#xdg-reallocate">Как переместить стандартные каталоги для документов, загрузок и т.д.?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#hidpi-sddm">У меня HiDPI дисплей и в SDDM всё отображается очень мелко. Как настроить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sddm-avatars">Как отключить отображение пользовательских аватаров в SDDM?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ssh-rsync">Как передать содержимое каталога на удалённый сервер?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id38">Как получить содержимое каталога с удалённого сервера?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rsync-remote">Как передать содержимое каталога на удалённый сервер?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rsync-local">Как получить содержимое каталога с удалённого сервера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#disk-usage">Как узнать какой процесс осуществляет запись на диск?</a></li>
 </ul>
 </li>
