@@ -1215,4 +1215,16 @@ KDE предоставляет особый PAM модуль для автома
 
 .. code-block:: bash
 
-    rsync -chavzP --stats user@example.org:/path/to/repome /path/to/local
+    rsync -chavzP --stats user@example.org:/path/to/remote /path/to/local
+
+.. index:: ssh, rsync, sync
+.. _ssh-rsync:
+
+Как получить содержимое каталога с удалённого сервера?
+===========================================================
+
+Получение содержимого каталога с удалённого сервера посредством rsync:
+
+.. code-block:: bash
+
+    rsync -chavzP --stats /path/to/remote user@example.org:/path/to/local
