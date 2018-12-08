@@ -300,3 +300,41 @@
 ========    =================    ==============    ==================    ======================================================
 
 Здесь **RAM** - объём установленной оперативной памяти.
+
+.. index:: grub, boot, menu
+.. _grub-hide:
+
+Как полностью скрыть меню Grub?
+====================================
+
+Скрытие меню загрузки на UEFI конфигурациях:
+
+.. code-block:: bash
+
+    sudo grub2-editenv - set menu_auto_hide=1
+    sudo grub2-mkconfig -o /etc/grub2-efi.cfg
+
+Скрытие меню загрузки на legacy конфигурациях:
+
+.. code-block:: bash
+
+    sudo grub2-editenv - set menu_auto_hide=1
+    sudo grub2-mkconfig -o /etc/grub2.cfg
+
+Если в дуалбуте установлена ОС Microsoft Windows, но всё равно требуется скрыть меню Grub 2, то вместо **menu_auto_hide=1** следует применять **menu_auto_hide=2**.
+
+Отмена изменений и повторная активацию меню на UEFI конфигурациях:
+
+.. code-block:: bash
+
+    sudo grub2-editenv - unset menu_auto_hide
+    sudo grub2-mkconfig -o /etc/grub2-efi.cfg
+
+Отмена изменений и повторная активацию меню на legacy конфигурациях:
+
+.. code-block:: bash
+
+    sudo grub2-editenv - unset menu_auto_hide
+    sudo grub2-mkconfig -o /etc/grub2.cfg
+
+Получить доступ к элементам скрытого меню можно посредством зажатия клавиши **Shift** или **F8** во время начальной загрузки системы.
