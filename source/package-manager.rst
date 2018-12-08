@@ -714,3 +714,41 @@ Java 11:
 .. code-block:: bash
 
     koji download-build kernel-4.19.7-300.fc29 --arch=$(uname -m)
+
+.. index:: fedpkg, package, rebuild, mock
+.. _fedpkg-rebuild:
+
+Хочу внести свои правки в пакет и пересобрать его для личных нужд. Как проще это сделать?
+===============================================================================================
+
+Установим утилиты fedpkg и mock:
+
+.. code-block:: bash
+
+    sudo dnf install fedpkg mock
+
+Скачаем исходники необходимого пакета **foo-bar**:
+
+.. code-block:: bash
+
+    fedpkg clone -a foo-bar
+
+Перейдём в каталог с загруженными исходниками и переключимся на ветку для конкретной версии Fedora (если нужна версия из Rawhide - следует использовать **master**):
+
+.. code-block:: bash
+
+    cd foo-bar
+    fedpkg switch-branch f29
+
+Внесём свои правки, сделаем коммит в репозиторий:
+
+.. code-block:: bash
+
+    git add -A
+    git commit -m "Description of our changes."
+
+Запустим автоматическую :ref:`сборку в mock <build-package>`:
+
+.. code-block:: bash
+
+    fedpkg mockbuild
