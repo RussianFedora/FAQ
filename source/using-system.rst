@@ -1232,3 +1232,33 @@ KDE предоставляет особый PAM модуль для автома
     rsync -chavzP --stats user@example.org:/path/to/remote /path/to/local
 
 Здесь **user@example.org** - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.
+
+.. index:: disk usage, disk monitor
+.. _disk-usage:
+
+Как узнать какой процесс осуществляет запись на диск?
+==========================================================
+
+Для мониторинга дисковой активности существуют улититы **iotop** и **fatrace**. Установим их:
+
+.. code-block:: bash
+
+    sudo dnf install iotop fatrace
+
+Запустим iotop в режиме накопления показаний:
+
+.. code-block:: bash
+
+    sudo iotop -a
+
+Запустим fatrace в режиме накопления с выводом лишь информации о событиях записи на диск:
+
+.. code-block:: bash
+
+    sudo fatrace -f W
+
+Запустим fatrace в режиме накопления с выводом информации о событиях записи на диск в файл в течение 10 минут (600 секунд):
+
+.. code-block:: bash
+
+    sudo fatrace -f W -o ~/disk-usage.log -s 600
