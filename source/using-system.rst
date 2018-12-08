@@ -1215,7 +1215,7 @@ KDE предоставляет особый PAM модуль для автома
 
 .. code-block:: bash
 
-    rsync -chavzP --stats user@example.org:/path/to/remote /path/to/local
+    rsync -chavzP --stats /path/to/local user@example.org:/path/to/remote
 
 Здесь **user@example.org** - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.
 
@@ -1229,6 +1229,6 @@ KDE предоставляет особый PAM модуль для автома
 
 .. code-block:: bash
 
-    rsync -chavzP --stats /path/to/remote user@example.org:/path/to/local
+    rsync -chavzP --stats user@example.org:/path/to/remote /path/to/local
 
 Здесь **user@example.org** - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.
