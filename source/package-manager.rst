@@ -628,13 +628,15 @@ Java 11:
 
 .. code-block:: bash
 
-    sudo dnf config-manager --set-disabled fedora-modular fedora-updates-modular
+    sudo dnf config-manager --set-disabled fedora-modular
+    sudo dnf config-manager --set-disabled updates-modular
 
 Повторное включение поддержки модулей:
 
 .. code-block:: bash
 
-    sudo dnf config-manager --set-enabled fedora-modular fedora-updates-modular
+    sudo dnf config-manager --set-enabled fedora-modular
+    sudo dnf config-manager --set-enabled updates-modular
 
 .. index:: dnf, updates, gui
 .. _dnf-gui-updates:
