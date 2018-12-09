@@ -5,18 +5,8 @@
 .. 
 .. You should have received a copy of the license along with this
 .. work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
-.. _index:
+.. _administration:
 
-Большой FAQ по Fedora
-===============================================
-
-.. toctree::
-   :maxdepth: 2
-
-   generic-info.rst
-   installation.rst
-   package-manager.rst
-   administration.rst
-   security.rst
-   using-system.rst
-   legal-info.rst
+***************************************************
+Вопросы, связанные с администрированием системы
+***************************************************
