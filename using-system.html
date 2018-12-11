@@ -419,6 +419,30 @@ export QT_SCALE_FACTOR=2
 </div>
 <p>Сохраним изменения и перезапустим систему.</p>
 </div>
+<div class="section" id="power-usage">
+<span id="index-39"></span><span id="id17"></span><h2>Как узнать какие процессы больше всего разряжают аккумулятор ноутбука?<a class="headerlink" href="#power-usage" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим утилиту <strong>powertop</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install powertop
+</pre></div>
+</div>
+<p>Запустим её с правами суперпользователя:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo powertop
+</pre></div>
+</div>
+<p>Процессы, которые больше всех влияют на скорость разряда аккумуляторных батарей, будут отображаться в верхней части.</p>
+</div>
+<div class="section" id="system-info">
+<span id="index-40"></span><span id="id18"></span><h2>Как собрать информацию о системе?<a class="headerlink" href="#system-info" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим утилиту <strong>inxi</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install inxi
+</pre></div>
+</div>
+<p>Соберём информацию о системе и выгрузим на fpaste:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inxi -F <span class="p">|</span> fpaste
+</pre></div>
+</div>
+<p>На выходе будет сгенерирована уникальная ссылка, которую можно передать на <a class="reference internal" href="generic-info.html#get-help"><span class="std std-ref">форум, в чат</span></a> и т.д.</p>
+</div>
 </div>
 
 
@@ -486,6 +510,8 @@ export QT_SCALE_FACTOR=2
 <li class="toctree-l2"><a class="reference internal" href="#xdg-reallocate">Как переместить стандартные каталоги для документов, загрузок и т.д.?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#hidpi-sddm">У меня HiDPI дисплей и в SDDM всё отображается очень мелко. Как настроить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sddm-avatars">Как отключить отображение пользовательских аватаров в SDDM?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#power-usage">Как узнать какие процессы больше всего разряжают аккумулятор ноутбука?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-info">Как собрать информацию о системе?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
