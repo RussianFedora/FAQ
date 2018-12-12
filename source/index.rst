@@ -16,6 +16,7 @@
    generic-info.rst
    installation.rst
    package-manager.rst
+   administration.rst
    security.rst
    using-system.rst
    legal-info.rst

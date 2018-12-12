@@ -142,6 +142,23 @@ Dnf, являющийся, в свою очередь, форком Yum.
 
     sudo dnf clean all
 
+.. index:: upgrade, rawhide
+.. _dist-rawhide:
+
+Как мне обновить Fedora до Rawhide?
+===========================================
+
+Допускается обновление с любой поддерживаемой версии Fedora до Rawhide. Следует помнить, что это действие необратимо. Пути назад на стабильный выпуск без полной переустановки системы уже не будет.
+
+.. code-block:: bash
+
+    sudo dnf upgrade --refresh
+    sudo dnf install dnf-plugin-system-upgrade
+    sudo dnf system-upgrade download --releasever=rawhide
+    sudo dnf system-upgrade reboot
+
+Весь процесс установки будет выполнен во время следующей загрузки системы.
+
 .. index:: dnf, package error, ошибка обновления
 .. _dnf-duplicates:
 
@@ -611,13 +628,15 @@ Java 11:
 
 .. code-block:: bash
 
-    sudo dnf config-manager --set-disabled fedora-modular fedora-updates-modular
+    sudo dnf config-manager --set-disabled fedora-modular
+    sudo dnf config-manager --set-disabled updates-modular
 
 Повторное включение поддержки модулей:
 
 .. code-block:: bash
 
-    sudo dnf config-manager --set-enabled fedora-modular fedora-updates-modular
+    sudo dnf config-manager --set-enabled fedora-modular
+    sudo dnf config-manager --set-enabled updates-modular
 
 .. index:: dnf, updates, gui
 .. _dnf-gui-updates:
@@ -639,3 +658,99 @@ Java 11:
 =================================================================================================
 
 Да, использование Gnome Software, Apper, Discover и других, основанных на PackageKit, для обновления системы из графического режима полностью безопасно, т.к. они сначала скачивают файлы обновлений в свой кэш, а для непосредственной установки уже используют специальный сервис. В случае падения GUI приложения, никаких повреждений не будет.
+
+.. index:: updates, testing
+.. _fedora-bodhi:
+
+Как правильно тестировать новые версии пакетов в Fedora?
+=============================================================
+
+Все обновления сначала попадают в :ref:`тестовые репозитории <updates-testing>`, поэтому их сначала нужно :ref:`установить <dnf-advisory>`.
+
+По результатам тестирования следует перейти в `Fedora Bodhi <https://bodhi.fedoraproject.org/>`__, выбрать соответствующее обновление и либо добавить ему карму (работает исправно), либо отнять (возникли какие-то проблемы), а также опционально составить краткий отчёт (особенно если обновление работает не так, как ожидалось).
+
+Также для упрощения работы тестировщиков была создана утилита `Fedora Easy Karma <https://fedoraproject.org/wiki/Fedora_Easy_Karma>`__, позволяющая работать с Bodhi из командной строки.
+
+.. index:: dnf, updates, testing
+.. _dnf-advisory:
+
+Как проще установить определённое обновление из тестового репозитория?
+==========================================================================
+
+Проще всего найти данное обновление в :ref:`Bodhi <fedora-bodhi>`, затем выполнить:
+
+.. code-block:: bash
+
+    sudo dnf upgrade --refresh --enablerepo=updates-testing --advisory=FEDORA-2018-XXXXXXXXX
+
+Здесь **FEDORA-2018-XXXXXXXXX** - уникальный идентификатор обновления из Bodhi.
+
+.. index:: koji, about
+.. _koji-about:
+
+Что такое Koji?
+===================
+
+`Fedora Koji <https://koji.fedoraproject.org/koji/>`__ - это автоматизированная среда для сборки пакетов для Fedora.
+
+.. index:: koji, builds, testing
+.. _koji-download:
+
+Как скачать определённую сборку пакета из Koji?
+====================================================
+
+Для начала установим клиент :ref:`Koji <koji-about>`:
+
+.. code-block:: bash
+
+    sudo dnf install koji
+
+Выведем список всех успешно завершённых сборок пакета **kernel** за последнюю неделю:
+
+.. code-block:: bash
+
+    koji list-builds --package=kernel --after=$(($(date +%s) - 604800)) --state=COMPLETE
+
+Скачаем выбранную сборку для используемой архитектуры:
+
+.. code-block:: bash
+
+    koji download-build kernel-4.19.7-300.fc29 --arch=$(uname -m)
+
+.. index:: fedpkg, package, rebuild, mock
+.. _fedpkg-rebuild:
+
+Хочу внести свои правки в пакет и пересобрать его для личных нужд. Как проще это сделать?
+===============================================================================================
+
+Установим утилиты fedpkg и mock:
+
+.. code-block:: bash
+
+    sudo dnf install fedpkg mock
+
+Скачаем исходники необходимого пакета **foo-bar**:
+
+.. code-block:: bash
+
+    fedpkg clone -a foo-bar
+
+Перейдём в каталог с загруженными исходниками и переключимся на ветку для конкретной версии Fedora (если нужна версия из Rawhide - следует использовать **master**):
+
+.. code-block:: bash
+
+    cd foo-bar
+    fedpkg switch-branch f29
+
+Внесём свои правки, сделаем коммит в репозиторий:
+
+.. code-block:: bash
+
+    git add -A
+    git commit -m "Description of our changes."
+
+Запустим автоматическую :ref:`сборку в mock <build-package>`:
+
+.. code-block:: bash
+
+    fedpkg mockbuild
