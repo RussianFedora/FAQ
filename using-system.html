@@ -443,6 +443,29 @@ export QT_SCALE_FACTOR=2
 </div>
 <p>На выходе будет сгенерирована уникальная ссылка, которую можно передать на <a class="reference internal" href="generic-info.html#get-help"><span class="std std-ref">форум, в чат</span></a> и т.д.</p>
 </div>
+<div class="section" id="l2tp">
+<span id="nm-l2tp"></span><span id="index-41"></span><h2>Мой провайдер использует L2TP. Как мне добавить его поддержку?<a class="headerlink" href="#l2tp" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Плагин L2TP для Network Manager должен присутствовать в Workstation и всех spin live образах по умолчанию, но если его по какой-то причине нет (например была выборана минимальная установка netinstall), то добавить установить его можно самостоятельно.</p>
+<p>Для Gnome/XFCE и других, основанных на GTK:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install NetworkManager-l2tp-gnome
+</pre></div>
+</div>
+<p>Для KDE:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install plasma-nm-l2tp
+</pre></div>
+</div>
+<p>После установки необходимо запустить модуль настройки Network Manager (графический или консольный), добавить новое VPN подключение с типом L2TP и указать настройки, выданные провайдером.</p>
+<p>Однако следует помнить, что у некоторых провайдеров используется L2TP со специальными патчами Microsoft (т.н. win реализация), что может вызывать нестабильность и сбои при подключении. В таком случае рекомендуется приобрести любой недорогой роутер с поддержкой L2TP (можно б/у) и использовать его в качестве клиента для подключения к сети провайдера.</p>
+</div>
+<div class="section" id="iconv-convert">
+<span id="index-42"></span><span id="id19"></span><h2>Как конвертировать текстовый файл из одной кодировки в другую?<a class="headerlink" href="#iconv-convert" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для быстрой перекодировки текстовых файлов из одной кодировки в другую можно использовать утилиту iconv.</p>
+<p>Пример перекодировки файла из cp1251 (Windows-1251) в юникод (UTF-8):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>iconv.exe -f cp1251 -t utf8 test.txt &gt; result.txt
+</pre></div>
+</div>
+<p>Здесь <strong>test.txt</strong> - исходный файл с неправильной кодировкой, а <strong>result.txt</strong> используется для записи результата преобразования.</p>
+</div>
 </div>
 
 
@@ -512,6 +535,8 @@ export QT_SCALE_FACTOR=2
 <li class="toctree-l2"><a class="reference internal" href="#sddm-avatars">Как отключить отображение пользовательских аватаров в SDDM?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#power-usage">Как узнать какие процессы больше всего разряжают аккумулятор ноутбука?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#system-info">Как собрать информацию о системе?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#l2tp">Мой провайдер использует L2TP. Как мне добавить его поддержку?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#iconv-convert">Как конвертировать текстовый файл из одной кодировки в другую?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
