@@ -724,3 +724,21 @@ KDE предоставляет особый PAM модуль для автома
     iconv.exe -f cp1251 -t utf8 test.txt > result.txt
 
 Здесь **test.txt** - исходный файл с неправильной кодировкой, а **result.txt** используется для записи результата преобразования.
+
+.. index:: networking, network manager, nmcli, console, wi-fi
+.. _nm-wificon:
+
+Как подключиться к Wi-Fi из консоли?
+========================================
+
+Если ранее уже были созданы Wi-Fi подключения, то выведем их список:
+
+.. code-block:: bash
+
+    nmcli connection | grep wifi
+
+Теперь запустим выбранное соединение:
+
+.. code-block:: bash
+
+    nmcli connection up Connection_Name
