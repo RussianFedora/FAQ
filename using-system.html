@@ -466,6 +466,25 @@ export QT_SCALE_FACTOR=2
 </div>
 <p>Здесь <strong>test.txt</strong> - исходный файл с неправильной кодировкой, а <strong>result.txt</strong> используется для записи результата преобразования.</p>
 </div>
+<div class="section" id="wi-fi">
+<span id="nm-wificon"></span><span id="index-43"></span><h2>Как подключиться к Wi-Fi из консоли?<a class="headerlink" href="#wi-fi" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если ранее уже были созданы Wi-Fi подключения, то выведем их список:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nmcli connection <span class="p">|</span> grep wifi
+</pre></div>
+</div>
+<p>Теперь запустим выбранное соединение:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nmcli connection up Connection_Name
+</pre></div>
+</div>
+</div>
+<div class="section" id="nm-wificli">
+<span id="index-44"></span><span id="id20"></span><h2>Как подключиться к Wi-Fi из консоли при отсутствии соединений?<a class="headerlink" href="#nm-wificli" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если <a class="reference internal" href="#nm-wificon"><span class="std std-ref">готовых соединений</span></a> для Wi-Fi нет, но известны SSID и пароль, то можно осуществить подключение напрямую:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nmcli device wifi connect MY_NETWORK password XXXXXXXXXX
+</pre></div>
+</div>
+<p>Здесь <strong>MY_NETWORK</strong> - название SSID точки доступа, к которой мы планируем подключиться, а <strong>XXXXXXXXXX</strong> - её пароль.</p>
+</div>
 </div>
 
 
@@ -537,6 +556,8 @@ export QT_SCALE_FACTOR=2
 <li class="toctree-l2"><a class="reference internal" href="#system-info">Как собрать информацию о системе?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#l2tp">Мой провайдер использует L2TP. Как мне добавить его поддержку?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#iconv-convert">Как конвертировать текстовый файл из одной кодировки в другую?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wi-fi">Как подключиться к Wi-Fi из консоли?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nm-wificli">Как подключиться к Wi-Fi из консоли при отсутствии соединений?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
