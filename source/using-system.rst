@@ -742,3 +742,17 @@ KDE предоставляет особый PAM модуль для автома
 .. code-block:: bash
 
     nmcli connection up Connection_Name
+
+.. index:: networking, network manager, nmcli, console, wi-fi
+.. _nm-wificli:
+
+Как подключиться к Wi-Fi из консоли при отсутствии соединений?
+==================================================================
+
+Если :ref:`готовых соединений <nm-wificon>` для Wi-Fi нет, но известны SSID и пароль, то можно осуществить подключение напрямую:
+
+.. code-block:: bash
+
+    nmcli device wifi connect MY_NETWORK password XXXXXXXXXX
+
+Здесь **MY_NETWORK** - название SSID точки доступа, к которой мы планируем подключиться, а **XXXXXXXXXX** - её пароль.
