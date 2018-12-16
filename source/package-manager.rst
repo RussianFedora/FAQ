@@ -353,7 +353,25 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Рекомендуется использовать KVM, т.к. её гипервизор и необходимые модули уже находятся в ядре Linux и не вызывают проблем.
 
-.. index:: repository, virtualbox
+.. index:: virtualization, kvm
+.. _kvm:
+
+Как правильно установить систему виртуализации KVM?
+=======================================================
+
+Установим KVM и графическую утилиту управления виртуальными машинами **virt-manager**:
+
+.. code-block:: bash
+
+    sudo dnf group install Virtualization
+
+Перезагрузим машину для вступления изменений в силу:
+
+.. code-block:: bash
+
+    sudo systemctl reboot
+
+.. index:: virtualization, repository, virtualbox
 .. _virtualbox:
 
 Как правильно установить VirtualBox в Fedora?
