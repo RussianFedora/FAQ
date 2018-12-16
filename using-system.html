@@ -318,7 +318,7 @@ export QT_SCALE_FACTOR=2
 </div>
 <div class="section" id="failed-to-start-load-kernel-modules">
 <span id="failed-to-start"></span><span id="index-32"></span><h2>При загрузке системы появляется ошибка Failed to start Load Kernel Modules. Как исправить?<a class="headerlink" href="#failed-to-start-load-kernel-modules" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Это известная проблема системы виртуализации VirtualBox, использующей out-of-tree модули ядра, но может также проявляться и у пользователей проприетарных <a class="reference internal" href="package-manager.html#broadcom-drivers"><span class="std std-ref">драйверов Broadcom</span></a>.</p>
+<p>Это известная проблема системы виртуализации <a class="reference internal" href="package-manager.html#virtualbox"><span class="std std-ref">VirtualBox</span></a>, использующей out-of-tree модули ядра, но может также проявляться и у пользователей проприетарных <a class="reference internal" href="package-manager.html#broadcom-drivers"><span class="std std-ref">драйверов Broadcom</span></a>.</p>
 <p>Для исправления необходимо <strong>после каждого обновления ядра</strong> выполнять пересборку initrd:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dracut -f
 </pre></div>
@@ -347,12 +347,12 @@ export QT_SCALE_FACTOR=2
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>youtube-dl -f bestvideo https://www.youtube.com/watch?v<span class="o">=</span>XXXXXXXXXX
 </pre></div>
 </div>
-<p>Иногда при скачивании видео в разрешении 4K с ключом <strong>-f bestvideo</strong> может не работать аппаратное ускорение при воспроизведении из-за того что кодек vp9.2 не поддерживается популярными медиаплеерами. В таких случаях нужно указывать явный кодек, но обычно достаточно указать <strong>-f bestvideo[vcodec=vp9]</strong>.</p>
-<p>Чтобы гарантировано скачать видео с указанным кодеком и со звуком нужно дополнительно установить пакет <strong>ffmpeg</strong> из репозиториев <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>:</p>
+<p>Иногда при скачивании видео в разрешении 4K с ключом <strong>-f bestvideo</strong> может не работать аппаратное ускорение при воспроизведении из-за того, что кодек vp9.2 не поддерживается аппаратными кодировщиками. В таких случаях необходимо явно указывать кодек (<strong>-f bestvideo[vcodec=vp9]</strong>).</p>
+<p>Чтобы гарантировано скачать видео с указанным кодеком со звуком требуется дополнительно установить пакет <strong>ffmpeg</strong> из репозиториев <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install ffmpeg
 </pre></div>
 </div>
-<p>Скачивание видео в наилучшем качестве с возможностью аппаратного ускорения и звуком:</p>
+<p>В качестве примера скачаем видео в наилучшем качестве, сжатое кодеком VP9 (с возможностью аппаратного ускорения) и звуком:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>youtube-dl -f bestvideo<span class="o">[</span><span class="nv">vcodec</span><span class="o">=</span>vp9<span class="o">]</span>+bestaudio https://www.youtube.com/watch?v<span class="o">=</span>XXXXXXXXXX
 </pre></div>
 </div>
@@ -373,7 +373,7 @@ export QT_SCALE_FACTOR=2
 <span id="index-36"></span><span id="id15"></span><h2>Как переместить стандартные каталоги для документов, загрузок и т.д.?<a class="headerlink" href="#xdg-reallocate" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Откроем файл <strong>~/.config/user-dirs.dirs</strong> в любом текстовом редакторе и внесём свои правки.</p>
 <p>Стандартные настройки:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">XDG_DESKTOP_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Desktop&quot;</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">XDG_DESKTOP_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Рабочий стол&quot;</span>
 <span class="na">XDG_DOCUMENTS_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Документы&quot;</span>
 <span class="na">XDG_DOWNLOAD_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Загрузки&quot;</span>
 <span class="na">XDG_MUSIC_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Музыка&quot;</span>
@@ -461,7 +461,7 @@ export QT_SCALE_FACTOR=2
 <span id="index-42"></span><span id="id19"></span><h2>Как конвертировать текстовый файл из одной кодировки в другую?<a class="headerlink" href="#iconv-convert" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для быстрой перекодировки текстовых файлов из одной кодировки в другую можно использовать утилиту iconv.</p>
 <p>Пример перекодировки файла из cp1251 (Windows-1251) в юникод (UTF-8):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>iconv.exe -f cp1251 -t utf8 test.txt &gt; result.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>iconv -f cp1251 -t utf8 test.txt &gt; result.txt
 </pre></div>
 </div>
 <p>Здесь <strong>test.txt</strong> - исходный файл с неправильной кодировкой, а <strong>result.txt</strong> используется для записи результата преобразования.</p>
