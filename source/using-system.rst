@@ -721,7 +721,7 @@ KDE предоставляет особый PAM модуль для автома
 
 .. code-block:: bash
 
-    iconv.exe -f cp1251 -t utf8 test.txt > result.txt
+    iconv -f cp1251 -t utf8 test.txt > result.txt
 
 Здесь **test.txt** - исходный файл с неправильной кодировкой, а **result.txt** используется для записи результата преобразования.
 
