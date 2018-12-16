@@ -581,7 +581,7 @@ KDE предоставляет особый PAM модуль для автома
 
 .. code-block:: ini
 
-    XDG_DESKTOP_DIR="$HOME/Desktop"
+    XDG_DESKTOP_DIR="$HOME/Рабочий стол"
     XDG_DOCUMENTS_DIR="$HOME/Документы"
     XDG_DOWNLOAD_DIR="$HOME/Загрузки"
     XDG_MUSIC_DIR="$HOME/Музыка"
