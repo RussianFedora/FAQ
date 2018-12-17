@@ -485,6 +485,32 @@ export QT_SCALE_FACTOR=2
 </div>
 <p>Здесь <strong>MY_NETWORK</strong> - название SSID точки доступа, к которой мы планируем подключиться, а <strong>XXXXXXXXXX</strong> - её пароль.</p>
 </div>
+<div class="section" id="kde-connect">
+<span id="index-45"></span><span id="id21"></span><h2>Как лучше работать со смартфоном посредством компьютера или ноутбука?<a class="headerlink" href="#kde-connect" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для простой и эффективной работы со смартфоном на базе ОС Android пользователи рабочей среды KDE Plasma 5 могут использовать KDE Connect:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install kde-connect
+</pre></div>
+</div>
+<p>Сначала установим клиент KDE Connect на смартфон:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp">Google Play</a>;</li>
+<li><a class="reference external" href="https://f-droid.org/packages/org.kde.kdeconnect_tp/">F-Droid</a>;</li>
+</ul>
+</div></blockquote>
+<p>Запустим плазмоид KDE Connect и выполним сопряжение.</p>
+</div>
+<div class="section" id="kde-connect-firewalld">
+<span id="index-46"></span><span id="id22"></span><h2>KDE Connect не видит мой смартфон. Как исправить?<a class="headerlink" href="#kde-connect-firewalld" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Добавим правило, разрешающее входящие соединения к сервису kdeconnectd посредством <a class="reference internal" href="security.html#firewalld-about"><span class="std std-ref">Firewalld</span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --add-service<span class="o">=</span>kde-connect --permanent
+</pre></div>
+</div>
+<p>Применим новые правила:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -558,6 +584,8 @@ export QT_SCALE_FACTOR=2
 <li class="toctree-l2"><a class="reference internal" href="#iconv-convert">Как конвертировать текстовый файл из одной кодировки в другую?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#wi-fi">Как подключиться к Wi-Fi из консоли?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nm-wificli">Как подключиться к Wi-Fi из консоли при отсутствии соединений?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kde-connect">Как лучше работать со смартфоном посредством компьютера или ноутбука?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kde-connect-firewalld">KDE Connect не видит мой смартфон. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
