@@ -775,3 +775,21 @@ KDE предоставляет особый PAM модуль для автома
  * `F-Droid <https://f-droid.org/packages/org.kde.kdeconnect_tp/>`__;
 
 Запустим плазмоид KDE Connect и выполним сопряжение.
+
+.. index:: kde connect, firewalld
+.. _kde-connect-firewalld:
+
+KDE Connect не видит мой смартфон. Как исправить?
+======================================================
+
+Добавим правило, разрешающее входящие соединения к сервису kdeconnectd посредством :ref:`Firewalld <firewalld-about>`:
+
+.. code-block:: bash
+
+    sudo firewall-cmd --add-service=kde-connect --permanent
+
+Применим новые правила:
+
+.. code-block:: bash
+
+    sudo firewall-cmd --reload
