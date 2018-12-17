@@ -756,3 +756,22 @@ KDE предоставляет особый PAM модуль для автома
     nmcli device wifi connect MY_NETWORK password XXXXXXXXXX
 
 Здесь **MY_NETWORK** - название SSID точки доступа, к которой мы планируем подключиться, а **XXXXXXXXXX** - её пароль.
+
+.. index:: kde connect, smartphone, kde
+.. _kde-connect:
+
+Как лучше работать со смартфоном посредством компьютера или ноутбука?
+==========================================================================
+
+Для простой и эффективной работы со смартфоном на базе ОС Android пользователи рабочей среды KDE Plasma 5 могут использовать KDE Connect:
+
+.. code-block:: bash
+
+    sudo dnf install kde-connect
+
+Сначала установим клиент KDE Connect на смартфон:
+
+ * `Google Play <https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp>`__;
+ * `F-Droid <https://f-droid.org/packages/org.kde.kdeconnect_tp/>`__;
+
+Запустим плазмоид KDE Connect и выполним сопряжение.
