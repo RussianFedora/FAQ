@@ -511,6 +511,19 @@ export QT_SCALE_FACTOR=2
 </pre></div>
 </div>
 </div>
+<div class="section" id="nvidia-gtx-1050">
+<span id="nvidia-gtx1050"></span><span id="index-47"></span><h2>В моём ноутбуке установлена видеокарта NVIDIA GTX 1050 и после запуска система зависает. Что делать?<a class="headerlink" href="#nvidia-gtx-1050" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Случайные зависания системы, неработоспособность тачпада и других USB устройств - это следствие сбоев при работе свободного драйвера nouveau на данной видеокарте.</p>
+<p>В качестве решения необходимо установить проприетарные драйверы по такому алгоритму:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>произвести чистую установку систему со <a class="reference internal" href="generic-info.html#download"><span class="std std-ref">свежего Fedora Live USB</span></a> (respin);</li>
+<li>войти в систему, установить все обновления и, <strong>не перезагружаясь</strong>, выполнить установку <a class="reference internal" href="package-manager.html#nvidia-drivers"><span class="std std-ref">проприетарных драйверов</span></a> Optimus по <strong>альтернативному варианту</strong>.</li>
+<li>выполнить перезагрузку системы.</li>
+</ol>
+</div></blockquote>
+<p>Если всё сделано верно, то система начнёт функционировать в штатном режиме. В противном случае следует повторить с самого начала.</p>
+</div>
 </div>
 
 
@@ -586,6 +599,7 @@ export QT_SCALE_FACTOR=2
 <li class="toctree-l2"><a class="reference internal" href="#nm-wificli">Как подключиться к Wi-Fi из консоли при отсутствии соединений?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde-connect">Как лучше работать со смартфоном посредством компьютера или ноутбука?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde-connect-firewalld">KDE Connect не видит мой смартфон. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvidia-gtx-1050">В моём ноутбуке установлена видеокарта NVIDIA GTX 1050 и после запуска система зависает. Что делать?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
