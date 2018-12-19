@@ -524,6 +524,23 @@ export QT_SCALE_FACTOR=2
 </div></blockquote>
 <p>Если всё сделано верно, то система начнёт функционировать в штатном режиме. В противном случае следует повторить с самого начала.</p>
 </div>
+<div class="section" id="editor-selection">
+<span id="index-48"></span><span id="id23"></span><h2>Как выбрать предпочитаемый текстовый редактор в консольном режиме?<a class="headerlink" href="#editor-selection" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для выбора предпочитаемого текстового редактора следует применять переменные окружения, прописав их в личном файле <strong>~/.bashrc</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">VISUAL</span><span class="o">=</span>vim
+<span class="nb">export</span> <span class="nv">EDITOR</span><span class="o">=</span>vim
+<span class="nb">export</span> <span class="nv">SUDO_EDITOR</span><span class="o">=</span>vim
+</pre></div>
+</div>
+<p><strong>VISUAL</strong> - предпочитаемый текстовый редактор с графическим интерфейсом пользователя, <strong>EDITOR</strong> - текстовый, а <strong>SUDO_EDITOR</strong> используется в <a class="reference internal" href="security.html#sudo-edit-config"><span class="std std-ref">sudoedit</span></a>.</p>
+</div>
+<div class="section" id="git">
+<span id="editor-git"></span><span id="index-49"></span><h2>Как выбрать предпочитаемый текстовый редактор для Git?<a class="headerlink" href="#git" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Хотя Git подчиняется настройкам <a class="reference internal" href="#editor-selection"><span class="std std-ref">редактора по умолчанию</span></a>, допустимо его указать явно в файле конфигурации:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global core.editor vim
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -600,6 +617,8 @@ export QT_SCALE_FACTOR=2
 <li class="toctree-l2"><a class="reference internal" href="#kde-connect">Как лучше работать со смартфоном посредством компьютера или ноутбука?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde-connect-firewalld">KDE Connect не видит мой смартфон. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nvidia-gtx-1050">В моём ноутбуке установлена видеокарта NVIDIA GTX 1050 и после запуска система зависает. Что делать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#editor-selection">Как выбрать предпочитаемый текстовый редактор в консольном режиме?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git">Как выбрать предпочитаемый текстовый редактор для Git?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>

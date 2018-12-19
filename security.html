@@ -376,6 +376,22 @@ ethernet.cloned-mac-address=random
 </div>
 <p>Для отключения рандомизации и возвращения настроек по умолчанию достаточно просто удалить созданный файл и перезапустить Network Manager.</p>
 </div>
+<div class="section" id="add-custom-ca">
+<span id="index-43"></span><span id="id30"></span><h2>Как добавить собственный удостоверяющий центр в список доверенных?<a class="headerlink" href="#add-custom-ca" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для добавления нового удостоверяющего центра необходимо скопировать файл его сертификата в формате PEM или DER в каталог <strong>/etc/pki/ca-trust/source/anchors</strong>, после чего выполнить:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo update-ca-trust
+</pre></div>
+</div>
+<p>Следует помнить, что данное действие не будет распространяться на браузер Mozilla Firefox, имеющий собственную базу доверенных корневых УЦ.</p>
+</div>
+<div class="section" id="blackist-ca">
+<span id="index-44"></span><span id="id31"></span><h2>Как внести удостоверяющий центр в список запрещённых?<a class="headerlink" href="#blackist-ca" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для добавления удостоверяющего центра в список заблокированных необходимо скопировать файл его сертификата в формате PEM или DER в каталог <strong>/etc/pki/ca-trust/source/blacklist</strong>, после чего выполнить:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo update-ca-trust
+</pre></div>
+</div>
+<p>Следует помнить, что данное действие не будет распространяться на браузер Mozilla Firefox, имеющий собственную базу доверенных корневых УЦ.</p>
+</div>
 </div>
 
 
@@ -446,6 +462,8 @@ ethernet.cloned-mac-address=random
 <li class="toctree-l2"><a class="reference internal" href="#newfile-permissions">Как рассчитываются права доступа для новых файлов и каталогов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora">Можно ли включить поддержку российской криптографии в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mac-wi-fi-fedora">Как включить рандомизацию MAC адресов при подключении к Wi-Fi точкам в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-custom-ca">Как добавить собственный удостоверяющий центр в список доверенных?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#blackist-ca">Как внести удостоверяющий центр в список запрещённых?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>

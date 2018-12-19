@@ -408,6 +408,34 @@ foo.bar2=X2
 </pre></div>
 </div>
 </div>
+<div class="section" id="uefi-bios-fedora">
+<span id="fedora-fwupd"></span><span id="index-36"></span><h2>Как обновить прошивку UEFI BIOS и других устройств непосредственно из Fedora?<a class="headerlink" href="#uefi-bios-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для оперативного обновления микропрограмм (прошивок) существует утилита <a class="reference external" href="https://github.com/hughsie/fwupd">fwupd</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install fwupd
+</pre></div>
+</div>
+<p>Внимание! Для работы fwupd система должна быть установлена строго в <a class="reference internal" href="installation.html#uefi-boot"><span class="std std-ref">UEFI режиме</span></a>.</p>
+<p>Обновление базы данных программы:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fwupdmgr refresh
+</pre></div>
+</div>
+<p>Вывод списка устройств, микропрограмма которых может быть обновлена:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fwupdmgr get-devices
+</pre></div>
+</div>
+<p>Проверка наличия обновлений с выводом подробной информации о каждом из них:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fwupdmgr refresh
+</pre></div>
+</div>
+<p>Установка обнаруженных обновлений микропрограмм:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fwupdmgr update
+</pre></div>
+</div>
+<p>Некоторые устройства могут быть обновлены лишь при следующей загрузке системы, поэтому выполним перезагрузку:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -470,6 +498,7 @@ foo.bar2=X2
 <li class="toctree-l2"><a class="reference internal" href="#rsync-remote">Как передать содержимое каталога на удалённый сервер?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rsync-local">Как получить содержимое каталога с удалённого сервера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#disk-usage">Как узнать какой процесс осуществляет запись на диск?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uefi-bios-fedora">Как обновить прошивку UEFI BIOS и других устройств непосредственно из Fedora?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
