@@ -659,7 +659,7 @@
 
 .. code-block:: bash
 
-    fwupdmgr refresh
+    fwupdmgr get-updates
 
 Установка обнаруженных обновлений микропрограмм:
 
