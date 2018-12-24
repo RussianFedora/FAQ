@@ -151,7 +151,7 @@ sudo systemctl reboot
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksChangeKey /dev/sda1 -S <span class="m">0</span>
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sda</strong> - зашифрованный раздел диска, а <strong>0</strong> - порядковый номер LUKS слота для пароля.</p>
+<p>Здесь <strong>/dev/sda1</strong> - зашифрованный раздел диска, а <strong>0</strong> - порядковый номер LUKS слота для пароля.</p>
 <p>Для успешной смены пароля раздел не должен быть смонтирован, поэтому если это корневой или домашний, то придётся выполнять загрузку с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">LiveUSB</span></a>.</p>
 </div>
 <div class="section" id="luks-info">
@@ -160,7 +160,7 @@ sudo systemctl reboot
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksDump /dev/sda1
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sda</strong> - зашифрованный раздел диска.</p>
+<p>Здесь <strong>/dev/sda1</strong> - зашифрованный раздел диска.</p>
 </div>
 <div class="section" id="luks-benchmark">
 <span id="index-16"></span><span id="id13"></span><h2>Насколько сильно шифрование LUKS снижает производительность дисковой подсистемы?<a class="headerlink" href="#luks-benchmark" title="Ссылка на этот заголовок">¶</a></h2>
