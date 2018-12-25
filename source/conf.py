@@ -115,7 +115,6 @@ html_static_path = ['_static']
 # refs: http://alabaster.readthedocs.io/en/latest/installation.html#sidebars
 html_sidebars = {
     '**': [
-        'about.html',
         'searchbox.html',
         'navigation.html',
         'relations.html'
