@@ -98,6 +98,8 @@ html_theme_options = {
     'github_repo': 'FAQ',
     'github_banner': 'forkme_right_green.png',
     'github_button': False,
+    'logo': 'faq-icon.png',
+    'touch_icon': 'faq-icon.png',
     'logo_name': False
 }
 
@@ -113,11 +115,15 @@ html_static_path = ['_static']
 # refs: http://alabaster.readthedocs.io/en/latest/installation.html#sidebars
 html_sidebars = {
     '**': [
+        'about.html',
         'searchbox.html',
         'navigation.html',
         'relations.html'
     ]
 }
+
+# Add favicon for generated HTML pages.
+html_favicon = '_static/faq-icon.ico'
 
 # Other HTML options
 html_copy_source = False
