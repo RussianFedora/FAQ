@@ -439,6 +439,51 @@ foo.bar2=X2
 </pre></div>
 </div>
 </div>
+<div class="section" id="change-label">
+<span id="index-37"></span><span id="id24"></span><h2>Как сменить метку раздела?<a class="headerlink" href="#change-label" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Смена метки раздела с файловой системой ext2, ext3 и ext4:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo e2label /dev/sda1 <span class="s2">&quot;NewLabel&quot;</span>
+</pre></div>
+</div>
+<p>Смена метки раздела с файловой системой XFS:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xfs_admin -L <span class="s2">&quot;NewLabel&quot;</span> /dev/sda1
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sda1</strong> - раздел, на котором требуется изменить метку.</p>
+</div>
+<div class="section" id="uuid">
+<span id="get-uuid"></span><span id="index-38"></span><h2>Как получить UUID всех смонтированных разделов?<a class="headerlink" href="#uuid" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для получения всех UUID можно использовать утилиту <strong>blkid</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo blkid
+</pre></div>
+</div>
+<p>Вывод UUID для указанного раздела:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo blkid /dev/sda1
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sda1</strong> - раздел, для которого требуется вывести UUID.</p>
+</div>
+<div class="section" id="change-uuid">
+<span id="index-39"></span><span id="id25"></span><h2>Как изменить UUID раздела?<a class="headerlink" href="#change-uuid" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Смена UUID раздела с файловой системой ext2, ext3 и ext4:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo tune2fs /dev/sda1 -U <span class="k">$(</span>uuidgen<span class="k">)</span>
+</pre></div>
+</div>
+<p>Смена UUID раздела с файловой системой XFS:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xfs_admin -U generate /dev/sda1
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sda1</strong> - раздел, на котором требуется изменить UUID.</p>
+</div>
+<div class="section" id="dns-fedora">
+<span id="change-dns"></span><span id="index-40"></span><h2>Как правильно указать DNS серверы в Fedora?<a class="headerlink" href="#dns-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для того, чтобы указать другие DNS серверы, необходимо использовать Network Manager (графический или консольный): <strong>свойства соединения</strong> -&gt; страница <strong>IPv4</strong> -&gt; <strong>другие DNS серверы</strong>.</p>
+</div>
+<div class="section" id="etc-resolv-conf-fedora">
+<span id="dns-resolv"></span><span id="index-41"></span><h2>Можно ли править файл /etc/resolv.conf в Fedora?<a class="headerlink" href="#etc-resolv-conf-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Нет, т.к. этот файл целиком управляется Network Manager и перезаписывается при каждом изменении статуса подключения (активация-деактивация соединений, перезапуск сервиса и т.д.).</p>
+<p>Если необходимо указать другие DNS серверы, это следует производить через <a class="reference internal" href="#change-dns"><span class="std std-ref">свойства</span></a> соответствующего соединения.</p>
+</div>
 </div>
 
 
@@ -502,6 +547,11 @@ foo.bar2=X2
 <li class="toctree-l2"><a class="reference internal" href="#rsync-local">Как получить содержимое каталога с удалённого сервера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#disk-usage">Как узнать какой процесс осуществляет запись на диск?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uefi-bios-fedora">Как обновить прошивку UEFI BIOS и других устройств непосредственно из Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#change-label">Как сменить метку раздела?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uuid">Как получить UUID всех смонтированных разделов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#change-uuid">Как изменить UUID раздела?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dns-fedora">Как правильно указать DNS серверы в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#etc-resolv-conf-fedora">Можно ли править файл /etc/resolv.conf в Fedora?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
