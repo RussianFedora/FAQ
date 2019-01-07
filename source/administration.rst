@@ -711,4 +711,24 @@
 
     sudo blkid /dev/sda1
 
+Здесь **/dev/sda1** - раздел, для которого требуется вывести UUID.
+
+.. index:: drive, uuid
+.. _change-uuid:
+
+Как изменить UUID раздела?
+==============================
+
+Смена UUID раздела с файловой системой ext2, ext3 и ext4:
+
+.. code-block:: bash
+
+    sudo tune2fs /dev/sda1 -U $(uuidgen)
+
+Смена UUID раздела с файловой системой XFS:
+
+.. code-block:: bash
+
+    sudo xfs_admin -U generate /dev/sda1
+
 Здесь **/dev/sda1** - раздел, на котором требуется изменить UUID.
