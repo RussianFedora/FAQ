@@ -690,3 +690,21 @@
 .. code-block:: bash
 
     sudo xfs_admin -L "NewLabel" /dev/sda1
+
+.. index:: drive, uuid
+.. _get-uuid:
+
+Как получить UUID всех смонтированных разделов?
+===================================================
+
+Для получения всех UUID можно использовать утилиту **blkid**:
+
+.. code-block:: bash
+
+    sudo blkid
+
+Вывод UUID для указанного раздела:
+
+.. code-block:: bash
+
+    sudo blkid /dev/sda1
