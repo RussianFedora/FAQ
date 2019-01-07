@@ -691,6 +691,8 @@
 
     sudo xfs_admin -L "NewLabel" /dev/sda1
 
+Здесь **/dev/sda1** - раздел, на котором требуется изменить метку.
+
 .. index:: drive, uuid
 .. _get-uuid:
 
@@ -708,3 +710,5 @@
 .. code-block:: bash
 
     sudo blkid /dev/sda1
+
+Здесь **/dev/sda1** - раздел, на котором требуется изменить UUID.
