@@ -672,3 +672,21 @@
 .. code-block:: bash
 
     sudo systemctl reboot
+
+.. index:: drive, label
+.. _change-label:
+
+Как сменить метку раздела?
+==============================
+
+Смена метки раздела с файловой системой ext2, ext3 и ext4:
+
+.. code-block:: bash
+
+    sudo e2label /dev/sda1 "NewLabel"
+
+Смена метки раздела с файловой системой XFS:
+
+.. code-block:: bash
+
+    sudo xfs_admin -L "NewLabel" /dev/sda1
