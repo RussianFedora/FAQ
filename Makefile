@@ -1,4 +1,4 @@
-# Fedora-Faq-Ru (c) 2018, EasyCoding Team and contributors
+# Fedora-Faq-Ru (c) 2018 - 2019, EasyCoding Team and contributors
 #
 # Fedora-Faq-Ru is licensed under a
 # Creative Commons Attribution-ShareAlike 4.0 International License.
