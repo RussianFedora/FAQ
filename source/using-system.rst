@@ -861,3 +861,17 @@ KDE Connect не видит мой смартфон. Как исправить?
 .. code-block:: bash
 
     sudo umount /mnt/iso
+
+.. index:: iso, image
+.. _iso-create:
+
+Как считать содержимое CD/DVD диска в файл ISO образа?
+==========================================================
+
+Для этого можно воспользоваться утилитой **dd**:
+
+.. code-block:: bash
+
+    sudo dd if=/dev/sr0 of=/path/to/image.iso bs=4M status=progress
+
+Здесь **/dev/sr0** имя устройства привода для чтения оптических дисков, а **/path/to/image.iso** - файл образа, в котором будет сохранён результат.
