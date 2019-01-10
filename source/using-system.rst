@@ -837,3 +837,27 @@ KDE Connect не видит мой смартфон. Как исправить?
 .. code-block:: bash
 
     git config --global core.editor vim
+
+.. index:: iso, image, mount
+.. _iso-mount:
+
+Как смонтировать ISO образ в Fedora?
+========================================
+
+Создадим точку монтирования:
+
+.. code-block:: bash
+
+    sudo mkdir /mnt/iso
+
+Смонтируем файл образа:
+
+.. code-block:: bash
+
+    sudo mount -o loop /path/to/image.iso /mnt/iso
+
+По окончании произведём размонтирование:
+
+.. code-block:: bash
+
+    sudo umount /mnt/iso
