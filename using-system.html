@@ -544,6 +544,29 @@ export QT_SCALE_FACTOR=2
 </pre></div>
 </div>
 </div>
+<div class="section" id="iso-fedora">
+<span id="iso-mount"></span><span id="index-50"></span><h2>Как смонтировать ISO образ в Fedora?<a class="headerlink" href="#iso-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Создадим точку монтирования:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mkdir /mnt/iso
+</pre></div>
+</div>
+<p>Смонтируем файл образа:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mount -o loop /path/to/image.iso /mnt/iso
+</pre></div>
+</div>
+<p>По окончании произведём размонтирование:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo umount /mnt/iso
+</pre></div>
+</div>
+</div>
+<div class="section" id="cd-dvd-iso">
+<span id="iso-create"></span><span id="index-51"></span><h2>Как считать содержимое CD/DVD диска в файл ISO образа?<a class="headerlink" href="#cd-dvd-iso" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для этого можно воспользоваться утилитой <strong>dd</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dd <span class="k">if</span><span class="o">=</span>/dev/sr0 <span class="nv">of</span><span class="o">=</span>/path/to/image.iso <span class="nv">bs</span><span class="o">=</span>4M <span class="nv">status</span><span class="o">=</span>progress
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sr0</strong> имя устройства привода для чтения оптических дисков, а <strong>/path/to/image.iso</strong> - файл образа, в котором будет сохранён результат.</p>
+</div>
 </div>
 
 
@@ -622,6 +645,8 @@ export QT_SCALE_FACTOR=2
 <li class="toctree-l2"><a class="reference internal" href="#nvidia-gtx-1050">В моём ноутбуке установлена видеокарта NVIDIA GTX 1050 и после запуска система зависает. Что делать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#editor-selection">Как выбрать предпочитаемый текстовый редактор в консольном режиме?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git">Как выбрать предпочитаемый текстовый редактор для Git?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#iso-fedora">Как смонтировать ISO образ в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cd-dvd-iso">Как считать содержимое CD/DVD диска в файл ISO образа?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
@@ -641,7 +666,7 @@ export QT_SCALE_FACTOR=2
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018, EasyCoding Team and contributors.
+      &copy;2018 - 2019, EasyCoding Team and contributors.
       
     </div>
 
