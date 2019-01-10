@@ -379,7 +379,7 @@
 Возможна ли полная дедупликация оперативной памяти?
 =======================================================
 
-Да, дедупликация памяти `поддерживается <https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html>`__ в ядре Linux начиная с версии 2.6.32 модулем `KSM <https://ru.wikipedia.org/wiki/KSM>`__ и по умолчанию применяется лишь в системах виртуализации, например в KVM.
+Да, дедупликация памяти `поддерживается <https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html>`__ в ядре Linux начиная с версии 2.6.32 модулем `KSM <https://ru.wikipedia.org/wiki/KSM>`__ и по умолчанию применяется лишь в системах виртуализации, например в :ref:`KVM <kvm>`.
 
 .. index:: disk depuplication, дедупликация данных
 .. _deduplication-disk:
