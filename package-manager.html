@@ -139,8 +139,12 @@ sudo dnf system-upgrade reboot
 </div>
 <div class="section" id="dnf">
 <span id="dnf-duplicates"></span><span id="index-9"></span><h2>При обновлении dnf ругается на дубликаты пакетов.<a class="headerlink" href="#dnf" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Удалить дубликаты и повреждённые пакеты можно так:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo package-cleanup --cleandupes --noscripts
+<p>Установим утилиту <strong>package-cleanup</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install dnf-utils
+</pre></div>
+</div>
+<p>Удалим дубликаты и повреждённые пакеты:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo package-cleanup --cleandupes
 </pre></div>
 </div>
 </div>
