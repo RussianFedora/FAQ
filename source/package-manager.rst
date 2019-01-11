@@ -165,11 +165,17 @@ Dnf, являющийся, в свою очередь, форком Yum.
 При обновлении dnf ругается на дубликаты пакетов.
 ===================================================
 
-Удалить дубликаты и повреждённые пакеты можно так:
+Установим утилиту **package-cleanup**:
 
 .. code-block:: bash
 
-    sudo package-cleanup --cleandupes --noscripts
+    sudo dnf install dnf-utils
+
+Удалим дубликаты и повреждённые пакеты:
+
+.. code-block:: bash
+
+    sudo package-cleanup --cleandupes
 
 .. index:: dnf, ошибка обновления, повреждение базы RPM
 .. _dnf-rpmdb:
