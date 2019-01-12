@@ -304,6 +304,23 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 </ul>
 </div></blockquote>
 </div>
+<div class="section" id="windows-uefi-fedora">
+<span id="grub2-restore"></span><span id="index-25"></span><h2>После установки Windows был затёрт UEFI загрузчик Fedora. Как его восстановить?<a class="headerlink" href="#windows-uefi-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Во время своей установки ОС Microsoft Windows всегда осуществляет форматирование служебного ESP раздела диска, поэтому придётся вручную восстановить загрузчик.</p>
+<p>Выполним вход в <a class="reference internal" href="administration.html#chroot"><span class="std std-ref">chroot установленной системы</span></a>.</p>
+<p>Смонтируем служебный ESP раздел диска:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mount -t vfat /dev/sda1 /boot/efi
+</pre></div>
+</div>
+<p>Выполним переустановку загрузчиков Grub2 и shim:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf reinstall grub2-efi shim
+</pre></div>
+</div>
+<p><a class="reference internal" href="using-system.html#grub-rebuild"><span class="std std-ref">Пересоберём</span></a> конфиг Grub2:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -353,6 +370,7 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <li class="toctree-l2"><a class="reference internal" href="#fedora-partitions">Как лучше разбить диск самостоятельно?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#grub">Как полностью скрыть меню Grub?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#wi-fi-linux">Какие модули Wi-Fi корректно работают в Linux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows-uefi-fedora">После установки Windows был затёрт UEFI загрузчик Fedora. Как его восстановить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="package-manager.html">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
