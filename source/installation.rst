@@ -386,3 +386,9 @@
 .. code-block:: bash
 
     grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+
+Завершим работу chroot окружения:
+
+.. code-block:: bash
+
+    logout
