@@ -875,3 +875,23 @@ KDE Connect не видит мой смартфон. Как исправить?
     sudo dd if=/dev/sr0 of=/path/to/image.iso bs=4M status=progress
 
 Здесь **/dev/sr0** имя устройства привода для чтения оптических дисков, а **/path/to/image.iso** - файл образа, в котором будет сохранён результат.
+
+.. index:: dd, disk, drive, image
+.. _dd-mount:
+
+Как смонтировать посекторный образ раздела?
+================================================
+
+Монтирование raw образа раздела, созданного посредством утилиты **dd**:
+
+.. code-block:: bash
+
+    sudo mount -o ro,loop /path/to/image.raw /mnt/dd-image
+
+Размонтирование:
+
+.. code-block:: bash
+
+    sudo umount /mnt/dd-image
+
+Здесь **/path/to/image.iso** - файл образа на диске.
