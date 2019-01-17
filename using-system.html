@@ -567,6 +567,37 @@ export QT_SCALE_FACTOR=2
 </div>
 <p>Здесь <strong>/dev/sr0</strong> имя устройства привода для чтения оптических дисков, а <strong>/path/to/image.iso</strong> - файл образа, в котором будет сохранён результат.</p>
 </div>
+<div class="section" id="dd-mount">
+<span id="index-52"></span><span id="id24"></span><h2>Как смонтировать посекторный образ раздела?<a class="headerlink" href="#dd-mount" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Монтирование raw образа раздела, созданного посредством утилиты <strong>dd</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mount -o ro,loop /path/to/image.raw /mnt/dd-image
+</pre></div>
+</div>
+<p>Размонтирование:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo umount /mnt/dd-image
+</pre></div>
+</div>
+<p>Здесь <strong>/path/to/image.iso</strong> - файл образа на диске.</p>
+</div>
+<div class="section" id="dd-fullraw">
+<span id="index-53"></span><span id="id25"></span><h2>Как смонтировать посекторный образ диска целиком?<a class="headerlink" href="#dd-fullraw" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Смонтировать образ диска целиком напрямую не получится, поэтому сначала придётся определить смещения разделов относительно его начала.</p>
+<p>Запустим утилиту <strong>fdisk</strong> и попытаемся найти внутри образа разделы:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo fdisk -l /path/to/image.raw
+</pre></div>
+</div>
+<p>Из вывода нам необходимо узнать значение <strong>Sector size</strong>, а также <strong>Start</strong> всех необходимых разделов.</p>
+<p>Вычислим смещение относительно начала образа для каждого раздела по формуле <strong>Start * Sector size</strong>. К примеру если у первого Start равно 2048, а Sector size диска 512, то получим 2048 * 512 == 1048576.</p>
+<p>Произведём монтирование раздела по смещению 1048576:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mount -o ro,loop,offset<span class="o">=</span><span class="m">1048576</span> /path/to/image.raw /mnt/dd-image
+</pre></div>
+</div>
+<p>Повторим операции для всех остальных разделов, обнаруженных внутри образа. По окончании работы выполним размонтирование:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo umount /mnt/dd-image
+</pre></div>
+</div>
+<p>Здесь <strong>/path/to/image.iso</strong> - файл образа на диске.</p>
+</div>
 </div>
 
 
@@ -647,6 +678,8 @@ export QT_SCALE_FACTOR=2
 <li class="toctree-l2"><a class="reference internal" href="#git">Как выбрать предпочитаемый текстовый редактор для Git?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#iso-fedora">Как смонтировать ISO образ в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cd-dvd-iso">Как считать содержимое CD/DVD диска в файл ISO образа?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dd-mount">Как смонтировать посекторный образ раздела?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dd-fullraw">Как смонтировать посекторный образ диска целиком?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
