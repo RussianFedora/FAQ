@@ -770,3 +770,30 @@
     sudo firewall-cmd --reload
 
 В данном примере для зоны **public** блокируются как входящие, так и исходящие ICMP ECHO и ICMP TIMESTAMP.
+
+.. index:: firewall, firewalld, openvpn
+.. _openvpn-allowed-ips:
+
+Как средствами Firewalld разрешить подключение к OpenVPN серверу только с разрешённых IP адресов?
+=====================================================================================================
+
+Сначала отключим правило по умолчанию для OpenVPN, разрешающее доступ к серверу с любых IP адресов:
+
+.. code-block:: bash
+
+    sudo firewall-cmd --zone=public --remove-service openvpn --permanent
+
+Теперь создадим rich rule, разрешающее доступ с указанных IP-адресов (или подсетей):
+
+.. code-block:: bash
+
+    sudo firewall-cmd --zone=public --add-rich-rule='rule family=ipv4 source address="1.2.3.4" service name="openvpn" accept' --permanent
+    sudo firewall-cmd --zone=public --add-rich-rule='rule family=ipv4 source address="5.6.7.0/24" service name="openvpn" accept' --permanent
+
+Применим новые правила:
+
+.. code-block:: bash
+
+    sudo firewall-cmd --reload
+
+Здесь **public** - имя зоны для публичного интерфейса, **1.2.3.4** - IP-адрес, а **5.6.7.0/24** - подсеть, доступ для адресов из которой следует разрешить.
