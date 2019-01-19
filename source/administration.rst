@@ -750,3 +750,23 @@
 Нет, т.к. этот файл целиком управляется Network Manager и перезаписывается при каждом изменении статуса подключения (активация-деактивация соединений, перезапуск сервиса и т.д.).
 
 Если необходимо указать другие DNS серверы, это следует производить через :ref:`свойства <change-dns>` соответствующего соединения.
+
+.. index:: firewall, icmp, firewalld
+.. _disable-icmp:
+
+Как можно средствами Firewalld запретить ICMP?
+===================================================
+
+По умолчанию ICMP трафик разрешён для большей части зон, поэтому запретить его можно вручную:
+
+.. code-block:: bash
+
+    sudo firewall-cmd --zone=public --remove-icmp-block={echo-request,echo-reply,timestamp-reply,timestamp-request} --permanent
+
+Применим новые правила:
+
+.. code-block:: bash
+
+    sudo firewall-cmd --reload
+
+В данном примере для зоны **public** блокируются как входящие, так и исходящие ICMP ECHO и ICMP TIMESTAMP.
