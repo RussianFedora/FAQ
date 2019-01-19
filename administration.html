@@ -498,7 +498,7 @@ foo.bar2=X2
 </div>
 <div class="section" id="firewalld-openvpn-ip">
 <span id="openvpn-allowed-ips"></span><span id="index-43"></span><h2>Как средствами Firewalld разрешить подключение к OpenVPN серверу только с разрешённых IP адресов?<a class="headerlink" href="#firewalld-openvpn-ip" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Сначала отключим правило по умолчанию для OpenVPN, разрешающее доступ к серверу с любых IP адресов:</p>
+<p>Сначала отключим правило по умолчанию для <a class="reference internal" href="#using-openvpn"><span class="std std-ref">OpenVPN</span></a>, разрешающее доступ к серверу с любых IP адресов:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone<span class="o">=</span>public --remove-service openvpn --permanent
 </pre></div>
 </div>
@@ -512,6 +512,13 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 </pre></div>
 </div>
 <p>Здесь <strong>public</strong> - имя зоны для публичного интерфейса, <strong>1.2.3.4</strong> - IP-адрес, а <strong>5.6.7.0/24</strong> - подсеть, доступ для адресов из которой следует разрешить.</p>
+</div>
+<div class="section" id="ip-nat">
+<span id="get-external-ip"></span><span id="index-44"></span><h2>Как узнать внешний IP адрес за NAT провайдера?<a class="headerlink" href="#ip-nat" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для этой цели можно использовать внешний сервис, возвращающий только внешний IP и утилиту <strong>curl</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl https://ifconfig.me
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -583,6 +590,7 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <li class="toctree-l2"><a class="reference internal" href="#etc-resolv-conf-fedora">Можно ли править файл /etc/resolv.conf в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firewalld-icmp">Как можно средствами Firewalld запретить ICMP?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firewalld-openvpn-ip">Как средствами Firewalld разрешить подключение к OpenVPN серверу только с разрешённых IP адресов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ip-nat">Как узнать внешний IP адрес за NAT провайдера?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
