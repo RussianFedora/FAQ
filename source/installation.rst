@@ -1,4 +1,4 @@
-.. Fedora-Faq-Ru (c) 2018, EasyCoding Team and contributors
+.. Fedora-Faq-Ru (c) 2018 - 2019, EasyCoding Team and contributors
 .. 
 .. Fedora-Faq-Ru is licensed under a
 .. Creative Commons Attribution-ShareAlike 4.0 International License.
@@ -334,3 +334,57 @@
     sudo grub2-mkconfig -o /etc/grub2.cfg
 
 Получить доступ к элементам скрытого меню можно посредством зажатия клавиши **Shift** или **F8** во время начальной загрузки системы.
+
+.. index:: wi-fi, chipset, hardware
+.. _wifi-chip:
+
+Какие модули Wi-Fi корректно работают в Linux?
+===================================================
+
+Без проблем работают Wi-Fi модули следующих производителей:
+
+ * Qualcomm Atheros (однако ath10k требуют загрузки прошивок из комплекта поставки ядра);
+ * Intel Wireless (требуют загрузки индивидуальных прошивок iwl из поставки ядра).
+
+Работают 50/50:
+
+ * Realtek (широко известны проблемы с чипами серий rtl8192cu и rtl8812au);
+ * MediaTek (ранее назывался Ralink).
+
+Не работают:
+
+ * Broadcom (для их работы необходима установка :ref:`проприетарных драйверов <broadcom-drivers>`, которые часто ведут себя непредсказуемо и могут вызывать сбои в работе ядра системы).
+
+.. index:: grub, bootloader, uefi, efi
+.. _grub2-restore:
+
+После установки Windows был затёрт UEFI загрузчик Fedora. Как его восстановить?
+====================================================================================
+
+Во время своей установки ОС Microsoft Windows всегда осуществляет форматирование служебного ESP раздела диска, поэтому придётся вручную восстановить загрузчик.
+
+Выполним вход в :ref:`chroot установленной системы <chroot>`.
+
+Смонтируем служебный ESP раздел диска:
+
+.. code-block:: bash
+
+    mount -t vfat /dev/sda1 /boot/efi
+
+Выполним переустановку загрузчиков Grub2 и shim:
+
+.. code-block:: bash
+
+    dnf reinstall grub2-efi shim
+
+:ref:`Пересоберём <grub-rebuild>` конфиг Grub2:
+
+.. code-block:: bash
+
+    grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+
+Завершим работу chroot окружения:
+
+.. code-block:: bash
+
+    logout

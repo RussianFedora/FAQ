@@ -1,4 +1,4 @@
-.. Fedora-Faq-Ru (c) 2018, EasyCoding Team and contributors
+.. Fedora-Faq-Ru (c) 2018 - 2019, EasyCoding Team and contributors
 .. 
 .. Fedora-Faq-Ru is licensed under a
 .. Creative Commons Attribution-ShareAlike 4.0 International License.
@@ -379,7 +379,7 @@
 Возможна ли полная дедупликация оперативной памяти?
 =======================================================
 
-Да, дедупликация памяти `поддерживается <https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html>`__ в ядре Linux начиная с версии 2.6.32 модулем `KSM <https://ru.wikipedia.org/wiki/KSM>`__ и по умолчанию применяется лишь в системах виртуализации, например в KVM.
+Да, дедупликация памяти `поддерживается <https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html>`__ в ядре Linux начиная с версии 2.6.32 модулем `KSM <https://ru.wikipedia.org/wiki/KSM>`__ и по умолчанию применяется лишь в системах виртуализации, например в :ref:`KVM <kvm>`.
 
 .. index:: disk depuplication, дедупликация данных
 .. _deduplication-disk:
@@ -628,3 +628,184 @@
 .. code-block:: bash
 
     sudo fatrace -f W -o ~/disk-usage.log -s 600
+
+.. index:: hardware, firmware, update, прошивка, обновление
+.. _fedora-fwupd:
+
+Как обновить прошивку UEFI BIOS и других устройств непосредственно из Fedora?
+==================================================================================
+
+Для оперативного обновления микропрограмм (прошивок) существует утилита `fwupd <https://github.com/hughsie/fwupd>`__:
+
+.. code-block:: bash
+
+    sudo dnf install fwupd
+
+Внимание! Для работы fwupd система должна быть установлена строго в :ref:`UEFI режиме <uefi-boot>`.
+
+Обновление базы данных программы:
+
+.. code-block:: bash
+
+    fwupdmgr refresh
+
+Вывод списка устройств, микропрограмма которых может быть обновлена:
+
+.. code-block:: bash
+
+    fwupdmgr get-devices
+
+Проверка наличия обновлений с выводом подробной информации о каждом из них:
+
+.. code-block:: bash
+
+    fwupdmgr get-updates
+
+Установка обнаруженных обновлений микропрограмм:
+
+.. code-block:: bash
+
+    fwupdmgr update
+
+Некоторые устройства могут быть обновлены лишь при следующей загрузке системы, поэтому выполним перезагрузку:
+
+.. code-block:: bash
+
+    sudo systemctl reboot
+
+.. index:: drive, label
+.. _change-label:
+
+Как сменить метку раздела?
+==============================
+
+Смена метки раздела с файловой системой ext2, ext3 и ext4:
+
+.. code-block:: bash
+
+    sudo e2label /dev/sda1 "NewLabel"
+
+Смена метки раздела с файловой системой XFS:
+
+.. code-block:: bash
+
+    sudo xfs_admin -L "NewLabel" /dev/sda1
+
+Здесь **/dev/sda1** - раздел, на котором требуется изменить метку.
+
+.. index:: drive, uuid
+.. _get-uuid:
+
+Как получить UUID всех смонтированных разделов?
+===================================================
+
+Для получения всех UUID можно использовать утилиту **blkid**:
+
+.. code-block:: bash
+
+    sudo blkid
+
+Вывод UUID для указанного раздела:
+
+.. code-block:: bash
+
+    sudo blkid /dev/sda1
+
+Здесь **/dev/sda1** - раздел, для которого требуется вывести UUID.
+
+.. index:: drive, uuid
+.. _change-uuid:
+
+Как изменить UUID раздела?
+==============================
+
+Смена UUID раздела с файловой системой ext2, ext3 и ext4:
+
+.. code-block:: bash
+
+    sudo tune2fs /dev/sda1 -U $(uuidgen)
+
+Смена UUID раздела с файловой системой XFS:
+
+.. code-block:: bash
+
+    sudo xfs_admin -U generate /dev/sda1
+
+Здесь **/dev/sda1** - раздел, на котором требуется изменить UUID.
+
+.. index:: dns, change dns
+.. _change-dns:
+
+Как правильно указать DNS серверы в Fedora?
+================================================
+
+Для того, чтобы указать другие DNS серверы, необходимо использовать Network Manager (графический или консольный): **свойства соединения** -> страница **IPv4** -> **другие DNS серверы**.
+
+.. index:: dns, resolv.conf
+.. _dns-resolv:
+
+Можно ли править файл /etc/resolv.conf в Fedora?
+====================================================
+
+Нет, т.к. этот файл целиком управляется Network Manager и перезаписывается при каждом изменении статуса подключения (активация-деактивация соединений, перезапуск сервиса и т.д.).
+
+Если необходимо указать другие DNS серверы, это следует производить через :ref:`свойства <change-dns>` соответствующего соединения.
+
+.. index:: firewall, icmp, firewalld
+.. _disable-icmp:
+
+Как можно средствами Firewalld запретить ICMP?
+===================================================
+
+По умолчанию ICMP трафик разрешён для большей части зон, поэтому запретить его можно вручную:
+
+.. code-block:: bash
+
+    sudo firewall-cmd --zone=public --remove-icmp-block={echo-request,echo-reply,timestamp-reply,timestamp-request} --permanent
+
+Применим новые правила:
+
+.. code-block:: bash
+
+    sudo firewall-cmd --reload
+
+В данном примере для зоны **public** блокируются как входящие, так и исходящие ICMP ECHO и ICMP TIMESTAMP.
+
+.. index:: firewall, firewalld, openvpn
+.. _openvpn-allowed-ips:
+
+Как средствами Firewalld разрешить подключение к OpenVPN серверу только с разрешённых IP адресов?
+=====================================================================================================
+
+Сначала отключим правило по умолчанию для :ref:`OpenVPN <using-openvpn>`, разрешающее доступ к серверу с любых IP адресов:
+
+.. code-block:: bash
+
+    sudo firewall-cmd --zone=public --remove-service openvpn --permanent
+
+Теперь создадим rich rule, разрешающее доступ с указанных IP-адресов (или подсетей):
+
+.. code-block:: bash
+
+    sudo firewall-cmd --zone=public --add-rich-rule='rule family=ipv4 source address="1.2.3.4" service name="openvpn" accept' --permanent
+    sudo firewall-cmd --zone=public --add-rich-rule='rule family=ipv4 source address="5.6.7.0/24" service name="openvpn" accept' --permanent
+
+Применим новые правила:
+
+.. code-block:: bash
+
+    sudo firewall-cmd --reload
+
+Здесь **public** - имя зоны для публичного интерфейса, **1.2.3.4** - IP-адрес, а **5.6.7.0/24** - подсеть, доступ для адресов из которой следует разрешить.
+
+.. index:: ip address, external ip, curl
+.. _get-external-ip:
+
+Как узнать внешний IP адрес за NAT провайдера?
+===================================================
+
+Для этой цели можно использовать внешний сервис, возвращающий только внешний IP и утилиту **curl**:
+
+.. code-block:: bash
+
+    curl https://ifconfig.me

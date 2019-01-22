@@ -1,4 +1,4 @@
-.. Fedora-Faq-Ru (c) 2018, EasyCoding Team and contributors
+.. Fedora-Faq-Ru (c) 2018 - 2019, EasyCoding Team and contributors
 .. 
 .. Fedora-Faq-Ru is licensed under a
 .. Creative Commons Attribution-ShareAlike 4.0 International License.
@@ -165,11 +165,17 @@ Dnf, являющийся, в свою очередь, форком Yum.
 При обновлении dnf ругается на дубликаты пакетов.
 ===================================================
 
-Удалить дубликаты и повреждённые пакеты можно так:
+Установим утилиту **package-cleanup**:
 
 .. code-block:: bash
 
-    sudo package-cleanup --cleandupes --noscripts
+    sudo dnf install dnf-utils
+
+Удалим дубликаты и повреждённые пакеты:
+
+.. code-block:: bash
+
+    sudo package-cleanup --cleandupes
 
 .. index:: dnf, ошибка обновления, повреждение базы RPM
 .. _dnf-rpmdb:
@@ -345,7 +351,45 @@ Dnf сохраняет старые ядра. Это нормально?
 
 См. `здесь <https://www.easycoding.org/2017/02/22/sobiraem-rpm-pakety-dlya-fedora-v-mock.html>`__.
 
-.. index:: repository, virtualbox
+.. index:: virtualization
+.. _virtualization:
+
+Какую систему управления виртуальными машинами лучше установить?
+=====================================================================
+
+Рекомендуется использовать :ref:`KVM <kvm>`, т.к. её гипервизор и необходимые модули уже находятся в ядре Linux и не вызывают проблем.
+
+.. index:: virtualization, kvm
+.. _kvm:
+
+Как правильно установить систему виртуализации KVM?
+=======================================================
+
+Установим KVM и графическую утилиту управления виртуальными машинами **virt-manager**:
+
+.. code-block:: bash
+
+    sudo dnf group install Virtualization
+
+Перезагрузим машину для вступления изменений в силу:
+
+.. code-block:: bash
+
+    sudo systemctl reboot
+
+.. index:: virtualization, kvm, polkit
+.. _kvm-users:
+
+Как отключить запрос пароля во время запуска или остановки виртуальных машин при использовании KVM?
+=======================================================================================================
+
+Возможностью управления виртуальными машинами обладают члены группы **libvirt**, поэтому нужно добавить в неё свой аккаунт:
+
+.. code-block:: bash
+
+    sudo usermod -a -G libvirt $(whoami)
+
+.. index:: virtualization, repository, virtualbox
 .. _virtualbox:
 
 Как правильно установить VirtualBox в Fedora?

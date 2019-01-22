@@ -1,4 +1,4 @@
-.. Fedora-Faq-Ru (c) 2018, EasyCoding Team and contributors
+.. Fedora-Faq-Ru (c) 2018 - 2019, EasyCoding Team and contributors
 .. 
 .. Fedora-Faq-Ru is licensed under a
 .. Creative Commons Attribution-ShareAlike 4.0 International License.
@@ -220,3 +220,14 @@ RFRemix - это ремикс оргинального дистрибутива 
 
  * `Fedora Ask на русском языке <https://ask.fedoraproject.org/ru/questions/>`__;
  * `Fedora Ask на английском языке <https://ask.fedoraproject.org/en/questions/>`__.
+
+.. index:: hardware
+.. _linux-hardware:
+
+На что в первую очередь следует обратить внимание при выборе ноутбука для Linux?
+====================================================================================
+
+ 1. Следует обратить внимание на производителя :ref:`установленного Wi-Fi модуля <wifi-chip>`.
+ 2. Не рекомендуется приобретать устройства с гибридной графикой ибо технология NVIDIA Optimus в настоящее время не поддерживается под GNU/Linux официально и работает исключительно посредством Bumblebee от сторонних разработчиков, который часто работает нестабильно.
+ 3. Ни при каком условии не приобретать ноутбук с видеокартой :ref:`NVIDIA GTX 1050 <nvidia-gtx1050>`.
+ 4. Перед покупкой рекомендуется исследовать работу :ref:`свежего Fedora Live USB <download>` непосредственно на данном устройстве, а также проверить :ref:`вывод dmesg <journal-current>` на наличие ошибок ACPI.
