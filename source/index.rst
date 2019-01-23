@@ -19,4 +19,5 @@
    administration.rst
    security.rst
    using-system.rst
+   tips-and-tricks.rst
    legal-info.rst
