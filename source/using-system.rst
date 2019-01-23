@@ -927,3 +927,43 @@ KDE Connect не видит мой смартфон. Как исправить?
     sudo umount /mnt/dd-image
 
 Здесь **/path/to/image.iso** - файл образа на диске.
+
+.. index:: gnome, ram, bloat
+.. _gnome-reduce-ram-usage:
+
+Как уменьшить потребление оперативной памяти средой рабочего стола GNOME 3?
+===========================================================================
+
+Отключение службы автоматической регистрации ошибок и удаление GUI апплета:
+
+.. code-block:: bash
+
+    systemctl disable abrtd
+
+    sudo dnf remove abrt-desktop -y
+
+Удаление GUI менеджера пакетов:
+
+.. code-block:: bash
+
+    systemctl mask packagekit
+
+    sudo dnf remove gnome-software -y
+
+Отключение службы управления виртуализацией:
+
+.. code-block:: bash
+
+    systemctl disable libvirtd
+
+Отключение служб Evolution необходимых для синхронизации онлайн аккаунтов:
+
+.. code-block:: bash
+
+    systemctl --user mask evolution-addressbook-factory evolution-calendar-factory evolution-source-registry
+
+Отключение служб необходимых для индексации файлов и другой информации необходимой для быстрого поиска:
+
+.. code-block:: bash
+
+    systemctl --user mask tracker-miner-apps tracker-miner-fs tracker-store
