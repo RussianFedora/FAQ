@@ -1,0 +1,126 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Вопросы, связанные с оптимизацией и тонкой настройкой &#8212; Документация Fedora FAQ RU 2018.12.25</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="shortcut icon" href="_static/faq-icon.ico"/>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="Правовая информация" href="legal-info.html" />
+    <link rel="prev" title="Вопросы, связанные с работой в системе" href="using-system.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+    <link rel="apple-touch-icon" href="_static/faq-icon.png" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="tips-and-tricks">
+<span id="id1"></span><h1>Вопросы, связанные с оптимизацией и тонкой настройкой<a class="headerlink" href="#tips-and-tricks" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="gnome-3">
+<span id="gnome-reduce-ram-usage"></span><span id="index-0"></span><h2>Как уменьшить потребление оперативной памяти средой рабочего стола GNOME 3?<a class="headerlink" href="#gnome-3" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Отключим службу автоматической регистрации ошибок и удалим GUI апплет, уведомляющий об их возникновении:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove abrt
+</pre></div>
+</div>
+<p>Удалим Магазин приложений (графический менеджер пакетов):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove PackageKit gnome-software
+</pre></div>
+</div>
+<p>Отключим службу управления виртуализацией (если на установленной системе не предполагается использовать виртуальные машины):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable libvirtd
+</pre></div>
+</div>
+<p>Отключим службы Evolution, необходимые для синхронизации онлайн аккаунтов:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl --user mask evolution-addressbook-factory evolution-calendar-factory evolution-source-registry
+</pre></div>
+</div>
+<p>Отключим службы, необходимые для создания индекса файловой системы, необходимого для быстрого поиска (если не предполагается использовать поиск в главном меню):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl --user mask tracker-miner-apps tracker-miner-fs tracker-store
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Искать" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Навигация</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Вопросы, связанные с установкой системы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package-manager.html">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные с оптимизацией и тонкой настройкой</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#gnome-3">Как уменьшить потребление оперативной памяти средой рабочего стола GNOME 3?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="using-system.html" title="предыдущая глава">Вопросы, связанные с работой в системе</a></li>
+      <li>Next: <a href="legal-info.html" title="следующая глава">Правовая информация</a></li>
+  </ul></li>
+</ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018 - 2019, EasyCoding Team and contributors.
+      
+    </div>
+
+    
+    <a href="https://github.com/RussianFedora/FAQ" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="_static/forkme_right_green.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

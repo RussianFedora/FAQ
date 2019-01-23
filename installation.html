@@ -159,10 +159,7 @@
 </div>
 <div class="section" id="fonts-cleartype">
 <span id="index-18"></span><span id="id14"></span><h2>Как улучшить отображение шрифтов в Fedora?<a class="headerlink" href="#fonts-cleartype" title="Ссылка на этот заголовок">¶</a></h2>
-<p>В актуальных релизах Fedora пакет freetype уже собран с поддержкой субпиксельного сглаживания, поэтому чтобы получить качественный рендеринг шрифтов, необходимо лишь разрешить использование LCD фильтров, создав символическую ссылку на файл <strong>11-lcdfilter-default.conf</strong> в каталоге <strong>/etc/fonts/conf.d</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ln -s /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d/
-</pre></div>
-</div>
+<p>В актуальных релизах Fedora пакет freetype уже собран с поддержкой субпиксельного сглаживания, поэтому чтобы получить качественный рендеринг шрифтов, необходимо лишь включить субпиксельное сглаживание в настройках окружения вашего рабочего стола.</p>
 <p>Для вступления изменений в силу необходимо повторно войти в систему, либо перезагрузить компьютер.</p>
 </div>
 <div class="section" id="fonts-console">
@@ -381,6 +378,7 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
 </ul>
 
