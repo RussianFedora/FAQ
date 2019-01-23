@@ -62,6 +62,33 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="kde">
+<span id="kde-reduce-ram-usage"></span><span id="index-1"></span><h2>Как уменьшить потребление оперативной памяти средой рабочего стола KDE?<a class="headerlink" href="#kde" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Отключим службу индексации файлов. Для этого зайдём в <strong>Параметры системы</strong> - <strong>Поиск</strong>, снимем флажок из чекбокса <strong>Включить службы поиска файлов</strong> и нажмём <strong>Применить</strong>. Теперь удалим Akonadi:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove akonadi
+</pre></div>
+</div>
+<p>Удалим устаревшие библиотеки Qt4 и службу автоматической регистрации ошибок ABRT:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove qt abrt
+</pre></div>
+</div>
+<p>Удалим Магазин приложений (графический менеджер пакетов):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove PackageKit
+</pre></div>
+</div>
+<p>Удалим runtime библиотеки для экономии ОЗУ (при этом по зависимостям будут удалены некоторые приложения, например KMail и KOrganizer):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove kdepim-runtime-libs
+</pre></div>
+</div>
+<p>Удалим <a class="reference internal" href="using-system.html#kde-connect"><span class="std std-ref">KDE Connect</span></a> (если не планируется управлять смартфоном с компьютера и наоборот):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove kde-connect kdeconnectd
+</pre></div>
+</div>
+<p>Опционально удалим библиотеки GTK2 (в то же время от них до сих пор зависят многие популярные приложения, например Firefox, Gimp, GParted):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove gtk2
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -92,6 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные с оптимизацией и тонкой настройкой</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#gnome-3">Как уменьшить потребление оперативной памяти средой рабочего стола GNOME 3?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kde">Как уменьшить потребление оперативной памяти средой рабочего стола KDE?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
