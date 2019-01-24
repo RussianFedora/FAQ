@@ -667,50 +667,6 @@
 
     sudo fatrace -f W -o ~/disk-usage.log -s 600
 
-.. index:: hardware, firmware, update, прошивка, обновление
-.. _fedora-fwupd:
-
-Как обновить прошивку UEFI BIOS и других устройств непосредственно из Fedora?
-==================================================================================
-
-Для оперативного обновления микропрограмм (прошивок) существует утилита `fwupd <https://github.com/hughsie/fwupd>`__:
-
-.. code-block:: bash
-
-    sudo dnf install fwupd
-
-Внимание! Для работы fwupd система должна быть установлена строго в :ref:`UEFI режиме <uefi-boot>`.
-
-Обновление базы данных программы:
-
-.. code-block:: bash
-
-    fwupdmgr refresh
-
-Вывод списка устройств, микропрограмма которых может быть обновлена:
-
-.. code-block:: bash
-
-    fwupdmgr get-devices
-
-Проверка наличия обновлений с выводом подробной информации о каждом из них:
-
-.. code-block:: bash
-
-    fwupdmgr get-updates
-
-Установка обнаруженных обновлений микропрограмм:
-
-.. code-block:: bash
-
-    fwupdmgr update
-
-Некоторые устройства могут быть обновлены лишь при следующей загрузке системы, поэтому выполним перезагрузку:
-
-.. code-block:: bash
-
-    sudo systemctl reboot
-
 .. index:: drive, label
 .. _change-label:
 
