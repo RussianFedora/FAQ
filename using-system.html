@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="_static/faq-icon.ico"/>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
-    <link rel="next" title="Вопросы, связанные с оптимизацией и тонкой настройкой" href="tips-and-tricks.html" />
+    <link rel="next" title="Вопросы, связанные с использованием различного оборудования" href="hardware.html" />
     <link rel="prev" title="Вопросы, связанные с безопасностью" href="security.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -91,12 +91,8 @@
 <span id="index-7"></span><span id="id7"></span><h2>Система медленно завершает работу. Можно ли это ускорить?<a class="headerlink" href="#slow-shutdown" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2016/08/08/uskoryaem-zavershenie-raboty-fedora-24.html">здесь</a>.</p>
 </div>
-<div class="section" id="libcurl-gnutls-so-4">
-<span id="libcurl-workaround"></span><span id="index-8"></span><h2>Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?<a class="headerlink" href="#libcurl-gnutls-so-4" title="Ссылка на этот заголовок">¶</a></h2>
-<p>См. <a class="reference external" href="https://www.easycoding.org/2018/04/03/reshaem-problemu-otsutstviya-libcurl-gnutls-v-fedora.html">здесь</a>.</p>
-</div>
 <div class="section" id="firefox">
-<span id="firefox-hwaccel"></span><span id="index-9"></span><h2>Как активировать аппаратное ускорение в браузере Firefox?<a class="headerlink" href="#firefox" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="firefox-hwaccel"></span><span id="index-8"></span><h2>Как активировать аппаратное ускорение в браузере Firefox?<a class="headerlink" href="#firefox" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для активации аппаратного ускорения рендеринга страниц в Mozilla Firefox на поддерживаемых драйверах необходимо открыть модуль конфигурации <strong>about:config</strong> и исправить значения следующих переменных (при отсутствии создать):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>layers.acceleration.force-enabled = true
 layers.offmainthreadcomposition.enabled = true
@@ -108,7 +104,7 @@ gfx.xrender.enabled = true
 <p>Внимание! Это не затрагивает аппаратное декодирование мультимедиа средствами видеоускорителя.</p>
 </div>
 <div class="section" id="browser-hwaccel">
-<span id="index-10"></span><span id="id8"></span><h2>Как активировать аппаратное ускорение декодирования мультимедиа в браузерах?<a class="headerlink" href="#browser-hwaccel" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-9"></span><span id="id8"></span><h2>Как активировать аппаратное ускорение декодирования мультимедиа в браузерах?<a class="headerlink" href="#browser-hwaccel" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В настоящее время аппаратное ускорение декодирования мультимедиа «из коробки» в GNU/Linux не поддерживается ни в одном браузере.</p>
 <p>В Mozilla Firefox оно вообще не реализовано: <a class="reference external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=563206">MZBZ#563206</a> и <a class="reference external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=1210727">MZBZ#1210727</a>.</p>
 <p>В Google Chrome и Chromium частично реализовано, но отключено на этапе компиляции и без особых VA-API патчей недоступно. Репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> предоставляет такую сборку Chromium. Для её установки необходимо подключить его и установить пакет <strong>chromium-vaapi</strong>:</p>
@@ -118,12 +114,12 @@ gfx.xrender.enabled = true
 <p>Далее необходимо запустить его, зайти в <strong>chrome://flags</strong> и установить пункт <strong>Hardware decoding</strong> в значение <strong>Enabled</strong>, после чего перезапустить браузер.</p>
 </div>
 <div class="section" id="video-hwaccel">
-<span id="index-11"></span><span id="id9"></span><h2>В каких проигрывателях реализовано аппаратное ускорение декодирования мультимедиа?<a class="headerlink" href="#video-hwaccel" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-10"></span><span id="id9"></span><h2>В каких проигрывателях реализовано аппаратное ускорение декодирования мультимедиа?<a class="headerlink" href="#video-hwaccel" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Полная поддержка аппаратного декодирования мультимедиа средствами VA-API (Intel, AMD) или VPDAU (NVIDIA) реализована в проигрывателях VLC и mpv.</p>
 <p>Для активации данной функции необходимо в качестве графического бэкэнда вывода изображения указать <strong>vaapi</strong> или <strong>vdpau</strong>, после чего перезапустить плеер.</p>
 </div>
 <div class="section" id="debug-application">
-<span id="index-12"></span><span id="id10"></span><h2>Приложение падает. Как мне его отладить?<a class="headerlink" href="#debug-application" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-11"></span><span id="id10"></span><h2>Приложение падает. Как мне его отладить?<a class="headerlink" href="#debug-application" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для начала рекомендуется (хотя и не обязательно) установить отладочную информацию для данного пакета:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf debuginfo-install foo-bar
 </pre></div>
@@ -142,14 +138,14 @@ gfx.xrender.enabled = true
 <p>Полученный файл <strong>~/trace.log</strong> также следует загрузить на сервис.</p>
 </div>
 <div class="section" id="mp3">
-<span id="convert-multiple-files"></span><span id="index-13"></span><h2>Как конвертировать множество файлов в mp3 из текущего каталога?<a class="headerlink" href="#mp3" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="convert-multiple-files"></span><span id="index-12"></span><h2>Как конвертировать множество файлов в mp3 из текущего каталога?<a class="headerlink" href="#mp3" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Конвертируем все файлы с маской *.ogg в mp3 в текущем каталоге:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find . -maxdepth <span class="m">1</span> -type f -name <span class="s2">&quot;*.ogg&quot;</span> -exec ffmpeg -i <span class="s2">&quot;{}&quot;</span> -acodec mp3 -ab 192k <span class="s2">&quot;</span><span class="k">$(</span>basename <span class="o">{}</span><span class="k">)</span><span class="s2">.mp3&quot;</span> <span class="se">\;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="kde-gtk">
-<span id="double-click-speed"></span><span id="index-14"></span><h2>Я использую KDE. Как мне настроить скорость двойного клика в GTK приложениях?<a class="headerlink" href="#kde-gtk" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="double-click-speed"></span><span id="index-13"></span><h2>Я использую KDE. Как мне настроить скорость двойного клика в GTK приложениях?<a class="headerlink" href="#kde-gtk" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для настройки GTK 2 приложений необходимо открыть файл <strong>~/.gtkrc-2.0</strong> в любом текстовом редакторе (если он отсутствует — создать), затем прописать в самом конце:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gtk-double-click-time=1000
 </pre></div>
@@ -161,14 +157,14 @@ gfx.xrender.enabled = true
 <p>Здесь 1000 — время в миллисекундах до активации двойного клика. Документация с подробным описанием всех переменных данных файлов конфигурации <a class="reference external" href="https://developer.gnome.org/gtk3/stable/GtkSettings.html">здесь</a>.</p>
 </div>
 <div class="section" id="block-screen">
-<span id="index-15"></span><span id="id11"></span><h2>Возможно ли заблокировать экран из командной строки?<a class="headerlink" href="#block-screen" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-14"></span><span id="id11"></span><h2>Возможно ли заблокировать экран из командной строки?<a class="headerlink" href="#block-screen" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>loginctl lock-session
 </pre></div>
 </div>
 </div>
 <div class="section" id="bash">
-<span id="bash-shell"></span><span id="index-16"></span><h2>Можно ли изменить приветствие Bash по умолчанию?<a class="headerlink" href="#bash" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="bash-shell"></span><span id="index-15"></span><h2>Можно ли изменить приветствие Bash по умолчанию?<a class="headerlink" href="#bash" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, необходимо в пользовательский файл <strong>~/.bashrc</strong> добавить строку вида:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export PS1=&quot;\[\e[33m\][\[\e[36m\]\u\[\e[0m\]@\[\e[31m\]\h\[\e[0m\] \[\e[32m\]\W\[\e[33m\]]\[\e[35m\]\$\[\e[0m\] &quot;
 </pre></div>
@@ -176,11 +172,11 @@ gfx.xrender.enabled = true
 <p>Существует удобный онлайн генератор таких строк <a class="reference external" href="http://bashrcgenerator.com/">здесь</a>.</p>
 </div>
 <div class="section" id="shell">
-<span id="bash-title"></span><span id="index-17"></span><h2>Можно ли из shell скрипта менять название терминала?<a class="headerlink" href="#shell" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="bash-title"></span><span id="index-16"></span><h2>Можно ли из shell скрипта менять название терминала?<a class="headerlink" href="#shell" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, при помощи <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B8%D0%B5_%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8_ANSI">управляющих последовательностей</a>. Ими же можно менять цвет текста вывода и многое другое.</p>
 </div>
 <div class="section" id="configure-ntp">
-<span id="index-18"></span><span id="id12"></span><h2>Как настроить синхронизацию времени?<a class="headerlink" href="#configure-ntp" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-17"></span><span id="id12"></span><h2>Как настроить синхронизацию времени?<a class="headerlink" href="#configure-ntp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В Fedora для этой цели используется chronyd, который установлен и запущен по умолчанию.</p>
 <p>Чтобы узнать включена ли синхронизация времени с NTP серверами, можно использовать утилиту <strong>timedatectl</strong>.</p>
 <p>Если синхронизация отключена, нужно убедиться, что сервис chronyd активирован:</p>
@@ -193,13 +189,13 @@ gfx.xrender.enabled = true
 </div>
 </div>
 <div class="section" id="systemd-analyze">
-<span id="index-19"></span><span id="id13"></span><h2>Как узнать какой сервис замедляет загрузку системы?<a class="headerlink" href="#systemd-analyze" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-18"></span><span id="id13"></span><h2>Как узнать какой сервис замедляет загрузку системы?<a class="headerlink" href="#systemd-analyze" title="Ссылка на этот заголовок">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemd-analyze blame
 </pre></div>
 </div>
 </div>
 <div class="section" id="nvidia">
-<span id="nvidia-encoding"></span><span id="index-20"></span><h2>Как ускорить кодирование видео с использованием видеокарт NVIDIA?<a class="headerlink" href="#nvidia" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="nvidia-encoding"></span><span id="index-19"></span><h2>Как ускорить кодирование видео с использованием видеокарт NVIDIA?<a class="headerlink" href="#nvidia" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этого нужно установить ffmpeg, а также проприетарные драйверы NVIDIA из репозиториев <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
 <p>Использование NVENC:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg -i input.mp4 -acodec aac -ac <span class="m">2</span> -ab 128k -vcodec h264_nvenc -profile high444p -pixel_format yuv444p -preset default output.mp4
@@ -213,20 +209,20 @@ gfx.xrender.enabled = true
 <p>Больше информации можно найти <a class="reference external" href="https://trac.ffmpeg.org/wiki/HWAccelIntro">здесь</a>.</p>
 </div>
 <div class="section" id="fedora">
-<span id="fs-selection"></span><span id="index-21"></span><h2>Какую файловую систему рекомендуется использовать на Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fs-selection"></span><span id="index-20"></span><h2>Какую файловую систему рекомендуется использовать на Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию применяется <a class="reference external" href="https://ru.wikipedia.org/wiki/Ext4">ext4</a>. На наш взгляд, это самая стабильная и популярная файловая система в настоящее время.</p>
 <p>Для хранения больших объёмов данных можно использовать <a class="reference external" href="https://ru.wikipedia.org/wiki/XFS">XFS</a>.</p>
 </div>
 <div class="section" id="btrfs">
-<span id="fs-btrfs"></span><span id="index-22"></span><h2>Что вы скажете о BTRFS?<a class="headerlink" href="#btrfs" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fs-btrfs"></span><span id="index-21"></span><h2>Что вы скажете о BTRFS?<a class="headerlink" href="#btrfs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы настоятельно не рекомендуем её использовать. Данная ФС очень нестабильна и часто приводит к полной потере всех данных на устройстве без возможности восстановления даже в идеальных условиях (было множество случаев у пользователей нашего канала).</p>
 </div>
 <div class="section" id="kde-plasma-5">
-<span id="window-borders"></span><span id="index-23"></span><h2>Как убрать рамки внутри окон в KDE Plasma 5?<a class="headerlink" href="#kde-plasma-5" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="window-borders"></span><span id="index-22"></span><h2>Как убрать рамки внутри окон в KDE Plasma 5?<a class="headerlink" href="#kde-plasma-5" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этого следует открыть <strong>Меню KDE</strong> - <strong>Компьютер</strong> - <strong>Параметры системы</strong> - <strong>Оформление приложений</strong> - страница <strong>Стиль интерфейса</strong> - кнопка <strong>Настроить</strong> - вкладка <strong>Рамки</strong>, <strong>убрать все флажки</strong> из чекбоксов на данной странице и нажать кнопку <strong>OK</strong>.</p>
 </div>
 <div class="section" id="gnome-qt">
-<span id="window-hidpi-qt"></span><span id="index-24"></span><h2>У меня в Gnome не работает масштабирование окон Qt приложений. Что делать?<a class="headerlink" href="#gnome-qt" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="window-hidpi-qt"></span><span id="index-23"></span><h2>У меня в Gnome не работает масштабирование окон Qt приложений. Что делать?<a class="headerlink" href="#gnome-qt" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для активации автоматического масштабирования достаточно прописать в файле <strong>~/.bashrc</strong> следующие строки:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export QT_SCALE_FACTOR=2
@@ -246,7 +242,7 @@ export QT_SCALE_FACTOR=2
 <p>Более подробную информацию можно найти в <a class="reference external" href="https://doc.qt.io/qt-5/highdpi.html">документации Qt</a>.</p>
 </div>
 <div class="section" id="telegram-desktop-fedora">
-<span id="telegram-fedora"></span><span id="index-25"></span><h2>Как лучше установить Telegram Desktop в Fedora?<a class="headerlink" href="#telegram-desktop-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="telegram-fedora"></span><span id="index-24"></span><h2>Как лучше установить Telegram Desktop в Fedora?<a class="headerlink" href="#telegram-desktop-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы настоятельно рекомендуем устанавливать данный мессенджер исключительно из <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install telegram-desktop
 </pre></div>
@@ -255,7 +251,7 @@ export QT_SCALE_FACTOR=2
 <p>Сборка Fedora поддерживает системные настройки тем, правильное сглаживание шрифтов (за счёт использование общесистемных настроек) и не имеет проблем со скоростью запуска.</p>
 </div>
 <div class="section" id="telegram-desktop">
-<span id="telegram-cleanup"></span><span id="index-26"></span><h2>Ранее я устанавливал официальную версию Telegram Desktop. Как мне очистить её остатки?<a class="headerlink" href="#telegram-desktop" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="telegram-cleanup"></span><span id="index-25"></span><h2>Ранее я устанавливал официальную версию Telegram Desktop. Как мне очистить её остатки?<a class="headerlink" href="#telegram-desktop" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Официальная версия с сайта создаёт ярлыки запуска и копирует ряд загруженных бинарных файлов в пользовательский домашний каталог. Избавимся от этого:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -266,7 +262,7 @@ export QT_SCALE_FACTOR=2
 <p>Теперь можно установить <a class="reference internal" href="#telegram-fedora"><span class="std std-ref">версию</span></a> из <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
 </div>
 <div class="section" id="sddm">
-<span id="sddm-disable-vkb"></span><span id="index-27"></span><h2>Как отключить виртуальную клавиатуру в SDDM?<a class="headerlink" href="#sddm" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="sddm-disable-vkb"></span><span id="index-26"></span><h2>Как отключить виртуальную клавиатуру в SDDM?<a class="headerlink" href="#sddm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы отключить поддержку ввода с виртуальной экранной клавиатуры в менеджере входа в систему SDDM, откроем в текстовом редакторе файл <strong>/etc/sddm.conf</strong>, а затем найдём и удалим следующую строку:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>InputMethod=qtvirtualkeyboard
 </pre></div>
@@ -278,7 +274,7 @@ export QT_SCALE_FACTOR=2
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
 </div>
 <div class="section" id="exfat-fedora">
-<span id="fedora-exfat"></span><span id="index-28"></span><h2>Почему я не могу использовать файловую систему exFAT в Fedora?<a class="headerlink" href="#exfat-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fedora-exfat"></span><span id="index-27"></span><h2>Почему я не могу использовать файловую систему exFAT в Fedora?<a class="headerlink" href="#exfat-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Файловая система exFAT защищена множеством патентов Microsoft, поэтому она не может быть включена в ядро Linux и соответственно быть доступной в Fedora по умолчанию.</p>
 <p>Для того, чтобы использовать её, необходимо установить пакет <strong>fuse-exfat</strong> из <a class="reference internal" href="package-manager.html#rd-repositories"><span class="std std-ref">репозитория</span></a> <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install fuse fuse-exfat
@@ -286,21 +282,21 @@ export QT_SCALE_FACTOR=2
 </div>
 </div>
 <div class="section" id="latex">
-<span id="latex-editor"></span><span id="index-29"></span><h2>В репозиториях есть полнофункциональные редакторы LaTeX?<a class="headerlink" href="#latex" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="latex-editor"></span><span id="index-28"></span><h2>В репозиториях есть полнофункциональные редакторы LaTeX?<a class="headerlink" href="#latex" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Для работы с документами в формате LaTeX рекомендуется использовать <strong>texmaker</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install texmaker
 </pre></div>
 </div>
 </div>
 <div class="section" id="latex-cyrillic">
-<span id="index-30"></span><span id="id14"></span><h2>Как установить поддержку кириллических шрифтов для LaTeX?<a class="headerlink" href="#latex-cyrillic" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-29"></span><span id="id14"></span><h2>Как установить поддержку кириллических шрифтов для LaTeX?<a class="headerlink" href="#latex-cyrillic" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Наборы кириллических шрифтов доступны в виде коллекции:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install texlive-collection-langcyrillic texlive-cyrillic texlive-russ texlive-babel-russian
 </pre></div>
 </div>
 </div>
 <div class="section" id="android-mtp">
-<span id="fuze-mtp"></span><span id="index-31"></span><h2>Как подключить смартфон на Android посредством протокола MTP?<a class="headerlink" href="#android-mtp" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fuze-mtp"></span><span id="index-30"></span><h2>Как подключить смартфон на Android посредством протокола MTP?<a class="headerlink" href="#android-mtp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для простой и удобной работы с файловой системой смартфона вне зависимости от используемых приложений, рабочей среды и файлового менеджера, мы рекомендуем использовать основанную на FUSE реализацию.</p>
 <p>Установим пакет <strong>jmtpfs</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install jmtpfs fuse
@@ -320,7 +316,7 @@ export QT_SCALE_FACTOR=2
 </div>
 </div>
 <div class="section" id="failed-to-start-load-kernel-modules">
-<span id="failed-to-start"></span><span id="index-32"></span><h2>При загрузке системы появляется ошибка Failed to start Load Kernel Modules. Как исправить?<a class="headerlink" href="#failed-to-start-load-kernel-modules" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="failed-to-start"></span><span id="index-31"></span><h2>При загрузке системы появляется ошибка Failed to start Load Kernel Modules. Как исправить?<a class="headerlink" href="#failed-to-start-load-kernel-modules" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Это известная проблема системы виртуализации <a class="reference internal" href="package-manager.html#virtualbox"><span class="std std-ref">VirtualBox</span></a>, использующей out-of-tree модули ядра, но может также проявляться и у пользователей проприетарных <a class="reference internal" href="package-manager.html#broadcom-drivers"><span class="std std-ref">драйверов Broadcom</span></a>.</p>
 <p>Для исправления необходимо <strong>после каждого обновления ядра</strong> выполнять пересборку initrd:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dracut -f
@@ -332,7 +328,7 @@ export QT_SCALE_FACTOR=2
 </div>
 </div>
 <div class="section" id="kwallet">
-<span id="kwallet-pam"></span><span id="index-33"></span><h2>Как настроить автоматическую разблокировку связки ключей KWallet при входе в систему?<a class="headerlink" href="#kwallet" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="kwallet-pam"></span><span id="index-32"></span><h2>Как настроить автоматическую разблокировку связки ключей KWallet при входе в систему?<a class="headerlink" href="#kwallet" title="Ссылка на этот заголовок">¶</a></h2>
 <p>KDE предоставляет особый PAM модуль для автоматической разблокировки связки паролей KDE Wallet при входе в систему. Установим его:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install pam-kwallet
 </pre></div>
@@ -341,7 +337,7 @@ export QT_SCALE_FACTOR=2
 <p>Сохраняем изменения и повторно входим в систему.</p>
 </div>
 <div class="section" id="youtube">
-<span id="youtube-download"></span><span id="index-34"></span><h2>Как скачать видео с Youtube?<a class="headerlink" href="#youtube" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="youtube-download"></span><span id="index-33"></span><h2>Как скачать видео с Youtube?<a class="headerlink" href="#youtube" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Скачать любое интересующее видео с Youtube, а также ряда других хостингов, можно посредством утилиты <strong>youtube-dl</strong>, доступной в основном репозитории Fedora:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install youtube-dl
 </pre></div>
@@ -366,14 +362,14 @@ export QT_SCALE_FACTOR=2
 <p>Для выхода из окна просмотра справки достаточно нажать <strong>Q</strong>.</p>
 </div>
 <div class="section" id="fedora-ms-windows">
-<span id="fedora-winiso"></span><span id="index-35"></span><h2>Как из Fedora записать образ с MS Windows на флешку?<a class="headerlink" href="#fedora-ms-windows" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fedora-winiso"></span><span id="index-34"></span><h2>Как из Fedora записать образ с MS Windows на флешку?<a class="headerlink" href="#fedora-ms-windows" title="Ссылка на этот заголовок">¶</a></h2>
 <p>К сожалению, <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">штатный способ</span></a> записи посредством использования утилиты dd не сработает в случае ISO образов MS Windows, поэтому для этого следует применять утилиту WoeUSB:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install WoeUSB
 </pre></div>
 </div>
 </div>
 <div class="section" id="xdg-reallocate">
-<span id="index-36"></span><span id="id15"></span><h2>Как переместить стандартные каталоги для документов, загрузок и т.д.?<a class="headerlink" href="#xdg-reallocate" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-35"></span><span id="id15"></span><h2>Как переместить стандартные каталоги для документов, загрузок и т.д.?<a class="headerlink" href="#xdg-reallocate" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Откроем файл <strong>~/.config/user-dirs.dirs</strong> в любом текстовом редакторе и внесём свои правки.</p>
 <p>Стандартные настройки:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">XDG_DESKTOP_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Рабочий стол&quot;</span>
@@ -393,7 +389,7 @@ export QT_SCALE_FACTOR=2
 <p>Убедитесь, что перед применением изменений данные каталоги существуют, иначе будет выполнен сброс на стандартное значение.</p>
 </div>
 <div class="section" id="hidpi-sddm">
-<span id="sddm-hidpi"></span><span id="index-37"></span><h2>У меня HiDPI дисплей и в SDDM всё отображается очень мелко. Как настроить?<a class="headerlink" href="#hidpi-sddm" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="sddm-hidpi"></span><span id="index-36"></span><h2>У меня HiDPI дисплей и в SDDM всё отображается очень мелко. Как настроить?<a class="headerlink" href="#hidpi-sddm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Откроем файл <strong>/etc/sddm.conf</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/sddm.conf
 </pre></div>
@@ -409,7 +405,7 @@ export QT_SCALE_FACTOR=2
 <p>Сохраним изменения и перезапустим систему.</p>
 </div>
 <div class="section" id="sddm-avatars">
-<span id="index-38"></span><span id="id16"></span><h2>Как отключить отображение пользовательских аватаров в SDDM?<a class="headerlink" href="#sddm-avatars" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-37"></span><span id="id16"></span><h2>Как отключить отображение пользовательских аватаров в SDDM?<a class="headerlink" href="#sddm-avatars" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Пользовательские аватары представляют собой файл <strong>~/.face.icon</strong>. При запуске SDDM пытается прочитать его для каждого существующего пользователя.</p>
 <p>Для отключения данной функции откроем файл <strong>/etc/sddm.conf</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/sddm.conf
@@ -423,7 +419,7 @@ export QT_SCALE_FACTOR=2
 <p>Сохраним изменения и перезапустим систему.</p>
 </div>
 <div class="section" id="power-usage">
-<span id="index-39"></span><span id="id17"></span><h2>Как узнать какие процессы больше всего разряжают аккумулятор ноутбука?<a class="headerlink" href="#power-usage" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-38"></span><span id="id17"></span><h2>Как узнать какие процессы больше всего разряжают аккумулятор ноутбука?<a class="headerlink" href="#power-usage" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим утилиту <strong>powertop</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install powertop
 </pre></div>
@@ -435,7 +431,7 @@ export QT_SCALE_FACTOR=2
 <p>Процессы, которые больше всех влияют на скорость разряда аккумуляторных батарей, будут отображаться в верхней части.</p>
 </div>
 <div class="section" id="system-info">
-<span id="index-40"></span><span id="id18"></span><h2>Как собрать информацию о системе?<a class="headerlink" href="#system-info" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-39"></span><span id="id18"></span><h2>Как собрать информацию о системе?<a class="headerlink" href="#system-info" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим утилиту <strong>inxi</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install inxi
 </pre></div>
@@ -447,7 +443,7 @@ export QT_SCALE_FACTOR=2
 <p>На выходе будет сгенерирована уникальная ссылка, которую можно передать на <a class="reference internal" href="generic-info.html#get-help"><span class="std std-ref">форум, в чат</span></a> и т.д.</p>
 </div>
 <div class="section" id="l2tp">
-<span id="nm-l2tp"></span><span id="index-41"></span><h2>Мой провайдер использует L2TP. Как мне добавить его поддержку?<a class="headerlink" href="#l2tp" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="nm-l2tp"></span><span id="index-40"></span><h2>Мой провайдер использует L2TP. Как мне добавить его поддержку?<a class="headerlink" href="#l2tp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Плагин L2TP для Network Manager должен присутствовать в Workstation и всех spin live образах по умолчанию, но если его по какой-то причине нет (например была выборана минимальная установка netinstall), то добавить его можно самостоятельно.</p>
 <p>Для Gnome/XFCE и других, основанных на GTK:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install NetworkManager-l2tp-gnome
@@ -461,7 +457,7 @@ export QT_SCALE_FACTOR=2
 <p>Однако следует помнить, что у некоторых провайдеров используется L2TP со специальными патчами Microsoft (т.н. win реализация), что может вызывать нестабильность и сбои при подключении. В таком случае рекомендуется приобрести любой недорогой роутер с поддержкой L2TP (можно б/у) и использовать его в качестве клиента для подключения к сети провайдера.</p>
 </div>
 <div class="section" id="iconv-convert">
-<span id="index-42"></span><span id="id19"></span><h2>Как конвертировать текстовый файл из одной кодировки в другую?<a class="headerlink" href="#iconv-convert" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-41"></span><span id="id19"></span><h2>Как конвертировать текстовый файл из одной кодировки в другую?<a class="headerlink" href="#iconv-convert" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для быстрой перекодировки текстовых файлов из одной кодировки в другую можно использовать утилиту iconv.</p>
 <p>Пример перекодировки файла из cp1251 (Windows-1251) в юникод (UTF-8):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>iconv -f cp1251 -t utf8 test.txt &gt; result.txt
@@ -470,7 +466,7 @@ export QT_SCALE_FACTOR=2
 <p>Здесь <strong>test.txt</strong> - исходный файл с неправильной кодировкой, а <strong>result.txt</strong> используется для записи результата преобразования.</p>
 </div>
 <div class="section" id="wi-fi">
-<span id="nm-wificon"></span><span id="index-43"></span><h2>Как подключиться к Wi-Fi из консоли?<a class="headerlink" href="#wi-fi" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="nm-wificon"></span><span id="index-42"></span><h2>Как подключиться к Wi-Fi из консоли?<a class="headerlink" href="#wi-fi" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если ранее уже были созданы Wi-Fi подключения, то выведем их список:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nmcli connection <span class="p">|</span> grep wifi
 </pre></div>
@@ -481,7 +477,7 @@ export QT_SCALE_FACTOR=2
 </div>
 </div>
 <div class="section" id="nm-wificli">
-<span id="index-44"></span><span id="id20"></span><h2>Как подключиться к Wi-Fi из консоли при отсутствии соединений?<a class="headerlink" href="#nm-wificli" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-43"></span><span id="id20"></span><h2>Как подключиться к Wi-Fi из консоли при отсутствии соединений?<a class="headerlink" href="#nm-wificli" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если <a class="reference internal" href="#nm-wificon"><span class="std std-ref">готовых соединений</span></a> для Wi-Fi нет, но известны SSID и пароль, то можно осуществить подключение напрямую:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nmcli device wifi connect MY_NETWORK password XXXXXXXXXX
 </pre></div>
@@ -489,7 +485,7 @@ export QT_SCALE_FACTOR=2
 <p>Здесь <strong>MY_NETWORK</strong> - название SSID точки доступа, к которой мы планируем подключиться, а <strong>XXXXXXXXXX</strong> - её пароль.</p>
 </div>
 <div class="section" id="kde-connect">
-<span id="index-45"></span><span id="id21"></span><h2>Как лучше работать со смартфоном посредством компьютера или ноутбука?<a class="headerlink" href="#kde-connect" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-44"></span><span id="id21"></span><h2>Как лучше работать со смартфоном посредством компьютера или ноутбука?<a class="headerlink" href="#kde-connect" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для простой и эффективной работы со смартфоном на базе ОС Android пользователи рабочей среды KDE Plasma 5 могут использовать KDE Connect:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install kde-connect
 </pre></div>
@@ -504,7 +500,7 @@ export QT_SCALE_FACTOR=2
 <p>Запустим плазмоид KDE Connect и выполним сопряжение.</p>
 </div>
 <div class="section" id="kde-connect-firewalld">
-<span id="index-46"></span><span id="id22"></span><h2>KDE Connect не видит мой смартфон. Как исправить?<a class="headerlink" href="#kde-connect-firewalld" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-45"></span><span id="id22"></span><h2>KDE Connect не видит мой смартфон. Как исправить?<a class="headerlink" href="#kde-connect-firewalld" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Добавим правило, разрешающее входящие соединения к сервису kdeconnectd посредством <a class="reference internal" href="security.html#firewalld-about"><span class="std std-ref">Firewalld</span></a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --add-service<span class="o">=</span>kde-connect --permanent
 </pre></div>
@@ -514,21 +510,8 @@ export QT_SCALE_FACTOR=2
 </pre></div>
 </div>
 </div>
-<div class="section" id="nvidia-gtx-1050">
-<span id="nvidia-gtx1050"></span><span id="index-47"></span><h2>В моём ноутбуке установлена видеокарта NVIDIA GTX 1050 и после запуска система зависает. Что делать?<a class="headerlink" href="#nvidia-gtx-1050" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Случайные зависания системы, неработоспособность тачпада и других USB устройств - это следствие сбоев при работе свободного драйвера nouveau на данной видеокарте.</p>
-<p>В качестве решения необходимо установить проприетарные драйверы по такому алгоритму:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li>произвести чистую установку систему со <a class="reference internal" href="generic-info.html#download"><span class="std std-ref">свежего Fedora Live USB</span></a> (respin);</li>
-<li>войти в систему, установить все обновления и, <strong>не перезагружаясь</strong>, выполнить установку <a class="reference internal" href="package-manager.html#nvidia-drivers"><span class="std std-ref">проприетарных драйверов</span></a> Optimus по <strong>альтернативному варианту</strong>.</li>
-<li>выполнить перезагрузку системы.</li>
-</ol>
-</div></blockquote>
-<p>Если всё сделано верно, то система начнёт функционировать в штатном режиме. В противном случае следует повторить с самого начала.</p>
-</div>
 <div class="section" id="editor-selection">
-<span id="index-48"></span><span id="id23"></span><h2>Как выбрать предпочитаемый текстовый редактор в консольном режиме?<a class="headerlink" href="#editor-selection" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-46"></span><span id="id23"></span><h2>Как выбрать предпочитаемый текстовый редактор в консольном режиме?<a class="headerlink" href="#editor-selection" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для выбора предпочитаемого текстового редактора следует применять переменные окружения, прописав их в личном файле <strong>~/.bashrc</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">VISUAL</span><span class="o">=</span>vim
 <span class="nb">export</span> <span class="nv">EDITOR</span><span class="o">=</span>vim
@@ -538,14 +521,14 @@ export QT_SCALE_FACTOR=2
 <p><strong>VISUAL</strong> - предпочитаемый текстовый редактор с графическим интерфейсом пользователя, <strong>EDITOR</strong> - текстовый, а <strong>SUDO_EDITOR</strong> используется в <a class="reference internal" href="security.html#sudo-edit-config"><span class="std std-ref">sudoedit</span></a>.</p>
 </div>
 <div class="section" id="git">
-<span id="editor-git"></span><span id="index-49"></span><h2>Как выбрать предпочитаемый текстовый редактор для Git?<a class="headerlink" href="#git" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="editor-git"></span><span id="index-47"></span><h2>Как выбрать предпочитаемый текстовый редактор для Git?<a class="headerlink" href="#git" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Хотя Git подчиняется настройкам <a class="reference internal" href="#editor-selection"><span class="std std-ref">редактора по умолчанию</span></a>, допустимо его указать явно в файле конфигурации:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global core.editor vim
 </pre></div>
 </div>
 </div>
 <div class="section" id="iso-fedora">
-<span id="iso-mount"></span><span id="index-50"></span><h2>Как смонтировать ISO образ в Fedora?<a class="headerlink" href="#iso-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="iso-mount"></span><span id="index-48"></span><h2>Как смонтировать ISO образ в Fedora?<a class="headerlink" href="#iso-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Создадим точку монтирования:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mkdir /mnt/iso
 </pre></div>
@@ -560,7 +543,7 @@ export QT_SCALE_FACTOR=2
 </div>
 </div>
 <div class="section" id="cd-dvd-iso">
-<span id="iso-create"></span><span id="index-51"></span><h2>Как считать содержимое CD/DVD диска в файл ISO образа?<a class="headerlink" href="#cd-dvd-iso" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="iso-create"></span><span id="index-49"></span><h2>Как считать содержимое CD/DVD диска в файл ISO образа?<a class="headerlink" href="#cd-dvd-iso" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этого можно воспользоваться утилитой <strong>dd</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dd <span class="k">if</span><span class="o">=</span>/dev/sr0 <span class="nv">of</span><span class="o">=</span>/path/to/image.iso <span class="nv">bs</span><span class="o">=</span>4M <span class="nv">status</span><span class="o">=</span>progress
 </pre></div>
@@ -568,7 +551,7 @@ export QT_SCALE_FACTOR=2
 <p>Здесь <strong>/dev/sr0</strong> имя устройства привода для чтения оптических дисков, а <strong>/path/to/image.iso</strong> - файл образа, в котором будет сохранён результат.</p>
 </div>
 <div class="section" id="dd-mount">
-<span id="index-52"></span><span id="id24"></span><h2>Как смонтировать посекторный образ раздела?<a class="headerlink" href="#dd-mount" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-50"></span><span id="id24"></span><h2>Как смонтировать посекторный образ раздела?<a class="headerlink" href="#dd-mount" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Монтирование raw образа раздела, созданного посредством утилиты <strong>dd</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mount -o ro,loop /path/to/image.raw /mnt/dd-image
 </pre></div>
@@ -580,7 +563,7 @@ export QT_SCALE_FACTOR=2
 <p>Здесь <strong>/path/to/image.iso</strong> - файл образа на диске.</p>
 </div>
 <div class="section" id="dd-fullraw">
-<span id="index-53"></span><span id="id25"></span><h2>Как смонтировать посекторный образ диска целиком?<a class="headerlink" href="#dd-fullraw" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-51"></span><span id="id25"></span><h2>Как смонтировать посекторный образ диска целиком?<a class="headerlink" href="#dd-fullraw" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Смонтировать образ диска целиком напрямую не получится, поэтому сначала придётся определить смещения разделов относительно его начала.</p>
 <p>Запустим утилиту <strong>fdisk</strong> и попытаемся найти внутри образа разделы:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo fdisk -l /path/to/image.raw
@@ -597,6 +580,49 @@ export QT_SCALE_FACTOR=2
 </pre></div>
 </div>
 <p>Здесь <strong>/path/to/image.iso</strong> - файл образа на диске.</p>
+</div>
+<div class="section" id="set-timezone">
+<span id="index-52"></span><span id="id26"></span><h2>Как изменить часовой пояс?<a class="headerlink" href="#set-timezone" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Изменить часовой пояс можно посредством утилиты <strong>timedatectl</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo timedatectl set-timezone Europe/Moscow
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-keyboard-gui">
+<span id="index-53"></span><span id="id27"></span><h2>Как изменить список доступных раскладок клавиатуры и настроить их переключение в графическом режиме?<a class="headerlink" href="#set-keyboard-gui" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Настройка переключения по <strong>Alt + Shift</strong>, раскладки EN и RU:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo localectl set-x11-keymap us,ru pc105 <span class="s2">&quot;&quot;</span> grp:alt_shift_toggle
+</pre></div>
+</div>
+<p>Настройка переключения по <strong>Ctrl + Shift</strong>, раскладки EN и RU:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo localectl set-x11-keymap us,ru pc105 <span class="s2">&quot;&quot;</span> grp:ctrl_shift_toggle
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-keyboard-console">
+<span id="index-54"></span><span id="id28"></span><h2>Как изменить список доступных раскладок клавиатуры и настроить их переключение в текстовом режиме?<a class="headerlink" href="#set-keyboard-console" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установка русской раскладки и режимов переключения по умолчанию (<strong>Alt + Shift</strong>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo localectl set-keymap ru
+</pre></div>
+</div>
+<p>Установка русской раскладки и режима переключения <strong>Alt + Shift</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo localectl set-keymap ruwin_alt_sh-UTF-8
+</pre></div>
+</div>
+<p>Установка русской раскладки и режима переключения <strong>Ctrl + Shift</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo localectl set-keymap ruwin_ct_sh-UTF-8
+</pre></div>
+</div>
+</div>
+<div class="section" id="gtk-kde">
+<span id="gtk-plasma-style"></span><span id="index-55"></span><h2>Можно ли заставить GTK приложения выглядеть нативно в KDE?<a class="headerlink" href="#gtk-kde" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим пакет с темой Breeze для GTK2 и GTK3:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install breeze-gtk
+</pre></div>
+</div>
+<p>Зайдём в <strong>Параметры системы</strong> - <strong>Внешний вид</strong> - <strong>Оформление приложений</strong> - <strong>Стиль программ GNOME (GTK+)</strong>.</p>
+<p>Выберем <strong>Breeze</strong> (при использовании тёмной темы в KDE - <strong>Breeze Dark</strong>) в качестве темы GTK2 и GTK3, а также укажем шрифт, который будет использовать при отображении диалоговых окон.</p>
+<p>Также установим <strong>Breeze</strong> для курсоров мыши и темы значков. Применим изменения и перезапустим все GTK приложения.</p>
 </div>
 </div>
 
@@ -634,7 +660,6 @@ export QT_SCALE_FACTOR=2
 <li class="toctree-l2"><a class="reference internal" href="#grub-2">Как мне переустановить Grub 2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#grub-rebuild">Как пересобрать конфиг Grub 2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slow-shutdown">Система медленно завершает работу. Можно ли это ускорить?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#libcurl-gnutls-so-4">Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firefox">Как активировать аппаратное ускорение в браузере Firefox?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#browser-hwaccel">Как активировать аппаратное ускорение декодирования мультимедиа в браузерах?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#video-hwaccel">В каких проигрывателях реализовано аппаратное ускорение декодирования мультимедиа?</a></li>
@@ -673,15 +698,20 @@ export QT_SCALE_FACTOR=2
 <li class="toctree-l2"><a class="reference internal" href="#nm-wificli">Как подключиться к Wi-Fi из консоли при отсутствии соединений?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde-connect">Как лучше работать со смартфоном посредством компьютера или ноутбука?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde-connect-firewalld">KDE Connect не видит мой смартфон. Как исправить?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#nvidia-gtx-1050">В моём ноутбуке установлена видеокарта NVIDIA GTX 1050 и после запуска система зависает. Что делать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#editor-selection">Как выбрать предпочитаемый текстовый редактор в консольном режиме?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git">Как выбрать предпочитаемый текстовый редактор для Git?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#iso-fedora">Как смонтировать ISO образ в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cd-dvd-iso">Как считать содержимое CD/DVD диска в файл ISO образа?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dd-mount">Как смонтировать посекторный образ раздела?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dd-fullraw">Как смонтировать посекторный образ диска целиком?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-timezone">Как изменить часовой пояс?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-keyboard-gui">Как изменить список доступных раскладок клавиатуры и настроить их переключение в графическом режиме?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-keyboard-console">Как изменить список доступных раскладок клавиатуры и настроить их переключение в текстовом режиме?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gtk-kde">Можно ли заставить GTK приложения выглядеть нативно в KDE?</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
 </ul>
@@ -691,7 +721,7 @@ export QT_SCALE_FACTOR=2
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="security.html" title="предыдущая глава">Вопросы, связанные с безопасностью</a></li>
-      <li>Next: <a href="tips-and-tricks.html" title="следующая глава">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
+      <li>Next: <a href="hardware.html" title="следующая глава">Вопросы, связанные с использованием различного оборудования</a></li>
   </ul></li>
 </ul>
 </div>

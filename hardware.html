@@ -1,0 +1,183 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Вопросы, связанные с использованием различного оборудования &#8212; Документация Fedora FAQ RU 2018.12.25</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="shortcut icon" href="_static/faq-icon.ico"/>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="Вопросы, связанные с разработкой и сборкой пакетов" href="development.html" />
+    <link rel="prev" title="Вопросы, связанные с работой в системе" href="using-system.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+    <link rel="apple-touch-icon" href="_static/faq-icon.png" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="hardware">
+<span id="id1"></span><h1>Вопросы, связанные с использованием различного оборудования<a class="headerlink" href="#hardware" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="linux">
+<span id="linux-hardware"></span><span id="index-0"></span><h2>На что в первую очередь следует обратить внимание при выборе ноутбука для Linux?<a class="headerlink" href="#linux" title="Ссылка на этот заголовок">¶</a></h2>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Следует обратить внимание на производителя <a class="reference internal" href="#wifi-chip"><span class="std std-ref">установленного Wi-Fi модуля</span></a>.</li>
+<li>Не рекомендуется приобретать устройства с гибридной графикой ибо технология NVIDIA Optimus в настоящее время не поддерживается под GNU/Linux официально и работает исключительно посредством Bumblebee от сторонних разработчиков, который часто работает нестабильно.</li>
+<li>Ни при каком условии не приобретать ноутбук с видеокартой <a class="reference internal" href="#nvidia-gtx1050"><span class="std std-ref">NVIDIA GeForce GTX 1050</span></a>.</li>
+<li>Перед покупкой рекомендуется исследовать работу <a class="reference internal" href="generic-info.html#download"><span class="std std-ref">свежего Fedora Live USB</span></a> непосредственно на данном устройстве, а также проверить <a class="reference internal" href="administration.html#journal-current"><span class="std std-ref">вывод dmesg</span></a> на наличие ошибок ACPI.</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="uefi-bios-fedora">
+<span id="fedora-fwupd"></span><span id="index-1"></span><h2>Как обновить прошивку UEFI BIOS и других устройств непосредственно из Fedora?<a class="headerlink" href="#uefi-bios-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для оперативного обновления микропрограмм (прошивок) существует утилита <a class="reference external" href="https://github.com/hughsie/fwupd">fwupd</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install fwupd
+</pre></div>
+</div>
+<p>Внимание! Для работы fwupd система должна быть установлена строго в <a class="reference internal" href="installation.html#uefi-boot"><span class="std std-ref">UEFI режиме</span></a>.</p>
+<p>Обновление базы данных программы:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fwupdmgr refresh
+</pre></div>
+</div>
+<p>Вывод списка устройств, микропрограмма которых может быть обновлена:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fwupdmgr get-devices
+</pre></div>
+</div>
+<p>Проверка наличия обновлений с выводом подробной информации о каждом из них:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fwupdmgr get-updates
+</pre></div>
+</div>
+<p>Установка обнаруженных обновлений микропрограмм:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fwupdmgr update
+</pre></div>
+</div>
+<p>Некоторые устройства могут быть обновлены лишь при следующей загрузке системы, поэтому выполним перезагрузку:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</div>
+<div class="section" id="wi-fi-linux">
+<span id="wifi-chip"></span><span id="index-2"></span><h2>Какие модули Wi-Fi корректно работают в Linux?<a class="headerlink" href="#wi-fi-linux" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Без проблем работают Wi-Fi модули следующих производителей:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Qualcomm Atheros (однако ath10k требуют загрузки прошивок из комплекта поставки ядра);</li>
+<li>Intel Wireless (требуют загрузки индивидуальных прошивок iwl из поставки ядра).</li>
+</ul>
+</div></blockquote>
+<p>Работают 50/50:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Realtek (широко известны проблемы с чипами серий rtl8192cu и rtl8812au);</li>
+<li>MediaTek (ранее назывался Ralink).</li>
+</ul>
+</div></blockquote>
+<p>Не работают:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Broadcom (для их работы необходима установка <a class="reference internal" href="package-manager.html#broadcom-drivers"><span class="std std-ref">проприетарных драйверов</span></a>, которые часто ведут себя непредсказуемо и могут вызывать сбои в работе ядра системы).</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="nvidia-gtx-1050">
+<span id="nvidia-gtx1050"></span><span id="index-3"></span><h2>В моём ноутбуке установлена видеокарта NVIDIA GTX 1050 и после запуска система зависает. Что делать?<a class="headerlink" href="#nvidia-gtx-1050" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Случайные зависания системы, неработоспособность тачпада и других USB устройств - это следствие сбоев при работе свободного драйвера nouveau на данной видеокарте.</p>
+<p>В качестве решения необходимо установить проприетарные драйверы по такому алгоритму:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>произвести чистую установку систему со <a class="reference internal" href="generic-info.html#download"><span class="std std-ref">свежего Fedora Live USB</span></a> (respin);</li>
+<li>войти в систему, установить все обновления и, <strong>не перезагружаясь</strong>, выполнить установку <a class="reference internal" href="package-manager.html#nvidia-drivers"><span class="std std-ref">проприетарных драйверов</span></a> Optimus по <strong>альтернативному варианту</strong>.</li>
+<li>выполнить перезагрузку системы.</li>
+</ol>
+</div></blockquote>
+<p>Если всё сделано верно, то система начнёт функционировать в штатном режиме. В противном случае следует повторить с самого начала.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Искать" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Навигация</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Вопросы, связанные с установкой системы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package-manager.html">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные с использованием различного оборудования</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#linux">На что в первую очередь следует обратить внимание при выборе ноутбука для Linux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uefi-bios-fedora">Как обновить прошивку UEFI BIOS и других устройств непосредственно из Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wi-fi-linux">Какие модули Wi-Fi корректно работают в Linux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvidia-gtx-1050">В моём ноутбуке установлена видеокарта NVIDIA GTX 1050 и после запуска система зависает. Что делать?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
+<li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="using-system.html" title="предыдущая глава">Вопросы, связанные с работой в системе</a></li>
+      <li>Next: <a href="development.html" title="следующая глава">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
+  </ul></li>
+</ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018 - 2019, EasyCoding Team and contributors.
+      
+    </div>
+
+    
+    <a href="https://github.com/RussianFedora/FAQ" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="_static/forkme_right_green.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

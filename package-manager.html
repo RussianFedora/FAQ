@@ -211,45 +211,37 @@ sudo dnf system-upgrade reboot
 <span id="flatpak"></span><span id="index-19"></span><h2>Как работать с Flatpak пакетами в Fedora?<a class="headerlink" href="#flatpak-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2018/07/25/rabotaem-s-flatpak-paketami-v-fedora.html">здесь</a>.</p>
 </div>
-<div class="section" id="create-package">
-<span id="index-20"></span><span id="id12"></span><h2>Я хочу создать пакет для Fedora. Что мне следует знать?<a class="headerlink" href="#create-package" title="Ссылка на этот заголовок">¶</a></h2>
-<p>См. <a class="reference external" href="https://docs.fedoraproject.org/quick-docs/en-US/creating-rpm-packages.html">здесь</a> и <a class="reference external" href="https://www.easycoding.org/2018/06/17/pravilno-paketim-po-dlya-linux.html">здесь</a>.</p>
-</div>
 <div class="section" id="multimedia-codecs">
-<span id="index-21"></span><span id="id13"></span><h2>В системе нет кодеков мультимедиа. Как их установить?<a class="headerlink" href="#multimedia-codecs" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-20"></span><span id="id12"></span><h2>В системе нет кодеков мультимедиа. Как их установить?<a class="headerlink" href="#multimedia-codecs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для начала следует подключить репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установить кодеки из группы <strong>multimedia</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf groupinstall multimedia
 </pre></div>
 </div>
 </div>
 <div class="section" id="chromium">
-<span id="chromium-codecs"></span><span id="index-22"></span><h2>Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?<a class="headerlink" href="#chromium" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="chromium-codecs"></span><span id="index-21"></span><h2>Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?<a class="headerlink" href="#chromium" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Из-за патентных ограничений браузер Chromium в репозиториях Fedora сильно кастрирован. Для восстановления полной функциональности необходимо подключить RPMFusion и установить пакет с кодеками для данного браузера:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install chromium-libs-media-freeworld
 </pre></div>
 </div>
 </div>
 <div class="section" id="firefox">
-<span id="firefox-codecs"></span><span id="index-23"></span><h2>Как активировать все доступные кодеки в браузере Firefox?<a class="headerlink" href="#firefox" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="firefox-codecs"></span><span id="index-22"></span><h2>Как активировать все доступные кодеки в браузере Firefox?<a class="headerlink" href="#firefox" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Браузер Mozilla Firefox использует ffmpeg для работы с мультимедийным контентом, поэтому необходимо его установить из репозитория <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install ffmpeg-libs
 </pre></div>
 </div>
 </div>
 <div class="section" id="nvidia">
-<span id="nvidia-drivers"></span><span id="index-24"></span><h2>Как правильно установить драйверы NVIDIA?<a class="headerlink" href="#nvidia" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="nvidia-drivers"></span><span id="index-23"></span><h2>Как правильно установить драйверы NVIDIA?<a class="headerlink" href="#nvidia" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html">здесь</a>.</p>
 </div>
-<div class="section" id="rpm-mock">
-<span id="build-package"></span><span id="index-25"></span><h2>Как собрать RPM пакет в mock?<a class="headerlink" href="#rpm-mock" title="Ссылка на этот заголовок">¶</a></h2>
-<p>См. <a class="reference external" href="https://www.easycoding.org/2017/02/22/sobiraem-rpm-pakety-dlya-fedora-v-mock.html">здесь</a>.</p>
-</div>
 <div class="section" id="virtualization">
-<span id="index-26"></span><span id="id14"></span><h2>Какую систему управления виртуальными машинами лучше установить?<a class="headerlink" href="#virtualization" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-24"></span><span id="id13"></span><h2>Какую систему управления виртуальными машинами лучше установить?<a class="headerlink" href="#virtualization" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Рекомендуется использовать <a class="reference internal" href="#kvm"><span class="std std-ref">KVM</span></a>, т.к. её гипервизор и необходимые модули уже находятся в ядре Linux и не вызывают проблем.</p>
 </div>
 <div class="section" id="kvm">
-<span id="index-27"></span><span id="id15"></span><h2>Как правильно установить систему виртуализации KVM?<a class="headerlink" href="#kvm" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-25"></span><span id="id14"></span><h2>Как правильно установить систему виртуализации KVM?<a class="headerlink" href="#kvm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим KVM и графическую утилиту управления виртуальными машинами <strong>virt-manager</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf group install Virtualization
 </pre></div>
@@ -260,14 +252,14 @@ sudo dnf system-upgrade reboot
 </div>
 </div>
 <div class="section" id="kvm-users">
-<span id="index-28"></span><span id="id16"></span><h2>Как отключить запрос пароля во время запуска или остановки виртуальных машин при использовании KVM?<a class="headerlink" href="#kvm-users" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-26"></span><span id="id15"></span><h2>Как отключить запрос пароля во время запуска или остановки виртуальных машин при использовании KVM?<a class="headerlink" href="#kvm-users" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Возможностью управления виртуальными машинами обладают члены группы <strong>libvirt</strong>, поэтому нужно добавить в неё свой аккаунт:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G libvirt <span class="k">$(</span>whoami<span class="k">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="virtualbox-fedora">
-<span id="virtualbox"></span><span id="index-29"></span><h2>Как правильно установить VirtualBox в Fedora?<a class="headerlink" href="#virtualbox-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="virtualbox"></span><span id="index-27"></span><h2>Как правильно установить VirtualBox в Fedora?<a class="headerlink" href="#virtualbox-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сначала нужно подключить репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>, затем выполнить:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
 sudo dnf install gcc kernel-devel kernel-headers akmod-VirtualBox VirtualBox
@@ -280,7 +272,7 @@ sudo usermod -a -G vboxsf <span class="k">$(</span>whoami<span class="k">)</span
 </div>
 </div>
 <div class="section" id="wi-fi-broadcom">
-<span id="broadcom-drivers"></span><span id="index-30"></span><h2>Как правильно установить драйверы Wi-Fi модулей Broadcom?<a class="headerlink" href="#wi-fi-broadcom" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="broadcom-drivers"></span><span id="index-28"></span><h2>Как правильно установить драйверы Wi-Fi модулей Broadcom?<a class="headerlink" href="#wi-fi-broadcom" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сначала нужно подключить <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>, затем выполнить:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
 sudo dnf install gcc kernel-devel kernel-headers akmod-wl
@@ -288,19 +280,15 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 </div>
 </div>
 <div class="section" id="dnf-caches">
-<span id="index-31"></span><span id="id17"></span><h2>Как отключить автообновление кэшей dnf?<a class="headerlink" href="#dnf-caches" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-29"></span><span id="id16"></span><h2>Как отключить автообновление кэшей dnf?<a class="headerlink" href="#dnf-caches" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2016/01/27/otklyuchaem-avto-obnovlenie-v-dnf-pod-fedora-22.html">здесь</a>.</p>
 </div>
 <div class="section" id="dkms-akmods">
-<span id="index-32"></span><span id="id18"></span><h2>Что лучше: dkms или akmods?<a class="headerlink" href="#dkms-akmods" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-30"></span><span id="id17"></span><h2>Что лучше: dkms или akmods?<a class="headerlink" href="#dkms-akmods" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Конечно akmods, т.к. он автоматически собирает и устанавливает полноценные RPM пакеты.</p>
 </div>
-<div class="section" id="becoming-maintainer">
-<span id="index-33"></span><span id="id19"></span><h2>Как добавить свой пакет в репозиторий Fedora и стать мейнтейнером?<a class="headerlink" href="#becoming-maintainer" title="Ссылка на этот заголовок">¶</a></h2>
-<p>См. <a class="reference external" href="https://www.easycoding.org/2016/06/20/dobavlyaem-paket-v-glavnyj-repozitorij-fedora.html">здесь</a>.</p>
-</div>
 <div class="section" id="updates-testing">
-<span id="index-34"></span><span id="id20"></span><h2>Каким способом можно обновить пакет из тестовых репозиториев?<a class="headerlink" href="#updates-testing" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-31"></span><span id="id18"></span><h2>Каким способом можно обновить пакет из тестовых репозиториев?<a class="headerlink" href="#updates-testing" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы установить обновление из Fedora Testing, необходимо временно подключить соответствующий репозиторий:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh foo-bar* --enablerepo<span class="o">=</span>updates-testing
 </pre></div>
@@ -308,13 +296,13 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 <p>Репозиторий <strong>updates-testing</strong> подключается однократно, только для данного сеанса работы dnf.</p>
 </div>
 <div class="section" id="dnf-list-contents">
-<span id="index-35"></span><span id="id21"></span><h2>Как получить список файлов установленного пакета?<a class="headerlink" href="#dnf-list-contents" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-32"></span><span id="id19"></span><h2>Как получить список файлов установленного пакета?<a class="headerlink" href="#dnf-list-contents" title="Ссылка на этот заголовок">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf repoquery -l foo-bar
 </pre></div>
 </div>
 </div>
 <div class="section" id="dnf-find-file">
-<span id="index-36"></span><span id="id22"></span><h2>Как узнать в каком пакете находится конкретный файл?<a class="headerlink" href="#dnf-find-file" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-33"></span><span id="id20"></span><h2>Как узнать в каком пакете находится конкретный файл?<a class="headerlink" href="#dnf-find-file" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этого можно воспользоваться плагином dnf repoquery:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf repoquery -f */имя_файла
 </pre></div>
@@ -325,7 +313,7 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 </div>
 </div>
 <div class="section" id="java">
-<span id="java-multiple"></span><span id="index-37"></span><h2>Можно ли установить несколько версий Java в систему?<a class="headerlink" href="#java" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="java-multiple"></span><span id="index-34"></span><h2>Можно ли установить несколько версий Java в систему?<a class="headerlink" href="#java" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, это возможно. В настоящее время поддерживаются следующие версии Java. Допускается их одновременная установка.</p>
 <p>Java 8:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install java-1.8.0-openjdk
@@ -341,14 +329,14 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 </div>
 </div>
 <div class="section" id="alternatives-java">
-<span id="index-38"></span><span id="id23"></span><h2>Как мне выбрать версию Java по умолчанию?<a class="headerlink" href="#alternatives-java" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-35"></span><span id="id21"></span><h2>Как мне выбрать версию Java по умолчанию?<a class="headerlink" href="#alternatives-java" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для выбора дефолтной версии Java следует использовать систему альтернатив:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo update-alternatives --config java
 </pre></div>
 </div>
 </div>
 <div class="section" id="dnf-repo-contents">
-<span id="index-39"></span><span id="id24"></span><h2>Как вывести список пакетов из определённого репозитория?<a class="headerlink" href="#dnf-repo-contents" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-36"></span><span id="id22"></span><h2>Как вывести список пакетов из определённого репозитория?<a class="headerlink" href="#dnf-repo-contents" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Вывод полного списка пакетов из репозитория (на примере rpmfusion-free):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf repo-pkgs rpmfusion-free list
 </pre></div>
@@ -359,21 +347,21 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 </div>
 </div>
 <div class="section" id="dnf-repo-orphans">
-<span id="index-40"></span><span id="id25"></span><h2>Как вывести список пакетов, установленных не из репозиториев, либо удалённых из них?<a class="headerlink" href="#dnf-repo-orphans" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-37"></span><span id="id23"></span><h2>Как вывести список пакетов, установленных не из репозиториев, либо удалённых из них?<a class="headerlink" href="#dnf-repo-orphans" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Выполним в терминале:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf -C list extras
 </pre></div>
 </div>
 </div>
 <div class="section" id="dnf-transactions-cleanup">
-<span id="index-41"></span><span id="id26"></span><h2>Как очистить журнал транзакций dnf?<a class="headerlink" href="#dnf-transactions-cleanup" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-38"></span><span id="id24"></span><h2>Как очистить журнал транзакций dnf?<a class="headerlink" href="#dnf-transactions-cleanup" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для очистки журнала транзакций dnf history, выполним:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo rm -rf /var/lib/dnf/history/*
 </pre></div>
 </div>
 </div>
 <div class="section" id="dnf-list-export">
-<span id="index-42"></span><span id="id27"></span><h2>Как сохранить список установленных пакетов, чтобы легко установить их после переустановки системы?<a class="headerlink" href="#dnf-list-export" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-39"></span><span id="id25"></span><h2>Как сохранить список установленных пакетов, чтобы легко установить их после переустановки системы?<a class="headerlink" href="#dnf-list-export" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Экспортируем список установленных вручную пакетов:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf repoquery --qf <span class="s2">&quot;%{name}&quot;</span> --userinstalled &gt; ~/packages.lst
 </pre></div>
@@ -385,7 +373,7 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 </div>
 </div>
 <div class="section" id="dnf-download-only">
-<span id="index-43"></span><span id="id28"></span><h2>Можно ли скачать, но не устанавливать пакет из репозитория?<a class="headerlink" href="#dnf-download-only" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-40"></span><span id="id26"></span><h2>Можно ли скачать, но не устанавливать пакет из репозитория?<a class="headerlink" href="#dnf-download-only" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Скачивание пакета foo-bar в текущий рабочий каталог:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf download foo-bar
 </pre></div>
@@ -401,7 +389,7 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 <p>Для работы плагина dnf-download права суперпользователя не требуются.</p>
 </div>
 <div class="section" id="dnf-manage-repo">
-<span id="index-44"></span><span id="id29"></span><h2>Как правильно включать или отключать репозитории?<a class="headerlink" href="#dnf-manage-repo" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-41"></span><span id="id27"></span><h2>Как правильно включать или отключать репозитории?<a class="headerlink" href="#dnf-manage-repo" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Включить репозиторий постоянно (на примере <em>foo-bar</em>):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-enabled foo-bar
 </pre></div>
@@ -417,7 +405,7 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 <p>Опциональный параметр <strong>–refresh</strong> добавляется для принудительного обновления кэшей dnf.</p>
 </div>
 <div class="section" id="dnf-modular">
-<span id="index-45"></span><span id="id30"></span><h2>Что такое модульные репозитории?<a class="headerlink" href="#dnf-modular" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-42"></span><span id="id28"></span><h2>Что такое модульные репозитории?<a class="headerlink" href="#dnf-modular" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Репозитории Fedora Modular позволяют установить в систему несколько различных версий определённых пакетов. Они включены по умолчанию начиная с Fedora 29.</p>
 <p>Вывод списка доступных модулей:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf module list
@@ -430,7 +418,7 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 <p>Более подробную информацию о модулях можно найти <a class="reference external" href="https://docs.fedoraproject.org/en-US/modularity/using-modules/">здесь</a>.</p>
 </div>
 <div class="section" id="dnf-disable-modules">
-<span id="index-46"></span><span id="id31"></span><h2>Мне не нужна поддержка модулей. Как их можно отключить?<a class="headerlink" href="#dnf-disable-modules" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-43"></span><span id="id29"></span><h2>Мне не нужна поддержка модулей. Как их можно отключить?<a class="headerlink" href="#dnf-disable-modules" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Отключение репозитория с модулями:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-disabled fedora-modular
 sudo dnf config-manager --set-disabled updates-modular
@@ -443,7 +431,7 @@ sudo dnf config-manager --set-enabled updates-modular
 </div>
 </div>
 <div class="section" id="dnf-gui-updates">
-<span id="index-47"></span><span id="id32"></span><h2>Можно ли устанавливать обновления через dnf из графического режима?<a class="headerlink" href="#dnf-gui-updates" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-44"></span><span id="id30"></span><h2>Можно ли устанавливать обновления через dnf из графического режима?<a class="headerlink" href="#dnf-gui-updates" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Устанавливать обновления посредством dnf из графического режима конечно же возможно, однако мы настоятельно не рекомендуем этого делать ибо в случае любого сбоя и падения приложения с эмулятором терминала, упадёт и менеджер пакетов, после чего ваша система может быть серьёзно повреждена и станет непригодной для использования.</p>
 <p>Для установки обновлений посредством dnf рекомендуется два варианта:</p>
 <blockquote>
@@ -454,17 +442,17 @@ sudo dnf config-manager --set-enabled updates-modular
 </div></blockquote>
 </div>
 <div class="section" id="packagekit">
-<span id="packagekit-updates"></span><span id="index-48"></span><h2>Безопасно ли использовать основанные на PackageKit модули обновления из графического режима?<a class="headerlink" href="#packagekit" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="packagekit-updates"></span><span id="index-45"></span><h2>Безопасно ли использовать основанные на PackageKit модули обновления из графического режима?<a class="headerlink" href="#packagekit" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, использование Gnome Software, Apper, Discover и других, основанных на PackageKit, для обновления системы из графического режима полностью безопасно, т.к. они сначала скачивают файлы обновлений в свой кэш, а для непосредственной установки уже используют специальный сервис. В случае падения GUI приложения, никаких повреждений не будет.</p>
 </div>
 <div class="section" id="fedora-bodhi">
-<span id="index-49"></span><span id="id33"></span><h2>Как правильно тестировать новые версии пакетов в Fedora?<a class="headerlink" href="#fedora-bodhi" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-46"></span><span id="id31"></span><h2>Как правильно тестировать новые версии пакетов в Fedora?<a class="headerlink" href="#fedora-bodhi" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Все обновления сначала попадают в <a class="reference internal" href="#updates-testing"><span class="std std-ref">тестовые репозитории</span></a>, поэтому их сначала нужно <a class="reference internal" href="#dnf-advisory"><span class="std std-ref">установить</span></a>.</p>
 <p>По результатам тестирования следует перейти в <a class="reference external" href="https://bodhi.fedoraproject.org/">Fedora Bodhi</a>, выбрать соответствующее обновление и либо добавить ему карму (работает исправно), либо отнять (возникли какие-то проблемы), а также опционально составить краткий отчёт (особенно если обновление работает не так, как ожидалось).</p>
 <p>Также для упрощения работы тестировщиков была создана утилита <a class="reference external" href="https://fedoraproject.org/wiki/Fedora_Easy_Karma">Fedora Easy Karma</a>, позволяющая работать с Bodhi из командной строки.</p>
 </div>
 <div class="section" id="dnf-advisory">
-<span id="index-50"></span><span id="id34"></span><h2>Как проще установить определённое обновление из тестового репозитория?<a class="headerlink" href="#dnf-advisory" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-47"></span><span id="id32"></span><h2>Как проще установить определённое обновление из тестового репозитория?<a class="headerlink" href="#dnf-advisory" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проще всего найти данное обновление в <a class="reference internal" href="#fedora-bodhi"><span class="std std-ref">Bodhi</span></a>, затем выполнить:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh --enablerepo<span class="o">=</span>updates-testing --advisory<span class="o">=</span>FEDORA-2018-XXXXXXXXX
 </pre></div>
@@ -472,12 +460,8 @@ sudo dnf config-manager --set-enabled updates-modular
 <p>Здесь <strong>FEDORA-2018-XXXXXXXXX</strong> - уникальный идентификатор обновления из Bodhi.</p>
 </div>
 <div class="section" id="koji">
-<span id="koji-about"></span><span id="index-51"></span><h2>Что такое Koji?<a class="headerlink" href="#koji" title="Ссылка на этот заголовок">¶</a></h2>
-<p><a class="reference external" href="https://koji.fedoraproject.org/koji/">Fedora Koji</a> - это автоматизированная среда для сборки пакетов для Fedora.</p>
-</div>
-<div class="section" id="koji-download">
-<span id="index-52"></span><span id="id35"></span><h2>Как скачать определённую сборку пакета из Koji?<a class="headerlink" href="#koji-download" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для начала установим клиент <a class="reference internal" href="#koji-about"><span class="std std-ref">Koji</span></a>:</p>
+<span id="koji-download"></span><span id="index-48"></span><h2>Как скачать определённую сборку пакета из Koji?<a class="headerlink" href="#koji" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для начала установим клиент <a class="reference internal" href="development.html#koji-about"><span class="std std-ref">Koji</span></a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install koji
 </pre></div>
 </div>
@@ -487,31 +471,6 @@ sudo dnf config-manager --set-enabled updates-modular
 </div>
 <p>Скачаем выбранную сборку для используемой архитектуры:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>koji download-build kernel-4.19.7-300.fc29 --arch<span class="o">=</span><span class="k">$(</span>uname -m<span class="k">)</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="fedpkg-rebuild">
-<span id="index-53"></span><span id="id36"></span><h2>Хочу внести свои правки в пакет и пересобрать его для личных нужд. Как проще это сделать?<a class="headerlink" href="#fedpkg-rebuild" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Установим утилиты fedpkg и mock:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install fedpkg mock
-</pre></div>
-</div>
-<p>Скачаем исходники необходимого пакета <strong>foo-bar</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fedpkg clone -a foo-bar
-</pre></div>
-</div>
-<p>Перейдём в каталог с загруженными исходниками и переключимся на ветку для конкретной версии Fedora (если нужна версия из Rawhide - следует использовать <strong>master</strong>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> foo-bar
-fedpkg switch-branch f29
-</pre></div>
-</div>
-<p>Внесём свои правки, сделаем коммит в репозиторий:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add -A
-git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
-</pre></div>
-</div>
-<p>Запустим автоматическую <a class="reference internal" href="#build-package"><span class="std std-ref">сборку в mock</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fedpkg mockbuild
 </pre></div>
 </div>
 </div>
@@ -560,12 +519,10 @@ git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
 <li class="toctree-l2"><a class="reference internal" href="#microsoft-fedora">Как установить шрифты Microsoft в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rd-repositories">Какие сторонние репозитории лучше всего подключать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#flatpak-fedora">Как работать с Flatpak пакетами в Fedora?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#create-package">Я хочу создать пакет для Fedora. Что мне следует знать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#multimedia-codecs">В системе нет кодеков мультимедиа. Как их установить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#chromium">Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firefox">Как активировать все доступные кодеки в браузере Firefox?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nvidia">Как правильно установить драйверы NVIDIA?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rpm-mock">Как собрать RPM пакет в mock?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#virtualization">Какую систему управления виртуальными машинами лучше установить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kvm">Как правильно установить систему виртуализации KVM?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kvm-users">Как отключить запрос пароля во время запуска или остановки виртуальных машин при использовании KVM?</a></li>
@@ -573,7 +530,6 @@ git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
 <li class="toctree-l2"><a class="reference internal" href="#wi-fi-broadcom">Как правильно установить драйверы Wi-Fi модулей Broadcom?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-caches">Как отключить автообновление кэшей dnf?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dkms-akmods">Что лучше: dkms или akmods?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#becoming-maintainer">Как добавить свой пакет в репозиторий Fedora и стать мейнтейнером?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#updates-testing">Каким способом можно обновить пакет из тестовых репозиториев?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-list-contents">Как получить список файлов установленного пакета?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-find-file">Как узнать в каком пакете находится конкретный файл?</a></li>
@@ -591,14 +547,14 @@ git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
 <li class="toctree-l2"><a class="reference internal" href="#packagekit">Безопасно ли использовать основанные на PackageKit модули обновления из графического режима?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora-bodhi">Как правильно тестировать новые версии пакетов в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-advisory">Как проще установить определённое обновление из тестового репозитория?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#koji">Что такое Koji?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#koji-download">Как скачать определённую сборку пакета из Koji?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#fedpkg-rebuild">Хочу внести свои правки в пакет и пересобрать его для личных нужд. Как проще это сделать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#koji">Как скачать определённую сборку пакета из Koji?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
 </ul>

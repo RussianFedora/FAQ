@@ -433,36 +433,8 @@ foo.bar2=X2
 </pre></div>
 </div>
 </div>
-<div class="section" id="uefi-bios-fedora">
-<span id="fedora-fwupd"></span><span id="index-39"></span><h2>Как обновить прошивку UEFI BIOS и других устройств непосредственно из Fedora?<a class="headerlink" href="#uefi-bios-fedora" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для оперативного обновления микропрограмм (прошивок) существует утилита <a class="reference external" href="https://github.com/hughsie/fwupd">fwupd</a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install fwupd
-</pre></div>
-</div>
-<p>Внимание! Для работы fwupd система должна быть установлена строго в <a class="reference internal" href="installation.html#uefi-boot"><span class="std std-ref">UEFI режиме</span></a>.</p>
-<p>Обновление базы данных программы:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fwupdmgr refresh
-</pre></div>
-</div>
-<p>Вывод списка устройств, микропрограмма которых может быть обновлена:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fwupdmgr get-devices
-</pre></div>
-</div>
-<p>Проверка наличия обновлений с выводом подробной информации о каждом из них:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fwupdmgr get-updates
-</pre></div>
-</div>
-<p>Установка обнаруженных обновлений микропрограмм:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fwupdmgr update
-</pre></div>
-</div>
-<p>Некоторые устройства могут быть обновлены лишь при следующей загрузке системы, поэтому выполним перезагрузку:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
-</pre></div>
-</div>
-</div>
 <div class="section" id="change-label">
-<span id="index-40"></span><span id="id27"></span><h2>Как сменить метку раздела?<a class="headerlink" href="#change-label" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-39"></span><span id="id27"></span><h2>Как сменить метку раздела?<a class="headerlink" href="#change-label" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Смена метки раздела с файловой системой ext2, ext3 и ext4:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo e2label /dev/sda1 <span class="s2">&quot;NewLabel&quot;</span>
 </pre></div>
@@ -474,7 +446,7 @@ foo.bar2=X2
 <p>Здесь <strong>/dev/sda1</strong> - раздел, на котором требуется изменить метку.</p>
 </div>
 <div class="section" id="uuid">
-<span id="get-uuid"></span><span id="index-41"></span><h2>Как получить UUID всех смонтированных разделов?<a class="headerlink" href="#uuid" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="get-uuid"></span><span id="index-40"></span><h2>Как получить UUID всех смонтированных разделов?<a class="headerlink" href="#uuid" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для получения всех UUID можно использовать утилиту <strong>blkid</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo blkid
 </pre></div>
@@ -486,7 +458,7 @@ foo.bar2=X2
 <p>Здесь <strong>/dev/sda1</strong> - раздел, для которого требуется вывести UUID.</p>
 </div>
 <div class="section" id="change-uuid">
-<span id="index-42"></span><span id="id28"></span><h2>Как изменить UUID раздела?<a class="headerlink" href="#change-uuid" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-41"></span><span id="id28"></span><h2>Как изменить UUID раздела?<a class="headerlink" href="#change-uuid" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Смена UUID раздела с файловой системой ext2, ext3 и ext4:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo tune2fs /dev/sda1 -U <span class="k">$(</span>uuidgen<span class="k">)</span>
 </pre></div>
@@ -498,16 +470,16 @@ foo.bar2=X2
 <p>Здесь <strong>/dev/sda1</strong> - раздел, на котором требуется изменить UUID.</p>
 </div>
 <div class="section" id="dns-fedora">
-<span id="change-dns"></span><span id="index-43"></span><h2>Как правильно указать DNS серверы в Fedora?<a class="headerlink" href="#dns-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="change-dns"></span><span id="index-42"></span><h2>Как правильно указать DNS серверы в Fedora?<a class="headerlink" href="#dns-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы указать другие DNS серверы, необходимо использовать Network Manager (графический или консольный): <strong>свойства соединения</strong> -&gt; страница <strong>IPv4</strong> -&gt; <strong>другие DNS серверы</strong>.</p>
 </div>
 <div class="section" id="etc-resolv-conf-fedora">
-<span id="dns-resolv"></span><span id="index-44"></span><h2>Можно ли править файл /etc/resolv.conf в Fedora?<a class="headerlink" href="#etc-resolv-conf-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="dns-resolv"></span><span id="index-43"></span><h2>Можно ли править файл /etc/resolv.conf в Fedora?<a class="headerlink" href="#etc-resolv-conf-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Нет, т.к. этот файл целиком управляется Network Manager и перезаписывается при каждом изменении статуса подключения (активация-деактивация соединений, перезапуск сервиса и т.д.).</p>
 <p>Если необходимо указать другие DNS серверы, это следует производить через <a class="reference internal" href="#change-dns"><span class="std std-ref">свойства</span></a> соответствующего соединения.</p>
 </div>
 <div class="section" id="firewalld-icmp">
-<span id="disable-icmp"></span><span id="index-45"></span><h2>Как можно средствами Firewalld запретить ICMP?<a class="headerlink" href="#firewalld-icmp" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="disable-icmp"></span><span id="index-44"></span><h2>Как можно средствами Firewalld запретить ICMP?<a class="headerlink" href="#firewalld-icmp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию ICMP трафик разрешён для большей части зон, поэтому запретить его можно вручную:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone<span class="o">=</span>public --remove-icmp-block<span class="o">={</span>echo-request,echo-reply,timestamp-reply,timestamp-request<span class="o">}</span> --permanent
 </pre></div>
@@ -519,7 +491,7 @@ foo.bar2=X2
 <p>В данном примере для зоны <strong>public</strong> блокируются как входящие, так и исходящие ICMP ECHO и ICMP TIMESTAMP.</p>
 </div>
 <div class="section" id="firewalld-openvpn-ip">
-<span id="openvpn-allowed-ips"></span><span id="index-46"></span><h2>Как средствами Firewalld разрешить подключение к OpenVPN серверу только с разрешённых IP адресов?<a class="headerlink" href="#firewalld-openvpn-ip" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="openvpn-allowed-ips"></span><span id="index-45"></span><h2>Как средствами Firewalld разрешить подключение к OpenVPN серверу только с разрешённых IP адресов?<a class="headerlink" href="#firewalld-openvpn-ip" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сначала отключим правило по умолчанию для <a class="reference internal" href="#using-openvpn"><span class="std std-ref">OpenVPN</span></a>, разрешающее доступ к серверу с любых IP адресов:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone<span class="o">=</span>public --remove-service openvpn --permanent
 </pre></div>
@@ -536,7 +508,7 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <p>Здесь <strong>public</strong> - имя зоны для публичного интерфейса, <strong>1.2.3.4</strong> - IP-адрес, а <strong>5.6.7.0/24</strong> - подсеть, доступ для адресов из которой следует разрешить.</p>
 </div>
 <div class="section" id="ip-nat">
-<span id="get-external-ip"></span><span id="index-47"></span><h2>Как узнать внешний IP адрес за NAT провайдера?<a class="headerlink" href="#ip-nat" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="get-external-ip"></span><span id="index-46"></span><h2>Как узнать внешний IP адрес за NAT провайдера?<a class="headerlink" href="#ip-nat" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этой цели можно использовать внешний сервис, возвращающий только внешний IP и утилиту <strong>curl</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl https://ifconfig.me
 </pre></div>
@@ -607,7 +579,6 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <li class="toctree-l2"><a class="reference internal" href="#rsync-remote">Как передать содержимое каталога на удалённый сервер?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rsync-local">Как получить содержимое каталога с удалённого сервера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#disk-usage">Как узнать какой процесс осуществляет запись на диск?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#uefi-bios-fedora">Как обновить прошивку UEFI BIOS и других устройств непосредственно из Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#change-label">Как сменить метку раздела?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uuid">Как получить UUID всех смонтированных разделов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#change-uuid">Как изменить UUID раздела?</a></li>
@@ -620,6 +591,8 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
 </ul>
