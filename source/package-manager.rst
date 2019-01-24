@@ -291,14 +291,6 @@ Dnf сохраняет старые ядра. Это нормально?
 
 См. `здесь <https://www.easycoding.org/2018/07/25/rabotaem-s-flatpak-paketami-v-fedora.html>`__.
 
-.. index:: repository, package, packaging, создание пакета
-.. _create-package:
-
-Я хочу создать пакет для Fedora. Что мне следует знать?
-============================================================
-
-См. `здесь <https://docs.fedoraproject.org/quick-docs/en-US/creating-rpm-packages.html>`__ и `здесь <https://www.easycoding.org/2018/06/17/pravilno-paketim-po-dlya-linux.html>`__.
-
 .. index:: repository, codecs, кодеки мультимедиа, multimedia
 .. _multimedia-codecs:
 
@@ -342,14 +334,6 @@ Dnf сохраняет старые ядра. Это нормально?
 ==============================================
 
 См. `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
-
-.. index:: package, packaging, сборка пакета, building
-.. _build-package:
-
-Как собрать RPM пакет в mock?
-==================================
-
-См. `здесь <https://www.easycoding.org/2017/02/22/sobiraem-rpm-pakety-dlya-fedora-v-mock.html>`__.
 
 .. index:: virtualization
 .. _virtualization:
@@ -437,14 +421,6 @@ Dnf сохраняет старые ядра. Это нормально?
 ==============================
 
 Конечно akmods, т.к. он автоматически собирает и устанавливает полноценные RPM пакеты.
-
-.. index:: packaging, создание пакета, добавление в репозиторий
-.. _becoming-maintainer:
-
-Как добавить свой пакет в репозиторий Fedora и стать мейнтейнером?
-=====================================================================
-
-См. `здесь <https://www.easycoding.org/2016/06/20/dobavlyaem-paket-v-glavnyj-repozitorij-fedora.html>`__.
 
 .. index:: package updates, testing, тестовые репозитории
 .. _updates-testing:
@@ -729,14 +705,6 @@ Java 11:
 
 Здесь **FEDORA-2018-XXXXXXXXX** - уникальный идентификатор обновления из Bodhi.
 
-.. index:: koji, about
-.. _koji-about:
-
-Что такое Koji?
-===================
-
-`Fedora Koji <https://koji.fedoraproject.org/koji/>`__ - это автоматизированная среда для сборки пакетов для Fedora.
-
 .. index:: koji, builds, testing
 .. _koji-download:
 
@@ -760,41 +728,3 @@ Java 11:
 .. code-block:: bash
 
     koji download-build kernel-4.19.7-300.fc29 --arch=$(uname -m)
-
-.. index:: fedpkg, package, rebuild, mock
-.. _fedpkg-rebuild:
-
-Хочу внести свои правки в пакет и пересобрать его для личных нужд. Как проще это сделать?
-===============================================================================================
-
-Установим утилиты fedpkg и mock:
-
-.. code-block:: bash
-
-    sudo dnf install fedpkg mock
-
-Скачаем исходники необходимого пакета **foo-bar**:
-
-.. code-block:: bash
-
-    fedpkg clone -a foo-bar
-
-Перейдём в каталог с загруженными исходниками и переключимся на ветку для конкретной версии Fedora (если нужна версия из Rawhide - следует использовать **master**):
-
-.. code-block:: bash
-
-    cd foo-bar
-    fedpkg switch-branch f29
-
-Внесём свои правки, сделаем коммит в репозиторий:
-
-.. code-block:: bash
-
-    git add -A
-    git commit -m "Description of our changes."
-
-Запустим автоматическую :ref:`сборку в mock <build-package>`:
-
-.. code-block:: bash
-
-    fedpkg mockbuild
