@@ -927,3 +927,15 @@ KDE Connect не видит мой смартфон. Как исправить?
     sudo umount /mnt/dd-image
 
 Здесь **/path/to/image.iso** - файл образа на диске.
+
+.. index:: timezone
+.. _set-timezone:
+
+Как изменить часовой пояс?
+==============================
+
+Изменить часовой пояс можно посредством утилиты **timedatectl**:
+
+.. code-block:: bash
+
+    sudo timedatectl set-timezone Europe/Moscow
