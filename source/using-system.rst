@@ -939,3 +939,21 @@ KDE Connect не видит мой смартфон. Как исправить?
 .. code-block:: bash
 
     sudo timedatectl set-timezone Europe/Moscow
+
+.. index:: keyboard, layout
+.. _set-keyboard:
+
+Как изменить список доступных раскладок клавиатуры и настроить их переключение в графическом режиме?
+========================================================================================================
+
+Настройка переключения по **Alt + Shift**, раскладки EN и RU:
+
+.. code-block:: bash
+
+    sudo localectl set-x11-keymap us,ru pc105 "" grp:alt_shift_toggle
+
+Настройка переключения по **Ctrl + Shift**, раскладки EN и RU:
+
+.. code-block:: bash
+
+    sudo localectl set-x11-keymap us,ru pc105 "" grp:ctrl_shift_toggle
