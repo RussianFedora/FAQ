@@ -19,5 +19,6 @@
    administration.rst
    security.rst
    using-system.rst
+   development.rst
    tips-and-tricks.rst
    legal-info.rst
