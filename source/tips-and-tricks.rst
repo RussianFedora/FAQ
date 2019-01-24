@@ -88,3 +88,11 @@
 .. code-block:: bash
 
     sudo dnf remove gtk2
+
+.. index:: bug, missing library, libcurl-gnutls
+.. _libcurl-workaround:
+
+Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?
+=====================================================================
+
+См. `здесь <https://www.easycoding.org/2018/04/03/reshaem-problemu-otsutstviya-libcurl-gnutls-v-fedora.html>`__.

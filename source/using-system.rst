@@ -102,14 +102,6 @@
 
 См. `здесь <https://www.easycoding.org/2016/08/08/uskoryaem-zavershenie-raboty-fedora-24.html>`__.
 
-.. index:: bug, missing library, libcurl-gnutls
-.. _libcurl-workaround:
-
-Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?
-=====================================================================
-
-См. `здесь <https://www.easycoding.org/2018/04/03/reshaem-problemu-otsutstviya-libcurl-gnutls-v-fedora.html>`__.
-
 .. index:: firefox, hardware acceleration
 .. _firefox-hwaccel:
 
