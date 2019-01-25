@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Вопросы, связанные с разработкой и сборкой пакетов &#8212; Документация Fedora FAQ RU 2018.12.25</title>
+    <title>Вопросы, связанные с разработкой и сборкой пакетов &#8212; Документация Fedora FAQ RU 2019.01.25</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -80,6 +80,66 @@ git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
 </pre></div>
 </div>
 </div>
+<div class="section" id="tarball-git">
+<span id="git-tarball"></span><span id="index-5"></span><h2>Как создать tarball с исходниками из Git репозитория?<a class="headerlink" href="#tarball-git" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если проект по какой-либо причине не поставляет готовые тарболы и отсутствует возможность их скачать напрямую с хостинга VCS, можно создать их из Git.</p>
+<p>Клонируем репозиторий источника:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://example.org/foo-bar.git
+</pre></div>
+</div>
+<p>Создадим архив с исходниками:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git archive --format<span class="o">=</span>tar --prefix<span class="o">=</span>foo-bar-1.0.0/ HEAD <span class="p">|</span> gzip &gt; ~/rpmbuild/SOURCES/foo-bar-1.0.0.tar.gz
+</pre></div>
+</div>
+<p>Здесь <strong>HEAD</strong> - указатель на актуальный коммит (вместо этого можно использовать SHA1 хеш любого коммита, а также имя тега или ветки), <strong>foo-bar</strong> - название проекта, а <strong>1.0.0</strong> - его версия.</p>
+</div>
+<div class="section" id="koji-rpm-fusion">
+<span id="rpmfusion-override"></span><span id="index-6"></span><h2>Как переопределить пакет в Koji репозитория RPM Fusion?<a class="headerlink" href="#koji-rpm-fusion" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Создание build override для репозитория f29-free:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion tag f29-free-override foo-bar-1.0-1.fc29
+</pre></div>
+</div>
+<p>Удаление build override для репозитория f29-free:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion untag f29-free-override foo-bar-1.0-1.fc29
+</pre></div>
+</div>
+</div>
+<div class="section" id="git-gmail">
+<span id="index-7"></span><span id="id4"></span><h2>Как настроить Git для работы с почтовым сервисом Gmail?<a class="headerlink" href="#git-gmail" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для того, чтобы использовать функцию <strong>git send-mail</strong> с почтовым сервисом Gmail, необходимо:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>включить двухфакторную аутентификацию в настройках Google аккаунта;</li>
+<li>в настройках безопасности почтового ящика Gmail разрешить использование «небезопасных приложений» (под небезопасными Google понимает любые, не поддерживающие OAuth2);</li>
+<li>там же включить доступ к почте посредством POP3 или IMAP (это активирует также и необходимый для нас протокол SMTP);</li>
+<li>в настройках безопасности сгенерировать новый пароль для приложения;</li>
+<li>указать в файле <strong>~/.gitconfig</strong> параметры почтового сервиса;</li>
+<li>когда будет запрошен пароль, ввести созданный ранее пароль приложения.</li>
+</ol>
+</div></blockquote>
+<p>Пример файла <strong>~/.gitconfig</strong> для работы с почтовым сервисом Gmail:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[sendemail]</span>
+    <span class="na">smtpEncryption</span> <span class="o">=</span> <span class="s">tls</span>
+<span class="s">    smtpServer = smtp.gmail.com</span>
+<span class="s">    smtpUser = yourname@gmail.com</span>
+<span class="s">    smtpServerPort = 587</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dlopen">
+<span id="dlopen-usage"></span><span id="index-8"></span><h2>Правильно ли использовать dlopen для загрузки динамических библиотек в приложении?<a class="headerlink" href="#dlopen" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для загрузки динамических библиотек в приложении использовать dlopen допускается, но мы настоятельно рекомендуем избегать этого и использовать полноценную линковку вместо этого по следующим причинам:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>в каждом дистрибутиве GNU/Linux именование библиотек, особенно если у них нет чётко установленной апстримом SOVERSION константы, ложится на плечи мейнтейнеров. К примеру есть популярная libcurl. Во всех дистрибутивах она линкуется с openssl и называется libcurl.so, а в Debian и Ubuntu была переименована в libcurl-gnutls.so из-за линковки с gnutls;</li>
+<li>нет никакой гарантии, что загрузится именно необходимая версия библиотеки, имеющая необходимую функцию, а отсутствии оной приложение будет аварийно завершено с ошибкой сегментирования;</li>
+<li>если существует несколько версий библиотеки с разными SOVERSION, необходимо самостоятельно их искать на диске и подгружать с рядом хаков ибо имя libfoo.so без указанной SOVERSION в большинстве дистрибутивов представляет собой символическую ссылку и доступен лишь после установки соответствующего development пакета. Соответственно на машинах обычных пользователей он отсутствует;</li>
+<li>о библиотеках, подгружаемых динамически, не в курсе LD, а следовательно он не сможет при загрузке образа приложения подгрузить их в память;</li>
+<li>в случае корректной линковки LD перед запуском приложения осуществит автоматический поиск необходимых экспортируемых функций во всех указанных библиотеках. При их отсутствии приложение не будет запущено;</li>
+<li>при сборке пакета динамически подгружаемые через dlopen библиотеки не будут определены и прописаны в качестве зависимостей пакета, что может вызвать проблемы у пользователей и падение приложения;</li>
+</ol>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -115,6 +175,10 @@ git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
 <li class="toctree-l2"><a class="reference internal" href="#becoming-maintainer">Как добавить свой пакет в репозиторий Fedora и стать мейнтейнером?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#koji">Что такое Koji?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedpkg-rebuild">Хочу внести свои правки в пакет и пересобрать его для личных нужд. Как проще это сделать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tarball-git">Как создать tarball с исходниками из Git репозитория?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#koji-rpm-fusion">Как переопределить пакет в Koji репозитория RPM Fusion?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-gmail">Как настроить Git для работы с почтовым сервисом Gmail?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dlopen">Правильно ли использовать dlopen для загрузки динамических библиотек в приложении?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>

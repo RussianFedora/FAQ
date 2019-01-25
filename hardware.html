@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Вопросы, связанные с использованием различного оборудования &#8212; Документация Fedora FAQ RU 2018.12.25</title>
+    <title>Вопросы, связанные с использованием различного оборудования &#8212; Документация Fedora FAQ RU 2019.01.25</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -101,8 +101,8 @@
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="nvidia-gtx-1050">
-<span id="nvidia-gtx1050"></span><span id="index-3"></span><h2>В моём ноутбуке установлена видеокарта NVIDIA GTX 1050 и после запуска система зависает. Что делать?<a class="headerlink" href="#nvidia-gtx-1050" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="nvidia-geforce-gtx-1050">
+<span id="nvidia-gtx1050"></span><span id="index-3"></span><h2>В моём ноутбуке установлена видеокарта NVIDIA GeForce GTX 1050 и после запуска система зависает. Что делать?<a class="headerlink" href="#nvidia-geforce-gtx-1050" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Случайные зависания системы, неработоспособность тачпада и других USB устройств - это следствие сбоев при работе свободного драйвера nouveau на данной видеокарте.</p>
 <p>В качестве решения необходимо установить проприетарные драйверы по такому алгоритму:</p>
 <blockquote>
@@ -113,6 +113,23 @@
 </ol>
 </div></blockquote>
 <p>Если всё сделано верно, то система начнёт функционировать в штатном режиме. В противном случае следует повторить с самого начала.</p>
+</div>
+<div class="section" id="driver-disable">
+<span id="index-4"></span><span id="id2"></span><h2>Как можно навсегда отключить определённый драйвер устройства?<a class="headerlink" href="#driver-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Чтобы навсегда отключить какой-то драйвер в Linux, необходимо создать файл в каталоге <strong>/etc/modprobe.d</strong> с любым именем, например <strong>disable-nv.conf</strong>, и примерно таким содержанием:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>install nouveau /bin/false
+</pre></div>
+</div>
+<p>Здесь вместо <strong>nouveau</strong> нужно указать реально используемые устройством драйверы.</p>
+<p>Полный список загруженных драйверов можно получить так:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lspci -nnk
+</pre></div>
+</div>
+<p>Теперь необходимо пересобрать inird образ:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dracut --force
+</pre></div>
+</div>
+<p>Чтобы отменить действие, достаточно удалить созданный файл и снова пересобрать initrd.</p>
 </div>
 </div>
 
@@ -146,7 +163,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#linux">На что в первую очередь следует обратить внимание при выборе ноутбука для Linux?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uefi-bios-fedora">Как обновить прошивку UEFI BIOS и других устройств непосредственно из Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#wi-fi-linux">Какие модули Wi-Fi корректно работают в Linux?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#nvidia-gtx-1050">В моём ноутбуке установлена видеокарта NVIDIA GTX 1050 и после запуска система зависает. Что делать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvidia-geforce-gtx-1050">В моём ноутбуке установлена видеокарта NVIDIA GeForce GTX 1050 и после запуска система зависает. Что делать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#driver-disable">Как можно навсегда отключить определённый драйвер устройства?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
