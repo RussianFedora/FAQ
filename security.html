@@ -387,22 +387,22 @@ Match Group sftp
 </ol>
 </div></blockquote>
 <p>Профиль <strong>stable</strong>. Файл <strong>00-macrandomize-stable.conf</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[device]
-wifi.scan-rand-mac-address=yes
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[device]</span>
+<span class="na">wifi.scan-rand-mac-address</span><span class="o">=</span><span class="s">yes</span>
 
-[connection]
-wifi.cloned-mac-address=stable
-ethernet.cloned-mac-address=stable
-connection.stable-id=${CONNECTION}/${BOOT}
+<span class="k">[connection]</span>
+<span class="na">wifi.cloned-mac-address</span><span class="o">=</span><span class="s">stable</span>
+<span class="na">ethernet.cloned-mac-address</span><span class="o">=</span><span class="s">stable</span>
+<span class="na">connection.stable-id</span><span class="o">=</span><span class="s">${CONNECTION}/${BOOT}</span>
 </pre></div>
 </div>
 <p>Профиль <strong>random</strong>. Файл <strong>00-macrandomize-random.conf</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[device]
-wifi.scan-rand-mac-address=yes
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[device]</span>
+<span class="na">wifi.scan-rand-mac-address</span><span class="o">=</span><span class="s">yes</span>
 
-[connection]
-wifi.cloned-mac-address=random
-ethernet.cloned-mac-address=random
+<span class="k">[connection]</span>
+<span class="na">wifi.cloned-mac-address</span><span class="o">=</span><span class="s">random</span>
+<span class="na">ethernet.cloned-mac-address</span><span class="o">=</span><span class="s">random</span>
 </pre></div>
 </div>
 <p>Для применения одной из конфигураций создадим в каталоге <strong>/etc/NetworkManager/conf.d</strong> файл с выбранным профилем, после чего перезапустим Network Manager:</p>
