@@ -11,7 +11,7 @@
 Правовая информация
 *****************************************
 
-.. index:: authors, contributors, авторы
+.. index:: authors, contributors, legal
 .. _authors:
 
 Авторы
@@ -19,7 +19,7 @@
 
 Полный список авторов и вклад каждого можно увидеть на странице `Contributors <https://github.com/RussianFedora/FAQ/graphs/contributors>`__ репозитория на GitHub.
 
-.. index:: лицензия, license, соглашение, agreement
+.. index:: license, agreement, legal
 .. _license:
 
 Лицензионное соглашение

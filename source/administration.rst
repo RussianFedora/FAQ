@@ -11,7 +11,7 @@
 Вопросы, связанные с администрированием системы
 ***************************************************
 
-.. index:: kernel, kernel options
+.. index:: kernel, boot, kernel options
 .. _kernelpm-once:
 
 Как однократно передать параметр ядра?
@@ -19,7 +19,7 @@
 
 Для передачи параметра необходимо в меню загрузчика Grub 2 выбрать нужную строку и нажать клавишу **E** на клавиатуре для перехода к её редактированию, затем в конце через пробел дописать нужный параметр (или параметры), после чего нажать **Enter**, чтобы начать процесс загрузки.
 
-.. index:: kernel, kernel options
+.. index:: kernel, boot, kernel options
 .. _kernelpm-perm:
 
 Как мне задать параметр ядра для постоянного использования?
@@ -27,7 +27,7 @@
 
 Необходимо открыть с шаблонами загрузчика **/etc/default/grub** в любом текстовом редакторе, найти в нём переменную **GRUB_CMDLINE_LINUX** и внести соответствующие правки. После этого нужно пересобрать конфиг Grub 2 посредством **grub2-mkconfig**.
 
-.. index:: kernel, kernel options
+.. index:: kernel, boot, kernel options
 .. _kernelpm-list:
 
 Как определить какие параметры ядра заданы в настоящее время?
@@ -65,7 +65,7 @@
 
 Здесь **foo-bar** - имя модуля, информацию о котором требуется вывести.
 
-.. index:: журнал системы, journald
+.. index:: journal, journald
 .. _journal-current:
 
 Как мне посмотреть текущий журнал работы системы?
@@ -83,7 +83,7 @@
 
     journalctl -k
 
-.. index:: журнал системы, journald
+.. index:: journal, journald
 .. _journal-history:
 
 Как мне посмотреть журналы с прошлых загрузок?
@@ -101,7 +101,7 @@
 
     journalctl -b -X
 
-.. index:: журнал системы, journald
+.. index:: journal, journald
 .. _journal-tofile:
 
 Как мне выгрузить журнал в файл?
@@ -173,7 +173,7 @@
 
     sudo umount /media/fedora
 
-.. index:: drivers, драйверы, nut, UPS, ИБП
+.. index:: drivers, nut, ups
 .. _configure-ups:
 
 Как настроить ИБП (UPS) в Fedora?
@@ -181,7 +181,7 @@
 
 См. `здесь <https://www.easycoding.org/2012/10/01/podnimaem-nut-v-linux.html>`__.
 
-.. index:: ssh, keys, error, ошибка
+.. index:: ssh, keys, error
 .. _ssh-keys-error:
 
 При использовании SSH появляется ошибка доступа к ключам. Как исправить?
@@ -189,7 +189,7 @@
 
 См. `здесь <https://www.easycoding.org/2016/07/31/reshaem-problemu-s-ssh-klyuchami-v-fedora-24.html>`__.
 
-.. index:: journald, журналы, ограничение размера журналов
+.. index:: journald, journal, limits
 .. _journald-limit:
 
 Системные журналы занимают слишком много места. Как их ограничить?
@@ -197,7 +197,7 @@
 
 См. `здесь <https://www.easycoding.org/2016/08/24/ogranichivaem-sistemnye-zhurnaly-v-fedora-24.html>`__.
 
-.. index:: firewalld, port forwarding, проброс порта
+.. index:: firewalld, port forwarding, firewall
 .. _firewalld-port-forwarding:
 
 Как пробросить локальный порт на удалённый хост?
@@ -205,7 +205,7 @@
 
 См. `здесь <https://www.easycoding.org/2017/05/23/probrasyvaem-lokalnyj-port-na-udalyonnyj-xost.html>`__.
 
-.. index:: openvpn
+.. index:: openvpn, vpn, network
 .. _using-openvpn:
 
 Как поднять OpenVPN сервер в Fedora?
@@ -221,7 +221,7 @@
 
 См. `здесь <https://www.easycoding.org/2017/11/05/upravlyaem-systemd-v-fedora.html>`__.
 
-.. index:: server, matrix, сервер
+.. index:: server, matrix, im
 .. _matrix-server:
 
 Как поднять свой сервер Matrix в Fedora?
@@ -229,7 +229,7 @@
 
 См. `здесь <https://www.easycoding.org/2018/04/15/podnimaem-sobstvennyj-matrix-server-v-fedora.html>`__.
 
-.. index:: fs, caches, сброс кэшей ФС
+.. index:: fs, caches, flush
 .. _drop-fs-caches:
 
 Как очистить кэши и буферы всех файловых систем?
@@ -274,35 +274,7 @@
     [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation]
     "RealTimeIsUniversal"=dword:00000001
 
-.. index:: drivers, disable driver, отключение драйвера
-.. _driver-disable:
-
-Как можно навсегда отключить определённый драйвер?
-=====================================================
-
-Чтобы навсегда отключить какой-то драйвер в Linux, необходимо создать файл в каталоге **/etc/modprobe.d** с любым именем, например **disable-nv.conf**, и примерно таким содержанием:
-
-.. code-block:: text
-
-    install nouveau /bin/false
-
-Здесь вместо **nouveau** нужно указать реально используемые устройством драйверы.
-
-Полный список загруженных драйверов можно получить так:
-
-.. code-block:: bash
-
-    lspci -nnk
-
-Теперь необходимо пересобрать inird образ:
-
-.. code-block:: bash
-
-    sudo dracut --force
-
-Чтобы отменить действие, достаточно удалить созданный файл и снова пересобрать initrd.
-
-.. index:: server, web server
+.. index:: server, web server, http
 .. _simple-web-server:
 
 Как запустить простейший веб-сервер в Fedora?
@@ -316,7 +288,7 @@
 
 Веб-сервер будет запущен на порту **8080**. В качестве webroot будет использоваться текущий рабочий каталог.
 
-.. index:: console, change hostname, изменение имени хоста, имя хоста
+.. index:: console, change hostname, hostname
 .. _change-hostname:
 
 Как изменить имя хоста?
@@ -330,7 +302,7 @@
 
 Здесь вместо **NEW** следует указать новое значение. Изменения вступят в силу немедленно.
 
-.. index:: network, настройка сети
+.. index:: network, configuration
 .. _network-configuration:
 
 Как лучше настраивать сетевые подключения?
@@ -338,7 +310,7 @@
 
 В Fedora для настройки сети используется Network Manager. Для работы с ним доступны как графические менеджеры (встроены в каждую DE), так и консольный **nm-cli**.
 
-.. index:: filesystem, check, проверка файловой системы, lvm
+.. index:: filesystem, check, lvm
 .. _fs-check-lvm:
 
 Как мне проверить ФС в составе LVM с LiveUSB?
@@ -353,7 +325,7 @@
 
 Если вместо ext4 применяется другая файловая система, необходимо указать её после параметра **-t**.
 
-.. index:: filesystem, check, проверка файловой системы
+.. index:: filesystem, check, partitions
 .. _fs-check-partitions:
 
 Как мне проверить ФС при использовании классических разделов с LiveUSB?
@@ -375,7 +347,7 @@
     sudo fdisk -l
 
 
-.. index:: filesystem, check, проверка файловой системы, luks
+.. index:: filesystem, check, luks
 .. _fs-check-luks:
 
 Как мне проверить ФС на зашифрованном LUKS разделе с LiveUSB?
@@ -403,7 +375,7 @@
 
     cryptsetup luksClose /dev/mapper/luks-root
 
-.. index:: multimedia, dlna, server, сервер мультимедиа
+.. index:: multimedia, dlna, server, streaming
 .. _dlna-server:
 
 Как поднять DLNA сервер в локальной сети?
@@ -411,7 +383,7 @@
 
 См. `здесь <https://www.easycoding.org/2018/09/08/podnimaem-dlna-server-v-fedora.html>`__.
 
-.. index:: memory depuplication, дедупликация памяти
+.. index:: memory deduplication, memory, deduplication
 .. _deduplication-memory:
 
 Возможна ли полная дедупликация оперативной памяти?
@@ -419,7 +391,7 @@
 
 Да, дедупликация памяти `поддерживается <https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html>`__ в ядре Linux начиная с версии 2.6.32 модулем `KSM <https://ru.wikipedia.org/wiki/KSM>`__ и по умолчанию применяется лишь в системах виртуализации, например в :ref:`KVM <kvm>`.
 
-.. index:: disk depuplication, дедупликация данных
+.. index:: disk deduplication, disk, deduplication
 .. _deduplication-disk:
 
 Возможна ли полная дедупликация данных на дисках?
@@ -427,7 +399,7 @@
 
 Полная автоматическая дедупликация данных на дисках `поддерживается <https://btrfs.wiki.kernel.org/index.php/Deduplication>`__ лишь файловой системой :ref:`BTRFS <fs-btrfs>`.
 
-.. index:: zram, сжатие памяти, memory compression
+.. index:: zram, memory compression, ram, memory
 .. _memory-compression:
 
 Можно ли включить сжатие оперативной памяти?
@@ -450,7 +422,7 @@
 
 После использования вышеуказанных команд рекомендуется выполнить перезагрузку системы.
 
-.. index:: network speed, скорость сети, iperf
+.. index:: network speed, iperf, benchmark
 .. _fedora-iperf:
 
 Как сделать замеры скорости локальной или беспроводной сети?
@@ -541,7 +513,7 @@
 
 Порядок выполнения - в алфавитном порядке, поэтому для его изменения многие конфиги содержат цифры и буквы. Например конфиг **00-foobar.conf** выполнится раньше, чем **zz-foobar.conf**.
 
-.. index:: text mode, runlevel
+.. index:: text mode, runlevel, boot
 .. _configure-runlevel:
 
 Как переключить запуск системы в текстовый режим и обратно?
@@ -667,7 +639,7 @@
 
     sudo fatrace -f W -o ~/disk-usage.log -s 600
 
-.. index:: drive, label
+.. index:: drive, label, disk
 .. _change-label:
 
 Как сменить метку раздела?
@@ -687,7 +659,7 @@
 
 Здесь **/dev/sda1** - раздел, на котором требуется изменить метку.
 
-.. index:: drive, uuid
+.. index:: drive, uuid, disk
 .. _get-uuid:
 
 Как получить UUID всех смонтированных разделов?
@@ -707,7 +679,7 @@
 
 Здесь **/dev/sda1** - раздел, для которого требуется вывести UUID.
 
-.. index:: drive, uuid
+.. index:: drive, uuid, disk
 .. _change-uuid:
 
 Как изменить UUID раздела?
@@ -735,7 +707,7 @@
 
 Для того, чтобы указать другие DNS серверы, необходимо использовать Network Manager (графический или консольный): **свойства соединения** -> страница **IPv4** -> **другие DNS серверы**.
 
-.. index:: dns, resolv.conf
+.. index:: dns, resolv.conf, resolver
 .. _dns-resolv:
 
 Можно ли править файл /etc/resolv.conf в Fedora?

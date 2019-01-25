@@ -11,7 +11,7 @@
 Вопросы, связанные с пакетным менеджером и установкой пакетов
 ***************************************************************
 
-.. index:: package, manager, менеджер пакетов
+.. index:: package, manager
 .. _pkg-manager:
 
 Какой менеджер пакетов используется в настоящее время?
@@ -19,7 +19,7 @@
 
 Dnf, являющийся, в свою очередь, форком Yum.
 
-.. index:: package, manager, менеджер пакетов
+.. index:: package, manager
 .. _yum-fedora:
 
 Могу ли я использовать Yum в Fedora?
@@ -99,7 +99,7 @@ Dnf, являющийся, в свою очередь, форком Yum.
 
 Здесь **foo-bar** - название venv контейнера. Допускается создавать неограниченное их количество.
 
-.. index:: DM change, смена менеджера сеансов, менеджер сеансов
+.. index:: dm change, dm, display manager, sddm, gdm
 .. _change-dm:
 
 У меня в системе используется GDM, но я хочу заменить его на SDDM. Это возможно?
@@ -142,7 +142,7 @@ Dnf, являющийся, в свою очередь, форком Yum.
 
     sudo dnf clean all
 
-.. index:: upgrade, rawhide
+.. index:: fedora, upgrade, rawhide
 .. _dist-rawhide:
 
 Как мне обновить Fedora до Rawhide?
@@ -159,7 +159,7 @@ Dnf, являющийся, в свою очередь, форком Yum.
 
 Весь процесс установки будет выполнен во время следующей загрузки системы.
 
-.. index:: dnf, package error, ошибка обновления
+.. index:: dnf, package error, error
 .. _dnf-duplicates:
 
 При обновлении dnf ругается на дубликаты пакетов.
@@ -177,7 +177,7 @@ Dnf, являющийся, в свою очередь, форком Yum.
 
     sudo package-cleanup --cleandupes
 
-.. index:: dnf, ошибка обновления, повреждение базы RPM
+.. index:: dnf, error, rpm
 .. _dnf-rpmdb:
 
 База RPM оказалась повреждена. Как восстановить?
@@ -191,7 +191,7 @@ Dnf, являющийся, в свою очередь, форком Yum.
 
 Настоятельно рекомендуется сделать резервную копию каталога **/var/lib/rpm** перед этим действием.
 
-.. index:: dnf, kernel count, сохранение ядер Linux
+.. index:: dnf, kernel count, kernel
 .. _dnf-kernel-store:
 
 Dnf сохраняет старые ядра. Это нормально?
@@ -199,7 +199,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Да. По умолчанию dnf сохраняет 3 последних ядра, чтобы в случае сбоя была возможность загрузки в более старое и исправления работы системы.
 
-.. index:: dnf, kernel count, сохранение ядер Linux
+.. index:: dnf, kernel count, kernel
 .. _dnf-kernel-change:
 
 Как можно уменьшить количество сохраняемых ядер?
@@ -213,7 +213,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Минимально допустимое значение - **2** (будут сохраняться два ядра: текущее и предыдущее).
 
-.. index:: dnf, proxy, прокси
+.. index:: dnf, proxy
 .. _dnf-proxy:
 
 Как настроить работу dnf через прокси?
@@ -227,7 +227,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Поддерживаются HTTP, HTTPS и SOCKS.
 
-.. index:: dnf, weak dependencies, слабые зависимости
+.. index:: dnf, weak dependencies
 .. _dnf-weakdeps:
 
 Как отключить установку слабых зависимостей?
@@ -239,7 +239,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
     install_weak_deps=0
 
-.. index:: dnf, disable package updates, запрет обновлений пакетов
+.. index:: dnf, package, updates
 .. _dnf-pkgupdates:
 
 Как мне запретить установку обновлений для ряда пакетов?
@@ -253,7 +253,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Здесь вместо примера следует указать нужные пакеты, разделяя их пробелом. Допускаются символы подстановки.
 
-.. index:: dnf, remove kernel, удаление ядра
+.. index:: dnf, remove kernel, kernel
 .. _dnf-kernel-remove:
 
 Как можно вручную удалить старое ядро?
@@ -267,7 +267,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Здесь **4.10.14** - это версия удаляемого ядра.
 
-.. index:: fonts, шрифты Microsoft
+.. index:: fonts, msttcorefonts, corefonts
 .. _msttcorefonts:
 
 Как установить шрифты Microsoft в Fedora?
@@ -275,7 +275,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 См. `здесь <https://www.easycoding.org/2011/08/14/ustanovka-microsoft-core-fonts-v-fedora.html>`__.
 
-.. index:: repository, сторонние репозитории
+.. index:: repository, third-party
 .. _3rd-repositories:
 
 Какие сторонние репозитории лучше всего подключать?
@@ -291,7 +291,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 См. `здесь <https://www.easycoding.org/2018/07/25/rabotaem-s-flatpak-paketami-v-fedora.html>`__.
 
-.. index:: repository, codecs, кодеки мультимедиа, multimedia
+.. index:: repository, codecs, multimedia, third-party
 .. _multimedia-codecs:
 
 В системе нет кодеков мультимедиа. Как их установить?
@@ -303,7 +303,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
     sudo dnf groupinstall multimedia
 
-.. index:: repository, codecs, кодеки мультимедиа, multimedia, chromium
+.. index:: repository, codecs, multimedia, chromium, third-party
 .. _chromium-codecs:
 
 Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?
@@ -315,7 +315,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
     sudo dnf install chromium-libs-media-freeworld
 
-.. index:: repository, codecs, кодеки мультимедиа, multimedia
+.. index:: repository, codecs, multimedia, third-party, ffmpeg
 .. _firefox-codecs:
 
 Как активировать все доступные кодеки в браузере Firefox?
@@ -327,7 +327,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
     sudo dnf install ffmpeg-libs
 
-.. index:: repository, nvidia, drivers, драйверы
+.. index:: repository, nvidia, drivers, third-party
 .. _nvidia-drivers:
 
 Как правильно установить драйверы NVIDIA?
@@ -335,7 +335,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 См. `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
 
-.. index:: virtualization
+.. index:: virtualization, vm, kvm, virtualbox
 .. _virtualization:
 
 Какую систему управления виртуальными машинами лучше установить?
@@ -343,7 +343,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Рекомендуется использовать :ref:`KVM <kvm>`, т.к. её гипервизор и необходимые модули уже находятся в ядре Linux и не вызывают проблем.
 
-.. index:: virtualization, kvm
+.. index:: virtualization, kvm, vm
 .. _kvm:
 
 Как правильно установить систему виртуализации KVM?
@@ -373,7 +373,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
     sudo usermod -a -G libvirt $(whoami)
 
-.. index:: virtualization, repository, virtualbox
+.. index:: virtualization, repository, virtualbox, vm
 .. _virtualbox:
 
 Как правильно установить VirtualBox в Fedora?
@@ -393,7 +393,7 @@ Dnf сохраняет старые ядра. Это нормально?
     sudo usermod -a -G vboxusers $(whoami)
     sudo usermod -a -G vboxsf $(whoami)
 
-.. index:: repository, broadcom, drivers, драйверы
+.. index:: repository, broadcom, drivers, third-party
 .. _broadcom-drivers:
 
 Как правильно установить драйверы Wi-Fi модулей Broadcom?
@@ -406,7 +406,7 @@ Dnf сохраняет старые ядра. Это нормально?
     sudo dnf upgrade --refresh
     sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 
-.. index:: dnf, cache, кэши dnf
+.. index:: dnf, cache
 .. _dnf-caches:
 
 Как отключить автообновление кэшей dnf?
@@ -422,7 +422,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Конечно akmods, т.к. он автоматически собирает и устанавливает полноценные RPM пакеты.
 
-.. index:: package updates, testing, тестовые репозитории
+.. index:: package updates, testing
 .. _updates-testing:
 
 Каким способом можно обновить пакет из тестовых репозиториев?
@@ -436,7 +436,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Репозиторий **updates-testing** подключается однократно, только для данного сеанса работы dnf.
 
-.. index:: dnf, package contents, список файлов пакета
+.. index:: dnf, package contents, list
 .. _dnf-list-contents:
 
 Как получить список файлов установленного пакета?
@@ -446,7 +446,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
     sudo dnf repoquery -l foo-bar
 
-.. index:: dnf, package contents, список файлов пакета
+.. index:: dnf, package contents, list
 .. _dnf-find-file:
 
 Как узнать в каком пакете находится конкретный файл?
@@ -464,7 +464,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
     sudo dnf provides */имя_бинарника
 
-.. index:: dnf, java, alternatives, несколько версий java
+.. index:: dnf, java, alternatives, multiple
 .. _java-multiple:
 
 Можно ли установить несколько версий Java в систему?
@@ -490,7 +490,7 @@ Java 11:
 
     sudo dnf install java-11-openjdk
 
-.. index:: dnf, java, alternatives, несколько версий java
+.. index:: dnf, java, alternatives, multiple
 .. _alternatives-java:
 
 Как мне выбрать версию Java по умолчанию?
@@ -502,7 +502,7 @@ Java 11:
 
     sudo update-alternatives --config java
 
-.. index:: dnf, repository contents, список пакетов репозитория
+.. index:: dnf, repository contents, list
 .. _dnf-repo-contents:
 
 Как вывести список пакетов из определённого репозитория?
@@ -520,7 +520,7 @@ Java 11:
 
     sudo dnf repo-pkgs rpmfusion-free list installed
 
-.. index:: dnf, repository orphans, список пакетов-сирот
+.. index:: dnf, repository orphans, orphans, list
 .. _dnf-repo-orphans:
 
 Как вывести список пакетов, установленных не из репозиториев, либо удалённых из них?
@@ -532,7 +532,7 @@ Java 11:
 
     sudo dnf -C list extras
 
-.. index:: dnf, transactions, history cleanup, очистка истории транзакций
+.. index:: dnf, transactions, history cleanup, cleanup, clean
 .. _dnf-transactions-cleanup:
 
 Как очистить журнал транзакций dnf?
@@ -544,7 +544,7 @@ Java 11:
 
     sudo rm -rf /var/lib/dnf/history/*
 
-.. index:: dnf, installed list export, экспорт списка установленных пакетов
+.. index:: dnf, installed list export, export, list, packages
 .. _dnf-list-export:
 
 Как сохранить список установленных пакетов, чтобы легко установить их после переустановки системы?
@@ -564,7 +564,7 @@ Java 11:
 
     sudo dnf install $(cat ~/packages.lst)
 
-.. index:: dnf, download package only, скачать пакет без установки
+.. index:: dnf, download package only, packages
 .. _dnf-download-only:
 
 Можно ли скачать, но не устанавливать пакет из репозитория?
@@ -590,7 +590,7 @@ Java 11:
 
 Для работы плагина dnf-download права суперпользователя не требуются.
 
-.. index:: dnf, repositories, управление репозиториями
+.. index:: dnf, repositories
 .. _dnf-manage-repo:
 
 Как правильно включать или отключать репозитории?
@@ -616,7 +616,7 @@ Java 11:
 
 Опциональный параметр **--refresh** добавляется для принудительного обновления кэшей dnf.
 
-.. index:: dnf, modular, modules, модули
+.. index:: dnf, modular, modules
 .. _dnf-modular:
 
 Что такое модульные репозитории?
@@ -638,7 +638,7 @@ Java 11:
 
 Более подробную информацию о модулях можно найти `здесь <https://docs.fedoraproject.org/en-US/modularity/using-modules/>`__.
 
-.. index:: dnf, modular, modules, модули
+.. index:: dnf, modular, modules
 .. _dnf-disable-modules:
 
 Мне не нужна поддержка модулей. Как их можно отключить?

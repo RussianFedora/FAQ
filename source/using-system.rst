@@ -11,7 +11,7 @@
 Вопросы, связанные с работой в системе
 *********************************************
 
-.. index:: автодополнение
+.. index:: autocompletion, bash
 .. _autocompletion:
 
 У меня в системе не работает автодополнение команд. Как исправить?
@@ -25,7 +25,7 @@
 
 При определённых условиях он может не быть установлен и из-за этого система автоматического дополнения команд может перестать функционировать.
 
-.. index:: резервное копирование, backup
+.. index:: backup
 .. _backup-system:
 
 Можно ли делать резервную копию корневого раздела работающей системы?
@@ -33,7 +33,7 @@
 
 Настоятельно не рекомендуется из-за множества работающих виртуальных файловых систем и псевдофайлов в **/sys**, **/dev**, **/proc** и т.д.
 
-.. index:: резервное копирование, backup
+.. index:: backup
 .. _backup-home:
 
 Как сделать копию домашнего каталога?
@@ -41,7 +41,7 @@
 
 См. `здесь <https://www.easycoding.org/2017/09/03/avtomatiziruem-rezervnoe-kopirovanie-v-fedora.html>`__.
 
-.. index:: резервное копирование, backup
+.. index:: backup
 .. _backup-create:
 
 Как лучше всего делать резервную копию корневого раздела?
@@ -56,7 +56,7 @@
     --exclude="$bdir/var/tmp/*" \
     -cvJpf /путь/к/бэкапу.tar.xz -C /путь/к/корню .
 
-.. index:: initrd, пересобрать initrd
+.. index:: initrd, rebuild initrd
 .. _initrd-rebuild:
 
 Как мне пересобрать образ initrd?
@@ -68,7 +68,7 @@
 
     sudo dracut -f
 
-.. index:: boot, загрузчик, grub
+.. index:: boot, grub
 .. _grub-reinstall:
 
 Как мне переустановить Grub 2?
@@ -76,7 +76,7 @@
 
 См. `здесь <https://fedoraproject.org/wiki/GRUB_2>`__.
 
-.. index:: boot, загрузчик, grub
+.. index:: boot, grub
 .. _grub-rebuild:
 
 Как пересобрать конфиг Grub 2?
@@ -94,7 +94,7 @@
 
     sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
 
-.. index:: slow shutdown, медленное завершение работы
+.. index:: slow shutdown, shutdown
 .. _slow-shutdown:
 
 Система медленно завершает работу. Можно ли это ускорить?
@@ -149,7 +149,7 @@
 
 Для активации данной функции необходимо в качестве графического бэкэнда вывода изображения указать **vaapi** или **vdpau**, после чего перезапустить плеер.
 
-.. index:: gdb, debugging, отладка
+.. index:: gdb, debugging, segfault, segmentation fault
 .. _debug-application:
 
 Приложение падает. Как мне его отладить?
@@ -181,7 +181,7 @@
 
 Полученный файл **~/trace.log** также следует загрузить на сервис.
 
-.. index:: converting multiple files, конвертирование множества файлов
+.. index:: converting multiple files, convert
 .. _convert-multiple-files:
 
 Как конвертировать множество файлов в mp3 из текущего каталога?
@@ -193,7 +193,7 @@
 
     find . -maxdepth 1 -type f -name "*.ogg" -exec ffmpeg -i "{}" -acodec mp3 -ab 192k "$(basename {}).mp3" \;
 
-.. index:: kde, gtk, double-click, двойной клик
+.. index:: kde, gtk, double-click
 .. _double-click-speed:
 
 Я использую KDE. Как мне настроить скорость двойного клика в GTK приложениях?
@@ -213,7 +213,7 @@
 
 Здесь 1000 — время в миллисекундах до активации двойного клика. Документация с подробным описанием всех переменных данных файлов конфигурации `здесь <https://developer.gnome.org/gtk3/stable/GtkSettings.html>`__.
 
-.. index:: console, lock screen, lock session, блокировка сессии
+.. index:: console, lock screen, lock session
 .. _block-screen:
 
 Возможно ли заблокировать экран из командной строки?
@@ -225,7 +225,7 @@
 
     loginctl lock-session
 
-.. index:: bash, приветствие оболочки
+.. index:: bash
 .. _bash-shell:
 
 Можно ли изменить приветствие Bash по умолчанию?
@@ -239,7 +239,7 @@
 
 Существует удобный онлайн генератор таких строк `здесь <http://bashrcgenerator.com/>`__.
 
-.. index:: bash, title, заголовок оболочки
+.. index:: bash, title, console
 .. _bash-title:
 
 Можно ли из shell скрипта менять название терминала?
@@ -247,7 +247,7 @@
 
 Да, при помощи `управляющих последовательностей <https://ru.wikipedia.org/wiki/%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B8%D0%B5_%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8_ANSI>`__. Ими же можно менять цвет текста вывода и многое другое.
 
-.. index:: time, синхронизация времени, ntp
+.. index:: time, synchronization, ntp, network
 .. _configure-ntp:
 
 Как настроить синхронизацию времени?
@@ -269,7 +269,7 @@
 
     chronyc sources
 
-.. index:: systemd, скорость запуска
+.. index:: systemd, boot, speed
 .. _systemd-analyze:
 
 Как узнать какой сервис замедляет загрузку системы?
@@ -303,7 +303,7 @@
 
 Больше информации можно найти `здесь <https://trac.ffmpeg.org/wiki/HWAccelIntro>`__.
 
-.. index:: file system, выбор файловой системы, файловая система
+.. index:: file system, selection, fs
 .. _fs-selection:
 
 Какую файловую систему рекомендуется использовать на Fedora?
@@ -313,7 +313,7 @@
 
 Для хранения больших объёмов данных можно использовать `XFS <https://ru.wikipedia.org/wiki/XFS>`__.
 
-.. index:: file system, файловая система, btrfs
+.. index:: file system, fs, btrfs
 .. _fs-btrfs:
 
 Что вы скажете о BTRFS?
@@ -321,7 +321,7 @@
 
 Мы настоятельно не рекомендуем её использовать. Данная ФС очень нестабильна и часто приводит к полной потере всех данных на устройстве без возможности восстановления даже в идеальных условиях (было множество случаев у пользователей нашего канала).
 
-.. index:: window, borders, рамки окон, kde plasma
+.. index:: window, borders, kde plasma, kde
 .. _window-borders:
 
 Как убрать рамки внутри окон в KDE Plasma 5?
@@ -329,7 +329,7 @@
 
 Для этого следует открыть **Меню KDE** - **Компьютер** - **Параметры системы** - **Оформление приложений** - страница **Стиль интерфейса** - кнопка **Настроить** - вкладка **Рамки**, **убрать все флажки** из чекбоксов на данной странице и нажать кнопку **OK**.
 
-.. index:: window, gnome, масштабирование, scaling factor, hidpi, qt
+.. index:: window, gnome, scaling, scaling factor, hidpi, qt
 .. _window-hidpi-qt:
 
 У меня в Gnome не работает масштабирование окон Qt приложений. Что делать?
@@ -354,7 +354,7 @@
 
 Более подробную информацию можно найти в `документации Qt <https://doc.qt.io/qt-5/highdpi.html>`__.
 
-.. index:: telegram
+.. index:: telegram, im
 .. _telegram-fedora:
 
 Как лучше установить Telegram Desktop в Fedora?
@@ -370,7 +370,7 @@
 
 Сборка Fedora поддерживает системные настройки тем, правильное сглаживание шрифтов (за счёт использование общесистемных настроек) и не имеет проблем со скоростью запуска.
 
-.. index:: telegram, cleanup
+.. index:: telegram, cleanup, im
 .. _telegram-cleanup:
 
 Ранее я устанавливал официальную версию Telegram Desktop. Как мне очистить её остатки?
@@ -383,7 +383,7 @@
 
 Теперь можно установить :ref:`версию <telegram-fedora>` из :ref:`RPM Fusion <rpmfusion>`.
 
-.. index:: sddm, dm, disable virtual keyboard, отключение виртуальной клавиатуры
+.. index:: sddm, dm, disable virtual keyboard, keyboard
 .. _sddm-disable-vkb:
 
 Как отключить виртуальную клавиатуру в SDDM?
@@ -403,7 +403,7 @@
 
 Изменения вступят в силу при следующей загрузке системы.
 
-.. index:: file system, файловая система, exfat, fuse
+.. index:: file system, fs, exfat, fuse
 .. _fedora-exfat:
 
 Почему я не могу использовать файловую систему exFAT в Fedora?
@@ -417,7 +417,7 @@
 
     sudo dnf install fuse fuse-exfat
 
-.. index:: latex, editor, редактор
+.. index:: latex, editor
 .. _latex-editor:
 
 В репозиториях есть полнофункциональные редакторы LaTeX?
@@ -429,7 +429,7 @@
 
     sudo dnf install texmaker
 
-.. index:: latex, texlive, cyrillic, fonts, шрифты
+.. index:: latex, texlive, cyrillic, fonts
 .. _latex-cyrillic:
 
 Как установить поддержку кириллических шрифтов для LaTeX?
@@ -786,7 +786,7 @@ KDE Connect не видит мой смартфон. Как исправить?
 
     sudo firewall-cmd --reload
 
-.. index:: text, editor, текстовый редактор, console, консоль
+.. index:: text, editor, text editor, console
 .. _editor-selection:
 
 Как выбрать предпочитаемый текстовый редактор в консольном режиме?
@@ -802,7 +802,7 @@ KDE Connect не видит мой смартфон. Как исправить?
 
 **VISUAL** - предпочитаемый текстовый редактор с графическим интерфейсом пользователя, **EDITOR** - текстовый, а **SUDO_EDITOR** используется в :ref:`sudoedit <sudo-edit-config>`.
 
-.. index:: text, editor, git, текстовый редактор
+.. index:: text, editor, git, text editor
 .. _editor-git:
 
 Как выбрать предпочитаемый текстовый редактор для Git?

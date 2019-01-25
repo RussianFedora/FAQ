@@ -11,7 +11,7 @@
 Основная информация
 *******************************
 
-.. index:: fedora
+.. index:: fedora, information
 .. _what-is:
 
 Что есть Fedora?
@@ -19,7 +19,7 @@
 
 Fedora - это один из дистрибутивов GNU/Linux, разрабатываемый сообществом и спонсируемый компанией Red Hat.
 
-.. index:: releases, релизы, выпуски
+.. index:: releases, fedora
 .. _releases:
 
 Как часто выходят релизы?
@@ -27,7 +27,7 @@ Fedora - это один из дистрибутивов GNU/Linux, разраб
 
 Полный цикл разработки одного релиза составляет от 6 до 8 месяцев.
 
-.. index:: releases, релизы, выпуски
+.. index:: releases, fedora
 .. _supported:
 
 Сколько релизов поддерживаются?
@@ -35,7 +35,7 @@ Fedora - это один из дистрибутивов GNU/Linux, разраб
 
 Два: текущий стабильный и предыдущий.
 
-.. index:: отличия
+.. index:: difference, fedora, distribution
 .. _differences:
 
 В чём отличие от других дистрибутивов?
@@ -43,7 +43,7 @@ Fedora - это один из дистрибутивов GNU/Linux, разраб
 
 Fedora - это bleeding edge дистрибутив. Он всегда находится на острие прогресса. Сначала новые разработки появляются здесь и только через некоторое время в остальных дистрибутивах. Из-за этого некоторые называют федору «тестовым полигоном», но это в корне не верно ибо релизы достаточно стабильны.
 
-.. index:: скачать, download
+.. index:: fedora, download
 .. _download:
 
 Где скачать Fedora?
@@ -53,7 +53,7 @@ Fedora - это bleeding edge дистрибутив. Он всегда нахо
 
 Также существуют еженедельные `автоматически сборки <https://dl.fedoraproject.org/pub/alt/live-respins/>`__ («respins»), содержащие все выпущенные на данный момент обновления.
 
-.. index:: DE, поддерживаемые DE, supported DE
+.. index:: de, desktop, environment
 .. _de-supported:
 
 Какие DE поддерживаются?
@@ -61,7 +61,7 @@ Fedora - это bleeding edge дистрибутив. Он всегда нахо
 
 Gnome 3 (версия Workstation), KDE, XFCE, LXDE, LXQt, Cinnamon.
 
-.. index:: releases, релизы, выпуски, rolling
+.. index:: releases, rolling, fedora
 .. _rolling-model:
 
 Я хочу использовать rolling модель обновлений. Это возможно?
@@ -69,7 +69,7 @@ Gnome 3 (версия Workstation), KDE, XFCE, LXDE, LXQt, Cinnamon.
 
 Да, ибо существует Fedora Rawhide.
 
-.. index:: rawhide, rolling
+.. index:: rawhide, rolling, fedora
 .. _using-rawhide:
 
 Возможно ли использовать Rawhide на постоянной основе?
@@ -77,7 +77,7 @@ Gnome 3 (версия Workstation), KDE, XFCE, LXDE, LXQt, Cinnamon.
 
 Вполне ибо его качество уже давно на уровне альфа-версий других дистрибутивов.
 
-.. index:: boot, загрузчик, grub
+.. index:: boot, grub
 .. _grub-loader:
 
 Какая версия загрузчика Grub используется в Fedora?
@@ -85,7 +85,7 @@ Gnome 3 (версия Workstation), KDE, XFCE, LXDE, LXQt, Cinnamon.
 
 Grub 2.
 
-.. index:: repository, installation, установка ПО, software
+.. index:: repository, installation, software
 .. _software-installation:
 
 Откуда следует устанавливать ПО?
@@ -95,7 +95,7 @@ Grub 2.
 
 Ни в коем случае не следует использовать установку посредством :ref:`make install <make-install>`, т.к. это породит в системе кучу никем не отслеживаемых зависимостей и создаст множество проблем при дальнейшем использовании системы.
 
-.. index:: installation, установка ПО, software, snap
+.. index:: installation, software, snap
 .. _snap:
 
 Можно ли использовать в Fedora Snap пакеты?
@@ -103,7 +103,7 @@ Grub 2.
 
 Технически возможно, однако мы настоятельно не рекомендуем этого делать ибо качество большинства Snap пакетов очень низкое, к тому же в некоторых из них `были обнаружены <https://xakep.ru/2018/05/14/snap-store-miner/>`__ вредоносные майнеры.
 
-.. index:: repository, rpmfusion
+.. index:: repository, rpmfusion, third-party
 .. _rpmfusion:
 
 Что такое RPM Fusion?
@@ -123,7 +123,7 @@ Grub 2.
 
     sudo dnf remove rpmfusion-free-release rpmfusion-nonfree-release
 
-.. index:: repository, russianfedora
+.. index:: repository, russianfedora, third-party
 .. _russian-fedora:
 
 Что такое Russian Fedora?
@@ -145,7 +145,7 @@ Grub 2.
 
     sudo dnf remove russianfedora-free-release russianfedora-nonfree-release
 
-.. index:: repository, copr, overlay
+.. index:: repository, copr, overlay, third-party
 .. _copr:
 
 Что такое COPR?
@@ -153,7 +153,7 @@ Grub 2.
 
 Fedora COPR - это бесплатный хостинг для размещения пользовательских репозиториев (аналог AUR в Arch Linux или PPA в Ubuntu).
 
-.. index:: repository, copr, overlay
+.. index:: repository, copr, overlay, third-party
 .. _copr-use:
 
 Безопасно ли использовать COPR репозитории?
@@ -193,7 +193,7 @@ RFRemix - это ремикс оргинального дистрибутива 
 
     sudo dnf distro-sync
 
-.. index:: bug report, сообщить об ошибке
+.. index:: bug report, report, bug
 .. _bug-report:
 
 Я нашёл ошибку в программе. Как мне сообщить о ней?
@@ -201,7 +201,7 @@ RFRemix - это ремикс оргинального дистрибутива 
 
 Для начала следует `создать тикет <https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora>`__ в RHBZ.
 
-.. index:: get help, получение помощи, telegram, irc, channels, chats
+.. index:: get help, telegram, irc, channels, chats, im, help
 .. _get-help:
 
 У меня возникло затруднение. Где я могу получить помощь?
