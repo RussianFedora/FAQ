@@ -102,3 +102,21 @@
     git archive --format=tar --prefix=foo-bar-1.0.0/ HEAD | gzip > ~/rpmbuild/SOURCES/foo-bar-1.0.0.tar.gz
 
 Здесь **HEAD** - указатель на актуальный коммит (вместо этого можно использовать SHA1 хеш любого коммита, а также имя тега или ветки), **foo-bar** - название проекта, а **1.0.0** - его версия.
+
+.. index:: fedpkg, koji
+.. _rpmfusion-override:
+
+Как переопределить пакет в Koji репозитория RPM Fusion?
+===========================================================
+
+Создание build override для репозитория f29-free:
+
+.. code-block:: bash
+
+    koji-rpmfusion tag f29-free-override foo-bar-1.0-1.fc29
+
+Удаление build override для репозитория f29-free:
+
+.. code-block:: bash
+
+    koji-rpmfusion untag f29-free-override foo-bar-1.0-1.fc29
