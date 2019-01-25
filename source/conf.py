@@ -142,8 +142,8 @@ htmlhelp_basename = 'fedora-faq-ru'
 latex_engine = 'xelatex'
 latex_elements = {
     'fontpkg': r'''
-\setmainfont{DejaVu Sans}
-\setromanfont{DejaVu Serif}
+\setmainfont{DejaVu Serif}
+\setromanfont{DejaVu Sans}
 \setsansfont{DejaVu Sans}
 \setmonofont{DejaVu Sans Mono}
 '''
