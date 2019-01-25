@@ -612,7 +612,7 @@ Network Manager поддерживает два сценария рандоми�
 
 Профиль **stable**. Файл **00-macrandomize-stable.conf**:
 
-.. code-block:: text
+.. code-block:: ini
 
     [device]
     wifi.scan-rand-mac-address=yes
@@ -624,7 +624,7 @@ Network Manager поддерживает два сценария рандоми�
 
 Профиль **random**. Файл **00-macrandomize-random.conf**:
 
-.. code-block:: text
+.. code-block:: ini
 
     [device]
     wifi.scan-rand-mac-address=yes
