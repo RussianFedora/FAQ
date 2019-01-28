@@ -1,8 +1,8 @@
 .. Fedora-Faq-Ru (c) 2018 - 2019, EasyCoding Team and contributors
-.. 
+..
 .. Fedora-Faq-Ru is licensed under a
 .. Creative Commons Attribution-ShareAlike 4.0 International License.
-.. 
+..
 .. You should have received a copy of the license along with this
 .. work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
 .. _security:
@@ -64,6 +64,114 @@ SELinux - это мандатная система контроля доступ
 =======================================
 
 При помощи команды **getenforce** или **sestatus**.
+
+.. index:: httpd, selinux, write, file, directory, security
+.. _httpd-selinux:
+
+Как настроить SELinux так, чтоб httpd мог создавать файлы/директории?
+=======================================================================
+
+Появляются сообщения вида:
+
+`Warning: chmod(): Permission denied in /var/www/html/library/HTMLPurifier/DefinitionCache/Serializer.php on line 284`
+
+`Warning: Directory /var/www/html/library/HTMLPurifier/DefinitionCache/Serializer/HTML not writable, please chmod to 755 in /var/www/html/library/HTMLPurifier/DefinitionCache/Serializer.php on line 297`
+
+которые гласят, что директория `/var/www/html/library/HTMLPurifier/DefinitionCache/Serializer/HTML` не доступна для записи из httpd и скорее всего запись запрещает SELinux.
+
+(все дальнейшие команды выполняются от пользователя root или используя sudo)
+
+* требуется внести изменения в контекст SELinux для файлов (обратите внимание на шаблон в конце строки):
+
+.. code-block:: bash
+
+    semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/html/library/HTMLPurifier/DefinitionCache/Serializer/HTML(/.*)?"
+
+* и принять изменения контекста:
+
+.. code-block:: bash
+
+    restorecon -Rv /var/www/html
+
+* проверить список контекстов для httpd возможно так:
+
+.. code-block:: bash
+
+    semanage fcontext -l | grep httpd
+
+* или, так как предудущая команда выводит очень много информации, лучше так:
+
+.. code-block:: bash
+
+    semanage fcontext -l | grep /var/www/html
+
+* удалить ошибочную строку (например, забыл начальный слеш) возможно так:
+
+    semanage fcontext -d "var/www/html/library/HTMLPurifier/DefinitionCache/Serializer/HTML/"
+
+* проверить контекст для директорий и папок возможно так:
+
+.. code-block:: bash
+
+    ls -Z (выполнить в папке)
+    ls -Z /var/www/html/request/library/HTMLPurifier/DefinitionCache/Serializer
+
+См. про изменение контекста подробнее `здесь <https://docs.fedoraproject.org/ru-RU/Fedora/13/html/Security-Enhanced_Linux/sect-Security-Enhanced_Linux-SELinux_Contexts_Labeling_Files-Persistent_Changes_semanage_fcontext.html>`__.
+
+* создать модуль (текстовый файл) httpd_wr.te следующего содержания:
+
+.. code-block:: bash
+
+    #################
+    #
+    # httpd can write some dir and files
+    #
+    #################
+    module httpd_wr 1.0;
+    
+    require {
+    	type httpd_t;
+    	type httpd_sys_rw_content_t;
+    	class file { create write setattr rename unlink };
+    	class dir { create write setattr add_name remove_name rmdir };
+    }
+    #################
+    #============= httpd_t ==============
+    allow httpd_t httpd_sys_rw_content_t:file { create write setattr rename unlink };
+    allow httpd_t httpd_sys_rw_content_t:dir { create write setattr add_name remove_name rmdir };
+
+* проверить, скомпилировать и синсталлировать модуль:
+
+.. code-block:: bash
+
+    checkmodule -M -m httpd_wr.te -o httpd_wr.mod
+    semodule_package -o httpd_wr.pp -m httpd_wr.mod
+    semodule -i httpd_wr.pp
+
+См. про создание модуля подробнее `здесь <https://habr.com/ru/company/pt/blog/142423/>`__.
+
+См. список возможных разрешений для классов `здесь <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/4/html/SELinux_Guide/rhlcommon-section-0049.html>`__.
+
+См. список контекстов и прочих настроек `здесь <https://dwalsh.fedorapeople.org/SELinux/httpd_selinux.html>`__.
+
+Просмотр неправильных (не выставленных) правил, создает apfirst.te файл, разрешающий действия, запрет которых попал в лог.
+
+* один раз, для очищения предыдущих ошибок:
+
+.. code-block:: bash
+
+* после каждой инициации действия и добавления новых разрешений в модуль:
+
+    cat /dev/null > /var/log/audit/audit.log
+cat /var/log/audit/audit.log | audit2allow -M appfirst
+
+Разрешение httpd соединяться по сети:
+
+.. code-block:: bash
+
+    setsebool -P httpd_can_network_connect on
+
+См. список контекстов и прочих настроек `здесь <https://dwalsh.fedorapeople.org/SELinux/httpd_selinux.html>`__.
 
 .. index:: openvpn, selinux, vpn, security
 .. _openvpn-selinux:
@@ -616,7 +724,7 @@ Network Manager поддерживает два сценария рандоми�
 
     [device]
     wifi.scan-rand-mac-address=yes
-    
+
     [connection]
     wifi.cloned-mac-address=stable
     ethernet.cloned-mac-address=stable
@@ -628,7 +736,7 @@ Network Manager поддерживает два сценария рандоми�
 
     [device]
     wifi.scan-rand-mac-address=yes
-    
+
     [connection]
     wifi.cloned-mac-address=random
     ethernet.cloned-mac-address=random
