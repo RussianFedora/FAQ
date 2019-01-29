@@ -180,23 +180,21 @@ SELinux - это мандатная система контроля доступ
  * `создание разрешений для классов <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/4/html/SELinux_Guide/rhlcommon-section-0049.html>`__;
  * `информация о контекстах и настройках для веб-сервера <https://dwalsh.fedorapeople.org/SELinux/httpd_selinux.html>`__.
 
-.. index:: httpd, selinux, connect, network, port, security
-.. _httpd-network-selinux:
+.. index:: httpd, selinux, connection, network, port, security
+.. _selinux-connections:
 
-Как настроить SELinux так, чтоб httpd мог делать исходящие запросы по сети?
-============================================================================
+Как настроить SELinux так, чтобы веб-сервер мог осуществлять исходящие сетевые соединения?
+==============================================================================================
 
-Первый вариант (догий и правильный):
+.. _nsl-first:
 
-* создать модуль (текстовый файл) httpd_network.te следующего содержания:
+Первый вариант (самый правильный):
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Откроем текствый редактор и создадим новый модуль **httpd_network.te**:
 
 .. code-block:: bash
 
-    #################
-    #
-    # httpd can connect ephemeral ports
-    #
-    #################
     module httpd_connect 1.0;
     
     require {
@@ -204,45 +202,47 @@ SELinux - это мандатная система контроля доступ
     	   type ephemeral_port_t;
     	   class tcp_socket name_connect;
     }
-    #################
-    #============= httpd_t ==============
+    
     allow httpd_t ephemeral_port_t:tcp_socket name_connect;
 
-* проверить, скомпилировать и синсталлировать модуль:
+Проверим, скомпилируем и установим его:
 
 .. code-block:: bash
 
-    checkmodule -M -m httpd_network.te -o httpd_network.mod
-    semodule_package -o httpd_network.pp -m httpd_network.mod
-    semodule -i httpd_network.pp 
+    sudo checkmodule -M -m httpd_network.te -o httpd_network.mod
+    sudo semodule_package -o httpd_network.pp -m httpd_network.mod
+    sudo semodule -i httpd_network.pp 
 
-Посмотреть названия диапазонов портов возможно так:
-
-.. code-block:: bash
-
-    semanage port -l
-
-Добавить порт в диапазон возможно так:
+Получим названия диапазонов портов:
 
 .. code-block:: bash
 
-    #semanage port -a -t название_диапазона -p протокол порт_или_диапазон_портов
+    sudo semanage port -l
+
+Добавим порт в диапазон:
+
+.. code-block:: bash
+
     semanage port -a -t ephemeral_port_t -p tcp 80-88
 
-Удалить порт:
+Удалим порт из диапазона:
 
 .. code-block:: bash
 
     semanage port -d -t ephemeral_port_t -p tcp 80-88
 
+Здесь **ephemeral_port_t** - название диапазона, **tcp** - используемый протокол, а **80-88** - диапазон разрешаемых портов.
 
-Второй вариант (быстрый и менее безопасный):
+.. _nsl-second:
+
+Второй вариант (быстрый, но менее безопасный)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Разрешим любые исходящие соединения для веб-сервера:
 
 .. code-block:: bash
 
-    setsebool -P httpd_can_network_connect on
-
-См. список сокращений для конкретных сервисов `здесь <https://dwalsh.fedorapeople.org/SELinux/httpd_selinux.html>`__.
+    sudo setsebool -P httpd_can_network_connect on
 
 .. index:: openvpn, selinux, vpn, security
 .. _openvpn-selinux:
