@@ -97,97 +97,88 @@ SELinux - это мандатная система контроля доступ
 
 Описание переменных SELinux, относящихся к работе веб-сервера, можно найти `здесь <https://dwalsh.fedorapeople.org/SELinux/httpd_selinux.html>`__.
 
-.. index:: httpd, selinux, write, file, directory, security
-.. _httpd-wr-selinux:
+.. index:: httpd, selinux, access rights, security
+.. _selinux-httpd:
 
-Как настроить SELinux так, чтоб httpd мог создавать файлы/директории?
-=======================================================================
+Как настроить SELinux так, чтобы веб-сервер мог создавать файлы и каталоги?
+==============================================================================
 
-Появляются сообщения вида:
+Если при работе веб-сервера в журналах появляются сообщения вида:
 
-`Warning: chmod(): Permission denied in /var/www/html/library/HTMLPurifier/DefinitionCache/Serializer.php on line 284`
+.. code-block:: text
 
-`Warning: Directory /var/www/html/library/HTMLPurifier/DefinitionCache/Serializer/HTML not writable, please chmod to 755 in /var/www/html/library/HTMLPurifier/DefinitionCache/Serializer.php on line 297`
+    Warning: chmod(): Permission denied in /var/www/html/foo-bar/foo.php on line XXX
+    Warning: Directory /var/www/html/foo-bar/foo not writable, please chmod to 755 in /var/www/html/foo-bar/foo.php on line XXX
 
-которые означают, что директория `/var/www/html/library/HTMLPurifier/DefinitionCache/Serializer/HTML` недоступна для записи из httpd. Если права выставлены правильно, то скорее всего запись запрещает SELinux.
+Это значают, что процесс веб-сервера (или интерпретатора языка программирования) не может получить доступ на запись. Если права доступа (chmod и chown) при этом установлены верно, значит доступ блокирует :ref:`SELinux <selinux>`.
 
-(все дальнейшие команды выполняются от пользователя root или используя sudo)
-
-* требуется внести изменения в контекст SELinux для файлов (обратите внимание на шаблон в конце строки):
-
-.. code-block:: bash
-
-    semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/html/library/HTMLPurifier/DefinitionCache/Serializer/HTML(/.*)?"
-
-* и принять изменения контекста:
+Установим правильный контекст безопасности для всех каталогов внутри **document_root/foo-bar**:
 
 .. code-block:: bash
 
-    restorecon -Rv /var/www/html
+    sudo semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/html/foo-bar(/.*)?"
 
-* проверить список контекстов для httpd возможно так:
-
-.. code-block:: bash
-
-    semanage fcontext -l | grep httpd
-
-* или, так как предудущая команда выводит очень много информации, лучше так:
+Сбросим контекст безопасности для всех файлов внутри document_root рекурсивно:
 
 .. code-block:: bash
 
-    semanage fcontext -l | grep /var/www/html
+    sudo restorecon -Rv /var/www/html
 
-* удалить ошибочную строку (например, забыл начальный слеш) возможно так:
-
-.. code-block:: bash
-
-    semanage fcontext -d "var/www/html/library/HTMLPurifier/DefinitionCache/Serializer/HTML/(/.*)?"
-
-* проверить контекст для директорий и папок возможно так:
+Для отмены произведённых изменений контекста можно выполнить:
 
 .. code-block:: bash
 
-    ls -Z (выполнить в папке)
-    ls -Z /var/www/html/request/library/HTMLPurifier/DefinitionCache/Serializer
+    sudo semanage fcontext -d "/var/www/html/foo-bar(/.*)?"
 
-См. про изменение контекста подробнее `здесь <https://docs.fedoraproject.org/ru-RU/Fedora/13/html/Security-Enhanced_Linux/sect-Security-Enhanced_Linux-SELinux_Contexts_Labeling_Files-Persistent_Changes_semanage_fcontext.html>`__.
-
-* создать модуль (текстовый файл) httpd_wr.te следующего содержания:
+Получить список контекстов для httpd можно так:
 
 .. code-block:: bash
 
-    #################
-    #
-    # httpd can write some dir and files
-    #
-    #################
+    sudo semanage fcontext -l | grep httpd
+
+Если предудущая команда выводит очень много информации, осуществим фильтрацию вывода:
+
+.. code-block:: bash
+
+    sudo semanage fcontext -l | grep /var/www/html
+
+Получить список файлов и каталогов с установленным контекстом SELinux можно так:
+
+.. code-block:: bash
+
+    ls -laZ /var/www/html/foo-bar
+
+Более полную информацию о контекстах безопасности и работе с ними можно найти `здесь <https://docs.fedoraproject.org/en-US/Fedora/25/html/SELinux_Users_and_Administrators_Guide/sect-Security-Enhanced_Linux-Working_with_SELinux-SELinux_Contexts_Labeling_Files.html>`__.
+
+Откроем текстовый редактор и создадим новый модуль **httpd_wr.te**:
+
+.. code-block:: text
+
     module httpd_wr 1.0;
     
     require {
-    	   type httpd_t;
-    	   type httpd_sys_rw_content_t;
-    	   class file { create write setattr rename unlink };
-    	   class dir { create write setattr add_name remove_name rmdir };
+        type httpd_t;
+        type httpd_sys_rw_content_t;
+        class file { create write setattr rename unlink };
+        class dir { create write setattr add_name remove_name rmdir };
     }
-    #################
-    #============= httpd_t ==============
+    
     allow httpd_t httpd_sys_rw_content_t:file { create write setattr rename unlink };
     allow httpd_t httpd_sys_rw_content_t:dir { create write setattr add_name remove_name rmdir };
 
-* проверить, скомпилировать и синсталлировать модуль:
+Проверим, скомпилируем и установим его:
 
 .. code-block:: bash
 
-    checkmodule -M -m httpd_wr.te -o httpd_wr.mod
-    semodule_package -o httpd_wr.pp -m httpd_wr.mod
-    semodule -i httpd_wr.pp
+    sudo checkmodule -M -m httpd_wr.te -o httpd_wr.mod
+    sudo semodule_package -o httpd_wr.pp -m httpd_wr.mod
+    sudo semodule -i httpd_wr.pp
 
-См. про создание модуля подробнее `здесь <https://habr.com/ru/company/pt/blog/142423/>`__.
+Больше полезной информации о модулях можно найти здесь:
 
-См. список возможных разрешений для классов `здесь <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/4/html/SELinux_Guide/rhlcommon-section-0049.html>`__.
-
-См. список контекстов и прочих настроек `здесь <https://dwalsh.fedorapeople.org/SELinux/httpd_selinux.html>`__.
-
+ * `создание модулей SELinux <https://habr.com/ru/company/pt/blog/142423/>`__;
+ * `создание разрешений для классов <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/4/html/SELinux_Guide/rhlcommon-section-0049.html>`__;
+ * `информация о контекстах и настройках для веб-сервера <https://dwalsh.fedorapeople.org/SELinux/httpd_selinux.html>`__.
 
 .. index:: httpd, selinux, connect, network, port, security
 .. _httpd-network-selinux:
