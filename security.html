@@ -74,8 +74,133 @@
 <span id="index-3"></span><span id="id5"></span><h2>Как узнать текущий статус SELinux?<a class="headerlink" href="#selinux-status" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При помощи команды <strong>getenforce</strong> или <strong>sestatus</strong>.</p>
 </div>
+<div class="section" id="selinux-auditd">
+<span id="index-4"></span><span id="id6"></span><h2>Как разрешить заблокированные действия SELinux?<a class="headerlink" href="#selinux-auditd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По умолчанию <a class="reference internal" href="#selinux"><span class="std std-ref">SELinux</span></a> будет блокировать доступ к любым файлам, каталогам, сокетам, которые не разрешены в политиках для конкретного процесса. Это вызывает множество проблем, поэтому пользователи зачастую предпочитают <a class="reference internal" href="#selinux-disable"><span class="std std-ref">отключать SELinux</span></a>, что в корне неверно. Вместо этого следует разобраться в причине блокировки и создать разрешающее правило.</p>
+<p>Очистим журнал аудита SELinux для того, чтобы избавиться от предыдущих ошибок и случайно не позволить лишние действия, накопившиеся с момента его прошлой ротации:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo bash -c <span class="s2">&quot;cat /dev/null &gt; /var/log/audit/audit.log&quot;</span>
+</pre></div>
+</div>
+<p>Запустим приложение, модуль ядра и т.д., который вызывает срабатывание SELinux и блокировку доступа к ресурсу (файлу, каталогу, сокету). Как только это произойдёт, воспользуемся утилитой <strong>audit2allow</strong> для анализа журнала аудита, облегчающей создание новых разрешающих правил для SELinux:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo bash -c <span class="s2">&quot;cat /var/log/audit/audit.log | audit2allow -M foo-bar&quot;</span>
+</pre></div>
+</div>
+<p>В результате работы данной утилиты будет создан новый модуль <strong>foo-bar.te</strong>, в котором разрешаются действия, записи о запрещении которых были внесены в журнал auditd ранее.</p>
+<p>Перед применением этого файла и созданием политики SELinux необходимо обязательно загрузить его в текстовый редактор и проверить корректность, т.к. в нем может содержаться больше разрешающих правил, чем требуется, а также присутствуют подсказки о том, как правильно настроить SELinux.</p>
+<p>В сгенерированном файле модуля <strong>foo-bar.te</strong> после комментария <em>This avc can be allowed using one of the these booleans</em> присутствует список переменных двоичного типа, установка которых поможет разрешить заблокированное действие. Справочную информацию можно получить из документации SELinux:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>getsebool -a
+</pre></div>
+</div>
+<p>Описание переменных SELinux, относящихся к работе веб-сервера, можно найти <a class="reference external" href="https://dwalsh.fedorapeople.org/SELinux/httpd_selinux.html">здесь</a>.</p>
+</div>
+<div class="section" id="selinux-httpd">
+<span id="index-5"></span><span id="id7"></span><h2>Как настроить SELinux так, чтобы веб-сервер мог создавать файлы и каталоги?<a class="headerlink" href="#selinux-httpd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если при работе веб-сервера в журналах появляются сообщения вида:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Warning: chmod(): Permission denied in /var/www/html/foo-bar/foo.php on line XXX
+Warning: Directory /var/www/html/foo-bar/foo not writable, please chmod to 755 in /var/www/html/foo-bar/foo.php on line XXX
+</pre></div>
+</div>
+<p>Это значают, что процесс веб-сервера (или интерпретатора языка программирования) не может получить доступ на запись. Если права доступа (chmod и chown) при этом установлены верно, значит доступ блокирует <a class="reference internal" href="#selinux"><span class="std std-ref">SELinux</span></a>.</p>
+<p>Установим правильный контекст безопасности для всех каталогов внутри <strong>document_root/foo-bar</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -a -t httpd_sys_rw_content_t <span class="s2">&quot;/var/www/html/foo-bar(/.*)?&quot;</span>
+</pre></div>
+</div>
+<p>Сбросим контекст безопасности для всех файлов внутри document_root рекурсивно:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo restorecon -Rv /var/www/html
+</pre></div>
+</div>
+<p>Для отмены произведённых изменений контекста можно выполнить:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -d <span class="s2">&quot;/var/www/html/foo-bar(/.*)?&quot;</span>
+</pre></div>
+</div>
+<p>Получить список контекстов для httpd можно так:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -l <span class="p">|</span> grep httpd
+</pre></div>
+</div>
+<p>Если предудущая команда выводит очень много информации, осуществим фильтрацию вывода:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -l <span class="p">|</span> grep /var/www/html
+</pre></div>
+</div>
+<p>Получить список файлов и каталогов с установленным контекстом SELinux можно так:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls -laZ /var/www/html/foo-bar
+</pre></div>
+</div>
+<p>Более полную информацию о контекстах безопасности и работе с ними можно найти <a class="reference external" href="https://docs.fedoraproject.org/en-US/Fedora/25/html/SELinux_Users_and_Administrators_Guide/sect-Security-Enhanced_Linux-Working_with_SELinux-SELinux_Contexts_Labeling_Files.html">здесь</a>.</p>
+<p>Откроем текстовый редактор и создадим новый модуль <strong>httpd_wr.te</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>module httpd_wr 1.0;
+
+require {
+    type httpd_t;
+    type httpd_sys_rw_content_t;
+    class file { create write setattr rename unlink };
+    class dir { create write setattr add_name remove_name rmdir };
+}
+
+allow httpd_t httpd_sys_rw_content_t:file { create write setattr rename unlink };
+allow httpd_t httpd_sys_rw_content_t:dir { create write setattr add_name remove_name rmdir };
+</pre></div>
+</div>
+<p>Проверим, скомпилируем и установим его:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo checkmodule -M -m httpd_wr.te -o httpd_wr.mod
+sudo semodule_package -o httpd_wr.pp -m httpd_wr.mod
+sudo semodule -i httpd_wr.pp
+</pre></div>
+</div>
+<p>Больше полезной информации о модулях можно найти здесь:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://habr.com/ru/company/pt/blog/142423/">создание модулей SELinux</a>;</li>
+<li><a class="reference external" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/4/html/SELinux_Guide/rhlcommon-section-0049.html">создание разрешений для классов</a>;</li>
+<li><a class="reference external" href="https://dwalsh.fedorapeople.org/SELinux/httpd_selinux.html">информация о контекстах и настройках для веб-сервера</a>.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="selinux-connections">
+<span id="index-6"></span><span id="id8"></span><h2>Как настроить SELinux так, чтобы веб-сервер мог осуществлять исходящие сетевые соединения?<a class="headerlink" href="#selinux-connections" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="nsl-first">
+<span id="id9"></span><h3>Первый вариант (самый правильный):<a class="headerlink" href="#nsl-first" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Откроем текствый редактор и создадим новый модуль <strong>httpd_network.te</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module httpd_connect <span class="m">1</span>.0<span class="p">;</span>
+
+require <span class="o">{</span>
+       <span class="nb">type</span> httpd_t<span class="p">;</span>
+       <span class="nb">type</span> ephemeral_port_t<span class="p">;</span>
+       class tcp_socket name_connect<span class="p">;</span>
+<span class="o">}</span>
+
+allow httpd_t ephemeral_port_t:tcp_socket name_connect<span class="p">;</span>
+</pre></div>
+</div>
+<p>Проверим, скомпилируем и установим его:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo checkmodule -M -m httpd_network.te -o httpd_network.mod
+sudo semodule_package -o httpd_network.pp -m httpd_network.mod
+sudo semodule -i httpd_network.pp
+</pre></div>
+</div>
+<p>Получим названия диапазонов портов:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo semanage port -l
+</pre></div>
+</div>
+<p>Добавим порт в диапазон:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>semanage port -a -t ephemeral_port_t -p tcp <span class="m">80</span>-88
+</pre></div>
+</div>
+<p>Удалим порт из диапазона:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>semanage port -d -t ephemeral_port_t -p tcp <span class="m">80</span>-88
+</pre></div>
+</div>
+<p>Здесь <strong>ephemeral_port_t</strong> - название диапазона, <strong>tcp</strong> - используемый протокол, а <strong>80-88</strong> - диапазон разрешаемых портов.</p>
+</div>
+<div class="section" id="nsl-second">
+<span id="id10"></span><h3>Второй вариант (быстрый, но менее безопасный)<a class="headerlink" href="#nsl-second" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Разрешим любые исходящие соединения для веб-сервера:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo setsebool -P httpd_can_network_connect on
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="openvpn-selinux">
-<span id="index-4"></span><span id="id6"></span><h2>OpenVPN не может получить доступ к сертификатам из-за SELinux. Что делать?<a class="headerlink" href="#openvpn-selinux" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-7"></span><span id="id11"></span><h2>OpenVPN не может получить доступ к сертификатам из-за SELinux. Что делать?<a class="headerlink" href="#openvpn-selinux" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Это нормально ибо запущенные сервисы не могут получать доступ к каталогам пользователя, однако для OpenVPN сделано исключение в виде каталога <strong>~/.cert</strong>.</p>
 <p>По умолчанию он не существует, поэтому его нужно создать и задать для него контекст безопасности SELinux:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir ~/.cert
@@ -85,7 +210,7 @@ restorecon -Rv ~/.cert
 <p>Теперь в нём можно размещать сертификаты и приватные ключи.</p>
 </div>
 <div class="section" id="kpti">
-<span id="index-5"></span><span id="id7"></span><h2>Можно ли отключить KPTI?<a class="headerlink" href="#kpti" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-8"></span><span id="id12"></span><h2>Можно ли отключить KPTI?<a class="headerlink" href="#kpti" title="Ссылка на этот заголовок">¶</a></h2>
 <p>KPTI - это новый механизм ядра, направленный на защиту системы от уязвимости <a class="reference external" href="https://ru.wikipedia.org/wiki/Meltdown_(%D1%83%D1%8F%D0%B7%D0%B2%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C)">Meltdown</a> в процессорах Intel. Настоятельно не рекомендуется его отключать, хотя это и возможно. Для этого необходимо и достаточно передать ядру Linux:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nopti
 </pre></div>
@@ -93,39 +218,39 @@ restorecon -Rv ~/.cert
 <p>Параметр <strong>pti=off</strong> также поддерживается в полной мере.</p>
 </div>
 <div class="section" id="spectre-v1">
-<span id="spectrev1"></span><span id="index-6"></span><h2>Можно ли отключить защиту от Spectre v1?<a class="headerlink" href="#spectre-v1" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="spectrev1"></span><span id="index-9"></span><h2>Можно ли отключить защиту от Spectre v1?<a class="headerlink" href="#spectre-v1" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Нет. Защита от уязвимости Spectre v1 выполняется напрямую микрокодом процессора.</p>
 </div>
 <div class="section" id="spectre-v2">
-<span id="spectrev2"></span><span id="index-7"></span><h2>Можно ли отключить защиту от Spectre v2?<a class="headerlink" href="#spectre-v2" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="spectrev2"></span><span id="index-10"></span><h2>Можно ли отключить защиту от Spectre v2?<a class="headerlink" href="#spectre-v2" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, при помощи параметра ядра:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nospectre_v2
 </pre></div>
 </div>
 </div>
 <div class="section" id="spectre-v4">
-<span id="spectrev4"></span><span id="index-8"></span><h2>Можно ли отключить защиту от Spectre v4?<a class="headerlink" href="#spectre-v4" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="spectrev4"></span><span id="index-11"></span><h2>Можно ли отключить защиту от Spectre v4?<a class="headerlink" href="#spectre-v4" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, при помощи параметра ядра:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nospec_store_bypass_disable
 </pre></div>
 </div>
 </div>
 <div class="section" id="l1tf">
-<span id="index-9"></span><span id="id8"></span><h2>Можно ли отключить защиту от L1TF?<a class="headerlink" href="#l1tf" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-12"></span><span id="id13"></span><h2>Можно ли отключить защиту от L1TF?<a class="headerlink" href="#l1tf" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, при помощи параметров ядра:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>l1tf=off
 </pre></div>
 </div>
 </div>
 <div class="section" id="hardware-vuln">
-<span id="index-10"></span><span id="id9"></span><h2>Как узнать защищено ли ядро от известных уязвимостей в процессорах?<a class="headerlink" href="#hardware-vuln" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-13"></span><span id="id14"></span><h2>Как узнать защищено ли ядро от известных уязвимостей в процессорах?<a class="headerlink" href="#hardware-vuln" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Ранее для этого применялись сторонние утилиты, но в современных версиях ядра для этого есть штатный механизм, который можно использовать:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep . /sys/devices/system/cpu/vulnerabilities/*
 </pre></div>
 </div>
 </div>
 <div class="section" id="selinux-boot-error">
-<span id="index-11"></span><span id="id10"></span><h2>При загрузке получаю ошибку SELinux. Как исправить?<a class="headerlink" href="#selinux-boot-error" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-14"></span><span id="id15"></span><h2>При загрузке получаю ошибку SELinux. Как исправить?<a class="headerlink" href="#selinux-boot-error" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Такое бывает если по какой-то причине сбился контекст безопасности SELinux. Исправить это можно двумя различными способами.</p>
 <p><em>Способ первый</em>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo touch /.autorelabel
@@ -141,15 +266,15 @@ sudo systemctl reboot
 <p>После перезагрузки все ошибки, связанные с SELinux, должны исчезнуть.</p>
 </div>
 <div class="section" id="usb">
-<span id="luks-usb"></span><span id="index-12"></span><h2>Как можно надёжно зашифровать файлы на USB устройстве?<a class="headerlink" href="#usb" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="luks-usb"></span><span id="index-15"></span><h2>Как можно надёжно зашифровать файлы на USB устройстве?<a class="headerlink" href="#usb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2016/11/14/shifruem-vneshnij-nakopitel-posredstvom-luks.html">здесь</a>.</p>
 </div>
 <div class="section" id="luks-home">
-<span id="index-13"></span><span id="id11"></span><h2>Можно ли зашифровать домашний раздел уже установленной системы?<a class="headerlink" href="#luks-home" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-16"></span><span id="id16"></span><h2>Можно ли зашифровать домашний раздел уже установленной системы?<a class="headerlink" href="#luks-home" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2016/12/09/shifruem-domashnij-razdel-ustanovlennoj-sistemy.html">здесь</a>.</p>
 </div>
 <div class="section" id="luks">
-<span id="luks-change-password"></span><span id="index-14"></span><h2>Как сменить пароль зашифрованного LUKS раздела?<a class="headerlink" href="#luks" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="luks-change-password"></span><span id="index-17"></span><h2>Как сменить пароль зашифрованного LUKS раздела?<a class="headerlink" href="#luks" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сменить пароль достаточно просто. Достаточно выполнить следующую команду:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksChangeKey /dev/sda1 -S <span class="m">0</span>
 </pre></div>
@@ -158,7 +283,7 @@ sudo systemctl reboot
 <p>Для успешной смены пароля раздел не должен быть смонтирован, поэтому если это корневой или домашний, то придётся выполнять загрузку с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">LiveUSB</span></a>.</p>
 </div>
 <div class="section" id="luks-info">
-<span id="index-15"></span><span id="id12"></span><h2>Как получить информацию о зашифрованном LUKS устройстве?<a class="headerlink" href="#luks-info" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-18"></span><span id="id17"></span><h2>Как получить информацию о зашифрованном LUKS устройстве?<a class="headerlink" href="#luks-info" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если требуется получить подробную информацию о зашифрованном LUKS разделе (алгоритм шифрование, тип хеша и количество итераций и т.д.), можно воспользоваться утилитой <strong>cryptsetup</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksDump /dev/sda1
 </pre></div>
@@ -166,7 +291,7 @@ sudo systemctl reboot
 <p>Здесь <strong>/dev/sda1</strong> - зашифрованный раздел диска.</p>
 </div>
 <div class="section" id="luks-benchmark">
-<span id="index-16"></span><span id="id13"></span><h2>Насколько сильно шифрование LUKS снижает производительность дисковой подсистемы?<a class="headerlink" href="#luks-benchmark" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-19"></span><span id="id18"></span><h2>Насколько сильно шифрование LUKS снижает производительность дисковой подсистемы?<a class="headerlink" href="#luks-benchmark" title="Ссылка на этот заголовок">¶</a></h2>
 <p>На современных процессорах с аппаратной поддержкой набора инструкций AES-NI снижение производительности практически незаметно даже на самых производительных NVMe SSD накопителях.</p>
 <p>Для того, чтобы оценить скорость работы на реальном оборудовании, в <strong>cryptsetup</strong> присутствует встроенный бенчмарк для тестирования разных алгоритмов шифрования и типа сцепления блоков шифротекста:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cryptsetup benchmark
@@ -174,27 +299,27 @@ sudo systemctl reboot
 </div>
 </div>
 <div class="section" id="aes-ni">
-<span id="luks-aes"></span><span id="index-17"></span><h2>Как узнать поддерживает ли процессор моего ПК набор инструкций AES-NI?<a class="headerlink" href="#aes-ni" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="luks-aes"></span><span id="index-20"></span><h2>Как узнать поддерживает ли процессор моего ПК набор инструкций AES-NI?<a class="headerlink" href="#aes-ni" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если в выводе <strong>lscpu</strong> присутствует строка <strong>aes</strong>, значит поддерживает:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lscpu <span class="p">|</span> grep aes
 </pre></div>
 </div>
 </div>
 <div class="section" id="firewalld">
-<span id="firewalld-about"></span><span id="index-18"></span><h2>Что такое Firewalld?<a class="headerlink" href="#firewalld" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="firewalld-about"></span><span id="index-21"></span><h2>Что такое Firewalld?<a class="headerlink" href="#firewalld" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Firewalld - это современный динамически управляемый брандмауэр с поддержкой зон для интерфейсов.</p>
 </div>
 <div class="section" id="firewalld-configure">
-<span id="index-19"></span><span id="id14"></span><h2>Как можно настраивать Firewalld?<a class="headerlink" href="#firewalld-configure" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-22"></span><span id="id19"></span><h2>Как можно настраивать Firewalld?<a class="headerlink" href="#firewalld-configure" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для настройки применяется либо графическая утилита <strong>system-config-firewall</strong>, либо консольная <strong>firewall-cmd</strong>.</p>
 <p>Документацию можно <a class="reference external" href="https://fedoraproject.org/wiki/FirewallD/ru">найти в Wiki</a>.</p>
 </div>
 <div class="section" id="firewalld-hide-service">
-<span id="index-20"></span><span id="id15"></span><h2>Как замаскировать сервис средствами Firewalld?<a class="headerlink" href="#firewalld-hide-service" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-23"></span><span id="id20"></span><h2>Как замаскировать сервис средствами Firewalld?<a class="headerlink" href="#firewalld-hide-service" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2017/06/22/maskiruem-opredelyonnyj-servis-sredstvami-firewalld.html">здесь</a>.</p>
 </div>
 <div class="section" id="ip">
-<span id="firewalld-block"></span><span id="index-21"></span><h2>Как запретить подключения с конкретных IP-адресов?<a class="headerlink" href="#ip" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="firewalld-block"></span><span id="index-24"></span><h2>Как запретить подключения с конкретных IP-адресов?<a class="headerlink" href="#ip" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Достаточно добавить их в специально созданную зону <strong>drop</strong> файрвола:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>firewall-cmd --permanent --zone<span class="o">=</span>drop --add-source<span class="o">=</span><span class="m">1</span>.2.3.4
 </pre></div>
@@ -202,11 +327,11 @@ sudo systemctl reboot
 <p>Здесь вместо <strong>1.2.3.4</strong> нужно указать необходимый IP-адрес или подсеть (<strong>1.2.3.0/24</strong>).</p>
 </div>
 <div class="section" id="gnupg">
-<span id="gpg-signatures"></span><span id="index-22"></span><h2>Как работать с подписями GnuPG?<a class="headerlink" href="#gnupg" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="gpg-signatures"></span><span id="index-25"></span><h2>Как работать с подписями GnuPG?<a class="headerlink" href="#gnupg" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2018/01/11/rabotaem-s-cifrovymi-podpisyami-gpg.html">здесь</a>.</p>
 </div>
 <div class="section" id="gpg-encrypt">
-<span id="index-23"></span><span id="id16"></span><h2>Как зашифровать и расшифровать файлы с определённой маской в текущем каталоге?<a class="headerlink" href="#gpg-encrypt" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-26"></span><span id="id21"></span><h2>Как зашифровать и расшифровать файлы с определённой маской в текущем каталоге?<a class="headerlink" href="#gpg-encrypt" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Шифрование всех файлов с маской <em>.7z.</em> (многотомные архивы 7-Zip):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find . -maxdepth <span class="m">1</span> -type f -name <span class="s2">&quot;*.7z.*&quot;</span> -exec gpg2 --out <span class="s2">&quot;{}.asc&quot;</span> --recipient <span class="s2">&quot;example@example.org&quot;</span> --encrypt <span class="s2">&quot;{}&quot;</span> <span class="se">\;</span>
 </pre></div>
@@ -217,48 +342,48 @@ sudo systemctl reboot
 </div>
 </div>
 <div class="section" id="admin-vs-user">
-<span id="index-24"></span><span id="id17"></span><h2>Чем отличается пользователь-администратор от обычного?<a class="headerlink" href="#admin-vs-user" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-27"></span><span id="id22"></span><h2>Чем отличается пользователь-администратор от обычного?<a class="headerlink" href="#admin-vs-user" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Администратор (в терминологии программы установки Anaconda) имеет доступ к sudo.</p>
 </div>
 <div class="section" id="sudo-su">
-<span id="sudo-password"></span><span id="index-25"></span><h2>Какие пароли запрашивают sudo и su?<a class="headerlink" href="#sudo-su" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="sudo-password"></span><span id="index-28"></span><h2>Какие пароли запрашивают sudo и su?<a class="headerlink" href="#sudo-su" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Утилита sudo запрашивает текущий пароль пользователя, а su - рутовый.</p>
 </div>
 <div class="section" id="root-password">
-<span id="index-26"></span><span id="id18"></span><h2>Как мне сменить пароль суперпользователя?<a class="headerlink" href="#root-password" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-29"></span><span id="id23"></span><h2>Как мне сменить пароль суперпользователя?<a class="headerlink" href="#root-password" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для смены или установки пароля суперпользователя при наличии доступа к sudo, можно выполнить:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo passwd root
 </pre></div>
 </div>
 </div>
 <div class="section" id="sudo">
-<span id="sudo-access"></span><span id="index-27"></span><h2>Как мне получить доступ к sudo?<a class="headerlink" href="#sudo" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="sudo-access"></span><span id="index-30"></span><h2>Как мне получить доступ к sudo?<a class="headerlink" href="#sudo" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если при установке Fedora, при создании пользователя, не был установлен флажок в чекбокс <strong>Создать администратора</strong>, то необходимо самостоятельно добавить пользовательский аккаунт в группу <strong>wheel</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>su -c <span class="s2">&quot;usermod -a -G wheel </span><span class="k">$(</span>whoami<span class="k">)</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="sudo-vs-su">
-<span id="index-28"></span><span id="id19"></span><h2>Что лучше: sudo или su?<a class="headerlink" href="#sudo-vs-su" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-31"></span><span id="id24"></span><h2>Что лучше: sudo или su?<a class="headerlink" href="#sudo-vs-su" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Sudo ибо позволяет гибко настраивать права доступа, включая список разрешённых команд, а также ведёт полный журнал её использования.</p>
 </div>
 <div class="section" id="sudo-file-manager">
-<span id="index-29"></span><span id="id20"></span><h2>Почему я не могу запустить файловый менеджер с правами суперпользователя?<a class="headerlink" href="#sudo-file-manager" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-32"></span><span id="id25"></span><h2>Почему я не могу запустить файловый менеджер с правами суперпользователя?<a class="headerlink" href="#sudo-file-manager" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Это сделано из соображений безопасности. Более подробная информация доступна <a class="reference external" href="https://blog.martin-graesslin.com/blog/2017/02/editing-files-as-root/">здесь</a>.</p>
 </div>
 <div class="section" id="sudo-edit-config">
-<span id="index-30"></span><span id="id21"></span><h2>Как мне отредактировать конфиг, доступный только суперпользователю?<a class="headerlink" href="#sudo-edit-config" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-33"></span><span id="id26"></span><h2>Как мне отредактировать конфиг, доступный только суперпользователю?<a class="headerlink" href="#sudo-edit-config" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Необходимо использовать <strong>sudoedit</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudoedit /путь/к/файлу/конфигурации.conf
 </pre></div>
 </div>
 </div>
 <div class="section" id="sudoedit">
-<span id="sudoedit-info"></span><span id="index-31"></span><h2>Sudoedit безопаснее прямого запуска текстового редактора с правами суперпользователя?<a class="headerlink" href="#sudoedit" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="sudoedit-info"></span><span id="index-34"></span><h2>Sudoedit безопаснее прямого запуска текстового редактора с правами суперпользователя?<a class="headerlink" href="#sudoedit" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, намного ибо sudoedit копирует нужный файл во временный каталог и загружает в выбранном по умолчанию текстовом редакторе с обычными правами, а по завершении редактирования копирует на прежнее место.</p>
 </div>
 <div class="section" id="ssh">
-<span id="ssh-install"></span><span id="index-32"></span><h2>Как включить и безопасно настроить сервер SSH?<a class="headerlink" href="#ssh" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="ssh-install"></span><span id="index-35"></span><h2>Как включить и безопасно настроить сервер SSH?<a class="headerlink" href="#ssh" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сначала необходимо активировать sshd:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl <span class="nb">enable</span> sshd.service
 </pre></div>
@@ -279,20 +404,20 @@ PermitEmptyPasswords no
 </div>
 </div>
 <div class="section" id="ssh-passwords">
-<span id="index-33"></span><span id="id22"></span><h2>Допустимо ли использовать парольную аутентификацию для SSH?<a class="headerlink" href="#ssh-passwords" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-36"></span><span id="id27"></span><h2>Допустимо ли использовать парольную аутентификацию для SSH?<a class="headerlink" href="#ssh-passwords" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В настоящее время мы настоятельно не рекомендуем эксплуатировать SSH серверы с включённой парольной аутентификацией (настройки по умолчанию), т.к. он станет постоянной целью для атак заражённых устройств, которые будут пытаться подобрать пароль по словарям, а также полным перебором, создавая тем самым лишнюю нагрузку на SSH сервер.</p>
 <p>Автоматическая блокировка средствами fail2ban также не особо поможет, т.к. современные ботнеты умеют координировать свои атаки посредством мастер-сервера и знают стандартные настройки данных утилит.</p>
 </div>
 <div class="section" id="ssh-port">
-<span id="index-34"></span><span id="id23"></span><h2>Следует ли сменить порт SSH на нестандартный?<a class="headerlink" href="#ssh-port" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-37"></span><span id="id28"></span><h2>Следует ли сменить порт SSH на нестандартный?<a class="headerlink" href="#ssh-port" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Это никак не поможет скрыть сервер от крупных бот-сетей, сканирующих весь допустимый диапазон портов, и лишь создаст дополнительные неудобства для самих пользователей.</p>
 </div>
 <div class="section" id="ssh-keys">
-<span id="index-35"></span><span id="id24"></span><h2>Безопасна ли аутентификация по ключам в SSH?<a class="headerlink" href="#ssh-keys" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-38"></span><span id="id29"></span><h2>Безопасна ли аутентификация по ключам в SSH?<a class="headerlink" href="#ssh-keys" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. В настоящее время это самый безопасный метод аутентификации. Если во время рукопожатия SSH клиент не предоставил серверу разрешённый ключ, последний немедленно закроет соединение.</p>
 </div>
 <div class="section" id="ssh-keygen">
-<span id="index-36"></span><span id="id25"></span><h2>Как сгенерировать ключи для SSH?<a class="headerlink" href="#ssh-keygen" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-39"></span><span id="id30"></span><h2>Как сгенерировать ключи для SSH?<a class="headerlink" href="#ssh-keygen" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для создания ключевой пары из открытого и закрытого ключей, необходимо воспользоваться утилитой <strong>ssh-keygen</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen -t rsa -C <span class="s2">&quot;user@example.org&quot;</span>
 </pre></div>
@@ -301,7 +426,7 @@ PermitEmptyPasswords no
 <p>Для RSA можно добавить параметр <strong>-b</strong> и указать длину в битах, например <strong>-b 4096</strong>.</p>
 </div>
 <div class="section" id="ssh-transfer">
-<span id="index-37"></span><span id="id26"></span><h2>Как безопасно передать публичный ключ SSH на удалённый сервер?<a class="headerlink" href="#ssh-transfer" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-40"></span><span id="id31"></span><h2>Как безопасно передать публичный ключ SSH на удалённый сервер?<a class="headerlink" href="#ssh-transfer" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для простой, быстрой и безопасной передачи можно использовать утилиту <strong>ssh-copy-id</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-copy-id user@example.org
 </pre></div>
@@ -309,7 +434,7 @@ PermitEmptyPasswords no
 <p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.</p>
 </div>
 <div class="section" id="ssh-port-forwarding">
-<span id="index-38"></span><span id="id27"></span><h2>Как пробросить порт с удалённой машины на локальную через SSH?<a class="headerlink" href="#ssh-port-forwarding" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-41"></span><span id="id32"></span><h2>Как пробросить порт с удалённой машины на локальную через SSH?<a class="headerlink" href="#ssh-port-forwarding" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для примера пробросим с удалённого сервера на локальную машину порт MySQL/MariaDB:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh user@example.org -L <span class="m">3306</span>:127.0.0.1:3306 -N -f
 </pre></div>
@@ -317,7 +442,7 @@ PermitEmptyPasswords no
 <p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост, а <strong>3306</strong> - порт. Параметры <strong>-N -f</strong> заставляют SSH клиент сразу вернуть управление, уйти в фоновый режим и продолжать поддерживать соединение до своего завершения.</p>
 </div>
 <div class="section" id="socks-ssh">
-<span id="ssh-socks"></span><span id="index-39"></span><h2>Как настроить виртуальный SOCKS туннель через SSH?<a class="headerlink" href="#socks-ssh" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="ssh-socks"></span><span id="index-42"></span><h2>Как настроить виртуальный SOCKS туннель через SSH?<a class="headerlink" href="#socks-ssh" title="Ссылка на этот заголовок">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh user@example.org -D <span class="m">127</span>.0.0.1:8080 -N -f
 </pre></div>
 </div>
@@ -325,7 +450,7 @@ PermitEmptyPasswords no
 <p>После запуска необходимо настроить браузер и другие приложения на работу через данный SOCKS5 прокси.</p>
 </div>
 <div class="section" id="ssh-sftp">
-<span id="index-40"></span><span id="id28"></span><h2>Можно ли разрешить доступ посредством SSH только к файлам, без возможности выполнения команд?<a class="headerlink" href="#ssh-sftp" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-43"></span><span id="id33"></span><h2>Можно ли разрешить доступ посредством SSH только к файлам, без возможности выполнения команд?<a class="headerlink" href="#ssh-sftp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Для этого создадим специальную группу (например <strong>sftp</strong>):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo groupadd sftp
 </pre></div>
@@ -344,7 +469,7 @@ Match Group sftp
 </div>
 </div>
 <div class="section" id="destroy-file">
-<span id="index-41"></span><span id="id29"></span><h2>Как безвозвратно уничтожить файл?<a class="headerlink" href="#destroy-file" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-44"></span><span id="id34"></span><h2>Как безвозвратно уничтожить файл?<a class="headerlink" href="#destroy-file" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для уничтожения данных можно использовать штатную утилиту <strong>shred</strong> из пакета GNU Coreutils:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shred -u -v /путь/к/файлу.txt
 </pre></div>
@@ -352,7 +477,7 @@ Match Group sftp
 <p>Восстановить такой файл будет практически невозможно ибо сектора диска, на которых он располагался, будут многократно перезаписаны случайной последовательностью, а затем заполнены нулями.</p>
 </div>
 <div class="section" id="destroy-disk">
-<span id="index-42"></span><span id="id30"></span><h2>Можно лишь уничтожить содержимое всего диска?<a class="headerlink" href="#destroy-disk" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-45"></span><span id="id35"></span><h2>Можно лишь уничтожить содержимое всего диска?<a class="headerlink" href="#destroy-disk" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, для этого можно использовать уже упомянутую выше утилиту <strong>shred</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo shred -v /dev/sdX
 </pre></div>
@@ -360,7 +485,7 @@ Match Group sftp
 <p>Здесь <strong>/dev/sdX</strong> — устройство, которое будет очищено. На больших HDD процесс займёт много времени.</p>
 </div>
 <div class="section" id="ssd">
-<span id="destroy-ssd-file"></span><span id="index-43"></span><h2>Как уничтожить файл на SSD?<a class="headerlink" href="#ssd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="destroy-ssd-file"></span><span id="index-46"></span><h2>Как уничтожить файл на SSD?<a class="headerlink" href="#ssd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для безвозвратного удаления файла на SSD накопителе достаточно просто удалить его штатным средством системы и дождаться выполнения процедуры TRIM, которая физически забьёт ячейки, которые им использовались, нулями.</p>
 <p>Если не используется TRIM реального времени, принудительно запустить этот процесс на всех твердотельных накопителях можно так:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl start fstrim.service
@@ -368,17 +493,17 @@ Match Group sftp
 </div>
 </div>
 <div class="section" id="newfile-permissions">
-<span id="index-44"></span><span id="id31"></span><h2>Как рассчитываются права доступа для новых файлов и каталогов?<a class="headerlink" href="#newfile-permissions" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-47"></span><span id="id36"></span><h2>Как рассчитываются права доступа для новых файлов и каталогов?<a class="headerlink" href="#newfile-permissions" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Права доступа (chmod) в GNU/Linux рассчитываются в по формуле <strong>$default-chmod - $current-umask</strong>. <strong>$default-chmod</strong> для файлов равен 0666, а для каталогов - 0777.</p>
 <p>В Fedora umask по умолчанию для пользоватьских учётных записей равен <strong>0002</strong> (ведущий нуль в chmod означает использование восьмеричной системы счисления).</p>
 <p>Таким образом, chmod для новых файлов <strong>0666 - 0002 = 0664</strong> (-rw-rw–r–), а для каталогов - <strong>0777 - 0002 = 0775</strong> (drwxrwxr-x).</p>
 </div>
 <div class="section" id="fedora">
-<span id="fedora-gost"></span><span id="index-45"></span><h2>Можно ли включить поддержку российской криптографии в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fedora-gost"></span><span id="index-48"></span><h2>Можно ли включить поддержку российской криптографии в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2018/11/28/dobavlyaem-podderzhku-gost-dlya-openssl-v-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="mac-wi-fi-fedora">
-<span id="mac-randomize"></span><span id="index-46"></span><h2>Как включить рандомизацию MAC адресов при подключении к Wi-Fi точкам в Fedora?<a class="headerlink" href="#mac-wi-fi-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="mac-randomize"></span><span id="index-49"></span><h2>Как включить рандомизацию MAC адресов при подключении к Wi-Fi точкам в Fedora?<a class="headerlink" href="#mac-wi-fi-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Network Manager поддерживает два сценария рандомизации MAC адресов:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -412,7 +537,7 @@ Match Group sftp
 <p>Для отключения рандомизации и возвращения настроек по умолчанию достаточно просто удалить созданный файл и перезапустить Network Manager.</p>
 </div>
 <div class="section" id="add-custom-ca">
-<span id="index-47"></span><span id="id32"></span><h2>Как добавить собственный удостоверяющий центр в список доверенных?<a class="headerlink" href="#add-custom-ca" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-50"></span><span id="id37"></span><h2>Как добавить собственный удостоверяющий центр в список доверенных?<a class="headerlink" href="#add-custom-ca" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для добавления нового удостоверяющего центра необходимо скопировать файл его сертификата в формате PEM или DER в каталог <strong>/etc/pki/ca-trust/source/anchors</strong>, после чего выполнить:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo update-ca-trust
 </pre></div>
@@ -420,7 +545,7 @@ Match Group sftp
 <p>Следует помнить, что данное действие не будет распространяться на браузер Mozilla Firefox, имеющий собственную базу доверенных корневых УЦ.</p>
 </div>
 <div class="section" id="blackist-ca">
-<span id="index-48"></span><span id="id33"></span><h2>Как внести удостоверяющий центр в список запрещённых?<a class="headerlink" href="#blackist-ca" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-51"></span><span id="id38"></span><h2>Как внести удостоверяющий центр в список запрещённых?<a class="headerlink" href="#blackist-ca" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для добавления удостоверяющего центра в список заблокированных необходимо скопировать файл его сертификата в формате PEM или DER в каталог <strong>/etc/pki/ca-trust/source/blacklist</strong>, после чего выполнить:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo update-ca-trust
 </pre></div>
@@ -458,6 +583,9 @@ Match Group sftp
 <li class="toctree-l2"><a class="reference internal" href="#selinux-temp">Как мне временно отключить SELinux?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#selinux-disable">Как мне навсегда отключить SELinux?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#selinux-status">Как узнать текущий статус SELinux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selinux-auditd">Как разрешить заблокированные действия SELinux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selinux-httpd">Как настроить SELinux так, чтобы веб-сервер мог создавать файлы и каталоги?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selinux-connections">Как настроить SELinux так, чтобы веб-сервер мог осуществлять исходящие сетевые соединения?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#openvpn-selinux">OpenVPN не может получить доступ к сертификатам из-за SELinux. Что делать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kpti">Можно ли отключить KPTI?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#spectre-v1">Можно ли отключить защиту от Spectre v1?</a></li>
