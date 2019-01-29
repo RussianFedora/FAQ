@@ -65,6 +65,194 @@ SELinux - это мандатная система контроля доступ
 
 При помощи команды **getenforce** или **sestatus**.
 
+.. index:: auditd, selinux, error, security
+.. _auditd-selinux:
+
+Как узнать, на что ругается SELinux?
+=====================================
+
+Из-за того, что SELinux запрещает действия атомарно (не создать директорию -> не установить название -> не записать в неё -> не создать файл -> не записать в файл), может показаться, что при запуске модуля (см. ниже) ничего не получилось.
+При написании модуля следует сделать следющее:
+(все дальнейшие команды выполняются от пользователя root или используя sudo)
+
+* один раз, для очищения предыдущих ошибок:
+
+.. code-block:: bash
+
+    cat /dev/null > /var/log/audit/audit.log
+
+* после добавления изменений в модуль, его запуска и повтороной инициации действия, вызывающего ошибку:
+
+.. code-block:: bash
+
+    cat /var/log/audit/audit.log | audit2allow -M appfirst
+
+В результате будет создан модуль (текстовый файл) appfirst.te, в котором разрешаются действия, записи о запрещении которых были внесены в лог-файл auditd.
+
+Не спешите запускать созданный автоматически модуль, т.к. в нем может быть разрешено больше, чем нужно, а также присутствуют подсказки, как настроить SELinux без запуска модуля.
+
+В сгенерированном модуле appfirst.te, после комментария:
+
+`#!!!! This avc can be allowed using one of the these booleans:`
+
+Идёт список двоичных значений, установка которых может разрешить возникшее ограничение. См. их описание `здесь <https://dwalsh.fedorapeople.org/SELinux/httpd_selinux.html>`__.
+
+.. index:: httpd, selinux, write, file, directory, security
+.. _httpd-wr-selinux:
+
+Как настроить SELinux так, чтоб httpd мог создавать файлы/директории?
+=======================================================================
+
+Появляются сообщения вида:
+
+`Warning: chmod(): Permission denied in /var/www/html/library/HTMLPurifier/DefinitionCache/Serializer.php on line 284`
+
+`Warning: Directory /var/www/html/library/HTMLPurifier/DefinitionCache/Serializer/HTML not writable, please chmod to 755 in /var/www/html/library/HTMLPurifier/DefinitionCache/Serializer.php on line 297`
+
+которые означают, что директория `/var/www/html/library/HTMLPurifier/DefinitionCache/Serializer/HTML` недоступна для записи из httpd. Если права выставлены правильно, то скорее всего запись запрещает SELinux.
+
+(все дальнейшие команды выполняются от пользователя root или используя sudo)
+
+* требуется внести изменения в контекст SELinux для файлов (обратите внимание на шаблон в конце строки):
+
+.. code-block:: bash
+
+    semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/html/library/HTMLPurifier/DefinitionCache/Serializer/HTML(/.*)?"
+
+* и принять изменения контекста:
+
+.. code-block:: bash
+
+    restorecon -Rv /var/www/html
+
+* проверить список контекстов для httpd возможно так:
+
+.. code-block:: bash
+
+    semanage fcontext -l | grep httpd
+
+* или, так как предудущая команда выводит очень много информации, лучше так:
+
+.. code-block:: bash
+
+    semanage fcontext -l | grep /var/www/html
+
+* удалить ошибочную строку (например, забыл начальный слеш) возможно так:
+
+.. code-block:: bash
+
+    semanage fcontext -d "var/www/html/library/HTMLPurifier/DefinitionCache/Serializer/HTML/(/.*)?"
+
+* проверить контекст для директорий и папок возможно так:
+
+.. code-block:: bash
+
+    ls -Z (выполнить в папке)
+    ls -Z /var/www/html/request/library/HTMLPurifier/DefinitionCache/Serializer
+
+См. про изменение контекста подробнее `здесь <https://docs.fedoraproject.org/ru-RU/Fedora/13/html/Security-Enhanced_Linux/sect-Security-Enhanced_Linux-SELinux_Contexts_Labeling_Files-Persistent_Changes_semanage_fcontext.html>`__.
+
+* создать модуль (текстовый файл) httpd_wr.te следующего содержания:
+
+.. code-block:: bash
+
+    #################
+    #
+    # httpd can write some dir and files
+    #
+    #################
+    module httpd_wr 1.0;
+    
+    require {
+    	   type httpd_t;
+    	   type httpd_sys_rw_content_t;
+    	   class file { create write setattr rename unlink };
+    	   class dir { create write setattr add_name remove_name rmdir };
+    }
+    #################
+    #============= httpd_t ==============
+    allow httpd_t httpd_sys_rw_content_t:file { create write setattr rename unlink };
+    allow httpd_t httpd_sys_rw_content_t:dir { create write setattr add_name remove_name rmdir };
+
+* проверить, скомпилировать и синсталлировать модуль:
+
+.. code-block:: bash
+
+    checkmodule -M -m httpd_wr.te -o httpd_wr.mod
+    semodule_package -o httpd_wr.pp -m httpd_wr.mod
+    semodule -i httpd_wr.pp
+
+См. про создание модуля подробнее `здесь <https://habr.com/ru/company/pt/blog/142423/>`__.
+
+См. список возможных разрешений для классов `здесь <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/4/html/SELinux_Guide/rhlcommon-section-0049.html>`__.
+
+См. список контекстов и прочих настроек `здесь <https://dwalsh.fedorapeople.org/SELinux/httpd_selinux.html>`__.
+
+
+.. index:: httpd, selinux, connect, network, port, security
+.. _httpd-network-selinux:
+
+Как настроить SELinux так, чтоб httpd мог делать исходящие запросы по сети?
+============================================================================
+
+Первый вариант (догий и правильный):
+
+* создать модуль (текстовый файл) httpd_network.te следующего содержания:
+
+.. code-block:: bash
+
+    #################
+    #
+    # httpd can connect ephemeral ports
+    #
+    #################
+    module httpd_connect 1.0;
+    
+    require {
+    	   type httpd_t;
+    	   type ephemeral_port_t;
+    	   class tcp_socket name_connect;
+    }
+    #################
+    #============= httpd_t ==============
+    allow httpd_t ephemeral_port_t:tcp_socket name_connect;
+
+* проверить, скомпилировать и синсталлировать модуль:
+
+.. code-block:: bash
+
+    checkmodule -M -m httpd_network.te -o httpd_network.mod
+    semodule_package -o httpd_network.pp -m httpd_network.mod
+    semodule -i httpd_network.pp 
+
+Посмотреть названия диапазонов портов возможно так:
+
+.. code-block:: bash
+
+    semanage port -l
+
+Добавить порт в диапазон возможно так:
+
+.. code-block:: bash
+
+    #semanage port -a -t название_диапазона -p протокол порт_или_диапазон_портов
+    semanage port -a -t ephemeral_port_t -p tcp 80-88
+
+Удалить порт:
+
+.. code-block:: bash
+
+    semanage port -d -t ephemeral_port_t -p tcp 80-88
+
+
+Второй вариант (быстрый и менее безопасный):
+
+.. code-block:: bash
+
+    setsebool -P httpd_can_network_connect on
+
+См. список сокращений для конкретных сервисов `здесь <https://dwalsh.fedorapeople.org/SELinux/httpd_selinux.html>`__.
+
 .. index:: openvpn, selinux, vpn, security
 .. _openvpn-selinux:
 
