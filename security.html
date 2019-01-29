@@ -77,7 +77,7 @@
 <div class="section" id="selinux-auditd">
 <span id="index-4"></span><span id="id6"></span><h2>Как разрешить заблокированные действия SELinux?<a class="headerlink" href="#selinux-auditd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию <a class="reference internal" href="#selinux"><span class="std std-ref">SELinux</span></a> будет блокировать доступ к любым файлам, каталогам, сокетам, которые не разрешены в политиках для конкретного процесса. Это вызывает множество проблем, поэтому пользователи зачастую предпочитают <a class="reference internal" href="#selinux-disable"><span class="std std-ref">отключать SELinux</span></a>, что в корне неверно. Вместо этого следует разобраться в причине блокировки и создать разрешающее правило.</p>
-<p>Очистим журнал аудита SELinux для того, чтобы избавиться от предыдущих ошибок и случайно не позволить лишние действия, накопившиеся с момента его прошлой ротации:</p>
+<p>Очистим журнал аудита для того, чтобы избавиться от предыдущих ошибок и случайно не позволить лишние действия, накопившиеся с момента его прошлой ротации:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo bash -c <span class="s2">&quot;cat /dev/null &gt; /var/log/audit/audit.log&quot;</span>
 </pre></div>
 </div>
@@ -86,7 +86,7 @@
 </pre></div>
 </div>
 <p>В результате работы данной утилиты будет создан новый модуль <strong>foo-bar.te</strong>, в котором разрешаются действия, записи о запрещении которых были внесены в журнал auditd ранее.</p>
-<p>Перед применением этого файла и созданием политики SELinux необходимо обязательно загрузить его в текстовый редактор и проверить корректность, т.к. в нем может содержаться больше разрешающих правил, чем требуется, а также присутствуют подсказки о том, как правильно настроить SELinux.</p>
+<p>Перед применением этого файла и созданием политики SELinux обязательно загрузим его в текстовый редактор и проверим корректность, т.к. в нем может содержаться больше разрешающих правил, чем требуется, а также присутствуют подсказки о том, как правильно настроить SELinux.</p>
 <p>В сгенерированном файле модуля <strong>foo-bar.te</strong> после комментария <em>This avc can be allowed using one of the these booleans</em> присутствует список переменных двоичного типа, установка которых поможет разрешить заблокированное действие. Справочную информацию можно получить из документации SELinux:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>getsebool -a
 </pre></div>
@@ -109,11 +109,11 @@ Warning: Directory /var/www/html/foo-bar/foo not writable, please chmod to 755 i
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo restorecon -Rv /var/www/html
 </pre></div>
 </div>
-<p>Для отмены произведённых изменений контекста можно выполнить:</p>
+<p>Для отмены произведённых изменений контекста выполним:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -d <span class="s2">&quot;/var/www/html/foo-bar(/.*)?&quot;</span>
 </pre></div>
 </div>
-<p>Получить список контекстов для httpd можно так:</p>
+<p>Получим список контекстов для httpd:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -l <span class="p">|</span> grep httpd
 </pre></div>
 </div>
@@ -121,7 +121,7 @@ Warning: Directory /var/www/html/foo-bar/foo not writable, please chmod to 755 i
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -l <span class="p">|</span> grep /var/www/html
 </pre></div>
 </div>
-<p>Получить список файлов и каталогов с установленным контекстом SELinux можно так:</p>
+<p>Получим список файлов и каталогов с установленным контекстом SELinux:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls -laZ /var/www/html/foo-bar
 </pre></div>
 </div>
@@ -146,7 +146,7 @@ sudo semodule_package -o httpd_wr.pp -m httpd_wr.mod
 sudo semodule -i httpd_wr.pp
 </pre></div>
 </div>
-<p>Больше полезной информации о модулях можно найти здесь:</p>
+<p>Больше полезной информации о модулях:</p>
 <blockquote>
 <div><ul class="simple">
 <li><a class="reference external" href="https://habr.com/ru/company/pt/blog/142423/">создание модулей SELinux</a>;</li>
@@ -160,15 +160,15 @@ sudo semodule -i httpd_wr.pp
 <div class="section" id="nsl-first">
 <span id="id9"></span><h3>Первый вариант (самый правильный):<a class="headerlink" href="#nsl-first" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Откроем текствый редактор и создадим новый модуль <strong>httpd_network.te</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module httpd_connect <span class="m">1</span>.0<span class="p">;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>module httpd_connect 1.0;
 
-require <span class="o">{</span>
-       <span class="nb">type</span> httpd_t<span class="p">;</span>
-       <span class="nb">type</span> ephemeral_port_t<span class="p">;</span>
-       class tcp_socket name_connect<span class="p">;</span>
-<span class="o">}</span>
+require {
+       type httpd_t;
+       type ephemeral_port_t;
+       class tcp_socket name_connect;
+}
 
-allow httpd_t ephemeral_port_t:tcp_socket name_connect<span class="p">;</span>
+allow httpd_t ephemeral_port_t:tcp_socket name_connect;
 </pre></div>
 </div>
 <p>Проверим, скомпилируем и установим его:</p>
