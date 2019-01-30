@@ -497,6 +497,14 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 </pre></div>
 </div>
 </div>
+<div class="section" id="pid">
+<span id="get-pid"></span><span id="index-46"></span><h2>Как получить PID запущенного процесса?<a class="headerlink" href="#pid" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для получения идентификатора запущенного процесса (PID), следует применять утилиту <strong>pidof</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pidof foo-bar
+</pre></div>
+</div>
+<p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, информацию о котором требуется получить.</p>
+</div>
 </div>
 
 
@@ -569,6 +577,7 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <li class="toctree-l2"><a class="reference internal" href="#firewalld-icmp">Как можно средствами Firewalld запретить ICMP?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firewalld-openvpn-ip">Как средствами Firewalld разрешить подключение к OpenVPN серверу только с разрешённых IP адресов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ip-nat">Как узнать внешний IP адрес за NAT провайдера?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pid">Как получить PID запущенного процесса?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>

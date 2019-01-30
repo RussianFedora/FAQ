@@ -140,6 +140,91 @@ git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
 </ol>
 </div></blockquote>
 </div>
+<div class="section" id="env-get-term">
+<span id="index-9"></span><span id="id5"></span><h2>Как получить полный список установленных переменных окружения в текущем терминале?<a class="headerlink" href="#env-get-term" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Получить список установленных переменных окружения можно посредством выполнения утилиты <strong>env</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>env
+</pre></div>
+</div>
+</div>
+<div class="section" id="env-get-app">
+<span id="index-10"></span><span id="id6"></span><h2>Как получить полный список установленных переменных для запущенного процесса?<a class="headerlink" href="#env-get-app" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Получение списка установленных переменных окружения для запущенных процессов:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat /proc/<span class="nv">$PID</span>/environ
+</pre></div>
+</div>
+<p>Здесь <strong>$PID</strong> - <a class="reference internal" href="administration.html#get-pid"><span class="std std-ref">PID</span></a> процесса, информацию о котором необходимо получить.</p>
+</div>
+<div class="section" id="env-set">
+<span id="index-11"></span><span id="id7"></span><h2>Как задать переменную окружения?<a class="headerlink" href="#env-set" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Вариант 1. Запуск процесса с заданной переменной окружения:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">FOO</span><span class="o">=</span>BAR /usr/bin/foo-bar
+</pre></div>
+</div>
+<p>Вариант 2. Экспорт переменной окружения в запущенном терминале и дальнейший запуск приложения:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">FOO</span><span class="o">=</span>BAR
+/usr/bin/foo-bar
+</pre></div>
+</div>
+<p>Вариант 3. Модификация директивы <strong>Exec=</strong> в ярлыке запуска приложения:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>env <span class="nv">FOO</span><span class="o">=</span>BAR /usr/bin/foo-bar
+</pre></div>
+</div>
+</div>
+<div class="section" id="git">
+<span id="git-configuration"></span><span id="index-12"></span><h2>Как правильно настроить Git для работы?<a class="headerlink" href="#git" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Сначала укажем своё имя и адрес электронной почты:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
+git config --global user.email email@example.org
+</pre></div>
+</div>
+<p>Установим <a class="reference internal" href="using-system.html#editor-git"><span class="std std-ref">предпочитаемый текстовый редактор</span></a> для работы с коммитами:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global core.editor vim
+</pre></div>
+</div>
+</div>
+<div class="section" id="git-pull-request">
+<span id="index-13"></span><span id="id8"></span><h2>Я хочу внести правки в проект. Как правильно отправить их в апстрим?<a class="headerlink" href="#git-pull-request" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если проект хостится на одном из популярных сервисов (GitHub, BitBucket или GitLab), сначала войдём в свой аккаунт (при осутствии создадим) и сделаем форк репозитория.</p>
+<p>Осуществим <a class="reference internal" href="#git-configuration"><span class="std std-ref">базовую настройку Git</span></a> клиента если это ещё не было сделано ранее.</p>
+<p>Клонируем наш форк:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:YOURNAME/foo-bar.git
+</pre></div>
+</div>
+<p>Создадим ветку <strong>new_feature</strong> для наших изменений (для каждого крупного изменения следует создавать отдельную ветку и <em>ни в коем случае не коммитить в master</em>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout -b new_feature
+</pre></div>
+</div>
+<p>Внесём свои правки в проект, затем осуществим их фиксацию:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add -A
+git commit -s
+</pre></div>
+</div>
+<p>В появившемся <a class="reference internal" href="using-system.html#editor-git"><span class="std std-ref">текстовом редакторе</span></a> укажем подробное описание всех наших изменений на английском языке. Несмотря на то, что параметр <strong>-s</strong> является опциональным, большинство проектов требуют его использования для автоматического создания подписи вида:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Signed-off-by: Your Name &lt;email@example.org&gt;
+</pre></div>
+</div>
+<p>Многие проекты обновляются слишком быстро, поэтому потребуется осуществить синхронизацию наших изменений с актуальной веткой апстрима. Для этого подключим к нашем форку оригинальный репозиторий:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git remote add upstream https://github.com/foo/foo-bar.git
+</pre></div>
+</div>
+<p>Скачаем актуальные изменения и выполним rebase основной ветки нашего форка с апстримом:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git fetch upstream
+git checkout master
+git merge upstream/master
+</pre></div>
+</div>
+<p>Осуществим rebase ветки с нашими изменениями с основной:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout new_feature
+git rebase master
+</pre></div>
+</div>
+<p>Отправим наши изменения на сервер:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git push -u origin new_feature
+</pre></div>
+</div>
+<p>Создадим новый Pull Request.</p>
+</div>
 </div>
 
 
@@ -179,6 +264,11 @@ git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
 <li class="toctree-l2"><a class="reference internal" href="#koji-rpm-fusion">Как переопределить пакет в Koji репозитория RPM Fusion?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-gmail">Как настроить Git для работы с почтовым сервисом Gmail?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dlopen">Правильно ли использовать dlopen для загрузки динамических библиотек в приложении?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#env-get-term">Как получить полный список установленных переменных окружения в текущем терминале?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#env-get-app">Как получить полный список установленных переменных для запущенного процесса?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#env-set">Как задать переменную окружения?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git">Как правильно настроить Git для работы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-pull-request">Я хочу внести правки в проект. Как правильно отправить их в апстрим?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
