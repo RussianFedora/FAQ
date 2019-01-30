@@ -230,3 +230,67 @@
 .. code-block:: bash
 
     git config --global core.editor vim
+
+.. index:: git, vcs, pull request, push, commit
+.. _git-pull-request:
+
+Я хочу внести правки в проект. Как правильно отправить их в апстрим?
+=======================================================================
+
+Если проект хостится на одном из популярных сервисов (GitHub, BitBucket или GitLab), сначала войдём в свой аккаунт (при осутствии создадим) и сделаем форк репозитория.
+
+Осуществим :ref:`базовую настройку Git <git-configuration>` клиента если это ещё не было сделано ранее.
+
+Клонируем наш форк:
+
+.. code-block:: bash
+
+    git clone git@github.com:YOURNAME/foo-bar.git
+
+Создадим ветку **new_feature** для наших изменений (для каждого крупного изменения следует создавать отдельную ветку и *ни в коем случае не коммитить в master*):
+
+.. code-block:: bash
+
+    git checkout -b new_feature
+
+Внесём свои правки в проект, затем осуществим их фиксацию:
+
+.. code-block:: bash
+
+    git add -A
+    git commit -s
+
+В появившемся :ref:`текстовом редакторе <editor-git>` укажем подробное описание всех наших изменений на английском языке. Несмотря на то, что параметр **-s** является опциональным, большинство проектов требуют его использования для автоматического создания подписи вида:
+
+.. code-block:: text
+
+    Signed-off-by: Your Name <email@example.org>
+
+Многие проекты обновляются слишком быстро, поэтому потребуется осуществить синхронизацию наших изменений с актуальной веткой апстрима. Для этого подключим к нашем форку оригинальный репозиторий:
+
+.. code-block:: bash
+
+    git remote add upstream https://github.com/foo/foo-bar.git
+
+Скачаем актуальные изменения и выполним rebase основной ветки нашего форка с апстримом:
+
+.. code-block:: bash
+
+    git fetch upstream
+    git checkout master
+    git merge upstream/master
+
+Осуществим rebase ветки с нашими изменениями с основной:
+
+.. code-block:: bash
+
+    git checkout new_feature
+    git rebase master
+
+Отправим наши изменения на сервер:
+
+.. code-block:: bash
+
+    git push -u origin new_feature
+
+Создадим новый Pull Request.
