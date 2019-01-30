@@ -185,7 +185,7 @@
 
     cat /proc/$PID/environ
 
-Здесь **$PID** - PID процесса, информацию о котором необходимо получить.
+Здесь **$PID** - :ref:`PID <get-pid>` процесса, информацию о котором необходимо получить.
 
 .. index:: environment, options, env
 .. _env-set:
