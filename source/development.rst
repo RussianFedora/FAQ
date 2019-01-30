@@ -211,3 +211,22 @@
 .. code-block:: bash
 
     env FOO=BAR /usr/bin/foo-bar
+
+.. index:: git, vcs, configuration
+.. _git-configuration:
+
+Как правильно настроить Git для работы?
+===========================================
+
+Сначала укажем своё имя и адрес электронной почты:
+
+.. code-block:: bash
+
+    git config --global user.name "Your Name"
+    git config --global user.email email@example.org
+
+Установим :ref:`предпочитаемый текстовый редактор <editor-git>` для работы с коммитами:
+
+.. code-block:: bash
+
+    git config --global core.editor vim
