@@ -505,6 +505,56 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 </div>
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, информацию о котором требуется получить.</p>
 </div>
+<div class="section" id="kill-sigterm">
+<span id="index-47"></span><span id="id28"></span><h2>Как правильно завершить работу процесса?<a class="headerlink" href="#kill-sigterm" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для того, чтобы завершить работу процесса, необходимо отправить ему сигнал <strong>SIGTERM</strong>. После получения данного сигнала процесс должен немедленно начать завершение своей работы:</p>
+<blockquote>
+<div><ul class="simple">
+<li>остановить активные потоки;</li>
+<li>сообщить порождённым им процессам (потомкам) о том, что он завершает свою работу;</li>
+<li>закрыть все открытые процессом дескрипторы;</li>
+<li>освободить все занятые процессом ресурсы;</li>
+<li>вернуть управление операционной системе.</li>
+</ul>
+</div></blockquote>
+<p>Чтобы отправить сигнал SIGTERM процессу с определённым <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>, воспользуемся утилитой <strong>kill</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">kill</span> -15 XXXX
+</pre></div>
+</div>
+<p>Здесь <strong>XXXX</strong> - PID нужного процесса.</p>
+<p>Вместо явного указания PID процесса существует возможность завершить работу процесса с указанным именем посредством <strong>killall</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">kill</span> -15 foo-bar
+</pre></div>
+</div>
+<p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, который требуется завершить, однако её следует применять с особой осторожностью ибо если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
+</div>
+<div class="section" id="kill-sigkill">
+<span id="index-48"></span><span id="id29"></span><h2>Как принудительно завершить работу процесса?<a class="headerlink" href="#kill-sigkill" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если какой-либо процесс завис и не отвечает на требование завершения посредством <a class="reference internal" href="#kill-sigterm"><span class="std std-ref">SIGTERM</span></a>, можно заставить операционную систему принудительно завершить его работу сигналом <strong>SIGKILL</strong>, который не может быть перехвачен и проигнорирован процессом.</p>
+<p>Данный сигнал следует использовать с особой осторожностью, т.к. в этом случае процесс не сможет корректно освободить все дескрипторы и занятые ресурсы, а также сообщить своим потомкам о своём завершении, что может повлечь за собой появление т.н. <a class="reference internal" href="#process-orphan"><span class="std std-ref">процессов-сирот</span></a>.</p>
+<p>Чтобы отправить сигнал SIGKILL процессу с определённым <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>, воспользуемся утилитой <strong>kill</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">kill</span> -9 XXXX
+</pre></div>
+</div>
+<p>Здесь <strong>XXXX</strong> - PID нужного процесса.</p>
+<p>Вместо явного указания PID процесса существует возможность завершить работу процесса с указанным именем посредством <strong>killall</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">kill</span> -9 foo-bar
+</pre></div>
+</div>
+<p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса. Если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
+</div>
+<div class="section" id="process-zombie">
+<span id="index-49"></span><span id="id30"></span><h2>Что такое процесс-зомби?<a class="headerlink" href="#process-zombie" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Процессы-зомби появляются в системе если потомок завершил свою работу раньше родительского процесса, а последний не отрегировал на отправленный ему сигнал <strong>SIGCHLD</strong>.</p>
+<p>Такие процессы не занимают ресурсов в системе (ибо успешно завершили свою работу), за исключением строки в таблице процессов, хранящей его <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>.</p>
+<p>Все зомби будут автоматически удалены из таблицы процессов после того, как завершит свою работу их родитель.</p>
+</div>
+<div class="section" id="process-orphan">
+<span id="index-50"></span><span id="id31"></span><h2>Что такое процесс-сирота?<a class="headerlink" href="#process-orphan" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Процессы-сироты появляются в системе если их родитель был аварийно уничтожен системой сигналом <a class="reference internal" href="#kill-sigkill"><span class="std std-ref">SIGKILL</span></a> и не смог сообщить своим потомкам о своём завершении работы.</p>
+<p>В отличие от <a class="reference internal" href="#process-zombie"><span class="std std-ref">зомби</span></a>, такие процессы расходуют ресурсы системы и могут быть источником множества проблем.</p>
+<p>При обнаружении таких процессов система выполняет операцию переподчинения и устанавливает их родителем главный процесс инициализации.</p>
+</div>
 </div>
 
 
@@ -578,6 +628,10 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <li class="toctree-l2"><a class="reference internal" href="#firewalld-openvpn-ip">Как средствами Firewalld разрешить подключение к OpenVPN серверу только с разрешённых IP адресов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ip-nat">Как узнать внешний IP адрес за NAT провайдера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pid">Как получить PID запущенного процесса?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kill-sigterm">Как правильно завершить работу процесса?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kill-sigkill">Как принудительно завершить работу процесса?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#process-zombie">Что такое процесс-зомби?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#process-orphan">Что такое процесс-сирота?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>

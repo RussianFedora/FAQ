@@ -552,6 +552,22 @@ Match Group sftp
 </div>
 <p>Следует помнить, что данное действие не будет распространяться на браузер Mozilla Firefox, имеющий собственную базу доверенных корневых УЦ.</p>
 </div>
+<div class="section" id="rsa-openssl">
+<span id="openssl-decrypt-key"></span><span id="index-52"></span><h2>Как убрать пароль шифрования закрытого RSA ключа средствами OpenSSL?<a class="headerlink" href="#rsa-openssl" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Воспользуемся утилитой <strong>openssl</strong> для расшифровки:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openssl rsa -in foo-bar.key -out foo-bar-nopass.key
+</pre></div>
+</div>
+<p>Здесь <strong>foo-bar.key</strong> - имя файла с закрытым RSA ключом, который необходимо расшифровать. После ввода верного пароля, результат появится в файле <strong>foo-bar-nopass.key</strong>.</p>
+</div>
+<div class="section" id="openssl-encrypt-key">
+<span id="index-53"></span><span id="id39"></span><h2>Как установить или изменить пароль шифрования закрытого RSA ключа средствами OpenSSL?<a class="headerlink" href="#openssl-encrypt-key" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Воспользуемся утилитой <strong>openssl</strong> для установки или изменения пароля:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openssl rsa -aes256 -in foo-bar-nopass.key -out foo-bar.key
+</pre></div>
+</div>
+<p>Здесь <strong>-aes256</strong> - используемый алгоритм шифрования (AES-256), <strong>foo-bar-nokey.key</strong> - имя файла с закрытым RSA ключом, пароль которого нужно задать или изменить. Результат будет сохранён в файле <strong>foo-bar.key</strong>.</p>
+</div>
 </div>
 
 
@@ -631,6 +647,8 @@ Match Group sftp
 <li class="toctree-l2"><a class="reference internal" href="#mac-wi-fi-fedora">Как включить рандомизацию MAC адресов при подключении к Wi-Fi точкам в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#add-custom-ca">Как добавить собственный удостоверяющий центр в список доверенных?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#blackist-ca">Как внести удостоверяющий центр в список запрещённых?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rsa-openssl">Как убрать пароль шифрования закрытого RSA ключа средствами OpenSSL?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#openssl-encrypt-key">Как установить или изменить пароль шифрования закрытого RSA ключа средствами OpenSSL?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
