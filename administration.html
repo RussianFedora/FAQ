@@ -523,7 +523,7 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 </div>
 <p>Здесь <strong>XXXX</strong> - PID нужного процесса.</p>
 <p>Вместо явного указания PID процесса существует возможность завершить работу процесса с указанным именем посредством <strong>killall</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">kill</span> -15 foo-bar
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>killall -15 foo-bar
 </pre></div>
 </div>
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, который требуется завершить, однако её следует применять с особой осторожностью ибо если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
@@ -538,7 +538,7 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 </div>
 <p>Здесь <strong>XXXX</strong> - PID нужного процесса.</p>
 <p>Вместо явного указания PID процесса существует возможность завершить работу процесса с указанным именем посредством <strong>killall</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">kill</span> -9 foo-bar
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>killall -9 foo-bar
 </pre></div>
 </div>
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса. Если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
