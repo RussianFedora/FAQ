@@ -17,7 +17,7 @@
 Я хочу создать пакет для Fedora. Что мне следует знать?
 ============================================================
 
-См. `здесь <https://docs.fedoraproject.org/quick-docs/en-US/creating-rpm-packages.html>`__ и `здесь <https://www.easycoding.org/2018/06/17/pravilno-paketim-po-dlya-linux.html>`__.
+См. `здесь <https://www.easycoding.org/2019/01/28/sozdayom-rpm-pakety-dlya-fedora.html>`__ и `здесь <https://www.easycoding.org/2018/06/17/pravilno-paketim-po-dlya-linux.html>`__.
 
 .. index:: package, packaging, rpm, building
 .. _build-package:
