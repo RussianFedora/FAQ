@@ -869,3 +869,55 @@
 В отличие от :ref:`зомби <process-zombie>`, такие процессы расходуют ресурсы системы и могут быть источником множества проблем.
 
 При обнаружении таких процессов система выполняет операцию переподчинения и устанавливает их родителем главный процесс инициализации.
+
+.. index:: firewall, firewalld, web server, http, https, cloudflare
+.. _firewalld-cloudflare:
+
+Как средствами Firewalld разрешить подключение к веб-серверу только с IP адресов CloudFlare?
+================================================================================================
+
+При использовании CloudFlare в качестве системы защиты от DDoS атак, а также WAF, возникает необходимость разрешать входящие подключения исключительно с IP адресов данного сервиса.
+
+Сначала отключим правило по умолчанию для веб-сервера, разрешающее доступ с любых IP адресов:
+
+.. code-block:: bash
+
+    sudo firewall-cmd --zone=public --remove-service http --permanent
+    sudo firewall-cmd --zone=public --remove-service https --permanent
+
+Напишем небольшой скрипт **foo-bar.sh**, который получит актуальные пулы IP-адресов и создаст rich rule, разрешающие доступ лишь с подсетей CloudFlare (`IPv4 <https://www.cloudflare.com/ips-v4>`__, `IPv6 <https://www.cloudflare.com/ips-v6>`__):
+
+.. code-block:: bash
+
+    #!/bin/bash
+    set -ef
+
+    API=https://www.cloudflare.com/ips-v
+    ZONE=public
+
+    function fw_add {
+        local IFS=$'\n'
+        local lines=($(curl -sS $API$1))
+        for i in "${lines[@]}"
+        do
+            firewall-cmd --zone=$ZONE --add-rich-rule="rule family=ipv$1 source address=\"$i\" service name=\"http\" accept" --permanent
+            firewall-cmd --zone=$ZONE --add-rich-rule="rule family=ipv$1 source address=\"$i\" service name=\"https\" accept" --permanent
+        done
+    }
+
+    fw_add 4
+    fw_add 6
+
+Запустим наш скрипт:
+
+.. code-block:: bash
+
+    sudo ./foo-bar.sh
+
+Применим новые правила файрвола:
+
+.. code-block:: bash
+
+    sudo firewall-cmd --reload
+
+Здесь **public** - имя зоны для публичного сетевого интерфейса.
