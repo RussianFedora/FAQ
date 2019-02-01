@@ -568,6 +568,14 @@ Match Group sftp
 </div>
 <p>Здесь <strong>-aes256</strong> - используемый алгоритм шифрования (AES-256), <strong>foo-bar-nokey.key</strong> - имя файла с закрытым RSA ключом, пароль которого нужно задать или изменить. Результат будет сохранён в файле <strong>foo-bar.key</strong>.</p>
 </div>
+<div class="section" id="sudo-multi">
+<span id="index-54"></span><span id="id40"></span><h2>Как посредством sudo запустить сразу несколько команд?<a class="headerlink" href="#sudo-multi" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Команда <a class="reference internal" href="#sudo-access"><span class="std std-ref">sudo</span></a> предназначена для запуска исключительно одной команды от имени другого пользователя, поэтому если необходимо запустить сразу несколько команд, либо осуществлять перенаправление вывода, придётся использовать другой вариант:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo bash -c <span class="s2">&quot;first | seconds &amp;&amp; third&quot;</span>
+</pre></div>
+</div>
+<p>В данном примере все три приложения будут запущены с правами суперпользователя, причём стандартный вывод <em>first</em> перенаправляется в стандартный ввод <em>second</em> через канал (pipe) и при успешном завершении запустится процесс <em>third</em>.</p>
+</div>
 </div>
 
 
@@ -649,6 +657,7 @@ Match Group sftp
 <li class="toctree-l2"><a class="reference internal" href="#blackist-ca">Как внести удостоверяющий центр в список запрещённых?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rsa-openssl">Как убрать пароль шифрования закрытого RSA ключа средствами OpenSSL?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#openssl-encrypt-key">Как установить или изменить пароль шифрования закрытого RSA ключа средствами OpenSSL?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sudo-multi">Как посредством sudo запустить сразу несколько команд?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>

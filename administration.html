@@ -555,6 +555,49 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <p>В отличие от <a class="reference internal" href="#process-zombie"><span class="std std-ref">зомби</span></a>, такие процессы расходуют ресурсы системы и могут быть источником множества проблем.</p>
 <p>При обнаружении таких процессов система выполняет операцию переподчинения и устанавливает их родителем главный процесс инициализации.</p>
 </div>
+<div class="section" id="firewalld-ip-cloudflare">
+<span id="firewalld-cloudflare"></span><span id="index-51"></span><h2>Как средствами Firewalld разрешить подключение к веб-серверу только с IP адресов CloudFlare?<a class="headerlink" href="#firewalld-ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
+<p>При использовании CloudFlare в качестве системы защиты от DDoS атак, а также WAF, возникает необходимость разрешать входящие подключения исключительно с IP адресов данного сервиса.</p>
+<p>Сначала отключим правило по умолчанию для веб-сервера, разрешающее доступ с любых IP адресов:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone<span class="o">=</span>public --remove-service http --permanent
+sudo firewall-cmd --zone<span class="o">=</span>public --remove-service https --permanent
+</pre></div>
+</div>
+<p>Напишем небольшой скрипт <strong>foo-bar.sh</strong>, который получит актуальные пулы IP-адресов и создаст rich rule, разрешающие доступ лишь с подсетей CloudFlare (<a class="reference external" href="https://www.cloudflare.com/ips-v4">IPv4</a>, <a class="reference external" href="https://www.cloudflare.com/ips-v6">IPv6</a>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nb">set</span> -ef
+
+<span class="nv">API</span><span class="o">=</span>https://www.cloudflare.com/ips-v
+<span class="nv">ZONE</span><span class="o">=</span>public
+
+<span class="k">function</span> fw_add <span class="o">{</span>
+    <span class="nb">local</span> <span class="nv">IFS</span><span class="o">=</span><span class="s1">$&#39;\n&#39;</span>
+    <span class="nb">local</span> <span class="nv">lines</span><span class="o">=(</span><span class="k">$(</span>curl -sS <span class="nv">$API$1</span><span class="k">)</span><span class="o">)</span>
+    <span class="k">for</span> i in <span class="s2">&quot;</span><span class="si">${</span><span class="nv">lines</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">do</span>
+        firewall-cmd --zone<span class="o">=</span><span class="nv">$ZONE</span> --add-rich-rule<span class="o">=</span><span class="s2">&quot;rule family=ipv</span><span class="nv">$1</span><span class="s2"> source address=\&quot;</span><span class="nv">$i</span><span class="s2">\&quot; service name=\&quot;http\&quot; accept&quot;</span> --permanent
+        firewall-cmd --zone<span class="o">=</span><span class="nv">$ZONE</span> --add-rich-rule<span class="o">=</span><span class="s2">&quot;rule family=ipv</span><span class="nv">$1</span><span class="s2"> source address=\&quot;</span><span class="nv">$i</span><span class="s2">\&quot; service name=\&quot;https\&quot; accept&quot;</span> --permanent
+    <span class="k">done</span>
+<span class="o">}</span>
+
+fw_add <span class="m">4</span>
+fw_add <span class="m">6</span>
+</pre></div>
+</div>
+<p>Запустим наш скрипт:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ./foo-bar.sh
+</pre></div>
+</div>
+<p>Применим новые правила файрвола:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
+</pre></div>
+</div>
+<p>Здесь <strong>public</strong> - имя зоны для публичного сетевого интерфейса.</p>
+</div>
+<div class="section" id="ip-cloudflare">
+<span id="cloudflare-forwarding"></span><span id="index-52"></span><h2>Как пробросить IP адреса клиентов за CloudFlare?<a class="headerlink" href="#ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
+<p>См. <a class="reference external" href="https://www.easycoding.org/2013/08/12/nastraivaem-probros-ip-klientov-za-cloudflare.html">здесь</a>.</p>
+</div>
 </div>
 
 
@@ -632,6 +675,8 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <li class="toctree-l2"><a class="reference internal" href="#kill-sigkill">Как принудительно завершить работу процесса?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#process-zombie">Что такое процесс-зомби?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#process-orphan">Что такое процесс-сирота?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firewalld-ip-cloudflare">Как средствами Firewalld разрешить подключение к веб-серверу только с IP адресов CloudFlare?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ip-cloudflare">Как пробросить IP адреса клиентов за CloudFlare?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
