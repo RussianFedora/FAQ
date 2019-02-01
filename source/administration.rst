@@ -921,3 +921,11 @@
     sudo firewall-cmd --reload
 
 Здесь **public** - имя зоны для публичного сетевого интерфейса.
+
+.. index:: web server, http, https, cloudflare, ip
+.. _cloudflare-forwarding:
+
+Как пробросить IP адреса клиентов за CloudFlare?
+====================================================
+
+См. `здесь <https://www.easycoding.org/2013/08/12/nastraivaem-probros-ip-klientov-za-cloudflare.html>`__.
