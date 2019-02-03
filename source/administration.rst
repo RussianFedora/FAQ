@@ -929,3 +929,17 @@
 ====================================================
 
 См. `здесь <https://www.easycoding.org/2013/08/12/nastraivaem-probros-ip-klientov-za-cloudflare.html>`__.
+
+.. index:: containers, docker, podman
+.. _docker-fedora:
+
+Как правильно установить Docker в Fedora?
+=============================================
+
+Вместо Docker в Fedora рекомендуется установить и использовать Podman, т.к. он не требует прав суперпользователя для работы:
+
+.. code-block:: bash
+
+    sudo dnf install podman
+
+Синтаксис команд аналогичен Docker.
