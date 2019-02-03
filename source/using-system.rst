@@ -995,3 +995,44 @@ KDE Connect не видит мой смартфон. Как исправить?
  * **Ctrl + K** - удаляет всё, что находится правее текущей позиции текстового курсора;
  * **Ctrl + Y** - отменяет последнюю операцию удаления;
  * **Ctrl + _** - отменяет любую последнюю операцию.
+
+.. index:: kde, plasma, new file, dolphin, templates
+.. _dolphin-templates:
+
+Как добавить новый тип файлов в меню Создать в KDE?
+=======================================================
+
+Сначала получим пути, в которых KDE пытается обнаружить *ярлыки* шаблонов новых файлов:
+
+.. code-block:: bash
+
+    kf5-config --path templates
+
+По умолчанию это **~/.local/share/templates** и он не существует, поэтому создадим его:
+
+.. code-block:: bash
+
+    mkdir -p ~/.local/share/templates
+
+Для примера создадим и сохраним в любом каталоге новый шаблон **xml-document.xml** следующего содержания:
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="utf-8" ?>
+    <root>
+    </root>
+
+В каталоге шаблонов KDE создадим ярлык **xml-document.desktop** на созданный файл:
+
+.. code-block:: ini
+
+    [Desktop Entry]
+    Icon=application-xml
+    Name[ru_RU]=Документ XML
+    Name=XML document
+    Type=Link
+    URL[$e]=file:$HOME/Templates/xml-document.xml
+
+Здесь **Icon** - значок для новой строки, а **URL** - полный путь к файлу шаблона.
+
+Изменения вступят в силу немедленно и через несколько секунд в меню *Создать* файлового менеджера Dolphin появится новый пункт.
