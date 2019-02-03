@@ -653,13 +653,13 @@ export QT_SCALE_FACTOR=2
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/.local/share/templates
 </pre></div>
 </div>
-<p>Для примера создадим и сохраним в любом каталоге новый шаблон <strong>xml-document.xml</strong> следующего содержания:</p>
+<p>В качестве примера сохраним в любом каталоге новый шаблон <strong>xml-document.xml</strong> примерно следующего содержания:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span>
 <span class="nt">&lt;root&gt;</span>
 <span class="nt">&lt;/root&gt;</span>
 </pre></div>
 </div>
-<p>В каталоге шаблонов KDE создадим ярлык <strong>xml-document.desktop</strong> на созданный файл:</p>
+<p>В каталоге шаблонов KDE добавим ярлык <strong>xml-document.desktop</strong> на созданный ранее файл:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Desktop Entry]</span>
 <span class="na">Icon</span><span class="o">=</span><span class="s">application-xml</span>
 <span class="na">Name[ru_RU]</span><span class="o">=</span><span class="s">Документ XML</span>
@@ -668,7 +668,7 @@ export QT_SCALE_FACTOR=2
 <span class="na">URL[$e]</span><span class="o">=</span><span class="s">file:$HOME/Templates/xml-document.xml</span>
 </pre></div>
 </div>
-<p>Здесь <strong>Icon</strong> - значок для новой строки, а <strong>URL</strong> - полный путь к файлу шаблона.</p>
+<p>Здесь <strong>Icon</strong> - значок для новой строки, <strong>Name</strong> - название новой строки с поддержкой локализации, а <strong>URL</strong> - полный путь к файлу шаблона.</p>
 <p>Изменения вступят в силу немедленно и через несколько секунд в меню <em>Создать</em> файлового менеджера Dolphin появится новый пункт.</p>
 </div>
 <div class="section" id="nautilus">
