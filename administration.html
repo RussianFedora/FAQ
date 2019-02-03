@@ -598,6 +598,14 @@ fw_add <span class="m">6</span>
 <span id="cloudflare-forwarding"></span><span id="index-52"></span><h2>Как пробросить IP адреса клиентов за CloudFlare?<a class="headerlink" href="#ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2013/08/12/nastraivaem-probros-ip-klientov-za-cloudflare.html">здесь</a>.</p>
 </div>
+<div class="section" id="docker-fedora">
+<span id="index-53"></span><span id="id32"></span><h2>Как правильно установить Docker в Fedora?<a class="headerlink" href="#docker-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Вместо Docker в Fedora рекомендуется установить и использовать Podman, т.к. он не требует прав суперпользователя для работы:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install podman
+</pre></div>
+</div>
+<p>Синтаксис команд аналогичен Docker.</p>
+</div>
 </div>
 
 
@@ -677,6 +685,7 @@ fw_add <span class="m">6</span>
 <li class="toctree-l2"><a class="reference internal" href="#process-orphan">Что такое процесс-сирота?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firewalld-ip-cloudflare">Как средствами Firewalld разрешить подключение к веб-серверу только с IP адресов CloudFlare?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ip-cloudflare">Как пробросить IP адреса клиентов за CloudFlare?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-fedora">Как правильно установить Docker в Fedora?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>

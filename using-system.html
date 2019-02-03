@@ -643,6 +643,48 @@ export QT_SCALE_FACTOR=2
 </ul>
 </div></blockquote>
 </div>
+<div class="section" id="dolphin">
+<span id="dolphin-templates"></span><span id="index-57"></span><h2>Как добавить новый тип файлов в меню Создать в Dolphin?<a class="headerlink" href="#dolphin" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Сначала получим пути, в которых KDE пытается обнаружить <em>ярлыки</em> шаблонов новых файлов:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kf5-config --path templates
+</pre></div>
+</div>
+<p>По умолчанию это <strong>~/.local/share/templates</strong> и он не существует, поэтому создадим его:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/.local/share/templates
+</pre></div>
+</div>
+<p>Для примера создадим и сохраним в любом каталоге новый шаблон <strong>xml-document.xml</strong> следующего содержания:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span>
+<span class="nt">&lt;root&gt;</span>
+<span class="nt">&lt;/root&gt;</span>
+</pre></div>
+</div>
+<p>В каталоге шаблонов KDE создадим ярлык <strong>xml-document.desktop</strong> на созданный файл:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Desktop Entry]</span>
+<span class="na">Icon</span><span class="o">=</span><span class="s">application-xml</span>
+<span class="na">Name[ru_RU]</span><span class="o">=</span><span class="s">Документ XML</span>
+<span class="na">Name</span><span class="o">=</span><span class="s">XML document</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Link</span>
+<span class="na">URL[$e]</span><span class="o">=</span><span class="s">file:$HOME/Templates/xml-document.xml</span>
+</pre></div>
+</div>
+<p>Здесь <strong>Icon</strong> - значок для новой строки, а <strong>URL</strong> - полный путь к файлу шаблона.</p>
+<p>Изменения вступят в силу немедленно и через несколько секунд в меню <em>Создать</em> файлового менеджера Dolphin появится новый пункт.</p>
+</div>
+<div class="section" id="nautilus">
+<span id="nautilus-templates"></span><span id="index-58"></span><h2>Как добавить новый тип файлов в меню Создать в Nautilus?<a class="headerlink" href="#nautilus" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В отличие от <a class="reference internal" href="#dolphin-templates"><span class="std std-ref">Dolphin в KDE</span></a>, Nautilus в Gnome ищет файлы шаблонов в стандартном каталоге <a class="reference internal" href="#xdg-reallocate"><span class="std std-ref">$XDG_TEMPLATES_DIR</span></a>. Получим путь к нему:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xdg-user-dir TEMPLATES
+</pre></div>
+</div>
+<p>Создадим новый файл <strong>XML document.xml</strong> следующего содержания:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span>
+<span class="nt">&lt;root&gt;</span>
+<span class="nt">&lt;/root&gt;</span>
+</pre></div>
+</div>
+<p>Изменения вступят в силу немедленно и через несколько секунд в меню <em>Создать</em> файлового менеджера Nautilus появится новый пункт.</p>
+</div>
 </div>
 
 
@@ -728,6 +770,8 @@ export QT_SCALE_FACTOR=2
 <li class="toctree-l2"><a class="reference internal" href="#set-keyboard-console">Как изменить список доступных раскладок клавиатуры и настроить их переключение в текстовом режиме?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gtk-kde">Можно ли заставить GTK приложения выглядеть нативно в KDE?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bash-hotkeys">Какие полезные комбинации клавиш существуют при наборе команд в терминале?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolphin">Как добавить новый тип файлов в меню Создать в Dolphin?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nautilus">Как добавить новый тип файлов в меню Создать в Nautilus?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
