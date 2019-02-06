@@ -685,6 +685,24 @@ export QT_SCALE_FACTOR=2
 </div>
 <p>Изменения вступят в силу немедленно и через несколько секунд в меню <em>Создать</em> файлового менеджера Nautilus появится новый пункт.</p>
 </div>
+<div class="section" id="kde-link-mime">
+<span id="index-59"></span><span id="id30"></span><h2>При нажатии по любой гиперссылке она открывается не в браузере, а соответствующем приложении. Как исправить?<a class="headerlink" href="#kde-link-mime" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Согласно настроек по умолчанию, при нажатии на любую ссылку вне браузера (например в мессенджере) компонент KDE KIO попытается определить mime-тип файла, загружаемого по ней, и открыть её в ассоциированном с приложении. Например если это изображение JPEG, то оно будет загружено в Gwenview.</p>
+<p>Отключить данную функцию можно в <strong>Параметры системы</strong> - <strong>Предпочтения пользователя</strong> - <strong>Приложения</strong> - <strong>Приложения по умолчанию</strong> - раздел <strong>Браузер</strong> - пункт <strong>Открывать адреса http и https</strong> - <strong>В следующем приложении</strong> - <strong>Firefox</strong>.</p>
+</div>
+<div class="section" id="file-types">
+<span id="index-60"></span><span id="id31"></span><h2>Как файловые менеджеры определяют типы файлов?<a class="headerlink" href="#file-types" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если в ОС Microsoft Windows тип файлов определяется исключительно по их расширению, то в GNU/Linux для этого используется <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_MIME-%D1%82%D0%B8%D0%BF%D0%BE%D0%B2">mime-типы</a>.</p>
+<p>В системе ведётся база соответствия mime-типов установленным приложениям, соответствующая <a class="reference external" href="https://specifications.freedesktop.org/mime-apps-spec/mime-apps-spec-latest.html">стандарту XDG Free Desktop</a>.</p>
+<p>Для получения mime-типа конкретного файла можно использовать утилиту <strong>file</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>file foo-bar.txt
+</pre></div>
+</div>
+<p>Для открытия файла в ассоциированном с его mime-типом приложении применяется утилита <strong>xdg-open</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xdg-open foo-bar.txt
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -772,6 +790,8 @@ export QT_SCALE_FACTOR=2
 <li class="toctree-l2"><a class="reference internal" href="#bash-hotkeys">Какие полезные комбинации клавиш существуют при наборе команд в терминале?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dolphin">Как добавить новый тип файлов в меню Создать в Dolphin?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nautilus">Как добавить новый тип файлов в меню Создать в Nautilus?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kde-link-mime">При нажатии по любой гиперссылке она открывается не в браузере, а соответствующем приложении. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#file-types">Как файловые менеджеры определяют типы файлов?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>

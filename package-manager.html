@@ -482,6 +482,21 @@ sudo dnf config-manager --set-enabled updates-modular
 </pre></div>
 </div>
 </div>
+<div class="section" id="package-version">
+<span id="index-51"></span><span id="id35"></span><h2>Почему некоторые пакеты в Fedora не обновляют до новейших версий?<a class="headerlink" href="#package-version" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Согласно <a class="reference external" href="https://docs.fedoraproject.org/en-US/fesco/Updates_Policy/#stable-releases">Fedora updates policy</a>, запрещается обновлять пакеты в пределах стабильного выпуска Fedora до новых мажорных версий кроме тех, для которых было выдано <a class="reference internal" href="#upgrades-allowed"><span class="std std-ref">специальное разрешение</span></a> от FESCo.</p>
+</div>
+<div class="section" id="upgrades-allowed">
+<span id="index-52"></span><span id="id36"></span><h2>Какие пакеты разрешено обновлять до новых версий в пределах стабильного выпуска?<a class="headerlink" href="#upgrades-allowed" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В настоящее время <a class="reference external" href="https://docs.fedoraproject.org/en-US/fesco/Updates_Policy/#exceptions-list">определён список пакетов</a>, для которых разрешены обновления до новых версий в пределах стабильного выпуска Fedora:</p>
+<blockquote>
+<div><ul class="simple">
+<li>ядро Linux;</li>
+<li>весь KDE стек (включая Qt);</li>
+<li>веб-браузеры и почтовые клиенты.</li>
+</ul>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -558,6 +573,8 @@ sudo dnf config-manager --set-enabled updates-modular
 <li class="toctree-l2"><a class="reference internal" href="#fedora-bodhi">Как правильно тестировать новые версии пакетов в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-advisory">Как проще установить определённое обновление из тестового репозитория?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#koji">Как скачать определённую сборку пакета из Koji?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#package-version">Почему некоторые пакеты в Fedora не обновляют до новейших версий?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#upgrades-allowed">Какие пакеты разрешено обновлять до новых версий в пределах стабильного выпуска?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>

@@ -576,6 +576,14 @@ Match Group sftp
 </div>
 <p>В данном примере все три приложения будут запущены с правами суперпользователя, причём стандартный вывод <em>first</em> перенаправляется в стандартный ввод <em>second</em> через канал (pipe) и при успешном завершении запустится процесс <em>third</em>.</p>
 </div>
+<div class="section" id="wireshark">
+<span id="wireshark-no-root"></span><span id="index-55"></span><h2>Как запускать WireShark без предоставления ему прав суперпользователя?<a class="headerlink" href="#wireshark" title="Ссылка на этот заголовок">¶</a></h2>
+<p>WireShark поддерживает запуска как с правами суперпользователя, так и без них. Добавим свой аккаунт в группу <strong>wireshark</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G wireshark <span class="k">$(</span>whoami<span class="k">)</span>
+</pre></div>
+</div>
+<p>Изменения вступят в силу при следующем входе в систему.</p>
+</div>
 </div>
 
 
@@ -658,6 +666,7 @@ Match Group sftp
 <li class="toctree-l2"><a class="reference internal" href="#rsa-openssl">Как убрать пароль шифрования закрытого RSA ключа средствами OpenSSL?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#openssl-encrypt-key">Как установить или изменить пароль шифрования закрытого RSA ключа средствами OpenSSL?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sudo-multi">Как посредством sudo запустить сразу несколько команд?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wireshark">Как запускать WireShark без предоставления ему прав суперпользователя?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
