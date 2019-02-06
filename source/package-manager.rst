@@ -745,10 +745,22 @@ Java 11:
 
     koji download-build kernel-4.19.7-300.fc29 --arch=$(uname -m)
 
-.. index:: package, version, update
+.. index:: package, version, update, fesco
 .. _package-version:
 
 Почему некоторые пакеты в Fedora не обновляют до новейших версий?
 =====================================================================
 
-Согласно `Fedora updates policy <https://docs.fedoraproject.org/en-US/fesco/Updates_Policy/>`__, запрещается обновлять пакеты в пределах стабильного выпуска Fedora до новых мажорных версий кроме тех, для которых было выдано специальное разрешение от FESCo.
+Согласно `Fedora updates policy <https://docs.fedoraproject.org/en-US/fesco/Updates_Policy/#stable-releases>`__, запрещается обновлять пакеты в пределах стабильного выпуска Fedora до новых мажорных версий кроме тех, для которых было выдано :ref:`специальное разрешение <upgrades-allowed>` от FESCo.
+
+.. index:: package, version, update, fesco
+.. _upgrades-allowed:
+
+Какие пакеты разрешено обновлять до новых версий в пределах стабильного выпуска?
+====================================================================================
+
+В настоящее время `определён список пакетов <https://docs.fedoraproject.org/en-US/fesco/Updates_Policy/#exceptions-list>`__, для которых разрешены обновления до новых версий в пределах стабильного выпуска Fedora:
+
+ * ядро Linux;
+ * весь KDE стек (включая Qt);
+ * веб-браузеры и почтовые клиенты.
