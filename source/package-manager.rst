@@ -744,3 +744,11 @@ Java 11:
 .. code-block:: bash
 
     koji download-build kernel-4.19.7-300.fc29 --arch=$(uname -m)
+
+.. index:: package, version, update
+.. _package-version:
+
+Почему некоторые пакеты в Fedora не обновляют до новейших версий?
+=====================================================================
+
+Согласно `Fedora updates policy <https://docs.fedoraproject.org/en-US/fesco/Updates_Policy/>`__, запрещается обновлять пакеты в пределах стабильного выпуска Fedora до новых мажорных версий кроме тех, для которых было выдано специальное разрешение от FESCo.
