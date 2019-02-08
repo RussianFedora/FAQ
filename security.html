@@ -584,6 +584,15 @@ Match Group sftp
 </div>
 <p>Изменения вступят в силу при следующем входе в систему.</p>
 </div>
+<div class="section" id="password-gen">
+<span id="index-56"></span><span id="id41"></span><h2>Как сгенерировать криптостойкий пароль без использования стороннего ПО?<a class="headerlink" href="#password-gen" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для того, чтобы сгенерировать криптостойкий пароль не обязательно устанавливать и применять специальные утилиты.</p>
+<p>Воспользуемся штатными средствами, входящими в базовый пакет GNU Coreutils:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat /dev/urandom <span class="p">|</span> tr -dc <span class="s1">&#39;a-zA-Z0-9&#39;</span> <span class="p">|</span> fold -w <span class="m">20</span> <span class="p">|</span> head -n <span class="m">4</span>
+</pre></div>
+</div>
+<p>Данный пример сгенерирует 4 криптостойких пароля по 20 символов каждый.</p>
+</div>
 </div>
 
 
@@ -667,6 +676,7 @@ Match Group sftp
 <li class="toctree-l2"><a class="reference internal" href="#openssl-encrypt-key">Как установить или изменить пароль шифрования закрытого RSA ключа средствами OpenSSL?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sudo-multi">Как посредством sudo запустить сразу несколько команд?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#wireshark">Как запускать WireShark без предоставления ему прав суперпользователя?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#password-gen">Как сгенерировать криптостойкий пароль без использования стороннего ПО?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>

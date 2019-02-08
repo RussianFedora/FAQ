@@ -225,6 +225,41 @@ git rebase master
 </div>
 <p>Создадим новый Pull Request.</p>
 </div>
+<div class="section" id="ld-preload">
+<span id="ldpreload-safety"></span><span id="index-14"></span><h2>Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?<a class="headerlink" href="#ld-preload" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Нет, это не безопасно, т.к. существует возможность создания внутри библиотек <a class="reference external" href="https://gcc.gnu.org/onlinedocs/gcc-8.2.0/gcc/Common-Function-Attributes.html">суперглобальных конструкторов</a>, которые будут выполняться в момент присоединения библиотеки <em>до запуска приложения</em>.</p>
+<p>Создадим и скомпилируем простой пример <strong>example.c</strong>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="k">static</span> <span class="nf">__attribute__</span><span class="p">((</span><span class="n">constructor</span> <span class="p">(</span><span class="mi">200</span><span class="p">)))</span> <span class="kt">void</span> <span class="n">bar</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Method bar() was called.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="nf">__attribute__</span><span class="p">((</span><span class="n">constructor</span> <span class="p">(</span><span class="mi">150</span><span class="p">)))</span> <span class="kt">void</span> <span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Method foo() was called.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Данный метод содержит сразу два суперглобальных конструктора с указанием приоритетов. Чем ниже приоритет, тем скорее данный метод будет исполнен.</p>
+<p>Скомпилируем и слинкуем наш пример:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc -c -O2 -fPIC example.c
+gcc -shared -fPIC -o example.so example.o -lc
+</pre></div>
+</div>
+<p>Внедрим нашу библиотеку в известный доверенный процесс, например <strong>whoami</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">LD_PRELOAD</span><span class="o">=</span>./example.so whoami
+</pre></div>
+</div>
+<p>Оба суперглобальных метода будут немедленно исполнены <em>с правами запускаемого приложения</em> и изменят его вывод:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Method foo<span class="o">()</span> was called.
+Method bar<span class="o">()</span> was called.
+user1
+</pre></div>
+</div>
+<p>Разумеется, вместо безобидных вызовов функции printf() может находиться абсолютно любой код, в т.ч. вредоносный.</p>
+</div>
 </div>
 
 
@@ -269,6 +304,7 @@ git rebase master
 <li class="toctree-l2"><a class="reference internal" href="#env-set">Как задать переменную окружения?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git">Как правильно настроить Git для работы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-pull-request">Я хочу внести правки в проект. Как правильно отправить их в апстрим?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ld-preload">Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>

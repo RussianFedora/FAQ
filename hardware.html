@@ -131,6 +131,65 @@
 </div>
 <p>Чтобы отменить действие, достаточно удалить созданный файл и снова пересобрать initrd.</p>
 </div>
+<div class="section" id="rfkill-status">
+<span id="index-5"></span><span id="id3"></span><h2>Модуль настройки сети не отображает беспроводных устройств. Что делать?<a class="headerlink" href="#rfkill-status" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для начала воспользуемся утилитой <strong>rfkill</strong> для того, чтобы определить состояние беспроводных модулей:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rfkill
+</pre></div>
+</div>
+<p>Статус <strong>hard blocked</strong> означает, что устройство отключено аппаратно и требуется включить его определённой последовательностью <strong>Fn + Fx</strong> (см. руководство ноутбука).</p>
+<p>Статус <strong>soft blocked</strong> означает, что устройство отключено программно, например режимом <em>В самолёте</em>.</p>
+</div>
+<div class="section" id="wi-fi">
+<span id="rfkill-wifi"></span><span id="index-6"></span><h2>Как программно включить или отключить беспроводной модуль Wi-Fi?<a class="headerlink" href="#wi-fi" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Снимем программную блокировку Wi-Fi и активируем модуль:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rfkill unblock wlan
+</pre></div>
+</div>
+<p>Установим программную блокировку Wi-Fi и отключим модуль:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rfkill block wlan
+</pre></div>
+</div>
+</div>
+<div class="section" id="bluetooth">
+<span id="rfkill-bluetooth"></span><span id="index-7"></span><h2>Как программно включить или отключить беспроводной модуль Bluetooth?<a class="headerlink" href="#bluetooth" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Снимем программную блокировку Bluetooth и активируем модуль:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rfkill unblock bluetooth
+</pre></div>
+</div>
+<p>Установим программную блокировку Bluetooth и отключим модуль:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rfkill block bluetooth
+</pre></div>
+</div>
+</div>
+<div class="section" id="lte-4g">
+<span id="rfkill-lte"></span><span id="index-8"></span><h2>Как программно включить или отключить беспроводной модуль LTE (4G)?<a class="headerlink" href="#lte-4g" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Снимем программную блокировку LTE (4G) и активируем модуль:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rfkill unblock wwan
+</pre></div>
+</div>
+<p>Установим программную блокировку LTE (4G) и отключим модуль:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rfkill block wwan
+</pre></div>
+</div>
+</div>
+<div class="section" id="com-rs-232">
+<span id="screen-com"></span><span id="index-9"></span><h2>Как правильно работать с COM портами (RS-232)?<a class="headerlink" href="#com-rs-232" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для работы с COM портами (RS-232) можно применять следующие утилиты:</p>
+<blockquote>
+<div><ul class="simple">
+<li>screen;</li>
+<li>putty.</li>
+</ul>
+</div></blockquote>
+<p>Воспользуемся утилитой <strong>screen</strong> для подключения к последовательному порту:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>screen /dev/ttyS0 <span class="m">115200</span>
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/ttyS0</strong> - путь к первому COM порту в системе, а <strong>115200</strong> - скорость работы в бодах.</p>
+<p>Если при подключении вместо текста отображается различный мусор, значит скорость указана не правильно и её следует либо подбирать экспериментально, либо получить из руководства.</p>
+<p>Для завершения сессии следует нажать <strong>Ctrl + A</strong> и <strong>k</strong>.</p>
+</div>
 </div>
 
 
@@ -165,6 +224,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#wi-fi-linux">Какие модули Wi-Fi корректно работают в Linux?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nvidia-geforce-gtx-1050">В моём ноутбуке установлена видеокарта NVIDIA GeForce GTX 1050 и после запуска система зависает. Что делать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#driver-disable">Как можно навсегда отключить определённый драйвер устройства?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rfkill-status">Модуль настройки сети не отображает беспроводных устройств. Что делать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wi-fi">Как программно включить или отключить беспроводной модуль Wi-Fi?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bluetooth">Как программно включить или отключить беспроводной модуль Bluetooth?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lte-4g">Как программно включить или отключить беспроводной модуль LTE (4G)?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#com-rs-232">Как правильно работать с COM портами (RS-232)?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
