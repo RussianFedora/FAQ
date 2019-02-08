@@ -181,3 +181,21 @@
 .. code-block:: bash
 
     rfkill block bluetooth
+
+.. index:: lte, rfkill, wireless
+.. _rfkill-lte:
+
+Как программно включить или отключить беспроводной модуль LTE (4G)?
+======================================================================
+
+Снимем программную блокировку LTE (4G) и активируем модуль:
+
+.. code-block:: bash
+
+    rfkill unblock wwan
+
+Установим программную блокировку LTE (4G) и отключим модуль:
+
+.. code-block:: bash
+
+    rfkill block wwan
