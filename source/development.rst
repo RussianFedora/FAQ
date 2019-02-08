@@ -336,7 +336,7 @@
 
 Оба суперглобальных метода будут немедленно исполнены *с правами запускаемого приложения* и изменят его вывод:
 
-.. code-block:: bash
+.. code-block:: text
 
     Method foo() was called.
     Method bar() was called.
