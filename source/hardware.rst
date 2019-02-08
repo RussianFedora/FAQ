@@ -163,3 +163,21 @@
 .. code-block:: bash
 
     rfkill block wlan
+
+.. index:: bluetooth, rfkill, wireless
+.. _rfkill-bluetooth:
+
+Как программно включить или отключить беспроводной модуль Bluetooth?
+=======================================================================
+
+Снимем программную блокировку Bluetooth и активируем модуль:
+
+.. code-block:: bash
+
+    rfkill unblock bluetooth
+
+Установим программную блокировку Bluetooth и отключим модуль:
+
+.. code-block:: bash
+
+    rfkill block bluetooth
