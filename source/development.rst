@@ -294,3 +294,52 @@
     git push -u origin new_feature
 
 Создадим новый Pull Request.
+
+.. index:: library, shared library, so, ld preload, security
+.. _ldpreload-safety:
+
+Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?
+=========================================================================
+
+Нет, это не безопасно, т.к. существует возможность создания внутри библиотек `суперглобальных конструкторов <https://gcc.gnu.org/onlinedocs/gcc-8.2.0/gcc/Common-Function-Attributes.html>`__, которые будут выполняться в момент присоединения библиотеки *до запуска приложения*.
+
+Создадим и скомпилируем простой пример **example.c**:
+
+.. code-block:: c
+
+    #include <stdio.h>
+
+    static __attribute__((constructor (200))) void bar()
+    {
+        printf("%s", "Method bar() was called.\n");
+    }
+
+    static __attribute__((constructor (150))) void foo()
+    {
+        printf("%s", "Method foo() was called.\n");
+    }
+
+Данный метод содержит сразу два суперглобальных конструктора с указанием приоритетов. Чем ниже приоритет, тем скорее данный метод будет исполнен.
+
+Скомпилируем и слинкуем наш пример:
+
+.. code-block:: bash
+
+    gcc -c -O2 -fPIC example.c
+    gcc -shared -fPIC -o example.so example.o -lc
+
+Внедрим нашу библиотеку в известный доверенный процесс, например **whoami**:
+
+.. code-block:: bash
+
+    LD_PRELOAD=./example.so whoami
+
+Оба суперглобальных метода будут немедленно исполнены *с правами запускаемого приложения* и изменят его вывод:
+
+.. code-block:: bash
+
+    Method foo() was called.
+    Method bar() was called.
+    user1
+
+Разумеется, вместо безобидных вызовов функции printf() может находиться абсолютно любой код, в т.ч. вредоносный.
