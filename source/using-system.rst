@@ -1114,3 +1114,15 @@ KDE Connect не видит мой смартфон. Как исправить?
 .. code-block:: bash
 
     sudo localectl LANG=ru_RU.utf8
+
+.. index:: locale, localization, language
+.. _application-locale:
+
+Как запустить приложение с другой локалью?
+==============================================
+
+Для запуска приложения с другой локалью необходимо передать ему новое значение в :ref:`переменной окружения <env-set>` **LANG**:
+
+.. code-block:: bash
+
+    LANG=en_US.utf8 foo-bar
