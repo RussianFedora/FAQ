@@ -512,7 +512,7 @@ export QT_SCALE_FACTOR=2
 </div>
 <div class="section" id="editor-selection">
 <span id="index-46"></span><span id="id23"></span><h2>Как выбрать предпочитаемый текстовый редактор в консольном режиме?<a class="headerlink" href="#editor-selection" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для выбора предпочитаемого текстового редактора следует применять переменные окружения, прописав их в личном файле <strong>~/.bashrc</strong>:</p>
+<p>Для выбора предпочитаемого текстового редактора следует применять <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменные окружения</span></a>, прописав их в личном файле <strong>~/.bashrc</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">VISUAL</span><span class="o">=</span>vim
 <span class="nb">export</span> <span class="nv">EDITOR</span><span class="o">=</span>vim
 <span class="nb">export</span> <span class="nv">SUDO_EDITOR</span><span class="o">=</span>vim
@@ -703,6 +703,36 @@ export QT_SCALE_FACTOR=2
 </pre></div>
 </div>
 </div>
+<div class="section" id="system-locale">
+<span id="index-61"></span><span id="id32"></span><h2>Как изменить язык (локализацию) системы?<a class="headerlink" href="#system-locale" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Получим список доступных локалей:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>localectl list-locales
+</pre></div>
+</div>
+<p>Установим английскую локаль для системы:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo localectl <span class="nv">LANG</span><span class="o">=</span>en_US.utf8
+</pre></div>
+</div>
+<p>Установим русскую локаль для системы:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo localectl <span class="nv">LANG</span><span class="o">=</span>ru_RU.utf8
+</pre></div>
+</div>
+</div>
+<div class="section" id="application-locale">
+<span id="index-62"></span><span id="id33"></span><h2>Как запустить приложение с другой локалью?<a class="headerlink" href="#application-locale" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для запуска приложения с другой локалью необходимо передать ему новое значение в <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменной окружения</span></a> <strong>LANG</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">LANG</span><span class="o">=</span>en_US.utf8 foo-bar
+</pre></div>
+</div>
+</div>
+<div class="section" id="application-timezone">
+<span id="index-63"></span><span id="id34"></span><h2>Как запустить приложение с другим часовым поясом?<a class="headerlink" href="#application-timezone" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для запуска приложения с другим часовым поясом необходимо передать ему новое значение в <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменной окружения</span></a> <strong>TZ</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">TZ</span><span class="o">=</span>CET foo-bar
+</pre></div>
+</div>
+<p>Здесь вместо <strong>CET</strong> следует указать название часового пояса.</p>
+</div>
 </div>
 
 
@@ -792,6 +822,9 @@ export QT_SCALE_FACTOR=2
 <li class="toctree-l2"><a class="reference internal" href="#nautilus">Как добавить новый тип файлов в меню Создать в Nautilus?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde-link-mime">При нажатии по любой гиперссылке она открывается не в браузере, а соответствующем приложении. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#file-types">Как файловые менеджеры определяют типы файлов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-locale">Как изменить язык (локализацию) системы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#application-locale">Как запустить приложение с другой локалью?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#application-timezone">Как запустить приложение с другим часовым поясом?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>

@@ -260,6 +260,28 @@ user1
 </div>
 <p>Разумеется, вместо безобидных вызовов функции printf() может находиться абсолютно любой код, в т.ч. вредоносный.</p>
 </div>
+<div class="section" id="lto">
+<span id="enable-lto"></span><span id="index-15"></span><h2>Как можно активировать LTO оптимизации при сборке пакета?<a class="headerlink" href="#lto" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для активации <a class="reference external" href="https://gcc.gnu.org/wiki/LinkTimeOptimization">LTO оптимизаций</a> необходимо и достаточно передать параметр <strong>-flto</strong> как для компилятора (<strong>CFLAGS</strong> и/или <strong>CXXFLAGS</strong>), так и для компоновщика.</p>
+<p>Самый простой способ сделать это - переопределение значений стандартных макросов внутри SPEC файла:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global optflags %(echo %{optflags} -flto)
+%global __global_ldflags %(echo %{__global_ldflags} -flto)
+</pre></div>
+</div>
+<p>Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то также необходимо переопределить ряд <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> внутри секции <em>%build</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">AR</span><span class="o">=</span>%<span class="o">{</span>_bindir<span class="o">}</span>/gcc-ar
+<span class="nb">export</span> <span class="nv">RANLIB</span><span class="o">=</span>%<span class="o">{</span>_bindir<span class="o">}</span>/gcc-ranlib
+<span class="nb">export</span> <span class="nv">NM</span><span class="o">=</span>%<span class="o">{</span>_bindir<span class="o">}</span>/gcc-nm
+</pre></div>
+</div>
+<p>Если используется система сборки cmake, то помимо этого придётся патчить манифест <strong>CMakeLists.txt</strong>, т.к. он в настоящее время не поддерживает загрузку переопределённых значений:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>set<span class="o">(</span>CMAKE_AR <span class="s2">&quot;/usr/bin/gcc-ar&quot;</span><span class="o">)</span>
+set<span class="o">(</span>CMAKE_RANLIB <span class="s2">&quot;/usr/bin/gcc-ranlib&quot;</span><span class="o">)</span>
+set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>В противном случае появится ошибка <em>plugin needed to handle lto object</em>.</p>
+</div>
 </div>
 
 
@@ -305,6 +327,7 @@ user1
 <li class="toctree-l2"><a class="reference internal" href="#git">Как правильно настроить Git для работы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-pull-request">Я хочу внести правки в проект. Как правильно отправить их в апстрим?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ld-preload">Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lto">Как можно активировать LTO оптимизации при сборке пакета?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
