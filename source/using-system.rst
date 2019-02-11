@@ -1090,3 +1090,27 @@ KDE Connect не видит мой смартфон. Как исправить?
 .. code-block:: bash
 
     xdg-open foo-bar.txt
+
+.. index:: locale, localization, language
+.. _system-locale:
+
+Как изменить язык (локализацию) системы?
+============================================
+
+Получим список доступных локалей:
+
+.. code-block:: bash
+
+    localectl list-locales
+
+Установим английскую локаль для системы:
+
+.. code-block:: bash
+
+    sudo localectl LANG=en_US.utf8
+
+Установим русскую локаль для системы:
+
+.. code-block:: bash
+
+    sudo localectl LANG=ru_RU.utf8
