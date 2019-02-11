@@ -343,3 +343,36 @@
     user1
 
 Разумеется, вместо безобидных вызовов функции printf() может находиться абсолютно любой код, в т.ч. вредоносный.
+
+.. index:: lto, optimization, linker, compilation
+.. _enable-lto:
+
+Как можно активировать LTO оптимизации при сборке пакета?
+============================================================
+
+Для активации LTO оптимизаций необходимо и достаточно передать параметр **-flto** как для компилятора (**CFLAGS** и/или **CXXFLAGS**), так и для компоновщика.
+
+Самый простой способ сделать это - переопределение значений стандартных макросов внутри SPEC файла:
+
+.. code-block:: text
+
+    %global optflags %(echo %{optflags} -flto)
+    %global __global_ldflags %(echo %{__global_ldflags} -flto)
+
+Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то также необходимо переопределить ряд :ref:`переменных окружения <env-set>` внутри секции *%build*:
+
+.. code-block:: bash
+
+    export AR=%{_bindir}/gcc-ar
+    export RANLIB=%{_bindir}/gcc-ranlib
+    export NM=%{_bindir}/gcc-nm
+
+Если используется система сборки cmake, то помимо этого придётся патчить манифест **CMakeLists.txt**, т.к. он в настоящее время не поддерживает загрузку переопределённых значений:
+
+.. code-block:: bash
+
+    set(CMAKE_AR "/usr/bin/gcc-ar")
+    set(CMAKE_RANLIB "/usr/bin/gcc-ranlib")
+    set(CMAKE_NM "/usr/bin/gcc-nm")
+
+В противном случае появится ошибка *plugin needed to handle lto object*.
