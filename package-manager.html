@@ -497,6 +497,38 @@ sudo dnf config-manager --set-enabled updates-modular
 </ul>
 </div></blockquote>
 </div>
+<div class="section" id="gnome-shell">
+<span id="gnome-shell-extensions"></span><span id="index-53"></span><h2>Откуда правильно устанавливать расширения для Gnome Shell?<a class="headerlink" href="#gnome-shell" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Расширения для Gnome Shell можно устанавливать как в виде пакета из репозиториев, так и напрямую из Магазина расширений Gnome. Разница лишь в том, что расширения, установленные пакетом, будут доступны сразу для всех пользователей системы.</p>
+</div>
+<div class="section" id="gnome-shell-browser">
+<span id="index-54"></span><span id="id37"></span><h2>Как разрешить установку расширений Gnome Shell из веб-браузера?<a class="headerlink" href="#gnome-shell-browser" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для того, чтобы разрешить установку расширений Gnome Shell из браузеров, необходимо установить соответствующий пакет:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gnome-shell-browser
+</pre></div>
+</div>
+<p>Также данное дополнение можно установить и вручную:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://addons.mozilla.org/ru/firefox/addon/gnome-shell-integration/">Firefox</a>;</li>
+<li><a class="reference external" href="https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=ru">Chrome/Chromium</a>.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="kde-plasma">
+<span id="plasma-browser"></span><span id="index-55"></span><h2>Как разрешить установку расширений KDE Plasma из веб-браузера?<a class="headerlink" href="#kde-plasma" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для того, чтобы разрешить установку расширений оболочки KDE Plasma из браузеров, необходимо установить соответствующий пакет:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install plasma-browser-integration
+</pre></div>
+</div>
+<p>Также данное дополнение можно установить и вручную:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://addons.mozilla.org/ru/firefox/addon/plasma-integration/">Firefox</a>;</li>
+<li><a class="reference external" href="https://chrome.google.com/webstore/detail/plasma-integration/cimiefiiaegbelhefglklhhakcgmhkai?hl=ru">Chrome/Chromium</a>.</li>
+</ul>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -575,6 +607,9 @@ sudo dnf config-manager --set-enabled updates-modular
 <li class="toctree-l2"><a class="reference internal" href="#koji">Как скачать определённую сборку пакета из Koji?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#package-version">Почему некоторые пакеты в Fedora не обновляют до новейших версий?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#upgrades-allowed">Какие пакеты разрешено обновлять до новых версий в пределах стабильного выпуска?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gnome-shell">Откуда правильно устанавливать расширения для Gnome Shell?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gnome-shell-browser">Как разрешить установку расширений Gnome Shell из веб-браузера?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kde-plasma">Как разрешить установку расширений KDE Plasma из веб-браузера?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>

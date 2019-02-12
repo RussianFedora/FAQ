@@ -190,6 +190,48 @@
 <p>Если при подключении вместо текста отображается различный мусор, значит скорость указана не правильно и её следует либо подбирать экспериментально, либо получить из руководства.</p>
 <p>Для завершения сессии следует нажать <strong>Ctrl + A</strong> и <strong>k</strong>.</p>
 </div>
+<div class="section" id="dac-ddc">
+<span id="index-10"></span><span id="id4"></span><h2>При подключении монитора через переходник отображается неправильное разрешение. Как исправить?<a class="headerlink" href="#dac-ddc" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Большинство «переходников» из цифры в аналог (DVI-D -&gt; D-SUB, HDMI -&gt; D-SUB и т.д.) не передают данные с монитора о поддерживаемых им разрешениях экрана системе посредством протокола <a class="reference external" href="https://ru.wikipedia.org/wiki/Display_Data_Channel">Display Data Channel (DDC)</a>, поэтому существует два решения:</p>
+<blockquote>
+<div><ul class="simple">
+<li>не использовать подобные устройства (к тому же они значительно ухудшают качество изображения);</li>
+<li>прописать поддерживаемые разрешения самостоятельно в конфиге X11.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="x11-resulutions">
+<span id="index-11"></span><span id="id5"></span><h2>Как прописать список поддерживаемых монитором разрешений?<a class="headerlink" href="#x11-resulutions" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Создадим отдельный файл конфигурации для монитора <strong>10-monitor.conf</strong> в каталоге <strong>/etc/X11/xorg.conf.d</strong> и пропишем доступные разрешения и используемый драйвер.</p>
+<p>Сначала посредством запуска утилиты <strong>cvt</strong> вычислим значение строки <strong>Modeline</strong> для требуемого разрешения:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cvt <span class="m">1920</span> <span class="m">1080</span> <span class="m">60</span>
+</pre></div>
+</div>
+<p>Здесь <strong>1920</strong> - разрешение по горизонтали, <strong>1080</strong> - по вертикали, а <strong>60</strong> - частота регенерации.</p>
+<p>Теперь создадим конфиг следующего содержания:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Section &quot;Monitor&quot;
+    Identifier &quot;VGA1&quot;
+    Modeline &quot;1920x1080_60.00&quot;  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+    Option &quot;PreferredMode&quot; &quot;1920x1080_60.00&quot;
+EndSection
+
+Section &quot;Screen&quot;
+    Identifier &quot;Screen0&quot;
+    Monitor &quot;VGA1&quot;
+    DefaultDepth 24
+    SubSection &quot;Display&quot;
+        Modes &quot;1920x1080_60.00&quot;
+    EndSubSection
+EndSection
+
+Section &quot;Device&quot;
+    Identifier &quot;Device0&quot;
+    Driver &quot;intel&quot;
+EndSection
+</pre></div>
+</div>
+<p>Вместо <strong>intel</strong> укажем реально используемый драйвер видеокарты. Изменения вступят в силу при следующей загрузке системы.</p>
+</div>
 </div>
 
 
@@ -229,6 +271,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#bluetooth">Как программно включить или отключить беспроводной модуль Bluetooth?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lte-4g">Как программно включить или отключить беспроводной модуль LTE (4G)?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#com-rs-232">Как правильно работать с COM портами (RS-232)?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dac-ddc">При подключении монитора через переходник отображается неправильное разрешение. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x11-resulutions">Как прописать список поддерживаемых монитором разрешений?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>

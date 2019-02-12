@@ -264,8 +264,8 @@ user1
 <span id="enable-lto"></span><span id="index-15"></span><h2>Как можно активировать LTO оптимизации при сборке пакета?<a class="headerlink" href="#lto" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для активации <a class="reference external" href="https://gcc.gnu.org/wiki/LinkTimeOptimization">LTO оптимизаций</a> необходимо и достаточно передать параметр <strong>-flto</strong> как для компилятора (<strong>CFLAGS</strong> и/или <strong>CXXFLAGS</strong>), так и для компоновщика.</p>
 <p>Самый простой способ сделать это - переопределение значений стандартных макросов внутри SPEC файла:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global optflags %(echo %{optflags} -flto)
-%global __global_ldflags %(echo %{__global_ldflags} -flto)
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global optflags %{optflags} -flto
+%global __global_ldflags %{__global_ldflags} -flto
 </pre></div>
 </div>
 <p>Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то также необходимо переопределить ряд <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> внутри секции <em>%build</em>:</p>
