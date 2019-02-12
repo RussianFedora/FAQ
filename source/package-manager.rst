@@ -772,3 +772,20 @@ Java 11:
 ==============================================================
 
 Расширения для Gnome Shell можно устанавливать как в виде пакета из репозиториев, так и напрямую из Магазина расширений Gnome. Разница лишь в том, что расширения, установленные пакетом, будут доступны сразу для всех пользователей системы.
+
+.. index:: gnome, shell, extension, firefox, chromium
+.. _gnome-shell-browser:
+
+Как разрешить установку расширений Gnome Shell из веб-браузера?
+==================================================================
+
+Для того, чтобы разрешить установку расширений Gnome Shell из браузеров, необходимо установить соответствующий пакет:
+
+.. code-block:: bash
+
+    sudo dnf install gnome-shell-browser
+
+Также данное дополнение можно установить и вручную:
+
+ * `Firefox <https://addons.mozilla.org/ru/firefox/addon/gnome-shell-integration/>`__;
+ * `Chrome/Chromium <https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=ru>`__.
