@@ -356,8 +356,8 @@
 
 .. code-block:: text
 
-    %global optflags %(echo %{optflags} -flto)
-    %global __global_ldflags %(echo %{__global_ldflags} -flto)
+    %global optflags %{optflags} -flto
+    %global __global_ldflags %{__global_ldflags} -flto
 
 Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то также необходимо переопределить ряд :ref:`переменных окружения <env-set>` внутри секции *%build*:
 
