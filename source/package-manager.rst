@@ -789,3 +789,20 @@ Java 11:
 
  * `Firefox <https://addons.mozilla.org/ru/firefox/addon/gnome-shell-integration/>`__;
  * `Chrome/Chromium <https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=ru>`__.
+
+.. index:: kde, plasma, extension, firefox, chromium
+.. _plasma-browser:
+
+Как разрешить установку расширений KDE Plasma из веб-браузера?
+=================================================================
+
+Для того, чтобы разрешить установку расширений оболочки KDE Plasma из браузеров, необходимо установить соответствующий пакет:
+
+.. code-block:: bash
+
+    sudo dnf install plasma-browser-integration
+
+Также данное дополнение можно установить и вручную:
+
+ * `Firefox <https://addons.mozilla.org/ru/firefox/addon/plasma-integration/>`__;
+ * `Chrome/Chromium <https://chrome.google.com/webstore/detail/plasma-integration/cimiefiiaegbelhefglklhhakcgmhkai?hl=ru>`__.
