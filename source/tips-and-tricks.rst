@@ -96,3 +96,28 @@
 =====================================================================
 
 См. `здесь <https://www.easycoding.org/2018/04/03/reshaem-problemu-otsutstviya-libcurl-gnutls-v-fedora.html>`__.
+.. index:: bfq, hdd, optimizations
+.. _bfq:
+
+Как задействовать планировщик ввода/вывода BFQ для HDD?
+=======================================================
+
+BFQ — планировщик I/O, который предназначен для повышения отзывчивости пользовательского окружения при нагрузках на дисковую подсистему.
+
+Отредактируем файл настроек GRUB:
+
+.. code-block:: bash
+
+    sudo nano /etc/default/grub
+
+В ``GRUB_CMDLINE_LINUX=`` добавим `` scsi_mod.use_blk_mq=1`` после чего :ref:`сгенерируем новую конфигурацию GRUB <grub-rebuild>`
+
+Теперь включим BFQ для HDD:
+
+.. code-block:: bash
+
+    sudo -i
+
+    echo 'ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"' >> /etc/udev/rules.d/60-ioschedulers.rules
+
+Для того чтобы изменения вступили в силу потребуется перезагрузка.
