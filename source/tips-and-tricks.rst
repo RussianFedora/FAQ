@@ -96,28 +96,37 @@
 =====================================================================
 
 См. `здесь <https://www.easycoding.org/2018/04/03/reshaem-problemu-otsutstviya-libcurl-gnutls-v-fedora.html>`__.
-.. index:: bfq, hdd, optimizations
-.. _bfq:
+
+.. index:: bfq, hdd, optimizations, scheduler, kernel
+.. _bfq-scheduler:
 
 Как задействовать планировщик ввода/вывода BFQ для HDD?
-=======================================================
+==========================================================
 
-BFQ — планировщик I/O, который предназначен для повышения отзывчивости пользовательского окружения при нагрузках на дисковую подсистему.
+BFQ - это планировщик ввода-вывода (I/O), предназначенный для повышения отзывчивости пользовательского окружения при значительных нагрузках на дисковую подсистему.
 
-Отредактируем файл настроек GRUB:
-
-.. code-block:: bash
-
-    sudo nano /etc/default/grub
-
-В ``GRUB_CMDLINE_LINUX=`` добавим `` scsi_mod.use_blk_mq=1`` после чего :ref:`сгенерируем новую конфигурацию GRUB <grub-rebuild>`
-
-Теперь включим BFQ для HDD:
+Для его активации произведём редактирование файла шаблонов GRUB:
 
 .. code-block:: bash
 
-    sudo -i
+    sudoedit /etc/default/grub
 
-    echo 'ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"' >> /etc/udev/rules.d/60-ioschedulers.rules
+В конец строки ``GRUB_CMDLINE_LINUX=`` добавим ``scsi_mod.use_blk_mq=1``, после чего :ref:`сгенерируем новую конфигурацию GRUB <grub-rebuild>`.
 
-Для того чтобы изменения вступили в силу потребуется перезагрузка.
+Создадим новое правило udev для принудительной активации BFQ для любых жёстких дисков:
+
+.. code-block:: bash
+
+    sudo bash -c "echo 'ACTION==\"add|change\", KERNEL==\"sd[a-z]\", ATTR{queue/rotational}==\"1\", ATTR{queue/scheduler}=\"bfq\"' >> /etc/udev/rules.d/60-ioschedulers.rules"
+
+Применим изменения в политиках udev:
+
+.. code-block:: bash
+
+    sudo udevadm control --reload
+
+Выполним перезагрузку системы:
+
+.. code-block:: bash
+
+    sudo systemctl reboot
