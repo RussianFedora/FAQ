@@ -45,7 +45,7 @@
 </div>
 <div class="section" id="kernelpm-perm">
 <span id="index-1"></span><span id="id3"></span><h2>Как мне задать параметр ядра для постоянного использования?<a class="headerlink" href="#kernelpm-perm" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо открыть с шаблонами загрузчика <strong>/etc/default/grub</strong> в любом текстовом редакторе, найти в нём переменную <strong>GRUB_CMDLINE_LINUX</strong> и внести соответствующие правки. После этого нужно пересобрать конфиг Grub 2 посредством <strong>grub2-mkconfig</strong>.</p>
+<p>Необходимо открыть с шаблонами загрузчика <code class="docutils literal notranslate"><span class="pre">/etc/default/grub</span></code> в любом текстовом редакторе, найти в нём переменную <code class="docutils literal notranslate"><span class="pre">GRUB_CMDLINE_LINUX</span></code> и внести соответствующие правки. После этого нужно <a class="reference internal" href="using-system.html#grub-rebuild"><span class="std std-ref">пересобрать конфиг Grub 2</span></a> посредством <strong>grub2-mkconfig</strong>.</p>
 </div>
 <div class="section" id="kernelpm-list">
 <span id="index-2"></span><span id="id4"></span><h2>Как определить какие параметры ядра заданы в настоящее время?<a class="headerlink" href="#kernelpm-list" title="Ссылка на этот заголовок">¶</a></h2>
@@ -315,7 +315,7 @@ sudo systemctl disable zram-swap
 </div>
 <div class="section" id="sysctl-permanent">
 <span id="index-31"></span><span id="id19"></span><h2>Как задать и сохранить параметр sysctl?<a class="headerlink" href="#sysctl-permanent" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Чтобы сохранить параметр ядра, создадим специальный файл <strong>99-foobar.conf</strong> в каталоге <strong>/etc/sysctl.d</strong>:</p>
+<p>Чтобы сохранить параметр ядра, создадим специальный файл <code class="docutils literal notranslate"><span class="pre">99-foobar.conf</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/sysctl.d</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo.bar1=X1
 foo.bar2=X2
 </pre></div>
@@ -331,20 +331,20 @@ foo.bar2=X2
 <p>При загрузке ядро проверяет следующие каталоги в поисках <strong>.conf</strong> файлов:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><strong>/usr/lib/sysctl.d</strong> - предустановленные конфиги системы и определённых пакетов;</li>
-<li><strong>/run/sysctl.d</strong> - различные конфиги, сгенерированные в рантайме;</li>
-<li><strong>/etc/sysctl.d</strong> - пользовательские конфиги.</li>
+<li><code class="docutils literal notranslate"><span class="pre">/usr/lib/sysctl.d</span></code> - предустановленные конфиги системы и определённых пакетов;</li>
+<li><code class="docutils literal notranslate"><span class="pre">/run/sysctl.d</span></code> - различные конфиги, сгенерированные в рантайме;</li>
+<li><code class="docutils literal notranslate"><span class="pre">/etc/sysctl.d</span></code> - пользовательские конфиги.</li>
 </ol>
 </div></blockquote>
-<p>Порядок выполнения - в алфавитном порядке, поэтому для его изменения многие конфиги содержат цифры и буквы. Например конфиг <strong>00-foobar.conf</strong> выполнится раньше, чем <strong>zz-foobar.conf</strong>.</p>
+<p>Порядок выполнения - в алфавитном порядке, поэтому для его изменения многие конфиги содержат цифры и буквы. Например конфиг <code class="docutils literal notranslate"><span class="pre">00-foobar.conf</span></code> выполнится раньше, чем <code class="docutils literal notranslate"><span class="pre">zz-foobar.conf</span></code>.</p>
 </div>
 <div class="section" id="configure-runlevel">
 <span id="index-33"></span><span id="id21"></span><h2>Как переключить запуск системы в текстовый режим и обратно?<a class="headerlink" href="#configure-runlevel" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Чтобы активировать запуск Fedora в текстовом режиме, нужно переключиться на цель <strong>multi-user.target</strong>:</p>
+<p>Чтобы активировать запуск Fedora в текстовом режиме, нужно переключиться на цель <code class="docutils literal notranslate"><span class="pre">multi-user.target</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl set-default multi-user.target
 </pre></div>
 </div>
-<p>Чтобы активировать запуск в графическом режиме, необходимо убедиться в том, что установлен какой-либо менеджер графического входа в систему (GDM, SDDM, LightDM и т.д.), а затем переключиться на цель <strong>graphical.target</strong>:</p>
+<p>Чтобы активировать запуск в графическом режиме, необходимо убедиться в том, что установлен какой-либо менеджер графического входа в систему (GDM, SDDM, LightDM и т.д.), а затем переключиться на цель <code class="docutils literal notranslate"><span class="pre">graphical.target</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl set-default graphical.target
 </pre></div>
 </div>
@@ -375,7 +375,7 @@ foo.bar2=X2
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo swapon /media/pagefile
 </pre></div>
 </div>
-<p>Для того, чтобы подкачка подключалась автоматически при загрузке системы, откроем файл <strong>/etc/fstab</strong> и добавим в него следующую строку:</p>
+<p>Для того, чтобы подкачка подключалась автоматически при загрузке системы, откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> и добавим в него следующую строку:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/media/pagefile    none    swap    sw    0    0
 </pre></div>
 </div>
@@ -563,7 +563,7 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 sudo firewall-cmd --zone<span class="o">=</span>public --remove-service https --permanent
 </pre></div>
 </div>
-<p>Напишем небольшой скрипт <strong>foo-bar.sh</strong>, который получит актуальные пулы IP-адресов и создаст rich rule, разрешающие доступ лишь с подсетей CloudFlare (<a class="reference external" href="https://www.cloudflare.com/ips-v4">IPv4</a>, <a class="reference external" href="https://www.cloudflare.com/ips-v6">IPv6</a>):</p>
+<p>Напишем небольшой скрипт <code class="docutils literal notranslate"><span class="pre">foo-bar.sh</span></code>, который получит актуальные пулы IP-адресов и создаст rich rule, разрешающие доступ лишь с подсетей CloudFlare (<a class="reference external" href="https://www.cloudflare.com/ips-v4">IPv4</a>, <a class="reference external" href="https://www.cloudflare.com/ips-v6">IPv6</a>):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="nb">set</span> -ef
 

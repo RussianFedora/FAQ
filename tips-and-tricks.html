@@ -93,6 +93,27 @@
 <span id="libcurl-workaround"></span><span id="index-2"></span><h2>Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?<a class="headerlink" href="#libcurl-gnutls-so-4" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2018/04/03/reshaem-problemu-otsutstviya-libcurl-gnutls-v-fedora.html">здесь</a>.</p>
 </div>
+<div class="section" id="bfq-hdd">
+<span id="bfq-scheduler"></span><span id="index-3"></span><h2>Как задействовать планировщик ввода/вывода BFQ для HDD?<a class="headerlink" href="#bfq-hdd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>BFQ - это планировщик ввода-вывода (I/O), предназначенный для повышения отзывчивости пользовательского окружения при значительных нагрузках на дисковую подсистему.</p>
+<p>Для его активации произведём редактирование файла шаблонов GRUB:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/default/grub
+</pre></div>
+</div>
+<p>В конец строки <code class="docutils literal notranslate"><span class="pre">GRUB_CMDLINE_LINUX=</span></code> добавим <code class="docutils literal notranslate"><span class="pre">scsi_mod.use_blk_mq=1</span></code>, после чего <a class="reference internal" href="using-system.html#grub-rebuild"><span class="std std-ref">сгенерируем новую конфигурацию GRUB</span></a>.</p>
+<p>Создадим новое правило udev для принудительной активации BFQ для любых жёстких дисков:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo bash -c <span class="s2">&quot;echo &#39;ACTION==\&quot;add|change\&quot;, KERNEL==\&quot;sd[a-z]\&quot;, ATTR{queue/rotational}==\&quot;1\&quot;, ATTR{queue/scheduler}=\&quot;bfq\&quot;&#39; &gt;&gt; /etc/udev/rules.d/60-ioschedulers.rules&quot;</span>
+</pre></div>
+</div>
+<p>Применим изменения в политиках udev:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo udevadm control --reload
+</pre></div>
+</div>
+<p>Выполним перезагрузку системы:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -127,6 +148,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#gnome-3">Как уменьшить потребление оперативной памяти средой рабочего стола GNOME 3?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde">Как уменьшить потребление оперативной памяти средой рабочего стола KDE?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#libcurl-gnutls-so-4">Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bfq-hdd">Как задействовать планировщик ввода/вывода BFQ для HDD?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>

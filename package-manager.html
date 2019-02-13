@@ -76,7 +76,7 @@
 </div>
 <div class="section" id="python-pip">
 <span id="pip-user"></span><span id="index-4"></span><h2>Нужной Python библиотеки нет в репозиториях. Как можно безопасно использовать PIP?<a class="headerlink" href="#python-pip" title="Ссылка на этот заголовок">¶</a></h2>
-<p>В таком случае рекомендуется либо локальная установка модулей посредством pip с параметром <strong>–user</strong>, либо использование <a class="reference internal" href="#python-venv"><span class="std std-ref">Python Virtual Environment</span></a>:</p>
+<p>В таком случае рекомендуется либо локальная установка модулей посредством pip с параметром <code class="docutils literal notranslate"><span class="pre">--user</span></code>, либо использование <a class="reference internal" href="#python-venv"><span class="std std-ref">Python Virtual Environment</span></a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 --user install foo-bar
 </pre></div>
 </div>
@@ -162,7 +162,7 @@ sudo dnf system-upgrade reboot
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo rpm --rebuilddb
 </pre></div>
 </div>
-<p>Настоятельно рекомендуется сделать резервную копию каталога <strong>/var/lib/rpm</strong> перед этим действием.</p>
+<p>Настоятельно рекомендуется сделать резервную копию каталога <code class="docutils literal notranslate"><span class="pre">/var/lib/rpm</span></code> перед этим действием.</p>
 </div>
 <div class="section" id="dnf-kernel-store">
 <span id="index-13"></span><span id="id7"></span><h2>Dnf сохраняет старые ядра. Это нормально?<a class="headerlink" href="#dnf-kernel-store" title="Ссылка на этот заголовок">¶</a></h2>
@@ -170,7 +170,7 @@ sudo dnf system-upgrade reboot
 </div>
 <div class="section" id="dnf-kernel-change">
 <span id="index-14"></span><span id="id8"></span><h2>Как можно уменьшить количество сохраняемых ядер?<a class="headerlink" href="#dnf-kernel-change" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо открыть файл <strong>/etc/dnf/dnf.conf</strong> в любом текстовом редакторе и изменить значение переменной <strong>installonly_limit</strong>:</p>
+<p>Необходимо открыть файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в любом текстовом редакторе и изменить значение переменной <code class="docutils literal notranslate"><span class="pre">installonly_limit</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>installonly_limit=2
 </pre></div>
 </div>
@@ -178,7 +178,7 @@ sudo dnf system-upgrade reboot
 </div>
 <div class="section" id="dnf-proxy">
 <span id="index-15"></span><span id="id9"></span><h2>Как настроить работу dnf через прокси?<a class="headerlink" href="#dnf-proxy" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо открыть файл <strong>/etc/dnf/dnf.conf</strong> в любом текстовом редакторе и изменить значение переменной <strong>proxy</strong> (при отсутствии добавить):</p>
+<p>Необходимо открыть файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в любом текстовом редакторе и изменить значение переменной <code class="docutils literal notranslate"><span class="pre">proxy</span></code> (при отсутствии добавить):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>proxy=socks5://localhost:8080
 </pre></div>
 </div>
@@ -186,14 +186,14 @@ sudo dnf system-upgrade reboot
 </div>
 <div class="section" id="dnf-weakdeps">
 <span id="index-16"></span><span id="id10"></span><h2>Как отключить установку слабых зависимостей?<a class="headerlink" href="#dnf-weakdeps" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо открыть файл <strong>/etc/dnf/dnf.conf</strong> в любом текстовом редакторе и изменить значение переменной <strong>install_weak_deps</strong> (при отсутствии добавить):</p>
+<p>Необходимо открыть файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в любом текстовом редакторе и изменить значение переменной <code class="docutils literal notranslate"><span class="pre">install_weak_deps</span></code> (при отсутствии добавить):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>install_weak_deps=0
 </pre></div>
 </div>
 </div>
 <div class="section" id="dnf-pkgupdates">
 <span id="index-17"></span><span id="id11"></span><h2>Как мне запретить установку обновлений для ряда пакетов?<a class="headerlink" href="#dnf-pkgupdates" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо открыть файл <strong>/etc/dnf/dnf.conf</strong> в любом текстовом редакторе и изменить значение переменной <strong>exclude</strong> (при отсутствии добавить):</p>
+<p>Необходимо открыть файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в любом текстовом редакторе и изменить значение переменной <code class="docutils literal notranslate"><span class="pre">exclude</span></code> (при отсутствии добавить):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>exclude=kernel* PackageKit*
 </pre></div>
 </div>
@@ -410,7 +410,7 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install --refresh foo-bar --enablerepo<span class="o">=</span>foo-bar
 </pre></div>
 </div>
-<p>Опциональный параметр <strong>–refresh</strong> добавляется для принудительного обновления кэшей dnf.</p>
+<p>Опциональный параметр <code class="docutils literal notranslate"><span class="pre">--refresh</span></code> добавляется для принудительного обновления кэшей dnf.</p>
 </div>
 <div class="section" id="dnf-modular">
 <span id="index-44"></span><span id="id30"></span><h2>Что такое модульные репозитории?<a class="headerlink" href="#dnf-modular" title="Ссылка на этот заголовок">¶</a></h2>

@@ -49,7 +49,7 @@
 </div>
 <div class="section" id="backup-system">
 <span id="index-1"></span><span id="id3"></span><h2>Можно ли делать резервную копию корневого раздела работающей системы?<a class="headerlink" href="#backup-system" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Настоятельно не рекомендуется из-за множества работающих виртуальных файловых систем и псевдофайлов в <strong>/sys</strong>, <strong>/dev</strong>, <strong>/proc</strong> и т.д.</p>
+<p>Настоятельно не рекомендуется из-за множества работающих виртуальных файловых систем и псевдофайлов в <code class="docutils literal notranslate"><span class="pre">/sys</span></code>, <code class="docutils literal notranslate"><span class="pre">/dev</span></code>, <code class="docutils literal notranslate"><span class="pre">/proc</span></code> и т.д.</p>
 </div>
 <div class="section" id="backup-home">
 <span id="index-2"></span><span id="id4"></span><h2>Как сделать копию домашнего каталога?<a class="headerlink" href="#backup-home" title="Ссылка на этот заголовок">¶</a></h2>
@@ -93,7 +93,7 @@
 </div>
 <div class="section" id="firefox">
 <span id="firefox-hwaccel"></span><span id="index-8"></span><h2>Как активировать аппаратное ускорение в браузере Firefox?<a class="headerlink" href="#firefox" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для активации аппаратного ускорения рендеринга страниц в Mozilla Firefox на поддерживаемых драйверах необходимо открыть модуль конфигурации <strong>about:config</strong> и исправить значения следующих переменных (при отсутствии создать):</p>
+<p>Для активации аппаратного ускорения рендеринга страниц в Mozilla Firefox на поддерживаемых драйверах необходимо открыть модуль конфигурации <code class="docutils literal notranslate"><span class="pre">about:config</span></code> и исправить значения следующих переменных (при отсутствии создать):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>layers.acceleration.force-enabled = true
 layers.offmainthreadcomposition.enabled = true
 webgl.force-enabled = true
@@ -101,7 +101,7 @@ gfx.xrender.enabled = true
 </pre></div>
 </div>
 <p>Изменения вступят в силу при следующем запуске браузера.</p>
-<p>Внимание! Это не затрагивает аппаратное декодирование мультимедиа средствами видеоускорителя.</p>
+<p>Внимание! Это не затрагивает <a class="reference internal" href="#browser-hwaccel"><span class="std std-ref">аппаратное декодирование мультимедиа</span></a> средствами видеоускорителя.</p>
 </div>
 <div class="section" id="browser-hwaccel">
 <span id="index-9"></span><span id="id8"></span><h2>Как активировать аппаратное ускорение декодирования мультимедиа в браузерах?<a class="headerlink" href="#browser-hwaccel" title="Ссылка на этот заголовок">¶</a></h2>
@@ -111,7 +111,7 @@ gfx.xrender.enabled = true
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install chromium-vaapi
 </pre></div>
 </div>
-<p>Далее необходимо запустить его, зайти в <strong>chrome://flags</strong> и установить пункт <strong>Hardware decoding</strong> в значение <strong>Enabled</strong>, после чего перезапустить браузер.</p>
+<p>Далее необходимо запустить его, зайти в <code class="docutils literal notranslate"><span class="pre">chrome://flags</span></code> и установить пункт <strong>Hardware decoding</strong> в значение <strong>Enabled</strong>, после чего перезапустить браузер.</p>
 </div>
 <div class="section" id="video-hwaccel">
 <span id="index-10"></span><span id="id9"></span><h2>В каких проигрывателях реализовано аппаратное ускорение декодирования мультимедиа?<a class="headerlink" href="#video-hwaccel" title="Ссылка на этот заголовок">¶</a></h2>
@@ -129,13 +129,13 @@ gfx.xrender.enabled = true
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gdb /usr/bin/foo-bar <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">|</span> tee ~/backtrace.log
 </pre></div>
 </div>
-<p>Далее в интерактивной консоли отладчика ввести: <strong>handle SIGPIPE nostop noprint</strong> и затем <strong>run</strong>, дождаться сегфолта и выполнить <strong>bt full</strong> для получения бэктрейса. Теперь можно прописать <strong>quit</strong> для выхода из режима отладки.</p>
-<p>Далее получившийся файл <strong>~/backtrace.log</strong> следует загрузить на любой сервис размещения текстовых файлов.</p>
+<p>Далее в интерактивной консоли отладчика ввести: <code class="docutils literal notranslate"><span class="pre">handle</span> <span class="pre">SIGPIPE</span> <span class="pre">nostop</span> <span class="pre">noprint</span></code> и затем <code class="docutils literal notranslate"><span class="pre">run</span></code>, дождаться сегфолта и выполнить <code class="docutils literal notranslate"><span class="pre">bt</span> <span class="pre">full</span></code> для получения бэктрейса. Теперь можно прописать <code class="docutils literal notranslate"><span class="pre">quit</span></code> для выхода из режима отладки.</p>
+<p>Далее получившийся файл <code class="docutils literal notranslate"><span class="pre">~/backtrace.log</span></code> следует загрузить на любой сервис размещения текстовых файлов.</p>
 <p>Также рекомендуется ещё сделать трассировку приложения до момента падения:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>strace -o ~/trace.log /usr/bin/foo-bar
 </pre></div>
 </div>
-<p>Полученный файл <strong>~/trace.log</strong> также следует загрузить на сервис.</p>
+<p>Полученный файл <code class="docutils literal notranslate"><span class="pre">~/trace.log</span></code> также следует загрузить на сервис.</p>
 </div>
 <div class="section" id="mp3">
 <span id="convert-multiple-files"></span><span id="index-12"></span><h2>Как конвертировать множество файлов в mp3 из текущего каталога?<a class="headerlink" href="#mp3" title="Ссылка на этот заголовок">¶</a></h2>
@@ -146,15 +146,15 @@ gfx.xrender.enabled = true
 </div>
 <div class="section" id="kde-gtk">
 <span id="double-click-speed"></span><span id="index-13"></span><h2>Я использую KDE. Как мне настроить скорость двойного клика в GTK приложениях?<a class="headerlink" href="#kde-gtk" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для настройки GTK 2 приложений необходимо открыть файл <strong>~/.gtkrc-2.0</strong> в любом текстовом редакторе (если он отсутствует — создать), затем прописать в самом конце:</p>
+<p>Для настройки GTK 2 приложений необходимо открыть файл <code class="docutils literal notranslate"><span class="pre">~/.gtkrc-2.0</span></code> в любом текстовом редакторе (если он отсутствует — создать), затем прописать в самом конце:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gtk-double-click-time=1000
 </pre></div>
 </div>
-<p>Для GTK 3 нужно редактировать <strong>~/.config/gtk-3.0/settings.ini</strong>. В нём следует прописать то же самое:</p>
+<p>Для GTK 3 нужно редактировать <code class="docutils literal notranslate"><span class="pre">~/.config/gtk-3.0/settings.ini</span></code>. В нём следует прописать то же самое:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gtk-double-click-time=1000
 </pre></div>
 </div>
-<p>Здесь 1000 — время в миллисекундах до активации двойного клика. Документация с подробным описанием всех переменных данных файлов конфигурации <a class="reference external" href="https://developer.gnome.org/gtk3/stable/GtkSettings.html">здесь</a>.</p>
+<p>Здесь <strong>1000</strong> — время в миллисекундах до активации двойного клика. Документация с подробным описанием всех переменных данных файлов конфигурации <a class="reference external" href="https://developer.gnome.org/gtk3/stable/GtkSettings.html">здесь</a>.</p>
 </div>
 <div class="section" id="block-screen">
 <span id="index-14"></span><span id="id11"></span><h2>Возможно ли заблокировать экран из командной строки?<a class="headerlink" href="#block-screen" title="Ссылка на этот заголовок">¶</a></h2>
@@ -165,7 +165,7 @@ gfx.xrender.enabled = true
 </div>
 <div class="section" id="bash">
 <span id="bash-shell"></span><span id="index-15"></span><h2>Можно ли изменить приветствие Bash по умолчанию?<a class="headerlink" href="#bash" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Да, необходимо в пользовательский файл <strong>~/.bashrc</strong> добавить строку вида:</p>
+<p>Да, необходимо в пользовательский файл <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> добавить строку вида:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export PS1=&quot;\[\e[33m\][\[\e[36m\]\u\[\e[0m\]@\[\e[31m\]\h\[\e[0m\] \[\e[32m\]\W\[\e[33m\]]\[\e[35m\]\$\[\e[0m\] &quot;
 </pre></div>
 </div>
@@ -223,13 +223,13 @@ gfx.xrender.enabled = true
 </div>
 <div class="section" id="gnome-qt">
 <span id="window-hidpi-qt"></span><span id="index-23"></span><h2>У меня в Gnome не работает масштабирование окон Qt приложений. Что делать?<a class="headerlink" href="#gnome-qt" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для активации автоматического масштабирования достаточно прописать в файле <strong>~/.bashrc</strong> следующие строки:</p>
+<p>Для активации автоматического масштабирования достаточно прописать в файле <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> следующие строки:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export QT_SCALE_FACTOR=2
 </pre></div>
 </div>
-<p>Переменная <strong>QT_AUTO_SCREEN_SCALE_FACTOR</strong> имеет тип boolean (значения <strong>1</strong> (включено) или <strong>0</strong> (выключено)) и управляет автоматическим масштабированием в зависимости от разрешения экрана.</p>
-<p>Переменная <strong>QT_SCALE_FACTOR</strong> задаёт коэффициент масштабирования:</p>
+<p>Переменная <code class="docutils literal notranslate"><span class="pre">QT_AUTO_SCREEN_SCALE_FACTOR</span></code> имеет тип boolean (значения <strong>1</strong> (включено) или <strong>0</strong> (выключено)) и управляет автоматическим масштабированием в зависимости от разрешения экрана.</p>
+<p>Переменная <code class="docutils literal notranslate"><span class="pre">QT_SCALE_FACTOR</span></code> задаёт коэффициент масштабирования:</p>
 <blockquote>
 <div><ul class="simple">
 <li><strong>1.5</strong> - 150%;</li>
@@ -255,19 +255,19 @@ export QT_SCALE_FACTOR=2
 <p>Официальная версия с сайта создаёт ярлыки запуска и копирует ряд загруженных бинарных файлов в пользовательский домашний каталог. Избавимся от этого:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>удалим старый бинарник и модуль обновления официального клиента, а также их копии из <strong>~/.local/share/TelegramDesktop</strong> и <strong>~/.local/share/TelegramDesktop/tdata</strong>;</li>
-<li>удалим ярлыки из <strong>~/.local/share/applications</strong>.</li>
+<li>удалим старый бинарник и модуль обновления официального клиента, а также их копии из <code class="docutils literal notranslate"><span class="pre">~/.local/share/TelegramDesktop</span></code> и <code class="docutils literal notranslate"><span class="pre">~/.local/share/TelegramDesktop/tdata</span></code>;</li>
+<li>удалим ярлыки из <code class="docutils literal notranslate"><span class="pre">~/.local/share/applications</span></code>.</li>
 </ol>
 </div></blockquote>
 <p>Теперь можно установить <a class="reference internal" href="#telegram-fedora"><span class="std std-ref">версию</span></a> из <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
 </div>
 <div class="section" id="sddm">
 <span id="sddm-disable-vkb"></span><span id="index-26"></span><h2>Как отключить виртуальную клавиатуру в SDDM?<a class="headerlink" href="#sddm" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Чтобы отключить поддержку ввода с виртуальной экранной клавиатуры в менеджере входа в систему SDDM, откроем в текстовом редакторе файл <strong>/etc/sddm.conf</strong>, а затем найдём и удалим следующую строку:</p>
+<p>Чтобы отключить поддержку ввода с виртуальной экранной клавиатуры в менеджере входа в систему SDDM, откроем в текстовом редакторе файл <code class="docutils literal notranslate"><span class="pre">/etc/sddm.conf</span></code>, а затем найдём и удалим следующую строку:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>InputMethod=qtvirtualkeyboard
 </pre></div>
 </div>
-<p>Если она отсутствует, создадим в блоке <strong>[General]</strong>:</p>
+<p>Если она отсутствует, создадим в блоке <code class="docutils literal notranslate"><span class="pre">[General]</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>InputMethod=
 </pre></div>
 </div>
@@ -346,13 +346,13 @@ export QT_SCALE_FACTOR=2
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>youtube-dl -f bestvideo https://www.youtube.com/watch?v<span class="o">=</span>XXXXXXXXXX
 </pre></div>
 </div>
-<p>Иногда при скачивании видео в разрешении 4K с ключом <strong>-f bestvideo</strong> может не работать аппаратное ускорение при воспроизведении из-за того, что кодек vp9.2 не поддерживается аппаратными кодировщиками. В таких случаях необходимо явно указывать кодек (<strong>-f bestvideo[vcodec=vp9]</strong>).</p>
+<p>Иногда при скачивании видео в разрешении 4K с ключом <code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">bestvideo</span></code> может не работать аппаратное ускорение при воспроизведении из-за того, что кодек vp9.2 не поддерживается аппаратными кодировщиками. В таких случаях необходимо явно указывать кодек (<code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">bestvideo[vcodec=vp9]</span></code>).</p>
 <p>Чтобы гарантировано скачать видео с указанным кодеком со звуком требуется дополнительно установить пакет <strong>ffmpeg</strong> из репозиториев <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install ffmpeg
 </pre></div>
 </div>
 <p>В качестве примера скачаем видео в наилучшем качестве, сжатое кодеком VP9 (с возможностью аппаратного ускорения) и звуком:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>youtube-dl -f bestvideo<span class="o">[</span><span class="nv">vcodec</span><span class="o">=</span>vp9<span class="o">]</span>+bestaudio https://www.youtube.com/watch?v<span class="o">=</span>XXXXXXXXXX
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>youtube-dl -f bestvideo[vcodec=vp9]+bestaudio https://www.youtube.com/watch?v=XXXXXXXXXX
 </pre></div>
 </div>
 <p>Данная утилита имеет множество параметров командной строки, справку по которым можно найти в её странице man:</p>
@@ -370,7 +370,7 @@ export QT_SCALE_FACTOR=2
 </div>
 <div class="section" id="xdg-reallocate">
 <span id="index-35"></span><span id="id15"></span><h2>Как переместить стандартные каталоги для документов, загрузок и т.д.?<a class="headerlink" href="#xdg-reallocate" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Откроем файл <strong>~/.config/user-dirs.dirs</strong> в любом текстовом редакторе и внесём свои правки.</p>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">~/.config/user-dirs.dirs</span></code> в любом текстовом редакторе и внесём свои правки.</p>
 <p>Стандартные настройки:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">XDG_DESKTOP_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Рабочий стол&quot;</span>
 <span class="na">XDG_DOCUMENTS_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Документы&quot;</span>
@@ -390,7 +390,7 @@ export QT_SCALE_FACTOR=2
 </div>
 <div class="section" id="hidpi-sddm">
 <span id="sddm-hidpi"></span><span id="index-36"></span><h2>У меня HiDPI дисплей и в SDDM всё отображается очень мелко. Как настроить?<a class="headerlink" href="#hidpi-sddm" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Откроем файл <strong>/etc/sddm.conf</strong>:</p>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/sddm.conf</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/sddm.conf
 </pre></div>
 </div>
@@ -406,8 +406,8 @@ export QT_SCALE_FACTOR=2
 </div>
 <div class="section" id="sddm-avatars">
 <span id="index-37"></span><span id="id16"></span><h2>Как отключить отображение пользовательских аватаров в SDDM?<a class="headerlink" href="#sddm-avatars" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Пользовательские аватары представляют собой файл <strong>~/.face.icon</strong>. При запуске SDDM пытается прочитать его для каждого существующего пользователя.</p>
-<p>Для отключения данной функции откроем файл <strong>/etc/sddm.conf</strong>:</p>
+<p>Пользовательские аватары представляют собой файл <code class="docutils literal notranslate"><span class="pre">~/.face.icon</span></code>. При запуске SDDM пытается прочитать его для каждого существующего пользователя.</p>
+<p>Для отключения данной функции откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/sddm.conf</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/sddm.conf
 </pre></div>
 </div>
@@ -512,7 +512,7 @@ export QT_SCALE_FACTOR=2
 </div>
 <div class="section" id="editor-selection">
 <span id="index-46"></span><span id="id23"></span><h2>Как выбрать предпочитаемый текстовый редактор в консольном режиме?<a class="headerlink" href="#editor-selection" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для выбора предпочитаемого текстового редактора следует применять <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменные окружения</span></a>, прописав их в личном файле <strong>~/.bashrc</strong>:</p>
+<p>Для выбора предпочитаемого текстового редактора следует применять <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменные окружения</span></a>, прописав их в личном файле <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">VISUAL</span><span class="o">=</span>vim
 <span class="nb">export</span> <span class="nv">EDITOR</span><span class="o">=</span>vim
 <span class="nb">export</span> <span class="nv">SUDO_EDITOR</span><span class="o">=</span>vim
@@ -649,17 +649,17 @@ export QT_SCALE_FACTOR=2
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kf5-config --path templates
 </pre></div>
 </div>
-<p>По умолчанию это <strong>~/.local/share/templates</strong> и он не существует, поэтому создадим его:</p>
+<p>По умолчанию это <code class="docutils literal notranslate"><span class="pre">~/.local/share/templates</span></code> и он не существует, поэтому создадим его:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/.local/share/templates
 </pre></div>
 </div>
-<p>В качестве примера сохраним в любом каталоге новый шаблон <strong>xml-document.xml</strong> примерно следующего содержания:</p>
+<p>В качестве примера сохраним в любом каталоге новый шаблон <code class="docutils literal notranslate"><span class="pre">xml-document.xml</span></code> примерно следующего содержания:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span>
 <span class="nt">&lt;root&gt;</span>
 <span class="nt">&lt;/root&gt;</span>
 </pre></div>
 </div>
-<p>В каталоге шаблонов KDE добавим ярлык <strong>xml-document.desktop</strong> на созданный ранее файл:</p>
+<p>В каталоге шаблонов KDE добавим ярлык <code class="docutils literal notranslate"><span class="pre">xml-document.desktop</span></code> на созданный ранее файл:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Desktop Entry]</span>
 <span class="na">Icon</span><span class="o">=</span><span class="s">application-xml</span>
 <span class="na">Name[ru_RU]</span><span class="o">=</span><span class="s">Документ XML</span>
@@ -677,7 +677,7 @@ export QT_SCALE_FACTOR=2
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xdg-user-dir TEMPLATES
 </pre></div>
 </div>
-<p>Создадим новый файл <strong>XML document.xml</strong> следующего содержания:</p>
+<p>Создадим новый файл <code class="docutils literal notranslate"><span class="pre">XML</span> <span class="pre">document.xml</span></code> следующего содержания:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span>
 <span class="nt">&lt;root&gt;</span>
 <span class="nt">&lt;/root&gt;</span>
@@ -732,6 +732,18 @@ export QT_SCALE_FACTOR=2
 </pre></div>
 </div>
 <p>Здесь вместо <strong>CET</strong> следует указать название часового пояса.</p>
+</div>
+<div class="section" id="chromium">
+<span id="chromium-commandline"></span><span id="index-64"></span><h2>Как постоянно запускать браузер Chromium с определёнными параметрами?<a class="headerlink" href="#chromium" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для того, чтобы постоянно запускать браузер Chromium с определёнными <a class="reference external" href="https://peter.sh/experiments/chromium-command-line-switches/">параметрами запуска</a>, необходимо создать файл <code class="docutils literal notranslate"><span class="pre">~/.config/chromium-flags.conf</span></code> и прописать их в нём.</p>
+<p>В качестве разделителя применяется пробел, либо символ разрыва строки. Строки, которые начинаются с символа решётки (<strong>#</strong>) считаются комментариями и игнорируются.</p>
+<p>Пример:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Переопределим каталог хранения дискового кэша.
+--disk-cache-dir /tmp/chromium
+# Установим предельный размер дискового кэша.
+--disk-cache-size 268435456
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -825,6 +837,7 @@ export QT_SCALE_FACTOR=2
 <li class="toctree-l2"><a class="reference internal" href="#system-locale">Как изменить язык (локализацию) системы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#application-locale">Как запустить приложение с другой локалью?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#application-timezone">Как запустить приложение с другим часовым поясом?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#chromium">Как постоянно запускать браузер Chromium с определёнными параметрами?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>

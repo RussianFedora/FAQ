@@ -106,18 +106,18 @@ git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
 </div>
 <div class="section" id="git-gmail">
 <span id="index-7"></span><span id="id4"></span><h2>Как настроить Git для работы с почтовым сервисом Gmail?<a class="headerlink" href="#git-gmail" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для того, чтобы использовать функцию <strong>git send-mail</strong> с почтовым сервисом Gmail, необходимо:</p>
+<p>Для того, чтобы использовать функцию <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">send-mail</span></code> с почтовым сервисом Gmail, необходимо:</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li>включить двухфакторную аутентификацию в настройках Google аккаунта;</li>
 <li>в настройках безопасности почтового ящика Gmail разрешить использование «небезопасных приложений» (под небезопасными Google понимает любые, не поддерживающие OAuth2);</li>
 <li>там же включить доступ к почте посредством POP3 или IMAP (это активирует также и необходимый для нас протокол SMTP);</li>
 <li>в настройках безопасности сгенерировать новый пароль для приложения;</li>
-<li>указать в файле <strong>~/.gitconfig</strong> параметры почтового сервиса;</li>
+<li>указать в файле <code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code> параметры почтового сервиса;</li>
 <li>когда будет запрошен пароль, ввести созданный ранее пароль приложения.</li>
 </ol>
 </div></blockquote>
-<p>Пример файла <strong>~/.gitconfig</strong> для работы с почтовым сервисом Gmail:</p>
+<p>Пример файла <code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code> для работы с почтовым сервисом Gmail:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[sendemail]</span>
     <span class="na">smtpEncryption</span> <span class="o">=</span> <span class="s">tls</span>
 <span class="s">    smtpServer = smtp.gmail.com</span>
@@ -228,7 +228,7 @@ git rebase master
 <div class="section" id="ld-preload">
 <span id="ldpreload-safety"></span><span id="index-14"></span><h2>Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?<a class="headerlink" href="#ld-preload" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Нет, это не безопасно, т.к. существует возможность создания внутри библиотек <a class="reference external" href="https://gcc.gnu.org/onlinedocs/gcc-8.2.0/gcc/Common-Function-Attributes.html">суперглобальных конструкторов</a>, которые будут выполняться в момент присоединения библиотеки <em>до запуска приложения</em>.</p>
-<p>Создадим и скомпилируем простой пример <strong>example.c</strong>:</p>
+<p>Создадим и скомпилируем простой пример <code class="docutils literal notranslate"><span class="pre">example.c</span></code>:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
 <span class="k">static</span> <span class="nf">__attribute__</span><span class="p">((</span><span class="n">constructor</span> <span class="p">(</span><span class="mi">200</span><span class="p">)))</span> <span class="kt">void</span> <span class="n">bar</span><span class="p">()</span>
@@ -262,7 +262,7 @@ user1
 </div>
 <div class="section" id="lto">
 <span id="enable-lto"></span><span id="index-15"></span><h2>Как можно активировать LTO оптимизации при сборке пакета?<a class="headerlink" href="#lto" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для активации <a class="reference external" href="https://gcc.gnu.org/wiki/LinkTimeOptimization">LTO оптимизаций</a> необходимо и достаточно передать параметр <strong>-flto</strong> как для компилятора (<strong>CFLAGS</strong> и/или <strong>CXXFLAGS</strong>), так и для компоновщика.</p>
+<p>Для активации <a class="reference external" href="https://gcc.gnu.org/wiki/LinkTimeOptimization">LTO оптимизаций</a> необходимо и достаточно передать параметр <code class="docutils literal notranslate"><span class="pre">-flto</span></code> как для компилятора (<strong>CFLAGS</strong> и/или <strong>CXXFLAGS</strong>), так и для компоновщика.</p>
 <p>Самый простой способ сделать это - переопределение значений стандартных макросов внутри SPEC файла:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global optflags %{optflags} -flto
 %global __global_ldflags %{__global_ldflags} -flto

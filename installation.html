@@ -94,9 +94,9 @@
 <li>загрузка с LiveUSB;</li>
 <li>создание разделов для новой установки Fedora посредством GParted или любой другой утилиты разбиения дисков;</li>
 <li>монтирование старых и новых разделов;</li>
-<li>копирование всех файлов и каталогов со старого накопителя на новый с сохранением прав доступа посредством <strong>sudo cp</strong> или <strong>sudo rsync</strong>;</li>
-<li>редактирование файла <strong>/etc/fstab</strong> нового накопителя так, чтобы в нём были указаны UUID новых разделов;</li>
-<li>создание в корневом каталоге нового накопителя файла <strong>/.autorelabel</strong> для автоматической установки контекста безопасности SELinux;</li>
+<li>копирование всех файлов и каталогов со старого накопителя на новый с сохранением прав доступа посредством <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">cp</span></code> или <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">rsync</span></code>;</li>
+<li>редактирование файла <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> нового накопителя так, чтобы в нём были указаны UUID новых разделов;</li>
+<li>создание в корневом каталоге нового накопителя файла <code class="docutils literal notranslate"><span class="pre">/.autorelabel</span></code> для автоматической установки контекста безопасности SELinux;</li>
 <li>установка загрузчика (если необходимо).</li>
 </ol>
 </div></blockquote>
@@ -148,18 +148,18 @@
 </div>
 <div class="section" id="fedora-trim">
 <span id="ssd-trim"></span><span id="index-17"></span><h2>Возможно ли в Fedora включить TRIM в реальном времени?<a class="headerlink" href="#fedora-trim" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Да, это возможно. При использовании классической схемы с обычными разделами необходимо добавить опцию монтирования <strong>discard</strong> для каждого раздела на SSD в <strong>/etc/fstab</strong>.</p>
-<p>При использовании LVM, следует открыть файл <strong>/etc/lvm/lvm.conf</strong> в текстовом редакторе и прописать:</p>
+<p>Да, это возможно. При использовании классической схемы с обычными разделами необходимо добавить опцию монтирования <code class="docutils literal notranslate"><span class="pre">discard</span></code> для каждого раздела на SSD в <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code>.</p>
+<p>При использовании LVM, следует открыть файл <code class="docutils literal notranslate"><span class="pre">/etc/lvm/lvm.conf</span></code> в текстовом редакторе и прописать:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>issue_discards = 1
 </pre></div>
 </div>
-<p>При использовании зашифрованных LUKS томов следует в файле <strong>/etc/crypttab</strong> добавить опцию <strong>allow-discards</strong> для каждого тома.</p>
+<p>При использовании зашифрованных LUKS томов следует в файле <code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code> добавить опцию <code class="docutils literal notranslate"><span class="pre">allow-discards</span></code> для каждого тома.</p>
 <p>Однако следует помнить, что на некоторых накопителях реалтаймовый TRIM может вызвать сбой в работе контроллера и привести к потере всех данных. Именно поэтому он по умолчанию и не применяется.</p>
 <p>Все изменения вступят в силу при следующей загрузке системы.</p>
 </div>
 <div class="section" id="fonts-cleartype">
 <span id="index-18"></span><span id="id14"></span><h2>Как улучшить отображение шрифтов в Fedora?<a class="headerlink" href="#fonts-cleartype" title="Ссылка на этот заголовок">¶</a></h2>
-<p>В актуальных релизах Fedora пакет freetype уже собран с поддержкой субпиксельного сглаживания, поэтому чтобы получить качественный рендеринг шрифтов, необходимо лишь разрешить использование LCD фильтров, создав символическую ссылку на файл <strong>11-lcdfilter-default.conf</strong> в каталоге <strong>/etc/fonts/conf.d</strong>:</p>
+<p>В актуальных релизах Fedora пакет freetype уже собран с поддержкой субпиксельного сглаживания, поэтому чтобы получить качественный рендеринг шрифтов, необходимо лишь разрешить использование LCD фильтров, создав символическую ссылку на файл <code class="docutils literal notranslate"><span class="pre">11-lcdfilter-default.conf</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/fonts/conf.d</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ln -s /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d/
 </pre></div>
 </div>
@@ -175,7 +175,7 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install terminus-fonts-console
 </pre></div>
 </div>
-<p>Теперь откроем файл <strong>/etc/vconsole.conf</strong> в текстовом редакторе и активируем их использование:</p>
+<p>Теперь откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/vconsole.conf</span></code> в текстовом редакторе и активируем их использование:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FONT=ter-v16n
 </pre></div>
 </div>
@@ -259,23 +259,23 @@
 <div class="section" id="grub">
 <span id="grub-hide"></span><span id="index-23"></span><h2>Как полностью скрыть меню Grub?<a class="headerlink" href="#grub" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Скрытие меню загрузки на UEFI конфигурациях:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo grub2-editenv - <span class="nb">set</span> <span class="nv">menu_auto_hide</span><span class="o">=</span><span class="m">1</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo grub2-editenv - set menu_auto_hide=1
 sudo grub2-mkconfig -o /etc/grub2-efi.cfg
 </pre></div>
 </div>
 <p>Скрытие меню загрузки на legacy конфигурациях:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo grub2-editenv - <span class="nb">set</span> <span class="nv">menu_auto_hide</span><span class="o">=</span><span class="m">1</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo grub2-editenv - set menu_auto_hide=1
 sudo grub2-mkconfig -o /etc/grub2.cfg
 </pre></div>
 </div>
-<p>Если в дуалбуте установлена ОС Microsoft Windows, но всё равно требуется скрыть меню Grub 2, то вместо <strong>menu_auto_hide=1</strong> следует применять <strong>menu_auto_hide=2</strong>.</p>
+<p>Если в дуалбуте установлена ОС Microsoft Windows, но всё равно требуется скрыть меню Grub 2, то вместо <code class="docutils literal notranslate"><span class="pre">menu_auto_hide=1</span></code> следует применять <code class="docutils literal notranslate"><span class="pre">menu_auto_hide=2</span></code>.</p>
 <p>Отмена изменений и повторная активацию меню на UEFI конфигурациях:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo grub2-editenv - <span class="nb">unset</span> menu_auto_hide
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo grub2-editenv - unset menu_auto_hide
 sudo grub2-mkconfig -o /etc/grub2-efi.cfg
 </pre></div>
 </div>
 <p>Отмена изменений и повторная активацию меню на legacy конфигурациях:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo grub2-editenv - <span class="nb">unset</span> menu_auto_hide
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo grub2-editenv - unset menu_auto_hide
 sudo grub2-mkconfig -o /etc/grub2.cfg
 </pre></div>
 </div>

@@ -116,7 +116,7 @@
 </div>
 <div class="section" id="driver-disable">
 <span id="index-4"></span><span id="id2"></span><h2>Как можно навсегда отключить определённый драйвер устройства?<a class="headerlink" href="#driver-disable" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Чтобы навсегда отключить какой-то драйвер в Linux, необходимо создать файл в каталоге <strong>/etc/modprobe.d</strong> с любым именем, например <strong>disable-nv.conf</strong>, и примерно таким содержанием:</p>
+<p>Чтобы навсегда отключить какой-то драйвер в Linux, необходимо создать файл в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/modprobe.d</span></code> с любым именем, например <code class="docutils literal notranslate"><span class="pre">disable-nv.conf</span></code>, и примерно таким содержанием:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>install nouveau /bin/false
 </pre></div>
 </div>
@@ -202,8 +202,8 @@
 </div>
 <div class="section" id="x11-resulutions">
 <span id="index-11"></span><span id="id5"></span><h2>Как прописать список поддерживаемых монитором разрешений?<a class="headerlink" href="#x11-resulutions" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Создадим отдельный файл конфигурации для монитора <strong>10-monitor.conf</strong> в каталоге <strong>/etc/X11/xorg.conf.d</strong> и пропишем доступные разрешения и используемый драйвер.</p>
-<p>Сначала посредством запуска утилиты <strong>cvt</strong> вычислим значение строки <strong>Modeline</strong> для требуемого разрешения:</p>
+<p>Создадим отдельный файл конфигурации для монитора <code class="docutils literal notranslate"><span class="pre">10-monitor.conf</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/X11/xorg.conf.d</span></code> и пропишем доступные разрешения и используемый драйвер.</p>
+<p>Сначала посредством запуска утилиты <strong>cvt</strong> вычислим значение строки <code class="docutils literal notranslate"><span class="pre">Modeline</span></code> для требуемого разрешения:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cvt <span class="m">1920</span> <span class="m">1080</span> <span class="m">60</span>
 </pre></div>
 </div>

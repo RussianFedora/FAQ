@@ -60,12 +60,12 @@
 </div>
 <div class="section" id="selinux-disable">
 <span id="index-2"></span><span id="id4"></span><h2>Как мне навсегда отключить SELinux?<a class="headerlink" href="#selinux-disable" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Достаточно открыть файл конфигурации <cite>/etc/selinux/config</cite> в любом текстовом редакторе и изменить значение директивы <cite>SELINUX</cite>. Допустимые значения:</p>
+<p>Достаточно открыть файл конфигурации <code class="docutils literal notranslate"><span class="pre">/etc/selinux/config</span></code> в любом текстовом редакторе и изменить значение директивы <code class="docutils literal notranslate"><span class="pre">SELINUX</span></code>. Допустимые значения:</p>
 <blockquote>
 <div><ul class="simple">
-<li><cite>enforcing</cite> — включён и блокирует всё, что явно не разрешено;</li>
-<li><cite>permissive</cite> — включён, но ничего не блокирует и лишь пишет события в системный журнал;</li>
-<li><cite>disabled</cite> — полностью отключён.</li>
+<li><code class="docutils literal notranslate"><span class="pre">enforcing</span></code> — включён и блокирует всё, что явно не разрешено;</li>
+<li><code class="docutils literal notranslate"><span class="pre">permissive</span></code> — включён, но ничего не блокирует и лишь пишет события в системный журнал;</li>
+<li><code class="docutils literal notranslate"><span class="pre">disabled</span></code> — полностью отключён.</li>
 </ul>
 </div></blockquote>
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
@@ -85,9 +85,9 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo bash -c <span class="s2">&quot;cat /var/log/audit/audit.log | audit2allow -M foo-bar&quot;</span>
 </pre></div>
 </div>
-<p>В результате работы данной утилиты будет создан новый модуль <strong>foo-bar.te</strong>, в котором разрешаются действия, записи о запрещении которых были внесены в журнал auditd ранее.</p>
+<p>В результате работы данной утилиты будет создан новый модуль <code class="docutils literal notranslate"><span class="pre">foo-bar.te</span></code>, в котором разрешаются действия, записи о запрещении которых были внесены в журнал auditd ранее.</p>
 <p>Перед применением этого файла и созданием политики SELinux обязательно загрузим его в текстовый редактор и проверим корректность, т.к. в нем может содержаться больше разрешающих правил, чем требуется, а также присутствуют подсказки о том, как правильно настроить SELinux.</p>
-<p>В сгенерированном файле модуля <strong>foo-bar.te</strong> после комментария <em>This avc can be allowed using one of the these booleans</em> присутствует список переменных двоичного типа, установка которых поможет разрешить заблокированное действие. Справочную информацию можно получить из документации SELinux:</p>
+<p>В сгенерированном файле модуля <code class="docutils literal notranslate"><span class="pre">foo-bar.te</span></code> после комментария <em>This avc can be allowed using one of the these booleans</em> присутствует список переменных двоичного типа, установка которых поможет разрешить заблокированное действие. Справочную информацию можно получить из документации SELinux:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>getsebool -a
 </pre></div>
 </div>
@@ -101,7 +101,7 @@ Warning: Directory /var/www/html/foo-bar/foo not writable, please chmod to 755 i
 </pre></div>
 </div>
 <p>Это значают, что процесс веб-сервера (или интерпретатора языка программирования) не может получить доступ на запись. Если права доступа (chmod и chown) при этом установлены верно, значит доступ блокирует <a class="reference internal" href="#selinux"><span class="std std-ref">SELinux</span></a>.</p>
-<p>Установим правильный контекст безопасности для всех каталогов внутри <strong>document_root/foo-bar</strong>:</p>
+<p>Установим правильный контекст безопасности для всех каталогов внутри <code class="docutils literal notranslate"><span class="pre">document_root/foo-bar</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -a -t httpd_sys_rw_content_t <span class="s2">&quot;/var/www/html/foo-bar(/.*)?&quot;</span>
 </pre></div>
 </div>
@@ -126,7 +126,7 @@ Warning: Directory /var/www/html/foo-bar/foo not writable, please chmod to 755 i
 </pre></div>
 </div>
 <p>Более полную информацию о контекстах безопасности и работе с ними можно найти <a class="reference external" href="https://docs.fedoraproject.org/en-US/Fedora/25/html/SELinux_Users_and_Administrators_Guide/sect-Security-Enhanced_Linux-Working_with_SELinux-SELinux_Contexts_Labeling_Files.html">здесь</a>.</p>
-<p>Откроем текстовый редактор и создадим новый модуль <strong>httpd_wr.te</strong>:</p>
+<p>Откроем текстовый редактор и создадим новый модуль <code class="docutils literal notranslate"><span class="pre">httpd_wr.te</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>module httpd_wr 1.0;
 
 require {
@@ -159,7 +159,7 @@ sudo semodule -i httpd_wr.pp
 <span id="index-6"></span><span id="id8"></span><h2>Как настроить SELinux так, чтобы веб-сервер мог осуществлять исходящие сетевые соединения?<a class="headerlink" href="#selinux-connections" title="Ссылка на этот заголовок">¶</a></h2>
 <div class="section" id="nsl-first">
 <span id="id9"></span><h3>Первый вариант (самый правильный):<a class="headerlink" href="#nsl-first" title="Ссылка на этот заголовок">¶</a></h3>
-<p>Откроем текствый редактор и создадим новый модуль <strong>httpd_network.te</strong>:</p>
+<p>Откроем текствый редактор и создадим новый модуль <code class="docutils literal notranslate"><span class="pre">httpd_network.te</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>module httpd_connect 1.0;
 
 require {
@@ -201,7 +201,7 @@ sudo semodule -i httpd_network.pp
 </div>
 <div class="section" id="openvpn-selinux">
 <span id="index-7"></span><span id="id11"></span><h2>OpenVPN не может получить доступ к сертификатам из-за SELinux. Что делать?<a class="headerlink" href="#openvpn-selinux" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Это нормально ибо запущенные сервисы не могут получать доступ к каталогам пользователя, однако для OpenVPN сделано исключение в виде каталога <strong>~/.cert</strong>.</p>
+<p>Это нормально ибо запущенные сервисы не могут получать доступ к каталогам пользователя, однако для OpenVPN сделано исключение в виде каталога <code class="docutils literal notranslate"><span class="pre">~/.cert</span></code>.</p>
 <p>По умолчанию он не существует, поэтому его нужно создать и задать для него контекст безопасности SELinux:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir ~/.cert
 restorecon -Rv ~/.cert
@@ -215,7 +215,7 @@ restorecon -Rv ~/.cert
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nopti
 </pre></div>
 </div>
-<p>Параметр <strong>pti=off</strong> также поддерживается в полной мере.</p>
+<p>Параметр <code class="docutils literal notranslate"><span class="pre">pti=off</span></code> также поддерживается в полной мере.</p>
 </div>
 <div class="section" id="spectre-v1">
 <span id="spectrev1"></span><span id="index-9"></span><h2>Можно ли отключить защиту от Spectre v1?<a class="headerlink" href="#spectre-v1" title="Ссылка на этот заголовок">¶</a></h2>
@@ -388,7 +388,10 @@ sudo systemctl reboot
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl <span class="nb">enable</span> sshd.service
 </pre></div>
 </div>
-<p>Теперь следует открыть конфиг <strong>/etc/ssh/sshd_config</strong> в любом текстовом редакторе и внести правки.</p>
+<p>Теперь следует открыть конфиг <code class="docutils literal notranslate"><span class="pre">/etc/ssh/sshd_config</span></code> в любом текстовом редакторе и внести правки:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/ssh/sshd_config
+</pre></div>
+</div>
 <p>Отключение входа суперпользователем:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>PermitRootLogin no
 </pre></div>
@@ -455,7 +458,7 @@ PermitEmptyPasswords no
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo groupadd sftp
 </pre></div>
 </div>
-<p>Откроем конфиг <strong>/etc/ssh/sshd_config</strong> в текстовом редакторе и в самом конце добавим:</p>
+<p>Откроем конфиг <code class="docutils literal notranslate"><span class="pre">/etc/ssh/sshd_config</span></code> в текстовом редакторе и в самом конце добавим:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Subsystem sftp internal-sftp
 Match Group sftp
     ChrootDirectory %h
@@ -494,9 +497,9 @@ Match Group sftp
 </div>
 <div class="section" id="newfile-permissions">
 <span id="index-47"></span><span id="id36"></span><h2>Как рассчитываются права доступа для новых файлов и каталогов?<a class="headerlink" href="#newfile-permissions" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Права доступа (chmod) в GNU/Linux рассчитываются в по формуле <strong>$default-chmod - $current-umask</strong>. <strong>$default-chmod</strong> для файлов равен 0666, а для каталогов - 0777.</p>
-<p>В Fedora umask по умолчанию для пользоватьских учётных записей равен <strong>0002</strong> (ведущий нуль в chmod означает использование восьмеричной системы счисления).</p>
-<p>Таким образом, chmod для новых файлов <strong>0666 - 0002 = 0664</strong> (-rw-rw–r–), а для каталогов - <strong>0777 - 0002 = 0775</strong> (drwxrwxr-x).</p>
+<p>Права доступа (chmod) в GNU/Linux рассчитываются в по формуле <code class="docutils literal notranslate"><span class="pre">$default-chmod</span> <span class="pre">-</span> <span class="pre">$current-umask</span></code>. <code class="docutils literal notranslate"><span class="pre">$default-chmod</span></code> для файлов равен <code class="docutils literal notranslate"><span class="pre">0666</span></code>, а для каталогов - <code class="docutils literal notranslate"><span class="pre">0777</span></code>.</p>
+<p>В Fedora umask по умолчанию для пользоватьских учётных записей равен <code class="docutils literal notranslate"><span class="pre">0002</span></code> (ведущий нуль в chmod означает использование восьмеричной системы счисления).</p>
+<p>Таким образом, chmod для новых файлов <code class="docutils literal notranslate"><span class="pre">0666</span> <span class="pre">-</span> <span class="pre">0002</span> <span class="pre">=</span> <span class="pre">0664</span></code> (<code class="docutils literal notranslate"><span class="pre">-rw-rw--r--</span></code>), а для каталогов - <code class="docutils literal notranslate"><span class="pre">0777</span> <span class="pre">-</span> <span class="pre">0002</span> <span class="pre">=</span> <span class="pre">0775</span></code> (<code class="docutils literal notranslate"><span class="pre">drwxrwxr-x</span></code>).</p>
 </div>
 <div class="section" id="fedora">
 <span id="fedora-gost"></span><span id="index-48"></span><h2>Можно ли включить поддержку российской криптографии в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
@@ -507,11 +510,11 @@ Match Group sftp
 <p>Network Manager поддерживает два сценария рандомизации MAC адресов:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>генерирование уникального псевдослучайного MAC адреса для каждого соединения при загрузке системы (параметр <strong>stable</strong>). Это избавит от проблем с переподключением к публичным хот-спотам и небходимости повторно проходить аутентификацию в captive-порталах;</li>
-<li>генерирование уникального псевдослучайного MAC адреса для каждого соединения при каждом переподключении (параметр <strong>random</strong>). Наиболее безопасно, но может вызывать описанные выше проблемы.</li>
+<li>генерирование уникального псевдослучайного MAC адреса для каждого соединения при загрузке системы (параметр <code class="docutils literal notranslate"><span class="pre">stable</span></code>). Это избавит от проблем с переподключением к публичным хот-спотам и небходимости повторно проходить аутентификацию в captive-порталах;</li>
+<li>генерирование уникального псевдослучайного MAC адреса для каждого соединения при каждом переподключении (параметр <code class="docutils literal notranslate"><span class="pre">random</span></code>). Наиболее безопасно, но может вызывать описанные выше проблемы.</li>
 </ol>
 </div></blockquote>
-<p>Профиль <strong>stable</strong>. Файл <strong>00-macrandomize-stable.conf</strong>:</p>
+<p>Профиль <strong>stable</strong>. Файл <code class="docutils literal notranslate"><span class="pre">00-macrandomize-stable.conf</span></code>:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[device]</span>
 <span class="na">wifi.scan-rand-mac-address</span><span class="o">=</span><span class="s">yes</span>
 
@@ -521,7 +524,7 @@ Match Group sftp
 <span class="na">connection.stable-id</span><span class="o">=</span><span class="s">${CONNECTION}/${BOOT}</span>
 </pre></div>
 </div>
-<p>Профиль <strong>random</strong>. Файл <strong>00-macrandomize-random.conf</strong>:</p>
+<p>Профиль <strong>random</strong>. Файл <code class="docutils literal notranslate"><span class="pre">00-macrandomize-random.conf</span></code>:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[device]</span>
 <span class="na">wifi.scan-rand-mac-address</span><span class="o">=</span><span class="s">yes</span>
 
@@ -530,7 +533,7 @@ Match Group sftp
 <span class="na">ethernet.cloned-mac-address</span><span class="o">=</span><span class="s">random</span>
 </pre></div>
 </div>
-<p>Для применения одной из конфигураций создадим в каталоге <strong>/etc/NetworkManager/conf.d</strong> файл с выбранным профилем, после чего перезапустим Network Manager:</p>
+<p>Для применения одной из конфигураций создадим в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/NetworkManager/conf.d</span></code> файл с выбранным профилем, после чего перезапустим Network Manager:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl restart NetworkManager
 </pre></div>
 </div>
@@ -538,7 +541,7 @@ Match Group sftp
 </div>
 <div class="section" id="add-custom-ca">
 <span id="index-50"></span><span id="id37"></span><h2>Как добавить собственный удостоверяющий центр в список доверенных?<a class="headerlink" href="#add-custom-ca" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для добавления нового удостоверяющего центра необходимо скопировать файл его сертификата в формате PEM или DER в каталог <strong>/etc/pki/ca-trust/source/anchors</strong>, после чего выполнить:</p>
+<p>Для добавления нового удостоверяющего центра необходимо скопировать файл его сертификата в формате PEM или DER в каталог <code class="docutils literal notranslate"><span class="pre">/etc/pki/ca-trust/source/anchors</span></code>, после чего выполнить:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo update-ca-trust
 </pre></div>
 </div>
@@ -546,7 +549,7 @@ Match Group sftp
 </div>
 <div class="section" id="blackist-ca">
 <span id="index-51"></span><span id="id38"></span><h2>Как внести удостоверяющий центр в список запрещённых?<a class="headerlink" href="#blackist-ca" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для добавления удостоверяющего центра в список заблокированных необходимо скопировать файл его сертификата в формате PEM или DER в каталог <strong>/etc/pki/ca-trust/source/blacklist</strong>, после чего выполнить:</p>
+<p>Для добавления удостоверяющего центра в список заблокированных необходимо скопировать файл его сертификата в формате PEM или DER в каталог <code class="docutils literal notranslate"><span class="pre">/etc/pki/ca-trust/source/blacklist</span></code>, после чего выполнить:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo update-ca-trust
 </pre></div>
 </div>
