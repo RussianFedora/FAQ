@@ -282,6 +282,61 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 </div>
 <p>В противном случае появится ошибка <em>plugin needed to handle lto object</em>.</p>
 </div>
+<div class="section" id="rpm-unneeded">
+<span id="index-16"></span><span id="id9"></span><h2>Как вывести список установленных пакетов, от которых никто не зависит?<a class="headerlink" href="#rpm-unneeded" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В настоящее время данная функциональность отсутствует в dnf «из коробки», поэтому напишем и скомпилируем небольшую программу на языке C, реализующую это средствами библиотеки <strong>livsolv</strong>.</p>
+<p>Установим компилятор и необходимые для сборки библиотеки:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc libsolv-devel
+</pre></div>
+</div>
+<p>Создадим файл <code class="docutils literal notranslate"><span class="pre">rpm-unneeded.c</span></code> с исходным текстом программы:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;solv/pool.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;solv/poolarch.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;solv/repo_rpmdb.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;solv/solver.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Pool</span> <span class="o">*</span><span class="n">pool</span><span class="p">;</span>
+    <span class="n">Repo</span> <span class="o">*</span><span class="n">rpmdb</span><span class="p">;</span>
+    <span class="n">Solver</span> <span class="o">*</span><span class="n">solver</span><span class="p">;</span>
+    <span class="n">Queue</span> <span class="n">q</span><span class="p">;</span>
+
+    <span class="n">pool</span> <span class="o">=</span> <span class="n">pool_create</span><span class="p">();</span>
+    <span class="n">pool_setarch</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="n">pool_set_flag</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="n">POOL_FLAG_IMPLICITOBSOLETEUSESCOLORS</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="n">rpmdb</span> <span class="o">=</span> <span class="n">repo_create</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="s">&quot;@system&quot;</span><span class="p">);</span>
+    <span class="n">repo_add_rpmdb</span><span class="p">(</span><span class="n">rpmdb</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">pool</span><span class="o">-&gt;</span><span class="n">installed</span> <span class="o">=</span> <span class="n">rpmdb</span><span class="p">;</span>
+
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">solver_create</span><span class="p">(</span><span class="n">pool</span><span class="p">);</span>
+    <span class="n">solver_set_flag</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="n">SOLVER_FLAG_KEEP_EXPLICIT_OBSOLETES</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">solver_set_flag</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="n">SOLVER_FLAG_BEST_OBEY_POLICY</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">solver_set_flag</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="n">SOLVER_FLAG_YUM_OBSOLETES</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="n">queue_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
+    <span class="n">solver_solve</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
+    <span class="n">solver_get_unneeded</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">q</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">q</span><span class="p">.</span><span class="n">count</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span> <span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">pool_solvid2str</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="n">q</span><span class="p">.</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span>
+    <span class="p">}</span>
+
+    <span class="n">queue_free</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
+    <span class="n">pool_free</span><span class="p">(</span><span class="n">pool</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Скомпилируем и слинкуем приложение:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc <span class="k">$(</span>rpm -E %<span class="o">{</span>optflags<span class="o">}</span><span class="k">)</span> -fPIC rpm-unneeded.c -o rpm-unneeded -lsolv -lsolvext
+</pre></div>
+</div>
+<p>Запустим приложение <code class="docutils literal notranslate"><span class="pre">./rpm-unneeded</span></code> и получим список установленных пакетов, от которых никто не зависит.</p>
+</div>
 </div>
 
 
@@ -328,6 +383,7 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <li class="toctree-l2"><a class="reference internal" href="#git-pull-request">Я хочу внести правки в проект. Как правильно отправить их в апстрим?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ld-preload">Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lto">Как можно активировать LTO оптимизации при сборке пакета?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpm-unneeded">Как вывести список установленных пакетов, от которых никто не зависит?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
