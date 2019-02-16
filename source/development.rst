@@ -325,8 +325,7 @@
 
 .. code-block:: bash
 
-    gcc -c -O2 -fPIC example.c
-    gcc -shared -fPIC -o example.so example.o -lc
+    gcc -shared $(rpm -E %{optflags}) -fPIC example.c -o example.so $(rpm -E %{__global_ldflags}) -lc
 
 Внедрим нашу библиотеку в известный доверенный процесс, например **whoami**:
 
@@ -426,7 +425,7 @@
 
         for (int i = 0; i < q.count; i++)
         {
-            printf ("%s\n", pool_solvid2str(pool, q.elements[i]));
+            printf("%s\n", pool_solvid2str(pool, q.elements[i]));
         }
 
         queue_free(&q);
