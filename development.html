@@ -244,8 +244,7 @@ git rebase master
 </div>
 <p>Данный метод содержит сразу два суперглобальных конструктора с указанием приоритетов. Чем ниже приоритет, тем скорее данный метод будет исполнен.</p>
 <p>Скомпилируем и слинкуем наш пример:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc -c -O2 -fPIC example.c
-gcc -shared -fPIC -o example.so example.o -lc
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc -shared <span class="k">$(</span>rpm -E %<span class="o">{</span>optflags<span class="o">}</span><span class="k">)</span> -fPIC example.c -o example.so <span class="k">$(</span>rpm -E %<span class="o">{</span>__global_ldflags<span class="o">}</span><span class="k">)</span> -lc
 </pre></div>
 </div>
 <p>Внедрим нашу библиотеку в известный доверенный процесс, например <strong>whoami</strong>:</p>
@@ -321,7 +320,7 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">q</span><span class="p">.</span><span class="n">count</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="n">printf</span> <span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">pool_solvid2str</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="n">q</span><span class="p">.</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">pool_solvid2str</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="n">q</span><span class="p">.</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span>
     <span class="p">}</span>
 
     <span class="n">queue_free</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
