@@ -295,7 +295,7 @@
 
 Создадим новый Pull Request.
 
-.. index:: library, shared library, so, ld preload, security
+.. index:: library, shared library, so, ld preload, security, gcc, c
 .. _ldpreload-safety:
 
 Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?
@@ -344,7 +344,7 @@
 
 Разумеется, вместо безобидных вызовов функции printf() может находиться абсолютно любой код, в т.ч. вредоносный.
 
-.. index:: lto, optimization, linker, compilation
+.. index:: lto, optimization, linker, compilation, gcc
 .. _enable-lto:
 
 Как можно активировать LTO оптимизации при сборке пакета?
@@ -376,3 +376,69 @@
     set(CMAKE_NM "/usr/bin/gcc-nm")
 
 В противном случае появится ошибка *plugin needed to handle lto object*.
+
+.. index:: gcc, c, rpm, dependencies, package
+.. _rpm-unneeded:
+
+Как вывести список установленных пакетов, от которых никто не зависит?
+=========================================================================
+
+В настоящее время данная функциональность отсутствует в dnf "из коробки", поэтому напишем и скомпилируем небольшую программу на языке C, реализующую это средствами библиотеки **livsolv**.
+
+Установим компилятор и необходимые для сборки библиотеки:
+
+.. code-block:: bash
+
+    sudo dnf install gcc libsolv-devel
+
+Создадим файл ``rpm-unneeded.c`` с исходным текстом программы:
+
+.. code-block:: c
+
+    #include <solv/pool.h>
+    #include <solv/poolarch.h>
+    #include <solv/repo_rpmdb.h>
+    #include <solv/solver.h>
+
+    int main(void)
+    {
+        Pool *pool;
+        Repo *rpmdb;
+        Solver *solver;
+        Queue q;
+
+        pool = pool_create();
+        pool_setarch(pool, NULL);
+        pool_set_flag(pool, POOL_FLAG_IMPLICITOBSOLETEUSESCOLORS, 1);
+
+        rpmdb = repo_create(pool, "@system");
+        repo_add_rpmdb(rpmdb, NULL, 0);
+        pool->installed = rpmdb;
+
+        solver = solver_create(pool);
+        solver_set_flag(solver, SOLVER_FLAG_KEEP_EXPLICIT_OBSOLETES, 1);
+        solver_set_flag(solver, SOLVER_FLAG_BEST_OBEY_POLICY, 1);
+        solver_set_flag(solver, SOLVER_FLAG_YUM_OBSOLETES, 1);
+
+        queue_init(&q);
+        solver_solve(solver, &q);
+        solver_get_unneeded(solver, &q, 1);
+
+        for (int i = 0; i < q.count; i++)
+        {
+            printf ("%s\n", pool_solvid2str(pool, q.elements[i]));
+        }
+
+        queue_free(&q);
+        pool_free(pool);
+
+        return 0;
+    }
+
+Скомпилируем и слинкуем приложение:
+
+.. code-block:: bash
+
+    gcc $(rpm -E %{optflags}) -fPIC rpm-unneeded.c -o rpm-unneeded -lsolv -lsolvext
+
+Запустим приложение ``./rpm-unneeded`` и получим список установленных пакетов, от которых никто не зависит.
