@@ -529,6 +529,15 @@ sudo dnf config-manager --set-enabled updates-modular
 </ul>
 </div></blockquote>
 </div>
+<div class="section" id="gnome-shell-tray">
+<span id="index-56"></span><span id="id38"></span><h2>Как вернуть классический системный лоток (трей) в Gnome Shell?<a class="headerlink" href="#gnome-shell-tray" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Начиная с Gnome 3.26, из области уведомлений оболочки была удалена поддержка классического системного лотка, поэтому многие приложения при закрытии или сворачивании могут не завершать свою работу, а продолжать работать в фоне без отображения видимого окна.</p>
+<p>Восстановить трей можно посредством установки одного из <a class="reference internal" href="#gnome-shell-extensions"><span class="std std-ref">расширений Gnome Shell</span></a>. Самым популярным является <a class="reference external" href="https://extensions.gnome.org/extension/1031/topicons/">TopIcons Plus</a>.</p>
+<p>Установка для всех пользователей в виде пакета из репозиториев Fedora:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gnome-shell-extension-topicons-plus
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -610,6 +619,7 @@ sudo dnf config-manager --set-enabled updates-modular
 <li class="toctree-l2"><a class="reference internal" href="#gnome-shell">Откуда правильно устанавливать расширения для Gnome Shell?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gnome-shell-browser">Как разрешить установку расширений Gnome Shell из веб-браузера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde-plasma">Как разрешить установку расширений KDE Plasma из веб-браузера?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gnome-shell-tray">Как вернуть классический системный лоток (трей) в Gnome Shell?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
