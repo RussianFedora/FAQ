@@ -806,3 +806,19 @@ Java 11:
 
  * `Firefox <https://addons.mozilla.org/ru/firefox/addon/plasma-integration/>`__;
  * `Chrome/Chromium <https://chrome.google.com/webstore/detail/plasma-integration/cimiefiiaegbelhefglklhhakcgmhkai?hl=ru>`__.
+
+.. index:: gnome, shell, tray, system tray, icon
+.. _gnome-shell-tray:
+
+Как вернуть классический системный лоток (трей) в Gnome Shell?
+==================================================================
+
+Начиная с Gnome 3.26, из области уведомлений оболочки была удалена поддержка классического системного лотка, поэтому многие приложения при закрытии или сворачивании могут не завершать свою работу, а продолжать работать в фоне без отображения видимого окна.
+
+Восстановить трей можно посредством установки одного из :ref:`расширений Gnome Shell <gnome-shell-extensions>`. Самым популярным является `TopIcons Plus <https://extensions.gnome.org/extension/1031/topicons/>`__.
+
+Установка для всех пользователей в виде пакета из репозиториев Fedora:
+
+.. code-block:: bash
+
+    sudo dnf install gnome-shell-extension-topicons-plus
