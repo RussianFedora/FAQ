@@ -200,7 +200,7 @@ git config --global user.email email@example.org
 git commit -s
 </pre></div>
 </div>
-<p>В появившемся <a class="reference internal" href="using-system.html#editor-git"><span class="std std-ref">текстовом редакторе</span></a> укажем подробное описание всех наших изменений на английском языке. Несмотря на то, что параметр <strong>-s</strong> является опциональным, большинство проектов требуют его использования для автоматического создания подписи вида:</p>
+<p>В появившемся <a class="reference internal" href="using-system.html#editor-git"><span class="std std-ref">текстовом редакторе</span></a> укажем подробное описание всех наших изменений на английском языке. Несмотря на то, что параметр <code class="docutils literal notranslate"><span class="pre">-s</span></code> является опциональным, большинство проектов требуют его использования для автоматического создания подписи вида:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Signed-off-by: Your Name &lt;email@example.org&gt;
 </pre></div>
 </div>
@@ -267,7 +267,7 @@ user1
 %global __global_ldflags %{__global_ldflags} -flto
 </pre></div>
 </div>
-<p>Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то также необходимо переопределить ряд <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> внутри секции <em>%build</em>:</p>
+<p>Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то также необходимо переопределить ряд <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> внутри секции <code class="docutils literal notranslate"><span class="pre">%build</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">AR</span><span class="o">=</span>%<span class="o">{</span>_bindir<span class="o">}</span>/gcc-ar
 <span class="nb">export</span> <span class="nv">RANLIB</span><span class="o">=</span>%<span class="o">{</span>_bindir<span class="o">}</span>/gcc-ranlib
 <span class="nb">export</span> <span class="nv">NM</span><span class="o">=</span>%<span class="o">{</span>_bindir<span class="o">}</span>/gcc-nm
