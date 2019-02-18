@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Вопросы, связанные с пакетным менеджером и установкой пакетов &#8212; Документация Fedora FAQ RU 2019.01.25</title>
+    <title>Вопросы, связанные с пакетным менеджером и установкой пакетов &#8212; Документация Fedora FAQ RU 2019.02.18</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -499,11 +499,12 @@ sudo dnf config-manager --set-enabled updates-modular
 </div>
 <div class="section" id="gnome-shell">
 <span id="gnome-shell-extensions"></span><span id="index-53"></span><h2>Откуда правильно устанавливать расширения для Gnome Shell?<a class="headerlink" href="#gnome-shell" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Расширения для Gnome Shell можно устанавливать как в виде пакета из репозиториев, так и напрямую из Магазина расширений Gnome. Разница лишь в том, что расширения, установленные пакетом, будут доступны сразу для всех пользователей системы.</p>
+<p>Расширения для Gnome Shell можно устанавливать как в виде пакета из репозиториев, так и напрямую из <a class="reference external" href="https://extensions.gnome.org/">Магазина расширений Gnome</a>. Разница лишь в том, что расширения, установленные пакетом, будут доступны сразу для всех пользователей системы.</p>
+<p>Рекомендуется устанавливать расширения из Магазина, т.к. многие пакеты очень редко получают обновления.</p>
 </div>
 <div class="section" id="gnome-shell-browser">
 <span id="index-54"></span><span id="id37"></span><h2>Как разрешить установку расширений Gnome Shell из веб-браузера?<a class="headerlink" href="#gnome-shell-browser" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для того, чтобы разрешить установку расширений Gnome Shell из браузеров, необходимо установить соответствующий пакет:</p>
+<p>Для того, чтобы разрешить установку <a class="reference internal" href="#gnome-shell-extensions"><span class="std std-ref">расширений Gnome Shell</span></a> из браузеров, необходимо установить соответствующий пакет:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gnome-shell-browser
 </pre></div>
 </div>

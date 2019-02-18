@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Вопросы, связанные с оптимизацией и тонкой настройкой &#8212; Документация Fedora FAQ RU 2019.01.25</title>
+    <title>Вопросы, связанные с оптимизацией и тонкой настройкой &#8212; Документация Fedora FAQ RU 2019.02.18</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -114,6 +114,29 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="swf-flash">
+<span id="swf-player"></span><span id="index-4"></span><h2>Чем можно запустить SWF файл без установки Flash плагина в браузер?<a class="headerlink" href="#swf-flash" title="Ссылка на этот заголовок">¶</a></h2>
+<p>SWF файл - это исполняемый файл формата Adobe Flash. Для того, чтобы проиграть его без установки соответствующего плагина в браузер, можно загрузить специальную версию Flash Projector (ранее назывался Standalone).</p>
+<p>Скачаем Projector:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget https://fpdownload.macromedia.com/pub/flashplayer/updaters/32/flash_player_sa_linux.x86_64.tar.gz -O fpsa.tar.gz
+</pre></div>
+</div>
+<p>Создадим новый каталог и распакуем архив в него:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/foo-bar
+tar -xzf fpsa.tar.gz -C ~/foo-bar
+</pre></div>
+</div>
+<p>Запустим проигрыватель:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/foo-bar/flashplayer
+</pre></div>
+</div>
+<p>В открывшемся окне нажмём <strong>Файл</strong> - <strong>Открыть</strong> (или комбинацию <strong>Ctrl + O</strong>) и найдём SWF файл на диске.</p>
+<p>По окончании использования удалим каталог с программой:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -rf ~/foo-bar
+</pre></div>
+</div>
+<p>Внимание! Запускать SWF файлы следует с особой осторожностью, т.к. плеер выполняется без какой-либо изоляции и имеет полный доступ к домашнему каталогу пользователя.</p>
+</div>
 </div>
 
 
@@ -149,6 +172,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#kde">Как уменьшить потребление оперативной памяти средой рабочего стола KDE?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#libcurl-gnutls-so-4">Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bfq-hdd">Как задействовать планировщик ввода/вывода BFQ для HDD?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#swf-flash">Чем можно запустить SWF файл без установки Flash плагина в браузер?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
