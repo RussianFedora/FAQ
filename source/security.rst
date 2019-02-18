@@ -331,6 +331,22 @@ KPTI - это новый механизм ядра, направленный н�
 
     grep . /sys/devices/system/cpu/vulnerabilities/*
 
+.. index:: spectre, hardware, vulnerability, disable, mitigation, windows
+.. _windows-cpuvuln:
+
+Можно ли отключить защиту от уязвимостей CPU в гостевых Windows внутри виртуальных машин?
+============================================================================================
+
+Да, `согласно MSDN <https://support.microsoft.com/en-us/help/4072698/>`__, при помощи следующего REG файла:
+
+.. code-block:: ini
+
+    Windows Registry Editor Version 5.00
+
+    [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]
+    "FeatureSettingsOverride"=dword:00000003
+    "FeatureSettingsOverrideMask"=dword:00000003
+
 .. index:: selinux, error
 .. _selinux-boot-error:
 
