@@ -546,7 +546,7 @@ Java 11:
 
 .. code-block:: bash
 
-    sudo dnf -C list extras
+    sudo dnf list extras
 
 .. index:: dnf, transactions, history cleanup, cleanup, clean
 .. _dnf-transactions-cleanup:
