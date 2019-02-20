@@ -232,6 +232,56 @@ EndSection
 </div>
 <p>Вместо <strong>intel</strong> укажем реально используемый драйвер видеокарты. Изменения вступят в силу при следующей загрузке системы.</p>
 </div>
+<div class="section" id="benchmark-cpu">
+<span id="index-12"></span><span id="id6"></span><h2>Какой бенчмарк можно использовать для оценки производительности системы?<a class="headerlink" href="#benchmark-cpu" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В качестве CPU бенчмарка рекомендуется использовать <a class="reference external" href="https://github.com/akopytov/sysbench#usage">sysbench</a>, либо <a class="reference external" href="https://kernel.ubuntu.com/~cking/stress-ng/">stress-ng</a>:</p>
+<p>Установим sysbench:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install sysbench
+</pre></div>
+</div>
+<p>Установим stress-ng:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install stress-ng
+</pre></div>
+</div>
+</div>
+<div class="section" id="benchmark-gpu">
+<span id="index-13"></span><span id="id7"></span><h2>Какой бенчмарк можно использовать для оценки производительности видеокарты?<a class="headerlink" href="#benchmark-gpu" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В настоящее время существует несколько бенчмарков:</p>
+<div class="section" id="glxgears">
+<h3>Glxgears<a class="headerlink" href="#glxgears" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Установка:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install glx-utils
+</pre></div>
+</div>
+<p>Запуск:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>glxgears
+</pre></div>
+</div>
+<p>Выводит информацию о кадровой частоте в терминал каждые 5 секунд.</p>
+</div>
+<div class="section" id="gl-mark-2">
+<h3>GL Mark 2<a class="headerlink" href="#gl-mark-2" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Установка:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install glmark2
+</pre></div>
+</div>
+<p>Запуск:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>glmark2
+</pre></div>
+</div>
+<p>Выводит информацию о кадровой частоте и финальный результат в терминал.</p>
+</div>
+<div class="section" id="unigine-benchmark">
+<h3>Unigine Benchmark<a class="headerlink" href="#unigine-benchmark" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Установка:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget https://assets.unigine.com/d/Unigine_Superposition-1.0.run
+chmod +x Unigine_Superposition-1.0.run
+./Unigine_Superposition-1.0.run
+</pre></div>
+</div>
+<p>Запускать бенчмарк следует при помощи созданного ярлыка в меню приложений.</p>
+</div>
+</div>
 </div>
 
 
@@ -273,6 +323,8 @@ EndSection
 <li class="toctree-l2"><a class="reference internal" href="#com-rs-232">Как правильно работать с COM портами (RS-232)?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dac-ddc">При подключении монитора через переходник отображается неправильное разрешение. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x11-resulutions">Как прописать список поддерживаемых монитором разрешений?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmark-cpu">Какой бенчмарк можно использовать для оценки производительности системы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmark-gpu">Какой бенчмарк можно использовать для оценки производительности видеокарты?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>

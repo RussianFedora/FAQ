@@ -357,7 +357,7 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 <div class="section" id="dnf-repo-orphans">
 <span id="index-39"></span><span id="id25"></span><h2>Как вывести список пакетов, установленных не из репозиториев, либо удалённых из них?<a class="headerlink" href="#dnf-repo-orphans" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Выполним в терминале:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf -C list extras
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf list extras
 </pre></div>
 </div>
 </div>
@@ -539,6 +539,13 @@ sudo dnf config-manager --set-enabled updates-modular
 </pre></div>
 </div>
 </div>
+<div class="section" id="dnf-user">
+<span id="index-57"></span><span id="id39"></span><h2>При запуске dnf без прав суперпользователя он заново загружает и обновляет кэши. Это нормально?<a class="headerlink" href="#dnf-user" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Если необходимо, чтобы dnf использовал глобальные общесистемные кэши репозиториев, следует применять параметр <code class="docutils literal notranslate"><span class="pre">-C</span></code>, например:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf -C search foo
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -621,6 +628,7 @@ sudo dnf config-manager --set-enabled updates-modular
 <li class="toctree-l2"><a class="reference internal" href="#gnome-shell-browser">Как разрешить установку расширений Gnome Shell из веб-браузера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde-plasma">Как разрешить установку расширений KDE Plasma из веб-браузера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gnome-shell-tray">Как вернуть классический системный лоток (трей) в Gnome Shell?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-user">При запуске dnf без прав суперпользователя он заново загружает и обновляет кэши. Это нормально?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
