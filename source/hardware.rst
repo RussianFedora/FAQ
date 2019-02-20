@@ -295,3 +295,58 @@
 .. code-block:: bash
 
     sudo dnf install stress-ng
+
+.. index:: benchmark, video card, gpu, glxgears, glmark2, unigine
+.. _benchmark-gpu:
+
+Какой бенчмарк можно использовать для оценки производительности видеокарты?
+==============================================================================
+
+В настоящее время существует несколько бенчмарков:
+
+Glxgears
+^^^^^^^^^^^
+
+Установка:
+
+.. code-block:: bash
+
+    sudo dnf install glx-utils
+
+Запуск:
+
+.. code-block:: bash
+
+    glxgears
+
+Выводит информацию о кадровой частоте в терминал каждые 5 секунд.
+
+GL Mark 2
+^^^^^^^^^^^^
+
+Установка:
+
+.. code-block:: bash
+
+    sudo dnf install glmark2
+
+Запуск:
+
+.. code-block:: bash
+
+    glmark2
+
+Выводит информацию о кадровой частоте и финальный результат в терминал.
+
+Unigine Benchmark
+^^^^^^^^^^^^^^^^^^^^^
+
+Установка:
+
+.. code-block:: bash
+
+    wget https://assets.unigine.com/d/Unigine_Superposition-1.0.run
+    chmod +x Unigine_Superposition-1.0.run
+    ./Unigine_Superposition-1.0.run
+
+Запускать бенчмарк следует при помощи созданного ярлыка в меню приложений.
