@@ -275,3 +275,23 @@
     EndSection
 
 Вместо **intel** укажем реально используемый драйвер видеокарты. Изменения вступят в силу при следующей загрузке системы.
+
+.. index:: benchmark, cpu, system
+.. _benchmark-cpu:
+
+Какой бенчмарк можно использовать для оценки производительности системы?
+===========================================================================
+
+В качестве CPU бенчмарка рекомендуется использовать `sysbench <https://github.com/akopytov/sysbench#usage>`__, либо `stress-ng <https://kernel.ubuntu.com/~cking/stress-ng/>`__:
+
+Установим sysbench:
+
+.. code-block:: bash
+
+    sudo dnf install sysbench
+
+Установим stress-ng:
+
+.. code-block:: bash
+
+    sudo dnf install stress-ng
