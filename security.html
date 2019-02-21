@@ -453,14 +453,14 @@ PermitEmptyPasswords no
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh user@example.org -L <span class="m">3306</span>:127.0.0.1:3306 -N -f
 </pre></div>
 </div>
-<p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост, а <strong>3306</strong> - порт. Параметры <strong>-N -f</strong> заставляют SSH клиент сразу вернуть управление, уйти в фоновый режим и продолжать поддерживать соединение до своего завершения.</p>
+<p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост, а <strong>3306</strong> - порт. Параметры <code class="docutils literal notranslate"><span class="pre">-N</span> <span class="pre">-f</span></code> заставляют SSH клиент сразу вернуть управление, уйти в фоновый режим и продолжать поддерживать соединение до своего завершения.</p>
 </div>
 <div class="section" id="socks-ssh">
 <span id="ssh-socks"></span><span id="index-43"></span><h2>Как настроить виртуальный SOCKS туннель через SSH?<a class="headerlink" href="#socks-ssh" title="Ссылка на этот заголовок">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh user@example.org -D <span class="m">127</span>.0.0.1:8080 -N -f
 </pre></div>
 </div>
-<p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост, а <strong>8080</strong> - локальный порт, на котором будет запущен SSH клиент в режиме эмуляции SOCKS5 сервера. Параметры <strong>-N -f</strong> заставляют SSH клиент сразу вернуть управление, уйти в фоновый режим и продолжать поддерживать соединение до своего завершения.</p>
+<p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост, а <strong>8080</strong> - локальный порт, на котором будет запущен SSH клиент в режиме эмуляции SOCKS5 сервера. Параметры <code class="docutils literal notranslate"><span class="pre">-N</span> <span class="pre">-f</span></code> заставляют SSH клиент сразу вернуть управление, уйти в фоновый режим и продолжать поддерживать соединение до своего завершения.</p>
 <p>После запуска необходимо настроить браузер и другие приложения на работу через данный SOCKS5 прокси.</p>
 </div>
 <div class="section" id="ssh-sftp">
@@ -607,6 +607,27 @@ Match Group sftp
 </div>
 <p>Данный пример сгенерирует 4 криптостойких пароля по 20 символов каждый.</p>
 </div>
+<div class="section" id="users-logged">
+<span id="index-58"></span><span id="id42"></span><h2>Как получить список вошедших в систему пользователей?<a class="headerlink" href="#users-logged" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Список вошедших в систему пользователей можно получить посредством утилиты <strong>who</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>who
+</pre></div>
+</div>
+</div>
+<div class="section" id="users-activity">
+<span id="index-59"></span><span id="id43"></span><h2>Как получить список вошедших в систему пользователей и информацию об их деятельности?<a class="headerlink" href="#users-activity" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Список вошедших в систему пользователей и базовую информацию об их действиях можно получить посредством утилиты <strong>w</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>w
+</pre></div>
+</div>
+</div>
+<div class="section" id="users-last">
+<span id="index-60"></span><span id="id44"></span><h2>Как получить информацию обо всех входах в систему?<a class="headerlink" href="#users-last" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Информацию о любых попытках входа в систему можно получить посредством утилиты <strong>last</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>last
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -692,6 +713,9 @@ Match Group sftp
 <li class="toctree-l2"><a class="reference internal" href="#sudo-multi">Как посредством sudo запустить сразу несколько команд?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#wireshark">Как запускать WireShark без предоставления ему прав суперпользователя?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#password-gen">Как сгенерировать криптостойкий пароль без использования стороннего ПО?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#users-logged">Как получить список вошедших в систему пользователей?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#users-activity">Как получить список вошедших в систему пользователей и информацию об их деятельности?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#users-last">Как получить информацию обо всех входах в систему?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>

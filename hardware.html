@@ -282,6 +282,22 @@ chmod +x Unigine_Superposition-1.0.run
 <p>Запускать бенчмарк следует при помощи созданного ярлыка в меню приложений.</p>
 </div>
 </div>
+<div class="section" id="firmware">
+<span id="linux-firmware"></span><span id="index-14"></span><h2>Что такое firmware и для чего она необходима?<a class="headerlink" href="#firmware" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Firmware - это бинарный проприетарный блоб, содержащий образ прошивки, который загружается и используется определённым устройством.</p>
+<p>В большинстве случаев, соответствующее устройство не будет функционировать без наличия данной прошивки в каталоге прошивок ядра Linux.</p>
+</div>
+<div class="section" id="firmware-install">
+<span id="index-15"></span><span id="id8"></span><h2>Где взять бинарные прошивки для устройств и как их установить?<a class="headerlink" href="#firmware-install" title="Ссылка на этот заголовок">¶</a></h2>
+<p><a class="reference internal" href="#linux-firmware"><span class="std std-ref">Бинарные прошивки</span></a> для большей части устройств уже находятся в пакете <strong>linux-firmware</strong>, но некоторые (например часть принтеров HP), загружают их самостоятельно, либо поставляют внутри отдельных firmware-пакетов.</p>
+</div>
+<div class="section" id="firmware-status">
+<span id="index-16"></span><span id="id9"></span><h2>Как проверить используются ли в моём устройстве бинарные прошивки?<a class="headerlink" href="#firmware-status" title="Ссылка на этот заголовок">¶</a></h2>
+<p>При загрузке проприетарных прошивок ядро обязательно сохраняет информацию об этом в <a class="reference internal" href="administration.html#journal-current"><span class="std std-ref">системный журнал</span></a>, поэтому достаточно лишь отфильтровать его по ключевому слову <em>firmware</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>journalctl -b <span class="p">|</span> grep firmware
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -325,6 +341,9 @@ chmod +x Unigine_Superposition-1.0.run
 <li class="toctree-l2"><a class="reference internal" href="#x11-resulutions">Как прописать список поддерживаемых монитором разрешений?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#benchmark-cpu">Какой бенчмарк можно использовать для оценки производительности системы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#benchmark-gpu">Какой бенчмарк можно использовать для оценки производительности видеокарты?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firmware">Что такое firmware и для чего она необходима?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firmware-install">Где взять бинарные прошивки для устройств и как их установить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firmware-status">Как проверить используются ли в моём устройстве бинарные прошивки?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>

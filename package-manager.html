@@ -183,6 +183,12 @@ sudo dnf system-upgrade reboot
 </pre></div>
 </div>
 <p>Поддерживаются HTTP, HTTPS и SOCKS.</p>
+<p>Если используемый прокси-сервер требует проверки подлинности (аутентификации), то необходимо также указать данные для входа:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>proxy_username=LOGIN
+proxy_password=PASSWORD
+</pre></div>
+</div>
+<p>Здесь <strong>LOGIN</strong> - логин пользователя на прокси-сервере, а <strong>PASSWORD</strong> - его пароль.</p>
 </div>
 <div class="section" id="dnf-weakdeps">
 <span id="index-16"></span><span id="id10"></span><h2>Как отключить установку слабых зависимостей?<a class="headerlink" href="#dnf-weakdeps" title="Ссылка на этот заголовок">¶</a></h2>

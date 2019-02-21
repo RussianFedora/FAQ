@@ -190,7 +190,13 @@ gfx.xrender.enabled = true
 </div>
 <div class="section" id="systemd-analyze">
 <span id="index-18"></span><span id="id13"></span><h2>Как узнать какой сервис замедляет загрузку системы?<a class="headerlink" href="#systemd-analyze" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Вывод информации в виде текста:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemd-analyze blame
+</pre></div>
+</div>
+<p>Вывод информации в виде SVG изображения:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemd-analyze plot &gt; systemd-plot.svg
+xdg-open systemd-plot.svg
 </pre></div>
 </div>
 </div>
