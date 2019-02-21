@@ -243,6 +243,15 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Поддерживаются HTTP, HTTPS и SOCKS.
 
+Если используемый прокси-сервер требует проверки подлинности (аутентификации), то необходимо также указать данные для входа:
+
+.. code-block:: text
+
+    proxy_username=LOGIN
+    proxy_password=PASSWORD
+
+Здесь **LOGIN** - логин пользователя на прокси-сервере, а **PASSWORD** - его пароль.
+
 .. index:: dnf, weak dependencies
 .. _dnf-weakdeps:
 
