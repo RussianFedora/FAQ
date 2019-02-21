@@ -275,9 +275,18 @@
 Как узнать какой сервис замедляет загрузку системы?
 ======================================================
 
+Вывод информации в виде текста:
+
 .. code-block:: bash
 
     systemd-analyze blame
+
+Вывод информации в виде SVG изображения:
+
+.. code-block:: bash
+
+    systemd-analyze plot > systemd-plot.svg
+    xdg-open systemd-plot.svg
 
 .. index:: multimedia, encoding, nvidia
 .. _nvidia-encoding:
