@@ -293,7 +293,7 @@ chmod +x Unigine_Superposition-1.0.run
 </div>
 <div class="section" id="firmware-status">
 <span id="index-16"></span><span id="id9"></span><h2>Как проверить используются ли в моём устройстве бинарные прошивки?<a class="headerlink" href="#firmware-status" title="Ссылка на этот заголовок">¶</a></h2>
-<p>При загрузке проприетарных прошивок ядро обязательно сохраняет информацию об этом в <a class="reference internal" href="administration.html#journal-current"><span class="std std-ref">системный журнал</span></a>, поэтому достаточно лишь отфильтровать его по ключевому слову <em>firmware</em>:</p>
+<p>При загрузке <a class="reference internal" href="#linux-firmware"><span class="std std-ref">бинарных прошивок</span></a> ядро обязательно сохраняет информацию об этом в <a class="reference internal" href="administration.html#journal-current"><span class="std std-ref">системный журнал</span></a>, поэтому достаточно лишь отфильтровать его по ключевому слову <em>firmware</em>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>journalctl -b <span class="p">|</span> grep firmware
 </pre></div>
 </div>
