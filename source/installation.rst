@@ -19,6 +19,14 @@
 
 См. `здесь <https://www.easycoding.org/2017/07/12/sozdayom-fedora-liveusb.html>`__.
 
+.. index:: live, image to ram, ram
+.. _live-to-ram:
+
+Как загрузить Live образ целиком в память?
+==============================================
+
+Для загрузки :ref:`Live образа <live-to-ram>` целиком в память, необходимо выбрать пункт **Start Fedora Live**, нажать **Tab**, затем в строке редактирования параметров добавить ``rd.live.ram`` через пробел сразу после ``quiet`` и нажать **Enter**.
+
 .. index:: package, selection
 .. _package-selection:
 
