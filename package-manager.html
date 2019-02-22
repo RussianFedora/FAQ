@@ -552,6 +552,13 @@ sudo dnf config-manager --set-enabled updates-modular
 </pre></div>
 </div>
 </div>
+<div class="section" id="dnf-remove-32bit">
+<span id="index-58"></span><span id="id40"></span><h2>Как удалить все установленные в системе 32-битные пакеты?<a class="headerlink" href="#dnf-remove-32bit" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удаление всех 32-битных пакетов из системы:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove <span class="s2">&quot;*.i686&quot;</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -635,6 +642,7 @@ sudo dnf config-manager --set-enabled updates-modular
 <li class="toctree-l2"><a class="reference internal" href="#kde-plasma">Как разрешить установку расширений KDE Plasma из веб-браузера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gnome-shell-tray">Как вернуть классический системный лоток (трей) в Gnome Shell?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-user">При запуске dnf без прав суперпользователя он заново загружает и обновляет кэши. Это нормально?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-remove-32bit">Как удалить все установленные в системе 32-битные пакеты?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>

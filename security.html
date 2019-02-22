@@ -628,6 +628,25 @@ Match Group sftp
 </pre></div>
 </div>
 </div>
+<div class="section" id="vpn">
+<span id="vpn-selection"></span><span id="index-61"></span><h2>Хочу обезопасить свой Интернет-трафик. Какую реализацию VPN выбрать?<a class="headerlink" href="#vpn" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="wireguard">
+<h3>WireGuard<a class="headerlink" href="#wireguard" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Cамый современный и актуальный протокол для VPN. Обеспечивает максимальную скорость работы за счёт реализации в виде модуля ядра Linux и надёжную криптографическую защиту от прослушивания.</p>
+</div>
+<div class="section" id="openvpn">
+<h3>OpenVPN<a class="headerlink" href="#openvpn" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Самая популярная и стабильная в настоящее время реализация VPN. Способен работать как через UDP, так и TCP, имеет плагины маскировки под TLS, обеспечивает высокую защищённость, но имеет низкую производительность из-за постоянных переключений между режимами пользователя и ядра.</p>
+</div>
+<div class="section" id="l2tp-ipsec">
+<h3>L2TP/IPSec<a class="headerlink" href="#l2tp-ipsec" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Поддерживается большинством роутеров «из коробки», но является устаревшим. Изначально создавался для Windows, поэтому многие серверы заточены под соответствующие реализации клиентов.</p>
+</div>
+<div class="section" id="pptp">
+<h3>PPTP<a class="headerlink" href="#pptp" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Устаревший, <a class="reference external" href="https://xakep.ru/2012/07/30/59067/">уязвимый by design</a> протокол. Трафик, проходящий через сеть, использующую данный протокол, может быть легко расшифрован за несколько часов. Категорически не рекомендуется к применению даже на устаревшем оборудовании.</p>
+</div>
+</div>
 </div>
 
 
@@ -716,6 +735,7 @@ Match Group sftp
 <li class="toctree-l2"><a class="reference internal" href="#users-logged">Как получить список вошедших в систему пользователей?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#users-activity">Как получить список вошедших в систему пользователей и информацию об их деятельности?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#users-last">Как получить информацию обо всех входах в систему?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vpn">Хочу обезопасить свой Интернет-трафик. Какую реализацию VPN выбрать?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>

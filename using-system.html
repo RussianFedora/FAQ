@@ -751,6 +751,24 @@ export QT_SCALE_FACTOR=2
 </pre></div>
 </div>
 </div>
+<div class="section" id="thunderbird-lighning">
+<span id="thunderbird-symlinks"></span><span id="index-65"></span><h2>В установленном Thunderbird не обновляется расширение Lighning и языковые пакеты. Как исправить?<a class="headerlink" href="#thunderbird-lighning" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Проблема заключается в том, что системные расширения и пакеты с переводами должны копироваться в профиль пользователя при каждом обновлении клиента, но RPM пакетам <a class="reference external" href="https://docs.fedoraproject.org/en-US/packaging-guidelines/">запрещено</a> вносить любые изменения в домашние каталоги пользователей, поэтому они автоматически не обновляются.</p>
+<p>Чтобы исправить проблему необходимо и достаточно создать символические ссылки на XPI файлы, обновляемые пакетом.</p>
+<p>Удалим старые файлы из профилей Thunderbird:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -f ~/.thunderbird/*/extensions/langpack-ru@thunderbird.mozilla.org.xpi
+rm -f ~/.thunderbird/*/extensions/<span class="o">{</span>e2fda1a4-762b-4020-b5ad-a41df1933103<span class="o">}</span>.xpi
+rm -f ~/.thunderbird/*/extensions/langpack-cal-ru@lightning.mozilla.org.xpi
+</pre></div>
+</div>
+<p>Создадим символические ссылки на месте удалённых XPI файлов:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-ru@thunderbird.mozilla.org.xpi ~/.thunderbird/*/extensions/langpack-ru@thunderbird.mozilla.org.xpi
+ln -s /usr/lib64/thunderbird/distribution/extensions/<span class="o">{</span>e2fda1a4-762b-4020-b5ad-a41df1933103<span class="o">}</span>.xpi ~/.thunderbird/*/extensions/<span class="o">{</span>e2fda1a4-762b-4020-b5ad-a41df1933103<span class="o">}</span>.xpi
+ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.mozilla.org.xpi ~/.thunderbird/*/extensions/langpack-cal-ru@lightning.mozilla.org.xpi
+</pre></div>
+</div>
+<p>Перезапустим Thunderbird для того, чтобы изменения вступили в силу.</p>
+</div>
 </div>
 
 
@@ -844,6 +862,7 @@ export QT_SCALE_FACTOR=2
 <li class="toctree-l2"><a class="reference internal" href="#application-locale">Как запустить приложение с другой локалью?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#application-timezone">Как запустить приложение с другим часовым поясом?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#chromium">Как постоянно запускать браузер Chromium с определёнными параметрами?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#thunderbird-lighning">В установленном Thunderbird не обновляется расширение Lighning и языковые пакеты. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
