@@ -751,8 +751,8 @@ export QT_SCALE_FACTOR=2
 </pre></div>
 </div>
 </div>
-<div class="section" id="thunderbird-lighning">
-<span id="thunderbird-symlinks"></span><span id="index-65"></span><h2>В установленном Thunderbird не обновляется расширение Lighning и языковые пакеты. Как исправить?<a class="headerlink" href="#thunderbird-lighning" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="thunderbird-lightning">
+<span id="thunderbird-symlinks"></span><span id="index-65"></span><h2>В установленном Thunderbird не обновляется расширение Lightning и языковые пакеты. Как исправить?<a class="headerlink" href="#thunderbird-lightning" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проблема заключается в том, что системные расширения и пакеты с переводами должны копироваться в профиль пользователя при каждом обновлении клиента, но RPM пакетам <a class="reference external" href="https://docs.fedoraproject.org/en-US/packaging-guidelines/">запрещено</a> вносить любые изменения в домашние каталоги пользователей, поэтому они автоматически не обновляются.</p>
 <p>Чтобы исправить проблему необходимо и достаточно создать символические ссылки на XPI файлы, обновляемые пакетом.</p>
 <p>Удалим старые файлы из профилей Thunderbird:</p>
@@ -862,7 +862,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#application-locale">Как запустить приложение с другой локалью?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#application-timezone">Как запустить приложение с другим часовым поясом?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#chromium">Как постоянно запускать браузер Chromium с определёнными параметрами?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#thunderbird-lighning">В установленном Thunderbird не обновляется расширение Lighning и языковые пакеты. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#thunderbird-lightning">В установленном Thunderbird не обновляется расширение Lightning и языковые пакеты. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
