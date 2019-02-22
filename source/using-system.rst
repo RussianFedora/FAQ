@@ -1168,3 +1168,31 @@ KDE Connect не видит мой смартфон. Как исправить?
     --disk-cache-dir /tmp/chromium
     # Установим предельный размер дискового кэша.
     --disk-cache-size 268435456
+
+.. index:: thunderbird, mail client, email, extension, translation, lightning, langpack
+.. _thunderbird-symlinks:
+
+В установленном Thunderbird не обновляется расширение Lighning и языковые пакеты. Как исправить?
+====================================================================================================
+
+Проблема заключается в том, что системные расширения и пакеты с переводами должны копироваться в профиль пользователя при каждом обновлении клиента, но RPM пакетам `запрещено <https://docs.fedoraproject.org/en-US/packaging-guidelines/>`__ вносить любые изменения в домашние каталоги пользователей, поэтому они автоматически не обновляются.
+
+Чтобы исправить проблему необходимо и достаточно создать символические ссылки на XPI файлы, обновляемые пакетом.
+
+Удалим старые файлы из профилей Thunderbird:
+
+.. code-block:: bash
+
+    rm -f ~/.thunderbird/*/extensions/langpack-ru@thunderbird.mozilla.org.xpi
+    rm -f ~/.thunderbird/*/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi
+    rm -f ~/.thunderbird/*/extensions/langpack-cal-ru@lightning.mozilla.org.xpi
+
+Создадим символические ссылки на месте удалённых XPI файлов:
+
+.. code-block:: bash
+
+    ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-ru@thunderbird.mozilla.org.xpi ~/.thunderbird/*/extensions/langpack-ru@thunderbird.mozilla.org.xpi
+    ln -s /usr/lib64/thunderbird/distribution/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi ~/.thunderbird/*/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi
+    ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.mozilla.org.xpi ~/.thunderbird/*/extensions/langpack-cal-ru@lightning.mozilla.org.xpi
+
+Перезапустим Thunderbird для того, чтобы изменения вступили в силу.
