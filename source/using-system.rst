@@ -1196,3 +1196,15 @@ KDE Connect не видит мой смартфон. Как исправить?
     ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.mozilla.org.xpi ~/.thunderbird/*/extensions/langpack-cal-ru@lightning.mozilla.org.xpi
 
 Перезапустим Thunderbird для того, чтобы изменения вступили в силу.
+
+.. index:: x11, wayland, session
+.. _session-type:
+
+Как определить какой тип сессии используется: X11 или Wayland?
+=================================================================
+
+Для определения типа текущей сессии, необходимо получить значение глобальной :ref:`переменной окружения <env-set>` **XDG_SESSION_TYPE**:
+
+.. code-block:: bash
+
+    echo $XDG_SESSION_TYPE
