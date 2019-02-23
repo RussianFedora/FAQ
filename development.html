@@ -336,6 +336,22 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 </div>
 <p>Запустим приложение <code class="docutils literal notranslate"><span class="pre">./rpm-unneeded</span></code> и получим список установленных пакетов, от которых никто не зависит.</p>
 </div>
+<div class="section" id="cpack-gnu-linux">
+<span id="using-cpack"></span><span id="index-17"></span><h2>Можно ли использовать cpack для сборки пакетов для GNU/Linux?<a class="headerlink" href="#cpack-gnu-linux" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Нет, использовать cpack категорически не рекомендуется по следующим причинам:</p>
+<blockquote>
+<div><ul class="simple">
+<li>создаёт RPM и DEB пакеты в виде архивов;</li>
+<li>не добавляет метаданные в создаваемые пакеты;</li>
+<li>не прописывает зависимости от библиотек и других пакетов;</li>
+<li>не экспортирует provides;</li>
+<li>не обрабатывает <a class="reference internal" href="using-system.html#file-types"><span class="std std-ref">mime-типы</span></a>;</li>
+<li>не добавляет обязательные скриптлеты;</li>
+<li>не соблюдает гайдлайны дистрибутивов.</li>
+</ul>
+</div></blockquote>
+<p>Вместо cpack следует собирать <a class="reference internal" href="#create-package"><span class="std std-ref">нативные пакеты</span></a>.</p>
+</div>
 </div>
 
 
@@ -383,6 +399,7 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <li class="toctree-l2"><a class="reference internal" href="#ld-preload">Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lto">Как можно активировать LTO оптимизации при сборке пакета?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpm-unneeded">Как вывести список установленных пакетов, от которых никто не зависит?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cpack-gnu-linux">Можно ли использовать cpack для сборки пакетов для GNU/Linux?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>

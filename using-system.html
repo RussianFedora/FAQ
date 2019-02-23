@@ -769,6 +769,13 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 <p>Перезапустим Thunderbird для того, чтобы изменения вступили в силу.</p>
 </div>
+<div class="section" id="x11-wayland">
+<span id="session-type"></span><span id="index-66"></span><h2>Как определить какой тип сессии используется: X11 или Wayland?<a class="headerlink" href="#x11-wayland" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для определения типа текущей сессии, необходимо получить значение глобальной <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменной окружения</span></a> <strong>XDG_SESSION_TYPE</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="nv">$XDG_SESSION_TYPE</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -863,6 +870,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#application-timezone">Как запустить приложение с другим часовым поясом?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#chromium">Как постоянно запускать браузер Chromium с определёнными параметрами?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#thunderbird-lightning">В установленном Thunderbird не обновляется расширение Lightning и языковые пакеты. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x11-wayland">Как определить какой тип сессии используется: X11 или Wayland?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>

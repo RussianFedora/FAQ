@@ -647,6 +647,14 @@ Match Group sftp
 <p>Устаревший, <a class="reference external" href="https://xakep.ru/2012/07/30/59067/">уязвимый by design</a> протокол. Трафик, проходящий через сеть, использующую данный протокол, может быть легко расшифрован за несколько часов. Категорически не рекомендуется к применению даже на устаревшем оборудовании.</p>
 </div>
 </div>
+<div class="section" id="com">
+<span id="com-dialout"></span><span id="index-62"></span><h2>Как получить доступ к COM портам без наличия прав суперпользователя?<a class="headerlink" href="#com" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для того, чтобы получить доступ к <a class="reference internal" href="hardware.html#screen-com"><span class="std std-ref">COM порту (RS-232)</span></a> без наличия прав суперпользователя, необходимо добавить свой аккаунт в группу <strong>dialout</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G dialout <span class="k">$(</span>whoami<span class="k">)</span>
+</pre></div>
+</div>
+<p>Изменения вступят в силу при следующем входе в систему.</p>
+</div>
 </div>
 
 
@@ -736,6 +744,7 @@ Match Group sftp
 <li class="toctree-l2"><a class="reference internal" href="#users-activity">Как получить список вошедших в систему пользователей и информацию об их деятельности?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#users-last">Как получить информацию обо всех входах в систему?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#vpn">Хочу обезопасить свой Интернет-трафик. Какую реализацию VPN выбрать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#com">Как получить доступ к COM портам без наличия прав суперпользователя?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
