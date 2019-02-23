@@ -223,6 +223,8 @@
 
 Для завершения сессии следует нажать **Ctrl + A** и **k**.
 
+Если при попытке подключения появляется сообщение об ошибке *access denied*, необходимо добавить аккаунт в :ref:`группу dialout <com-dialout>`.
+
 .. index:: monitor, resolution, xorg, x11, dac, dhmi, d-sub, vga
 .. _dac-ddc:
 
