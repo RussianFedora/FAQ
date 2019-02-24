@@ -187,10 +187,10 @@ sudo mount -t tmpfs tmpfs tmp
 <div class="section" id="fedora-windows">
 <span id="windows-utc"></span><span id="index-18"></span><h2>У меня в дуалбуте с Fedora установлена Windows и часы постоянно сбиваются. В чём дело?<a class="headerlink" href="#fedora-windows" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы такого не происходило, обе операционные системы должны хранить время в формате UTC. Для этого в Windows нужно применить следующий файл реестра:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Windows Registry Editor Version 5.00
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">Windows Registry Editor Version 5.00</span>
 
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation]
-&quot;RealTimeIsUniversal&quot;=dword:00000001
+<span class="k">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation]</span>
+<span class="na">&quot;RealTimeIsUniversal&quot;</span><span class="o">=</span><span class="s">dword:00000001</span>
 </pre></div>
 </div>
 </div>

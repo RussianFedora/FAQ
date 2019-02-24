@@ -299,6 +299,21 @@ chmod +x Unigine_Superposition-1.0.run
 </pre></div>
 </div>
 </div>
+<div class="section" id="display-resolution">
+<span id="index-17"></span><span id="id10"></span><h2>Можно ли использовать несколько дисплеев с разным разрешением?<a class="headerlink" href="#display-resolution" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Дисплеи с разным разрешением поддерживаются как X11, так и Wayland в полной мере и настраиваются либо в графическом режиме средствами установленной графической среды, либо через <strong>xrandr</strong>.</p>
+</div>
+<div class="section" id="dpi">
+<span id="display-dpi"></span><span id="index-18"></span><h2>Можно ли использовать несколько дисплеев с разным значением DPI?<a class="headerlink" href="#dpi" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Дисплеи с разным значением DPI (PPI) не поддерживаются в X11 (но будут в будущем полноценно поддерживаться в Wayland), поэтому для вывода изображения на таких конфигурациях применяется одна из двух конфигураций:</p>
+<blockquote>
+<div><ul class="simple">
+<li>upscale (базовым выставляется наиболее низкое значение DPI);</li>
+<li>downscale (базовым выставляется наиболее высокое значение DPI).</li>
+</ul>
+</div></blockquote>
+<p>Оба этих метода далеки от совершенства, что сильно портит качество изображения. Таким образом, при выборе нескольких мониторов следует убедиться в том, чтобы их DPI были одинаковыми.</p>
+</div>
 </div>
 
 
@@ -345,6 +360,8 @@ chmod +x Unigine_Superposition-1.0.run
 <li class="toctree-l2"><a class="reference internal" href="#firmware">Что такое firmware и для чего она необходима?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firmware-install">Где взять бинарные прошивки для устройств и как их установить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firmware-status">Как проверить используются ли в моём устройстве бинарные прошивки?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#display-resolution">Можно ли использовать несколько дисплеев с разным разрешением?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dpi">Можно ли использовать несколько дисплеев с разным значением DPI?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
