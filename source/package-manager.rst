@@ -857,3 +857,11 @@ Java 11:
 .. code-block:: bash
 
     sudo dnf remove "*.i686"
+
+.. index:: dnf, mirror, repository
+.. _dnf-mirror:
+
+Можно ли создать собственное зеркало репозиториев Fedora?
+============================================================
+
+Да, см. `здесь <https://fedoraproject.org/wiki/Infrastructure/Mirroring>`__.
