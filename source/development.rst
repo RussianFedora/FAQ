@@ -295,6 +295,48 @@
 
 Создадим новый Pull Request.
 
+.. index:: c++, cxx, application, console
+.. _cxx-console:
+
+Как скомпилировать простую программу на языке C++ из консоли?
+================================================================
+
+Установим компилятор GCC-C++ (G++) и ряд вспомогательных компонентов:
+
+.. code-block:: bash
+
+    sudo dnf install gcc-c++ rpm-build
+
+Создадим простейший пример ``helloworld.cpp``:
+
+.. code-block:: c++
+
+    #include <iostream>
+
+    int main(int argc, char *argv[], char *env[])
+    {
+        std::cout << "Hello, World!" << std::endl;
+        return 0;
+    }
+
+Скомпилируем и слинкуем его:
+
+.. code-block:: bash
+
+    g++ $(rpm -E %{optflags}) -fPIC helloworld.cpp -o helloworld $(rpm -E %{build_ldflags}) -lstdc++
+
+Здесь **g++** - запускающий файл файл компилятора, **helloworld.cpp** - файл с исходным кодом (если их несколько, то разделяются пробелом), **helloworld** - имя результирующего бинарника, **-lstdc++** - указание компоновщику на необходимость линковки со стандартной библиотекой C++.
+
+Корректные флаги компиляции и компоновки вставляются автоматически из соответствующих макросов RPM.
+
+Запустим результат сборки:
+
+.. code-block:: bash
+
+    ./helloworld
+
+Если всё сделано верно, то увидим сообщение *Hello, World!* в консоли.
+
 .. index:: library, shared library, so, ld preload, security, gcc, c, ld
 .. _ldpreload-safety:
 
