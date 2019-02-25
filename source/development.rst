@@ -480,7 +480,7 @@
 
 .. code-block:: bash
 
-    gcc $(rpm -E %{optflags}) -fPIC rpm-unneeded.c -o rpm-unneeded -lsolv -lsolvext
+    gcc $(rpm -E %{optflags}) -fPIC rpm-unneeded.c -o rpm-unneeded $(rpm -E %{build_ldflags}) -lsolv -lsolvext
 
 Запустим приложение ``./rpm-unneeded`` и получим список установленных пакетов, от которых никто не зависит.
 
