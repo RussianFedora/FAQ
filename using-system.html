@@ -776,6 +776,18 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </pre></div>
 </div>
 </div>
+<div class="section" id="qr">
+<span id="qr-code"></span><span id="index-67"></span><h2>Как распознать QR-код или штрих-код из консоли?<a class="headerlink" href="#qr" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для распознавания бар-кода на изображении и получения его содержимого воспользуемся пакетом <strong>zbar</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install zbar
+</pre></div>
+</div>
+<p>Применим утилиту <strong>zbarimg</strong> для получения содержимого кодов внутри файла изображения <code class="docutils literal notranslate"><span class="pre">foo-bar.png</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>zbarimg --noxml foo-bar.png
+</pre></div>
+</div>
+<p>Результат (или результаты (по одному на каждый обнаруженный бар-код)) будут выведены в консоль.</p>
+</div>
 </div>
 
 
@@ -871,6 +883,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#chromium">Как постоянно запускать браузер Chromium с определёнными параметрами?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#thunderbird-lightning">В установленном Thunderbird не обновляется расширение Lightning и языковые пакеты. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x11-wayland">Как определить какой тип сессии используется: X11 или Wayland?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qr">Как распознать QR-код или штрих-код из консоли?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>

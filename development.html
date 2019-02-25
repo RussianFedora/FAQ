@@ -225,8 +225,36 @@ git rebase master
 </div>
 <p>Создадим новый Pull Request.</p>
 </div>
+<div class="section" id="c">
+<span id="cxx-console"></span><span id="index-14"></span><h2>Как скомпилировать простую программу на языке C++ из консоли?<a class="headerlink" href="#c" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим компилятор GCC-C++ (G++) и ряд вспомогательных компонентов:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc-c++ rpm-build
+</pre></div>
+</div>
+<p>Создадим простейший пример <code class="docutils literal notranslate"><span class="pre">helloworld.cpp</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[],</span> <span class="kt">char</span> <span class="o">*</span><span class="n">env</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Hello, World!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Скомпилируем и слинкуем его:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++ <span class="k">$(</span>rpm -E %<span class="o">{</span>optflags<span class="o">}</span><span class="k">)</span> -fPIC helloworld.cpp -o helloworld <span class="k">$(</span>rpm -E %<span class="o">{</span>build_ldflags<span class="o">}</span><span class="k">)</span> -lstdc++
+</pre></div>
+</div>
+<p>Здесь <strong>g++</strong> - запускающий файл файл компилятора, <strong>helloworld.cpp</strong> - файл с исходным кодом (если их несколько, то разделяются пробелом), <strong>helloworld</strong> - имя результирующего бинарника, <strong>-lstdc++</strong> - указание компоновщику на необходимость линковки со стандартной библиотекой C++.</p>
+<p>Корректные флаги компиляции и компоновки вставляются автоматически из соответствующих макросов RPM.</p>
+<p>Запустим результат сборки:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./helloworld
+</pre></div>
+</div>
+<p>Если всё сделано верно, то увидим сообщение <em>Hello, World!</em> в консоли.</p>
+</div>
 <div class="section" id="ld-preload">
-<span id="ldpreload-safety"></span><span id="index-14"></span><h2>Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?<a class="headerlink" href="#ld-preload" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="ldpreload-safety"></span><span id="index-15"></span><h2>Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?<a class="headerlink" href="#ld-preload" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Нет, это не безопасно, т.к. существует возможность создания внутри библиотек <a class="reference external" href="https://gcc.gnu.org/onlinedocs/gcc-8.2.0/gcc/Common-Function-Attributes.html">суперглобальных конструкторов</a>, которые будут выполняться в момент присоединения библиотеки <em>до запуска приложения</em>.</p>
 <p>Создадим и скомпилируем простой пример <code class="docutils literal notranslate"><span class="pre">example.c</span></code>:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
@@ -244,7 +272,7 @@ git rebase master
 </div>
 <p>Данный метод содержит сразу два суперглобальных конструктора с указанием приоритетов. Чем ниже приоритет, тем скорее данный метод будет исполнен.</p>
 <p>Скомпилируем и слинкуем наш пример:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc -shared <span class="k">$(</span>rpm -E %<span class="o">{</span>optflags<span class="o">}</span><span class="k">)</span> -fPIC example.c -o example.so <span class="k">$(</span>rpm -E %<span class="o">{</span>__global_ldflags<span class="o">}</span><span class="k">)</span> -lc
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc -shared <span class="k">$(</span>rpm -E %<span class="o">{</span>optflags<span class="o">}</span><span class="k">)</span> -fPIC example.c -o example.so <span class="k">$(</span>rpm -E %<span class="o">{</span>build_ldflags<span class="o">}</span><span class="k">)</span> -lc
 </pre></div>
 </div>
 <p>Внедрим нашу библиотеку в известный доверенный процесс, например <strong>whoami</strong>:</p>
@@ -260,11 +288,11 @@ user1
 <p>Разумеется, вместо безобидных вызовов функции printf() может находиться абсолютно любой код, в т.ч. вредоносный.</p>
 </div>
 <div class="section" id="lto">
-<span id="enable-lto"></span><span id="index-15"></span><h2>Как можно активировать LTO оптимизации при сборке пакета?<a class="headerlink" href="#lto" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="enable-lto"></span><span id="index-16"></span><h2>Как можно активировать LTO оптимизации при сборке пакета?<a class="headerlink" href="#lto" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для активации <a class="reference external" href="https://gcc.gnu.org/wiki/LinkTimeOptimization">LTO оптимизаций</a> необходимо и достаточно передать параметр <code class="docutils literal notranslate"><span class="pre">-flto</span></code> как для компилятора (<strong>CFLAGS</strong> и/или <strong>CXXFLAGS</strong>), так и для компоновщика.</p>
 <p>Самый простой способ сделать это - переопределение значений стандартных макросов внутри SPEC файла:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global optflags %{optflags} -flto
-%global __global_ldflags %{__global_ldflags} -flto
+%global build_ldflags %{build_ldflags} -flto
 </pre></div>
 </div>
 <p>Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то также необходимо переопределить ряд <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> внутри секции <code class="docutils literal notranslate"><span class="pre">%build</span></code>:</p>
@@ -282,7 +310,7 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <p>В противном случае появится ошибка <em>plugin needed to handle lto object</em>.</p>
 </div>
 <div class="section" id="rpm-unneeded">
-<span id="index-16"></span><span id="id9"></span><h2>Как вывести список установленных пакетов, от которых никто не зависит?<a class="headerlink" href="#rpm-unneeded" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-17"></span><span id="id9"></span><h2>Как вывести список установленных пакетов, от которых никто не зависит?<a class="headerlink" href="#rpm-unneeded" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В настоящее время данная функциональность отсутствует в dnf «из коробки», поэтому напишем и скомпилируем небольшую программу на языке C, реализующую это средствами библиотеки <strong>libsolv</strong>.</p>
 <p>Установим компилятор и необходимые для сборки библиотеки:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc libsolv-devel
@@ -331,13 +359,13 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 </pre></div>
 </div>
 <p>Скомпилируем и слинкуем приложение:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc <span class="k">$(</span>rpm -E %<span class="o">{</span>optflags<span class="o">}</span><span class="k">)</span> -fPIC rpm-unneeded.c -o rpm-unneeded -lsolv -lsolvext
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc <span class="k">$(</span>rpm -E %<span class="o">{</span>optflags<span class="o">}</span><span class="k">)</span> -fPIC rpm-unneeded.c -o rpm-unneeded <span class="k">$(</span>rpm -E %<span class="o">{</span>build_ldflags<span class="o">}</span><span class="k">)</span> -lsolv -lsolvext
 </pre></div>
 </div>
 <p>Запустим приложение <code class="docutils literal notranslate"><span class="pre">./rpm-unneeded</span></code> и получим список установленных пакетов, от которых никто не зависит.</p>
 </div>
 <div class="section" id="cpack-gnu-linux">
-<span id="using-cpack"></span><span id="index-17"></span><h2>Можно ли использовать cpack для сборки пакетов для GNU/Linux?<a class="headerlink" href="#cpack-gnu-linux" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="using-cpack"></span><span id="index-18"></span><h2>Можно ли использовать cpack для сборки пакетов для GNU/Linux?<a class="headerlink" href="#cpack-gnu-linux" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Нет, использовать cpack категорически не рекомендуется по следующим причинам:</p>
 <blockquote>
 <div><ul class="simple">
@@ -353,7 +381,7 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <p>Вместо cpack следует собирать <a class="reference internal" href="#create-package"><span class="std std-ref">нативные пакеты</span></a>.</p>
 </div>
 <div class="section" id="library-path">
-<span id="index-18"></span><span id="id10"></span><h2>Приложение собрано со старой версией библиотеки. Как заставить его работать?<a class="headerlink" href="#library-path" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-19"></span><span id="id10"></span><h2>Приложение собрано со старой версией библиотеки. Как заставить его работать?<a class="headerlink" href="#library-path" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если приложение было собрано со старой версией библиотеки <strong>foo-bar</strong>, которой уже нет в репозиториях и его требуется запустить, существует два способа:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -376,6 +404,10 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 </pre></div>
 </div>
 <p>Если всё сделано верно, приложение успешно стартует.</p>
+</div>
+<div class="section" id="fedora-licenses">
+<span id="index-20"></span><span id="id11"></span><h2>Проекты под какими лицензиями допускается распространять в репозиториях?<a class="headerlink" href="#fedora-licenses" title="Ссылка на этот заголовок">¶</a></h2>
+<p>См. <a class="reference external" href="https://fedoraproject.org/wiki/Licensing:Main">здесь</a>.</p>
 </div>
 </div>
 
@@ -421,11 +453,13 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <li class="toctree-l2"><a class="reference internal" href="#env-set">Как задать переменную окружения?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git">Как правильно настроить Git для работы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-pull-request">Я хочу внести правки в проект. Как правильно отправить их в апстрим?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c">Как скомпилировать простую программу на языке C++ из консоли?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ld-preload">Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lto">Как можно активировать LTO оптимизации при сборке пакета?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpm-unneeded">Как вывести список установленных пакетов, от которых никто не зависит?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cpack-gnu-linux">Можно ли использовать cpack для сборки пакетов для GNU/Linux?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#library-path">Приложение собрано со старой версией библиотеки. Как заставить его работать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora-licenses">Проекты под какими лицензиями допускается распространять в репозиториях?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
