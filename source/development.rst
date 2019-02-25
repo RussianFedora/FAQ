@@ -325,7 +325,7 @@
 
 .. code-block:: bash
 
-    gcc -shared $(rpm -E %{optflags}) -fPIC example.c -o example.so $(rpm -E %{__global_ldflags}) -lc
+    gcc -shared $(rpm -E %{optflags}) -fPIC example.c -o example.so $(rpm -E %{build_ldflags}) -lc
 
 Внедрим нашу библиотеку в известный доверенный процесс, например **whoami**:
 
@@ -356,7 +356,7 @@
 .. code-block:: text
 
     %global optflags %{optflags} -flto
-    %global __global_ldflags %{__global_ldflags} -flto
+    %global build_ldflags %{build_ldflags} -flto
 
 Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то также необходимо переопределить ряд :ref:`переменных окружения <env-set>` внутри секции ``%build``:
 
