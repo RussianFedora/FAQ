@@ -655,6 +655,18 @@ Match Group sftp
 </div>
 <p>Изменения вступят в силу при следующем входе в систему.</p>
 </div>
+<div class="section" id="gnupg-kwallet">
+<span id="gpg-kwallet"></span><span id="index-63"></span><h2>Можно ли сохранить пароль GnuPG ключа в связке ключей KWallet?<a class="headerlink" href="#gnupg-kwallet" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Установим пакет <strong>kwalletcli</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install kwalletcli
+</pre></div>
+</div>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">~/.gnupg/gpg-agent.conf</span></code> в текстовом редакторе и добавим строку:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pinentry-program /usr/bin/pinentry-kwallet
+</pre></div>
+</div>
+<p>Выполним выход из системы. При следующем вводе пароля расшифровки закрытого ключа, KWallet предложит сохранить его в связке ключей.</p>
+</div>
 </div>
 
 
@@ -745,6 +757,7 @@ Match Group sftp
 <li class="toctree-l2"><a class="reference internal" href="#users-last">Как получить информацию обо всех входах в систему?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#vpn">Хочу обезопасить свой Интернет-трафик. Какую реализацию VPN выбрать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#com">Как получить доступ к COM портам без наличия прав суперпользователя?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gnupg-kwallet">Можно ли сохранить пароль GnuPG ключа в связке ключей KWallet?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
