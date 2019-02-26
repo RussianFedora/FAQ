@@ -1015,3 +1015,23 @@ PPTP
     sudo usermod -a -G dialout $(whoami)
 
 Изменения вступят в силу при следующем входе в систему.
+
+.. index:: gpg, gnupg, password, kwallet, kde
+.. _gpg-kwallet:
+
+Можно ли сохранить пароль GnuPG ключа в связке ключей KWallet?
+=================================================================
+
+Да. Установим пакет **kwalletcli**:
+
+.. code-block:: bash
+
+    sudo dnf install kwalletcli
+
+Откроем файл ``~/.gnupg/gpg-agent.conf`` в текстовом редакторе и добавим строку:
+
+.. code-block:: text
+
+    pinentry-program /usr/bin/pinentry-kwallet
+
+Выполним выход из системы. При следующем вводе пароля расшифровки закрытого ключа, KWallet предложит сохранить его в связке ключей.
