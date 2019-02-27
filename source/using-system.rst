@@ -193,6 +193,26 @@
 
     find . -maxdepth 1 -type f -name "*.ogg" -exec ffmpeg -i "{}" -acodec mp3 -ab 192k "$(basename {}).mp3" \;
 
+.. index:: files, remove, find
+.. _remove-old-files:
+
+Как удалить любые файлы, старше 2 суток из указанного каталога?
+==================================================================
+
+Ресурсивно удаляем файлы старше 2 суток в указанном каталоге:
+
+.. code-block:: bash
+
+    find ~/foo-bar -type f -mtime +2 -delete
+
+Удаляем файлы старше 2 суток в указанном каталоге с ограничением рекурсии:
+
+.. code-block:: bash
+
+    find ~/foo-bar -maxdepth 1 -type f -mtime +2 -delete
+
+Здесь **~/foo-bar** - начальный каталог, в котором производится удаление.
+
 .. index:: kde, gtk, double-click
 .. _double-click-speed:
 
