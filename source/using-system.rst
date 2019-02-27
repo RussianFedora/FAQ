@@ -181,7 +181,7 @@
 
 Полученный файл ``~/trace.log`` также следует загрузить на сервис.
 
-.. index:: converting multiple files, convert
+.. index:: converting multiple files, convert, find
 .. _convert-multiple-files:
 
 Как конвертировать множество файлов в mp3 из текущего каталога?
