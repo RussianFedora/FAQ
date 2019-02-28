@@ -158,23 +158,27 @@ sudo mount -t tmpfs tmpfs tmp
 <span id="using-openvpn"></span><span id="index-13"></span><h2>Как поднять OpenVPN сервер в Fedora?<a class="headerlink" href="#openvpn-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2017/07/24/podnimaem-ovn-server-na-fedora.html">здесь</a>. В данной статье вместо <strong>ovn</strong> следует использовать <strong>openvpn</strong> во всех путях и именах юнитов.</p>
 </div>
+<div class="section" id="wireguard-fedora">
+<span id="using-wireguard"></span><span id="index-14"></span><h2>Как поднять WireGuard сервер в Fedora?<a class="headerlink" href="#wireguard-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>См. <a class="reference external" href="https://www.easycoding.org/2019/02/28/podnimaem-wireguard-server-na-fedora.html">здесь</a>.</p>
+</div>
 <div class="section" id="systemd">
-<span id="systemd-info"></span><span id="index-14"></span><h2>Что такое systemd и как с ним работать?<a class="headerlink" href="#systemd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="systemd-info"></span><span id="index-15"></span><h2>Что такое systemd и как с ним работать?<a class="headerlink" href="#systemd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2017/11/05/upravlyaem-systemd-v-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="matrix-fedora">
-<span id="matrix-server"></span><span id="index-15"></span><h2>Как поднять свой сервер Matrix в Fedora?<a class="headerlink" href="#matrix-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="matrix-server"></span><span id="index-16"></span><h2>Как поднять свой сервер Matrix в Fedora?<a class="headerlink" href="#matrix-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2018/04/15/podnimaem-sobstvennyj-matrix-server-v-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="drop-fs-caches">
-<span id="index-16"></span><span id="id12"></span><h2>Как очистить кэши и буферы всех файловых систем?<a class="headerlink" href="#drop-fs-caches" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-17"></span><span id="id12"></span><h2>Как очистить кэши и буферы всех файловых систем?<a class="headerlink" href="#drop-fs-caches" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы очистить кэши и буферы нужно выполнить:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sync <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="m">3</span> &gt; /proc/sys/vm/drop_caches <span class="o">&amp;&amp;</span> sync
 </pre></div>
 </div>
 </div>
 <div class="section" id="utc">
-<span id="system-time-utc"></span><span id="index-17"></span><h2>Как настроить системные часы в UTC или локального времени и наоборот?<a class="headerlink" href="#utc" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="system-time-utc"></span><span id="index-18"></span><h2>Как настроить системные часы в UTC или локального времени и наоборот?<a class="headerlink" href="#utc" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Переключение аппаратных часов компьютера в UTC из localtime:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo timedatectl set-local-rtc no
 </pre></div>
@@ -185,7 +189,7 @@ sudo mount -t tmpfs tmpfs tmp
 </div>
 </div>
 <div class="section" id="fedora-windows">
-<span id="windows-utc"></span><span id="index-18"></span><h2>У меня в дуалбуте с Fedora установлена Windows и часы постоянно сбиваются. В чём дело?<a class="headerlink" href="#fedora-windows" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="windows-utc"></span><span id="index-19"></span><h2>У меня в дуалбуте с Fedora установлена Windows и часы постоянно сбиваются. В чём дело?<a class="headerlink" href="#fedora-windows" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы такого не происходило, обе операционные системы должны хранить время в формате UTC. Для этого в Windows нужно применить следующий файл реестра:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">Windows Registry Editor Version 5.00</span>
 
@@ -195,7 +199,7 @@ sudo mount -t tmpfs tmpfs tmp
 </div>
 </div>
 <div class="section" id="fedora">
-<span id="simple-web-server"></span><span id="index-19"></span><h2>Как запустить простейший веб-сервер в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="simple-web-server"></span><span id="index-20"></span><h2>Как запустить простейший веб-сервер в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для запуска простейшего веб-сервера можно использовать Python и модуль, входящий в состав базового пакета:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m http.server <span class="m">8080</span>
 </pre></div>
@@ -203,7 +207,7 @@ sudo mount -t tmpfs tmpfs tmp
 <p>Веб-сервер будет запущен на порту <strong>8080</strong>. В качестве webroot будет использоваться текущий рабочий каталог.</p>
 </div>
 <div class="section" id="change-hostname">
-<span id="index-20"></span><span id="id13"></span><h2>Как изменить имя хоста?<a class="headerlink" href="#change-hostname" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-21"></span><span id="id13"></span><h2>Как изменить имя хоста?<a class="headerlink" href="#change-hostname" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Изменение имени хоста возможно посредством <strong>hostnamectl</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hostnamectl set-hostname NEW
 </pre></div>
@@ -211,11 +215,11 @@ sudo mount -t tmpfs tmpfs tmp
 <p>Здесь вместо <strong>NEW</strong> следует указать новое значение. Изменения вступят в силу немедленно.</p>
 </div>
 <div class="section" id="network-configuration">
-<span id="index-21"></span><span id="id14"></span><h2>Как лучше настраивать сетевые подключения?<a class="headerlink" href="#network-configuration" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-22"></span><span id="id14"></span><h2>Как лучше настраивать сетевые подключения?<a class="headerlink" href="#network-configuration" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В Fedora для настройки сети используется Network Manager. Для работы с ним доступны как графические менеджеры (встроены в каждую DE), так и консольный <strong>nm-cli</strong>.</p>
 </div>
 <div class="section" id="lvm-liveusb">
-<span id="fs-check-lvm"></span><span id="index-22"></span><h2>Как мне проверить ФС в составе LVM с LiveUSB?<a class="headerlink" href="#lvm-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fs-check-lvm"></span><span id="index-23"></span><h2>Как мне проверить ФС в составе LVM с LiveUSB?<a class="headerlink" href="#lvm-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если файловая система была повреждена, необходимо запустить <strong>fsck</strong> и разрешить ему исправить её. При использовании настроек по умолчанию (LVM, ФС ext4) это делается так:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/mapper/fedora-root
 fsck -t ext4 /dev/mapper/fedora-home
@@ -224,7 +228,7 @@ fsck -t ext4 /dev/mapper/fedora-home
 <p>Если вместо ext4 применяется другая файловая система, необходимо указать её после параметра <strong>-t</strong>.</p>
 </div>
 <div class="section" id="liveusb">
-<span id="fs-check-partitions"></span><span id="index-23"></span><h2>Как мне проверить ФС при использовании классических разделов с LiveUSB?<a class="headerlink" href="#liveusb" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fs-check-partitions"></span><span id="index-24"></span><h2>Как мне проверить ФС при использовании классических разделов с LiveUSB?<a class="headerlink" href="#liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если используется классическая схема с обычными разделами, то утилите <strong>fsck</strong> необходимо передавать соответствующее блочное устройство, например:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/sda2
 fsck -t ext4 /dev/sda3
@@ -237,7 +241,7 @@ fsck -t ext4 /dev/sda3
 </div>
 </div>
 <div class="section" id="luks-liveusb">
-<span id="fs-check-luks"></span><span id="index-24"></span><h2>Как мне проверить ФС на зашифрованном LUKS разделе с LiveUSB?<a class="headerlink" href="#luks-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fs-check-luks"></span><span id="index-25"></span><h2>Как мне проверить ФС на зашифрованном LUKS разделе с LiveUSB?<a class="headerlink" href="#luks-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если используются зашифрованные LUKS разделы, то сначала откроем соответствующее устройство:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cryptsetup luksOpen /dev/sda2 luks-root
 </pre></div>
@@ -254,19 +258,19 @@ fsck -t ext4 /dev/sda3
 </div>
 </div>
 <div class="section" id="dlna">
-<span id="dlna-server"></span><span id="index-25"></span><h2>Как поднять DLNA сервер в локальной сети?<a class="headerlink" href="#dlna" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="dlna-server"></span><span id="index-26"></span><h2>Как поднять DLNA сервер в локальной сети?<a class="headerlink" href="#dlna" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2018/09/08/podnimaem-dlna-server-v-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="deduplication-memory">
-<span id="index-26"></span><span id="id15"></span><h2>Возможна ли полная дедупликация оперативной памяти?<a class="headerlink" href="#deduplication-memory" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-27"></span><span id="id15"></span><h2>Возможна ли полная дедупликация оперативной памяти?<a class="headerlink" href="#deduplication-memory" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, дедупликация памяти <a class="reference external" href="https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html">поддерживается</a> в ядре Linux начиная с версии 2.6.32 модулем <a class="reference external" href="https://ru.wikipedia.org/wiki/KSM">KSM</a> и по умолчанию применяется лишь в системах виртуализации, например в <a class="reference internal" href="package-manager.html#kvm"><span class="std std-ref">KVM</span></a>.</p>
 </div>
 <div class="section" id="deduplication-disk">
-<span id="index-27"></span><span id="id16"></span><h2>Возможна ли полная дедупликация данных на дисках?<a class="headerlink" href="#deduplication-disk" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-28"></span><span id="id16"></span><h2>Возможна ли полная дедупликация данных на дисках?<a class="headerlink" href="#deduplication-disk" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Полная автоматическая дедупликация данных на дисках <a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/Deduplication">поддерживается</a> лишь файловой системой <a class="reference internal" href="using-system.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a>.</p>
 </div>
 <div class="section" id="memory-compression">
-<span id="index-28"></span><span id="id17"></span><h2>Можно ли включить сжатие оперативной памяти?<a class="headerlink" href="#memory-compression" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-29"></span><span id="id17"></span><h2>Можно ли включить сжатие оперативной памяти?<a class="headerlink" href="#memory-compression" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, в ядро Linux начиная с версии 3.14 по умолчанию входит модуль zram, который позволяет увеличить производительность системы посредством использования вместо дисковой подкачки виртуального устройства в оперативной памяти с активным сжатием.</p>
 <p>Включение zram в Fedora:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl <span class="nb">enable</span> --now zram-swap
@@ -280,7 +284,7 @@ sudo systemctl disable zram-swap
 <p>После использования вышеуказанных команд рекомендуется выполнить перезагрузку системы.</p>
 </div>
 <div class="section" id="fedora-iperf">
-<span id="index-29"></span><span id="id18"></span><h2>Как сделать замеры скорости локальной или беспроводной сети?<a class="headerlink" href="#fedora-iperf" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-30"></span><span id="id18"></span><h2>Как сделать замеры скорости локальной или беспроводной сети?<a class="headerlink" href="#fedora-iperf" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для точных замеров производительности сети нам потребуется как минимум два компьютера (либо компьютер и мобильное устройство), а также утилита iperf, присутствующая в репозиториях Fedora. Установим её:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install iperf2
 </pre></div>
@@ -306,7 +310,7 @@ sudo systemctl disable zram-swap
 <p><strong>192.168.1.2</strong> - это внутренний IP-адрес устройства в ЛВС, на котором запущен сервер. Номер порта указывать не требуется.</p>
 </div>
 <div class="section" id="sysctl">
-<span id="sysctl-temporary"></span><span id="index-30"></span><h2>Как временно изменить параметр sysctl?<a class="headerlink" href="#sysctl" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="sysctl-temporary"></span><span id="index-31"></span><h2>Как временно изменить параметр sysctl?<a class="headerlink" href="#sysctl" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Временно установить любой параметр ядра возможно через sysctl:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w foo.bar<span class="o">=</span>X
 </pre></div>
@@ -314,7 +318,7 @@ sudo systemctl disable zram-swap
 <p>Здесь <strong>foo.bar</strong> имя параметра, а <strong>X</strong> - его значение. Изменения вступят в силу немедленно и сохранятся до перезагрузки системы.</p>
 </div>
 <div class="section" id="sysctl-permanent">
-<span id="index-31"></span><span id="id19"></span><h2>Как задать и сохранить параметр sysctl?<a class="headerlink" href="#sysctl-permanent" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-32"></span><span id="id19"></span><h2>Как задать и сохранить параметр sysctl?<a class="headerlink" href="#sysctl-permanent" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы сохранить параметр ядра, создадим специальный файл <code class="docutils literal notranslate"><span class="pre">99-foobar.conf</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/sysctl.d</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo.bar1=X1
 foo.bar2=X2
@@ -327,7 +331,7 @@ foo.bar2=X2
 </div>
 </div>
 <div class="section" id="sysctl-order">
-<span id="index-32"></span><span id="id20"></span><h2>В каком порядке загружаются sysctl файлы настроек?<a class="headerlink" href="#sysctl-order" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-33"></span><span id="id20"></span><h2>В каком порядке загружаются sysctl файлы настроек?<a class="headerlink" href="#sysctl-order" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При загрузке ядро проверяет следующие каталоги в поисках <strong>.conf</strong> файлов:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -339,7 +343,7 @@ foo.bar2=X2
 <p>Порядок выполнения - в алфавитном порядке, поэтому для его изменения многие конфиги содержат цифры и буквы. Например конфиг <code class="docutils literal notranslate"><span class="pre">00-foobar.conf</span></code> выполнится раньше, чем <code class="docutils literal notranslate"><span class="pre">zz-foobar.conf</span></code>.</p>
 </div>
 <div class="section" id="configure-runlevel">
-<span id="index-33"></span><span id="id21"></span><h2>Как переключить запуск системы в текстовый режим и обратно?<a class="headerlink" href="#configure-runlevel" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-34"></span><span id="id21"></span><h2>Как переключить запуск системы в текстовый режим и обратно?<a class="headerlink" href="#configure-runlevel" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы активировать запуск Fedora в текстовом режиме, нужно переключиться на цель <code class="docutils literal notranslate"><span class="pre">multi-user.target</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl set-default multi-user.target
 </pre></div>
@@ -358,7 +362,7 @@ foo.bar2=X2
 </div>
 </div>
 <div class="section" id="swap-to-file">
-<span id="index-34"></span><span id="id22"></span><h2>Как настроить подкачку в файл в Fedora?<a class="headerlink" href="#swap-to-file" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-35"></span><span id="id22"></span><h2>Как настроить подкачку в файл в Fedora?<a class="headerlink" href="#swap-to-file" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Создадим файл подкачки на 4 ГБ:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/media/pagefile <span class="nv">count</span><span class="o">=</span><span class="m">4096</span> <span class="nv">bs</span><span class="o">=</span>1M
 </pre></div>
@@ -382,7 +386,7 @@ foo.bar2=X2
 <p>Действия вступят в силу немедленно.</p>
 </div>
 <div class="section" id="rsync-remote">
-<span id="index-35"></span><span id="id23"></span><h2>Как передать содержимое каталога на удалённый сервер?<a class="headerlink" href="#rsync-remote" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-36"></span><span id="id23"></span><h2>Как передать содержимое каталога на удалённый сервер?<a class="headerlink" href="#rsync-remote" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Передача содержимого локального каталога на удалённый сервер посредством rsync:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rsync -chavzP --stats /path/to/local user@example.org:/path/to/remote
 </pre></div>
@@ -390,7 +394,7 @@ foo.bar2=X2
 <p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.</p>
 </div>
 <div class="section" id="rsync-local">
-<span id="index-36"></span><span id="id24"></span><h2>Как получить содержимое каталога с удалённого сервера?<a class="headerlink" href="#rsync-local" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-37"></span><span id="id24"></span><h2>Как получить содержимое каталога с удалённого сервера?<a class="headerlink" href="#rsync-local" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Получение содержимого каталога с удалённого сервера посредством rsync:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rsync -chavzP --stats user@example.org:/path/to/remote /path/to/local
 </pre></div>
@@ -398,7 +402,7 @@ foo.bar2=X2
 <p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.</p>
 </div>
 <div class="section" id="disk-usage">
-<span id="index-37"></span><span id="id25"></span><h2>Как узнать какой процесс осуществляет запись на диск?<a class="headerlink" href="#disk-usage" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-38"></span><span id="id25"></span><h2>Как узнать какой процесс осуществляет запись на диск?<a class="headerlink" href="#disk-usage" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для мониторинга дисковой активности существуют улититы <strong>iotop</strong> и <strong>fatrace</strong>. Установим их:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install iotop fatrace
 </pre></div>
@@ -417,7 +421,7 @@ foo.bar2=X2
 </div>
 </div>
 <div class="section" id="change-label">
-<span id="index-38"></span><span id="id26"></span><h2>Как сменить метку раздела?<a class="headerlink" href="#change-label" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-39"></span><span id="id26"></span><h2>Как сменить метку раздела?<a class="headerlink" href="#change-label" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Смена метки раздела с файловой системой ext2, ext3 и ext4:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo e2label /dev/sda1 <span class="s2">&quot;NewLabel&quot;</span>
 </pre></div>
@@ -429,7 +433,7 @@ foo.bar2=X2
 <p>Здесь <strong>/dev/sda1</strong> - раздел, на котором требуется изменить метку.</p>
 </div>
 <div class="section" id="uuid">
-<span id="get-uuid"></span><span id="index-39"></span><h2>Как получить UUID всех смонтированных разделов?<a class="headerlink" href="#uuid" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="get-uuid"></span><span id="index-40"></span><h2>Как получить UUID всех смонтированных разделов?<a class="headerlink" href="#uuid" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для получения всех UUID можно использовать утилиту <strong>blkid</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo blkid
 </pre></div>
@@ -441,7 +445,7 @@ foo.bar2=X2
 <p>Здесь <strong>/dev/sda1</strong> - раздел, для которого требуется вывести UUID.</p>
 </div>
 <div class="section" id="change-uuid">
-<span id="index-40"></span><span id="id27"></span><h2>Как изменить UUID раздела?<a class="headerlink" href="#change-uuid" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-41"></span><span id="id27"></span><h2>Как изменить UUID раздела?<a class="headerlink" href="#change-uuid" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Смена UUID раздела с файловой системой ext2, ext3 и ext4:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo tune2fs /dev/sda1 -U <span class="k">$(</span>uuidgen<span class="k">)</span>
 </pre></div>
@@ -453,16 +457,16 @@ foo.bar2=X2
 <p>Здесь <strong>/dev/sda1</strong> - раздел, на котором требуется изменить UUID.</p>
 </div>
 <div class="section" id="dns-fedora">
-<span id="change-dns"></span><span id="index-41"></span><h2>Как правильно указать DNS серверы в Fedora?<a class="headerlink" href="#dns-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="change-dns"></span><span id="index-42"></span><h2>Как правильно указать DNS серверы в Fedora?<a class="headerlink" href="#dns-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы указать другие DNS серверы, необходимо использовать Network Manager (графический или консольный): <strong>свойства соединения</strong> -&gt; страница <strong>IPv4</strong> -&gt; <strong>другие DNS серверы</strong>.</p>
 </div>
 <div class="section" id="etc-resolv-conf-fedora">
-<span id="dns-resolv"></span><span id="index-42"></span><h2>Можно ли править файл /etc/resolv.conf в Fedora?<a class="headerlink" href="#etc-resolv-conf-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="dns-resolv"></span><span id="index-43"></span><h2>Можно ли править файл /etc/resolv.conf в Fedora?<a class="headerlink" href="#etc-resolv-conf-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Нет, т.к. этот файл целиком управляется Network Manager и перезаписывается при каждом изменении статуса подключения (активация-деактивация соединений, перезапуск сервиса и т.д.).</p>
 <p>Если необходимо указать другие DNS серверы, это следует производить через <a class="reference internal" href="#change-dns"><span class="std std-ref">свойства</span></a> соответствующего соединения.</p>
 </div>
 <div class="section" id="firewalld-icmp">
-<span id="disable-icmp"></span><span id="index-43"></span><h2>Как можно средствами Firewalld запретить ICMP?<a class="headerlink" href="#firewalld-icmp" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="disable-icmp"></span><span id="index-44"></span><h2>Как можно средствами Firewalld запретить ICMP?<a class="headerlink" href="#firewalld-icmp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию ICMP трафик разрешён для большей части зон, поэтому запретить его можно вручную:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone<span class="o">=</span>public --remove-icmp-block<span class="o">={</span>echo-request,echo-reply,timestamp-reply,timestamp-request<span class="o">}</span> --permanent
 </pre></div>
@@ -474,7 +478,7 @@ foo.bar2=X2
 <p>В данном примере для зоны <strong>public</strong> блокируются как входящие, так и исходящие ICMP ECHO и ICMP TIMESTAMP.</p>
 </div>
 <div class="section" id="firewalld-openvpn-ip">
-<span id="openvpn-allowed-ips"></span><span id="index-44"></span><h2>Как средствами Firewalld разрешить подключение к OpenVPN серверу только с разрешённых IP адресов?<a class="headerlink" href="#firewalld-openvpn-ip" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="openvpn-allowed-ips"></span><span id="index-45"></span><h2>Как средствами Firewalld разрешить подключение к OpenVPN серверу только с разрешённых IP адресов?<a class="headerlink" href="#firewalld-openvpn-ip" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сначала отключим правило по умолчанию для <a class="reference internal" href="#using-openvpn"><span class="std std-ref">OpenVPN</span></a>, разрешающее доступ к серверу с любых IP адресов:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone<span class="o">=</span>public --remove-service openvpn --permanent
 </pre></div>
@@ -491,14 +495,14 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <p>Здесь <strong>public</strong> - имя зоны для публичного интерфейса, <strong>1.2.3.4</strong> - IP-адрес, а <strong>5.6.7.0/24</strong> - подсеть, доступ для адресов из которой следует разрешить.</p>
 </div>
 <div class="section" id="ip-nat">
-<span id="get-external-ip"></span><span id="index-45"></span><h2>Как узнать внешний IP адрес за NAT провайдера?<a class="headerlink" href="#ip-nat" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="get-external-ip"></span><span id="index-46"></span><h2>Как узнать внешний IP адрес за NAT провайдера?<a class="headerlink" href="#ip-nat" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этой цели можно использовать внешний сервис, возвращающий только внешний IP и утилиту <strong>curl</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl https://ifconfig.me
 </pre></div>
 </div>
 </div>
 <div class="section" id="pid">
-<span id="get-pid"></span><span id="index-46"></span><h2>Как получить PID запущенного процесса?<a class="headerlink" href="#pid" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="get-pid"></span><span id="index-47"></span><h2>Как получить PID запущенного процесса?<a class="headerlink" href="#pid" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для получения идентификатора запущенного процесса (PID), следует применять утилиту <strong>pidof</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pidof foo-bar
 </pre></div>
@@ -506,7 +510,7 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, информацию о котором требуется получить.</p>
 </div>
 <div class="section" id="kill-sigterm">
-<span id="index-47"></span><span id="id28"></span><h2>Как правильно завершить работу процесса?<a class="headerlink" href="#kill-sigterm" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-48"></span><span id="id28"></span><h2>Как правильно завершить работу процесса?<a class="headerlink" href="#kill-sigterm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы завершить работу процесса, необходимо отправить ему сигнал <strong>SIGTERM</strong>. После получения данного сигнала процесс должен немедленно начать завершение своей работы:</p>
 <blockquote>
 <div><ul class="simple">
@@ -529,7 +533,7 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, который требуется завершить, однако её следует применять с особой осторожностью ибо если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
 </div>
 <div class="section" id="kill-sigkill">
-<span id="index-48"></span><span id="id29"></span><h2>Как принудительно завершить работу процесса?<a class="headerlink" href="#kill-sigkill" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-49"></span><span id="id29"></span><h2>Как принудительно завершить работу процесса?<a class="headerlink" href="#kill-sigkill" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если какой-либо процесс завис и не отвечает на требование завершения посредством <a class="reference internal" href="#kill-sigterm"><span class="std std-ref">SIGTERM</span></a>, можно заставить операционную систему принудительно завершить его работу сигналом <strong>SIGKILL</strong>, который не может быть перехвачен и проигнорирован процессом.</p>
 <p>Данный сигнал следует использовать с особой осторожностью, т.к. в этом случае процесс не сможет корректно освободить все дескрипторы и занятые ресурсы, а также сообщить своим потомкам о своём завершении, что может повлечь за собой появление т.н. <a class="reference internal" href="#process-orphan"><span class="std std-ref">процессов-сирот</span></a>.</p>
 <p>Чтобы отправить сигнал SIGKILL процессу с определённым <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>, воспользуемся утилитой <strong>kill</strong>:</p>
@@ -544,19 +548,19 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса. Если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
 </div>
 <div class="section" id="process-zombie">
-<span id="index-49"></span><span id="id30"></span><h2>Что такое процесс-зомби?<a class="headerlink" href="#process-zombie" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-50"></span><span id="id30"></span><h2>Что такое процесс-зомби?<a class="headerlink" href="#process-zombie" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Процессы-зомби появляются в системе если потомок завершил свою работу раньше родительского процесса, а последний не отрегировал на отправленный ему сигнал <strong>SIGCHLD</strong>.</p>
 <p>Такие процессы не занимают ресурсов в системе (ибо успешно завершили свою работу), за исключением строки в таблице процессов, хранящей его <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>.</p>
 <p>Все зомби будут автоматически удалены из таблицы процессов после того, как завершит свою работу их родитель.</p>
 </div>
 <div class="section" id="process-orphan">
-<span id="index-50"></span><span id="id31"></span><h2>Что такое процесс-сирота?<a class="headerlink" href="#process-orphan" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-51"></span><span id="id31"></span><h2>Что такое процесс-сирота?<a class="headerlink" href="#process-orphan" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Процессы-сироты появляются в системе если их родитель был аварийно уничтожен системой сигналом <a class="reference internal" href="#kill-sigkill"><span class="std std-ref">SIGKILL</span></a> и не смог сообщить своим потомкам о своём завершении работы.</p>
 <p>В отличие от <a class="reference internal" href="#process-zombie"><span class="std std-ref">зомби</span></a>, такие процессы расходуют ресурсы системы и могут быть источником множества проблем.</p>
 <p>При обнаружении таких процессов система выполняет операцию переподчинения и устанавливает их родителем главный процесс инициализации.</p>
 </div>
 <div class="section" id="firewalld-ip-cloudflare">
-<span id="firewalld-cloudflare"></span><span id="index-51"></span><h2>Как средствами Firewalld разрешить подключение к веб-серверу только с IP адресов CloudFlare?<a class="headerlink" href="#firewalld-ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="firewalld-cloudflare"></span><span id="index-52"></span><h2>Как средствами Firewalld разрешить подключение к веб-серверу только с IP адресов CloudFlare?<a class="headerlink" href="#firewalld-ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При использовании CloudFlare в качестве системы защиты от DDoS атак, а также WAF, возникает необходимость разрешать входящие подключения исключительно с IP адресов данного сервиса.</p>
 <p>Сначала отключим правило по умолчанию для веб-сервера, разрешающее доступ с любых IP адресов:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone<span class="o">=</span>public --remove-service http --permanent
@@ -595,11 +599,11 @@ fw_add <span class="m">6</span>
 <p>Здесь <strong>public</strong> - имя зоны для публичного сетевого интерфейса.</p>
 </div>
 <div class="section" id="ip-cloudflare">
-<span id="cloudflare-forwarding"></span><span id="index-52"></span><h2>Как пробросить IP адреса клиентов за CloudFlare?<a class="headerlink" href="#ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="cloudflare-forwarding"></span><span id="index-53"></span><h2>Как пробросить IP адреса клиентов за CloudFlare?<a class="headerlink" href="#ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2013/08/12/nastraivaem-probros-ip-klientov-za-cloudflare.html">здесь</a>.</p>
 </div>
 <div class="section" id="docker-fedora">
-<span id="index-53"></span><span id="id32"></span><h2>Как правильно установить Docker в Fedora?<a class="headerlink" href="#docker-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-54"></span><span id="id32"></span><h2>Как правильно установить Docker в Fedora?<a class="headerlink" href="#docker-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Вместо Docker в Fedora рекомендуется установить и использовать Podman, т.к. он не требует прав суперпользователя для работы:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install podman
 </pre></div>
@@ -646,6 +650,7 @@ fw_add <span class="m">6</span>
 <li class="toctree-l2"><a class="reference internal" href="#journald-limit">Системные журналы занимают слишком много места. Как их ограничить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firewalld-port-forwarding">Как пробросить локальный порт на удалённый хост?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#openvpn-fedora">Как поднять OpenVPN сервер в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wireguard-fedora">Как поднять WireGuard сервер в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#systemd">Что такое systemd и как с ним работать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#matrix-fedora">Как поднять свой сервер Matrix в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#drop-fs-caches">Как очистить кэши и буферы всех файловых систем?</a></li>
