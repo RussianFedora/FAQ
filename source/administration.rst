@@ -213,6 +213,14 @@
 
 См. `здесь <https://www.easycoding.org/2017/07/24/podnimaem-ovn-server-na-fedora.html>`__. В данной статье вместо **ovn** следует использовать **openvpn** во всех путях и именах юнитов.
 
+.. index:: wireguard, vpn, network
+.. _using-wireguard:
+
+Как поднять WireGuard сервер в Fedora?
+=========================================
+
+См. `здесь <https://www.easycoding.org/2019/02/28/podnimaem-wireguard-server-na-fedora.html>`__.
+
 .. index:: systemd
 .. _systemd-info:
 
