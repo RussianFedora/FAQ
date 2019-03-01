@@ -131,10 +131,10 @@ Dnf, являющийся, в свою очередь, форком Yum.
 
     sudo dnf upgrade --refresh
     sudo dnf install dnf-plugin-system-upgrade
-    sudo dnf system-upgrade download --releasever=29
+    sudo dnf system-upgrade download --releasever=$(($(rpm -E %fedora) + 1))
     sudo dnf system-upgrade reboot
 
-Здесь **29** - номер версии, на которую нужно обновиться. Весь процесс установки будет выполнен во время следующей загрузки системы.
+Весь процесс установки будет выполнен во время следующей загрузки системы.
 
 Если произошёл какой-то конфликт, то рекомендуется очистить все кэши dnf:
 
