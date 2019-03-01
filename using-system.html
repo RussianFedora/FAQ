@@ -800,6 +800,24 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 <p>Результат (или результаты (по одному на каждый обнаруженный бар-код)) будут выведены в консоль.</p>
 </div>
+<div class="section" id="ocr-app">
+<span id="index-69"></span><span id="id36"></span><h2>Как можно распознать текст с изображения или сканера?<a class="headerlink" href="#ocr-app" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для получения текста из файлов изображений, либо PDF, можно воспользоваться системой оптического распознавания символов Tesseract, а также графической утилитой gImageReader.</p>
+<p>Установим Tesseract и набор файлов для русского языка:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install tesseract tesseract-langpack-rus
+</pre></div>
+</div>
+<p>Установим утилиту gImageReader с интерфейсом на Qt (для пользователей KDE, LXQt):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gimagereader-qt
+</pre></div>
+</div>
+<p>Установим утилиту gImageReader с интерфейсом на GTK3 (для пользователей Gnome, XFCE, LXDE, Mate, Cinnamon и т.д.):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gimagereader-gtk
+</pre></div>
+</div>
+<p>Запустим gImageReader, в левой боковой панели выберем отсканированный файл (для наилучших результатов разрешение при сканировании должно быть не меньше 300 DPI), PDF, либо <a class="reference internal" href="hardware.html#scan-drivers"><span class="std std-ref">устройство сканирования</span></a>, зададим режим распознавания и используемые в документе языки, затем нажмём кнопку <strong>Распознать всё</strong>.</p>
+<p>Результат может быть сохранён в файл с панели результатов распознавания.</p>
+</div>
 </div>
 
 
@@ -897,6 +915,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#thunderbird-lightning">В установленном Thunderbird не обновляется расширение Lightning и языковые пакеты. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x11-wayland">Как определить какой тип сессии используется: X11 или Wayland?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qr">Как распознать QR-код или штрих-код из консоли?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ocr-app">Как можно распознать текст с изображения или сканера?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>

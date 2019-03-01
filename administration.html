@@ -494,15 +494,32 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 </div>
 <p>Здесь <strong>public</strong> - имя зоны для публичного интерфейса, <strong>1.2.3.4</strong> - IP-адрес, а <strong>5.6.7.0/24</strong> - подсеть, доступ для адресов из которой следует разрешить.</p>
 </div>
+<div class="section" id="firewalld-wireguard-ip">
+<span id="wireguard-allowed-ips"></span><span id="index-46"></span><h2>Как средствами Firewalld разрешить подключение к WireGuard серверу только с разрешённых IP адресов?<a class="headerlink" href="#firewalld-wireguard-ip" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Сначала отключим правило по умолчанию для <a class="reference internal" href="#using-wireguard"><span class="std std-ref">WireGuard</span></a>, разрешающее доступ к серверу с любых IP адресов:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone<span class="o">=</span>public --remove-port<span class="o">=</span><span class="m">27015</span>/udp --permanent
+</pre></div>
+</div>
+<p>Теперь создадим rich rule, разрешающее доступ с указанных IP-адресов (или подсетей):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span class="o">=</span><span class="s1">&#39;rule family=ipv4 source address=&quot;1.2.3.4&quot; port port=27015 protocol=udp accept&#39;</span> --permanent
+sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span class="o">=</span><span class="s1">&#39;rule family=ipv4 source address=&quot;5.6.7.0/24&quot; port port=27015 protocol=udp accept&#39;</span> --permanent
+</pre></div>
+</div>
+<p>Применим новые правила:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
+</pre></div>
+</div>
+<p>Здесь <strong>27015</strong> - порт сервера WireGuard, <strong>public</strong> - имя зоны для публичного интерфейса, <strong>1.2.3.4</strong> - IP-адрес, а <strong>5.6.7.0/24</strong> - подсеть, доступ для адресов из которой следует разрешить.</p>
+</div>
 <div class="section" id="ip-nat">
-<span id="get-external-ip"></span><span id="index-46"></span><h2>Как узнать внешний IP адрес за NAT провайдера?<a class="headerlink" href="#ip-nat" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="get-external-ip"></span><span id="index-47"></span><h2>Как узнать внешний IP адрес за NAT провайдера?<a class="headerlink" href="#ip-nat" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этой цели можно использовать внешний сервис, возвращающий только внешний IP и утилиту <strong>curl</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl https://ifconfig.me
 </pre></div>
 </div>
 </div>
 <div class="section" id="pid">
-<span id="get-pid"></span><span id="index-47"></span><h2>Как получить PID запущенного процесса?<a class="headerlink" href="#pid" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="get-pid"></span><span id="index-48"></span><h2>Как получить PID запущенного процесса?<a class="headerlink" href="#pid" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для получения идентификатора запущенного процесса (PID), следует применять утилиту <strong>pidof</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pidof foo-bar
 </pre></div>
@@ -510,7 +527,7 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, информацию о котором требуется получить.</p>
 </div>
 <div class="section" id="kill-sigterm">
-<span id="index-48"></span><span id="id28"></span><h2>Как правильно завершить работу процесса?<a class="headerlink" href="#kill-sigterm" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-49"></span><span id="id28"></span><h2>Как правильно завершить работу процесса?<a class="headerlink" href="#kill-sigterm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы завершить работу процесса, необходимо отправить ему сигнал <strong>SIGTERM</strong>. После получения данного сигнала процесс должен немедленно начать завершение своей работы:</p>
 <blockquote>
 <div><ul class="simple">
@@ -533,7 +550,7 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, который требуется завершить, однако её следует применять с особой осторожностью ибо если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
 </div>
 <div class="section" id="kill-sigkill">
-<span id="index-49"></span><span id="id29"></span><h2>Как принудительно завершить работу процесса?<a class="headerlink" href="#kill-sigkill" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-50"></span><span id="id29"></span><h2>Как принудительно завершить работу процесса?<a class="headerlink" href="#kill-sigkill" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если какой-либо процесс завис и не отвечает на требование завершения посредством <a class="reference internal" href="#kill-sigterm"><span class="std std-ref">SIGTERM</span></a>, можно заставить операционную систему принудительно завершить его работу сигналом <strong>SIGKILL</strong>, который не может быть перехвачен и проигнорирован процессом.</p>
 <p>Данный сигнал следует использовать с особой осторожностью, т.к. в этом случае процесс не сможет корректно освободить все дескрипторы и занятые ресурсы, а также сообщить своим потомкам о своём завершении, что может повлечь за собой появление т.н. <a class="reference internal" href="#process-orphan"><span class="std std-ref">процессов-сирот</span></a>.</p>
 <p>Чтобы отправить сигнал SIGKILL процессу с определённым <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>, воспользуемся утилитой <strong>kill</strong>:</p>
@@ -548,19 +565,19 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса. Если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
 </div>
 <div class="section" id="process-zombie">
-<span id="index-50"></span><span id="id30"></span><h2>Что такое процесс-зомби?<a class="headerlink" href="#process-zombie" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-51"></span><span id="id30"></span><h2>Что такое процесс-зомби?<a class="headerlink" href="#process-zombie" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Процессы-зомби появляются в системе если потомок завершил свою работу раньше родительского процесса, а последний не отрегировал на отправленный ему сигнал <strong>SIGCHLD</strong>.</p>
 <p>Такие процессы не занимают ресурсов в системе (ибо успешно завершили свою работу), за исключением строки в таблице процессов, хранящей его <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>.</p>
 <p>Все зомби будут автоматически удалены из таблицы процессов после того, как завершит свою работу их родитель.</p>
 </div>
 <div class="section" id="process-orphan">
-<span id="index-51"></span><span id="id31"></span><h2>Что такое процесс-сирота?<a class="headerlink" href="#process-orphan" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-52"></span><span id="id31"></span><h2>Что такое процесс-сирота?<a class="headerlink" href="#process-orphan" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Процессы-сироты появляются в системе если их родитель был аварийно уничтожен системой сигналом <a class="reference internal" href="#kill-sigkill"><span class="std std-ref">SIGKILL</span></a> и не смог сообщить своим потомкам о своём завершении работы.</p>
 <p>В отличие от <a class="reference internal" href="#process-zombie"><span class="std std-ref">зомби</span></a>, такие процессы расходуют ресурсы системы и могут быть источником множества проблем.</p>
 <p>При обнаружении таких процессов система выполняет операцию переподчинения и устанавливает их родителем главный процесс инициализации.</p>
 </div>
 <div class="section" id="firewalld-ip-cloudflare">
-<span id="firewalld-cloudflare"></span><span id="index-52"></span><h2>Как средствами Firewalld разрешить подключение к веб-серверу только с IP адресов CloudFlare?<a class="headerlink" href="#firewalld-ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="firewalld-cloudflare"></span><span id="index-53"></span><h2>Как средствами Firewalld разрешить подключение к веб-серверу только с IP адресов CloudFlare?<a class="headerlink" href="#firewalld-ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При использовании CloudFlare в качестве системы защиты от DDoS атак, а также WAF, возникает необходимость разрешать входящие подключения исключительно с IP адресов данного сервиса.</p>
 <p>Сначала отключим правило по умолчанию для веб-сервера, разрешающее доступ с любых IP адресов:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone<span class="o">=</span>public --remove-service http --permanent
@@ -599,16 +616,28 @@ fw_add <span class="m">6</span>
 <p>Здесь <strong>public</strong> - имя зоны для публичного сетевого интерфейса.</p>
 </div>
 <div class="section" id="ip-cloudflare">
-<span id="cloudflare-forwarding"></span><span id="index-53"></span><h2>Как пробросить IP адреса клиентов за CloudFlare?<a class="headerlink" href="#ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="cloudflare-forwarding"></span><span id="index-54"></span><h2>Как пробросить IP адреса клиентов за CloudFlare?<a class="headerlink" href="#ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2013/08/12/nastraivaem-probros-ip-klientov-za-cloudflare.html">здесь</a>.</p>
 </div>
 <div class="section" id="docker-fedora">
-<span id="index-54"></span><span id="id32"></span><h2>Как правильно установить Docker в Fedora?<a class="headerlink" href="#docker-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-55"></span><span id="id32"></span><h2>Как правильно установить Docker в Fedora?<a class="headerlink" href="#docker-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Вместо Docker в Fedora рекомендуется установить и использовать Podman, т.к. он не требует прав суперпользователя для работы:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install podman
 </pre></div>
 </div>
 <p>Синтаксис команд аналогичен Docker.</p>
+</div>
+<div class="section" id="using-mtr">
+<span id="index-56"></span><span id="id33"></span><h2>Как проверить наличие или отсутствие потерь пакетов до узла?<a class="headerlink" href="#using-mtr" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для проверки работоспособности сети и наличия, либо отсутствия потерь пакетов между узлами маршрута, широко используется утилита <strong>mtr</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install mtr
+</pre></div>
+</div>
+<p>Запустим проверку маршрута до узла <strong>example.org</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mtr example.org
+</pre></div>
+</div>
+<p>Приостановить работу можно нажатием клавиши <strong>P</strong>, для возобновить - <strong>пробел</strong>, а для выхода - <strong>Q</strong>.</p>
 </div>
 </div>
 
@@ -682,6 +711,7 @@ fw_add <span class="m">6</span>
 <li class="toctree-l2"><a class="reference internal" href="#etc-resolv-conf-fedora">Можно ли править файл /etc/resolv.conf в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firewalld-icmp">Как можно средствами Firewalld запретить ICMP?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firewalld-openvpn-ip">Как средствами Firewalld разрешить подключение к OpenVPN серверу только с разрешённых IP адресов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firewalld-wireguard-ip">Как средствами Firewalld разрешить подключение к WireGuard серверу только с разрешённых IP адресов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ip-nat">Как узнать внешний IP адрес за NAT провайдера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pid">Как получить PID запущенного процесса?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kill-sigterm">Как правильно завершить работу процесса?</a></li>
@@ -691,6 +721,7 @@ fw_add <span class="m">6</span>
 <li class="toctree-l2"><a class="reference internal" href="#firewalld-ip-cloudflare">Как средствами Firewalld разрешить подключение к веб-серверу только с IP адресов CloudFlare?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ip-cloudflare">Как пробросить IP адреса клиентов за CloudFlare?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#docker-fedora">Как правильно установить Docker в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-mtr">Как проверить наличие или отсутствие потерь пакетов до узла?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>

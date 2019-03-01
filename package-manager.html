@@ -116,11 +116,11 @@
 <p>Процесс обновления стандартен и максимально безопасен:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
 sudo dnf install dnf-plugin-system-upgrade
-sudo dnf system-upgrade download --releasever<span class="o">=</span><span class="m">29</span>
+sudo dnf system-upgrade download --releasever<span class="o">=</span><span class="k">$(($(</span>rpm -E %fedora<span class="k">)</span> <span class="o">+</span> <span class="m">1</span><span class="k">))</span>
 sudo dnf system-upgrade reboot
 </pre></div>
 </div>
-<p>Здесь <strong>29</strong> - номер версии, на которую нужно обновиться. Весь процесс установки будет выполнен во время следующей загрузки системы.</p>
+<p>Весь процесс установки будет выполнен во время следующей загрузки системы.</p>
 <p>Если произошёл какой-то конфликт, то рекомендуется очистить все кэши dnf:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf clean all
 </pre></div>

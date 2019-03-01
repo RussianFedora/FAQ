@@ -314,6 +314,22 @@ chmod +x Unigine_Superposition-1.0.run
 </div></blockquote>
 <p>Оба этих метода далеки от совершенства, что сильно портит качество изображения. Таким образом, при выборе нескольких мониторов следует убедиться в том, чтобы их DPI были одинаковыми.</p>
 </div>
+<div class="section" id="scan-drivers">
+<span id="index-19"></span><span id="id11"></span><h2>Как настроить сканер?<a class="headerlink" href="#scan-drivers" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим пакет <strong>sane-backends</strong>, содержащий драйверы поддерживаемых сканеров:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install sane-backends sane-backends-drivers-scanners
+</pre></div>
+</div>
+<p>Перезапустим <a class="reference internal" href="#scan-app"><span class="std std-ref">приложения</span></a>, поддерживающие работу со сканерами, для вступления изменений в силу.</p>
+</div>
+<div class="section" id="scan-app">
+<span id="index-20"></span><span id="id12"></span><h2>При помощи какого приложения можно осуществлять сканирование документов?<a class="headerlink" href="#scan-app" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для работы со сканерами существует приложение XSane. Установим его:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install xsane
+</pre></div>
+</div>
+<p>Если в нём не отображаются устройства сканирования, необходимо <a class="reference internal" href="#scan-drivers"><span class="std std-ref">установить драйверы</span></a>.</p>
+</div>
 </div>
 
 
@@ -362,6 +378,8 @@ chmod +x Unigine_Superposition-1.0.run
 <li class="toctree-l2"><a class="reference internal" href="#firmware-status">Как проверить используются ли в моём устройстве бинарные прошивки?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#display-resolution">Можно ли использовать несколько дисплеев с разным разрешением?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dpi">Можно ли использовать несколько дисплеев с разным значением DPI?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scan-drivers">Как настроить сканер?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scan-app">При помощи какого приложения можно осуществлять сканирование документов?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
