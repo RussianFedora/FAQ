@@ -772,6 +772,33 @@
 
 Здесь **public** - имя зоны для публичного интерфейса, **1.2.3.4** - IP-адрес, а **5.6.7.0/24** - подсеть, доступ для адресов из которой следует разрешить.
 
+.. index:: firewall, firewalld, wireguard
+.. _wireguard-allowed-ips:
+
+Как средствами Firewalld разрешить подключение к WireGuard серверу только с разрешённых IP адресов?
+======================================================================================================
+
+Сначала отключим правило по умолчанию для :ref:`WireGuard <using-wireguard>`, разрешающее доступ к серверу с любых IP адресов:
+
+.. code-block:: bash
+
+    sudo firewall-cmd --zone=public --remove-port=27015/udp --permanent
+
+Теперь создадим rich rule, разрешающее доступ с указанных IP-адресов (или подсетей):
+
+.. code-block:: bash
+
+    sudo firewall-cmd --zone=public --add-rich-rule='rule family=ipv4 source address="1.2.3.4" port port=27015 protocol=udp accept' --permanent
+    sudo firewall-cmd --zone=public --add-rich-rule='rule family=ipv4 source address="5.6.7.0/24" port port=27015 protocol=udp accept' --permanent
+
+Применим новые правила:
+
+.. code-block:: bash
+
+    sudo firewall-cmd --reload
+
+Здесь **27015** - порт сервера WireGuard, **public** - имя зоны для публичного интерфейса, **1.2.3.4** - IP-адрес, а **5.6.7.0/24** - подсеть, доступ для адресов из которой следует разрешить.
+
 .. index:: ip address, external ip, curl
 .. _get-external-ip:
 
