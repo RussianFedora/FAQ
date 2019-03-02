@@ -330,6 +330,19 @@ chmod +x Unigine_Superposition-1.0.run
 </div>
 <p>Если в нём не отображаются устройства сканирования, необходимо <a class="reference internal" href="#scan-drivers"><span class="std std-ref">установить драйверы</span></a>.</p>
 </div>
+<div class="section" id="hdd-ssd">
+<span id="smart-status"></span><span id="index-21"></span><h2>Как получить информацию о состоянии HDD или SSD накопителя?<a class="headerlink" href="#hdd-ssd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Подробную информацию о состоянии накопителя можно получить из вывода системы самодиагностики <a class="reference external" href="https://ru.wikipedia.org/wiki/S.M.A.R.T.">S.M.A.R.T.</a> при помощи утилиты <strong>smartctl</strong>.</p>
+<p>Установим её:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install smartmontools
+</pre></div>
+</div>
+<p>Запустим утилиту:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo smartctl -a /dev/sda
+</pre></div>
+</div>
+<p>Здесь вместо <strong>/dev/sda</strong> следует указать устройство, информацию по состоянию которого требуется вывести.</p>
+</div>
 </div>
 
 
@@ -380,6 +393,7 @@ chmod +x Unigine_Superposition-1.0.run
 <li class="toctree-l2"><a class="reference internal" href="#dpi">Можно ли использовать несколько дисплеев с разным значением DPI?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#scan-drivers">Как настроить сканер?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#scan-app">При помощи какого приложения можно осуществлять сканирование документов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hdd-ssd">Как получить информацию о состоянии HDD или SSD накопителя?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>

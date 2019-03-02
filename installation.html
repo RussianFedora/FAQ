@@ -306,6 +306,12 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 </pre></div>
 </div>
 </div>
+<div class="section" id="root-no-password">
+<span id="index-26"></span><span id="id18"></span><h2>При установке не предлагается установить пароль для суперпользователя. Это нормально?<a class="headerlink" href="#root-no-password" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Если при установке системы был создан <a class="reference internal" href="security.html#admin-vs-user"><span class="std std-ref">пользователь-администратор</span></a>, то пароль для учётной записи суперпользователя (root) не устанавливается.</p>
+<p>Для выполнения команд с привилегиями суперпользователя в настоящее время рекомендуется <a class="reference internal" href="security.html#sudo-run"><span class="std std-ref">использовать sudo</span></a>.</p>
+<p>Однако если по какой-то причине работающая учётная запись root необходима, можно её активировать, <a class="reference internal" href="security.html#root-password"><span class="std std-ref">установив пароль</span></a>.</p>
+</div>
 </div>
 
 
@@ -356,6 +362,7 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <li class="toctree-l2"><a class="reference internal" href="#fedora-partitions">Как лучше разбить диск самостоятельно?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#grub">Как полностью скрыть меню Grub?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#windows-uefi-fedora">После установки Windows был затёрт UEFI загрузчик Fedora. Как его восстановить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#root-no-password">При установке не предлагается установить пароль для суперпользователя. Это нормально?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="package-manager.html">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>

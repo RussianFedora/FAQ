@@ -359,45 +359,53 @@ sudo systemctl reboot
 <span id="index-28"></span><span id="id22"></span><h2>Чем отличается пользователь-администратор от обычного?<a class="headerlink" href="#admin-vs-user" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Администратор (в терминологии программы установки Anaconda) имеет доступ к sudo.</p>
 </div>
+<div class="section" id="sudo-run">
+<span id="index-29"></span><span id="id23"></span><h2>Как запустить команду с правами суперпользователя?<a class="headerlink" href="#sudo-run" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для запуска чего-либо с правами суперпользователя необходимо использовать sudo:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo foo-bar
+</pre></div>
+</div>
+<p>Здесь вместо <strong>foo-bar</strong> следует указать команду, путь к исполняемому файлу, скрипту и т.д.</p>
+</div>
 <div class="section" id="sudo-su">
-<span id="sudo-password"></span><span id="index-29"></span><h2>Какие пароли запрашивают sudo и su?<a class="headerlink" href="#sudo-su" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="sudo-password"></span><span id="index-30"></span><h2>Какие пароли запрашивают sudo и su?<a class="headerlink" href="#sudo-su" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Утилита sudo запрашивает текущий пароль пользователя, а su - рутовый.</p>
 </div>
 <div class="section" id="root-password">
-<span id="index-30"></span><span id="id23"></span><h2>Как мне сменить пароль суперпользователя?<a class="headerlink" href="#root-password" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-31"></span><span id="id24"></span><h2>Как мне сменить пароль суперпользователя?<a class="headerlink" href="#root-password" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для смены или установки пароля суперпользователя при наличии доступа к sudo, можно выполнить:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo passwd root
 </pre></div>
 </div>
 </div>
 <div class="section" id="sudo">
-<span id="sudo-access"></span><span id="index-31"></span><h2>Как мне получить доступ к sudo?<a class="headerlink" href="#sudo" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="sudo-access"></span><span id="index-32"></span><h2>Как мне получить доступ к sudo?<a class="headerlink" href="#sudo" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если при установке Fedora, при создании пользователя, не был установлен флажок в чекбокс <strong>Создать администратора</strong>, то необходимо самостоятельно добавить пользовательский аккаунт в группу <strong>wheel</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>su -c <span class="s2">&quot;usermod -a -G wheel </span><span class="k">$(</span>whoami<span class="k">)</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="sudo-vs-su">
-<span id="index-32"></span><span id="id24"></span><h2>Что лучше: sudo или su?<a class="headerlink" href="#sudo-vs-su" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-33"></span><span id="id25"></span><h2>Что лучше: sudo или su?<a class="headerlink" href="#sudo-vs-su" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Sudo ибо позволяет гибко настраивать права доступа, включая список разрешённых команд, а также ведёт полный журнал её использования.</p>
 </div>
 <div class="section" id="sudo-file-manager">
-<span id="index-33"></span><span id="id25"></span><h2>Почему я не могу запустить файловый менеджер с правами суперпользователя?<a class="headerlink" href="#sudo-file-manager" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-34"></span><span id="id26"></span><h2>Почему я не могу запустить файловый менеджер с правами суперпользователя?<a class="headerlink" href="#sudo-file-manager" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Это сделано из соображений безопасности. Более подробная информация доступна <a class="reference external" href="https://blog.martin-graesslin.com/blog/2017/02/editing-files-as-root/">здесь</a>.</p>
 </div>
 <div class="section" id="sudo-edit-config">
-<span id="index-34"></span><span id="id26"></span><h2>Как мне отредактировать конфиг, доступный только суперпользователю?<a class="headerlink" href="#sudo-edit-config" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-35"></span><span id="id27"></span><h2>Как мне отредактировать конфиг, доступный только суперпользователю?<a class="headerlink" href="#sudo-edit-config" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Необходимо использовать <strong>sudoedit</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudoedit /путь/к/файлу/конфигурации.conf
 </pre></div>
 </div>
 </div>
 <div class="section" id="sudoedit">
-<span id="sudoedit-info"></span><span id="index-35"></span><h2>Sudoedit безопаснее прямого запуска текстового редактора с правами суперпользователя?<a class="headerlink" href="#sudoedit" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="sudoedit-info"></span><span id="index-36"></span><h2>Sudoedit безопаснее прямого запуска текстового редактора с правами суперпользователя?<a class="headerlink" href="#sudoedit" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, намного ибо sudoedit копирует нужный файл во временный каталог и загружает в выбранном по умолчанию текстовом редакторе с обычными правами, а по завершении редактирования копирует на прежнее место.</p>
 </div>
 <div class="section" id="ssh">
-<span id="ssh-install"></span><span id="index-36"></span><h2>Как включить и безопасно настроить сервер SSH?<a class="headerlink" href="#ssh" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="ssh-install"></span><span id="index-37"></span><h2>Как включить и безопасно настроить сервер SSH?<a class="headerlink" href="#ssh" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сначала необходимо активировать sshd:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl <span class="nb">enable</span> sshd.service
 </pre></div>
@@ -421,20 +429,20 @@ PermitEmptyPasswords no
 </div>
 </div>
 <div class="section" id="ssh-passwords">
-<span id="index-37"></span><span id="id27"></span><h2>Допустимо ли использовать парольную аутентификацию для SSH?<a class="headerlink" href="#ssh-passwords" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-38"></span><span id="id28"></span><h2>Допустимо ли использовать парольную аутентификацию для SSH?<a class="headerlink" href="#ssh-passwords" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В настоящее время мы настоятельно не рекомендуем эксплуатировать SSH серверы с включённой парольной аутентификацией (настройки по умолчанию), т.к. он станет постоянной целью для атак заражённых устройств, которые будут пытаться подобрать пароль по словарям, а также полным перебором, создавая тем самым лишнюю нагрузку на SSH сервер.</p>
 <p>Автоматическая блокировка средствами fail2ban также не особо поможет, т.к. современные ботнеты умеют координировать свои атаки посредством мастер-сервера и знают стандартные настройки данных утилит.</p>
 </div>
 <div class="section" id="ssh-port">
-<span id="index-38"></span><span id="id28"></span><h2>Следует ли сменить порт SSH на нестандартный?<a class="headerlink" href="#ssh-port" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-39"></span><span id="id29"></span><h2>Следует ли сменить порт SSH на нестандартный?<a class="headerlink" href="#ssh-port" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Это никак не поможет скрыть сервер от крупных бот-сетей, сканирующих весь допустимый диапазон портов, и лишь создаст дополнительные неудобства для самих пользователей.</p>
 </div>
 <div class="section" id="ssh-keys">
-<span id="index-39"></span><span id="id29"></span><h2>Безопасна ли аутентификация по ключам в SSH?<a class="headerlink" href="#ssh-keys" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-40"></span><span id="id30"></span><h2>Безопасна ли аутентификация по ключам в SSH?<a class="headerlink" href="#ssh-keys" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. В настоящее время это самый безопасный метод аутентификации. Если во время рукопожатия SSH клиент не предоставил серверу разрешённый ключ, последний немедленно закроет соединение.</p>
 </div>
 <div class="section" id="ssh-keygen">
-<span id="index-40"></span><span id="id30"></span><h2>Как сгенерировать ключи для SSH?<a class="headerlink" href="#ssh-keygen" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-41"></span><span id="id31"></span><h2>Как сгенерировать ключи для SSH?<a class="headerlink" href="#ssh-keygen" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для создания ключевой пары из открытого и закрытого ключей, необходимо воспользоваться утилитой <strong>ssh-keygen</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen -t rsa -C <span class="s2">&quot;user@example.org&quot;</span>
 </pre></div>
@@ -443,7 +451,7 @@ PermitEmptyPasswords no
 <p>Для RSA можно добавить параметр <strong>-b</strong> и указать длину в битах, например <strong>-b 4096</strong>.</p>
 </div>
 <div class="section" id="ssh-transfer">
-<span id="index-41"></span><span id="id31"></span><h2>Как безопасно передать публичный ключ SSH на удалённый сервер?<a class="headerlink" href="#ssh-transfer" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-42"></span><span id="id32"></span><h2>Как безопасно передать публичный ключ SSH на удалённый сервер?<a class="headerlink" href="#ssh-transfer" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для простой, быстрой и безопасной передачи можно использовать утилиту <strong>ssh-copy-id</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-copy-id user@example.org
 </pre></div>
@@ -451,7 +459,7 @@ PermitEmptyPasswords no
 <p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.</p>
 </div>
 <div class="section" id="ssh-port-forwarding">
-<span id="index-42"></span><span id="id32"></span><h2>Как пробросить порт с удалённой машины на локальную через SSH?<a class="headerlink" href="#ssh-port-forwarding" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-43"></span><span id="id33"></span><h2>Как пробросить порт с удалённой машины на локальную через SSH?<a class="headerlink" href="#ssh-port-forwarding" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для примера пробросим с удалённого сервера на локальную машину порт MySQL/MariaDB:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh user@example.org -L <span class="m">3306</span>:127.0.0.1:3306 -N -f
 </pre></div>
@@ -459,7 +467,7 @@ PermitEmptyPasswords no
 <p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост, а <strong>3306</strong> - порт. Параметры <code class="docutils literal notranslate"><span class="pre">-N</span> <span class="pre">-f</span></code> заставляют SSH клиент сразу вернуть управление, уйти в фоновый режим и продолжать поддерживать соединение до своего завершения.</p>
 </div>
 <div class="section" id="socks-ssh">
-<span id="ssh-socks"></span><span id="index-43"></span><h2>Как настроить виртуальный SOCKS туннель через SSH?<a class="headerlink" href="#socks-ssh" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="ssh-socks"></span><span id="index-44"></span><h2>Как настроить виртуальный SOCKS туннель через SSH?<a class="headerlink" href="#socks-ssh" title="Ссылка на этот заголовок">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh user@example.org -D <span class="m">127</span>.0.0.1:8080 -N -f
 </pre></div>
 </div>
@@ -467,7 +475,7 @@ PermitEmptyPasswords no
 <p>После запуска необходимо настроить браузер и другие приложения на работу через данный SOCKS5 прокси.</p>
 </div>
 <div class="section" id="ssh-sftp">
-<span id="index-44"></span><span id="id33"></span><h2>Можно ли разрешить доступ посредством SSH только к файлам, без возможности выполнения команд?<a class="headerlink" href="#ssh-sftp" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-45"></span><span id="id34"></span><h2>Можно ли разрешить доступ посредством SSH только к файлам, без возможности выполнения команд?<a class="headerlink" href="#ssh-sftp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Для этого создадим специальную группу (например <strong>sftp</strong>):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo groupadd sftp
 </pre></div>
@@ -486,7 +494,7 @@ Match Group sftp
 </div>
 </div>
 <div class="section" id="destroy-file">
-<span id="index-45"></span><span id="id34"></span><h2>Как безвозвратно уничтожить файл?<a class="headerlink" href="#destroy-file" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-46"></span><span id="id35"></span><h2>Как безвозвратно уничтожить файл?<a class="headerlink" href="#destroy-file" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для уничтожения данных можно использовать штатную утилиту <strong>shred</strong> из пакета GNU Coreutils:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shred -u -v /путь/к/файлу.txt
 </pre></div>
@@ -494,7 +502,7 @@ Match Group sftp
 <p>Восстановить такой файл будет практически невозможно ибо сектора диска, на которых он располагался, будут многократно перезаписаны случайной последовательностью, а затем заполнены нулями.</p>
 </div>
 <div class="section" id="destroy-disk">
-<span id="index-46"></span><span id="id35"></span><h2>Можно лишь уничтожить содержимое всего диска?<a class="headerlink" href="#destroy-disk" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-47"></span><span id="id36"></span><h2>Можно лишь уничтожить содержимое всего диска?<a class="headerlink" href="#destroy-disk" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, для этого можно использовать уже упомянутую выше утилиту <strong>shred</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo shred -v /dev/sdX
 </pre></div>
@@ -502,7 +510,7 @@ Match Group sftp
 <p>Здесь <strong>/dev/sdX</strong> — устройство, которое будет очищено. На больших HDD процесс займёт много времени.</p>
 </div>
 <div class="section" id="ssd">
-<span id="destroy-ssd-file"></span><span id="index-47"></span><h2>Как уничтожить файл на SSD?<a class="headerlink" href="#ssd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="destroy-ssd-file"></span><span id="index-48"></span><h2>Как уничтожить файл на SSD?<a class="headerlink" href="#ssd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для безвозвратного удаления файла на SSD накопителе достаточно просто удалить его штатным средством системы и дождаться выполнения процедуры TRIM, которая физически забьёт ячейки, которые им использовались, нулями.</p>
 <p>Если не используется TRIM реального времени, принудительно запустить этот процесс на всех твердотельных накопителях можно так:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl start fstrim.service
@@ -510,17 +518,17 @@ Match Group sftp
 </div>
 </div>
 <div class="section" id="newfile-permissions">
-<span id="index-48"></span><span id="id36"></span><h2>Как рассчитываются права доступа для новых файлов и каталогов?<a class="headerlink" href="#newfile-permissions" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-49"></span><span id="id37"></span><h2>Как рассчитываются права доступа для новых файлов и каталогов?<a class="headerlink" href="#newfile-permissions" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Права доступа (chmod) в GNU/Linux рассчитываются в по формуле <code class="docutils literal notranslate"><span class="pre">$default-chmod</span> <span class="pre">-</span> <span class="pre">$current-umask</span></code>. <code class="docutils literal notranslate"><span class="pre">$default-chmod</span></code> для файлов равен <code class="docutils literal notranslate"><span class="pre">0666</span></code>, а для каталогов - <code class="docutils literal notranslate"><span class="pre">0777</span></code>.</p>
 <p>В Fedora umask по умолчанию для пользоватьских учётных записей равен <code class="docutils literal notranslate"><span class="pre">0002</span></code> (ведущий нуль в chmod означает использование восьмеричной системы счисления).</p>
 <p>Таким образом, chmod для новых файлов <code class="docutils literal notranslate"><span class="pre">0666</span> <span class="pre">-</span> <span class="pre">0002</span> <span class="pre">=</span> <span class="pre">0664</span></code> (<code class="docutils literal notranslate"><span class="pre">-rw-rw--r--</span></code>), а для каталогов - <code class="docutils literal notranslate"><span class="pre">0777</span> <span class="pre">-</span> <span class="pre">0002</span> <span class="pre">=</span> <span class="pre">0775</span></code> (<code class="docutils literal notranslate"><span class="pre">drwxrwxr-x</span></code>).</p>
 </div>
 <div class="section" id="fedora">
-<span id="fedora-gost"></span><span id="index-49"></span><h2>Можно ли включить поддержку российской криптографии в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fedora-gost"></span><span id="index-50"></span><h2>Можно ли включить поддержку российской криптографии в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2018/11/28/dobavlyaem-podderzhku-gost-dlya-openssl-v-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="mac-wi-fi-fedora">
-<span id="mac-randomize"></span><span id="index-50"></span><h2>Как включить рандомизацию MAC адресов при подключении к Wi-Fi точкам в Fedora?<a class="headerlink" href="#mac-wi-fi-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="mac-randomize"></span><span id="index-51"></span><h2>Как включить рандомизацию MAC адресов при подключении к Wi-Fi точкам в Fedora?<a class="headerlink" href="#mac-wi-fi-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Network Manager поддерживает два сценария рандомизации MAC адресов:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -554,7 +562,7 @@ Match Group sftp
 <p>Для отключения рандомизации и возвращения настроек по умолчанию достаточно просто удалить созданный файл и перезапустить Network Manager.</p>
 </div>
 <div class="section" id="add-custom-ca">
-<span id="index-51"></span><span id="id37"></span><h2>Как добавить собственный удостоверяющий центр в список доверенных?<a class="headerlink" href="#add-custom-ca" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-52"></span><span id="id38"></span><h2>Как добавить собственный удостоверяющий центр в список доверенных?<a class="headerlink" href="#add-custom-ca" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для добавления нового удостоверяющего центра необходимо скопировать файл его сертификата в формате PEM или DER в каталог <code class="docutils literal notranslate"><span class="pre">/etc/pki/ca-trust/source/anchors</span></code>, после чего выполнить:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo update-ca-trust
 </pre></div>
@@ -562,7 +570,7 @@ Match Group sftp
 <p>Следует помнить, что данное действие не будет распространяться на браузер Mozilla Firefox, имеющий собственную базу доверенных корневых УЦ.</p>
 </div>
 <div class="section" id="blackist-ca">
-<span id="index-52"></span><span id="id38"></span><h2>Как внести удостоверяющий центр в список запрещённых?<a class="headerlink" href="#blackist-ca" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-53"></span><span id="id39"></span><h2>Как внести удостоверяющий центр в список запрещённых?<a class="headerlink" href="#blackist-ca" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для добавления удостоверяющего центра в список заблокированных необходимо скопировать файл его сертификата в формате PEM или DER в каталог <code class="docutils literal notranslate"><span class="pre">/etc/pki/ca-trust/source/blacklist</span></code>, после чего выполнить:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo update-ca-trust
 </pre></div>
@@ -570,7 +578,7 @@ Match Group sftp
 <p>Следует помнить, что данное действие не будет распространяться на браузер Mozilla Firefox, имеющий собственную базу доверенных корневых УЦ.</p>
 </div>
 <div class="section" id="rsa-openssl">
-<span id="openssl-decrypt-key"></span><span id="index-53"></span><h2>Как убрать пароль шифрования закрытого RSA ключа средствами OpenSSL?<a class="headerlink" href="#rsa-openssl" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="openssl-decrypt-key"></span><span id="index-54"></span><h2>Как убрать пароль шифрования закрытого RSA ключа средствами OpenSSL?<a class="headerlink" href="#rsa-openssl" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Воспользуемся утилитой <strong>openssl</strong> для расшифровки:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openssl rsa -in foo-bar.key -out foo-bar-nopass.key
 </pre></div>
@@ -578,7 +586,7 @@ Match Group sftp
 <p>Здесь <strong>foo-bar.key</strong> - имя файла с закрытым RSA ключом, который необходимо расшифровать. После ввода верного пароля, результат появится в файле <strong>foo-bar-nopass.key</strong>.</p>
 </div>
 <div class="section" id="openssl-encrypt-key">
-<span id="index-54"></span><span id="id39"></span><h2>Как установить или изменить пароль шифрования закрытого RSA ключа средствами OpenSSL?<a class="headerlink" href="#openssl-encrypt-key" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-55"></span><span id="id40"></span><h2>Как установить или изменить пароль шифрования закрытого RSA ключа средствами OpenSSL?<a class="headerlink" href="#openssl-encrypt-key" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Воспользуемся утилитой <strong>openssl</strong> для установки или изменения пароля:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openssl rsa -aes256 -in foo-bar-nopass.key -out foo-bar.key
 </pre></div>
@@ -586,7 +594,7 @@ Match Group sftp
 <p>Здесь <strong>-aes256</strong> - используемый алгоритм шифрования (AES-256), <strong>foo-bar-nokey.key</strong> - имя файла с закрытым RSA ключом, пароль которого нужно задать или изменить. Результат будет сохранён в файле <strong>foo-bar.key</strong>.</p>
 </div>
 <div class="section" id="sudo-multi">
-<span id="index-55"></span><span id="id40"></span><h2>Как посредством sudo запустить сразу несколько команд?<a class="headerlink" href="#sudo-multi" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-56"></span><span id="id41"></span><h2>Как посредством sudo запустить сразу несколько команд?<a class="headerlink" href="#sudo-multi" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Команда <a class="reference internal" href="#sudo-access"><span class="std std-ref">sudo</span></a> предназначена для запуска исключительно одной команды от имени другого пользователя, поэтому если необходимо запустить сразу несколько команд, либо осуществлять перенаправление вывода, придётся использовать другой вариант:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo bash -c <span class="s2">&quot;first | seconds &amp;&amp; third&quot;</span>
 </pre></div>
@@ -594,7 +602,7 @@ Match Group sftp
 <p>В данном примере все три приложения будут запущены с правами суперпользователя, причём стандартный вывод <em>first</em> перенаправляется в стандартный ввод <em>second</em> через канал (pipe) и при успешном завершении запустится процесс <em>third</em>.</p>
 </div>
 <div class="section" id="wireshark">
-<span id="wireshark-no-root"></span><span id="index-56"></span><h2>Как запускать WireShark без предоставления ему прав суперпользователя?<a class="headerlink" href="#wireshark" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="wireshark-no-root"></span><span id="index-57"></span><h2>Как запускать WireShark без предоставления ему прав суперпользователя?<a class="headerlink" href="#wireshark" title="Ссылка на этот заголовок">¶</a></h2>
 <p>WireShark поддерживает запуска как с правами суперпользователя, так и без них. Добавим свой аккаунт в группу <strong>wireshark</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G wireshark <span class="k">$(</span>whoami<span class="k">)</span>
 </pre></div>
@@ -602,7 +610,7 @@ Match Group sftp
 <p>Изменения вступят в силу при следующем входе в систему.</p>
 </div>
 <div class="section" id="password-gen">
-<span id="index-57"></span><span id="id41"></span><h2>Как сгенерировать криптостойкий пароль без использования стороннего ПО?<a class="headerlink" href="#password-gen" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-58"></span><span id="id42"></span><h2>Как сгенерировать криптостойкий пароль без использования стороннего ПО?<a class="headerlink" href="#password-gen" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы сгенерировать криптостойкий пароль не обязательно устанавливать и применять специальные утилиты.</p>
 <p>Воспользуемся штатными средствами, входящими в базовый пакет GNU Coreutils:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat /dev/urandom <span class="p">|</span> tr -dc <span class="s1">&#39;a-zA-Z0-9&#39;</span> <span class="p">|</span> fold -w <span class="m">20</span> <span class="p">|</span> head -n <span class="m">4</span>
@@ -611,28 +619,28 @@ Match Group sftp
 <p>Данный пример сгенерирует 4 криптостойких пароля по 20 символов каждый.</p>
 </div>
 <div class="section" id="users-logged">
-<span id="index-58"></span><span id="id42"></span><h2>Как получить список вошедших в систему пользователей?<a class="headerlink" href="#users-logged" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-59"></span><span id="id43"></span><h2>Как получить список вошедших в систему пользователей?<a class="headerlink" href="#users-logged" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Список вошедших в систему пользователей можно получить посредством утилиты <strong>who</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>who
 </pre></div>
 </div>
 </div>
 <div class="section" id="users-activity">
-<span id="index-59"></span><span id="id43"></span><h2>Как получить список вошедших в систему пользователей и информацию об их деятельности?<a class="headerlink" href="#users-activity" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-60"></span><span id="id44"></span><h2>Как получить список вошедших в систему пользователей и информацию об их деятельности?<a class="headerlink" href="#users-activity" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Список вошедших в систему пользователей и базовую информацию об их действиях можно получить посредством утилиты <strong>w</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>w
 </pre></div>
 </div>
 </div>
 <div class="section" id="users-last">
-<span id="index-60"></span><span id="id44"></span><h2>Как получить информацию обо всех входах в систему?<a class="headerlink" href="#users-last" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-61"></span><span id="id45"></span><h2>Как получить информацию обо всех входах в систему?<a class="headerlink" href="#users-last" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Информацию о любых попытках входа в систему можно получить посредством утилиты <strong>last</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>last
 </pre></div>
 </div>
 </div>
 <div class="section" id="vpn">
-<span id="vpn-selection"></span><span id="index-61"></span><h2>Хочу обезопасить свой Интернет-трафик. Какую реализацию VPN выбрать?<a class="headerlink" href="#vpn" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="vpn-selection"></span><span id="index-62"></span><h2>Хочу обезопасить свой Интернет-трафик. Какую реализацию VPN выбрать?<a class="headerlink" href="#vpn" title="Ссылка на этот заголовок">¶</a></h2>
 <div class="section" id="wireguard">
 <h3>WireGuard<a class="headerlink" href="#wireguard" title="Ссылка на этот заголовок">¶</a></h3>
 <p><a class="reference internal" href="administration.html#using-wireguard"><span class="std std-ref">WireGuard</span></a> - самый современный и актуальный протокол для VPN. Обеспечивает максимальную скорость работы за счёт реализации в виде модуля ядра Linux и надёжную криптографическую защиту от прослушивания.</p>
@@ -651,7 +659,7 @@ Match Group sftp
 </div>
 </div>
 <div class="section" id="com">
-<span id="com-dialout"></span><span id="index-62"></span><h2>Как получить доступ к COM портам без наличия прав суперпользователя?<a class="headerlink" href="#com" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="com-dialout"></span><span id="index-63"></span><h2>Как получить доступ к COM портам без наличия прав суперпользователя?<a class="headerlink" href="#com" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы получить доступ к <a class="reference internal" href="hardware.html#screen-com"><span class="std std-ref">COM порту (RS-232)</span></a> без наличия прав суперпользователя, необходимо добавить свой аккаунт в группу <strong>dialout</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G dialout <span class="k">$(</span>whoami<span class="k">)</span>
 </pre></div>
@@ -659,7 +667,7 @@ Match Group sftp
 <p>Изменения вступят в силу при следующем входе в систему.</p>
 </div>
 <div class="section" id="gnupg-kwallet">
-<span id="gpg-kwallet"></span><span id="index-63"></span><h2>Можно ли сохранить пароль GnuPG ключа в связке ключей KWallet?<a class="headerlink" href="#gnupg-kwallet" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="gpg-kwallet"></span><span id="index-64"></span><h2>Можно ли сохранить пароль GnuPG ключа в связке ключей KWallet?<a class="headerlink" href="#gnupg-kwallet" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Установим пакет <strong>kwalletcli</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install kwalletcli
 </pre></div>
@@ -726,6 +734,7 @@ Match Group sftp
 <li class="toctree-l2"><a class="reference internal" href="#gnupg">Как работать с подписями GnuPG?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gpg-encrypt">Как зашифровать и расшифровать файлы с определённой маской в текущем каталоге?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#admin-vs-user">Чем отличается пользователь-администратор от обычного?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sudo-run">Как запустить команду с правами суперпользователя?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sudo-su">Какие пароли запрашивают sudo и su?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#root-password">Как мне сменить пароль суперпользователя?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sudo">Как мне получить доступ к sudo?</a></li>
