@@ -343,6 +343,21 @@ chmod +x Unigine_Superposition-1.0.run
 </div>
 <p>Здесь вместо <strong>/dev/sda</strong> следует указать устройство, информацию по состоянию которого требуется вывести.</p>
 </div>
+<div class="section" id="icc-profile">
+<span id="index-22"></span><span id="id13"></span><h2>Как улучшить цветопередачу монитора, либо дисплея ноутбука?<a class="headerlink" href="#icc-profile" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для улучшения цветопередачи рекомендуется загрузить и установить соответствующий данной ЖК матрице цветовой профиль (ICC profile).</p>
+</div>
+<div class="section" id="icc">
+<span id="icc-download"></span><span id="index-23"></span><h2>Где найти ICC профиль для установленного в моём мониторе или ноутбуке дисплея?<a class="headerlink" href="#icc" title="Ссылка на этот заголовок">¶</a></h2>
+<p>ICC профиль можно получить либо на сайте производителя устройства, либо извлечь из набора драйверов дисплея для Windows, либо найти готовый, созданный на специальном оборудовании.</p>
+<p>Большое количество готовых цветовых профилей для ноутбуков, созданных на специальном калибровочном оборудовании, можно найти на сайте <a class="reference external" href="https://www.notebookcheck.net">Notebook Check</a>.</p>
+</div>
+<div class="section" id="icc-install">
+<span id="index-24"></span><span id="id14"></span><h2>Я нашёл цветовой профиль для дисплея. Как мне его установить в систему?<a class="headerlink" href="#icc-install" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Пользователям KDE необходимо открыть <strong>Параметры системы</strong> - <strong>Оборудование</strong> - <strong>Цветовая коррекция</strong>, перейти на вкладку <strong>Профили</strong>, нажать кнопку <strong>Добавить профиль</strong>, указать ICC-файл на диске, после чего подвердить установку. Теперь на вкладке <strong>Устройства</strong> можно заменить стандартный цветовой профиль на только что установленный. Также его можно назначить по умолчанию для всех пользователей системы (потребуется <a class="reference internal" href="security.html#sudo-password"><span class="std std-ref">доступ к sudo</span></a>).</p>
+<p>Пользователи Gnome должны установить утилиту Gnome Color Manager, после чего импортировать и применить загруженный ICC-файл.</p>
+<p>Изменения вступают в силу немедленно.</p>
+</div>
 </div>
 
 
@@ -394,6 +409,9 @@ chmod +x Unigine_Superposition-1.0.run
 <li class="toctree-l2"><a class="reference internal" href="#scan-drivers">Как настроить сканер?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#scan-app">При помощи какого приложения можно осуществлять сканирование документов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#hdd-ssd">Как получить информацию о состоянии HDD или SSD накопителя?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#icc-profile">Как улучшить цветопередачу монитора, либо дисплея ноутбука?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#icc">Где найти ICC профиль для установленного в моём мониторе или ноутбуке дисплея?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#icc-install">Я нашёл цветовой профиль для дисплея. Как мне его установить в систему?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
