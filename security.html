@@ -678,6 +678,117 @@ Match Group sftp
 </div>
 <p>Выполним выход из системы. При следующем вводе пароля расшифровки закрытого ключа, KWallet предложит сохранить его в связке ключей.</p>
 </div>
+<div class="section" id="gpg-gui">
+<span id="index-65"></span><span id="id46"></span><h2>Безопасно ли использовать менеджеры связки ключей GnuPG с графическим интерфейсом?<a class="headerlink" href="#gpg-gui" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да.</p>
+</div>
+<div class="section" id="kleopatra-kgpg">
+<span id="gpg-kleopatra"></span><span id="index-66"></span><h2>Можно ли одновременно использовать Kleopatra и KGpg?<a class="headerlink" href="#kleopatra-kgpg" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Нет, не следует использовать одновременно разные графические менеджеры, т.к. настройки, вносимые ими в файл конфигурации GnuPG, будут конфликтовать и приводить к непредсказуемым последствиям.</p>
+<p>Пользователям KDE мы рекомендуем Kleopatra, как наиболее современную и функциональную оболочку.</p>
+</div>
+<div class="section" id="gpg-token">
+<span id="index-67"></span><span id="id47"></span><h2>Какой токен для безопасного хранения GnuPG ключей вы можете порекомендовать?<a class="headerlink" href="#gpg-token" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Мы рекомендуем использовать токены <a class="reference external" href="https://www.nitrokey.com/ru">Nitrokey Pro 2</a>, т.к. они имеют как открытое железо, так и софт (спецификации, прошивки, а также программное обеспечение опубликовано под свободными лицензиями).</p>
+</div>
+<div class="section" id="gpg-use-token">
+<span id="index-68"></span><span id="id48"></span><h2>Как работать с токеном или смарт-картой из консоли?<a class="headerlink" href="#gpg-use-token" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для работы с аппаратным токеном будем использовать утилиту GnuPG2.</p>
+<p>Вставим устройство в USB порт компьютера или ноутбука, либо смарт-карту в считыватель, затем выведем его статус:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpg2 --card-status
+</pre></div>
+</div>
+<p>Установим PIN-код:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpg2 --change-pin
+</pre></div>
+</div>
+<p>Перейдём в режим работы с токеном:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpg2 --card-edit
+</pre></div>
+</div>
+<p>Переключимся в режим администратора:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>admin
+</pre></div>
+</div>
+<p>Сгенерируем новую связку ключей GnuPG на токене:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>generate
+</pre></div>
+</div>
+<p>GnuPG2 запросит стандартные данные: имя и адрес электронной почты владельца ключевой пары, срок действия, а также указать стойкость шифра. Следует помнить, что размер памяти токена сильно ограничен, поэтому если генерировать исключительно 4096 битные ключи, место быстро закончится (например Nitrokey Pro 2 вмещает лишь 3 ключевых пары со стойкостью шифра 4096 бит).</p>
+<p>Также будет предложено сохранить копию секретного ключа на диск. Для максимальной безопасности лучше отказаться от этого.</p>
+<p>Проверим сгенерировались ли ключи:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>list
+</pre></div>
+</div>
+<p>Если всё сделано верно, то новая ключевая пара появится в списке немедленно.</p>
+</div>
+<div class="section" id="gpg-ssh">
+<span id="index-69"></span><span id="id49"></span><h2>Как использовать токен для аутентификации SSH?<a class="headerlink" href="#gpg-ssh" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Сначала нам необходимо добавить в нашу ключевую пару особый ключ для аутентификации. По умолчанию он не создаётся.</p>
+<p>Выведем список доступных ключевых пар:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpg2 --list-secret-keys
+</pre></div>
+</div>
+<p>Откроем наш основной ключ в режиме редактирования:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpg2 --edit-key XXXXXXXXX
+</pre></div>
+</div>
+<p>Здесь <strong>XXXXXXXXX</strong> - ID нашего ключа.</p>
+<p>Добавим новый подключ:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>addkey
+</pre></div>
+</div>
+<p>В списке атрибутов оставим только <strong>Authentication</strong> и обязательно отключим <em>Encrypt</em> и <em>Sign</em>.</p>
+<p>Выберем созданный подключ и переместим его на токен:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>key 2
+keytocard
+</pre></div>
+</div>
+<p>Экспортируем публичный ключ SSH из созданного подключа для аутентификации:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpg2 --export-ssh-key XXXXXXXXX --output ~/.ssh/id_rsa.pub
+</pre></div>
+</div>
+<p>Здесь <strong>XXXXXXXXX</strong> - ID нашего ключа.</p>
+<p>Активируем поддержку SSH агента в GnuPG агенте, добавив в конец файла <code class="docutils literal notranslate"><span class="pre">~/.gnupg/gpg-agent.conf</span></code> следующую строку:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>enable-ssh-support
+</pre></div>
+</div>
+<p>Настроим автоматический запуск GnuPG агента вместе с системой, создав скрипт <code class="docutils literal notranslate"><span class="pre">~/bin/gpg-agent.sh</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/sh</span>
+<span class="nb">export</span> <span class="nv">GPG_TTY</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>tty<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nb">export</span> <span class="nv">SSH_AUTH_SOCK</span><span class="o">=</span><span class="k">$(</span>gpgconf --list-dirs agent-ssh-socket<span class="k">)</span>
+gpgconf --launch gpg-agent
+</pre></div>
+</div>
+<p>Выдадим ему права на выполнение:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod +x ~/bin/gpg-agent.sh
+</pre></div>
+</div>
+<p>Добавим этот скрипт а автозагрузку используемой DE, либо в <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> и выполним новый вход в систему.</p>
+</div>
+<div class="section" id="gpg-transfer">
+<span id="index-70"></span><span id="id50"></span><h2>Можно ли переместить на токен уже имеющуюся ключевую пару GnuPG?<a class="headerlink" href="#gpg-transfer" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Выведем список доступных ключевых пар:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpg2 --list-secret-keys
+</pre></div>
+</div>
+<p>Откроем наш основной ключ в режиме редактирования:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpg2 --edit-key XXXXXXXXX
+</pre></div>
+</div>
+<p>Здесь <strong>XXXXXXXXX</strong> - ID нашего ключа.</p>
+<p>Выберем каждый подключ и переместим его на токен:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>key 1
+keytocard
+</pre></div>
+</div>
+<p>Повторим для всех оставшихся подключей.</p>
+<p><strong>Отключим токен от компьютера или ноутбука</strong>, затем выполним удаление локального секретного ключа:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gpg2 --delete-secret-key XXXXXXXXX
+</pre></div>
+</div>
+<p>Здесь <strong>XXXXXXXXX</strong> - ID нашего ключа.</p>
+</div>
 </div>
 
 
@@ -770,6 +881,12 @@ Match Group sftp
 <li class="toctree-l2"><a class="reference internal" href="#vpn">Хочу обезопасить свой Интернет-трафик. Какую реализацию VPN выбрать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#com">Как получить доступ к COM портам без наличия прав суперпользователя?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gnupg-kwallet">Можно ли сохранить пароль GnuPG ключа в связке ключей KWallet?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gpg-gui">Безопасно ли использовать менеджеры связки ключей GnuPG с графическим интерфейсом?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kleopatra-kgpg">Можно ли одновременно использовать Kleopatra и KGpg?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gpg-token">Какой токен для безопасного хранения GnuPG ключей вы можете порекомендовать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gpg-use-token">Как работать с токеном или смарт-картой из консоли?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gpg-ssh">Как использовать токен для аутентификации SSH?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gpg-transfer">Можно ли переместить на токен уже имеющуюся ключевую пару GnuPG?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>

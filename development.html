@@ -409,14 +409,13 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <span id="index-20"></span><span id="id11"></span><h2>Проекты под какими лицензиями допускается распространять в репозиториях?<a class="headerlink" href="#fedora-licenses" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://fedoraproject.org/wiki/Licensing:Main">здесь</a>.</p>
 </div>
-<div class="section" id="tlp">
-<span id="tlp-battery"></span><span id="index-21"></span><h2>Нужно ли использовать TLP для оптимизации работы батареи?<a class="headerlink" href="#tlp" title="Ссылка на этот заголовок">¶</a></h2>
-<p>На современных поколениях ноутбуков использовать TLP не следует, т.к. контроллеры аккумуляторных батарей способны самостоятельно контролировать уровень заряда и балансировать износ ячеек.</p>
-<p>Если всё же требуется установить предел заряда например от 70% до 90%, вместо TLP лучше один раз воспользоваться фирменной утилитой производителя устройства, задать необходимые настройки и сохранить изменения в NVRAM материнской платы. В таком случае они будут работать в любой ОС.</p>
-</div>
 <div class="section" id="pipe-order">
-<span id="index-22"></span><span id="id12"></span><h2>В каком порядке запускаются процессы через канал (пайп)?<a class="headerlink" href="#pipe-order" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-21"></span><span id="id12"></span><h2>В каком порядке запускаются процессы через канал (пайп)?<a class="headerlink" href="#pipe-order" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если запускается несколько процессов с передачей данных через канал (пайп; pipe), то все они стартуют одновременно, затем начинает выполняться первый, а остальные уходят в состояние ожидания ввода.</p>
+</div>
+<div class="section" id="build-flags">
+<span id="index-22"></span><span id="id13"></span><h2>Можно ли использовать собственные флаги компиляции при сборке пакета?<a class="headerlink" href="#build-flags" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для любых официальных сборок следует использовать исключительно стандартные для дистрибутива флаги, предоставляемые макросами <code class="docutils literal notranslate"><span class="pre">%{optflags}</span></code> (флаги компилятора) и <code class="docutils literal notranslate"><span class="pre">%{build_ldflags}</span></code> (флаги компоновки).</p>
 </div>
 </div>
 
@@ -469,8 +468,8 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <li class="toctree-l2"><a class="reference internal" href="#cpack-gnu-linux">Можно ли использовать cpack для сборки пакетов для GNU/Linux?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#library-path">Приложение собрано со старой версией библиотеки. Как заставить его работать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora-licenses">Проекты под какими лицензиями допускается распространять в репозиториях?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#tlp">Нужно ли использовать TLP для оптимизации работы батареи?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pipe-order">В каком порядке запускаются процессы через канал (пайп)?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-flags">Можно ли использовать собственные флаги компиляции при сборке пакета?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
