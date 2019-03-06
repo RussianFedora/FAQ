@@ -406,3 +406,15 @@
     dumpe2fs /dev/sda1 | grep 'Filesystem created:'
 
 Здесь **/dev/sda1** - раздел диска, на котором установлена Fedora.
+
+.. index:: installation, date, mode, uefi, legacy
+.. _installation-mode:
+
+Как определить в каком режиме была произведена установка системы?
+====================================================================
+
+Определим режим установки системы (UEFI или Legacy) посредством проверки наличия, либо отсутствия каталога ``/sys/firmware/efi``:
+
+.. code-block:: bash
+
+    test -d /sys/firmware/efi && echo EFI mode. || echo Legacy mode.
