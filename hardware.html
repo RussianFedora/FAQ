@@ -363,6 +363,20 @@ chmod +x Unigine_Superposition-1.0.run
 <p>На современных поколениях ноутбуков использовать TLP не следует, т.к. контроллеры аккумуляторных батарей способны самостоятельно контролировать уровень заряда и балансировать износ ячеек.</p>
 <p>Если всё же требуется установить предел заряда например от 70% до 90%, вместо TLP лучше один раз воспользоваться фирменной утилитой производителя устройства, задать необходимые настройки и сохранить изменения в NVRAM материнской платы. В таком случае они будут работать в любой ОС.</p>
 </div>
+<div class="section" id="cpu-virt">
+<span id="index-26"></span><span id="id15"></span><h2>Как определить имеет ли процессор аппаратную поддержку виртуализации?<a class="headerlink" href="#cpu-virt" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Проверим наличие флага <strong>vmx</strong> (Intel), либо <strong>svm</strong> (AMD) в выводе <code class="docutils literal notranslate"><span class="pre">/proc/cpuinfo</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep -Eq <span class="s1">&#39;(vmx|svm)&#39;</span> /proc/cpuinfo <span class="o">&amp;&amp;</span> <span class="nb">echo</span> Yes <span class="o">||</span> <span class="nb">echo</span> No
+</pre></div>
+</div>
+</div>
+<div class="section" id="gl-engine">
+<span id="index-27"></span><span id="id16"></span><h2>Как определить какой движок используется для вывода трёхмерной графики?<a class="headerlink" href="#gl-engine" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Воспользуемся утилитой <strong>glxinfo</strong> для вывода информации об используемом OpenGL движке:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>glxinfo <span class="p">|</span> grep -E <span class="s1">&#39;OpenGL version|OpenGL renderer&#39;</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -418,6 +432,8 @@ chmod +x Unigine_Superposition-1.0.run
 <li class="toctree-l2"><a class="reference internal" href="#icc">Где найти ICC профиль для установленного в моём мониторе или ноутбуке дисплея?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#icc-install">Я нашёл цветовой профиль для дисплея. Как мне его установить в систему?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tlp">Нужно ли использовать TLP для оптимизации работы батареи?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cpu-virt">Как определить имеет ли процессор аппаратную поддержку виртуализации?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gl-engine">Как определить какой движок используется для вывода трёхмерной графики?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>

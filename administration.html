@@ -639,6 +639,15 @@ fw_add <span class="m">6</span>
 </div>
 <p>Приостановить работу можно нажатием клавиши <strong>P</strong>, для возобновить - <strong>пробел</strong>, а для выхода - <strong>Q</strong>.</p>
 </div>
+<div class="section" id="kernel-bs">
+<span id="index-57"></span><span id="id34"></span><h2>Как определить включена ли определённая опция ядра во время компиляции?<a class="headerlink" href="#kernel-bs" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Полный список опций, заданных на этапе компиляции ядра, всегда можно найти в config-файлах, внутри каталога <code class="docutils literal notranslate"><span class="pre">/boot</span></code>.</p>
+<p>В качестве примера проверим статус опции <code class="docutils literal notranslate"><span class="pre">CONFIG_EFI_STUB</span></code> текущего ядра:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep CONFIG_EFI_STUB /boot/config-<span class="k">$(</span>uname -r<span class="k">)</span>
+</pre></div>
+</div>
+<p>В выводе <strong>y</strong> означает, что опция была включена, а <strong>not set</strong>, соответственно, выключена.</p>
+</div>
 </div>
 
 
@@ -722,6 +731,7 @@ fw_add <span class="m">6</span>
 <li class="toctree-l2"><a class="reference internal" href="#ip-cloudflare">Как пробросить IP адреса клиентов за CloudFlare?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#docker-fedora">Как правильно установить Docker в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-mtr">Как проверить наличие или отсутствие потерь пакетов до узла?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kernel-bs">Как определить включена ли определённая опция ядра во время компиляции?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>

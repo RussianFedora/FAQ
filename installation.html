@@ -312,6 +312,21 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <p>Для выполнения команд с привилегиями суперпользователя в настоящее время рекомендуется <a class="reference internal" href="security.html#sudo-run"><span class="std std-ref">использовать sudo</span></a>.</p>
 <p>Однако если по какой-то причине работающая учётная запись root необходима, можно её активировать, <a class="reference internal" href="security.html#root-password"><span class="std std-ref">установив пароль</span></a>.</p>
 </div>
+<div class="section" id="installation-date">
+<span id="index-27"></span><span id="id19"></span><h2>Как определить точную дату установки ОС?<a class="headerlink" href="#installation-date" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Т.к. операционная система постоянно обновляется, точную дату установки ОС напрямую получить не представляется возможным. Можно лишь определить дату последнего форматирования раздела диска, на котором установлена система:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dumpe2fs /dev/sda1 <span class="p">|</span> grep <span class="s1">&#39;Filesystem created:&#39;</span>
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sda1</strong> - раздел диска, на котором установлена Fedora.</p>
+</div>
+<div class="section" id="installation-mode">
+<span id="index-28"></span><span id="id20"></span><h2>Как определить в каком режиме была произведена установка системы?<a class="headerlink" href="#installation-mode" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Определим режим установки системы (<a class="reference internal" href="#uefi-boot"><span class="std std-ref">UEFI</span></a> или Legacy) посредством проверки наличия, либо отсутствия каталога <code class="docutils literal notranslate"><span class="pre">/sys/firmware/efi</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">test</span> -d /sys/firmware/efi <span class="o">&amp;&amp;</span> <span class="nb">echo</span> EFI mode. <span class="o">||</span> <span class="nb">echo</span> Legacy mode.
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -363,6 +378,8 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <li class="toctree-l2"><a class="reference internal" href="#grub">Как полностью скрыть меню Grub?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#windows-uefi-fedora">После установки Windows был затёрт UEFI загрузчик Fedora. Как его восстановить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#root-no-password">При установке не предлагается установить пароль для суперпользователя. Это нормально?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-date">Как определить точную дату установки ОС?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-mode">Как определить в каком режиме была произведена установка системы?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="package-manager.html">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
