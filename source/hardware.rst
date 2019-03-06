@@ -505,3 +505,15 @@ ICC профиль можно получить либо на сайте прои
 .. code-block:: bash
 
     grep -Eq '(vmx|svm)' /proc/cpuinfo && echo Yes || echo No
+
+.. index:: gpu, opengl, gl, engine, glxinfo
+.. _gl-engine:
+
+Как определить какой движок используется для вывода трёхмерной графики?
+=========================================================================
+
+Воспользуемся утилитой **glxinfo** для вывода информации об используемом OpenGL движке:
+
+.. code-block:: bash
+
+    glxinfo | grep -E 'OpenGL version|OpenGL renderer'
