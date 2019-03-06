@@ -314,11 +314,11 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 </div>
 <div class="section" id="installation-date">
 <span id="index-27"></span><span id="id19"></span><h2>Как определить точную дату установки ОС?<a class="headerlink" href="#installation-date" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Т.к. операционная система постоянно обновляется, точную дату установки ОС напрямую получить не представляется возможным. Можно лишь определить дату последнего форматирования раздела диска, на котором установлена система:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dumpe2fs /dev/sda1 <span class="p">|</span> grep <span class="s1">&#39;Filesystem created:&#39;</span>
+<p>Т.к. операционная система постоянно обновляется, точную дату установки ОС напрямую получить не представляется возможным. Можно лишь вывести дату последнего форматирования раздела диска, на котором установлена система:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dumpe2fs /dev/sda1 <span class="p">|</span> grep <span class="s1">&#39;Filesystem created:&#39;</span>
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sda1</strong> - раздел диска, на котором установлена Fedora.</p>
+<p>Здесь <strong>/dev/sda1</strong> - раздел диска с Fedora.</p>
 </div>
 <div class="section" id="installation-mode">
 <span id="index-28"></span><span id="id20"></span><h2>Как определить в каком режиме была произведена установка системы?<a class="headerlink" href="#installation-mode" title="Ссылка на этот заголовок">¶</a></h2>
