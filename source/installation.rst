@@ -417,4 +417,4 @@
 
 .. code-block:: bash
 
-    test -d /sys/firmware/efi && echo EFI mode. || echo Legacy mode.
+    test -d /sys/firmware/efi && echo EFI || echo Legacy
