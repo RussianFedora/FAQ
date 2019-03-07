@@ -88,13 +88,13 @@
 
 Да, при помощи утилиты **efibootmgr**. Вывод текущего списка загрузки UEFI Boot:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo efibootmgr -v
 
 Изменение порядка:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo efibootmgr -o 0000,0002,0003,0001
 
