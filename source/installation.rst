@@ -188,13 +188,13 @@
 
 Актуальные версии не требуют особой настройки если были сразу установлены на SSD. Достаточно лишь убедиться, что TRIM таймер активен:
 
-.. code-block:: bash
+.. code-block:: text
 
     systemctl status fstrim.timer
 
 Если это не так, нужно активировать его:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo systemctl enable fstrim.timer
 
@@ -359,25 +359,25 @@
 
 Смонтируем служебный ESP раздел диска:
 
-.. code-block:: bash
+.. code-block:: text
 
     mount -t vfat /dev/sda1 /boot/efi
 
 Выполним переустановку загрузчиков Grub2 и shim:
 
-.. code-block:: bash
+.. code-block:: text
 
     dnf reinstall grub2-efi shim
 
 :ref:`Пересоберём <grub-rebuild>` конфиг Grub2:
 
-.. code-block:: bash
+.. code-block:: text
 
     grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
 
 Завершим работу chroot окружения:
 
-.. code-block:: bash
+.. code-block:: text
 
     logout
 
