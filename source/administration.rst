@@ -154,6 +154,7 @@
     sudo mount --rbind /dev dev
     sudo mount --make-rslave dev
     sudo mount -t tmpfs tmpfs tmp
+    sudo mount -t efivarfs efivarfs sys/firmware/efi/efivars
 
 Теперь выполняем вход в chroot:
 
