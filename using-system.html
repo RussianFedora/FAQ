@@ -829,6 +829,15 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </pre></div>
 </div>
 </div>
+<div class="section" id="zip">
+<span id="zip-encoding"></span><span id="index-71"></span><h2>При распаковке Zip архива появляются кракозябры вместо имён файлов. Как исправить?<a class="headerlink" href="#zip" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Zip-архивы, созданные штатными средствами ОС Windows, сохраняют имена файлов внутри архива исключительно в однобайтовой кодировке системы по умолчанию (в русской версии это Windows-1251 (cp1251), в английской - Windows-1252 (cp1252)), поэтому при распаковке таких архивов вместо русских букв будут отображаться кракозябры.</p>
+<p>Утилита unzip поддерживает явное указание кодировки, поэтому воспользуемся данной функцией:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip -O cp1251 foo-bar.zip -d /path/to/destination
+</pre></div>
+</div>
+<p>Здесь <strong>cp1251</strong> - кодировка имён файлов, <strong>foo-bar.zip</strong> - имя архива, а <strong>/path/to/destination</strong> - каталог, в который он будет распакован.</p>
+</div>
 </div>
 
 
@@ -928,6 +937,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#qr">Как распознать QR-код или штрих-код из консоли?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ocr-app">Как можно распознать текст с изображения или сканера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#neofetch">Как вывести в консоль краткую информацию об установленной системе?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zip">При распаковке Zip архива появляются кракозябры вместо имён файлов. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>

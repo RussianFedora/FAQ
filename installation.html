@@ -81,11 +81,11 @@
 <div class="section" id="uefi-boot-fedora">
 <span id="uefi-reorder"></span><span id="index-8"></span><h2>Возможно ли настроить порядок загрузки в UEFI Boot из Fedora?<a class="headerlink" href="#uefi-boot-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, при помощи утилиты <strong>efibootmgr</strong>. Вывод текущего списка загрузки UEFI Boot:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo efibootmgr -v
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo efibootmgr -v
 </pre></div>
 </div>
 <p>Изменение порядка:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo efibootmgr -o <span class="m">0000</span>,0002,0003,0001
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo efibootmgr -o 0000,0002,0003,0001
 </pre></div>
 </div>
 <p>Здесь <strong>0000</strong> и прочие строки из предыдущего вывода утилиты. Изменения вступают в силу немедленно.</p>
@@ -141,11 +141,11 @@
 <div class="section" id="fedora-ssd">
 <span id="ssd-tuning"></span><span id="index-17"></span><h2>Нужно ли как-то настраивать Fedora для работы с SSD?<a class="headerlink" href="#fedora-ssd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Актуальные версии не требуют особой настройки если были сразу установлены на SSD. Достаточно лишь убедиться, что TRIM таймер активен:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl status fstrim.timer
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl status fstrim.timer
 </pre></div>
 </div>
 <p>Если это не так, нужно активировать его:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl <span class="nb">enable</span> fstrim.timer
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable fstrim.timer
 </pre></div>
 </div>
 <p>Процедура TRIM для всех установленных твердотельных накопителей будет выполняться автоматически по расписанию один раз в неделю во время простоя системы.</p>
@@ -197,7 +197,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="fedora-uefi">
-<span id="uefi-boot"></span><span id="index-22"></span><h2>Установить Fedora в UEFI режиме?<a class="headerlink" href="#fedora-uefi" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="uefi-boot"></span><span id="index-22"></span><h2>Как установить Fedora в UEFI режиме?<a class="headerlink" href="#fedora-uefi" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Загрузка LiveUSB образа должна производиться исключительно в UEFI режиме. На большинстве материнских плат в меню вариантов загрузки требуется выбрать режим <em>UEFI External Drive</em> или <em>UEFI USB HDD</em>.</p>
 <p>Схемой разбиения диска, на который будет установлен дистрибутив, должна быть <strong>GPT</strong>. Проверить можно посредством выполнения <strong>fdisk</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo fdisk -l
@@ -290,19 +290,19 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <p>Во время своей установки ОС Microsoft Windows всегда осуществляет форматирование служебного ESP раздела диска, поэтому придётся вручную восстановить загрузчик.</p>
 <p>Выполним вход в <a class="reference internal" href="administration.html#chroot"><span class="std std-ref">chroot установленной системы</span></a>.</p>
 <p>Смонтируем служебный ESP раздел диска:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mount -t vfat /dev/sda1 /boot/efi
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mount -t vfat /dev/sda1 /boot/efi
 </pre></div>
 </div>
 <p>Выполним переустановку загрузчиков Grub2 и shim:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf reinstall grub2-efi shim
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf reinstall grub2-efi shim
 </pre></div>
 </div>
 <p><a class="reference internal" href="using-system.html#grub-rebuild"><span class="std std-ref">Пересоберём</span></a> конфиг Grub2:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
 </pre></div>
 </div>
 <p>Завершим работу chroot окружения:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">logout</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>logout
 </pre></div>
 </div>
 </div>
@@ -323,7 +323,7 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <div class="section" id="installation-mode">
 <span id="index-28"></span><span id="id20"></span><h2>Как определить в каком режиме была произведена установка системы?<a class="headerlink" href="#installation-mode" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Определим режим установки системы (<a class="reference internal" href="#uefi-boot"><span class="std std-ref">UEFI</span></a> или Legacy) посредством проверки наличия, либо отсутствия каталога <code class="docutils literal notranslate"><span class="pre">/sys/firmware/efi</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">test</span> -d /sys/firmware/efi <span class="o">&amp;&amp;</span> <span class="nb">echo</span> EFI mode. <span class="o">||</span> <span class="nb">echo</span> Legacy mode.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">test</span> -d /sys/firmware/efi <span class="o">&amp;&amp;</span> <span class="nb">echo</span> EFI <span class="o">||</span> <span class="nb">echo</span> Legacy
 </pre></div>
 </div>
 </div>
@@ -373,7 +373,7 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <li class="toctree-l2"><a class="reference internal" href="#fonts-cleartype">Как улучшить отображение шрифтов в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fonts-console">В консолях фреймбуфера отображаются кракозябры. Как это починить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fs-convert">Можно ли без потерь данных преобразовать одну файловую систему в другую?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#fedora-uefi">Установить Fedora в UEFI режиме?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora-uefi">Как установить Fedora в UEFI режиме?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora-partitions">Как лучше разбить диск самостоятельно?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#grub">Как полностью скрыть меню Grub?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#windows-uefi-fedora">После установки Windows был затёрт UEFI загрузчик Fedora. Как его восстановить?</a></li>

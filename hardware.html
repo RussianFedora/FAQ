@@ -179,7 +179,9 @@
 <blockquote>
 <div><ul class="simple">
 <li>screen;</li>
-<li>putty.</li>
+<li>putty;</li>
+<li>picocom;</li>
+<li>minicom.</li>
 </ul>
 </div></blockquote>
 <p>Воспользуемся утилитой <strong>screen</strong> для подключения к последовательному порту:</p>
@@ -365,7 +367,7 @@ chmod +x Unigine_Superposition-1.0.run
 </div>
 <div class="section" id="cpu-virt">
 <span id="index-26"></span><span id="id15"></span><h2>Как определить имеет ли процессор аппаратную поддержку виртуализации?<a class="headerlink" href="#cpu-virt" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Проверим наличие флага <strong>vmx</strong> (Intel), либо <strong>svm</strong> (AMD) в выводе <code class="docutils literal notranslate"><span class="pre">/proc/cpuinfo</span></code>:</p>
+<p>Проверим наличие флагов <strong>vmx</strong> (Intel), либо <strong>svm</strong> (AMD) в выводе <code class="docutils literal notranslate"><span class="pre">/proc/cpuinfo</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep -Eq <span class="s1">&#39;(vmx|svm)&#39;</span> /proc/cpuinfo <span class="o">&amp;&amp;</span> <span class="nb">echo</span> Yes <span class="o">||</span> <span class="nb">echo</span> No
 </pre></div>
 </div>
