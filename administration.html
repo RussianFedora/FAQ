@@ -649,6 +649,44 @@ fw_add <span class="m">6</span>
 </div>
 <p>В выводе <strong>y</strong> означает, что опция была включена, а <strong>not set</strong>, соответственно, выключена.</p>
 </div>
+<div class="section" id="ss-established">
+<span id="index-58"></span><span id="id35"></span><h2>Как получить список установленных сетевых соединений?<a class="headerlink" href="#ss-established" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Воспользуемся утилитой <strong>ss</strong> для вывода списка установленных сетевых соединений:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ss -tupn
+</pre></div>
+</div>
+</div>
+<div class="section" id="ss-listening">
+<span id="index-59"></span><span id="id36"></span><h2>Как получить список открытых портов?<a class="headerlink" href="#ss-listening" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Воспользуемся утилитой <strong>ss</strong> для вывода открытых портов, ожидающих входящих соединений:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ss -tulpn
+</pre></div>
+</div>
+<p>Статус <strong>LISTEN</strong> означает, что TCP-порт открыт и ожидает входящих соединений. В то же время для UDP-портов будет отображаться статус <strong>UNCONN</strong>, т.к. этот протокол не подразумевает предварительное открытие подключений.</p>
+</div>
+<div class="section" id="ksoftirqd">
+<span id="index-60"></span><span id="id37"></span><h2>Процесс ksoftirqd съедает все ресурсы системы. Что делать?<a class="headerlink" href="#ksoftirqd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Ядро операционной системы взаимодействует с устройствами посредством прерываний. Когда возникает новое прерывание, оно немедленно приостанавливает работу текущего выполняемого процесса, переключается в режим ядра и начинает его обработку.</p>
+<p>Может случиться так, что прерывания будут генерироваться настолько часто, что ядро не сможет их обрабатывать немедленно, в порядке получения. На этот случай имеется специальный механизм, помещающий полученные прерывания в очередь для дальнейшей обработки. Этой очередью управляет особый поток ядра <strong>ksoftirqd</strong> (создаётся по одному на каждый имеющийся процессор или ядро многоядерного процессора).</p>
+<p>Если потоки ядра ksoftirqd потребляют значительное количество ресурсов центрального процессора, значит система находится под очень высокой нагрузкой по прерываниям.</p>
+</div>
+<div class="section" id="kernel-irq">
+<span id="index-61"></span><span id="id38"></span><h2>Как определить какое устройство генерирует огромное количество прерываний?<a class="headerlink" href="#kernel-irq" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для диагностики системы обработки прерываний, ядро имеет встроенный механизм:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat /proc/interrupts
+</pre></div>
+</div>
+<p>Числа в таблице означают точное количество прерываний, инициированных соответствующим устройством или подсистемой, с момента загрузки.</p>
+</div>
+<div class="section" id="irq-manual">
+<span id="index-62"></span><span id="id39"></span><h2>Как произвести ручную балансировку прерываний?<a class="headerlink" href="#irq-manual" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если <a class="reference internal" href="#kernel-irq"><span class="std std-ref">прерывания</span></a> распределены между процессорными ядрами не равномерно, можно использовать режим ручной балансировки:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo bash -c <span class="s2">&quot;echo X &gt; /proc/irq/Y/smp_affinity&quot;</span>
+</pre></div>
+</div>
+<p>Здесь <strong>X</strong> - маска процессора (CPU affinity), который будет обрабатывать данное прерывание, а <strong>Y</strong> - номер прерывания (указан в левом столбце таблицы прерываний).</p>
+<p>Чтобы вычислить маску следует возвести число 2 в степень, равную порядкому номеру процессора, и результат перевести в шестнадцатиричную систему счисления.</p>
+</div>
 </div>
 
 
@@ -733,6 +771,11 @@ fw_add <span class="m">6</span>
 <li class="toctree-l2"><a class="reference internal" href="#docker-fedora">Как правильно установить Docker в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-mtr">Как проверить наличие или отсутствие потерь пакетов до узла?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kernel-bs">Как определить включена ли определённая опция ядра во время компиляции?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ss-established">Как получить список установленных сетевых соединений?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ss-listening">Как получить список открытых портов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ksoftirqd">Процесс ksoftirqd съедает все ресурсы системы. Что делать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kernel-irq">Как определить какое устройство генерирует огромное количество прерываний?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#irq-manual">Как произвести ручную балансировку прерываний?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
