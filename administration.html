@@ -687,6 +687,46 @@ fw_add <span class="m">6</span>
 <p>Здесь <strong>X</strong> - маска процессора (CPU affinity), который будет обрабатывать данное прерывание, а <strong>Y</strong> - номер прерывания (указан в левом столбце таблицы прерываний).</p>
 <p>Чтобы вычислить маску следует возвести число 2 в степень, равную порядкому номеру процессора, и результат перевести в шестнадцатиричную систему счисления.</p>
 </div>
+<div class="section" id="too-many-open-files">
+<span id="fd-limit"></span><span id="index-63"></span><h2>При запуске приложения возникает ошибка Too many open files. Что делать?<a class="headerlink" href="#too-many-open-files" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Ошибка <em>Too many open files</em> возникает при превышении количества открытых дескрипторов файлов процессом. Для её исправления, нужно <a class="reference internal" href="#fd-increase"><span class="std std-ref">увеличить это ограничение</span></a>.</p>
+</div>
+<div class="section" id="fd-hard-soft">
+<span id="index-64"></span><span id="id40"></span><h2>Как узнать текущий лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-hard-soft" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Существует два типа ограничений: мягкий (soft) и жёсткий (hard). Жёсткий задаётся администратором системы, а мягкий может регулироваться как пользователем, так и запущенным приложением, но не может превышать максимально заданное значение жёсткого лимита, а также <a class="reference internal" href="#fd-kernel"><span class="std std-ref">глобальное для всего ядра</span></a>.</p>
+<p>Получим значение мягкого ограничителя:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">ulimit</span> -Sn
+</pre></div>
+</div>
+<p>Получим значение жёсткого ограничителя:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">ulimit</span> -Hn
+</pre></div>
+</div>
+<p>Значения по умолчанию <strong>1024</strong> (soft) и <strong>4096</strong> (hard).</p>
+</div>
+<div class="section" id="fd-kernel">
+<span id="index-65"></span><span id="id41"></span><h2>Как узнать глобальный лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-kernel" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Наряду я <a class="reference internal" href="#fd-hard-soft"><span class="std std-ref">мягким и жёстким лимитами</span></a> открытых файловых дескрипторов существует и глобальный, который ядро Linux способно адресовать и корректно обработать.</p>
+<p>Выведем это значение при помощи соответствующей функции ядра:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat /proc/sys/fs/file-max
+</pre></div>
+</div>
+</div>
+<div class="section" id="fd-increase">
+<span id="index-66"></span><span id="id42"></span><h2>Как увеличить лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-increase" title="Ссылка на этот заголовок">¶</a></h2>
+<p><a class="reference internal" href="#fd-hard-soft"><span class="std std-ref">Мягкие и жётские лимиты</span></a> на количество дескрипторов открытых файлов задаются в файле <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.conf</span></code> суперпользователем, но при этом не могут превышать <a class="reference internal" href="#fd-kernel"><span class="std std-ref">глобальный лимит ядра</span></a>.</p>
+<p>Увеличим ограничение для пользователя <strong>foo-bar</strong> до 8192/2048:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar       soft    nofile          2048
+foo-bar       hard    nofile          8192
+</pre></div>
+</div>
+<p>Увеличим ограничение для любых пользователей до 8192/2048:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>*       soft    nofile          2048
+*       hard    nofile          8192
+</pre></div>
+</div>
+<p>Изменения вступят в силу при следующем входе в систему.</p>
+</div>
 </div>
 
 
@@ -776,6 +816,10 @@ fw_add <span class="m">6</span>
 <li class="toctree-l2"><a class="reference internal" href="#ksoftirqd">Процесс ksoftirqd съедает все ресурсы системы. Что делать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kernel-irq">Как определить какое устройство генерирует огромное количество прерываний?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#irq-manual">Как произвести ручную балансировку прерываний?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#too-many-open-files">При запуске приложения возникает ошибка Too many open files. Что делать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fd-hard-soft">Как узнать текущий лимит открытых файловых дескрипторов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fd-kernel">Как узнать глобальный лимит открытых файловых дескрипторов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fd-increase">Как увеличить лимит открытых файловых дескрипторов?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
