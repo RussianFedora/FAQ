@@ -714,7 +714,7 @@ fw_add <span class="m">6</span>
 </div>
 <div class="section" id="fd-increase">
 <span id="index-66"></span><span id="id42"></span><h2>Как увеличить лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-increase" title="Ссылка на этот заголовок">¶</a></h2>
-<p><a class="reference internal" href="#fd-hard-soft"><span class="std std-ref">Мягкие и жёсткие лимиты</span></a> на количество дескрипторов открытых файлов задаются в файле <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.conf</span></code> суперпользователем, но при этом не могут превышать <a class="reference internal" href="#fd-kernel"><span class="std std-ref">глобальный лимит ядра</span></a>.</p>
+<p><a class="reference internal" href="#fd-hard-soft"><span class="std std-ref">Мягкие и жёсткие лимиты</span></a> на количество дескрипторов открытых файлов задаются в файле <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.conf</span></code> суперпользователем, но при этом не могут превышать <a class="reference internal" href="#fd-kernel"><span class="std std-ref">глобальный</span></a>.</p>
 <p>Увеличим ограничение для пользователя <strong>foo-bar</strong> до 8192/2048:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar       soft    nofile          2048
 foo-bar       hard    nofile          8192
