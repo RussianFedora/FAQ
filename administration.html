@@ -688,18 +688,18 @@ fw_add <span class="m">6</span>
 <p>Чтобы вычислить маску следует возвести число 2 в степень, равную порядкому номеру процессора, и результат перевести в шестнадцатиричную систему счисления.</p>
 </div>
 <div class="section" id="too-many-open-files">
-<span id="fd-limit"></span><span id="index-63"></span><h2>При запуске приложения возникает ошибка Too many open files. Что делать?<a class="headerlink" href="#too-many-open-files" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fd-limit"></span><span id="index-63"></span><h2>При работе приложения возникает ошибка Too many open files. Что делать?<a class="headerlink" href="#too-many-open-files" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Ошибка <em>Too many open files</em> возникает при превышении количества открытых дескрипторов файлов процессом. Для её исправления, нужно <a class="reference internal" href="#fd-increase"><span class="std std-ref">увеличить это ограничение</span></a>.</p>
 </div>
 <div class="section" id="fd-hard-soft">
 <span id="index-64"></span><span id="id40"></span><h2>Как узнать текущий лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-hard-soft" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Существует два типа ограничений: мягкий (soft) и жёсткий (hard). Жёсткий задаётся администратором системы, а мягкий может регулироваться как пользователем, так и запущенным приложением, но не может превышать максимально заданное значение жёсткого лимита, а также <a class="reference internal" href="#fd-kernel"><span class="std std-ref">глобальное для всего ядра</span></a>.</p>
 <p>Получим значение мягкого ограничителя:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">ulimit</span> -Sn
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ulimit -Sn
 </pre></div>
 </div>
 <p>Получим значение жёсткого ограничителя:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">ulimit</span> -Hn
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ulimit -Hn
 </pre></div>
 </div>
 <p>Значения по умолчанию <strong>1024</strong> (soft) и <strong>4096</strong> (hard).</p>
@@ -816,7 +816,7 @@ foo-bar       hard    nofile          8192
 <li class="toctree-l2"><a class="reference internal" href="#ksoftirqd">Процесс ksoftirqd съедает все ресурсы системы. Что делать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kernel-irq">Как определить какое устройство генерирует огромное количество прерываний?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#irq-manual">Как произвести ручную балансировку прерываний?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#too-many-open-files">При запуске приложения возникает ошибка Too many open files. Что делать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#too-many-open-files">При работе приложения возникает ошибка Too many open files. Что делать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fd-hard-soft">Как узнать текущий лимит открытых файловых дескрипторов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fd-kernel">Как узнать глобальный лимит открытых файловых дескрипторов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fd-increase">Как увеличить лимит открытых файловых дескрипторов?</a></li>
