@@ -379,6 +379,13 @@ chmod +x Unigine_Superposition-1.0.run
 </pre></div>
 </div>
 </div>
+<div class="section" id="microcode-version">
+<span id="index-28"></span><span id="id17"></span><h2>Как определить версию установленного микрокода процессора?<a class="headerlink" href="#microcode-version" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Получим версию микрокода из вывода <code class="docutils literal notranslate"><span class="pre">/proc/cpuinfo</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat /proc/cpuinfo <span class="p">|</span> grep microcode <span class="p">|</span> uniq
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -436,6 +443,7 @@ chmod +x Unigine_Superposition-1.0.run
 <li class="toctree-l2"><a class="reference internal" href="#tlp">Нужно ли использовать TLP для оптимизации работы батареи?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cpu-virt">Как определить имеет ли процессор аппаратную поддержку виртуализации?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gl-engine">Как определить какой движок используется для вывода трёхмерной графики?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#microcode-version">Как определить версию установленного микрокода процессора?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
