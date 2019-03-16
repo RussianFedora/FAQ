@@ -519,3 +519,15 @@ ICC профиль можно получить либо на сайте прои
 .. code-block:: bash
 
     glxinfo | grep -E 'OpenGL version|OpenGL renderer'
+
+.. index:: cpu, microcode, intel, amd
+.. _microcode-version:
+
+Как определить версию установленного микрокода процессора?
+=============================================================
+
+Получим версию микрокода из вывода ``/proc/cpuinfo``:
+
+.. code-block:: bash
+
+    cat /proc/cpuinfo | grep microcode | uniq
