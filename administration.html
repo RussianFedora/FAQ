@@ -727,6 +727,31 @@ foo-bar       hard    nofile          8192
 </div>
 <p>Изменения вступят в силу при следующем входе в систему.</p>
 </div>
+<div class="section" id="task-affinity">
+<span id="index-67"></span><span id="id43"></span><h2>Как запустить процесс так, чтобы он мог использовать лишь определённые ядра процессора?<a class="headerlink" href="#task-affinity" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По умолчанию процесс выполняется на любых доступных для ядра Linux процессорах (или их ядрах).</p>
+<p>Выбором наиболее подходящего ядра для каждого потока процесса занимается непосредственно ядро, однако существует возможность и ручного переопределения.</p>
+<p>Запустим приложение <strong>foo-bar</strong> на каждом чётном ядре (нумерация ядер всегда начинается с нуля):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>taskset -a -c 0,2,4,6 foo-bar
+</pre></div>
+</div>
+<p>Изменим ассоциацию ядер для уже запущенного процесса <strong>foo-bar</strong> (в качестве параметра указывается <a class="reference internal" href="#get-pid"><span class="std std-ref">PID необходимого процесса</span></a>):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>taskset -a -c 1,3,5,7 -p $(pidof foo-bar)
+</pre></div>
+</div>
+</div>
+<div class="section" id="task-priority">
+<span id="index-68"></span><span id="id44"></span><h2>Как изменить приоритет процесса?<a class="headerlink" href="#task-priority" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Допустимые значения приоритета находятся в диапазоне от -20 (наиболее высокий приоритет) до 19 (наиболее низкий). Отрицательные значения может устанавливать лишь суперпользователь.</p>
+<p>Запустим приложение <strong>foo-bar</strong> с приоритетом <strong>10</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nice -n 10 foo-bar
+</pre></div>
+</div>
+<p>Изменим приоритет запущенного процесса <strong>foo-bar</strong> (в качестве параметра указывается <a class="reference internal" href="#get-pid"><span class="std std-ref">PID необходимого процесса</span></a>) до 8:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>renice -n 8 -p $(pidof foo-bar)
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -820,6 +845,8 @@ foo-bar       hard    nofile          8192
 <li class="toctree-l2"><a class="reference internal" href="#fd-hard-soft">Как узнать текущий лимит открытых файловых дескрипторов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fd-kernel">Как узнать глобальный лимит открытых файловых дескрипторов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fd-increase">Как увеличить лимит открытых файловых дескрипторов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#task-affinity">Как запустить процесс так, чтобы он мог использовать лишь определённые ядра процессора?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#task-priority">Как изменить приоритет процесса?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>

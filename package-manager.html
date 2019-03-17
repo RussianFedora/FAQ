@@ -227,14 +227,14 @@ proxy_password=PASSWORD
 </div>
 <div class="section" id="multimedia-codecs">
 <span id="index-22"></span><span id="id14"></span><h2>В системе нет кодеков мультимедиа. Как их установить?<a class="headerlink" href="#multimedia-codecs" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для начала следует подключить репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установить кодеки из группы <strong>multimedia</strong>:</p>
+<p>Для начала следует подключить репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>, после чего установить кодеки из группы <strong>multimedia</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf groupinstall multimedia
 </pre></div>
 </div>
 </div>
 <div class="section" id="chromium">
 <span id="chromium-codecs"></span><span id="index-23"></span><h2>Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?<a class="headerlink" href="#chromium" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Из-за патентных ограничений браузер Chromium в репозиториях Fedora сильно кастрирован. Для восстановления полной функциональности необходимо подключить RPMFusion и установить пакет с кодеками для данного браузера:</p>
+<p>Из-за патентных ограничений браузер Chromium в репозиториях Fedora сильно кастрирован. Для восстановления полной функциональности необходимо подключить <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установить пакет с кодеками для данного браузера:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install chromium-libs-media-freeworld
 </pre></div>
 </div>
