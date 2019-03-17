@@ -729,9 +729,9 @@ foo-bar       hard    nofile          8192
 </div>
 <div class="section" id="task-affinity">
 <span id="index-67"></span><span id="id43"></span><h2>Как запустить процесс так, чтобы он мог использовать лишь определённые ядра процессора?<a class="headerlink" href="#task-affinity" title="Ссылка на этот заголовок">¶</a></h2>
-<p>По умолчанию процесс выполняется на любых доступных для ядра Linux процессорах (или их ядрах).</p>
-<p>Выбором наиболее подходящего ядра для каждого потока процесса занимается непосредственно ядро, однако существует возможность и ручного переопределения.</p>
-<p>Запустим приложение <strong>foo-bar</strong> на каждом чётном ядре (нумерация ядер всегда начинается с нуля):</p>
+<p>По умолчанию процесс выполняется на любых доступных для Linux процессорах (или их ядрах).</p>
+<p>Выбором наиболее подходящего ядра CPU для каждого потока процесса занимается непосредственно ядро, однако существует возможность и ручного переопределения.</p>
+<p>Запустим приложение <strong>foo-bar</strong> на каждом чётном ядре (нумерация всегда начинается с нуля):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>taskset -a -c 0,2,4,6 foo-bar
 </pre></div>
 </div>
@@ -747,7 +747,7 @@ foo-bar       hard    nofile          8192
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nice -n 10 foo-bar
 </pre></div>
 </div>
-<p>Изменим приоритет запущенного процесса <strong>foo-bar</strong> (в качестве параметра указывается <a class="reference internal" href="#get-pid"><span class="std std-ref">PID необходимого процесса</span></a>) до 8:</p>
+<p>Изменим приоритет запущенного процесса <strong>foo-bar</strong> (в качестве параметра указывается <a class="reference internal" href="#get-pid"><span class="std std-ref">PID необходимого процесса</span></a>) до <strong>8</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>renice -n 8 -p $(pidof foo-bar)
 </pre></div>
 </div>
