@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Вопросы, связанные с использованием различного оборудования &#8212; Документация Fedora FAQ RU 2019.03.10</title>
+    <title>Вопросы, связанные с использованием различного оборудования &#8212; Документация Fedora FAQ RU 2019.03.25</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -386,6 +386,21 @@ chmod +x Unigine_Superposition-1.0.run
 </pre></div>
 </div>
 </div>
+<div class="section" id="vsync-off">
+<span id="index-29"></span><span id="id18"></span><h2>Как отключить вертикальную синхронизацию для одного приложения?<a class="headerlink" href="#vsync-off" title="Ссылка на этот заголовок">¶</a></h2>
+<p>На видеокартах NVIDIA с установленным <a class="reference internal" href="package-manager.html#nvidia-drivers"><span class="std std-ref">проприетарным драйвером</span></a> отключить вертикальную синхронизацию для одного приложения можно посредством установки <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменной окружения</span></a> <code class="docutils literal notranslate"><span class="pre">__GL_SYNC_TO_VBLANK</span></code> значения <code class="docutils literal notranslate"><span class="pre">0</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>__GL_SYNC_TO_VBLANK=0 /usr/bin/foo-bar
+</pre></div>
+</div>
+</div>
+<div class="section" id="kde">
+<span id="kde-video-reset"></span><span id="index-30"></span><h2>Как сбросить настройки экрана в KDE?<a class="headerlink" href="#kde" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Настройки экрана хранятся внутри JSON файлов в каталоге <code class="docutils literal notranslate"><span class="pre">~/.local/share/kscreen</span></code>, поэтому для того, чтобы их сбросить, достаточно очистить его:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -f ~/.local/share/kscreen/*
+</pre></div>
+</div>
+<p>Изменения вступят в силу при следующем входе в систему.</p>
+</div>
 </div>
 
 
@@ -444,6 +459,8 @@ chmod +x Unigine_Superposition-1.0.run
 <li class="toctree-l2"><a class="reference internal" href="#cpu-virt">Как определить имеет ли процессор аппаратную поддержку виртуализации?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gl-engine">Как определить какой движок используется для вывода трёхмерной графики?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#microcode-version">Как определить версию установленного микрокода процессора?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vsync-off">Как отключить вертикальную синхронизацию для одного приложения?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kde">Как сбросить настройки экрана в KDE?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>

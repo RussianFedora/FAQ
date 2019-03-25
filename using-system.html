@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Вопросы, связанные с работой в системе &#8212; Документация Fedora FAQ RU 2019.03.10</title>
+    <title>Вопросы, связанные с работой в системе &#8212; Документация Fedora FAQ RU 2019.03.25</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -838,6 +838,28 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 <p>Здесь <strong>cp1251</strong> - кодировка имён файлов, <strong>foo-bar.zip</strong> - имя архива, а <strong>/path/to/destination</strong> - каталог, в который он будет распакован.</p>
 </div>
+<div class="section" id="tmpfs">
+<span id="browser-tmpfs"></span><span id="index-72"></span><h2>Стоит ли переносить кэши браузеров в tmpfs?<a class="headerlink" href="#tmpfs" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, т.к. это даёт следующие преимущества:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>очень быстрый доступ особенно при случайном чтении;</li>
+<li>отсутствует необходимость в ручной очистке, т.к. это будет сделано автоматически при перезагрузке системы.</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="firefox-tmpfs">
+<span id="firefox-cache"></span><span id="index-73"></span><h2>Как перенести кэш браузера Firefox в tmpfs?<a class="headerlink" href="#firefox-tmpfs" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В Fedora каталог <strong>/tmp</strong> по умолчанию монтируется в tmpfs, поэтому осуществим перенос кэшей данного браузера именно в него:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>запустим Firefox и откроем страницу <code class="docutils literal notranslate"><span class="pre">about:config</span></code>;</li>
+<li>найдём в списке переменную <code class="docutils literal notranslate"><span class="pre">browser.cache.disk.parent_directory</span></code> (при отсутствии создадим) и присвоим ему строковое значение <code class="docutils literal notranslate"><span class="pre">/tmp/firefox</span></code>;</li>
+</ol>
+<p>3. чтобы кэш очень сильно не разрастался, укажем в переменной <code class="docutils literal notranslate"><span class="pre">browser.cache.disk.capacity</span></code> максимальный размер в байтах, например <code class="docutils literal notranslate"><span class="pre">262144</span></code> (256 МБ);
+3. перезапустим браузер для применения новых изменений.</p>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -938,6 +960,8 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#ocr-app">Как можно распознать текст с изображения или сканера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#neofetch">Как вывести в консоль краткую информацию об установленной системе?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#zip">При распаковке Zip архива появляются кракозябры вместо имён файлов. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tmpfs">Стоит ли переносить кэши браузеров в tmpfs?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firefox-tmpfs">Как перенести кэш браузера Firefox в tmpfs?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
