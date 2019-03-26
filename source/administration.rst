@@ -1195,7 +1195,7 @@
     renice -n 8 -p $(pidof foo-bar)
 
 .. index:: virtualbox, drive image, disk image, kvm, qemu, qcow2, vdi
-.. _vmdk-to-qcow2:
+.. _vdi-to-qcow2:
 
 Как преобразовать образ виртуальной машины VirtualBox в формат, совместимый с KVM?
 ======================================================================================
@@ -1223,3 +1223,15 @@
 .. code-block:: bash
 
     qemu-img convert -f vmdk -O qcow2 /path/to/image.vmdk /path/to/image.qcow2
+
+.. index:: hyper-v, drive image, disk image, kvm, qemu, qcow2, vpc
+.. _vpc-to-qcow2:
+
+Как преобразовать образ виртуальной машины Hyper-V в формат, совместимый с KVM?
+===================================================================================
+
+Для преобразования образа воспользуемся штатной утилитой **qemu-img**:
+
+.. code-block:: bash
+
+    qemu-img convert -f vpc -O qcow2 /path/to/image.vpc /path/to/image.qcow2
