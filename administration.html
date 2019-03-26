@@ -752,6 +752,31 @@ foo-bar       hard    nofile          8192
 </pre></div>
 </div>
 </div>
+<div class="section" id="virtualbox-kvm">
+<span id="vdi-to-qcow2"></span><span id="index-69"></span><h2>Как преобразовать образ виртуальной машины VirtualBox в формат, совместимый с KVM?<a class="headerlink" href="#virtualbox-kvm" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для конвертирования образов воспользуемся штатной утилитой <strong>qemu-img</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f vdi -O qcow2 /path/to/image.vdi /path/to/image.qcow2
+</pre></div>
+</div>
+</div>
+<div class="section" id="vmware-kvm">
+<span id="vmdk-to-qcow2"></span><span id="index-70"></span><h2>Как преобразовать образ виртуальной машины VMWare в формат, совместимый с KVM?<a class="headerlink" href="#vmware-kvm" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Вариант 1. Воспользуемся утилитой <strong>virt-v2v</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>virt-v2v -i vmx /path/to/image.vmx -o <span class="nb">local</span> -os /path/to/kvm -of qcow2
+</pre></div>
+</div>
+<p>Вариант 2. Воспользуемся утилитой <strong>qemu-img</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f vmdk -O qcow2 /path/to/image.vmdk /path/to/image.qcow2
+</pre></div>
+</div>
+</div>
+<div class="section" id="hyper-v-kvm">
+<span id="vpc-to-qcow2"></span><span id="index-71"></span><h2>Как преобразовать образ виртуальной машины Hyper-V в формат, совместимый с KVM?<a class="headerlink" href="#hyper-v-kvm" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для преобразования образа воспользуемся штатной утилитой <strong>qemu-img</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f vpc -O qcow2 /path/to/image.vpc /path/to/image.qcow2
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -847,6 +872,9 @@ foo-bar       hard    nofile          8192
 <li class="toctree-l2"><a class="reference internal" href="#fd-increase">Как увеличить лимит открытых файловых дескрипторов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#task-affinity">Как запустить процесс так, чтобы он мог использовать лишь определённые ядра процессора?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#task-priority">Как изменить приоритет процесса?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#virtualbox-kvm">Как преобразовать образ виртуальной машины VirtualBox в формат, совместимый с KVM?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vmware-kvm">Как преобразовать образ виртуальной машины VMWare в формат, совместимый с KVM?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hyper-v-kvm">Как преобразовать образ виртуальной машины Hyper-V в формат, совместимый с KVM?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>

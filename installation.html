@@ -157,7 +157,7 @@
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>issue_discards = 1
 </pre></div>
 </div>
-<p>При использовании зашифрованных LUKS томов следует в файле <code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code> добавить опцию <code class="docutils literal notranslate"><span class="pre">allow-discards</span></code> для каждого тома.</p>
+<p>При использовании зашифрованных LUKS томов следует в файле <code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code> добавить опцию <code class="docutils literal notranslate"><span class="pre">discard</span></code> для каждого тома.</p>
 <p>Однако следует помнить, что на некоторых накопителях реалтаймовый TRIM может вызвать сбой в работе контроллера и привести к потере всех данных. Именно поэтому он по умолчанию и не применяется.</p>
 <p>Все изменения вступят в силу при следующей загрузке системы.</p>
 </div>

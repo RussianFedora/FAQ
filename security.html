@@ -314,8 +314,8 @@ sudo systemctl reboot
 </div>
 <div class="section" id="aes-ni">
 <span id="luks-aes"></span><span id="index-21"></span><h2>Как узнать поддерживает ли процессор моего ПК набор инструкций AES-NI?<a class="headerlink" href="#aes-ni" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Если в выводе <strong>lscpu</strong> присутствует строка <strong>aes</strong>, значит поддерживает:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lscpu <span class="p">|</span> grep aes
+<p>Если в выводе <code class="docutils literal notranslate"><span class="pre">/proc/cpuinfo</span></code> присутствует строка <strong>aes</strong>, значит поддерживает:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep -Eq <span class="s1">&#39;aes&#39;</span> /proc/cpuinfo <span class="o">&amp;&amp;</span> <span class="nb">echo</span> Yes <span class="o">||</span> <span class="nb">echo</span> No
 </pre></div>
 </div>
 </div>

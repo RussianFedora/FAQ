@@ -401,6 +401,19 @@ chmod +x Unigine_Superposition-1.0.run
 </div>
 <p>Изменения вступят в силу при следующем входе в систему.</p>
 </div>
+<div class="section" id="pa-reset">
+<span id="index-31"></span><span id="id19"></span><h2>Как сбросить настройки звука?<a class="headerlink" href="#pa-reset" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В Fedora настройками звука управляет PulseAudio, поэтому для того, чтобы сбросить его настройки, удалим всё содержимое каталога <code class="docutils literal notranslate"><span class="pre">~/.config/pulse</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -f ~/.config/pulse/*
+</pre></div>
+</div>
+<p>Для вступления изменений в силу перезапустим PulseAudio:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pulseaudio -k
+pulseaudio -D
+</pre></div>
+</div>
+<p>Сразу после этого все настройки звука будут сброшены на установленные по умолчанию.</p>
+</div>
 </div>
 
 
@@ -461,6 +474,7 @@ chmod +x Unigine_Superposition-1.0.run
 <li class="toctree-l2"><a class="reference internal" href="#microcode-version">Как определить версию установленного микрокода процессора?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#vsync-off">Как отключить вертикальную синхронизацию для одного приложения?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde">Как сбросить настройки экрана в KDE?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pa-reset">Как сбросить настройки звука?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
