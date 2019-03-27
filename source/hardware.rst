@@ -27,7 +27,7 @@
 
 Установка драйверов для видеокарт AMD (ATI) не требуется, т.к. как amdgpu (современные видеокарты), так и radeon (устаревшие модели) входят в состав ядра Linux.
 
-.. index:: video, gpu, amd, ati, drivers
+.. index:: video, gpu, amd, ati, drivers, opencl
 .. _amdgpu-pro:
 
 Как заставить работать OpenCL на видеокартах AMD?
@@ -36,6 +36,18 @@
 AMD предоставляет поддержку OpenCL на своих видеокартах исключительно на проприетарных драйверах AMDGPU-PRO, которые выпускаются только для Ubuntu LTS и на Fedora работать не будут.
 
 Вместо OpenCL для кодирования и декодирования мультимедиа можно использовать VA-API, который работает "из коробки".
+
+.. index:: video, gpu, nvidia, cuda, drivers
+.. _nvidia-cuda:
+
+Как установить поддержку CUDA на видеокартах NVIDIA?
+=======================================================
+
+Поддержка CUDA доступна исключительно в :ref:`проприетарных драйверах <nvidia-drivers>` NVIDIA. Установим необходимые пакеты:
+
+.. code-block:: bash
+
+    sudo dnf install xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
 
 .. index:: hardware, selection
 .. _linux-hardware:
