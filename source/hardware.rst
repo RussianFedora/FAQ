@@ -11,13 +11,21 @@
 Вопросы, связанные с использованием различного оборудования
 **************************************************************
 
-.. index:: repository, nvidia, drivers, third-party
+.. index:: video, gpu, repository, nvidia, drivers, third-party
 .. _nvidia-drivers:
 
 Как правильно установить драйверы для видеокарт NVIDIA?
 ==========================================================
 
 См. `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
+
+.. index:: video, gpu, amd, ati, drivers
+.. _amd-drivers:
+
+Как правильно установить драйверы для видеокарт AMD?
+========================================================
+
+Установка драйверов для видеокарт AMD (ATI) не требуется, т.к. как amdgpu (современные видеокарты), так и radeon (устаревшие модели) входят в состав ядра Linux.
 
 .. index:: hardware, selection
 .. _linux-hardware:
