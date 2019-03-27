@@ -11,6 +11,14 @@
 Вопросы, связанные с использованием различного оборудования
 **************************************************************
 
+.. index:: repository, nvidia, drivers, third-party
+.. _nvidia-drivers:
+
+Как правильно установить драйверы для видеокарт NVIDIA?
+==========================================================
+
+См. `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
+
 .. index:: hardware, selection
 .. _linux-hardware:
 

@@ -352,14 +352,6 @@ Dnf сохраняет старые ядра. Это нормально?
 
     sudo dnf install ffmpeg-libs
 
-.. index:: repository, nvidia, drivers, third-party
-.. _nvidia-drivers:
-
-Как правильно установить драйверы NVIDIA?
-==============================================
-
-См. `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
-
 .. index:: virtualization, vm, kvm, virtualbox
 .. _virtualization:
 
