@@ -322,11 +322,11 @@ Dnf сохраняет старые ядра. Это нормально?
 В системе нет кодеков мультимедиа. Как их установить?
 ============================================================
 
-Для начала следует подключить репозиторий :ref:`RPM Fusion <rpmfusion>`, после чего установить кодеки из группы **multimedia**:
+Для начала следует подключить репозиторий :ref:`RPM Fusion <rpmfusion>`, после чего установить кодеки из группы **multimedia** и **sound-and-video**:
 
 .. code-block:: bash
 
-    sudo dnf groupinstall multimedia
+    sudo dnf groupupdate multimedia sound-and-video
 
 .. index:: repository, codecs, multimedia, chromium, third-party
 .. _chromium-codecs:
