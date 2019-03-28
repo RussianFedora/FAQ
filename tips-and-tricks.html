@@ -137,6 +137,15 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 </div>
 <p>Внимание! Запускать SWF файлы следует с особой осторожностью, т.к. плеер выполняется без какой-либо изоляции и имеет полный доступ к домашнему каталогу пользователя.</p>
 </div>
+<div class="section" id="python-2">
+<span id="python2-remove"></span><span id="index-5"></span><h2>Можно ли удалить Python 2 из системы?<a class="headerlink" href="#python-2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Поскольку поддержка Python версии 2 прекратится 01.01.2020, его уже не рекомендуется использовать. Вместо него следует применять Python 3. Большая часть активных проектов и библиотек уже давно была портирована на эту версию.</p>
+<p>Возможность полностью избавиться от Python 2 появилась у пользователей Fedora 30 и выше. От данной версии интерпретатора более не зависят важные компоненты и его можно смело удалить:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove python2
+</pre></div>
+</div>
+<p>Это действие автоматически удалит и все его зависимости.</p>
+</div>
 </div>
 
 
@@ -173,6 +182,7 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <li class="toctree-l2"><a class="reference internal" href="#libcurl-gnutls-so-4">Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bfq-hdd">Как задействовать планировщик ввода/вывода BFQ для HDD?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#swf-flash">Чем можно запустить SWF файл без установки Flash плагина в браузер?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-2">Можно ли удалить Python 2 из системы?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>

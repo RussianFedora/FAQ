@@ -417,6 +417,30 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <span id="index-22"></span><span id="id13"></span><h2>Можно ли использовать собственные флаги компиляции при сборке пакета?<a class="headerlink" href="#build-flags" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для любых официальных сборок следует использовать исключительно стандартные для дистрибутива флаги, предоставляемые макросами <code class="docutils literal notranslate"><span class="pre">%{optflags}</span></code> (флаги компилятора) и <code class="docutils literal notranslate"><span class="pre">%{build_ldflags}</span></code> (флаги компоновки).</p>
 </div>
+<div class="section" id="cxx-ide">
+<span id="index-23"></span><span id="ide-c-fedora"></span><h2>Какую IDE использовать для разработки на C++ в Fedora?<a class="headerlink" href="#cxx-ide" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Мы рекомендуем Qt Creator, которая одинаково хорошо подходит как для разработки на C++ (с Qt и без него), так и чистого C.</p>
+<p>Установим данную IDE, а также компилятор C++ и ряд необходимых библиотек и средств для сборки проектов:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc gcc-c++ qt-creator qt5-qtbase-devel cmake
+</pre></div>
+</div>
+</div>
+<div class="section" id="python-ide">
+<span id="index-24"></span><span id="ide-python-fedora"></span><h2>Какую IDE использовать для разработки на Python в Fedora?<a class="headerlink" href="#python-ide" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Мы рекомендуем PyCharm Community Edition.</p>
+<p>Подключим COPR репозиторий:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf copr <span class="nb">enable</span> phracek/PyCharm
+</pre></div>
+</div>
+<p>Установим IDE:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install pycharm-community pycharm-community-jre
+</pre></div>
+</div>
+<p>При необходимости установим также набор популярных плагинов:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install pycharm-community-plugins
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -470,6 +494,8 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <li class="toctree-l2"><a class="reference internal" href="#fedora-licenses">Проекты под какими лицензиями допускается распространять в репозиториях?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pipe-order">В каком порядке запускаются процессы через канал (пайп)?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#build-flags">Можно ли использовать собственные флаги компиляции при сборке пакета?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cxx-ide">Какую IDE использовать для разработки на C++ в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-ide">Какую IDE использовать для разработки на Python в Fedora?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
