@@ -573,3 +573,29 @@
 .. code-block:: bash
 
     sudo dnf install gcc gcc-c++ qt-creator qt5-qtbase-devel cmake
+
+.. index:: python, ide, pycharm
+.. _python-ide:
+
+Какую IDE использовать для разработки на Python в Fedora?
+============================================================
+
+Мы рекомендуем PyCharm Community Edition.
+
+Подключим COPR репозиторий:
+
+.. code-block:: bash
+
+    dnf copr enable phracek/PyCharm
+
+Установим IDE:
+
+.. code-block:: bash
+
+    sudo dnf install pycharm-community pycharm-community-jre
+
+При необходимости установим также набор популярных плагинов:
+
+.. code-block:: bash
+
+    sudo dnf install pycharm-community-plugins
