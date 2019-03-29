@@ -1364,3 +1364,21 @@ Zip-архивы, созданные штатными средствами ОС 
 .. code-block:: bash
 
     kbuildsycoca5 --noincremental
+
+.. index:: exif, jpeg, information, metadata
+.. _exif-data:
+
+Как извлечь метаданные EXIF из файла изображения?
+====================================================
+
+Установим пакет ImageMagick:
+
+.. code-block:: bash
+
+    sudo dnf install ImageMagick
+
+Осуществим извлечение метаданных `EXIF <https://ru.wikipedia.org/wiki/EXIF>`__ файла **foo-bar.jpg**:
+
+.. code-block:: bash
+
+    identify -verbose foo-bar.jpg
