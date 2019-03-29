@@ -869,6 +869,24 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 <p>Рекурсивное скачивание может занять много времени и места на диске. Настоятельно не рекомендуется использовать этот режим на ресурсах с динамическим контентом.</p>
 </div>
+<div class="section" id="kde-icons-refresh">
+<span id="index-75"></span><span id="id39"></span><h2>Как обновить кэш значков приложений в главном меню KDE Plasma 5?<a class="headerlink" href="#kde-icons-refresh" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Обычно кэш обновляется автоматически при любых изменениях файлов внутри каталогов <code class="docutils literal notranslate"><span class="pre">/usr/share/applications</span></code> (глобально), а также <code class="docutils literal notranslate"><span class="pre">~/.local/share/applications</span></code> (пользователь), однако если по какой-то причине этого не произошло, выполним обновление кэшей вручную:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kbuildsycoca5 --noincremental
+</pre></div>
+</div>
+</div>
+<div class="section" id="exif">
+<span id="exif-data"></span><span id="index-76"></span><h2>Как извлечь метаданные EXIF из файла изображения?<a class="headerlink" href="#exif" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим пакет ImageMagick:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install ImageMagick
+</pre></div>
+</div>
+<p>Осуществим извлечение метаданных <a class="reference external" href="https://ru.wikipedia.org/wiki/EXIF">EXIF</a> файла <strong>foo-bar.jpg</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>identify -verbose foo-bar.jpg
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -972,6 +990,8 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#tmpfs">Стоит ли переносить кэши браузеров в tmpfs?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firefox-tmpfs">Как перенести кэш браузера Firefox в tmpfs?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#wget-spider">Как скачать веб-страницу рекурсивно?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kde-icons-refresh">Как обновить кэш значков приложений в главном меню KDE Plasma 5?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exif">Как извлечь метаданные EXIF из файла изображения?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
