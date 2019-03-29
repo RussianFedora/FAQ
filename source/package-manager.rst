@@ -127,17 +127,17 @@ Dnf, являющийся, в свою очередь, форком Yum.
 
 Процесс обновления стандартен и максимально безопасен:
 
- * Для Fedora 28 и более ранних версий:
- 
+ Fedora 28 и более ранние версии:
+
 .. code-block:: bash
 
     sudo dnf upgrade --refresh
     sudo dnf install dnf-plugin-system-upgrade
     sudo dnf system-upgrade download --releasever=$(($(rpm -E %fedora) + 1))
     sudo dnf system-upgrade reboot
-    
- * Для Fedora 29 и новее:
- 
+
+Fedora 29 и новее:
+
 .. code-block:: bash
 
     sudo dnf upgrade --refresh
