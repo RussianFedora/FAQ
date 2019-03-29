@@ -860,6 +860,15 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </ol>
 </div></blockquote>
 </div>
+<div class="section" id="wget-spider">
+<span id="index-74"></span><span id="id38"></span><h2>Как скачать веб-страницу рекурсивно?<a class="headerlink" href="#wget-spider" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для рекурсивного скачивания статических веб-страниц можно использовать wget в специальном режиме.</p>
+<p>Запустим скачивание ресурса <strong>example.org</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget --random-wait -r -p -e <span class="nv">robots</span><span class="o">=</span>off -U <span class="s2">&quot;Mozilla/5.0 (X11; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0&quot;</span> https://example.org
+</pre></div>
+</div>
+<p>Рекурсивное скачивание может занять много времени и места на диске. Настоятельно не рекомендуется использовать этот режим на ресурсах с динамическим контентом.</p>
+</div>
 </div>
 
 
@@ -962,6 +971,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#zip">При распаковке Zip архива появляются кракозябры вместо имён файлов. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tmpfs">Стоит ли переносить кэши браузеров в tmpfs?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firefox-tmpfs">Как перенести кэш браузера Firefox в tmpfs?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wget-spider">Как скачать веб-страницу рекурсивно?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
