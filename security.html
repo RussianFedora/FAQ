@@ -792,19 +792,19 @@ keytocard
 <div class="section" id="nmap-scan">
 <span id="index-71"></span><span id="id51"></span><h2>Как просканировать хост на наличие работающих сервисов?<a class="headerlink" href="#nmap-scan" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Стандартное сканирование самых популярных портов:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nmap -A -T4 -Pn <span class="m">127</span>.0.0.1
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nmap -A -T4 -Pn 127.0.0.1
 </pre></div>
 </div>
 <p>Стандартное сканирование портов в указанном диапазоне (параметр <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">1-100</span></code>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nmap -A -T4 -Pn -p <span class="m">1</span>-100 <span class="m">127</span>.0.0.1
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nmap -A -T4 -Pn -p 1-100 127.0.0.1
 </pre></div>
 </div>
 <p>Стандартное сканирование всего диапазона портов (параметр <code class="docutils literal notranslate"><span class="pre">-p-</span></code>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nmap -A -T4 -Pn -p- <span class="m">127</span>.0.0.1
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nmap -A -T4 -Pn -p- 127.0.0.1
 </pre></div>
 </div>
 <p>Стандартное сканирование всего диапазона портов, включая UDP (параметр <code class="docutils literal notranslate"><span class="pre">-sU</span></code>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo nmap -sU -A -T4 -Pn -p- <span class="m">127</span>.0.0.1
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo nmap -sU -A -T4 -Pn -p- 127.0.0.1
 </pre></div>
 </div>
 <p>Сканирование UDP требует прав суперпользователя.</p>
