@@ -198,6 +198,24 @@
 
 См. `здесь <https://www.easycoding.org/2016/08/24/ogranichivaem-sistemnye-zhurnaly-v-fedora-24.html>`__.
 
+.. index:: journald, journal, clean, wipe
+.. _journald-wipe:
+
+Как немедленно очистить все системные журналы?
+=================================================
+
+Выполним принудительную ротацию системных журналов для сброса их из памяти на диск:
+
+.. code-block:: bash
+
+    sudo journalctl --rotate
+
+Очистим все записи с диска, старше 1 секунды:
+
+.. code-block:: bash
+
+    sudo journalctl --vacuum-time=1s
+
 .. index:: firewalld, port forwarding, firewall
 .. _firewalld-port-forwarding:
 
