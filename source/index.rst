@@ -19,6 +19,7 @@
    administration.rst
    security.rst
    using-system.rst
+   using-applications.rst
    hardware.rst
    development.rst
    tips-and-tricks.rst
