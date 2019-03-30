@@ -631,3 +631,21 @@
 .. code-block:: bash
 
     sudo dnf install pycharm-community-plugins
+
+.. index:: firmware, binwalk
+.. _fw-image:
+
+Как получить информацию о содержимом образа бинарной прошивки?
+=================================================================
+
+Для работы с образами прошивок можно использовать утилиту **binwalk**. Установим её:
+
+.. code-block:: bash
+
+    sudo dnf install binwalk
+
+Произведём анализ файла и получим результат:
+
+.. code-block:: bash
+
+    binwalk foo-bar.bin
