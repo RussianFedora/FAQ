@@ -18,7 +18,7 @@
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
     <link rel="next" title="Вопросы, связанные с разработкой и сборкой пакетов" href="development.html" />
-    <link rel="prev" title="Вопросы, связанные с работой в системе" href="using-system.html" />
+    <link rel="prev" title="Вопросы, связанные со сторонними приложениями" href="using-applications.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -438,6 +438,20 @@ pulseaudio -D
 </div>
 <p>Сразу после этого все настройки звука будут сброшены на установленные по умолчанию.</p>
 </div>
+<div class="section" id="nvidia-encoding">
+<span id="index-37"></span><span id="id21"></span><h2>Как ускорить кодирование видео с использованием видеокарт NVIDIA?<a class="headerlink" href="#nvidia-encoding" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для этого нужно установить ffmpeg, а также проприетарные драйверы NVIDIA из репозиториев <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
+<p>Использование NVENC:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg -i input.mp4 -acodec aac -ac <span class="m">2</span> -ab 128k -vcodec h264_nvenc -profile high444p -pixel_format yuv444p -preset default output.mp4
+</pre></div>
+</div>
+<p>Использование CUDA/CUVID:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg -c:v h264_cuvid -i input.mp4 -c:v h264_nvenc -preset slow output.mkv
+</pre></div>
+</div>
+<p>Здесь <strong>input.mp4</strong> — имя оригинального файла, который требуется перекодировать, а в <strong>output.mp4</strong> будет сохранён результат.</p>
+<p>Больше информации можно найти <a class="reference external" href="https://trac.ffmpeg.org/wiki/HWAccelIntro">здесь</a>.</p>
+</div>
 </div>
 
 
@@ -466,6 +480,7 @@ pulseaudio -D
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-applications.html">Вопросы, связанные со сторонними приложениями</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные с использованием различного оборудования</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#linux">Какие видеокарты лучше всего работают на Linux?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nvidia">Как правильно установить драйверы для видеокарт NVIDIA?</a></li>
@@ -504,6 +519,7 @@ pulseaudio -D
 <li class="toctree-l2"><a class="reference internal" href="#vsync-off">Как отключить вертикальную синхронизацию для одного приложения?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde">Как сбросить настройки экрана в KDE?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pa-reset">Как сбросить настройки звука?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvidia-encoding">Как ускорить кодирование видео с использованием видеокарт NVIDIA?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
@@ -515,7 +531,7 @@ pulseaudio -D
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="using-system.html" title="предыдущая глава">Вопросы, связанные с работой в системе</a></li>
+      <li>Previous: <a href="using-applications.html" title="предыдущая глава">Вопросы, связанные со сторонними приложениями</a></li>
       <li>Next: <a href="development.html" title="следующая глава">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
   </ul></li>
 </ul>

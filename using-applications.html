@@ -1,0 +1,430 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Вопросы, связанные со сторонними приложениями &#8212; Документация Fedora FAQ RU 2019.03.25</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="shortcut icon" href="_static/faq-icon.ico"/>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="Вопросы, связанные с использованием различного оборудования" href="hardware.html" />
+    <link rel="prev" title="Вопросы, связанные с работой в системе" href="using-system.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+    <link rel="apple-touch-icon" href="_static/faq-icon.png" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="using-applications">
+<span id="id1"></span><h1>Вопросы, связанные со сторонними приложениями<a class="headerlink" href="#using-applications" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="firefox">
+<span id="firefox-hwaccel"></span><span id="index-0"></span><h2>Как активировать аппаратное ускорение в браузере Firefox?<a class="headerlink" href="#firefox" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для активации аппаратного ускорения рендеринга страниц в Mozilla Firefox на поддерживаемых драйверах необходимо открыть модуль конфигурации <code class="docutils literal notranslate"><span class="pre">about:config</span></code> и исправить значения следующих переменных (при отсутствии создать):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>layers.acceleration.force-enabled = true
+layers.offmainthreadcomposition.enabled = true
+webgl.force-enabled = true
+gfx.xrender.enabled = true
+</pre></div>
+</div>
+<p>Изменения вступят в силу при следующем запуске браузера.</p>
+<p>Внимание! Это не затрагивает <a class="reference internal" href="#browser-hwaccel"><span class="std std-ref">аппаратное декодирование мультимедиа</span></a> средствами видеоускорителя.</p>
+</div>
+<div class="section" id="browser-hwaccel">
+<span id="index-1"></span><span id="id2"></span><h2>Как активировать аппаратное ускорение декодирования мультимедиа в браузерах?<a class="headerlink" href="#browser-hwaccel" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В настоящее время аппаратное ускорение декодирования мультимедиа «из коробки» в GNU/Linux не поддерживается ни в одном браузере.</p>
+<p>В Mozilla Firefox оно вообще не реализовано: <a class="reference external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=563206">MZBZ#563206</a> и <a class="reference external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=1210727">MZBZ#1210727</a>.</p>
+<p>В Google Chrome и Chromium частично реализовано, но отключено на этапе компиляции и без особых VA-API патчей недоступно. Репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> предоставляет такую сборку Chromium. Для её установки необходимо подключить его и установить пакет <strong>chromium-vaapi</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install chromium-vaapi
+</pre></div>
+</div>
+<p>Далее необходимо запустить его, зайти в <code class="docutils literal notranslate"><span class="pre">chrome://flags</span></code> и установить пункт <strong>Hardware decoding</strong> в значение <strong>Enabled</strong>, после чего перезапустить браузер.</p>
+</div>
+<div class="section" id="video-hwaccel">
+<span id="index-2"></span><span id="id3"></span><h2>В каких проигрывателях реализовано аппаратное ускорение декодирования мультимедиа?<a class="headerlink" href="#video-hwaccel" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Полная поддержка аппаратного декодирования мультимедиа средствами VA-API (Intel, AMD) или VPDAU (NVIDIA) реализована в проигрывателях VLC и mpv.</p>
+<p>Для активации данной функции необходимо в качестве графического бэкэнда вывода изображения указать <strong>vaapi</strong> или <strong>vdpau</strong>, после чего перезапустить плеер.</p>
+</div>
+<div class="section" id="telegram-desktop-fedora">
+<span id="telegram-fedora"></span><span id="index-3"></span><h2>Как лучше установить Telegram Desktop в Fedora?<a class="headerlink" href="#telegram-desktop-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Мы настоятельно рекомендуем устанавливать данный мессенджер исключительно из <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install telegram-desktop
+</pre></div>
+</div>
+<p>Данная версия собрана и динамически слинкована с использованием исключительно штатных системных библиотек, доступных в репозиториях Fedora, а не давно устаревших и уязвимых версий из комплекта Ubuntu 14.04, как официальная.</p>
+<p>Сборка Fedora поддерживает системные настройки тем, правильное сглаживание шрифтов (за счёт использование общесистемных настроек) и не имеет проблем со скоростью запуска.</p>
+</div>
+<div class="section" id="telegram-desktop">
+<span id="telegram-cleanup"></span><span id="index-4"></span><h2>Ранее я устанавливал официальную версию Telegram Desktop. Как мне очистить её остатки?<a class="headerlink" href="#telegram-desktop" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Официальная версия с сайта создаёт ярлыки запуска и копирует ряд загруженных бинарных файлов в пользовательский домашний каталог. Избавимся от этого:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>удалим старый бинарник и модуль обновления официального клиента, а также их копии из <code class="docutils literal notranslate"><span class="pre">~/.local/share/TelegramDesktop</span></code> и <code class="docutils literal notranslate"><span class="pre">~/.local/share/TelegramDesktop/tdata</span></code>;</li>
+<li>удалим ярлыки из <code class="docutils literal notranslate"><span class="pre">~/.local/share/applications</span></code>.</li>
+</ol>
+</div></blockquote>
+<p>Теперь можно установить <a class="reference internal" href="#telegram-fedora"><span class="std std-ref">версию</span></a> из <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
+</div>
+<div class="section" id="latex">
+<span id="latex-editor"></span><span id="index-5"></span><h2>В репозиториях есть полнофункциональные редакторы LaTeX?<a class="headerlink" href="#latex" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Для работы с документами в формате LaTeX рекомендуется использовать <strong>texmaker</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install texmaker
+</pre></div>
+</div>
+</div>
+<div class="section" id="latex-cyrillic">
+<span id="index-6"></span><span id="id4"></span><h2>Как установить поддержку кириллических шрифтов для LaTeX?<a class="headerlink" href="#latex-cyrillic" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Наборы кириллических шрифтов доступны в виде коллекции:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install texlive-collection-langcyrillic texlive-cyrillic texlive-russ texlive-babel-russian
+</pre></div>
+</div>
+</div>
+<div class="section" id="youtube">
+<span id="youtube-download"></span><span id="index-7"></span><h2>Как скачать видео с Youtube?<a class="headerlink" href="#youtube" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Скачать любое интересующее видео с Youtube, а также ряда других хостингов, можно посредством утилиты <strong>youtube-dl</strong>, доступной в основном репозитории Fedora:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install youtube-dl
+</pre></div>
+</div>
+<p>Скачивание видео с настройками по умолчанию в наилучшем качестве:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>youtube-dl -f bestvideo https://www.youtube.com/watch?v<span class="o">=</span>XXXXXXXXXX
+</pre></div>
+</div>
+<p>Иногда при скачивании видео в разрешении 4K с ключом <code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">bestvideo</span></code> может не работать аппаратное ускорение при воспроизведении из-за того, что кодек vp9.2 не поддерживается аппаратными кодировщиками. В таких случаях необходимо явно указывать кодек (<code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">bestvideo[vcodec=vp9]</span></code>).</p>
+<p>Чтобы гарантировано скачать видео с указанным кодеком со звуком требуется дополнительно установить пакет <strong>ffmpeg</strong> из репозиториев <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install ffmpeg
+</pre></div>
+</div>
+<p>В качестве примера скачаем видео в наилучшем качестве, сжатое кодеком VP9 (с возможностью аппаратного ускорения) и звуком:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>youtube-dl -f bestvideo[vcodec=vp9]+bestaudio https://www.youtube.com/watch?v=XXXXXXXXXX
+</pre></div>
+</div>
+<p>Данная утилита имеет множество параметров командной строки, справку по которым можно найти в её странице man:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man youtube-dl
+</pre></div>
+</div>
+<p>Для выхода из окна просмотра справки достаточно нажать <strong>Q</strong>.</p>
+</div>
+<div class="section" id="fedora-ms-windows">
+<span id="fedora-winiso"></span><span id="index-8"></span><h2>Как из Fedora записать образ с MS Windows на флешку?<a class="headerlink" href="#fedora-ms-windows" title="Ссылка на этот заголовок">¶</a></h2>
+<p>К сожалению, <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">штатный способ</span></a> записи посредством использования утилиты dd не сработает в случае ISO образов MS Windows, поэтому для этого следует применять утилиту WoeUSB:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install WoeUSB
+</pre></div>
+</div>
+</div>
+<div class="section" id="iconv-convert">
+<span id="index-9"></span><span id="id5"></span><h2>Как конвертировать текстовый файл из одной кодировки в другую?<a class="headerlink" href="#iconv-convert" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для быстрой перекодировки текстовых файлов из одной кодировки в другую можно использовать утилиту iconv.</p>
+<p>Пример перекодировки файла из cp1251 (Windows-1251) в юникод (UTF-8):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>iconv -f cp1251 -t utf8 test.txt &gt; result.txt
+</pre></div>
+</div>
+<p>Здесь <strong>test.txt</strong> - исходный файл с неправильной кодировкой, а <strong>result.txt</strong> используется для записи результата преобразования.</p>
+</div>
+<div class="section" id="android-mtp">
+<span id="fuze-mtp"></span><span id="index-10"></span><h2>Как подключить смартфон на Android посредством протокола MTP?<a class="headerlink" href="#android-mtp" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для простой и удобной работы с файловой системой смартфона вне зависимости от используемых приложений, рабочей среды и файлового менеджера, мы рекомендуем использовать основанную на FUSE реализацию.</p>
+<p>Установим пакет <strong>jmtpfs</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install jmtpfs fuse
+</pre></div>
+</div>
+<p>Создадим каталог, в который будет смонтирована ФС смартфона:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/myphone
+</pre></div>
+</div>
+<p>Подключим устройство к компьютеру или ноутбуку по USB, разблокируем его и выберем режим MTP, после чего выполним:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jmtpfs ~/myphone
+</pre></div>
+</div>
+<p>По окончании работы обязательно завершим MTP сессию:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fusermount -u ~/myphone
+</pre></div>
+</div>
+</div>
+<div class="section" id="kde-connect">
+<span id="index-11"></span><span id="id6"></span><h2>Как лучше работать со смартфоном посредством компьютера или ноутбука?<a class="headerlink" href="#kde-connect" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для простой и эффективной работы со смартфоном на базе ОС Android пользователи рабочей среды KDE Plasma 5 могут использовать KDE Connect:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install kde-connect
+</pre></div>
+</div>
+<p>Сначала установим клиент KDE Connect на смартфон:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp">Google Play</a>;</li>
+<li><a class="reference external" href="https://f-droid.org/packages/org.kde.kdeconnect_tp/">F-Droid</a>;</li>
+</ul>
+</div></blockquote>
+<p>Запустим плазмоид KDE Connect и выполним сопряжение.</p>
+</div>
+<div class="section" id="kde-connect-firewalld">
+<span id="index-12"></span><span id="id7"></span><h2>KDE Connect не видит мой смартфон. Как исправить?<a class="headerlink" href="#kde-connect-firewalld" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Добавим правило, разрешающее входящие соединения к сервису kdeconnectd посредством <a class="reference internal" href="security.html#firewalld-about"><span class="std std-ref">Firewalld</span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --add-service<span class="o">=</span>kde-connect --permanent
+</pre></div>
+</div>
+<p>Применим новые правила:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
+</pre></div>
+</div>
+</div>
+<div class="section" id="dolphin">
+<span id="dolphin-templates"></span><span id="index-13"></span><h2>Как добавить новый тип файлов в меню Создать в Dolphin?<a class="headerlink" href="#dolphin" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Сначала получим пути, в которых KDE пытается обнаружить <em>ярлыки</em> шаблонов новых файлов:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kf5-config --path templates
+</pre></div>
+</div>
+<p>По умолчанию это <code class="docutils literal notranslate"><span class="pre">~/.local/share/templates</span></code> и он не существует, поэтому создадим его:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/.local/share/templates
+</pre></div>
+</div>
+<p>В качестве примера сохраним в любом каталоге новый шаблон <code class="docutils literal notranslate"><span class="pre">xml-document.xml</span></code> примерно следующего содержания:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span>
+<span class="nt">&lt;root&gt;</span>
+<span class="nt">&lt;/root&gt;</span>
+</pre></div>
+</div>
+<p>В каталоге шаблонов KDE добавим ярлык <code class="docutils literal notranslate"><span class="pre">xml-document.desktop</span></code> на созданный ранее файл:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Desktop Entry]</span>
+<span class="na">Icon</span><span class="o">=</span><span class="s">application-xml</span>
+<span class="na">Name[ru_RU]</span><span class="o">=</span><span class="s">Документ XML</span>
+<span class="na">Name</span><span class="o">=</span><span class="s">XML document</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Link</span>
+<span class="na">URL[$e]</span><span class="o">=</span><span class="s">file:$HOME/Templates/xml-document.xml</span>
+</pre></div>
+</div>
+<p>Здесь <strong>Icon</strong> - значок для новой строки, <strong>Name</strong> - название новой строки с поддержкой локализации, а <strong>URL</strong> - полный путь к файлу шаблона.</p>
+<p>Изменения вступят в силу немедленно и через несколько секунд в меню <em>Создать</em> файлового менеджера Dolphin появится новый пункт.</p>
+</div>
+<div class="section" id="nautilus">
+<span id="nautilus-templates"></span><span id="index-14"></span><h2>Как добавить новый тип файлов в меню Создать в Nautilus?<a class="headerlink" href="#nautilus" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В отличие от <a class="reference internal" href="#dolphin-templates"><span class="std std-ref">Dolphin в KDE</span></a>, Nautilus в Gnome ищет файлы шаблонов в стандартном каталоге <a class="reference internal" href="using-system.html#xdg-reallocate"><span class="std std-ref">$XDG_TEMPLATES_DIR</span></a>. Получим путь к нему:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xdg-user-dir TEMPLATES
+</pre></div>
+</div>
+<p>Создадим новый файл <code class="docutils literal notranslate"><span class="pre">XML</span> <span class="pre">document.xml</span></code> следующего содержания:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span>
+<span class="nt">&lt;root&gt;</span>
+<span class="nt">&lt;/root&gt;</span>
+</pre></div>
+</div>
+<p>Изменения вступят в силу немедленно и через несколько секунд в меню <em>Создать</em> файлового менеджера Nautilus появится новый пункт.</p>
+</div>
+<div class="section" id="chromium">
+<span id="chromium-commandline"></span><span id="index-15"></span><h2>Как постоянно запускать браузер Chromium с определёнными параметрами?<a class="headerlink" href="#chromium" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для того, чтобы постоянно запускать браузер Chromium с определёнными <a class="reference external" href="https://peter.sh/experiments/chromium-command-line-switches/">параметрами запуска</a>, необходимо создать файл <code class="docutils literal notranslate"><span class="pre">~/.config/chromium-flags.conf</span></code> и прописать их в нём.</p>
+<p>В качестве разделителя применяется пробел, либо символ разрыва строки. Строки, которые начинаются с символа решётки (<strong>#</strong>) считаются комментариями и игнорируются.</p>
+<p>Пример:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Переопределим каталог хранения дискового кэша.
+--disk-cache-dir /tmp/chromium
+# Установим предельный размер дискового кэша.
+--disk-cache-size 268435456
+</pre></div>
+</div>
+</div>
+<div class="section" id="thunderbird-lightning">
+<span id="thunderbird-symlinks"></span><span id="index-16"></span><h2>В установленном Thunderbird не обновляется расширение Lightning и языковые пакеты. Как исправить?<a class="headerlink" href="#thunderbird-lightning" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Проблема заключается в том, что системные расширения и пакеты с переводами должны копироваться в профиль пользователя при каждом обновлении клиента, но RPM пакетам <a class="reference external" href="https://docs.fedoraproject.org/en-US/packaging-guidelines/">запрещено</a> вносить любые изменения в домашние каталоги пользователей, поэтому они автоматически не обновляются.</p>
+<p>Чтобы исправить проблему необходимо и достаточно создать символические ссылки на XPI файлы, обновляемые пакетом.</p>
+<p>Удалим старые файлы из профилей Thunderbird:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -f ~/.thunderbird/*/extensions/langpack-ru@thunderbird.mozilla.org.xpi
+rm -f ~/.thunderbird/*/extensions/<span class="o">{</span>e2fda1a4-762b-4020-b5ad-a41df1933103<span class="o">}</span>.xpi
+rm -f ~/.thunderbird/*/extensions/langpack-cal-ru@lightning.mozilla.org.xpi
+</pre></div>
+</div>
+<p>Создадим символические ссылки на месте удалённых XPI файлов:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-ru@thunderbird.mozilla.org.xpi ~/.thunderbird/*/extensions/langpack-ru@thunderbird.mozilla.org.xpi
+ln -s /usr/lib64/thunderbird/distribution/extensions/<span class="o">{</span>e2fda1a4-762b-4020-b5ad-a41df1933103<span class="o">}</span>.xpi ~/.thunderbird/*/extensions/<span class="o">{</span>e2fda1a4-762b-4020-b5ad-a41df1933103<span class="o">}</span>.xpi
+ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.mozilla.org.xpi ~/.thunderbird/*/extensions/langpack-cal-ru@lightning.mozilla.org.xpi
+</pre></div>
+</div>
+<p>Перезапустим Thunderbird для того, чтобы изменения вступили в силу.</p>
+</div>
+<div class="section" id="qr">
+<span id="qr-code"></span><span id="index-17"></span><h2>Как распознать QR-код или штрих-код из консоли?<a class="headerlink" href="#qr" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для распознавания бар-кода на изображении и получения его содержимого воспользуемся пакетом <strong>zbar</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install zbar
+</pre></div>
+</div>
+<p>Применим утилиту <strong>zbarimg</strong> для получения содержимого кодов внутри файла изображения <code class="docutils literal notranslate"><span class="pre">foo-bar.png</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>zbarimg --noxml foo-bar.png
+</pre></div>
+</div>
+<p>Результат (или результаты (по одному на каждый обнаруженный бар-код)) будут выведены в консоль.</p>
+</div>
+<div class="section" id="ocr-app">
+<span id="index-18"></span><span id="id8"></span><h2>Как можно распознать текст с изображения или сканера?<a class="headerlink" href="#ocr-app" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для получения текста из файлов изображений, либо PDF, можно воспользоваться системой оптического распознавания символов Tesseract, а также графической утилитой gImageReader.</p>
+<p>Установим Tesseract и набор файлов для русского языка:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install tesseract tesseract-langpack-rus
+</pre></div>
+</div>
+<p>Установим утилиту gImageReader с интерфейсом на Qt (для пользователей KDE, LXQt):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gimagereader-qt
+</pre></div>
+</div>
+<p>Установим утилиту gImageReader с интерфейсом на GTK3 (для пользователей Gnome, XFCE, LXDE, Mate, Cinnamon и т.д.):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gimagereader-gtk
+</pre></div>
+</div>
+<p>Запустим gImageReader, в левой боковой панели выберем отсканированный файл (для наилучших результатов разрешение при сканировании должно быть не меньше 300 DPI), PDF, либо <a class="reference internal" href="hardware.html#scan-drivers"><span class="std std-ref">устройство сканирования</span></a>, зададим режим распознавания и используемые в документе языки, затем нажмём кнопку <strong>Распознать всё</strong>.</p>
+<p>Результат может быть сохранён в файл с панели результатов распознавания.</p>
+</div>
+<div class="section" id="zip">
+<span id="zip-encoding"></span><span id="index-19"></span><h2>При распаковке Zip архива появляются кракозябры вместо имён файлов. Как исправить?<a class="headerlink" href="#zip" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Zip-архивы, созданные штатными средствами ОС Windows, сохраняют имена файлов внутри архива исключительно в однобайтовой кодировке системы по умолчанию (в русской версии это Windows-1251 (cp1251), в английской - Windows-1252 (cp1252)), поэтому при распаковке таких архивов вместо русских букв будут отображаться кракозябры.</p>
+<p>Утилита unzip поддерживает явное указание кодировки, поэтому воспользуемся данной функцией:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip -O cp1251 foo-bar.zip -d /path/to/destination
+</pre></div>
+</div>
+<p>Здесь <strong>cp1251</strong> - кодировка имён файлов, <strong>foo-bar.zip</strong> - имя архива, а <strong>/path/to/destination</strong> - каталог, в который он будет распакован.</p>
+</div>
+<div class="section" id="tmpfs">
+<span id="browser-tmpfs"></span><span id="index-20"></span><h2>Стоит ли переносить кэши браузеров в tmpfs?<a class="headerlink" href="#tmpfs" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, т.к. это даёт следующие преимущества:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>очень быстрый доступ особенно при случайном чтении;</li>
+<li>отсутствует необходимость в ручной очистке, т.к. это будет сделано автоматически при перезагрузке системы.</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="firefox-tmpfs">
+<span id="firefox-cache"></span><span id="index-21"></span><h2>Как перенести кэш браузера Firefox в tmpfs?<a class="headerlink" href="#firefox-tmpfs" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В Fedora каталог <strong>/tmp</strong> по умолчанию монтируется в tmpfs, поэтому осуществим перенос кэшей данного браузера именно в него:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>запустим Firefox и откроем страницу <code class="docutils literal notranslate"><span class="pre">about:config</span></code>;</li>
+<li>найдём в списке переменную <code class="docutils literal notranslate"><span class="pre">browser.cache.disk.parent_directory</span></code> (при отсутствии создадим) и присвоим ему строковое значение <code class="docutils literal notranslate"><span class="pre">/tmp/firefox</span></code>;</li>
+<li>чтобы кэш очень сильно не разрастался, укажем в переменной <code class="docutils literal notranslate"><span class="pre">browser.cache.disk.capacity</span></code> максимальный размер в байтах, например <code class="docutils literal notranslate"><span class="pre">262144</span></code> (256 МБ);</li>
+<li>перезапустим браузер для применения новых изменений.</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="wget-spider">
+<span id="index-22"></span><span id="id9"></span><h2>Как скачать веб-страницу рекурсивно?<a class="headerlink" href="#wget-spider" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для рекурсивного скачивания статических веб-страниц можно использовать wget в специальном режиме.</p>
+<p>Запустим скачивание ресурса <strong>example.org</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget --random-wait -r -p -e <span class="nv">robots</span><span class="o">=</span>off -U <span class="s2">&quot;Mozilla/5.0 (X11; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0&quot;</span> https://example.org
+</pre></div>
+</div>
+<p>Рекурсивное скачивание может занять много времени и места на диске. Настоятельно не рекомендуется использовать этот режим на ресурсах с динамическим контентом.</p>
+</div>
+<div class="section" id="exif">
+<span id="exif-data"></span><span id="index-23"></span><h2>Как извлечь метаданные EXIF из файла изображения?<a class="headerlink" href="#exif" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим пакет ImageMagick:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install ImageMagick
+</pre></div>
+</div>
+<p>Осуществим извлечение метаданных <a class="reference external" href="https://ru.wikipedia.org/wiki/EXIF">EXIF</a> файла <strong>foo-bar.jpg</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>identify -verbose foo-bar.jpg
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Искать" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Навигация</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Вопросы, связанные с установкой системы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package-manager.html">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные со сторонними приложениями</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#firefox">Как активировать аппаратное ускорение в браузере Firefox?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#browser-hwaccel">Как активировать аппаратное ускорение декодирования мультимедиа в браузерах?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#video-hwaccel">В каких проигрывателях реализовано аппаратное ускорение декодирования мультимедиа?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#telegram-desktop-fedora">Как лучше установить Telegram Desktop в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#telegram-desktop">Ранее я устанавливал официальную версию Telegram Desktop. Как мне очистить её остатки?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#latex">В репозиториях есть полнофункциональные редакторы LaTeX?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#latex-cyrillic">Как установить поддержку кириллических шрифтов для LaTeX?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#youtube">Как скачать видео с Youtube?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora-ms-windows">Как из Fedora записать образ с MS Windows на флешку?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#iconv-convert">Как конвертировать текстовый файл из одной кодировки в другую?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#android-mtp">Как подключить смартфон на Android посредством протокола MTP?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kde-connect">Как лучше работать со смартфоном посредством компьютера или ноутбука?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kde-connect-firewalld">KDE Connect не видит мой смартфон. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dolphin">Как добавить новый тип файлов в меню Создать в Dolphin?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nautilus">Как добавить новый тип файлов в меню Создать в Nautilus?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#chromium">Как постоянно запускать браузер Chromium с определёнными параметрами?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#thunderbird-lightning">В установленном Thunderbird не обновляется расширение Lightning и языковые пакеты. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qr">Как распознать QR-код или штрих-код из консоли?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ocr-app">Как можно распознать текст с изображения или сканера?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zip">При распаковке Zip архива появляются кракозябры вместо имён файлов. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tmpfs">Стоит ли переносить кэши браузеров в tmpfs?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firefox-tmpfs">Как перенести кэш браузера Firefox в tmpfs?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wget-spider">Как скачать веб-страницу рекурсивно?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exif">Как извлечь метаданные EXIF из файла изображения?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
+<li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="using-system.html" title="предыдущая глава">Вопросы, связанные с работой в системе</a></li>
+      <li>Next: <a href="hardware.html" title="следующая глава">Вопросы, связанные с использованием различного оборудования</a></li>
+  </ul></li>
+</ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018 - 2019, EasyCoding Team and contributors.
+      
+    </div>
+
+    
+    <a href="https://github.com/RussianFedora/FAQ" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="_static/forkme_right_green.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

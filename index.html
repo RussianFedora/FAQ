@@ -86,6 +86,8 @@
 <li class="toctree-l2"><a class="reference internal" href="installation.html#fedora-trim">Возможно ли в Fedora включить TRIM в реальном времени?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#fonts-cleartype">Как улучшить отображение шрифтов в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#fonts-console">В консолях фреймбуфера отображаются кракозябры. Как это починить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#fs-selection">Какую файловую систему рекомендуется использовать на Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#btrfs">Что вы скажете об установке системы на BTRFS?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#fs-convert">Можно ли без потерь данных преобразовать одну файловую систему в другую?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#fedora-uefi">Как установить Fedora в UEFI режиме?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#fedora-partitions">Как лучше разбить диск самостоятельно?</a></li>
@@ -171,6 +173,7 @@
 <li class="toctree-l2"><a class="reference internal" href="administration.html#ups-fedora">Как настроить ИБП (UPS) в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="administration.html#ssh">При использовании SSH появляется ошибка доступа к ключам. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="administration.html#journald-limit">Системные журналы занимают слишком много места. Как их ограничить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="administration.html#journald-wipe">Как немедленно очистить все системные журналы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="administration.html#firewalld-port-forwarding">Как пробросить локальный порт на удалённый хост?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="administration.html#openvpn-fedora">Как поднять OpenVPN сервер в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="administration.html#wireguard-fedora">Как поднять WireGuard сервер в Fedora?</a></li>
@@ -317,10 +320,6 @@
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#grub-2">Как мне переустановить Grub 2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#grub-rebuild">Как пересобрать конфиг Grub 2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#slow-shutdown">Система медленно завершает работу. Можно ли это ускорить?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#firefox">Как активировать аппаратное ускорение в браузере Firefox?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#browser-hwaccel">Как активировать аппаратное ускорение декодирования мультимедиа в браузерах?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#video-hwaccel">В каких проигрывателях реализовано аппаратное ускорение декодирования мультимедиа?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#debug-application">Приложение падает. Как мне его отладить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#mp3">Как конвертировать множество файлов в mp3 из текущего каталога?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#remove-old-files">Как удалить любые файлы, старше 2 суток из указанного каталога?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#kde-gtk">Я использую KDE. Как мне настроить скорость двойного клика в GTK приложениях?</a></li>
@@ -329,33 +328,20 @@
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#shell">Можно ли из shell скрипта менять название терминала?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#configure-ntp">Как настроить синхронизацию времени?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#systemd-analyze">Как узнать какой сервис замедляет загрузку системы?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#nvidia">Как ускорить кодирование видео с использованием видеокарт NVIDIA?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#fedora">Какую файловую систему рекомендуется использовать на Fedora?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#btrfs">Что вы скажете о BTRFS?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#kde-plasma-5">Как убрать рамки внутри окон в KDE Plasma 5?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#gnome-qt">У меня в Gnome не работает масштабирование окон Qt приложений. Что делать?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#telegram-desktop-fedora">Как лучше установить Telegram Desktop в Fedora?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#telegram-desktop">Ранее я устанавливал официальную версию Telegram Desktop. Как мне очистить её остатки?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#sddm">Как отключить виртуальную клавиатуру в SDDM?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#exfat-fedora">Почему я не могу использовать файловую систему exFAT в Fedora?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#latex">В репозиториях есть полнофункциональные редакторы LaTeX?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#latex-cyrillic">Как установить поддержку кириллических шрифтов для LaTeX?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#android-mtp">Как подключить смартфон на Android посредством протокола MTP?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#failed-to-start-load-kernel-modules">При загрузке системы появляется ошибка Failed to start Load Kernel Modules. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#kwallet">Как настроить автоматическую разблокировку связки ключей KWallet при входе в систему?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#youtube">Как скачать видео с Youtube?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#fedora-ms-windows">Как из Fedora записать образ с MS Windows на флешку?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#xdg-reallocate">Как переместить стандартные каталоги для документов, загрузок и т.д.?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#hidpi-sddm">У меня HiDPI дисплей и в SDDM всё отображается очень мелко. Как настроить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#sddm-avatars">Как отключить отображение пользовательских аватаров в SDDM?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#power-usage">Как узнать какие процессы больше всего разряжают аккумулятор ноутбука?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#system-info">Как собрать информацию о системе?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#l2tp">Мой провайдер использует L2TP. Как мне добавить его поддержку?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#iconv-convert">Как конвертировать текстовый файл из одной кодировки в другую?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#wi-fi">Как подключиться к Wi-Fi из консоли?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#nm-wificli">Как подключиться к Wi-Fi из консоли при отсутствии соединений?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#kde-connect">Как лучше работать со смартфоном посредством компьютера или ноутбука?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#kde-connect-firewalld">KDE Connect не видит мой смартфон. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#editor-selection">Как выбрать предпочитаемый текстовый редактор в консольном режиме?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#git">Как выбрать предпочитаемый текстовый редактор для Git?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#iso-fedora">Как смонтировать ISO образ в Fedora?</a></li>
@@ -367,25 +353,41 @@
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#set-keyboard-console">Как изменить список доступных раскладок клавиатуры и настроить их переключение в текстовом режиме?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#gtk-kde">Можно ли заставить GTK приложения выглядеть нативно в KDE?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#bash-hotkeys">Какие полезные комбинации клавиш существуют при наборе команд в терминале?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#dolphin">Как добавить новый тип файлов в меню Создать в Dolphin?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#nautilus">Как добавить новый тип файлов в меню Создать в Nautilus?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#kde-link-mime">При нажатии по любой гиперссылке она открывается не в браузере, а соответствующем приложении. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#file-types">Как файловые менеджеры определяют типы файлов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#system-locale">Как изменить язык (локализацию) системы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#application-locale">Как запустить приложение с другой локалью?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#application-timezone">Как запустить приложение с другим часовым поясом?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#chromium">Как постоянно запускать браузер Chromium с определёнными параметрами?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#thunderbird-lightning">В установленном Thunderbird не обновляется расширение Lightning и языковые пакеты. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#x11-wayland">Как определить какой тип сессии используется: X11 или Wayland?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#qr">Как распознать QR-код или штрих-код из консоли?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#ocr-app">Как можно распознать текст с изображения или сканера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#neofetch">Как вывести в консоль краткую информацию об установленной системе?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#zip">При распаковке Zip архива появляются кракозябры вместо имён файлов. Как исправить?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#tmpfs">Стоит ли переносить кэши браузеров в tmpfs?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#firefox-tmpfs">Как перенести кэш браузера Firefox в tmpfs?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#wget-spider">Как скачать веб-страницу рекурсивно?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#kde-icons-refresh">Как обновить кэш значков приложений в главном меню KDE Plasma 5?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#exif">Как извлечь метаданные EXIF из файла изображения?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="using-applications.html">Вопросы, связанные со сторонними приложениями</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#firefox">Как активировать аппаратное ускорение в браузере Firefox?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#browser-hwaccel">Как активировать аппаратное ускорение декодирования мультимедиа в браузерах?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#video-hwaccel">В каких проигрывателях реализовано аппаратное ускорение декодирования мультимедиа?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#telegram-desktop-fedora">Как лучше установить Telegram Desktop в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#telegram-desktop">Ранее я устанавливал официальную версию Telegram Desktop. Как мне очистить её остатки?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#latex">В репозиториях есть полнофункциональные редакторы LaTeX?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#latex-cyrillic">Как установить поддержку кириллических шрифтов для LaTeX?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#youtube">Как скачать видео с Youtube?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#fedora-ms-windows">Как из Fedora записать образ с MS Windows на флешку?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#iconv-convert">Как конвертировать текстовый файл из одной кодировки в другую?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#android-mtp">Как подключить смартфон на Android посредством протокола MTP?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#kde-connect">Как лучше работать со смартфоном посредством компьютера или ноутбука?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#kde-connect-firewalld">KDE Connect не видит мой смартфон. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#dolphin">Как добавить новый тип файлов в меню Создать в Dolphin?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#nautilus">Как добавить новый тип файлов в меню Создать в Nautilus?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#chromium">Как постоянно запускать браузер Chromium с определёнными параметрами?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#thunderbird-lightning">В установленном Thunderbird не обновляется расширение Lightning и языковые пакеты. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#qr">Как распознать QR-код или штрих-код из консоли?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#ocr-app">Как можно распознать текст с изображения или сканера?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#zip">При распаковке Zip архива появляются кракозябры вместо имён файлов. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#tmpfs">Стоит ли переносить кэши браузеров в tmpfs?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#firefox-tmpfs">Как перенести кэш браузера Firefox в tmpfs?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#wget-spider">Как скачать веб-страницу рекурсивно?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#exif">Как извлечь метаданные EXIF из файла изображения?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a><ul>
@@ -426,6 +428,7 @@
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#vsync-off">Как отключить вертикальную синхронизацию для одного приложения?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#kde">Как сбросить настройки экрана в KDE?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#pa-reset">Как сбросить настройки звука?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware.html#nvidia-encoding">Как ускорить кодирование видео с использованием видеокарт NVIDIA?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a><ul>
@@ -444,6 +447,7 @@
 <li class="toctree-l2"><a class="reference internal" href="development.html#git">Как правильно настроить Git для работы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="development.html#git-pull-request">Я хочу внести правки в проект. Как правильно отправить их в апстрим?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="development.html#c">Как скомпилировать простую программу на языке C++ из консоли?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#debug-application">Приложение падает. Как мне его отладить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="development.html#ld-preload">Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="development.html#lto">Как можно активировать LTO оптимизации при сборке пакета?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="development.html#rpm-unneeded">Как вывести список установленных пакетов, от которых никто не зависит?</a></li>
@@ -454,6 +458,7 @@
 <li class="toctree-l2"><a class="reference internal" href="development.html#build-flags">Можно ли использовать собственные флаги компиляции при сборке пакета?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="development.html#cxx-ide">Какую IDE использовать для разработки на C++ в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="development.html#python-ide">Какую IDE использовать для разработки на Python в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#fw-image">Как получить информацию о содержимом образа бинарной прошивки?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a><ul>
@@ -463,6 +468,7 @@
 <li class="toctree-l2"><a class="reference internal" href="tips-and-tricks.html#bfq-hdd">Как задействовать планировщик ввода/вывода BFQ для HDD?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tips-and-tricks.html#swf-flash">Чем можно запустить SWF файл без установки Flash плагина в браузер?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tips-and-tricks.html#python-2">Можно ли удалить Python 2 из системы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tips-and-tricks.html#fs-noexec">Как запретить возможность исполнения любых файлов из домашнего каталога?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a><ul>
@@ -500,6 +506,7 @@
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-applications.html">Вопросы, связанные со сторонними приложениями</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>

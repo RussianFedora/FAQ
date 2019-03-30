@@ -253,8 +253,27 @@ git rebase master
 </div>
 <p>Если всё сделано верно, то увидим сообщение <em>Hello, World!</em> в консоли.</p>
 </div>
+<div class="section" id="debug-application">
+<span id="index-15"></span><span id="id9"></span><h2>Приложение падает. Как мне его отладить?<a class="headerlink" href="#debug-application" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для начала рекомендуется (хотя и не обязательно) установить отладочную информацию для данного пакета:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf debuginfo-install foo-bar
+</pre></div>
+</div>
+<p>После завершения процесса отладки символы можно снова удалить.</p>
+<p>Чтобы получить бэктрейс падения, нужно выполнить в терминале:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gdb /usr/bin/foo-bar <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">|</span> tee ~/backtrace.log
+</pre></div>
+</div>
+<p>Далее в интерактивной консоли отладчика ввести: <code class="docutils literal notranslate"><span class="pre">handle</span> <span class="pre">SIGPIPE</span> <span class="pre">nostop</span> <span class="pre">noprint</span></code> и затем <code class="docutils literal notranslate"><span class="pre">run</span></code>, дождаться сегфолта и выполнить <code class="docutils literal notranslate"><span class="pre">bt</span> <span class="pre">full</span></code> для получения бэктрейса. Теперь можно прописать <code class="docutils literal notranslate"><span class="pre">quit</span></code> для выхода из режима отладки.</p>
+<p>Далее получившийся файл <code class="docutils literal notranslate"><span class="pre">~/backtrace.log</span></code> следует загрузить на любой сервис размещения текстовых файлов.</p>
+<p>Также рекомендуется ещё сделать трассировку приложения до момента падения:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>strace -o ~/trace.log /usr/bin/foo-bar
+</pre></div>
+</div>
+<p>Полученный файл <code class="docutils literal notranslate"><span class="pre">~/trace.log</span></code> также следует загрузить на сервис.</p>
+</div>
 <div class="section" id="ld-preload">
-<span id="ldpreload-safety"></span><span id="index-15"></span><h2>Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?<a class="headerlink" href="#ld-preload" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="ldpreload-safety"></span><span id="index-16"></span><h2>Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?<a class="headerlink" href="#ld-preload" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Нет, это не безопасно, т.к. существует возможность создания внутри библиотек <a class="reference external" href="https://gcc.gnu.org/onlinedocs/gcc-8.2.0/gcc/Common-Function-Attributes.html">суперглобальных конструкторов</a>, которые будут выполняться в момент присоединения библиотеки <em>до запуска приложения</em>.</p>
 <p>Создадим и скомпилируем простой пример <code class="docutils literal notranslate"><span class="pre">example.c</span></code>:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
@@ -288,7 +307,7 @@ user1
 <p>Разумеется, вместо безобидных вызовов функции printf() может находиться абсолютно любой код, в т.ч. вредоносный.</p>
 </div>
 <div class="section" id="lto">
-<span id="enable-lto"></span><span id="index-16"></span><h2>Как можно активировать LTO оптимизации при сборке пакета?<a class="headerlink" href="#lto" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="enable-lto"></span><span id="index-17"></span><h2>Как можно активировать LTO оптимизации при сборке пакета?<a class="headerlink" href="#lto" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для активации <a class="reference external" href="https://gcc.gnu.org/wiki/LinkTimeOptimization">LTO оптимизаций</a> необходимо и достаточно передать параметр <code class="docutils literal notranslate"><span class="pre">-flto</span></code> как для компилятора (<strong>CFLAGS</strong> и/или <strong>CXXFLAGS</strong>), так и для компоновщика.</p>
 <p>Самый простой способ сделать это - переопределение значений стандартных макросов внутри SPEC файла:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global optflags %{optflags} -flto
@@ -310,7 +329,7 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <p>В противном случае появится ошибка <em>plugin needed to handle lto object</em>.</p>
 </div>
 <div class="section" id="rpm-unneeded">
-<span id="index-17"></span><span id="id9"></span><h2>Как вывести список установленных пакетов, от которых никто не зависит?<a class="headerlink" href="#rpm-unneeded" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-18"></span><span id="id10"></span><h2>Как вывести список установленных пакетов, от которых никто не зависит?<a class="headerlink" href="#rpm-unneeded" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В настоящее время данная функциональность отсутствует в dnf «из коробки», поэтому напишем и скомпилируем небольшую программу на языке C, реализующую это средствами библиотеки <strong>libsolv</strong>.</p>
 <p>Установим компилятор и необходимые для сборки библиотеки:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc libsolv-devel
@@ -365,7 +384,7 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <p>Запустим приложение <code class="docutils literal notranslate"><span class="pre">./rpm-unneeded</span></code> и получим список установленных пакетов, от которых никто не зависит.</p>
 </div>
 <div class="section" id="cpack-gnu-linux">
-<span id="using-cpack"></span><span id="index-18"></span><h2>Можно ли использовать cpack для сборки пакетов для GNU/Linux?<a class="headerlink" href="#cpack-gnu-linux" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="using-cpack"></span><span id="index-19"></span><h2>Можно ли использовать cpack для сборки пакетов для GNU/Linux?<a class="headerlink" href="#cpack-gnu-linux" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Нет, использовать cpack категорически не рекомендуется по следующим причинам:</p>
 <blockquote>
 <div><ul class="simple">
@@ -381,7 +400,7 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <p>Вместо cpack следует собирать <a class="reference internal" href="#create-package"><span class="std std-ref">нативные пакеты</span></a>.</p>
 </div>
 <div class="section" id="library-path">
-<span id="index-19"></span><span id="id10"></span><h2>Приложение собрано со старой версией библиотеки. Как заставить его работать?<a class="headerlink" href="#library-path" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-20"></span><span id="id11"></span><h2>Приложение собрано со старой версией библиотеки. Как заставить его работать?<a class="headerlink" href="#library-path" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если приложение было собрано со старой версией библиотеки <strong>foo-bar</strong>, которой уже нет в репозиториях и его требуется запустить, существует два способа:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -406,19 +425,19 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <p>Если всё сделано верно, приложение успешно стартует.</p>
 </div>
 <div class="section" id="fedora-licenses">
-<span id="index-20"></span><span id="id11"></span><h2>Проекты под какими лицензиями допускается распространять в репозиториях?<a class="headerlink" href="#fedora-licenses" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-21"></span><span id="id12"></span><h2>Проекты под какими лицензиями допускается распространять в репозиториях?<a class="headerlink" href="#fedora-licenses" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://fedoraproject.org/wiki/Licensing:Main">здесь</a>.</p>
 </div>
 <div class="section" id="pipe-order">
-<span id="index-21"></span><span id="id12"></span><h2>В каком порядке запускаются процессы через канал (пайп)?<a class="headerlink" href="#pipe-order" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-22"></span><span id="id13"></span><h2>В каком порядке запускаются процессы через канал (пайп)?<a class="headerlink" href="#pipe-order" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если запускается несколько процессов с передачей данных через канал (пайп; pipe), то все они стартуют одновременно, затем начинает выполняться первый, а остальные уходят в состояние ожидания ввода.</p>
 </div>
 <div class="section" id="build-flags">
-<span id="index-22"></span><span id="id13"></span><h2>Можно ли использовать собственные флаги компиляции при сборке пакета?<a class="headerlink" href="#build-flags" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-23"></span><span id="id14"></span><h2>Можно ли использовать собственные флаги компиляции при сборке пакета?<a class="headerlink" href="#build-flags" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для любых официальных сборок следует использовать исключительно стандартные для дистрибутива флаги, предоставляемые макросами <code class="docutils literal notranslate"><span class="pre">%{optflags}</span></code> (флаги компилятора) и <code class="docutils literal notranslate"><span class="pre">%{build_ldflags}</span></code> (флаги компоновки).</p>
 </div>
 <div class="section" id="cxx-ide">
-<span id="index-23"></span><span id="ide-c-fedora"></span><h2>Какую IDE использовать для разработки на C++ в Fedora?<a class="headerlink" href="#cxx-ide" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-24"></span><span id="ide-c-fedora"></span><h2>Какую IDE использовать для разработки на C++ в Fedora?<a class="headerlink" href="#cxx-ide" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы рекомендуем Qt Creator, которая одинаково хорошо подходит как для разработки на C++ (с Qt и без него), так и чистого C.</p>
 <p>Установим данную IDE, а также компилятор C++ и ряд необходимых библиотек и средств для сборки проектов:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc gcc-c++ qt-creator qt5-qtbase-devel cmake
@@ -426,7 +445,7 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 </div>
 </div>
 <div class="section" id="python-ide">
-<span id="index-24"></span><span id="ide-python-fedora"></span><h2>Какую IDE использовать для разработки на Python в Fedora?<a class="headerlink" href="#python-ide" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-25"></span><span id="ide-python-fedora"></span><h2>Какую IDE использовать для разработки на Python в Fedora?<a class="headerlink" href="#python-ide" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы рекомендуем PyCharm Community Edition.</p>
 <p>Подключим COPR репозиторий:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf copr <span class="nb">enable</span> phracek/PyCharm
@@ -438,6 +457,17 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 </div>
 <p>При необходимости установим также набор популярных плагинов:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install pycharm-community-plugins
+</pre></div>
+</div>
+</div>
+<div class="section" id="fw-image">
+<span id="index-26"></span><span id="id15"></span><h2>Как получить информацию о содержимом образа бинарной прошивки?<a class="headerlink" href="#fw-image" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для работы с образами прошивок можно использовать утилиту <strong>binwalk</strong>. Установим её:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install binwalk
+</pre></div>
+</div>
+<p>Произведём анализ файла и получим результат:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>binwalk foo-bar.bin
 </pre></div>
 </div>
 </div>
@@ -469,6 +499,7 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-applications.html">Вопросы, связанные со сторонними приложениями</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные с разработкой и сборкой пакетов</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#fedora">Я хочу создать пакет для Fedora. Что мне следует знать?</a></li>
@@ -486,6 +517,7 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <li class="toctree-l2"><a class="reference internal" href="#git">Как правильно настроить Git для работы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-pull-request">Я хочу внести правки в проект. Как правильно отправить их в апстрим?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#c">Как скомпилировать простую программу на языке C++ из консоли?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#debug-application">Приложение падает. Как мне его отладить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ld-preload">Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lto">Как можно активировать LTO оптимизации при сборке пакета?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpm-unneeded">Как вывести список установленных пакетов, от которых никто не зависит?</a></li>
@@ -496,6 +528,7 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <li class="toctree-l2"><a class="reference internal" href="#build-flags">Можно ли использовать собственные флаги компиляции при сборке пакета?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cxx-ide">Какую IDE использовать для разработки на C++ в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#python-ide">Какую IDE использовать для разработки на Python в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fw-image">Как получить информацию о содержимом образа бинарной прошивки?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
