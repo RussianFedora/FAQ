@@ -624,3 +624,27 @@ ICC профиль можно получить либо на сайте прои
     pulseaudio -D
 
 Сразу после этого все настройки звука будут сброшены на установленные по умолчанию.
+
+.. index:: multimedia, encoding, nvidia, ffmpeg, gpu
+.. _nvidia-encoding:
+
+Как ускорить кодирование видео с использованием видеокарт NVIDIA?
+====================================================================
+
+Для этого нужно установить ffmpeg, а также проприетарные драйверы NVIDIA из репозиториев :ref:`RPM Fusion <rpmfusion>`.
+
+Использование NVENC:
+
+.. code-block:: bash
+
+    ffmpeg -i input.mp4 -acodec aac -ac 2 -ab 128k -vcodec h264_nvenc -profile high444p -pixel_format yuv444p -preset default output.mp4
+
+Использование CUDA/CUVID:
+
+.. code-block:: bash
+
+    ffmpeg -c:v h264_cuvid -i input.mp4 -c:v h264_nvenc -preset slow output.mkv
+
+Здесь **input.mp4** — имя оригинального файла, который требуется перекодировать, а в **output.mp4** будет сохранён результат.
+
+Больше информации можно найти `здесь <https://trac.ffmpeg.org/wiki/HWAccelIntro>`__.
