@@ -89,11 +89,11 @@
 <span id="rpmfusion"></span><span id="index-11"></span><h2>Что такое RPM Fusion?<a class="headerlink" href="#rpm-fusion" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Это самый популярный сторонний репозиторий, содержащий пакеты, которые по какой-то причине нельзя распространять в главном репозитории: кодеки мультимедиа, драйверы, проприетарные прошивки для различных устройств.</p>
 <p>Подключение репозитория:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install --nogpgcheck https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-<span class="k">$(</span>rpm -E %fedora<span class="k">)</span>.noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-<span class="k">$(</span>rpm -E %fedora<span class="k">)</span>.noarch.rpm
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install --nogpgcheck https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 </pre></div>
 </div>
 <p>Отключение репозитория:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove rpmfusion-free-release rpmfusion-nonfree-release
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove rpmfusion-free-release rpmfusion-nonfree-release
 </pre></div>
 </div>
 </div>
@@ -102,11 +102,11 @@
 <p>Популярный сторонний репозиторий. Содержит большое количество ПО, включая правильно собранные Chromium (с поддержкой всех доступных мультимедийных кодеков), PyCharm Community Edition, Double Commander, а также множество популярного проприетарного ПО: Opera, Viber, Sublime Text 3, Adobe Flash Player, RAR и т.д.</p>
 <p>Большая часть представленных здесь пакетов зависит от <a class="reference internal" href="#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>, поэтому необходимо подключить сначала его.</p>
 <p>Подключение репозитория:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install --nogpgcheck https://mirror.yandex.ru/fedora/russianfedora/russianfedora/free/fedora/russianfedora-free-release-stable.noarch.rpm https://mirror.yandex.ru/fedora/russianfedora/russianfedora/nonfree/fedora/russianfedora-nonfree-release-stable.noarch.rpm
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install --nogpgcheck https://mirror.yandex.ru/fedora/russianfedora/russianfedora/free/fedora/russianfedora-free-release-stable.noarch.rpm https://mirror.yandex.ru/fedora/russianfedora/russianfedora/nonfree/fedora/russianfedora-nonfree-release-stable.noarch.rpm
 </pre></div>
 </div>
 <p>Отключение репозитория:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove russianfedora-free-release russianfedora-nonfree-release
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove russianfedora-free-release russianfedora-nonfree-release
 </pre></div>
 </div>
 </div>
@@ -131,7 +131,7 @@
 <span id="rfremix-to-fedora"></span><span id="index-17"></span><h2>Как превратить RFRemix в Fedora и наоборот?<a class="headerlink" href="#rfremix-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для превращения Fedora в RFRemix необходимо и достаточно подключить репозиторий <strong>russianfedora-branding</strong>, а чтобы вернуть всё назад - отключить его.</p>
 <p>После подключения/отключения необходимо выполнить синхронизацию:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf distro-sync
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf distro-sync
 </pre></div>
 </div>
 </div>

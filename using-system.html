@@ -42,7 +42,7 @@
 <div class="section" id="autocompletion">
 <span id="index-0"></span><span id="id2"></span><h2>У меня в системе не работает автодополнение команд. Как исправить?<a class="headerlink" href="#autocompletion" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Необходимо установить пакет sqlite:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install sqlite
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install sqlite
 </pre></div>
 </div>
 <p>При определённых условиях он может не быть установлен и из-за этого система автоматического дополнения команд может перестать функционировать.</p>
@@ -58,9 +58,9 @@
 <div class="section" id="backup-create">
 <span id="index-3"></span><span id="id5"></span><h2>Как лучше всего делать резервную копию корневого раздела?<a class="headerlink" href="#backup-create" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Необходимо загрузиться с LiveCD или LiveUSB, смонтировать раздел с корневой файловой системой и выполнить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo tar --one-file-system --selinux <span class="se">\</span>
---exclude<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$bdir</span><span class="s2">/tmp/*&quot;</span> <span class="se">\</span>
---exclude<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$bdir</span><span class="s2">/var/tmp/*&quot;</span> <span class="se">\</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo tar --one-file-system --selinux \
+--exclude=&quot;$bdir/tmp/*&quot; \
+--exclude=&quot;$bdir/var/tmp/*&quot; \
 -cvJpf /путь/к/бэкапу.tar.xz -C /путь/к/корню .
 </pre></div>
 </div>
@@ -68,7 +68,7 @@
 <div class="section" id="initrd">
 <span id="initrd-rebuild"></span><span id="index-4"></span><h2>Как мне пересобрать образ initrd?<a class="headerlink" href="#initrd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для пересборки образа initrd следует выполнить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dracut -f
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut -f
 </pre></div>
 </div>
 </div>
@@ -79,11 +79,11 @@
 <div class="section" id="grub-rebuild">
 <span id="index-6"></span><span id="id6"></span><h2>Как пересобрать конфиг Grub 2?<a class="headerlink" href="#grub-rebuild" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Пересборка конфига Grub 2 для legacy конфигураций:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 </pre></div>
 </div>
 <p>Пересборка конфигра Grub 2 для UEFI конфигураций:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
 </pre></div>
 </div>
 </div>
@@ -94,18 +94,18 @@
 <div class="section" id="mp3">
 <span id="convert-multiple-files"></span><span id="index-8"></span><h2>Как конвертировать множество файлов в mp3 из текущего каталога?<a class="headerlink" href="#mp3" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Конвертируем все файлы с маской *.ogg в mp3 в текущем каталоге:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find . -maxdepth <span class="m">1</span> -type f -name <span class="s2">&quot;*.ogg&quot;</span> -exec ffmpeg -i <span class="s2">&quot;{}&quot;</span> -acodec mp3 -ab 192k <span class="s2">&quot;</span><span class="k">$(</span>basename <span class="o">{}</span><span class="k">)</span><span class="s2">.mp3&quot;</span> <span class="se">\;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find . -maxdepth 1 -type f -name &quot;*.ogg&quot; -exec ffmpeg -i &quot;{}&quot; -acodec mp3 -ab 192k &quot;$(basename {}).mp3&quot; \;
 </pre></div>
 </div>
 </div>
 <div class="section" id="remove-old-files">
 <span id="index-9"></span><span id="id8"></span><h2>Как удалить любые файлы, старше 2 суток из указанного каталога?<a class="headerlink" href="#remove-old-files" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Ресурсивно удаляем файлы старше 2 суток в указанном каталоге:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find ~/foo-bar -type f -mtime +2 -delete
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find ~/foo-bar -type f -mtime +2 -delete
 </pre></div>
 </div>
 <p>Удаляем файлы старше 2 суток в указанном каталоге с ограничением рекурсии:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find ~/foo-bar -maxdepth <span class="m">1</span> -type f -mtime +2 -delete
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find ~/foo-bar -maxdepth 1 -type f -mtime +2 -delete
 </pre></div>
 </div>
 <p>Здесь <strong>~/foo-bar</strong> - начальный каталог, в котором производится удаление.</p>
@@ -125,7 +125,7 @@
 <div class="section" id="block-screen">
 <span id="index-11"></span><span id="id9"></span><h2>Возможно ли заблокировать экран из командной строки?<a class="headerlink" href="#block-screen" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>loginctl lock-session
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>loginctl lock-session
 </pre></div>
 </div>
 </div>
@@ -146,22 +146,22 @@
 <p>В Fedora для этой цели используется chronyd, который установлен и запущен по умолчанию.</p>
 <p>Чтобы узнать включена ли синхронизация времени с NTP серверами, можно использовать утилиту <strong>timedatectl</strong>.</p>
 <p>Если синхронизация отключена, нужно убедиться, что сервис chronyd активирован:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl <span class="nb">enable</span> chronyd.service
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable chronyd.service
 </pre></div>
 </div>
 <p>Получить список NTP серверов, с которыми осуществляется синхронизация, можно так:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chronyc sources
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>chronyc sources
 </pre></div>
 </div>
 </div>
 <div class="section" id="systemd-analyze">
 <span id="index-15"></span><span id="id11"></span><h2>Как узнать какой сервис замедляет загрузку системы?<a class="headerlink" href="#systemd-analyze" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Вывод информации в виде текста:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemd-analyze blame
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemd-analyze blame
 </pre></div>
 </div>
 <p>Вывод информации в виде SVG изображения:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemd-analyze plot &gt; systemd-plot.svg
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemd-analyze plot &gt; systemd-plot.svg
 xdg-open systemd-plot.svg
 </pre></div>
 </div>
@@ -206,7 +206,7 @@ export QT_SCALE_FACTOR=2
 <span id="fedora-exfat"></span><span id="index-19"></span><h2>Почему я не могу использовать файловую систему exFAT в Fedora?<a class="headerlink" href="#exfat-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p><a class="reference internal" href="installation.html#fs-selection"><span class="std std-ref">Файловая система</span></a> exFAT защищена множеством патентов Microsoft, поэтому она не может быть включена в ядро Linux и соответственно быть доступной в Fedora по умолчанию.</p>
 <p>Для того, чтобы использовать её, необходимо установить пакет <strong>fuse-exfat</strong> из <a class="reference internal" href="package-manager.html#rd-repositories"><span class="std std-ref">репозитория</span></a> <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install fuse fuse-exfat
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install fuse fuse-exfat
 </pre></div>
 </div>
 </div>
@@ -214,18 +214,18 @@ export QT_SCALE_FACTOR=2
 <span id="failed-to-start"></span><span id="index-20"></span><h2>При загрузке системы появляется ошибка Failed to start Load Kernel Modules. Как исправить?<a class="headerlink" href="#failed-to-start-load-kernel-modules" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Это известная проблема системы виртуализации <a class="reference internal" href="package-manager.html#virtualbox"><span class="std std-ref">VirtualBox</span></a>, использующей out-of-tree модули ядра, но может также проявляться и у пользователей проприетарных <a class="reference internal" href="package-manager.html#broadcom-drivers"><span class="std std-ref">драйверов Broadcom</span></a>.</p>
 <p>Для исправления необходимо <strong>после каждого обновления ядра</strong> выполнять пересборку initrd:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dracut -f
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut -f
 </pre></div>
 </div>
 <p>Для вступления изменений в силу требуется перезагрузка:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
 </pre></div>
 </div>
 </div>
 <div class="section" id="kwallet">
 <span id="kwallet-pam"></span><span id="index-21"></span><h2>Как настроить автоматическую разблокировку связки ключей KWallet при входе в систему?<a class="headerlink" href="#kwallet" title="Ссылка на этот заголовок">¶</a></h2>
 <p>KDE предоставляет особый PAM модуль для автоматической разблокировки связки паролей KDE Wallet при входе в систему. Установим его:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install pam-kwallet
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install pam-kwallet
 </pre></div>
 </div>
 <p>Запустим менеджер KWallet (<strong>Параметры системы</strong> - группа <strong>Предпочтения пользователя</strong> - <strong>Учётная запись</strong> - страница <strong>Бумажник</strong> - кнопка <strong>Запустить управление бумажниками</strong>), нажмём кнопку <strong>Сменить пароль</strong> и укажем тот же самый пароль, который используется для текущей учётной записи.</p>
@@ -246,7 +246,7 @@ export QT_SCALE_FACTOR=2
 </pre></div>
 </div>
 <p>Применим изменения:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xdg-user-dirs-update
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>xdg-user-dirs-update
 </pre></div>
 </div>
 <p>Убедитесь, что перед применением изменений данные каталоги существуют, иначе будет выполнен сброс на стандартное значение.</p>
@@ -254,7 +254,7 @@ export QT_SCALE_FACTOR=2
 <div class="section" id="hidpi-sddm">
 <span id="sddm-hidpi"></span><span id="index-23"></span><h2>У меня HiDPI дисплей и в SDDM всё отображается очень мелко. Как настроить?<a class="headerlink" href="#hidpi-sddm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/sddm.conf</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/sddm.conf
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/sddm.conf
 </pre></div>
 </div>
 <p>Добавим в самый конец следующие строки:</p>
@@ -271,7 +271,7 @@ export QT_SCALE_FACTOR=2
 <span id="index-24"></span><span id="id13"></span><h2>Как отключить отображение пользовательских аватаров в SDDM?<a class="headerlink" href="#sddm-avatars" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Пользовательские аватары представляют собой файл <code class="docutils literal notranslate"><span class="pre">~/.face.icon</span></code>. При запуске SDDM пытается прочитать его для каждого существующего пользователя.</p>
 <p>Для отключения данной функции откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/sddm.conf</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/sddm.conf
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/sddm.conf
 </pre></div>
 </div>
 <p>Добавим в самый конец следующие строки:</p>
@@ -284,11 +284,11 @@ export QT_SCALE_FACTOR=2
 <div class="section" id="power-usage">
 <span id="index-25"></span><span id="id14"></span><h2>Как узнать какие процессы больше всего разряжают аккумулятор ноутбука?<a class="headerlink" href="#power-usage" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим утилиту <strong>powertop</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install powertop
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install powertop
 </pre></div>
 </div>
 <p>Запустим её с правами суперпользователя:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo powertop
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo powertop
 </pre></div>
 </div>
 <p>Процессы, которые больше всех влияют на скорость разряда аккумуляторных батарей, будут отображаться в верхней части.</p>
@@ -296,11 +296,11 @@ export QT_SCALE_FACTOR=2
 <div class="section" id="system-info">
 <span id="index-26"></span><span id="id15"></span><h2>Как собрать информацию о системе?<a class="headerlink" href="#system-info" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим утилиту <strong>inxi</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install inxi
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install inxi
 </pre></div>
 </div>
 <p>Соберём информацию о системе и выгрузим на fpaste:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inxi -F <span class="p">|</span> fpaste
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>inxi -F | fpaste
 </pre></div>
 </div>
 <p>На выходе будет сгенерирована уникальная ссылка, которую можно передать на <a class="reference internal" href="generic-info.html#get-help"><span class="std std-ref">форум, в чат</span></a> и т.д.</p>
@@ -309,11 +309,11 @@ export QT_SCALE_FACTOR=2
 <span id="nm-l2tp"></span><span id="index-27"></span><h2>Мой провайдер использует L2TP. Как мне добавить его поддержку?<a class="headerlink" href="#l2tp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Плагин L2TP для Network Manager должен присутствовать в Workstation и всех spin live образах по умолчанию, но если его по какой-то причине нет (например была выборана минимальная установка netinstall), то добавить его можно самостоятельно.</p>
 <p>Для Gnome/XFCE и других, основанных на GTK:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install NetworkManager-l2tp-gnome
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install NetworkManager-l2tp-gnome
 </pre></div>
 </div>
 <p>Для KDE:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install plasma-nm-l2tp
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install plasma-nm-l2tp
 </pre></div>
 </div>
 <p>После установки необходимо запустить модуль настройки Network Manager (графический или консольный), добавить новое VPN подключение с типом L2TP и указать настройки, выданные провайдером.</p>
@@ -322,18 +322,18 @@ export QT_SCALE_FACTOR=2
 <div class="section" id="wi-fi">
 <span id="nm-wificon"></span><span id="index-28"></span><h2>Как подключиться к Wi-Fi из консоли?<a class="headerlink" href="#wi-fi" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если ранее уже были созданы Wi-Fi подключения, то выведем их список:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nmcli connection <span class="p">|</span> grep wifi
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nmcli connection | grep wifi
 </pre></div>
 </div>
 <p>Теперь запустим выбранное соединение:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nmcli connection up Connection_Name
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nmcli connection up Connection_Name
 </pre></div>
 </div>
 </div>
 <div class="section" id="nm-wificli">
 <span id="index-29"></span><span id="id16"></span><h2>Как подключиться к Wi-Fi из консоли при отсутствии соединений?<a class="headerlink" href="#nm-wificli" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если <a class="reference internal" href="#nm-wificon"><span class="std std-ref">готовых соединений</span></a> для Wi-Fi нет, но известны SSID и пароль, то можно осуществить подключение напрямую:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nmcli device wifi connect MY_NETWORK password XXXXXXXXXX
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nmcli device wifi connect MY_NETWORK password XXXXXXXXXX
 </pre></div>
 </div>
 <p>Здесь <strong>MY_NETWORK</strong> - название SSID точки доступа, к которой мы планируем подключиться, а <strong>XXXXXXXXXX</strong> - её пароль.</p>
@@ -341,9 +341,9 @@ export QT_SCALE_FACTOR=2
 <div class="section" id="editor-selection">
 <span id="index-30"></span><span id="id17"></span><h2>Как выбрать предпочитаемый текстовый редактор в консольном режиме?<a class="headerlink" href="#editor-selection" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для выбора предпочитаемого текстового редактора следует применять <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменные окружения</span></a>, прописав их в личном файле <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">VISUAL</span><span class="o">=</span>vim
-<span class="nb">export</span> <span class="nv">EDITOR</span><span class="o">=</span>vim
-<span class="nb">export</span> <span class="nv">SUDO_EDITOR</span><span class="o">=</span>vim
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export VISUAL=vim
+export EDITOR=vim
+export SUDO_EDITOR=vim
 </pre></div>
 </div>
 <p><strong>VISUAL</strong> - предпочитаемый текстовый редактор с графическим интерфейсом пользователя, <strong>EDITOR</strong> - текстовый, а <strong>SUDO_EDITOR</strong> используется в <a class="reference internal" href="security.html#sudo-edit-config"><span class="std std-ref">sudoedit</span></a>.</p>
@@ -351,29 +351,29 @@ export QT_SCALE_FACTOR=2
 <div class="section" id="git">
 <span id="editor-git"></span><span id="index-31"></span><h2>Как выбрать предпочитаемый текстовый редактор для Git?<a class="headerlink" href="#git" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Хотя Git подчиняется настройкам <a class="reference internal" href="#editor-selection"><span class="std std-ref">редактора по умолчанию</span></a>, допустимо его указать явно в файле конфигурации:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global core.editor vim
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git config --global core.editor vim
 </pre></div>
 </div>
 </div>
 <div class="section" id="iso-fedora">
 <span id="iso-mount"></span><span id="index-32"></span><h2>Как смонтировать ISO образ в Fedora?<a class="headerlink" href="#iso-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Создадим точку монтирования:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mkdir /mnt/iso
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /mnt/iso
 </pre></div>
 </div>
 <p>Смонтируем файл образа:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mount -o loop /path/to/image.iso /mnt/iso
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mount -o loop /path/to/image.iso /mnt/iso
 </pre></div>
 </div>
 <p>По окончании произведём размонтирование:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo umount /mnt/iso
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /mnt/iso
 </pre></div>
 </div>
 </div>
 <div class="section" id="cd-dvd-iso">
 <span id="iso-create"></span><span id="index-33"></span><h2>Как считать содержимое CD/DVD диска в файл ISO образа?<a class="headerlink" href="#cd-dvd-iso" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этого можно воспользоваться утилитой <strong>dd</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dd <span class="k">if</span><span class="o">=</span>/dev/sr0 <span class="nv">of</span><span class="o">=</span>/path/to/image.iso <span class="nv">bs</span><span class="o">=</span>4M <span class="nv">status</span><span class="o">=</span>progress
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/sr0 of=/path/to/image.iso bs=4M status=progress
 </pre></div>
 </div>
 <p>Здесь <strong>/dev/sr0</strong> имя устройства привода для чтения оптических дисков, а <strong>/path/to/image.iso</strong> - файл образа, в котором будет сохранён результат.</p>
@@ -381,11 +381,11 @@ export QT_SCALE_FACTOR=2
 <div class="section" id="dd-mount">
 <span id="index-34"></span><span id="id18"></span><h2>Как смонтировать посекторный образ раздела?<a class="headerlink" href="#dd-mount" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Монтирование raw образа раздела, созданного посредством утилиты <strong>dd</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mount -o ro,loop /path/to/image.raw /mnt/dd-image
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mount -o ro,loop /path/to/image.raw /mnt/dd-image
 </pre></div>
 </div>
 <p>Размонтирование:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo umount /mnt/dd-image
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /mnt/dd-image
 </pre></div>
 </div>
 <p>Здесь <strong>/path/to/image.iso</strong> - файл образа на диске.</p>
@@ -394,17 +394,17 @@ export QT_SCALE_FACTOR=2
 <span id="index-35"></span><span id="id19"></span><h2>Как смонтировать посекторный образ диска целиком?<a class="headerlink" href="#dd-fullraw" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Смонтировать образ диска целиком напрямую не получится, поэтому сначала придётся определить смещения разделов относительно его начала.</p>
 <p>Запустим утилиту <strong>fdisk</strong> и попытаемся найти внутри образа разделы:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo fdisk -l /path/to/image.raw
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fdisk -l /path/to/image.raw
 </pre></div>
 </div>
 <p>Из вывода нам необходимо узнать значение <strong>Sector size</strong>, а также <strong>Start</strong> всех необходимых разделов.</p>
 <p>Вычислим смещение относительно начала образа для каждого раздела по формуле <strong>Start * Sector size</strong>. К примеру если у первого Start равно 2048, а Sector size диска 512, то получим 2048 * 512 == 1048576.</p>
 <p>Произведём монтирование раздела по смещению 1048576:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mount -o ro,loop,offset<span class="o">=</span><span class="m">1048576</span> /path/to/image.raw /mnt/dd-image
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mount -o ro,loop,offset=1048576 /path/to/image.raw /mnt/dd-image
 </pre></div>
 </div>
 <p>Повторим операции для всех остальных разделов, обнаруженных внутри образа. По окончании работы выполним размонтирование:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo umount /mnt/dd-image
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /mnt/dd-image
 </pre></div>
 </div>
 <p>Здесь <strong>/path/to/image.iso</strong> - файл образа на диске.</p>
@@ -412,40 +412,40 @@ export QT_SCALE_FACTOR=2
 <div class="section" id="set-timezone">
 <span id="index-36"></span><span id="id20"></span><h2>Как изменить часовой пояс?<a class="headerlink" href="#set-timezone" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Изменить часовой пояс можно посредством утилиты <strong>timedatectl</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo timedatectl set-timezone Europe/Moscow
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo timedatectl set-timezone Europe/Moscow
 </pre></div>
 </div>
 </div>
 <div class="section" id="set-keyboard-gui">
 <span id="index-37"></span><span id="id21"></span><h2>Как изменить список доступных раскладок клавиатуры и настроить их переключение в графическом режиме?<a class="headerlink" href="#set-keyboard-gui" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Настройка переключения по <strong>Alt + Shift</strong>, раскладки EN и RU:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo localectl set-x11-keymap us,ru pc105 <span class="s2">&quot;&quot;</span> grp:alt_shift_toggle
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo localectl set-x11-keymap us,ru pc105 &quot;&quot; grp:alt_shift_toggle
 </pre></div>
 </div>
 <p>Настройка переключения по <strong>Ctrl + Shift</strong>, раскладки EN и RU:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo localectl set-x11-keymap us,ru pc105 <span class="s2">&quot;&quot;</span> grp:ctrl_shift_toggle
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo localectl set-x11-keymap us,ru pc105 &quot;&quot; grp:ctrl_shift_toggle
 </pre></div>
 </div>
 </div>
 <div class="section" id="set-keyboard-console">
 <span id="index-38"></span><span id="id22"></span><h2>Как изменить список доступных раскладок клавиатуры и настроить их переключение в текстовом режиме?<a class="headerlink" href="#set-keyboard-console" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установка русской раскладки и режимов переключения по умолчанию (<strong>Alt + Shift</strong>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo localectl set-keymap ru
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo localectl set-keymap ru
 </pre></div>
 </div>
 <p>Установка русской раскладки и режима переключения <strong>Alt + Shift</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo localectl set-keymap ruwin_alt_sh-UTF-8
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo localectl set-keymap ruwin_alt_sh-UTF-8
 </pre></div>
 </div>
 <p>Установка русской раскладки и режима переключения <strong>Ctrl + Shift</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo localectl set-keymap ruwin_ct_sh-UTF-8
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo localectl set-keymap ruwin_ct_sh-UTF-8
 </pre></div>
 </div>
 </div>
 <div class="section" id="gtk-kde">
 <span id="gtk-plasma-style"></span><span id="index-39"></span><h2>Можно ли заставить GTK приложения выглядеть нативно в KDE?<a class="headerlink" href="#gtk-kde" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет с темой Breeze для GTK2 и GTK3:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install breeze-gtk
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install breeze-gtk
 </pre></div>
 </div>
 <p>Зайдём в <strong>Параметры системы</strong> - <strong>Внешний вид</strong> - <strong>Оформление приложений</strong> - <strong>Стиль программ GNOME (GTK+)</strong>.</p>
@@ -481,40 +481,40 @@ export QT_SCALE_FACTOR=2
 <p>Если в ОС Microsoft Windows тип файлов определяется исключительно по их расширению, то в GNU/Linux для этого используется <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_MIME-%D1%82%D0%B8%D0%BF%D0%BE%D0%B2">mime-типы</a>.</p>
 <p>В системе ведётся база соответствия mime-типов установленным приложениям, соответствующая <a class="reference external" href="https://specifications.freedesktop.org/mime-apps-spec/mime-apps-spec-latest.html">стандарту XDG Free Desktop</a>.</p>
 <p>Для получения mime-типа конкретного файла можно использовать утилиту <strong>file</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>file foo-bar.txt
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>file foo-bar.txt
 </pre></div>
 </div>
 <p>Для открытия файла в ассоциированном с его mime-типом приложении применяется утилита <strong>xdg-open</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xdg-open foo-bar.txt
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>xdg-open foo-bar.txt
 </pre></div>
 </div>
 </div>
 <div class="section" id="system-locale">
 <span id="index-43"></span><span id="id26"></span><h2>Как изменить язык (локализацию) системы?<a class="headerlink" href="#system-locale" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Получим список доступных локалей:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>localectl list-locales
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>localectl list-locales
 </pre></div>
 </div>
 <p>Установим английскую локаль для системы:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo localectl <span class="nv">LANG</span><span class="o">=</span>en_US.utf8
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo localectl LANG=en_US.utf8
 </pre></div>
 </div>
 <p>Установим русскую локаль для системы:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo localectl <span class="nv">LANG</span><span class="o">=</span>ru_RU.utf8
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo localectl LANG=ru_RU.utf8
 </pre></div>
 </div>
 </div>
 <div class="section" id="application-locale">
 <span id="index-44"></span><span id="id27"></span><h2>Как запустить приложение с другой локалью?<a class="headerlink" href="#application-locale" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для запуска приложения с другой локалью необходимо передать ему новое значение в <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменной окружения</span></a> <strong>LANG</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">LANG</span><span class="o">=</span>en_US.utf8 foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>LANG=en_US.utf8 foo-bar
 </pre></div>
 </div>
 </div>
 <div class="section" id="application-timezone">
 <span id="index-45"></span><span id="id28"></span><h2>Как запустить приложение с другим часовым поясом?<a class="headerlink" href="#application-timezone" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для запуска приложения с другим часовым поясом необходимо передать ему новое значение в <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменной окружения</span></a> <strong>TZ</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">TZ</span><span class="o">=</span>CET foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>TZ=CET foo-bar
 </pre></div>
 </div>
 <p>Здесь вместо <strong>CET</strong> следует указать название часового пояса.</p>
@@ -522,25 +522,25 @@ export QT_SCALE_FACTOR=2
 <div class="section" id="x11-wayland">
 <span id="session-type"></span><span id="index-46"></span><h2>Как определить какой тип сессии используется: X11 или Wayland?<a class="headerlink" href="#x11-wayland" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для определения типа текущей сессии, необходимо получить значение глобальной <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменной окружения</span></a> <strong>XDG_SESSION_TYPE</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="nv">$XDG_SESSION_TYPE</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>echo $XDG_SESSION_TYPE
 </pre></div>
 </div>
 </div>
 <div class="section" id="neofetch">
 <span id="index-47"></span><span id="id29"></span><h2>Как вывести в консоль краткую информацию об установленной системе?<a class="headerlink" href="#neofetch" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим neofetch:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install neofetch
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install neofetch
 </pre></div>
 </div>
 <p>Запустим и выведем информацию о системе в консоль:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>neofetch
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>neofetch
 </pre></div>
 </div>
 </div>
 <div class="section" id="kde-icons-refresh">
 <span id="index-48"></span><span id="id30"></span><h2>Как обновить кэш значков приложений в главном меню KDE Plasma 5?<a class="headerlink" href="#kde-icons-refresh" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Обычно кэш обновляется автоматически при любых изменениях файлов внутри каталогов <code class="docutils literal notranslate"><span class="pre">/usr/share/applications</span></code> (глобально), а также <code class="docutils literal notranslate"><span class="pre">~/.local/share/applications</span></code> (пользователь), однако если по какой-то причине этого не произошло, выполним обновление кэшей вручную:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kbuildsycoca5 --noincremental
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kbuildsycoca5 --noincremental
 </pre></div>
 </div>
 </div>

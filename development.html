@@ -58,25 +58,25 @@
 <div class="section" id="fedpkg-rebuild">
 <span id="index-4"></span><span id="id3"></span><h2>Хочу внести свои правки в пакет и пересобрать его для личных нужд. Как проще это сделать?<a class="headerlink" href="#fedpkg-rebuild" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим утилиты fedpkg и mock:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install fedpkg mock
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install fedpkg mock
 </pre></div>
 </div>
 <p>Скачаем исходники необходимого пакета <strong>foo-bar</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fedpkg clone -a foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg clone -a foo-bar
 </pre></div>
 </div>
 <p>Перейдём в каталог с загруженными исходниками и переключимся на ветку для конкретной версии Fedora (если нужна версия из Rawhide - следует использовать <strong>master</strong>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
 fedpkg switch-branch f29
 </pre></div>
 </div>
 <p>Внесём свои правки, сделаем коммит в репозиторий:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add -A
-git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add -A
+git commit -m &quot;Description of our changes.&quot;
 </pre></div>
 </div>
 <p>Запустим автоматическую <a class="reference internal" href="#build-package"><span class="std std-ref">сборку в mock</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fedpkg mockbuild
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg mockbuild
 </pre></div>
 </div>
 </div>
@@ -84,11 +84,11 @@ git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
 <span id="git-tarball"></span><span id="index-5"></span><h2>Как создать tarball с исходниками из Git репозитория?<a class="headerlink" href="#tarball-git" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если проект по какой-либо причине не поставляет готовые тарболы и отсутствует возможность их скачать напрямую с хостинга VCS, можно создать их из Git.</p>
 <p>Клонируем репозиторий источника:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://example.org/foo-bar.git
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git clone https://example.org/foo-bar.git
 </pre></div>
 </div>
 <p>Создадим архив с исходниками:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git archive --format<span class="o">=</span>tar --prefix<span class="o">=</span>foo-bar-1.0.0/ HEAD <span class="p">|</span> gzip &gt; ~/rpmbuild/SOURCES/foo-bar-1.0.0.tar.gz
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git archive --format=tar --prefix=foo-bar-1.0.0/ HEAD | gzip &gt; ~/rpmbuild/SOURCES/foo-bar-1.0.0.tar.gz
 </pre></div>
 </div>
 <p>Здесь <strong>HEAD</strong> - указатель на актуальный коммит (вместо этого можно использовать SHA1 хеш любого коммита, а также имя тега или ветки), <strong>foo-bar</strong> - название проекта, а <strong>1.0.0</strong> - его версия.</p>
@@ -96,11 +96,11 @@ git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
 <div class="section" id="koji-rpm-fusion">
 <span id="rpmfusion-override"></span><span id="index-6"></span><h2>Как переопределить пакет в Koji репозитория RPM Fusion?<a class="headerlink" href="#koji-rpm-fusion" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Создание build override для репозитория f29-free:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion tag f29-free-override foo-bar-1.0-1.fc29
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion tag f29-free-override foo-bar-1.0-1.fc29
 </pre></div>
 </div>
 <p>Удаление build override для репозитория f29-free:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion untag f29-free-override foo-bar-1.0-1.fc29
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion untag f29-free-override foo-bar-1.0-1.fc29
 </pre></div>
 </div>
 </div>
@@ -143,14 +143,14 @@ git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
 <div class="section" id="env-get-term">
 <span id="index-9"></span><span id="id5"></span><h2>Как получить полный список установленных переменных окружения в текущем терминале?<a class="headerlink" href="#env-get-term" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Получить список установленных <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> можно посредством выполнения утилиты <strong>env</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>env
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>env
 </pre></div>
 </div>
 </div>
 <div class="section" id="env-get-app">
 <span id="index-10"></span><span id="id6"></span><h2>Как получить полный список установленных переменных для запущенного процесса?<a class="headerlink" href="#env-get-app" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Получение списка установленных <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> для запущенных процессов:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat /proc/<span class="nv">$PID</span>/environ
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/$PID/environ
 </pre></div>
 </div>
 <p>Здесь <strong>$PID</strong> - <a class="reference internal" href="administration.html#get-pid"><span class="std std-ref">PID</span></a> процесса, информацию о котором необходимо получить.</p>
@@ -158,28 +158,28 @@ git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
 <div class="section" id="env-set">
 <span id="index-11"></span><span id="id7"></span><h2>Как задать переменную окружения?<a class="headerlink" href="#env-set" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Вариант 1. Запуск процесса с заданной переменной окружения:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">FOO</span><span class="o">=</span>BAR /usr/bin/foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FOO=BAR /usr/bin/foo-bar
 </pre></div>
 </div>
 <p>Вариант 2. Экспорт переменной окружения в запущенном терминале и дальнейший запуск приложения:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">FOO</span><span class="o">=</span>BAR
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export FOO=BAR
 /usr/bin/foo-bar
 </pre></div>
 </div>
 <p>Вариант 3. Модификация директивы <strong>Exec=</strong> в ярлыке запуска приложения:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>env <span class="nv">FOO</span><span class="o">=</span>BAR /usr/bin/foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>env FOO=BAR /usr/bin/foo-bar
 </pre></div>
 </div>
 </div>
 <div class="section" id="git">
 <span id="git-configuration"></span><span id="index-12"></span><h2>Как правильно настроить Git для работы?<a class="headerlink" href="#git" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сначала укажем своё имя и адрес электронной почты:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git config --global user.name &quot;Your Name&quot;
 git config --global user.email email@example.org
 </pre></div>
 </div>
 <p>Установим <a class="reference internal" href="using-system.html#editor-git"><span class="std std-ref">предпочитаемый текстовый редактор</span></a> для работы с коммитами:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global core.editor vim
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git config --global core.editor vim
 </pre></div>
 </div>
 </div>
@@ -188,15 +188,15 @@ git config --global user.email email@example.org
 <p>Если проект хостится на одном из популярных сервисов (GitHub, BitBucket или GitLab), сначала войдём в свой аккаунт (при осутствии создадим) и сделаем форк репозитория.</p>
 <p>Осуществим <a class="reference internal" href="#git-configuration"><span class="std std-ref">базовую настройку Git</span></a> клиента если это ещё не было сделано ранее.</p>
 <p>Клонируем наш форк:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:YOURNAME/foo-bar.git
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:YOURNAME/foo-bar.git
 </pre></div>
 </div>
 <p>Создадим ветку <strong>new_feature</strong> для наших изменений (для каждого крупного изменения следует создавать отдельную ветку и <em>ни в коем случае не коммитить в master</em>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout -b new_feature
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout -b new_feature
 </pre></div>
 </div>
 <p>Внесём свои правки в проект, затем осуществим их фиксацию:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add -A
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add -A
 git commit -s
 </pre></div>
 </div>
@@ -205,22 +205,22 @@ git commit -s
 </pre></div>
 </div>
 <p>Многие проекты обновляются слишком быстро, поэтому потребуется осуществить синхронизацию наших изменений с актуальной веткой апстрима. Для этого подключим к нашем форку оригинальный репозиторий:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git remote add upstream https://github.com/foo/foo-bar.git
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git remote add upstream https://github.com/foo/foo-bar.git
 </pre></div>
 </div>
 <p>Скачаем актуальные изменения и выполним rebase основной ветки нашего форка с апстримом:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git fetch upstream
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git fetch upstream
 git checkout master
 git merge upstream/master
 </pre></div>
 </div>
 <p>Осуществим rebase ветки с нашими изменениями с основной:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout new_feature
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout new_feature
 git rebase master
 </pre></div>
 </div>
 <p>Отправим наши изменения на сервер:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git push -u origin new_feature
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git push -u origin new_feature
 </pre></div>
 </div>
 <p>Создадим новый Pull Request.</p>
@@ -228,7 +228,7 @@ git rebase master
 <div class="section" id="c">
 <span id="cxx-console"></span><span id="index-14"></span><h2>Как скомпилировать простую программу на языке C++ из консоли?<a class="headerlink" href="#c" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим компилятор GCC-C++ (G++) и ряд вспомогательных компонентов:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc-c++ rpm-build
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc-c++ rpm-build
 </pre></div>
 </div>
 <p>Создадим простейший пример <code class="docutils literal notranslate"><span class="pre">helloworld.cpp</span></code>:</p>
@@ -242,13 +242,13 @@ git rebase master
 </pre></div>
 </div>
 <p>Скомпилируем и слинкуем его:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++ <span class="k">$(</span>rpm -E %<span class="o">{</span>optflags<span class="o">}</span><span class="k">)</span> -fPIC helloworld.cpp -o helloworld <span class="k">$(</span>rpm -E %<span class="o">{</span>build_ldflags<span class="o">}</span><span class="k">)</span> -lstdc++
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>g++ $(rpm -E %{optflags}) -fPIC helloworld.cpp -o helloworld $(rpm -E %{build_ldflags}) -lstdc++
 </pre></div>
 </div>
 <p>Здесь <strong>g++</strong> - запускающий файл файл компилятора, <strong>helloworld.cpp</strong> - файл с исходным кодом (если их несколько, то разделяются пробелом), <strong>helloworld</strong> - имя результирующего бинарника, <strong>-lstdc++</strong> - указание компоновщику на необходимость линковки со стандартной библиотекой C++.</p>
 <p>Корректные флаги компиляции и компоновки вставляются автоматически из соответствующих макросов RPM.</p>
 <p>Запустим результат сборки:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./helloworld
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>./helloworld
 </pre></div>
 </div>
 <p>Если всё сделано верно, то увидим сообщение <em>Hello, World!</em> в консоли.</p>
@@ -256,18 +256,18 @@ git rebase master
 <div class="section" id="debug-application">
 <span id="index-15"></span><span id="id9"></span><h2>Приложение падает. Как мне его отладить?<a class="headerlink" href="#debug-application" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для начала рекомендуется (хотя и не обязательно) установить отладочную информацию для данного пакета:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf debuginfo-install foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf debuginfo-install foo-bar
 </pre></div>
 </div>
 <p>После завершения процесса отладки символы можно снова удалить.</p>
 <p>Чтобы получить бэктрейс падения, нужно выполнить в терминале:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gdb /usr/bin/foo-bar <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">|</span> tee ~/backtrace.log
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gdb /usr/bin/foo-bar 2&gt;&amp;1 | tee ~/backtrace.log
 </pre></div>
 </div>
 <p>Далее в интерактивной консоли отладчика ввести: <code class="docutils literal notranslate"><span class="pre">handle</span> <span class="pre">SIGPIPE</span> <span class="pre">nostop</span> <span class="pre">noprint</span></code> и затем <code class="docutils literal notranslate"><span class="pre">run</span></code>, дождаться сегфолта и выполнить <code class="docutils literal notranslate"><span class="pre">bt</span> <span class="pre">full</span></code> для получения бэктрейса. Теперь можно прописать <code class="docutils literal notranslate"><span class="pre">quit</span></code> для выхода из режима отладки.</p>
 <p>Далее получившийся файл <code class="docutils literal notranslate"><span class="pre">~/backtrace.log</span></code> следует загрузить на любой сервис размещения текстовых файлов.</p>
 <p>Также рекомендуется ещё сделать трассировку приложения до момента падения:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>strace -o ~/trace.log /usr/bin/foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>strace -o ~/trace.log /usr/bin/foo-bar
 </pre></div>
 </div>
 <p>Полученный файл <code class="docutils literal notranslate"><span class="pre">~/trace.log</span></code> также следует загрузить на сервис.</p>
@@ -291,11 +291,11 @@ git rebase master
 </div>
 <p>Данный метод содержит сразу два суперглобальных конструктора с указанием приоритетов. Чем ниже приоритет, тем скорее данный метод будет исполнен.</p>
 <p>Скомпилируем и слинкуем наш пример:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc -shared <span class="k">$(</span>rpm -E %<span class="o">{</span>optflags<span class="o">}</span><span class="k">)</span> -fPIC example.c -o example.so <span class="k">$(</span>rpm -E %<span class="o">{</span>build_ldflags<span class="o">}</span><span class="k">)</span> -lc
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gcc -shared $(rpm -E %{optflags}) -fPIC example.c -o example.so $(rpm -E %{build_ldflags}) -lc
 </pre></div>
 </div>
 <p>Внедрим нашу библиотеку в известный доверенный процесс, например <strong>whoami</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">LD_PRELOAD</span><span class="o">=</span>./example.so whoami
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>LD_PRELOAD=./example.so whoami
 </pre></div>
 </div>
 <p>Оба суперглобальных метода будут немедленно исполнены <em>с правами запускаемого приложения</em> и изменят его вывод:</p>
@@ -315,15 +315,15 @@ user1
 </pre></div>
 </div>
 <p>Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то также необходимо переопределить ряд <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> внутри секции <code class="docutils literal notranslate"><span class="pre">%build</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">AR</span><span class="o">=</span>%<span class="o">{</span>_bindir<span class="o">}</span>/gcc-ar
-<span class="nb">export</span> <span class="nv">RANLIB</span><span class="o">=</span>%<span class="o">{</span>_bindir<span class="o">}</span>/gcc-ranlib
-<span class="nb">export</span> <span class="nv">NM</span><span class="o">=</span>%<span class="o">{</span>_bindir<span class="o">}</span>/gcc-nm
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export AR=%{_bindir}/gcc-ar
+export RANLIB=%{_bindir}/gcc-ranlib
+export NM=%{_bindir}/gcc-nm
 </pre></div>
 </div>
 <p>Если используется система сборки cmake, то помимо этого придётся патчить манифест <strong>CMakeLists.txt</strong>, т.к. он в настоящее время не поддерживает загрузку переопределённых значений:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>set<span class="o">(</span>CMAKE_AR <span class="s2">&quot;/usr/bin/gcc-ar&quot;</span><span class="o">)</span>
-set<span class="o">(</span>CMAKE_RANLIB <span class="s2">&quot;/usr/bin/gcc-ranlib&quot;</span><span class="o">)</span>
-set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;</span><span class="o">)</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>set(CMAKE_AR &quot;/usr/bin/gcc-ar&quot;)
+set(CMAKE_RANLIB &quot;/usr/bin/gcc-ranlib&quot;)
+set(CMAKE_NM &quot;/usr/bin/gcc-nm&quot;)
 </pre></div>
 </div>
 <p>В противном случае появится ошибка <em>plugin needed to handle lto object</em>.</p>
@@ -332,7 +332,7 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <span id="index-18"></span><span id="id10"></span><h2>Как вывести список установленных пакетов, от которых никто не зависит?<a class="headerlink" href="#rpm-unneeded" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В настоящее время данная функциональность отсутствует в dnf «из коробки», поэтому напишем и скомпилируем небольшую программу на языке C, реализующую это средствами библиотеки <strong>libsolv</strong>.</p>
 <p>Установим компилятор и необходимые для сборки библиотеки:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc libsolv-devel
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc libsolv-devel
 </pre></div>
 </div>
 <p>Создадим файл <code class="docutils literal notranslate"><span class="pre">rpm-unneeded.c</span></code> с исходным текстом программы:</p>
@@ -378,7 +378,7 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 </pre></div>
 </div>
 <p>Скомпилируем и слинкуем приложение:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc <span class="k">$(</span>rpm -E %<span class="o">{</span>optflags<span class="o">}</span><span class="k">)</span> -fPIC rpm-unneeded.c -o rpm-unneeded <span class="k">$(</span>rpm -E %<span class="o">{</span>build_ldflags<span class="o">}</span><span class="k">)</span> -lsolv -lsolvext
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gcc $(rpm -E %{optflags}) -fPIC rpm-unneeded.c -o rpm-unneeded $(rpm -E %{build_ldflags}) -lsolv -lsolvext
 </pre></div>
 </div>
 <p>Запустим приложение <code class="docutils literal notranslate"><span class="pre">./rpm-unneeded</span></code> и получим список установленных пакетов, от которых никто не зависит.</p>
@@ -411,14 +411,14 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <p>Рассмотрим второй способ с переопределением <a class="reference internal" href="#env-set"><span class="std std-ref">переменной окружения</span></a> <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code>.</p>
 <p>Скачаем RPM пакет <strong>foo-bar</strong> необходимой версии из любого источника (лучшим вариантом будет конечно же репозитории старых версий Fedora), распакуем его например в <code class="docutils literal notranslate"><span class="pre">~/lib/foo-bar</span></code> и извлечём необходимые динамические библиотеки (.so файлы).</p>
 <p>Создадим shell-скрипт <code class="docutils literal notranslate"><span class="pre">run-foo.sh</span></code> для запуска бинарника:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/sh</span>
-<span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span>:~/lib/foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/sh
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 /path/to/binary/foo
 </pre></div>
 </div>
 <p>Здесь <strong>foo</strong> - имя бинарника, который требуется запустить, а <strong>/path/to/binary</strong> - каталог, в котором он находится. В качестве разделителя путей <strong>LD_LIBRARY_PATH</strong> применяется двоеточие. Закрывающий слэш не ставится.</p>
 <p>Установим скрипту разрешение не запуск и запустим его:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod +x run-foo.sh
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>chmod +x run-foo.sh
 ./run-foo.sh
 </pre></div>
 </div>
@@ -440,7 +440,7 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <span id="index-24"></span><span id="ide-c-fedora"></span><h2>Какую IDE использовать для разработки на C++ в Fedora?<a class="headerlink" href="#cxx-ide" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы рекомендуем Qt Creator, которая одинаково хорошо подходит как для разработки на C++ (с Qt и без него), так и чистого C.</p>
 <p>Установим данную IDE, а также компилятор C++ и ряд необходимых библиотек и средств для сборки проектов:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc gcc-c++ qt-creator qt5-qtbase-devel cmake
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc gcc-c++ qt-creator qt5-qtbase-devel cmake
 </pre></div>
 </div>
 </div>
@@ -448,26 +448,26 @@ set<span class="o">(</span>CMAKE_NM <span class="s2">&quot;/usr/bin/gcc-nm&quot;
 <span id="index-25"></span><span id="ide-python-fedora"></span><h2>Какую IDE использовать для разработки на Python в Fedora?<a class="headerlink" href="#python-ide" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы рекомендуем PyCharm Community Edition.</p>
 <p>Подключим COPR репозиторий:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf copr <span class="nb">enable</span> phracek/PyCharm
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf copr enable phracek/PyCharm
 </pre></div>
 </div>
 <p>Установим IDE:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install pycharm-community pycharm-community-jre
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install pycharm-community pycharm-community-jre
 </pre></div>
 </div>
 <p>При необходимости установим также набор популярных плагинов:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install pycharm-community-plugins
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install pycharm-community-plugins
 </pre></div>
 </div>
 </div>
 <div class="section" id="fw-image">
 <span id="index-26"></span><span id="id15"></span><h2>Как получить информацию о содержимом образа бинарной прошивки?<a class="headerlink" href="#fw-image" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для работы с образами прошивок можно использовать утилиту <strong>binwalk</strong>. Установим её:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install binwalk
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install binwalk
 </pre></div>
 </div>
 <p>Произведём анализ файла и получим результат:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>binwalk foo-bar.bin
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>binwalk foo-bar.bin
 </pre></div>
 </div>
 </div>

@@ -42,50 +42,50 @@
 <div class="section" id="gnome-3">
 <span id="gnome-reduce-ram-usage"></span><span id="index-0"></span><h2>Как уменьшить потребление оперативной памяти средой рабочего стола GNOME 3?<a class="headerlink" href="#gnome-3" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Отключим службу автоматической регистрации ошибок и удалим GUI апплет, уведомляющий об их возникновении:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove abrt
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove abrt
 </pre></div>
 </div>
 <p>Удалим Магазин приложений (графический менеджер пакетов):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove PackageKit gnome-software
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove PackageKit gnome-software
 </pre></div>
 </div>
 <p>Отключим службу управления виртуализацией (если на установленной системе не предполагается использовать виртуальные машины):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable libvirtd
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable libvirtd
 </pre></div>
 </div>
 <p>Отключим службы Evolution, необходимые для синхронизации онлайн аккаунтов:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl --user mask evolution-addressbook-factory evolution-calendar-factory evolution-source-registry
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl --user mask evolution-addressbook-factory evolution-calendar-factory evolution-source-registry
 </pre></div>
 </div>
 <p>Отключим службы, необходимые для создания индекса файловой системы, необходимого для быстрого поиска (если не предполагается использовать поиск в главном меню):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl --user mask tracker-miner-apps tracker-miner-fs tracker-store
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl --user mask tracker-miner-apps tracker-miner-fs tracker-store
 </pre></div>
 </div>
 </div>
 <div class="section" id="kde">
 <span id="kde-reduce-ram-usage"></span><span id="index-1"></span><h2>Как уменьшить потребление оперативной памяти средой рабочего стола KDE?<a class="headerlink" href="#kde" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Отключим службу индексации файлов. Для этого зайдём в <strong>Параметры системы</strong> - <strong>Поиск</strong>, снимем флажок из чекбокса <strong>Включить службы поиска файлов</strong> и нажмём <strong>Применить</strong>. Теперь удалим Akonadi:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove akonadi
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove akonadi
 </pre></div>
 </div>
 <p>Удалим устаревшие библиотеки Qt4 и службу автоматической регистрации ошибок ABRT:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove qt abrt
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove qt abrt
 </pre></div>
 </div>
 <p>Удалим Магазин приложений (графический менеджер пакетов):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove PackageKit
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove PackageKit
 </pre></div>
 </div>
 <p>Удалим runtime библиотеки для экономии ОЗУ (при этом по зависимостям будут удалены некоторые приложения, например KMail и KOrganizer):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove kdepim-runtime-libs
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove kdepim-runtime-libs
 </pre></div>
 </div>
 <p>Удалим <a class="reference internal" href="using-applications.html#kde-connect"><span class="std std-ref">KDE Connect</span></a> (если не планируется управлять смартфоном с компьютера и наоборот):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove kde-connect kdeconnectd
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove kde-connect kdeconnectd
 </pre></div>
 </div>
 <p>Опционально удалим библиотеки GTK2 (в то же время от них до сих пор зависят многие популярные приложения, например Firefox, Gimp, GParted):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove gtk2
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove gtk2
 </pre></div>
 </div>
 </div>
@@ -97,20 +97,20 @@
 <span id="bfq-scheduler"></span><span id="index-3"></span><h2>Как задействовать планировщик ввода/вывода BFQ для HDD?<a class="headerlink" href="#bfq-hdd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>BFQ - это планировщик ввода-вывода (I/O), предназначенный для повышения отзывчивости пользовательского окружения при значительных нагрузках на дисковую подсистему.</p>
 <p>Для его активации произведём редактирование файла шаблонов GRUB:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/default/grub
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/default/grub
 </pre></div>
 </div>
 <p>В конец строки <code class="docutils literal notranslate"><span class="pre">GRUB_CMDLINE_LINUX=</span></code> добавим <code class="docutils literal notranslate"><span class="pre">scsi_mod.use_blk_mq=1</span></code>, после чего <a class="reference internal" href="using-system.html#grub-rebuild"><span class="std std-ref">сгенерируем новую конфигурацию GRUB</span></a>.</p>
 <p>Создадим новое правило udev для принудительной активации BFQ для любых жёстких дисков:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo bash -c <span class="s2">&quot;echo &#39;ACTION==\&quot;add|change\&quot;, KERNEL==\&quot;sd[a-z]\&quot;, ATTR{queue/rotational}==\&quot;1\&quot;, ATTR{queue/scheduler}=\&quot;bfq\&quot;&#39; &gt;&gt; /etc/udev/rules.d/60-ioschedulers.rules&quot;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo bash -c &quot;echo &#39;ACTION==\&quot;add|change\&quot;, KERNEL==\&quot;sd[a-z]\&quot;, ATTR{queue/rotational}==\&quot;1\&quot;, ATTR{queue/scheduler}=\&quot;bfq\&quot;&#39; &gt;&gt; /etc/udev/rules.d/60-ioschedulers.rules&quot;
 </pre></div>
 </div>
 <p>Применим изменения в политиках udev:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo udevadm control --reload
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo udevadm control --reload
 </pre></div>
 </div>
 <p>Выполним перезагрузку системы:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
 </pre></div>
 </div>
 </div>
@@ -118,21 +118,21 @@
 <span id="swf-player"></span><span id="index-4"></span><h2>Чем можно запустить SWF файл без установки Flash плагина в браузер?<a class="headerlink" href="#swf-flash" title="Ссылка на этот заголовок">¶</a></h2>
 <p>SWF файл - это исполняемый файл формата Adobe Flash. Для того, чтобы проиграть его без установки соответствующего плагина в браузер, можно загрузить специальную версию Flash Projector (ранее назывался Standalone).</p>
 <p>Скачаем Projector:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget https://fpdownload.macromedia.com/pub/flashplayer/updaters/32/flash_player_sa_linux.x86_64.tar.gz -O fpsa.tar.gz
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>wget https://fpdownload.macromedia.com/pub/flashplayer/updaters/32/flash_player_sa_linux.x86_64.tar.gz -O fpsa.tar.gz
 </pre></div>
 </div>
 <p>Создадим новый каталог и распакуем архив в него:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/foo-bar
 tar -xzf fpsa.tar.gz -C ~/foo-bar
 </pre></div>
 </div>
 <p>Запустим проигрыватель:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/foo-bar/flashplayer
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>~/foo-bar/flashplayer
 </pre></div>
 </div>
 <p>В открывшемся окне нажмём <strong>Файл</strong> - <strong>Открыть</strong> (или комбинацию <strong>Ctrl + O</strong>) и найдём SWF файл на диске.</p>
 <p>По окончании использования удалим каталог с программой:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -rf ~/foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rm -rf ~/foo-bar
 </pre></div>
 </div>
 <p>Внимание! Запускать SWF файлы следует с особой осторожностью, т.к. плеер выполняется без какой-либо изоляции и имеет полный доступ к домашнему каталогу пользователя.</p>
@@ -141,7 +141,7 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <span id="python2-remove"></span><span id="index-5"></span><h2>Можно ли удалить Python 2 из системы?<a class="headerlink" href="#python-2" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Поскольку поддержка Python версии 2 прекратится 01.01.2020, его уже не рекомендуется использовать. Вместо него следует применять Python 3. Большая часть активных проектов и библиотек уже давно была портирована на эту версию.</p>
 <p>Возможность полностью избавиться от Python 2 появилась у пользователей Fedora 30 и выше. От данной версии интерпретатора более не зависят важные компоненты и его можно смело удалить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove python2
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove python2
 </pre></div>
 </div>
 <p>Это действие автоматически удалит и все его зависимости.</p>
@@ -150,7 +150,7 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <span id="index-6"></span><span id="id2"></span><h2>Как запретить возможность исполнения любых файлов из домашнего каталога?<a class="headerlink" href="#fs-noexec" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для максимальной безопасности можно запретить запуск любых исполняемых файлов, а также загрузку динамических библиотек из домашнего каталога.</p>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> в <a class="reference internal" href="using-system.html#editor-selection"><span class="std std-ref">текстовом редакторе</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
 </pre></div>
 </div>
 <p>Добавим в опции монтирования домашнего каталога флаги <code class="docutils literal notranslate"><span class="pre">noexec,nodev,nosuid</span></code> после <code class="docutils literal notranslate"><span class="pre">defaults</span></code>.</p>

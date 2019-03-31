@@ -50,21 +50,21 @@
 <div class="section" id="kernelpm-list">
 <span id="index-2"></span><span id="id4"></span><h2>Как определить какие параметры ядра заданы в настоящее время?<a class="headerlink" href="#kernelpm-list" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для получения информации о текущих параметрах ядра достаточно выполнить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat /proc/cmdline
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/cmdline
 </pre></div>
 </div>
 </div>
 <div class="section" id="kernel-modules-list">
 <span id="index-3"></span><span id="id5"></span><h2>Как определить какие модули ядра в настоящее время загружены?<a class="headerlink" href="#kernel-modules-list" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для получения информации о загруженных модулях ядра следует применять <strong>lsmod</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lsmod
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>lsmod
 </pre></div>
 </div>
 </div>
 <div class="section" id="kernel-modules-help">
 <span id="index-4"></span><span id="id6"></span><h2>Как узнать какие опциональные параметры поддерживает конкретный модуль ядра?<a class="headerlink" href="#kernel-modules-help" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для получения краткой справочной информации о поддерживаемых параметрах конкретного модуля ядра необходимо использовать <strong>modinfo</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>modinfo foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>modinfo foo-bar
 </pre></div>
 </div>
 <p>Здесь <strong>foo-bar</strong> - имя модуля, информацию о котором требуется вывести.</p>
@@ -72,33 +72,33 @@
 <div class="section" id="journal-current">
 <span id="index-5"></span><span id="id7"></span><h2>Как мне посмотреть текущий журнал работы системы?<a class="headerlink" href="#journal-current" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы посмотреть журнал работы системы с момента загрузки, нужно выполнить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>journalctl -b
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>journalctl -b
 </pre></div>
 </div>
 <p>Чтобы посмотреть только журнал работы ядра (аналог dmesg):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>journalctl -k
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>journalctl -k
 </pre></div>
 </div>
 </div>
 <div class="section" id="journal-history">
 <span id="index-6"></span><span id="id8"></span><h2>Как мне посмотреть журналы с прошлых загрузок?<a class="headerlink" href="#journal-history" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Вывести список всех загрузок:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>journalctl --list-boots
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>journalctl --list-boots
 </pre></div>
 </div>
 <p>Вывести содержимое журнала загрузки с идентификатором <strong>X</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>journalctl -b -X
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>journalctl -b -X
 </pre></div>
 </div>
 </div>
 <div class="section" id="journal-tofile">
 <span id="index-7"></span><span id="id9"></span><h2>Как мне выгрузить журнал в файл?<a class="headerlink" href="#journal-tofile" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Необходимо перенаправить поток стандартного вывода в файл:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>journalctl -b &gt; ~/abc.txt
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>journalctl -b &gt; ~/abc.txt
 </pre></div>
 </div>
 <p>Также можно воспользоваться утилитой fpaste для автоматической загрузки файла на сервис <a class="reference external" href="https://paste.fedoraproject.org/">fpaste.org</a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>journalctl -b <span class="p">|</span> fpaste
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>journalctl -b | fpaste
 </pre></div>
 </div>
 <p>При успешном выполнении будет создана ссылка для быстрого доступа.</p>
@@ -107,16 +107,16 @@
 <span id="chroot"></span><span id="index-8"></span><h2>Как сделать chroot в установленную систему с LiveUSB?<a class="headerlink" href="#chroot-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Загружаемся с LiveCD/USB и запускаем эмулятор терминала или переходим в виртуальную консоль (особой разницы не имеет).</p>
 <p>Для начала создадим каталог для точки монтирования:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/fedora
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/fedora
 </pre></div>
 </div>
 <p>Смонтируем корневой раздел установленной ОС:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mount -t ext4 /dev/sda1 /media/fedora
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mount -t ext4 /dev/sda1 /media/fedora
 </pre></div>
 </div>
 <p>Здесь <strong>/dev/sda1</strong> - раздел, на котором установлена ОС, а <strong>ext4</strong> - его файловая система. Внесём соответствующие правки если это не так.</p>
 <p>Переходим в каталог с корневой ФС и монтируем ряд необходимых для работы окружения виртуальных ФС:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /media/fedora
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd /media/fedora
 sudo mount -t proc /proc proc
 sudo mount --rbind /sys sys
 sudo mount --make-rslave sys
@@ -127,15 +127,15 @@ sudo mount -t efivarfs efivarfs sys/firmware/efi/efivars
 </pre></div>
 </div>
 <p>Теперь выполняем вход в chroot:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo chroot /media/fedora
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chroot /media/fedora
 </pre></div>
 </div>
 <p>Выполняем нужные действия, а по окончании завершаем работу chroot окружения:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">logout</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>logout
 </pre></div>
 </div>
 <p>Отмонтируем раздел:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo umount /media/fedora
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /media/fedora
 </pre></div>
 </div>
 </div>
@@ -154,11 +154,11 @@ sudo mount -t efivarfs efivarfs sys/firmware/efi/efivars
 <div class="section" id="journald-wipe">
 <span id="index-12"></span><span id="id11"></span><h2>Как немедленно очистить все системные журналы?<a class="headerlink" href="#journald-wipe" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Выполним принудительную ротацию системных журналов для сброса их из памяти на диск:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo journalctl --rotate
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo journalctl --rotate
 </pre></div>
 </div>
 <p>Очистим все записи с диска, старше 1 секунды:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo journalctl --vacuum-time<span class="o">=</span>1s
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo journalctl --vacuum-time=1s
 </pre></div>
 </div>
 </div>
@@ -185,18 +185,18 @@ sudo mount -t efivarfs efivarfs sys/firmware/efi/efivars
 <div class="section" id="drop-fs-caches">
 <span id="index-18"></span><span id="id13"></span><h2>Как очистить кэши и буферы всех файловых систем?<a class="headerlink" href="#drop-fs-caches" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы очистить кэши и буферы нужно выполнить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sync <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="m">3</span> &gt; /proc/sys/vm/drop_caches <span class="o">&amp;&amp;</span> sync
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sync &amp;&amp; echo 3 &gt; /proc/sys/vm/drop_caches &amp;&amp; sync
 </pre></div>
 </div>
 </div>
 <div class="section" id="utc">
 <span id="system-time-utc"></span><span id="index-19"></span><h2>Как настроить системные часы в UTC или локального времени и наоборот?<a class="headerlink" href="#utc" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Переключение аппаратных часов компьютера в UTC из localtime:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo timedatectl set-local-rtc no
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo timedatectl set-local-rtc no
 </pre></div>
 </div>
 <p>Переключение аппаратных часов компьютера в localtime из UTC:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo timedatectl set-local-rtc yes
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo timedatectl set-local-rtc yes
 </pre></div>
 </div>
 </div>
@@ -213,7 +213,7 @@ sudo mount -t efivarfs efivarfs sys/firmware/efi/efivars
 <div class="section" id="fedora">
 <span id="simple-web-server"></span><span id="index-21"></span><h2>Как запустить простейший веб-сервер в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для запуска простейшего веб-сервера можно использовать Python и модуль, входящий в состав базового пакета:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m http.server <span class="m">8080</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python3 -m http.server 8080
 </pre></div>
 </div>
 <p>Веб-сервер будет запущен на порту <strong>8080</strong>. В качестве webroot будет использоваться текущий рабочий каталог.</p>
@@ -221,7 +221,7 @@ sudo mount -t efivarfs efivarfs sys/firmware/efi/efivars
 <div class="section" id="change-hostname">
 <span id="index-22"></span><span id="id14"></span><h2>Как изменить имя хоста?<a class="headerlink" href="#change-hostname" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Изменение имени хоста возможно посредством <strong>hostnamectl</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hostnamectl set-hostname NEW
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>hostnamectl set-hostname NEW
 </pre></div>
 </div>
 <p>Здесь вместо <strong>NEW</strong> следует указать новое значение. Изменения вступят в силу немедленно.</p>
@@ -233,7 +233,7 @@ sudo mount -t efivarfs efivarfs sys/firmware/efi/efivars
 <div class="section" id="lvm-liveusb">
 <span id="fs-check-lvm"></span><span id="index-24"></span><h2>Как мне проверить ФС в составе LVM с LiveUSB?<a class="headerlink" href="#lvm-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если файловая система была повреждена, необходимо запустить <strong>fsck</strong> и разрешить ему исправить её. При использовании настроек по умолчанию (LVM, ФС ext4) это делается так:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/mapper/fedora-root
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/mapper/fedora-root
 fsck -t ext4 /dev/mapper/fedora-home
 </pre></div>
 </div>
@@ -242,30 +242,30 @@ fsck -t ext4 /dev/mapper/fedora-home
 <div class="section" id="liveusb">
 <span id="fs-check-partitions"></span><span id="index-25"></span><h2>Как мне проверить ФС при использовании классических разделов с LiveUSB?<a class="headerlink" href="#liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если используется классическая схема с обычными разделами, то утилите <strong>fsck</strong> необходимо передавать соответствующее блочное устройство, например:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/sda2
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/sda2
 fsck -t ext4 /dev/sda3
 </pre></div>
 </div>
 <p>Если вместо <strong>ext4</strong> применяется другая файловая система, необходимо указать её после параметра <strong>-t</strong>. Также вместо <strong>/dev/sda2</strong> следует прописать соответствующее блочное устройство с повреждённой ФС.</p>
 <p>Полный список доступных устройств хранения данных можно получить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo fdisk -l
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fdisk -l
 </pre></div>
 </div>
 </div>
 <div class="section" id="luks-liveusb">
 <span id="fs-check-luks"></span><span id="index-26"></span><h2>Как мне проверить ФС на зашифрованном LUKS разделе с LiveUSB?<a class="headerlink" href="#luks-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если используются зашифрованные LUKS разделы, то сначала откроем соответствующее устройство:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cryptsetup luksOpen /dev/sda2 luks-root
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cryptsetup luksOpen /dev/sda2 luks-root
 </pre></div>
 </div>
 <p>Здесь вместо <strong>/dev/sda2</strong> следует прописать соответствующее блочное устройство зашифрованного накопителя.</p>
 <p>Теперь запустим проверку файловой системы:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/mapper/luks-root
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/mapper/luks-root
 </pre></div>
 </div>
 <p>Если вместо <strong>ext4</strong> применяется другая файловая система, необходимо указать её после параметра <strong>-t</strong>.</p>
 <p>По окончании обязательно отключим LUKS том:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cryptsetup luksClose /dev/mapper/luks-root
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cryptsetup luksClose /dev/mapper/luks-root
 </pre></div>
 </div>
 </div>
@@ -285,11 +285,11 @@ fsck -t ext4 /dev/sda3
 <span id="index-30"></span><span id="id18"></span><h2>Можно ли включить сжатие оперативной памяти?<a class="headerlink" href="#memory-compression" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, в ядро Linux начиная с версии 3.14 по умолчанию входит модуль zram, который позволяет увеличить производительность системы посредством использования вместо дисковой подкачки виртуального устройства в оперативной памяти с активным сжатием.</p>
 <p>Включение zram в Fedora:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl <span class="nb">enable</span> --now zram-swap
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable --now zram-swap
 </pre></div>
 </div>
 <p>Отключение zram в Fedora:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl stop zram-swap
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl stop zram-swap
 sudo systemctl disable zram-swap
 </pre></div>
 </div>
@@ -298,16 +298,16 @@ sudo systemctl disable zram-swap
 <div class="section" id="fedora-iperf">
 <span id="index-31"></span><span id="id19"></span><h2>Как сделать замеры скорости локальной или беспроводной сети?<a class="headerlink" href="#fedora-iperf" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для точных замеров производительности сети нам потребуется как минимум два компьютера (либо компьютер и мобильное устройство), а также утилита iperf, присутствующая в репозиториях Fedora. Установим её:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install iperf2
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install iperf2
 </pre></div>
 </div>
 <p>На первом устройстве запустим сервер iperf:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>iperf -s
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>iperf -s
 </pre></div>
 </div>
 <p>По умолчанию iperf прослушивает порт <strong>5001/tcp</strong> на всех доступных сетевых соединениях.</p>
 <p>Теперь временно разрешим входящие соединения на данный порт посредством <a class="reference internal" href="security.html#firewalld-about"><span class="std std-ref">Firewalld</span></a> (правило будет действовать до перезагрузки):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --add-port<span class="o">=</span><span class="m">5001</span>/tcp
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --add-port=5001/tcp
 </pre></div>
 </div>
 <p>На втором устройстве запустим клиент и подключимся к серверу:</p>
@@ -324,7 +324,7 @@ sudo systemctl disable zram-swap
 <div class="section" id="sysctl">
 <span id="sysctl-temporary"></span><span id="index-32"></span><h2>Как временно изменить параметр sysctl?<a class="headerlink" href="#sysctl" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Временно установить любой параметр ядра возможно через sysctl:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w foo.bar<span class="o">=</span>X
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w foo.bar=X
 </pre></div>
 </div>
 <p>Здесь <strong>foo.bar</strong> имя параметра, а <strong>X</strong> - его значение. Изменения вступят в силу немедленно и сохранятся до перезагрузки системы.</p>
@@ -338,7 +338,7 @@ foo.bar2=X2
 </div>
 <p>Каждый параметр должен быть указан с новой строки. Здесь <strong>foo.bar</strong> имя параметра, а <strong>X</strong> - его значение.</p>
 <p>Для вступления изменений в силу требуется перезагрузка:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
 </pre></div>
 </div>
 </div>
@@ -357,38 +357,38 @@ foo.bar2=X2
 <div class="section" id="configure-runlevel">
 <span id="index-35"></span><span id="id22"></span><h2>Как переключить запуск системы в текстовый режим и обратно?<a class="headerlink" href="#configure-runlevel" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы активировать запуск Fedora в текстовом режиме, нужно переключиться на цель <code class="docutils literal notranslate"><span class="pre">multi-user.target</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl set-default multi-user.target
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl set-default multi-user.target
 </pre></div>
 </div>
 <p>Чтобы активировать запуск в графическом режиме, необходимо убедиться в том, что установлен какой-либо менеджер графического входа в систему (GDM, SDDM, LightDM и т.д.), а затем переключиться на цель <code class="docutils literal notranslate"><span class="pre">graphical.target</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl set-default graphical.target
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl set-default graphical.target
 </pre></div>
 </div>
 <p>Определить используемый в настоящее время режим можно так:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl get-default
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl get-default
 </pre></div>
 </div>
 <p>Изменения вступят в силу лишь после перезапуска системы:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
 </pre></div>
 </div>
 </div>
 <div class="section" id="swap-to-file">
 <span id="index-36"></span><span id="id23"></span><h2>Как настроить подкачку в файл в Fedora?<a class="headerlink" href="#swap-to-file" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Создадим файл подкачки на 4 ГБ:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/media/pagefile <span class="nv">count</span><span class="o">=</span><span class="m">4096</span> <span class="nv">bs</span><span class="o">=</span>1M
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/zero of=/media/pagefile count=4096 bs=1M
 </pre></div>
 </div>
 <p>Установим правильный chmod:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo chmod <span class="m">600</span> /media/pagefile
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chmod 600 /media/pagefile
 </pre></div>
 </div>
 <p>Подготовим swapfs к работе:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mkswap /media/pagefile
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkswap /media/pagefile
 </pre></div>
 </div>
 <p>Активируем файл подкачки:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo swapon /media/pagefile
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo swapon /media/pagefile
 </pre></div>
 </div>
 <p>Для того, чтобы подкачка подключалась автоматически при загрузке системы, откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> и добавим в него следующую строку:</p>
@@ -400,7 +400,7 @@ foo.bar2=X2
 <div class="section" id="rsync-remote">
 <span id="index-37"></span><span id="id24"></span><h2>Как передать содержимое каталога на удалённый сервер?<a class="headerlink" href="#rsync-remote" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Передача содержимого локального каталога на удалённый сервер посредством rsync:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rsync -chavzP --stats /path/to/local user@example.org:/path/to/remote
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rsync -chavzP --stats /path/to/local user@example.org:/path/to/remote
 </pre></div>
 </div>
 <p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.</p>
@@ -408,7 +408,7 @@ foo.bar2=X2
 <div class="section" id="rsync-local">
 <span id="index-38"></span><span id="id25"></span><h2>Как получить содержимое каталога с удалённого сервера?<a class="headerlink" href="#rsync-local" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Получение содержимого каталога с удалённого сервера посредством rsync:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rsync -chavzP --stats user@example.org:/path/to/remote /path/to/local
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rsync -chavzP --stats user@example.org:/path/to/remote /path/to/local
 </pre></div>
 </div>
 <p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.</p>
@@ -416,30 +416,30 @@ foo.bar2=X2
 <div class="section" id="disk-usage">
 <span id="index-39"></span><span id="id26"></span><h2>Как узнать какой процесс осуществляет запись на диск?<a class="headerlink" href="#disk-usage" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для мониторинга дисковой активности существуют улититы <strong>iotop</strong> и <strong>fatrace</strong>. Установим их:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install iotop fatrace
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install iotop fatrace
 </pre></div>
 </div>
 <p>Запустим iotop в режиме накопления показаний:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo iotop -a
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo iotop -a
 </pre></div>
 </div>
 <p>Запустим fatrace в режиме накопления с выводом лишь информации о событиях записи на диск:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo fatrace -f W
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fatrace -f W
 </pre></div>
 </div>
 <p>Запустим fatrace в режиме накопления с выводом информации о событиях записи на диск в файл в течение 10 минут (600 секунд):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo fatrace -f W -o ~/disk-usage.log -s <span class="m">600</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fatrace -f W -o ~/disk-usage.log -s 600
 </pre></div>
 </div>
 </div>
 <div class="section" id="change-label">
 <span id="index-40"></span><span id="id27"></span><h2>Как сменить метку раздела?<a class="headerlink" href="#change-label" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Смена метки раздела с файловой системой ext2, ext3 и ext4:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo e2label /dev/sda1 <span class="s2">&quot;NewLabel&quot;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo e2label /dev/sda1 &quot;NewLabel&quot;
 </pre></div>
 </div>
 <p>Смена метки раздела с файловой системой XFS:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xfs_admin -L <span class="s2">&quot;NewLabel&quot;</span> /dev/sda1
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo xfs_admin -L &quot;NewLabel&quot; /dev/sda1
 </pre></div>
 </div>
 <p>Здесь <strong>/dev/sda1</strong> - раздел, на котором требуется изменить метку.</p>
@@ -447,11 +447,11 @@ foo.bar2=X2
 <div class="section" id="uuid">
 <span id="get-uuid"></span><span id="index-41"></span><h2>Как получить UUID всех смонтированных разделов?<a class="headerlink" href="#uuid" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для получения всех UUID можно использовать утилиту <strong>blkid</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo blkid
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo blkid
 </pre></div>
 </div>
 <p>Вывод UUID для указанного раздела:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo blkid /dev/sda1
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo blkid /dev/sda1
 </pre></div>
 </div>
 <p>Здесь <strong>/dev/sda1</strong> - раздел, для которого требуется вывести UUID.</p>
@@ -459,11 +459,11 @@ foo.bar2=X2
 <div class="section" id="change-uuid">
 <span id="index-42"></span><span id="id28"></span><h2>Как изменить UUID раздела?<a class="headerlink" href="#change-uuid" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Смена UUID раздела с файловой системой ext2, ext3 и ext4:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo tune2fs /dev/sda1 -U <span class="k">$(</span>uuidgen<span class="k">)</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo tune2fs /dev/sda1 -U $(uuidgen)
 </pre></div>
 </div>
 <p>Смена UUID раздела с файловой системой XFS:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo xfs_admin -U generate /dev/sda1
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo xfs_admin -U generate /dev/sda1
 </pre></div>
 </div>
 <p>Здесь <strong>/dev/sda1</strong> - раздел, на котором требуется изменить UUID.</p>
@@ -480,11 +480,11 @@ foo.bar2=X2
 <div class="section" id="firewalld-icmp">
 <span id="disable-icmp"></span><span id="index-45"></span><h2>Как можно средствами Firewalld запретить ICMP?<a class="headerlink" href="#firewalld-icmp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию ICMP трафик разрешён для большей части зон, поэтому запретить его можно вручную:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone<span class="o">=</span>public --remove-icmp-block<span class="o">={</span>echo-request,echo-reply,timestamp-reply,timestamp-request<span class="o">}</span> --permanent
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone=public --remove-icmp-block={echo-request,echo-reply,timestamp-reply,timestamp-request} --permanent
 </pre></div>
 </div>
 <p>Применим новые правила:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
 </pre></div>
 </div>
 <p>В данном примере для зоны <strong>public</strong> блокируются как входящие, так и исходящие ICMP ECHO и ICMP TIMESTAMP.</p>
@@ -492,16 +492,16 @@ foo.bar2=X2
 <div class="section" id="firewalld-openvpn-ip">
 <span id="openvpn-allowed-ips"></span><span id="index-46"></span><h2>Как средствами Firewalld разрешить подключение к OpenVPN серверу только с разрешённых IP адресов?<a class="headerlink" href="#firewalld-openvpn-ip" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сначала отключим правило по умолчанию для <a class="reference internal" href="#using-openvpn"><span class="std std-ref">OpenVPN</span></a>, разрешающее доступ к серверу с любых IP адресов:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone<span class="o">=</span>public --remove-service openvpn --permanent
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone=public --remove-service openvpn --permanent
 </pre></div>
 </div>
 <p>Теперь создадим rich rule, разрешающее доступ с указанных IP-адресов (или подсетей):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span class="o">=</span><span class="s1">&#39;rule family=ipv4 source address=&quot;1.2.3.4&quot; service name=&quot;openvpn&quot; accept&#39;</span> --permanent
-sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span class="o">=</span><span class="s1">&#39;rule family=ipv4 source address=&quot;5.6.7.0/24&quot; service name=&quot;openvpn&quot; accept&#39;</span> --permanent
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone=public --add-rich-rule=&#39;rule family=ipv4 source address=&quot;1.2.3.4&quot; service name=&quot;openvpn&quot; accept&#39; --permanent
+sudo firewall-cmd --zone=public --add-rich-rule=&#39;rule family=ipv4 source address=&quot;5.6.7.0/24&quot; service name=&quot;openvpn&quot; accept&#39; --permanent
 </pre></div>
 </div>
 <p>Применим новые правила:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
 </pre></div>
 </div>
 <p>Здесь <strong>public</strong> - имя зоны для публичного интерфейса, <strong>1.2.3.4</strong> - IP-адрес, а <strong>5.6.7.0/24</strong> - подсеть, доступ для адресов из которой следует разрешить.</p>
@@ -509,16 +509,16 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <div class="section" id="firewalld-wireguard-ip">
 <span id="wireguard-allowed-ips"></span><span id="index-47"></span><h2>Как средствами Firewalld разрешить подключение к WireGuard серверу только с разрешённых IP адресов?<a class="headerlink" href="#firewalld-wireguard-ip" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сначала отключим правило по умолчанию для <a class="reference internal" href="#using-wireguard"><span class="std std-ref">WireGuard</span></a>, разрешающее доступ к серверу с любых IP адресов:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone<span class="o">=</span>public --remove-port<span class="o">=</span><span class="m">27015</span>/udp --permanent
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone=public --remove-port=27015/udp --permanent
 </pre></div>
 </div>
 <p>Теперь создадим rich rule, разрешающее доступ с указанных IP-адресов (или подсетей):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span class="o">=</span><span class="s1">&#39;rule family=ipv4 source address=&quot;1.2.3.4&quot; port port=27015 protocol=udp accept&#39;</span> --permanent
-sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span class="o">=</span><span class="s1">&#39;rule family=ipv4 source address=&quot;5.6.7.0/24&quot; port port=27015 protocol=udp accept&#39;</span> --permanent
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone=public --add-rich-rule=&#39;rule family=ipv4 source address=&quot;1.2.3.4&quot; port port=27015 protocol=udp accept&#39; --permanent
+sudo firewall-cmd --zone=public --add-rich-rule=&#39;rule family=ipv4 source address=&quot;5.6.7.0/24&quot; port port=27015 protocol=udp accept&#39; --permanent
 </pre></div>
 </div>
 <p>Применим новые правила:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
 </pre></div>
 </div>
 <p>Здесь <strong>27015</strong> - порт сервера WireGuard, <strong>public</strong> - имя зоны для публичного интерфейса, <strong>1.2.3.4</strong> - IP-адрес, а <strong>5.6.7.0/24</strong> - подсеть, доступ для адресов из которой следует разрешить.</p>
@@ -526,14 +526,14 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <div class="section" id="ip-nat">
 <span id="get-external-ip"></span><span id="index-48"></span><h2>Как узнать внешний IP адрес за NAT провайдера?<a class="headerlink" href="#ip-nat" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этой цели можно использовать внешний сервис, возвращающий только внешний IP и утилиту <strong>curl</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl https://ifconfig.me
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>curl https://ifconfig.me
 </pre></div>
 </div>
 </div>
 <div class="section" id="pid">
 <span id="get-pid"></span><span id="index-49"></span><h2>Как получить PID запущенного процесса?<a class="headerlink" href="#pid" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для получения идентификатора запущенного процесса (PID), следует применять утилиту <strong>pidof</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pidof foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pidof foo-bar
 </pre></div>
 </div>
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, информацию о котором требуется получить.</p>
@@ -551,12 +551,12 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 </ul>
 </div></blockquote>
 <p>Чтобы отправить сигнал SIGTERM процессу с определённым <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>, воспользуемся утилитой <strong>kill</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">kill</span> -15 XXXX
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kill -15 XXXX
 </pre></div>
 </div>
 <p>Здесь <strong>XXXX</strong> - PID нужного процесса.</p>
 <p>Вместо явного указания PID процесса существует возможность завершить работу процесса с указанным именем посредством <strong>killall</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>killall -15 foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>killall -15 foo-bar
 </pre></div>
 </div>
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, который требуется завершить, однако её следует применять с особой осторожностью ибо если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
@@ -566,12 +566,12 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <p>Если какой-либо процесс завис и не отвечает на требование завершения посредством <a class="reference internal" href="#kill-sigterm"><span class="std std-ref">SIGTERM</span></a>, можно заставить операционную систему принудительно завершить его работу сигналом <strong>SIGKILL</strong>, который не может быть перехвачен и проигнорирован процессом.</p>
 <p>Данный сигнал следует использовать с особой осторожностью, т.к. в этом случае процесс не сможет корректно освободить все дескрипторы и занятые ресурсы, а также сообщить своим потомкам о своём завершении, что может повлечь за собой появление т.н. <a class="reference internal" href="#process-orphan"><span class="std std-ref">процессов-сирот</span></a>.</p>
 <p>Чтобы отправить сигнал SIGKILL процессу с определённым <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>, воспользуемся утилитой <strong>kill</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">kill</span> -9 XXXX
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kill -9 XXXX
 </pre></div>
 </div>
 <p>Здесь <strong>XXXX</strong> - PID нужного процесса.</p>
 <p>Вместо явного указания PID процесса существует возможность завершить работу процесса с указанным именем посредством <strong>killall</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>killall -9 foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>killall -9 foo-bar
 </pre></div>
 </div>
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса. Если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
@@ -592,8 +592,8 @@ sudo firewall-cmd --zone<span class="o">=</span>public --add-rich-rule<span clas
 <span id="firewalld-cloudflare"></span><span id="index-54"></span><h2>Как средствами Firewalld разрешить подключение к веб-серверу только с IP адресов CloudFlare?<a class="headerlink" href="#firewalld-ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При использовании CloudFlare в качестве системы защиты от DDoS атак, а также WAF, возникает необходимость разрешать входящие подключения исключительно с IP адресов данного сервиса.</p>
 <p>Сначала отключим правило по умолчанию для веб-сервера, разрешающее доступ с любых IP адресов:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone<span class="o">=</span>public --remove-service http --permanent
-sudo firewall-cmd --zone<span class="o">=</span>public --remove-service https --permanent
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone=public --remove-service http --permanent
+sudo firewall-cmd --zone=public --remove-service https --permanent
 </pre></div>
 </div>
 <p>Напишем небольшой скрипт <code class="docutils literal notranslate"><span class="pre">foo-bar.sh</span></code>, который получит актуальные пулы IP-адресов и создаст rich rule, разрешающие доступ лишь с подсетей CloudFlare (<a class="reference external" href="https://www.cloudflare.com/ips-v4">IPv4</a>, <a class="reference external" href="https://www.cloudflare.com/ips-v6">IPv6</a>):</p>
@@ -618,11 +618,11 @@ fw_add <span class="m">6</span>
 </pre></div>
 </div>
 <p>Запустим наш скрипт:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ./foo-bar.sh
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo ./foo-bar.sh
 </pre></div>
 </div>
 <p>Применим новые правила файрвола:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
 </pre></div>
 </div>
 <p>Здесь <strong>public</strong> - имя зоны для публичного сетевого интерфейса.</p>
@@ -634,7 +634,7 @@ fw_add <span class="m">6</span>
 <div class="section" id="docker-fedora">
 <span id="index-56"></span><span id="id33"></span><h2>Как правильно установить Docker в Fedora?<a class="headerlink" href="#docker-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Вместо Docker в Fedora рекомендуется установить и использовать Podman, т.к. он не требует прав суперпользователя для работы:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install podman
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install podman
 </pre></div>
 </div>
 <p>Синтаксис команд аналогичен Docker.</p>
@@ -642,11 +642,11 @@ fw_add <span class="m">6</span>
 <div class="section" id="using-mtr">
 <span id="index-57"></span><span id="id34"></span><h2>Как проверить наличие или отсутствие потерь пакетов до узла?<a class="headerlink" href="#using-mtr" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для проверки работоспособности сети и наличия, либо отсутствия потерь пакетов между узлами маршрута, широко используется утилита <strong>mtr</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install mtr
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install mtr
 </pre></div>
 </div>
 <p>Запустим проверку маршрута до узла <strong>example.org</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mtr example.org
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mtr example.org
 </pre></div>
 </div>
 <p>Приостановить работу можно нажатием клавиши <strong>P</strong>, для возобновить - <strong>пробел</strong>, а для выхода - <strong>Q</strong>.</p>
@@ -655,7 +655,7 @@ fw_add <span class="m">6</span>
 <span id="index-58"></span><span id="id35"></span><h2>Как определить включена ли определённая опция ядра во время компиляции?<a class="headerlink" href="#kernel-bs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Полный список опций, заданных на этапе компиляции ядра, всегда можно найти в config-файлах, внутри каталога <code class="docutils literal notranslate"><span class="pre">/boot</span></code>.</p>
 <p>В качестве примера проверим статус опции <code class="docutils literal notranslate"><span class="pre">CONFIG_EFI_STUB</span></code> текущего ядра:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep CONFIG_EFI_STUB /boot/config-<span class="k">$(</span>uname -r<span class="k">)</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>grep CONFIG_EFI_STUB /boot/config-$(uname -r)
 </pre></div>
 </div>
 <p>В выводе <strong>y</strong> означает, что опция была включена, а <strong>not set</strong>, соответственно, выключена.</p>
@@ -663,14 +663,14 @@ fw_add <span class="m">6</span>
 <div class="section" id="ss-established">
 <span id="index-59"></span><span id="id36"></span><h2>Как получить список установленных сетевых соединений?<a class="headerlink" href="#ss-established" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Воспользуемся утилитой <strong>ss</strong> для вывода списка установленных сетевых соединений:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ss -tupn
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ss -tupn
 </pre></div>
 </div>
 </div>
 <div class="section" id="ss-listening">
 <span id="index-60"></span><span id="id37"></span><h2>Как получить список открытых портов?<a class="headerlink" href="#ss-listening" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Воспользуемся утилитой <strong>ss</strong> для вывода открытых портов, ожидающих входящих соединений:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ss -tulpn
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ss -tulpn
 </pre></div>
 </div>
 <p>Статус <strong>LISTEN</strong> означает, что TCP-порт открыт и ожидает входящих соединений. В то же время для UDP-портов будет отображаться статус <strong>UNCONN</strong>, т.к. этот протокол не подразумевает предварительное открытие подключений.</p>
@@ -684,7 +684,7 @@ fw_add <span class="m">6</span>
 <div class="section" id="kernel-irq">
 <span id="index-62"></span><span id="id39"></span><h2>Как определить какое устройство генерирует огромное количество прерываний?<a class="headerlink" href="#kernel-irq" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для диагностики системы обработки прерываний, ядро имеет встроенный механизм:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat /proc/interrupts
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/interrupts
 </pre></div>
 </div>
 <p>Числа в таблице означают точное количество прерываний, инициированных соответствующим устройством или подсистемой, с момента загрузки.</p>
@@ -692,7 +692,7 @@ fw_add <span class="m">6</span>
 <div class="section" id="irq-manual">
 <span id="index-63"></span><span id="id40"></span><h2>Как произвести ручную балансировку прерываний?<a class="headerlink" href="#irq-manual" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если <a class="reference internal" href="#kernel-irq"><span class="std std-ref">прерывания</span></a> распределены между процессорными ядрами не равномерно, можно использовать режим ручной балансировки:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo bash -c <span class="s2">&quot;echo X &gt; /proc/irq/Y/smp_affinity&quot;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo bash -c &quot;echo X &gt; /proc/irq/Y/smp_affinity&quot;
 </pre></div>
 </div>
 <p>Здесь <strong>X</strong> - маска процессора (CPU affinity), который будет обрабатывать данное прерывание, а <strong>Y</strong> - номер прерывания (указан в левом столбце таблицы прерываний).</p>
@@ -719,7 +719,7 @@ fw_add <span class="m">6</span>
 <span id="index-66"></span><span id="id42"></span><h2>Как узнать глобальный лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-kernel" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Наряду с <a class="reference internal" href="#fd-hard-soft"><span class="std std-ref">мягким и жёстким лимитами</span></a> открытых файловых дескрипторов существует и глобальный, который ядро Linux способно адресовать и корректно обработать.</p>
 <p>Выведем это значение при помощи соответствующей функции ядра:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat /proc/sys/fs/file-max
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/sys/fs/file-max
 </pre></div>
 </div>
 </div>
@@ -766,25 +766,25 @@ foo-bar       hard    nofile          8192
 <div class="section" id="virtualbox-kvm">
 <span id="vdi-to-qcow2"></span><span id="index-70"></span><h2>Как преобразовать образ виртуальной машины VirtualBox в формат, совместимый с KVM?<a class="headerlink" href="#virtualbox-kvm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для конвертирования образов воспользуемся штатной утилитой <strong>qemu-img</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f vdi -O qcow2 /path/to/image.vdi /path/to/image.qcow2
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f vdi -O qcow2 /path/to/image.vdi /path/to/image.qcow2
 </pre></div>
 </div>
 </div>
 <div class="section" id="vmware-kvm">
 <span id="vmdk-to-qcow2"></span><span id="index-71"></span><h2>Как преобразовать образ виртуальной машины VMWare в формат, совместимый с KVM?<a class="headerlink" href="#vmware-kvm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Вариант 1. Воспользуемся утилитой <strong>virt-v2v</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>virt-v2v -i vmx /path/to/image.vmx -o <span class="nb">local</span> -os /path/to/kvm -of qcow2
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>virt-v2v -i vmx /path/to/image.vmx -o local -os /path/to/kvm -of qcow2
 </pre></div>
 </div>
 <p>Вариант 2. Воспользуемся утилитой <strong>qemu-img</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f vmdk -O qcow2 /path/to/image.vmdk /path/to/image.qcow2
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f vmdk -O qcow2 /path/to/image.vmdk /path/to/image.qcow2
 </pre></div>
 </div>
 </div>
 <div class="section" id="hyper-v-kvm">
 <span id="vpc-to-qcow2"></span><span id="index-72"></span><h2>Как преобразовать образ виртуальной машины Hyper-V в формат, совместимый с KVM?<a class="headerlink" href="#hyper-v-kvm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для преобразования образа воспользуемся штатной утилитой <strong>qemu-img</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f vpc -O qcow2 /path/to/image.vpc /path/to/image.qcow2
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f vpc -O qcow2 /path/to/image.vpc /path/to/image.qcow2
 </pre></div>
 </div>
 </div>

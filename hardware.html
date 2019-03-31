@@ -59,7 +59,7 @@
 <div class="section" id="cuda-nvidia">
 <span id="nvidia-cuda"></span><span id="index-4"></span><h2>Как установить поддержку CUDA на видеокартах NVIDIA?<a class="headerlink" href="#cuda-nvidia" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Поддержка <a class="reference external" href="https://ru.wikipedia.org/wiki/CUDA">CUDA</a> доступна исключительно в <a class="reference internal" href="#nvidia-drivers"><span class="std std-ref">проприетарных драйверах</span></a> NVIDIA. Установим необходимые пакеты:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
 </pre></div>
 </div>
 </div>
@@ -77,28 +77,28 @@
 <div class="section" id="uefi-bios-fedora">
 <span id="fedora-fwupd"></span><span id="index-6"></span><h2>Как обновить прошивку UEFI BIOS и других устройств непосредственно из Fedora?<a class="headerlink" href="#uefi-bios-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для оперативного обновления микропрограмм (прошивок) существует утилита <a class="reference external" href="https://github.com/hughsie/fwupd">fwupd</a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install fwupd
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install fwupd
 </pre></div>
 </div>
 <p>Внимание! Для работы fwupd система должна быть установлена строго в <a class="reference internal" href="installation.html#uefi-boot"><span class="std std-ref">UEFI режиме</span></a>.</p>
 <p>Обновление базы данных программы:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fwupdmgr refresh
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fwupdmgr refresh
 </pre></div>
 </div>
 <p>Вывод списка устройств, микропрограмма которых может быть обновлена:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fwupdmgr get-devices
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fwupdmgr get-devices
 </pre></div>
 </div>
 <p>Проверка наличия обновлений с выводом подробной информации о каждом из них:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fwupdmgr get-updates
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fwupdmgr get-updates
 </pre></div>
 </div>
 <p>Установка обнаруженных обновлений микропрограмм:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fwupdmgr update
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fwupdmgr update
 </pre></div>
 </div>
 <p>Некоторые устройства могут быть обновлены лишь при следующей загрузке системы, поэтому выполним перезагрузку:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
 </pre></div>
 </div>
 </div>
@@ -146,11 +146,11 @@
 </div>
 <p>Здесь вместо <strong>nouveau</strong> нужно указать реально используемые устройством драйверы.</p>
 <p>Полный список загруженных драйверов можно получить так:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lspci -nnk
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>lspci -nnk
 </pre></div>
 </div>
 <p>Теперь необходимо пересобрать inird образ:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dracut --force
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut --force
 </pre></div>
 </div>
 <p>Чтобы отменить действие, достаточно удалить созданный файл и снова пересобрать initrd.</p>
@@ -158,7 +158,7 @@
 <div class="section" id="rfkill-status">
 <span id="index-10"></span><span id="id4"></span><h2>Модуль настройки сети не отображает беспроводных устройств. Что делать?<a class="headerlink" href="#rfkill-status" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для начала воспользуемся утилитой <strong>rfkill</strong> для того, чтобы определить состояние беспроводных модулей:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rfkill
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rfkill
 </pre></div>
 </div>
 <p>Статус <strong>hard blocked</strong> означает, что устройство отключено аппаратно и требуется включить его определённой последовательностью <strong>Fn + Fx</strong> (см. руководство ноутбука).</p>
@@ -167,33 +167,33 @@
 <div class="section" id="wi-fi">
 <span id="rfkill-wifi"></span><span id="index-11"></span><h2>Как программно включить или отключить беспроводной модуль Wi-Fi?<a class="headerlink" href="#wi-fi" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Снимем программную блокировку Wi-Fi и активируем модуль:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rfkill unblock wlan
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rfkill unblock wlan
 </pre></div>
 </div>
 <p>Установим программную блокировку Wi-Fi и отключим модуль:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rfkill block wlan
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rfkill block wlan
 </pre></div>
 </div>
 </div>
 <div class="section" id="bluetooth">
 <span id="rfkill-bluetooth"></span><span id="index-12"></span><h2>Как программно включить или отключить беспроводной модуль Bluetooth?<a class="headerlink" href="#bluetooth" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Снимем программную блокировку Bluetooth и активируем модуль:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rfkill unblock bluetooth
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rfkill unblock bluetooth
 </pre></div>
 </div>
 <p>Установим программную блокировку Bluetooth и отключим модуль:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rfkill block bluetooth
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rfkill block bluetooth
 </pre></div>
 </div>
 </div>
 <div class="section" id="lte-4g">
 <span id="rfkill-lte"></span><span id="index-13"></span><h2>Как программно включить или отключить беспроводной модуль LTE (4G)?<a class="headerlink" href="#lte-4g" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Снимем программную блокировку LTE (4G) и активируем модуль:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rfkill unblock wwan
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rfkill unblock wwan
 </pre></div>
 </div>
 <p>Установим программную блокировку LTE (4G) и отключим модуль:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rfkill block wwan
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rfkill block wwan
 </pre></div>
 </div>
 </div>
@@ -209,7 +209,7 @@
 </ul>
 </div></blockquote>
 <p>Воспользуемся утилитой <strong>screen</strong> для подключения к последовательному порту:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>screen /dev/ttyS0 <span class="m">115200</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>screen /dev/ttyS0 115200
 </pre></div>
 </div>
 <p>Здесь <strong>/dev/ttyS0</strong> - путь к первому COM порту в системе, а <strong>115200</strong> - скорость работы в бодах.</p>
@@ -231,7 +231,7 @@
 <span id="index-16"></span><span id="id6"></span><h2>Как прописать список поддерживаемых монитором разрешений?<a class="headerlink" href="#x11-resulutions" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Создадим отдельный файл конфигурации для монитора <code class="docutils literal notranslate"><span class="pre">10-monitor.conf</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/X11/xorg.conf.d</span></code> и пропишем доступные разрешения и используемый драйвер.</p>
 <p>Сначала посредством запуска утилиты <strong>cvt</strong> вычислим значение строки <code class="docutils literal notranslate"><span class="pre">Modeline</span></code> для требуемого разрешения:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cvt <span class="m">1920</span> <span class="m">1080</span> <span class="m">60</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cvt 1920 1080 60
 </pre></div>
 </div>
 <p>Здесь <strong>1920</strong> - разрешение по горизонтали, <strong>1080</strong> - по вертикали, а <strong>60</strong> - частота регенерации.</p>
@@ -263,11 +263,11 @@ EndSection
 <span id="index-17"></span><span id="id7"></span><h2>Какой бенчмарк можно использовать для оценки производительности системы?<a class="headerlink" href="#benchmark-cpu" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В качестве CPU бенчмарка рекомендуется использовать <a class="reference external" href="https://github.com/akopytov/sysbench#usage">sysbench</a>, либо <a class="reference external" href="https://kernel.ubuntu.com/~cking/stress-ng/">stress-ng</a>:</p>
 <p>Установим sysbench:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install sysbench
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install sysbench
 </pre></div>
 </div>
 <p>Установим stress-ng:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install stress-ng
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install stress-ng
 </pre></div>
 </div>
 </div>
@@ -277,11 +277,11 @@ EndSection
 <div class="section" id="glxgears">
 <h3>Glxgears<a class="headerlink" href="#glxgears" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Установка:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install glx-utils
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install glx-utils
 </pre></div>
 </div>
 <p>Запуск:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>glxgears
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>glxgears
 </pre></div>
 </div>
 <p>Выводит информацию о кадровой частоте в терминал каждые 5 секунд.</p>
@@ -289,11 +289,11 @@ EndSection
 <div class="section" id="gl-mark-2">
 <h3>GL Mark 2<a class="headerlink" href="#gl-mark-2" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Установка:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install glmark2
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install glmark2
 </pre></div>
 </div>
 <p>Запуск:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>glmark2
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>glmark2
 </pre></div>
 </div>
 <p>Выводит информацию о кадровой частоте и финальный результат в терминал.</p>
@@ -301,7 +301,7 @@ EndSection
 <div class="section" id="unigine-benchmark">
 <h3>Unigine Benchmark<a class="headerlink" href="#unigine-benchmark" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Установка:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget https://assets.unigine.com/d/Unigine_Superposition-1.0.run
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>wget https://assets.unigine.com/d/Unigine_Superposition-1.0.run
 chmod +x Unigine_Superposition-1.0.run
 ./Unigine_Superposition-1.0.run
 </pre></div>
@@ -321,7 +321,7 @@ chmod +x Unigine_Superposition-1.0.run
 <div class="section" id="firmware-status">
 <span id="index-21"></span><span id="id10"></span><h2>Как проверить используются ли в моём устройстве бинарные прошивки?<a class="headerlink" href="#firmware-status" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При загрузке <a class="reference internal" href="#linux-firmware"><span class="std std-ref">бинарных прошивок</span></a> ядро обязательно сохраняет информацию об этом в <a class="reference internal" href="administration.html#journal-current"><span class="std std-ref">системный журнал</span></a>, поэтому достаточно лишь отфильтровать его по ключевому слову <em>firmware</em>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>journalctl -b <span class="p">|</span> grep firmware
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>journalctl -b | grep firmware
 </pre></div>
 </div>
 </div>
@@ -343,7 +343,7 @@ chmod +x Unigine_Superposition-1.0.run
 <div class="section" id="scan-drivers">
 <span id="index-24"></span><span id="id12"></span><h2>Как настроить сканер?<a class="headerlink" href="#scan-drivers" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет <strong>sane-backends</strong>, содержащий драйверы поддерживаемых сканеров:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install sane-backends sane-backends-drivers-scanners
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install sane-backends sane-backends-drivers-scanners
 </pre></div>
 </div>
 <p>Перезапустим <a class="reference internal" href="#scan-app"><span class="std std-ref">приложения</span></a>, поддерживающие работу со сканерами, для вступления изменений в силу.</p>
@@ -351,7 +351,7 @@ chmod +x Unigine_Superposition-1.0.run
 <div class="section" id="scan-app">
 <span id="index-25"></span><span id="id13"></span><h2>При помощи какого приложения можно осуществлять сканирование документов?<a class="headerlink" href="#scan-app" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для работы со сканерами существует приложение XSane. Установим его:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install xsane
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install xsane
 </pre></div>
 </div>
 <p>Если в нём не отображаются устройства сканирования, необходимо <a class="reference internal" href="#scan-drivers"><span class="std std-ref">установить драйверы</span></a>.</p>
@@ -360,11 +360,11 @@ chmod +x Unigine_Superposition-1.0.run
 <span id="smart-status"></span><span id="index-26"></span><h2>Как получить информацию о состоянии HDD или SSD накопителя?<a class="headerlink" href="#hdd-ssd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Подробную информацию о состоянии накопителя можно получить из вывода системы самодиагностики <a class="reference external" href="https://ru.wikipedia.org/wiki/S.M.A.R.T.">S.M.A.R.T.</a> при помощи утилиты <strong>smartctl</strong>.</p>
 <p>Установим её:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install smartmontools
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install smartmontools
 </pre></div>
 </div>
 <p>Запустим утилиту:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo smartctl -a /dev/sda
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo smartctl -a /dev/sda
 </pre></div>
 </div>
 <p>Здесь вместо <strong>/dev/sda</strong> следует указать устройство, информацию по состоянию которого требуется вывести.</p>
@@ -392,21 +392,21 @@ chmod +x Unigine_Superposition-1.0.run
 <div class="section" id="cpu-virt">
 <span id="index-31"></span><span id="id16"></span><h2>Как определить имеет ли процессор аппаратную поддержку виртуализации?<a class="headerlink" href="#cpu-virt" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проверим наличие флагов <strong>vmx</strong> (Intel), либо <strong>svm</strong> (AMD) в выводе <code class="docutils literal notranslate"><span class="pre">/proc/cpuinfo</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep -Eq <span class="s1">&#39;(vmx|svm)&#39;</span> /proc/cpuinfo <span class="o">&amp;&amp;</span> <span class="nb">echo</span> Yes <span class="o">||</span> <span class="nb">echo</span> No
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>grep -Eq &#39;(vmx|svm)&#39; /proc/cpuinfo &amp;&amp; echo Yes || echo No
 </pre></div>
 </div>
 </div>
 <div class="section" id="gl-engine">
 <span id="index-32"></span><span id="id17"></span><h2>Как определить какой движок используется для вывода трёхмерной графики?<a class="headerlink" href="#gl-engine" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Воспользуемся утилитой <strong>glxinfo</strong> для вывода информации об используемом OpenGL движке:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>glxinfo <span class="p">|</span> grep -E <span class="s1">&#39;OpenGL version|OpenGL renderer&#39;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>glxinfo | grep -E &#39;OpenGL version|OpenGL renderer&#39;
 </pre></div>
 </div>
 </div>
 <div class="section" id="microcode-version">
 <span id="index-33"></span><span id="id18"></span><h2>Как определить версию установленного микрокода процессора?<a class="headerlink" href="#microcode-version" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Получим версию микрокода из вывода <code class="docutils literal notranslate"><span class="pre">/proc/cpuinfo</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat /proc/cpuinfo <span class="p">|</span> grep microcode <span class="p">|</span> uniq
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/cpuinfo | grep microcode | uniq
 </pre></div>
 </div>
 </div>
@@ -420,7 +420,7 @@ chmod +x Unigine_Superposition-1.0.run
 <div class="section" id="kde">
 <span id="kde-video-reset"></span><span id="index-35"></span><h2>Как сбросить настройки экрана в KDE?<a class="headerlink" href="#kde" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Настройки экрана хранятся внутри JSON файлов в каталоге <code class="docutils literal notranslate"><span class="pre">~/.local/share/kscreen</span></code>, поэтому для того, чтобы их сбросить, достаточно очистить его:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -f ~/.local/share/kscreen/*
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rm -f ~/.local/share/kscreen/*
 </pre></div>
 </div>
 <p>Изменения вступят в силу при следующем входе в систему.</p>
@@ -428,11 +428,11 @@ chmod +x Unigine_Superposition-1.0.run
 <div class="section" id="pa-reset">
 <span id="index-36"></span><span id="id20"></span><h2>Как сбросить настройки звука?<a class="headerlink" href="#pa-reset" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В Fedora настройками звука управляет PulseAudio, поэтому для того, чтобы сбросить его настройки, удалим всё содержимое каталога <code class="docutils literal notranslate"><span class="pre">~/.config/pulse</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -f ~/.config/pulse/*
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rm -f ~/.config/pulse/*
 </pre></div>
 </div>
 <p>Для вступления изменений в силу перезапустим PulseAudio:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pulseaudio -k
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pulseaudio -k
 pulseaudio -D
 </pre></div>
 </div>
@@ -442,11 +442,11 @@ pulseaudio -D
 <span id="index-37"></span><span id="id21"></span><h2>Как ускорить кодирование видео с использованием видеокарт NVIDIA?<a class="headerlink" href="#nvidia-encoding" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этого нужно установить ffmpeg, а также проприетарные драйверы NVIDIA из репозиториев <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
 <p>Использование NVENC:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg -i input.mp4 -acodec aac -ac <span class="m">2</span> -ab 128k -vcodec h264_nvenc -profile high444p -pixel_format yuv444p -preset default output.mp4
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ffmpeg -i input.mp4 -acodec aac -ac 2 -ab 128k -vcodec h264_nvenc -profile high444p -pixel_format yuv444p -preset default output.mp4
 </pre></div>
 </div>
 <p>Использование CUDA/CUVID:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ffmpeg -c:v h264_cuvid -i input.mp4 -c:v h264_nvenc -preset slow output.mkv
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ffmpeg -c:v h264_cuvid -i input.mp4 -c:v h264_nvenc -preset slow output.mkv
 </pre></div>
 </div>
 <p>Здесь <strong>input.mp4</strong> — имя оригинального файла, который требуется перекодировать, а в <strong>output.mp4</strong> будет сохранён результат.</p>

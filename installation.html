@@ -125,7 +125,7 @@
 <div class="section" id="swappiness">
 <span id="index-14"></span><span id="id12"></span><h2>Можно ли сделать так, чтобы подкачка использовалась лишь при исчерпании ОП?<a class="headerlink" href="#swappiness" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, это возможно. Необходимо выполнить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w vm.swappiness<span class="o">=</span><span class="m">10</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w vm.swappiness=10
 </pre></div>
 </div>
 <p>Изменения вступят в силу немедленно и сохранятся до перезагрузки системы. Если нужно сделать это постоянным, см. <a class="reference internal" href="administration.html#sysctl-permanent"><span class="std std-ref">данное руководство</span></a>.</p>
@@ -164,7 +164,7 @@
 <div class="section" id="fonts-cleartype">
 <span id="index-19"></span><span id="id14"></span><h2>Как улучшить отображение шрифтов в Fedora?<a class="headerlink" href="#fonts-cleartype" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В актуальных релизах Fedora пакет freetype уже собран с поддержкой субпиксельного сглаживания, поэтому чтобы получить качественный рендеринг шрифтов, необходимо лишь разрешить использование LCD фильтров, создав символическую ссылку на файл <code class="docutils literal notranslate"><span class="pre">11-lcdfilter-default.conf</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/fonts/conf.d</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ln -s /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d/
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo ln -s /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d/
 </pre></div>
 </div>
 <p>Для вступления изменений в силу необходимо повторно войти в систему, либо перезагрузить компьютер.</p>
@@ -176,7 +176,7 @@
 </pre></div>
 </div>
 <p><em>Способ 2</em>. Установим пакет шрифтов Terminus:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install terminus-fonts-console
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install terminus-fonts-console
 </pre></div>
 </div>
 <p>Теперь откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/vconsole.conf</span></code> в текстовом редакторе и активируем их использование:</p>
@@ -209,7 +209,7 @@
 <span id="uefi-boot"></span><span id="index-24"></span><h2>Как установить Fedora в UEFI режиме?<a class="headerlink" href="#fedora-uefi" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Загрузка LiveUSB образа должна производиться исключительно в UEFI режиме. На большинстве материнских плат в меню вариантов загрузки требуется выбрать режим <em>UEFI External Drive</em> или <em>UEFI USB HDD</em>.</p>
 <p>Схемой разбиения диска, на который будет установлен дистрибутив, должна быть <strong>GPT</strong>. Проверить можно посредством выполнения <strong>fdisk</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo fdisk -l
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fdisk -l
 </pre></div>
 </div>
 <p>Если используется классический <strong>MBR</strong> (<strong>msdos</strong>), необходимо запустить утилиту GParted, выбрать диск из списка, затем в меню <strong>Устройство</strong> пункт <strong>Создать таблицу разделов</strong> - <strong>GPT</strong> и запустить процесс кнопкой <strong>Применить изменения</strong>. Все данные на диске будут уничтожены.</p>
@@ -324,7 +324,7 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <div class="section" id="installation-date">
 <span id="index-29"></span><span id="id20"></span><h2>Как определить точную дату установки ОС?<a class="headerlink" href="#installation-date" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Т.к. операционная система постоянно обновляется, точную дату установки ОС напрямую получить не представляется возможным. Можно лишь вывести дату последнего форматирования раздела диска, на котором установлена система:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dumpe2fs /dev/sda1 <span class="p">|</span> grep <span class="s1">&#39;Filesystem created:&#39;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dumpe2fs /dev/sda1 | grep &#39;Filesystem created:&#39;
 </pre></div>
 </div>
 <p>Здесь <strong>/dev/sda1</strong> - раздел диска с Fedora.</p>
@@ -332,7 +332,7 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <div class="section" id="installation-mode">
 <span id="index-30"></span><span id="id21"></span><h2>Как определить в каком режиме была произведена установка системы?<a class="headerlink" href="#installation-mode" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Определим режим установки системы (<a class="reference internal" href="#uefi-boot"><span class="std std-ref">UEFI</span></a> или Legacy) посредством проверки наличия, либо отсутствия каталога <code class="docutils literal notranslate"><span class="pre">/sys/firmware/efi</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">test</span> -d /sys/firmware/efi <span class="o">&amp;&amp;</span> <span class="nb">echo</span> EFI <span class="o">||</span> <span class="nb">echo</span> Legacy
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>test -d /sys/firmware/efi &amp;&amp; echo EFI || echo Legacy
 </pre></div>
 </div>
 </div>

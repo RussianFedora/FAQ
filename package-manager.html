@@ -77,7 +77,7 @@
 <div class="section" id="python-pip">
 <span id="pip-user"></span><span id="index-4"></span><h2>Нужной Python библиотеки нет в репозиториях. Как можно безопасно использовать PIP?<a class="headerlink" href="#python-pip" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В таком случае рекомендуется либо локальная установка модулей посредством pip с параметром <code class="docutils literal notranslate"><span class="pre">--user</span></code>, либо использование <a class="reference internal" href="#python-venv"><span class="std std-ref">Python Virtual Environment</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 --user install foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pip3 --user install foo-bar
 </pre></div>
 </div>
 <p>Установленные таким способом модули будут размещены в домашнем каталоге пользователя и не помешают работе системы.</p>
@@ -85,15 +85,15 @@
 <div class="section" id="python-virtual-environment">
 <span id="python-venv"></span><span id="index-5"></span><h2>Как правильно применять Python Virtual Environment?<a class="headerlink" href="#python-virtual-environment" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакеты <strong>python3-virtualenv</strong> и <strong>python3-setuptools</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install python3-setuptools python3-virtualenv
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install python3-setuptools python3-virtualenv
 </pre></div>
 </div>
 <p>Создадим виртуальное окружение:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m venv foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python3 -m venv foo-bar
 </pre></div>
 </div>
 <p>Запустим его:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> foo-bar/bin/activate
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>source foo-bar/bin/activate
 </pre></div>
 </div>
 <p>Теперь внутри него допускается использовать любые механизмы установки пакетов Python: pip, install.py и т.д.</p>
@@ -102,11 +102,11 @@
 <div class="section" id="gdm-sddm">
 <span id="change-dm"></span><span id="index-6"></span><h2>У меня в системе используется GDM, но я хочу заменить его на SDDM. Это возможно?<a class="headerlink" href="#gdm-sddm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установка SDDM:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install sddm
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install sddm
 </pre></div>
 </div>
 <p>Отключение GDM и активация SDDM:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl -f <span class="nb">enable</span> sddm
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl -f enable sddm
 </pre></div>
 </div>
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
@@ -116,31 +116,31 @@
 <p>Процесс обновления стандартен и максимально безопасен:</p>
 <blockquote>
 <div>Fedora 28 и более ранние версии:</div></blockquote>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
 sudo dnf install dnf-plugin-system-upgrade
-sudo dnf system-upgrade download --releasever<span class="o">=</span><span class="k">$(($(</span>rpm -E %fedora<span class="k">)</span> <span class="o">+</span> <span class="m">1</span><span class="k">))</span>
+sudo dnf system-upgrade download --releasever=$(($(rpm -E %fedora) + 1))
 sudo dnf system-upgrade reboot
 </pre></div>
 </div>
 <p>Fedora 29 и новее:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
 sudo dnf install dnf-plugin-system-upgrade
-sudo dnf system-upgrade download --releasever<span class="o">=</span><span class="k">$(($(</span>rpm -E %fedora<span class="k">)</span> <span class="o">+</span> <span class="m">1</span><span class="k">))</span> --setopt<span class="o">=</span><span class="s1">&#39;module_platform_id=platform:f$(($(rpm -E %fedora) + 1))&#39;</span>
+sudo dnf system-upgrade download --releasever=$(($(rpm -E %fedora) + 1)) --setopt=&#39;module_platform_id=platform:f$(($(rpm -E %fedora) + 1))&#39;
 sudo dnf system-upgrade reboot
 </pre></div>
 </div>
 <p>Весь процесс установки будет выполнен во время следующей загрузки системы.</p>
 <p>Если произошёл какой-то конфликт, то рекомендуется очистить все кэши dnf:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf clean all
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf clean all
 </pre></div>
 </div>
 </div>
 <div class="section" id="fedora-rawhide">
 <span id="dist-rawhide"></span><span id="index-8"></span><h2>Как мне обновить Fedora до Rawhide?<a class="headerlink" href="#fedora-rawhide" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Допускается обновление с любой поддерживаемой версии Fedora до Rawhide. Следует помнить, что это действие необратимо. Пути назад на стабильный выпуск без полной переустановки системы уже не будет.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
 sudo dnf install dnf-plugin-system-upgrade
-sudo dnf system-upgrade download --releasever<span class="o">=</span>rawhide
+sudo dnf system-upgrade download --releasever=rawhide
 sudo dnf system-upgrade reboot
 </pre></div>
 </div>
@@ -157,18 +157,18 @@ sudo dnf system-upgrade reboot
 <div class="section" id="dnf">
 <span id="dnf-duplicates"></span><span id="index-11"></span><h2>При обновлении dnf ругается на дубликаты пакетов.<a class="headerlink" href="#dnf" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим утилиту <strong>package-cleanup</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install dnf-utils
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install dnf-utils
 </pre></div>
 </div>
 <p>Удалим дубликаты и повреждённые пакеты:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo package-cleanup --cleandupes
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo package-cleanup --cleandupes
 </pre></div>
 </div>
 </div>
 <div class="section" id="rpm">
 <span id="dnf-rpmdb"></span><span id="index-12"></span><h2>База RPM оказалась повреждена. Как восстановить?<a class="headerlink" href="#rpm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для запуска пересборки базы данных RPM следует выполнить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo rpm --rebuilddb
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rpm --rebuilddb
 </pre></div>
 </div>
 <p>Настоятельно рекомендуется сделать резервную копию каталога <code class="docutils literal notranslate"><span class="pre">/var/lib/rpm</span></code> перед этим действием.</p>
@@ -217,7 +217,7 @@ proxy_password=PASSWORD
 <div class="section" id="dnf-kernel-remove">
 <span id="index-18"></span><span id="id12"></span><h2>Как можно вручную удалить старое ядро?<a class="headerlink" href="#dnf-kernel-remove" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для ручного удаления старого ядра можно выполнить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove kernel-4.10.14* kernel-core-4.10.14* kernel-modules-4.10.14* kernel-devel-4.10.14*
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove kernel-4.10.14* kernel-core-4.10.14* kernel-modules-4.10.14* kernel-devel-4.10.14*
 </pre></div>
 </div>
 <p>Здесь <strong>4.10.14</strong> - это версия удаляемого ядра.</p>
@@ -237,21 +237,21 @@ proxy_password=PASSWORD
 <div class="section" id="multimedia-codecs">
 <span id="index-22"></span><span id="id14"></span><h2>В системе нет кодеков мультимедиа. Как их установить?<a class="headerlink" href="#multimedia-codecs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для начала следует подключить репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>, после чего установить кодеки из группы <strong>multimedia</strong> и <strong>sound-and-video</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf groupupdate multimedia sound-and-video
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf groupupdate multimedia sound-and-video
 </pre></div>
 </div>
 </div>
 <div class="section" id="chromium">
 <span id="chromium-codecs"></span><span id="index-23"></span><h2>Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?<a class="headerlink" href="#chromium" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Из-за патентных ограничений браузер Chromium в репозиториях Fedora сильно кастрирован. Для восстановления полной функциональности необходимо подключить <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установить пакет с кодеками для данного браузера:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install chromium-libs-media-freeworld
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install chromium-libs-media-freeworld
 </pre></div>
 </div>
 </div>
 <div class="section" id="firefox">
 <span id="firefox-codecs"></span><span id="index-24"></span><h2>Как активировать все доступные кодеки в браузере Firefox?<a class="headerlink" href="#firefox" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Браузер Mozilla Firefox использует ffmpeg для работы с мультимедийным контентом, поэтому необходимо его установить из репозитория <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install ffmpeg-libs
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install ffmpeg-libs
 </pre></div>
 </div>
 </div>
@@ -262,38 +262,38 @@ proxy_password=PASSWORD
 <div class="section" id="kvm">
 <span id="index-26"></span><span id="id16"></span><h2>Как правильно установить систему виртуализации KVM?<a class="headerlink" href="#kvm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим KVM и графическую утилиту управления виртуальными машинами <strong>virt-manager</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf group install Virtualization
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf group install Virtualization
 </pre></div>
 </div>
 <p>Перезагрузим машину для вступления изменений в силу:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
 </pre></div>
 </div>
 </div>
 <div class="section" id="kvm-users">
 <span id="index-27"></span><span id="id17"></span><h2>Как отключить запрос пароля во время запуска или остановки виртуальных машин при использовании KVM?<a class="headerlink" href="#kvm-users" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Возможностью управления виртуальными машинами обладают члены группы <strong>libvirt</strong>, поэтому нужно добавить в неё свой аккаунт:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G libvirt <span class="k">$(</span>whoami<span class="k">)</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G libvirt $(whoami)
 </pre></div>
 </div>
 </div>
 <div class="section" id="virtualbox-fedora">
 <span id="virtualbox"></span><span id="index-28"></span><h2>Как правильно установить VirtualBox в Fedora?<a class="headerlink" href="#virtualbox-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сначала нужно подключить репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>, затем выполнить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
 sudo dnf install gcc kernel-devel kernel-headers akmod-VirtualBox VirtualBox
 </pre></div>
 </div>
 <p>Для нормальной работы с USB устройствами и общими папками потребуется также добавить свой аккаунт в группу <strong>vboxusers</strong> и <strong>vboxsf</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G vboxusers <span class="k">$(</span>whoami<span class="k">)</span>
-sudo usermod -a -G vboxsf <span class="k">$(</span>whoami<span class="k">)</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G vboxusers $(whoami)
+sudo usermod -a -G vboxsf $(whoami)
 </pre></div>
 </div>
 </div>
 <div class="section" id="wi-fi-broadcom">
 <span id="broadcom-drivers"></span><span id="index-29"></span><h2>Как правильно установить драйверы Wi-Fi модулей Broadcom?<a class="headerlink" href="#wi-fi-broadcom" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сначала нужно подключить <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>, затем выполнить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
 sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 </pre></div>
 </div>
@@ -309,25 +309,25 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 <div class="section" id="updates-testing">
 <span id="index-32"></span><span id="id20"></span><h2>Каким способом можно обновить пакет из тестовых репозиториев?<a class="headerlink" href="#updates-testing" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы установить обновление из Fedora Testing, необходимо временно подключить соответствующий репозиторий:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh foo-bar* --enablerepo<span class="o">=</span>updates-testing
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh foo-bar* --enablerepo=updates-testing
 </pre></div>
 </div>
 <p>Репозиторий <strong>updates-testing</strong> подключается однократно, только для данного сеанса работы dnf.</p>
 </div>
 <div class="section" id="dnf-list-contents">
 <span id="index-33"></span><span id="id21"></span><h2>Как получить список файлов установленного пакета?<a class="headerlink" href="#dnf-list-contents" title="Ссылка на этот заголовок">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf repoquery -l foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf repoquery -l foo-bar
 </pre></div>
 </div>
 </div>
 <div class="section" id="dnf-find-file">
 <span id="index-34"></span><span id="id22"></span><h2>Как узнать в каком пакете находится конкретный файл?<a class="headerlink" href="#dnf-find-file" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этого можно воспользоваться плагином dnf repoquery:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf repoquery -f */имя_файла
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf repoquery -f */имя_файла
 </pre></div>
 </div>
 <p>Для поиска бинарников и динамических библиотек можно применять альтернативный метод:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf provides */имя_бинарника
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf provides */имя_бинарника
 </pre></div>
 </div>
 </div>
@@ -335,74 +335,74 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 <span id="java-multiple"></span><span id="index-35"></span><h2>Можно ли установить несколько версий Java в систему?<a class="headerlink" href="#java" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, это возможно. В настоящее время поддерживаются следующие версии Java. Допускается их одновременная установка.</p>
 <p>Java 8:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install java-1.8.0-openjdk
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install java-1.8.0-openjdk
 </pre></div>
 </div>
 <p>Java 9:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install java-9-openjdk
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install java-9-openjdk
 </pre></div>
 </div>
 <p>Java 11:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install java-11-openjdk
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install java-11-openjdk
 </pre></div>
 </div>
 </div>
 <div class="section" id="alternatives-java">
 <span id="index-36"></span><span id="id23"></span><h2>Как мне выбрать версию Java по умолчанию?<a class="headerlink" href="#alternatives-java" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для выбора дефолтной версии Java следует использовать систему альтернатив:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo update-alternatives --config java
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo update-alternatives --config java
 </pre></div>
 </div>
 </div>
 <div class="section" id="dnf-repo-contents">
 <span id="index-37"></span><span id="id24"></span><h2>Как вывести список пакетов из определённого репозитория?<a class="headerlink" href="#dnf-repo-contents" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Вывод полного списка пакетов из репозитория (на примере rpmfusion-free):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf repo-pkgs rpmfusion-free list
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf repo-pkgs rpmfusion-free list
 </pre></div>
 </div>
 <p>Вывод полного списка установленных пакетов из репозитория (также на примере rpmfusion-free):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf repo-pkgs rpmfusion-free list installed
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf repo-pkgs rpmfusion-free list installed
 </pre></div>
 </div>
 </div>
 <div class="section" id="dnf-repo-orphans">
 <span id="index-38"></span><span id="id25"></span><h2>Как вывести список пакетов, установленных не из репозиториев, либо удалённых из них?<a class="headerlink" href="#dnf-repo-orphans" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Выполним в терминале:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf list extras
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf list extras
 </pre></div>
 </div>
 </div>
 <div class="section" id="dnf-transactions-cleanup">
 <span id="index-39"></span><span id="id26"></span><h2>Как очистить журнал транзакций dnf?<a class="headerlink" href="#dnf-transactions-cleanup" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для очистки журнала транзакций dnf history, выполним:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo rm -rf /var/lib/dnf/history/*
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rm -rf /var/lib/dnf/history/*
 </pre></div>
 </div>
 </div>
 <div class="section" id="dnf-list-export">
 <span id="index-40"></span><span id="id27"></span><h2>Как сохранить список установленных пакетов, чтобы легко установить их после переустановки системы?<a class="headerlink" href="#dnf-list-export" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Экспортируем список установленных вручную пакетов:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf repoquery --qf <span class="s2">&quot;%{name}&quot;</span> --userinstalled &gt; ~/packages.lst
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf repoquery --qf &quot;%{name}&quot; --userinstalled &gt; ~/packages.lst
 </pre></div>
 </div>
 <p>Копируем любым способом получившийся файл <strong>~/packages.lst</strong> на другое устройство.</p>
 <p>Устанавливаем отсутствующие пакеты:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install <span class="k">$(</span>cat ~/packages.lst<span class="k">)</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install $(cat ~/packages.lst)
 </pre></div>
 </div>
 </div>
 <div class="section" id="dnf-download-only">
 <span id="index-41"></span><span id="id28"></span><h2>Можно ли скачать, но не устанавливать пакет из репозитория?<a class="headerlink" href="#dnf-download-only" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Скачивание пакета foo-bar в текущий рабочий каталог:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf download foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf download foo-bar
 </pre></div>
 </div>
 <p>Скачивание пакета foo-bar в текущий рабочий каталог вместе со всеми его зависимостями, отсутствующими в системе в настоящий момент:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf download --resolve foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf download --resolve foo-bar
 </pre></div>
 </div>
 <p>Скачивание пакета foo-bar вместе со всеми зависимостями в указанный каталог:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf download --resolve foo-bar --downloaddir ~/mypkg
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf download --resolve foo-bar --downloaddir ~/mypkg
 </pre></div>
 </div>
 <p>Для работы плагина dnf-download права суперпользователя не требуются.</p>
@@ -410,15 +410,15 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 <div class="section" id="dnf-manage-repo">
 <span id="index-42"></span><span id="id29"></span><h2>Как правильно включать или отключать репозитории?<a class="headerlink" href="#dnf-manage-repo" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Включить репозиторий постоянно (на примере <em>foo-bar</em>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-enabled foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-enabled foo-bar
 </pre></div>
 </div>
 <p>Отключить репозиторий постоянно:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-disabled foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-disabled foo-bar
 </pre></div>
 </div>
 <p>Временно подключить репозиторий и установить пакет из него:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install --refresh foo-bar --enablerepo<span class="o">=</span>foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install --refresh foo-bar --enablerepo=foo-bar
 </pre></div>
 </div>
 <p>Опциональный параметр <code class="docutils literal notranslate"><span class="pre">--refresh</span></code> добавляется для принудительного обновления кэшей dnf.</p>
@@ -427,11 +427,11 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 <span id="index-43"></span><span id="id30"></span><h2>Что такое модульные репозитории?<a class="headerlink" href="#dnf-modular" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Репозитории Fedora Modular позволяют установить в систему несколько различных версий определённых пакетов. Они включены по умолчанию начиная с Fedora 29.</p>
 <p>Вывод списка доступных модулей:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf module list
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf module list
 </pre></div>
 </div>
 <p>Установка пакета в виде модуля (на примере <em>nodejs</em>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf module install nodejs:6/default
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf module install nodejs:6/default
 </pre></div>
 </div>
 <p>Более подробную информацию о модулях можно найти <a class="reference external" href="https://docs.fedoraproject.org/en-US/modularity/using-modules/">здесь</a>.</p>
@@ -439,12 +439,12 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 <div class="section" id="dnf-disable-modules">
 <span id="index-44"></span><span id="id31"></span><h2>Мне не нужна поддержка модулей. Как их можно отключить?<a class="headerlink" href="#dnf-disable-modules" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Отключение репозитория с модулями:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-disabled fedora-modular
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-disabled fedora-modular
 sudo dnf config-manager --set-disabled updates-modular
 </pre></div>
 </div>
 <p>Повторное включение поддержки модулей:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-enabled fedora-modular
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-enabled fedora-modular
 sudo dnf config-manager --set-enabled updates-modular
 </pre></div>
 </div>
@@ -473,7 +473,7 @@ sudo dnf config-manager --set-enabled updates-modular
 <div class="section" id="dnf-advisory">
 <span id="index-48"></span><span id="id34"></span><h2>Как проще установить определённое обновление из тестового репозитория?<a class="headerlink" href="#dnf-advisory" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проще всего найти данное обновление в <a class="reference internal" href="#fedora-bodhi"><span class="std std-ref">Bodhi</span></a>, затем выполнить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh --enablerepo<span class="o">=</span>updates-testing --advisory<span class="o">=</span>FEDORA-2018-XXXXXXXXX
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh --enablerepo=updates-testing --advisory=FEDORA-2018-XXXXXXXXX
 </pre></div>
 </div>
 <p>Здесь <strong>FEDORA-2018-XXXXXXXXX</strong> - уникальный идентификатор обновления из Bodhi.</p>
@@ -481,15 +481,15 @@ sudo dnf config-manager --set-enabled updates-modular
 <div class="section" id="koji">
 <span id="koji-download"></span><span id="index-49"></span><h2>Как скачать определённую сборку пакета из Koji?<a class="headerlink" href="#koji" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для начала установим клиент <a class="reference internal" href="development.html#koji-about"><span class="std std-ref">Koji</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install koji
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install koji
 </pre></div>
 </div>
 <p>Выведем список всех успешно завершённых сборок пакета <strong>kernel</strong> за последнюю неделю:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>koji list-builds --package<span class="o">=</span>kernel --after<span class="o">=</span><span class="k">$(($(</span>date +%s<span class="k">)</span> <span class="o">-</span> <span class="m">604800</span><span class="k">))</span> --state<span class="o">=</span>COMPLETE
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji list-builds --package=kernel --after=$(($(date +%s) - 604800)) --state=COMPLETE
 </pre></div>
 </div>
 <p>Скачаем выбранную сборку для используемой архитектуры:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>koji download-build kernel-4.19.7-300.fc29 --arch<span class="o">=</span><span class="k">$(</span>uname -m<span class="k">)</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji download-build kernel-4.19.7-300.fc29 --arch=$(uname -m)
 </pre></div>
 </div>
 </div>
@@ -516,7 +516,7 @@ sudo dnf config-manager --set-enabled updates-modular
 <div class="section" id="gnome-shell-browser">
 <span id="index-53"></span><span id="id37"></span><h2>Как разрешить установку расширений Gnome Shell из веб-браузера?<a class="headerlink" href="#gnome-shell-browser" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы разрешить установку <a class="reference internal" href="#gnome-shell-extensions"><span class="std std-ref">расширений Gnome Shell</span></a> из браузеров, необходимо установить соответствующий пакет:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gnome-shell-browser
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gnome-shell-browser
 </pre></div>
 </div>
 <p>Также данное дополнение можно установить и вручную:</p>
@@ -530,7 +530,7 @@ sudo dnf config-manager --set-enabled updates-modular
 <div class="section" id="kde-plasma">
 <span id="plasma-browser"></span><span id="index-54"></span><h2>Как разрешить установку расширений KDE Plasma из веб-браузера?<a class="headerlink" href="#kde-plasma" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы разрешить установку расширений оболочки KDE Plasma из браузеров, необходимо установить соответствующий пакет:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install plasma-browser-integration
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install plasma-browser-integration
 </pre></div>
 </div>
 <p>Также данное дополнение можно установить и вручную:</p>
@@ -546,21 +546,21 @@ sudo dnf config-manager --set-enabled updates-modular
 <p>Начиная с Gnome 3.26, из области уведомлений оболочки была удалена поддержка классического системного лотка, поэтому многие приложения при закрытии или сворачивании могут не завершать свою работу, а продолжать работать в фоне без отображения видимого окна.</p>
 <p>Восстановить трей можно посредством установки одного из <a class="reference internal" href="#gnome-shell-extensions"><span class="std std-ref">расширений Gnome Shell</span></a>. Самым популярным является <a class="reference external" href="https://extensions.gnome.org/extension/1031/topicons/">TopIcons Plus</a>.</p>
 <p>Установка для всех пользователей в виде пакета из репозиториев Fedora:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gnome-shell-extension-topicons-plus
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gnome-shell-extension-topicons-plus
 </pre></div>
 </div>
 </div>
 <div class="section" id="dnf-user">
 <span id="index-56"></span><span id="id39"></span><h2>При запуске dnf без прав суперпользователя он заново загружает и обновляет кэши. Это нормально?<a class="headerlink" href="#dnf-user" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Если необходимо, чтобы dnf использовал глобальные общесистемные кэши репозиториев, следует применять параметр <code class="docutils literal notranslate"><span class="pre">-C</span></code>, например:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf -C search foo
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf -C search foo
 </pre></div>
 </div>
 </div>
 <div class="section" id="dnf-remove-32bit">
 <span id="index-57"></span><span id="id40"></span><h2>Как удалить все установленные в системе 32-битные пакеты?<a class="headerlink" href="#dnf-remove-32bit" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Удаление всех 32-битных пакетов из системы:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove <span class="s2">&quot;*.i686&quot;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove &quot;*.i686&quot;
 </pre></div>
 </div>
 </div>
