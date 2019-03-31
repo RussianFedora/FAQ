@@ -19,7 +19,7 @@
 
 Необходимо установить пакет sqlite:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install sqlite
 
@@ -49,7 +49,7 @@
 
 Необходимо загрузиться с LiveCD или LiveUSB, смонтировать раздел с корневой файловой системой и выполнить:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo tar --one-file-system --selinux \
     --exclude="$bdir/tmp/*" \
@@ -64,7 +64,7 @@
 
 Для пересборки образа initrd следует выполнить:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dracut -f
 
@@ -84,13 +84,13 @@
 
 Пересборка конфига Grub 2 для legacy конфигураций:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
 Пересборка конфигра Grub 2 для UEFI конфигураций:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
 
@@ -110,7 +110,7 @@
 
 Конвертируем все файлы с маской \*.ogg в mp3 в текущем каталоге:
 
-.. code-block:: bash
+.. code-block:: text
 
     find . -maxdepth 1 -type f -name "*.ogg" -exec ffmpeg -i "{}" -acodec mp3 -ab 192k "$(basename {}).mp3" \;
 
@@ -122,13 +122,13 @@
 
 Ресурсивно удаляем файлы старше 2 суток в указанном каталоге:
 
-.. code-block:: bash
+.. code-block:: text
 
     find ~/foo-bar -type f -mtime +2 -delete
 
 Удаляем файлы старше 2 суток в указанном каталоге с ограничением рекурсии:
 
-.. code-block:: bash
+.. code-block:: text
 
     find ~/foo-bar -maxdepth 1 -type f -mtime +2 -delete
 
@@ -162,7 +162,7 @@
 
 Да:
 
-.. code-block:: bash
+.. code-block:: text
 
     loginctl lock-session
 
@@ -200,13 +200,13 @@
 
 Если синхронизация отключена, нужно убедиться, что сервис chronyd активирован:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo systemctl enable chronyd.service
 
 Получить список NTP серверов, с которыми осуществляется синхронизация, можно так:
 
-.. code-block:: bash
+.. code-block:: text
 
     chronyc sources
 
@@ -218,13 +218,13 @@
 
 Вывод информации в виде текста:
 
-.. code-block:: bash
+.. code-block:: text
 
     systemd-analyze blame
 
 Вывод информации в виде SVG изображения:
 
-.. code-block:: bash
+.. code-block:: text
 
     systemd-analyze plot > systemd-plot.svg
     xdg-open systemd-plot.svg
@@ -292,7 +292,7 @@
 
 Для того, чтобы использовать её, необходимо установить пакет **fuse-exfat** из :ref:`репозитория <3rd-repositories>` :ref:`RPM Fusion <rpmfusion>`:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install fuse fuse-exfat
 
@@ -306,13 +306,13 @@
 
 Для исправления необходимо **после каждого обновления ядра** выполнять пересборку initrd:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dracut -f
 
 Для вступления изменений в силу требуется перезагрузка:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo systemctl reboot
 
@@ -324,7 +324,7 @@
 
 KDE предоставляет особый PAM модуль для автоматической разблокировки связки паролей KDE Wallet при входе в систему. Установим его:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install pam-kwallet
 
@@ -355,7 +355,7 @@ KDE предоставляет особый PAM модуль для автома
 
 Применим изменения:
 
-.. code-block:: bash
+.. code-block:: text
 
     xdg-user-dirs-update
 
@@ -369,7 +369,7 @@ KDE предоставляет особый PAM модуль для автома
 
 Откроем файл ``/etc/sddm.conf``:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudoedit /etc/sddm.conf
 
@@ -395,7 +395,7 @@ KDE предоставляет особый PAM модуль для автома
 
 Для отключения данной функции откроем файл ``/etc/sddm.conf``:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudoedit /etc/sddm.conf
 
@@ -416,13 +416,13 @@ KDE предоставляет особый PAM модуль для автома
 
 Установим утилиту **powertop**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install powertop
 
 Запустим её с правами суперпользователя:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo powertop
 
@@ -436,13 +436,13 @@ KDE предоставляет особый PAM модуль для автома
 
 Установим утилиту **inxi**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install inxi
 
 Соберём информацию о системе и выгрузим на fpaste:
 
-.. code-block:: bash
+.. code-block:: text
 
     inxi -F | fpaste
 
@@ -458,13 +458,13 @@ KDE предоставляет особый PAM модуль для автома
 
 Для Gnome/XFCE и других, основанных на GTK:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install NetworkManager-l2tp-gnome
 
 Для KDE:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install plasma-nm-l2tp
 
@@ -480,13 +480,13 @@ KDE предоставляет особый PAM модуль для автома
 
 Если ранее уже были созданы Wi-Fi подключения, то выведем их список:
 
-.. code-block:: bash
+.. code-block:: text
 
     nmcli connection | grep wifi
 
 Теперь запустим выбранное соединение:
 
-.. code-block:: bash
+.. code-block:: text
 
     nmcli connection up Connection_Name
 
@@ -498,7 +498,7 @@ KDE предоставляет особый PAM модуль для автома
 
 Если :ref:`готовых соединений <nm-wificon>` для Wi-Fi нет, но известны SSID и пароль, то можно осуществить подключение напрямую:
 
-.. code-block:: bash
+.. code-block:: text
 
     nmcli device wifi connect MY_NETWORK password XXXXXXXXXX
 
@@ -512,7 +512,7 @@ KDE предоставляет особый PAM модуль для автома
 
 Для выбора предпочитаемого текстового редактора следует применять :ref:`переменные окружения <env-set>`, прописав их в личном файле ``~/.bashrc``:
 
-.. code-block:: bash
+.. code-block:: text
 
     export VISUAL=vim
     export EDITOR=vim
@@ -528,7 +528,7 @@ KDE предоставляет особый PAM модуль для автома
 
 Хотя Git подчиняется настройкам :ref:`редактора по умолчанию <editor-selection>`, допустимо его указать явно в файле конфигурации:
 
-.. code-block:: bash
+.. code-block:: text
 
     git config --global core.editor vim
 
@@ -540,19 +540,19 @@ KDE предоставляет особый PAM модуль для автома
 
 Создадим точку монтирования:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo mkdir /mnt/iso
 
 Смонтируем файл образа:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo mount -o loop /path/to/image.iso /mnt/iso
 
 По окончании произведём размонтирование:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo umount /mnt/iso
 
@@ -564,7 +564,7 @@ KDE предоставляет особый PAM модуль для автома
 
 Для этого можно воспользоваться утилитой **dd**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dd if=/dev/sr0 of=/path/to/image.iso bs=4M status=progress
 
@@ -578,13 +578,13 @@ KDE предоставляет особый PAM модуль для автома
 
 Монтирование raw образа раздела, созданного посредством утилиты **dd**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo mount -o ro,loop /path/to/image.raw /mnt/dd-image
 
 Размонтирование:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo umount /mnt/dd-image
 
@@ -600,7 +600,7 @@ KDE предоставляет особый PAM модуль для автома
 
 Запустим утилиту **fdisk** и попытаемся найти внутри образа разделы:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo fdisk -l /path/to/image.raw
 
@@ -610,13 +610,13 @@ KDE предоставляет особый PAM модуль для автома
 
 Произведём монтирование раздела по смещению 1048576:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo mount -o ro,loop,offset=1048576 /path/to/image.raw /mnt/dd-image
 
 Повторим операции для всех остальных разделов, обнаруженных внутри образа. По окончании работы выполним размонтирование:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo umount /mnt/dd-image
 
@@ -630,7 +630,7 @@ KDE предоставляет особый PAM модуль для автома
 
 Изменить часовой пояс можно посредством утилиты **timedatectl**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo timedatectl set-timezone Europe/Moscow
 
@@ -642,13 +642,13 @@ KDE предоставляет особый PAM модуль для автома
 
 Настройка переключения по **Alt + Shift**, раскладки EN и RU:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo localectl set-x11-keymap us,ru pc105 "" grp:alt_shift_toggle
 
 Настройка переключения по **Ctrl + Shift**, раскладки EN и RU:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo localectl set-x11-keymap us,ru pc105 "" grp:ctrl_shift_toggle
 
@@ -660,19 +660,19 @@ KDE предоставляет особый PAM модуль для автома
 
 Установка русской раскладки и режимов переключения по умолчанию (**Alt + Shift**):
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo localectl set-keymap ru
 
 Установка русской раскладки и режима переключения **Alt + Shift**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo localectl set-keymap ruwin_alt_sh-UTF-8
 
 Установка русской раскладки и режима переключения **Ctrl + Shift**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo localectl set-keymap ruwin_ct_sh-UTF-8
 
@@ -684,7 +684,7 @@ KDE предоставляет особый PAM модуль для автома
 
 Установим пакет с темой Breeze для GTK2 и GTK3:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install breeze-gtk
 
@@ -736,13 +736,13 @@ KDE предоставляет особый PAM модуль для автома
 
 Для получения mime-типа конкретного файла можно использовать утилиту **file**:
 
-.. code-block:: bash
+.. code-block:: text
 
     file foo-bar.txt
 
 Для открытия файла в ассоциированном с его mime-типом приложении применяется утилита **xdg-open**:
 
-.. code-block:: bash
+.. code-block:: text
 
     xdg-open foo-bar.txt
 
@@ -754,19 +754,19 @@ KDE предоставляет особый PAM модуль для автома
 
 Получим список доступных локалей:
 
-.. code-block:: bash
+.. code-block:: text
 
     localectl list-locales
 
 Установим английскую локаль для системы:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo localectl LANG=en_US.utf8
 
 Установим русскую локаль для системы:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo localectl LANG=ru_RU.utf8
 
@@ -778,7 +778,7 @@ KDE предоставляет особый PAM модуль для автома
 
 Для запуска приложения с другой локалью необходимо передать ему новое значение в :ref:`переменной окружения <env-set>` **LANG**:
 
-.. code-block:: bash
+.. code-block:: text
 
     LANG=en_US.utf8 foo-bar
 
@@ -790,7 +790,7 @@ KDE предоставляет особый PAM модуль для автома
 
 Для запуска приложения с другим часовым поясом необходимо передать ему новое значение в :ref:`переменной окружения <env-set>` **TZ**:
 
-.. code-block:: bash
+.. code-block:: text
 
     TZ=CET foo-bar
 
@@ -804,7 +804,7 @@ KDE предоставляет особый PAM модуль для автома
 
 Для определения типа текущей сессии, необходимо получить значение глобальной :ref:`переменной окружения <env-set>` **XDG_SESSION_TYPE**:
 
-.. code-block:: bash
+.. code-block:: text
 
     echo $XDG_SESSION_TYPE
 
@@ -816,13 +816,13 @@ KDE предоставляет особый PAM модуль для автома
 
 Установим neofetch:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install neofetch
 
 Запустим и выведем информацию о системе в консоль:
 
-.. code-block:: bash
+.. code-block:: text
 
     neofetch
 
@@ -834,6 +834,6 @@ KDE предоставляет особый PAM модуль для автома
 
 Обычно кэш обновляется автоматически при любых изменениях файлов внутри каталогов ``/usr/share/applications`` (глобально), а также ``~/.local/share/applications`` (пользователь), однако если по какой-то причине этого не произошло, выполним обновление кэшей вручную:
 
-.. code-block:: bash
+.. code-block:: text
 
     kbuildsycoca5 --noincremental

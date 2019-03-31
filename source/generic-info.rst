@@ -113,13 +113,13 @@ Grub 2.
 
 Подключение репозитория:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install --nogpgcheck https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 Отключение репозитория:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf remove rpmfusion-free-release rpmfusion-nonfree-release
 
@@ -135,13 +135,13 @@ Grub 2.
 
 Подключение репозитория:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install --nogpgcheck https://mirror.yandex.ru/fedora/russianfedora/russianfedora/free/fedora/russianfedora-free-release-stable.noarch.rpm https://mirror.yandex.ru/fedora/russianfedora/russianfedora/nonfree/fedora/russianfedora-nonfree-release-stable.noarch.rpm
 
 Отключение репозитория:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf remove russianfedora-free-release russianfedora-nonfree-release
 
@@ -189,7 +189,7 @@ RFRemix - это ремикс оргинального дистрибутива 
 
 После подключения/отключения необходимо выполнить синхронизацию:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf distro-sync
 

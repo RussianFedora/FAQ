@@ -53,7 +53,7 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Поддержка `CUDA <https://ru.wikipedia.org/wiki/CUDA>`__ доступна исключительно в :ref:`проприетарных драйверах <nvidia-drivers>` NVIDIA. Установим необходимые пакеты:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
 
@@ -76,7 +76,7 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Для оперативного обновления микропрограмм (прошивок) существует утилита `fwupd <https://github.com/hughsie/fwupd>`__:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install fwupd
 
@@ -84,31 +84,31 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Обновление базы данных программы:
 
-.. code-block:: bash
+.. code-block:: text
 
     fwupdmgr refresh
 
 Вывод списка устройств, микропрограмма которых может быть обновлена:
 
-.. code-block:: bash
+.. code-block:: text
 
     fwupdmgr get-devices
 
 Проверка наличия обновлений с выводом подробной информации о каждом из них:
 
-.. code-block:: bash
+.. code-block:: text
 
     fwupdmgr get-updates
 
 Установка обнаруженных обновлений микропрограмм:
 
-.. code-block:: bash
+.. code-block:: text
 
     fwupdmgr update
 
 Некоторые устройства могут быть обновлены лишь при следующей загрузке системы, поэтому выполним перезагрузку:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo systemctl reboot
 
@@ -164,13 +164,13 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Полный список загруженных драйверов можно получить так:
 
-.. code-block:: bash
+.. code-block:: text
 
     lspci -nnk
 
 Теперь необходимо пересобрать inird образ:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dracut --force
 
@@ -184,7 +184,7 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Для начала воспользуемся утилитой **rfkill** для того, чтобы определить состояние беспроводных модулей:
 
-.. code-block:: bash
+.. code-block:: text
 
     rfkill
 
@@ -200,13 +200,13 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Снимем программную блокировку Wi-Fi и активируем модуль:
 
-.. code-block:: bash
+.. code-block:: text
 
     rfkill unblock wlan
 
 Установим программную блокировку Wi-Fi и отключим модуль:
 
-.. code-block:: bash
+.. code-block:: text
 
     rfkill block wlan
 
@@ -218,13 +218,13 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Снимем программную блокировку Bluetooth и активируем модуль:
 
-.. code-block:: bash
+.. code-block:: text
 
     rfkill unblock bluetooth
 
 Установим программную блокировку Bluetooth и отключим модуль:
 
-.. code-block:: bash
+.. code-block:: text
 
     rfkill block bluetooth
 
@@ -236,13 +236,13 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Снимем программную блокировку LTE (4G) и активируем модуль:
 
-.. code-block:: bash
+.. code-block:: text
 
     rfkill unblock wwan
 
 Установим программную блокировку LTE (4G) и отключим модуль:
 
-.. code-block:: bash
+.. code-block:: text
 
     rfkill block wwan
 
@@ -261,7 +261,7 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Воспользуемся утилитой **screen** для подключения к последовательному порту:
 
-.. code-block:: bash
+.. code-block:: text
 
     screen /dev/ttyS0 115200
 
@@ -294,7 +294,7 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Сначала посредством запуска утилиты **cvt** вычислим значение строки ``Modeline`` для требуемого разрешения:
 
-.. code-block:: bash
+.. code-block:: text
 
     cvt 1920 1080 60
 
@@ -336,13 +336,13 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Установим sysbench:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install sysbench
 
 Установим stress-ng:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install stress-ng
 
@@ -359,13 +359,13 @@ Glxgears
 
 Установка:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install glx-utils
 
 Запуск:
 
-.. code-block:: bash
+.. code-block:: text
 
     glxgears
 
@@ -376,13 +376,13 @@ GL Mark 2
 
 Установка:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install glmark2
 
 Запуск:
 
-.. code-block:: bash
+.. code-block:: text
 
     glmark2
 
@@ -393,7 +393,7 @@ Unigine Benchmark
 
 Установка:
 
-.. code-block:: bash
+.. code-block:: text
 
     wget https://assets.unigine.com/d/Unigine_Superposition-1.0.run
     chmod +x Unigine_Superposition-1.0.run
@@ -427,7 +427,7 @@ Firmware - это бинарный проприетарный блоб, соде
 
 При загрузке :ref:`бинарных прошивок <linux-firmware>` ядро обязательно сохраняет информацию об этом в :ref:`системный журнал <journal-current>`, поэтому достаточно лишь отфильтровать его по ключевому слову *firmware*:
 
-.. code-block:: bash
+.. code-block:: text
 
     journalctl -b | grep firmware
 
@@ -460,7 +460,7 @@ Firmware - это бинарный проприетарный блоб, соде
 
 Установим пакет **sane-backends**, содержащий драйверы поддерживаемых сканеров:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install sane-backends sane-backends-drivers-scanners
 
@@ -474,7 +474,7 @@ Firmware - это бинарный проприетарный блоб, соде
 
 Для работы со сканерами существует приложение XSane. Установим его:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install xsane
 
@@ -490,13 +490,13 @@ Firmware - это бинарный проприетарный блоб, соде
 
 Установим её:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install smartmontools
 
 Запустим утилиту:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo smartctl -a /dev/sda
 
@@ -550,7 +550,7 @@ ICC профиль можно получить либо на сайте прои
 
 Проверим наличие флагов **vmx** (Intel), либо **svm** (AMD) в выводе ``/proc/cpuinfo``:
 
-.. code-block:: bash
+.. code-block:: text
 
     grep -Eq '(vmx|svm)' /proc/cpuinfo && echo Yes || echo No
 
@@ -562,7 +562,7 @@ ICC профиль можно получить либо на сайте прои
 
 Воспользуемся утилитой **glxinfo** для вывода информации об используемом OpenGL движке:
 
-.. code-block:: bash
+.. code-block:: text
 
     glxinfo | grep -E 'OpenGL version|OpenGL renderer'
 
@@ -574,7 +574,7 @@ ICC профиль можно получить либо на сайте прои
 
 Получим версию микрокода из вывода ``/proc/cpuinfo``:
 
-.. code-block:: bash
+.. code-block:: text
 
     cat /proc/cpuinfo | grep microcode | uniq
 
@@ -598,7 +598,7 @@ ICC профиль можно получить либо на сайте прои
 
 Настройки экрана хранятся внутри JSON файлов в каталоге ``~/.local/share/kscreen``, поэтому для того, чтобы их сбросить, достаточно очистить его:
 
-.. code-block:: bash
+.. code-block:: text
 
     rm -f ~/.local/share/kscreen/*
 
@@ -612,13 +612,13 @@ ICC профиль можно получить либо на сайте прои
 
 В Fedora настройками звука управляет PulseAudio, поэтому для того, чтобы сбросить его настройки, удалим всё содержимое каталога ``~/.config/pulse``:
 
-.. code-block:: bash
+.. code-block:: text
 
     rm -f ~/.config/pulse/*
 
 Для вступления изменений в силу перезапустим PulseAudio:
 
-.. code-block:: bash
+.. code-block:: text
 
     pulseaudio -k
     pulseaudio -D
@@ -635,13 +635,13 @@ ICC профиль можно получить либо на сайте прои
 
 Использование NVENC:
 
-.. code-block:: bash
+.. code-block:: text
 
     ffmpeg -i input.mp4 -acodec aac -ac 2 -ab 128k -vcodec h264_nvenc -profile high444p -pixel_format yuv444p -preset default output.mp4
 
 Использование CUDA/CUVID:
 
-.. code-block:: bash
+.. code-block:: text
 
     ffmpeg -c:v h264_cuvid -i input.mp4 -c:v h264_nvenc -preset slow output.mkv
 

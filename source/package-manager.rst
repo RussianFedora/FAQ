@@ -65,7 +65,7 @@ Dnf, являющийся, в свою очередь, форком Yum.
 
 В таком случае рекомендуется либо локальная установка модулей посредством pip с параметром ``--user``, либо использование :ref:`Python Virtual Environment <python-venv>`:
 
-.. code-block:: bash
+.. code-block:: text
 
     pip3 --user install foo-bar
 
@@ -79,19 +79,19 @@ Dnf, являющийся, в свою очередь, форком Yum.
 
 Установим пакеты **python3-virtualenv** и **python3-setuptools**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install python3-setuptools python3-virtualenv
 
 Создадим виртуальное окружение:
 
-.. code-block:: bash
+.. code-block:: text
 
     python3 -m venv foo-bar
 
 Запустим его:
 
-.. code-block:: bash
+.. code-block:: text
 
     source foo-bar/bin/activate
 
@@ -107,13 +107,13 @@ Dnf, являющийся, в свою очередь, форком Yum.
 
 Установка SDDM:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install sddm
 
 Отключение GDM и активация SDDM:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo systemctl -f enable sddm
 
@@ -129,7 +129,7 @@ Dnf, являющийся, в свою очередь, форком Yum.
 
  Fedora 28 и более ранние версии:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf upgrade --refresh
     sudo dnf install dnf-plugin-system-upgrade
@@ -138,7 +138,7 @@ Dnf, являющийся, в свою очередь, форком Yum.
 
 Fedora 29 и новее:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf upgrade --refresh
     sudo dnf install dnf-plugin-system-upgrade
@@ -149,7 +149,7 @@ Fedora 29 и новее:
 
 Если произошёл какой-то конфликт, то рекомендуется очистить все кэши dnf:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf clean all
 
@@ -161,7 +161,7 @@ Fedora 29 и новее:
 
 Допускается обновление с любой поддерживаемой версии Fedora до Rawhide. Следует помнить, что это действие необратимо. Пути назад на стабильный выпуск без полной переустановки системы уже не будет.
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf upgrade --refresh
     sudo dnf install dnf-plugin-system-upgrade
@@ -194,13 +194,13 @@ Fedora 29 и новее:
 
 Установим утилиту **package-cleanup**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install dnf-utils
 
 Удалим дубликаты и повреждённые пакеты:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo package-cleanup --cleandupes
 
@@ -212,7 +212,7 @@ Fedora 29 и новее:
 
 Для запуска пересборки базы данных RPM следует выполнить:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo rpm --rebuilddb
 
@@ -297,7 +297,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Для ручного удаления старого ядра можно выполнить:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf remove kernel-4.10.14* kernel-core-4.10.14* kernel-modules-4.10.14* kernel-devel-4.10.14*
 
@@ -335,7 +335,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Для начала следует подключить репозиторий :ref:`RPM Fusion <rpmfusion>`, после чего установить кодеки из группы **multimedia** и **sound-and-video**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf groupupdate multimedia sound-and-video
 
@@ -347,7 +347,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Из-за патентных ограничений браузер Chromium в репозиториях Fedora сильно кастрирован. Для восстановления полной функциональности необходимо подключить :ref:`RPM Fusion <rpmfusion>` и установить пакет с кодеками для данного браузера:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install chromium-libs-media-freeworld
 
@@ -359,7 +359,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Браузер Mozilla Firefox использует ffmpeg для работы с мультимедийным контентом, поэтому необходимо его установить из репозитория :ref:`RPM Fusion <rpmfusion>`:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install ffmpeg-libs
 
@@ -379,13 +379,13 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Установим KVM и графическую утилиту управления виртуальными машинами **virt-manager**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf group install Virtualization
 
 Перезагрузим машину для вступления изменений в силу:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo systemctl reboot
 
@@ -397,7 +397,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Возможностью управления виртуальными машинами обладают члены группы **libvirt**, поэтому нужно добавить в неё свой аккаунт:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo usermod -a -G libvirt $(whoami)
 
@@ -409,14 +409,14 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Сначала нужно подключить репозиторий :ref:`RPM Fusion <rpmfusion>`, затем выполнить:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf upgrade --refresh
     sudo dnf install gcc kernel-devel kernel-headers akmod-VirtualBox VirtualBox
 
 Для нормальной работы с USB устройствами и общими папками потребуется также добавить свой аккаунт в группу **vboxusers** и **vboxsf**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo usermod -a -G vboxusers $(whoami)
     sudo usermod -a -G vboxsf $(whoami)
@@ -429,7 +429,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Сначала нужно подключить :ref:`RPM Fusion <rpmfusion>`, затем выполнить:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf upgrade --refresh
     sudo dnf install gcc kernel-devel kernel-headers akmod-wl
@@ -458,7 +458,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Чтобы установить обновление из Fedora Testing, необходимо временно подключить соответствующий репозиторий:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf upgrade --refresh foo-bar* --enablerepo=updates-testing
 
@@ -470,7 +470,7 @@ Dnf сохраняет старые ядра. Это нормально?
 Как получить список файлов установленного пакета?
 =====================================================
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf repoquery -l foo-bar
 
@@ -482,13 +482,13 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Для этого можно воспользоваться плагином dnf repoquery:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf repoquery -f */имя_файла
 
 Для поиска бинарников и динамических библиотек можно применять альтернативный метод:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf provides */имя_бинарника
 
@@ -502,19 +502,19 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Java 8:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install java-1.8.0-openjdk
 
 Java 9:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install java-9-openjdk
 
 Java 11:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install java-11-openjdk
 
@@ -526,7 +526,7 @@ Java 11:
 
 Для выбора дефолтной версии Java следует использовать систему альтернатив:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo update-alternatives --config java
 
@@ -538,13 +538,13 @@ Java 11:
 
 Вывод полного списка пакетов из репозитория (на примере rpmfusion-free):
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf repo-pkgs rpmfusion-free list
 
 Вывод полного списка установленных пакетов из репозитория (также на примере rpmfusion-free):
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf repo-pkgs rpmfusion-free list installed
 
@@ -556,7 +556,7 @@ Java 11:
 
 Выполним в терминале:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf list extras
 
@@ -568,7 +568,7 @@ Java 11:
 
 Для очистки журнала транзакций dnf history, выполним:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo rm -rf /var/lib/dnf/history/*
 
@@ -580,7 +580,7 @@ Java 11:
 
 Экспортируем список установленных вручную пакетов:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf repoquery --qf "%{name}" --userinstalled > ~/packages.lst
 
@@ -588,7 +588,7 @@ Java 11:
 
 Устанавливаем отсутствующие пакеты:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install $(cat ~/packages.lst)
 
@@ -600,19 +600,19 @@ Java 11:
 
 Скачивание пакета foo-bar в текущий рабочий каталог:
 
-.. code-block:: bash
+.. code-block:: text
 
     dnf download foo-bar
 
 Скачивание пакета foo-bar в текущий рабочий каталог вместе со всеми его зависимостями, отсутствующими в системе в настоящий момент:
 
-.. code-block:: bash
+.. code-block:: text
 
     dnf download --resolve foo-bar
 
 Скачивание пакета foo-bar вместе со всеми зависимостями в указанный каталог:
 
-.. code-block:: bash
+.. code-block:: text
 
     dnf download --resolve foo-bar --downloaddir ~/mypkg
 
@@ -626,19 +626,19 @@ Java 11:
 
 Включить репозиторий постоянно (на примере *foo-bar*):
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf config-manager --set-enabled foo-bar
 
 Отключить репозиторий постоянно:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf config-manager --set-disabled foo-bar
 
 Временно подключить репозиторий и установить пакет из него:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install --refresh foo-bar --enablerepo=foo-bar
 
@@ -654,13 +654,13 @@ Java 11:
 
 Вывод списка доступных модулей:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf module list
 
 Установка пакета в виде модуля (на примере *nodejs*):
 
-.. code-block:: bash
+.. code-block:: text
 
     dnf module install nodejs:6/default
 
@@ -674,14 +674,14 @@ Java 11:
 
 Отключение репозитория с модулями:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf config-manager --set-disabled fedora-modular
     sudo dnf config-manager --set-disabled updates-modular
 
 Повторное включение поддержки модулей:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf config-manager --set-enabled fedora-modular
     sudo dnf config-manager --set-enabled updates-modular
@@ -727,7 +727,7 @@ Java 11:
 
 Проще всего найти данное обновление в :ref:`Bodhi <fedora-bodhi>`, затем выполнить:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf upgrade --refresh --enablerepo=updates-testing --advisory=FEDORA-2018-XXXXXXXXX
 
@@ -741,19 +741,19 @@ Java 11:
 
 Для начала установим клиент :ref:`Koji <koji-about>`:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install koji
 
 Выведем список всех успешно завершённых сборок пакета **kernel** за последнюю неделю:
 
-.. code-block:: bash
+.. code-block:: text
 
     koji list-builds --package=kernel --after=$(($(date +%s) - 604800)) --state=COMPLETE
 
 Скачаем выбранную сборку для используемой архитектуры:
 
-.. code-block:: bash
+.. code-block:: text
 
     koji download-build kernel-4.19.7-300.fc29 --arch=$(uname -m)
 
@@ -795,7 +795,7 @@ Java 11:
 
 Для того, чтобы разрешить установку :ref:`расширений Gnome Shell <gnome-shell-extensions>` из браузеров, необходимо установить соответствующий пакет:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install gnome-shell-browser
 
@@ -812,7 +812,7 @@ Java 11:
 
 Для того, чтобы разрешить установку расширений оболочки KDE Plasma из браузеров, необходимо установить соответствующий пакет:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install plasma-browser-integration
 
@@ -833,7 +833,7 @@ Java 11:
 
 Установка для всех пользователей в виде пакета из репозиториев Fedora:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install gnome-shell-extension-topicons-plus
 
@@ -845,7 +845,7 @@ Java 11:
 
 Да. Если необходимо, чтобы dnf использовал глобальные общесистемные кэши репозиториев, следует применять параметр ``-C``, например:
 
-.. code-block:: bash
+.. code-block:: text
 
     dnf -C search foo
 
@@ -857,7 +857,7 @@ Java 11:
 
 Удаление всех 32-битных пакетов из системы:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf remove "*.i686"
 

@@ -51,33 +51,33 @@
 
 Установим утилиты fedpkg и mock:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install fedpkg mock
 
 Скачаем исходники необходимого пакета **foo-bar**:
 
-.. code-block:: bash
+.. code-block:: text
 
     fedpkg clone -a foo-bar
 
 Перейдём в каталог с загруженными исходниками и переключимся на ветку для конкретной версии Fedora (если нужна версия из Rawhide - следует использовать **master**):
 
-.. code-block:: bash
+.. code-block:: text
 
     cd foo-bar
     fedpkg switch-branch f29
 
 Внесём свои правки, сделаем коммит в репозиторий:
 
-.. code-block:: bash
+.. code-block:: text
 
     git add -A
     git commit -m "Description of our changes."
 
 Запустим автоматическую :ref:`сборку в mock <build-package>`:
 
-.. code-block:: bash
+.. code-block:: text
 
     fedpkg mockbuild
 
@@ -91,13 +91,13 @@
 
 Клонируем репозиторий источника:
 
-.. code-block:: bash
+.. code-block:: text
 
     git clone https://example.org/foo-bar.git
 
 Создадим архив с исходниками:
 
-.. code-block:: bash
+.. code-block:: text
 
     git archive --format=tar --prefix=foo-bar-1.0.0/ HEAD | gzip > ~/rpmbuild/SOURCES/foo-bar-1.0.0.tar.gz
 
@@ -111,13 +111,13 @@
 
 Создание build override для репозитория f29-free:
 
-.. code-block:: bash
+.. code-block:: text
 
     koji-rpmfusion tag f29-free-override foo-bar-1.0-1.fc29
 
 Удаление build override для репозитория f29-free:
 
-.. code-block:: bash
+.. code-block:: text
 
     koji-rpmfusion untag f29-free-override foo-bar-1.0-1.fc29
 
@@ -169,7 +169,7 @@
 
 Получить список установленных :ref:`переменных окружения <env-set>` можно посредством выполнения утилиты **env**:
 
-.. code-block:: bash
+.. code-block:: text
 
     env
 
@@ -181,7 +181,7 @@
 
 Получение списка установленных :ref:`переменных окружения <env-set>` для запущенных процессов:
 
-.. code-block:: bash
+.. code-block:: text
 
     cat /proc/$PID/environ
 
@@ -195,20 +195,20 @@
 
 Вариант 1. Запуск процесса с заданной переменной окружения:
 
-.. code-block:: bash
+.. code-block:: text
 
     FOO=BAR /usr/bin/foo-bar
 
 Вариант 2. Экспорт переменной окружения в запущенном терминале и дальнейший запуск приложения:
 
-.. code-block:: bash
+.. code-block:: text
 
     export FOO=BAR
     /usr/bin/foo-bar
 
 Вариант 3. Модификация директивы **Exec=** в ярлыке запуска приложения:
 
-.. code-block:: bash
+.. code-block:: text
 
     env FOO=BAR /usr/bin/foo-bar
 
@@ -220,14 +220,14 @@
 
 Сначала укажем своё имя и адрес электронной почты:
 
-.. code-block:: bash
+.. code-block:: text
 
     git config --global user.name "Your Name"
     git config --global user.email email@example.org
 
 Установим :ref:`предпочитаемый текстовый редактор <editor-git>` для работы с коммитами:
 
-.. code-block:: bash
+.. code-block:: text
 
     git config --global core.editor vim
 
@@ -243,19 +243,19 @@
 
 Клонируем наш форк:
 
-.. code-block:: bash
+.. code-block:: text
 
     git clone git@github.com:YOURNAME/foo-bar.git
 
 Создадим ветку **new_feature** для наших изменений (для каждого крупного изменения следует создавать отдельную ветку и *ни в коем случае не коммитить в master*):
 
-.. code-block:: bash
+.. code-block:: text
 
     git checkout -b new_feature
 
 Внесём свои правки в проект, затем осуществим их фиксацию:
 
-.. code-block:: bash
+.. code-block:: text
 
     git add -A
     git commit -s
@@ -268,13 +268,13 @@
 
 Многие проекты обновляются слишком быстро, поэтому потребуется осуществить синхронизацию наших изменений с актуальной веткой апстрима. Для этого подключим к нашем форку оригинальный репозиторий:
 
-.. code-block:: bash
+.. code-block:: text
 
     git remote add upstream https://github.com/foo/foo-bar.git
 
 Скачаем актуальные изменения и выполним rebase основной ветки нашего форка с апстримом:
 
-.. code-block:: bash
+.. code-block:: text
 
     git fetch upstream
     git checkout master
@@ -282,14 +282,14 @@
 
 Осуществим rebase ветки с нашими изменениями с основной:
 
-.. code-block:: bash
+.. code-block:: text
 
     git checkout new_feature
     git rebase master
 
 Отправим наши изменения на сервер:
 
-.. code-block:: bash
+.. code-block:: text
 
     git push -u origin new_feature
 
@@ -303,7 +303,7 @@
 
 Установим компилятор GCC-C++ (G++) и ряд вспомогательных компонентов:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install gcc-c++ rpm-build
 
@@ -321,7 +321,7 @@
 
 Скомпилируем и слинкуем его:
 
-.. code-block:: bash
+.. code-block:: text
 
     g++ $(rpm -E %{optflags}) -fPIC helloworld.cpp -o helloworld $(rpm -E %{build_ldflags}) -lstdc++
 
@@ -331,7 +331,7 @@
 
 Запустим результат сборки:
 
-.. code-block:: bash
+.. code-block:: text
 
     ./helloworld
 
@@ -345,7 +345,7 @@
 
 Для начала рекомендуется (хотя и не обязательно) установить отладочную информацию для данного пакета:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf debuginfo-install foo-bar
 
@@ -353,7 +353,7 @@
 
 Чтобы получить бэктрейс падения, нужно выполнить в терминале:
 
-.. code-block:: bash
+.. code-block:: text
 
     gdb /usr/bin/foo-bar 2>&1 | tee ~/backtrace.log
 
@@ -363,7 +363,7 @@
 
 Также рекомендуется ещё сделать трассировку приложения до момента падения:
 
-.. code-block:: bash
+.. code-block:: text
 
     strace -o ~/trace.log /usr/bin/foo-bar
 
@@ -397,13 +397,13 @@
 
 Скомпилируем и слинкуем наш пример:
 
-.. code-block:: bash
+.. code-block:: text
 
     gcc -shared $(rpm -E %{optflags}) -fPIC example.c -o example.so $(rpm -E %{build_ldflags}) -lc
 
 Внедрим нашу библиотеку в известный доверенный процесс, например **whoami**:
 
-.. code-block:: bash
+.. code-block:: text
 
     LD_PRELOAD=./example.so whoami
 
@@ -434,7 +434,7 @@
 
 Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то также необходимо переопределить ряд :ref:`переменных окружения <env-set>` внутри секции ``%build``:
 
-.. code-block:: bash
+.. code-block:: text
 
     export AR=%{_bindir}/gcc-ar
     export RANLIB=%{_bindir}/gcc-ranlib
@@ -442,7 +442,7 @@
 
 Если используется система сборки cmake, то помимо этого придётся патчить манифест **CMakeLists.txt**, т.к. он в настоящее время не поддерживает загрузку переопределённых значений:
 
-.. code-block:: bash
+.. code-block:: text
 
     set(CMAKE_AR "/usr/bin/gcc-ar")
     set(CMAKE_RANLIB "/usr/bin/gcc-ranlib")
@@ -460,7 +460,7 @@
 
 Установим компилятор и необходимые для сборки библиотеки:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install gcc libsolv-devel
 
@@ -510,7 +510,7 @@
 
 Скомпилируем и слинкуем приложение:
 
-.. code-block:: bash
+.. code-block:: text
 
     gcc $(rpm -E %{optflags}) -fPIC rpm-unneeded.c -o rpm-unneeded $(rpm -E %{build_ldflags}) -lsolv -lsolvext
 
@@ -551,7 +551,7 @@
 
 Создадим shell-скрипт ``run-foo.sh`` для запуска бинарника:
 
-.. code-block:: bash
+.. code-block:: text
 
     #!/usr/bin/sh
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
@@ -561,7 +561,7 @@
 
 Установим скрипту разрешение не запуск и запустим его:
 
-.. code-block:: bash
+.. code-block:: text
 
     chmod +x run-foo.sh
     ./run-foo.sh
@@ -602,7 +602,7 @@
 
 Установим данную IDE, а также компилятор C++ и ряд необходимых библиотек и средств для сборки проектов:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install gcc gcc-c++ qt-creator qt5-qtbase-devel cmake
 
@@ -616,19 +616,19 @@
 
 Подключим COPR репозиторий:
 
-.. code-block:: bash
+.. code-block:: text
 
     dnf copr enable phracek/PyCharm
 
 Установим IDE:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install pycharm-community pycharm-community-jre
 
 При необходимости установим также набор популярных плагинов:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install pycharm-community-plugins
 
@@ -640,12 +640,12 @@
 
 Для работы с образами прошивок можно использовать утилиту **binwalk**. Установим её:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install binwalk
 
 Произведём анализ файла и получим результат:
 
-.. code-block:: bash
+.. code-block:: text
 
     binwalk foo-bar.bin

@@ -42,7 +42,7 @@
 
 В Google Chrome и Chromium частично реализовано, но отключено на этапе компиляции и без особых VA-API патчей недоступно. Репозиторий :ref:`RPM Fusion <rpmfusion>` предоставляет такую сборку Chromium. Для её установки необходимо подключить его и установить пакет **chromium-vaapi**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install chromium-vaapi
 
@@ -66,7 +66,7 @@
 
 Мы настоятельно рекомендуем устанавливать данный мессенджер исключительно из :ref:`RPM Fusion <rpmfusion>`:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install telegram-desktop
 
@@ -95,7 +95,7 @@
 
 Да. Для работы с документами в формате LaTeX рекомендуется использовать **texmaker**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install texmaker
 
@@ -107,7 +107,7 @@
 
 Наборы кириллических шрифтов доступны в виде коллекции:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install texlive-collection-langcyrillic texlive-cyrillic texlive-russ texlive-babel-russian
 
@@ -119,13 +119,13 @@
 
 Скачать любое интересующее видео с Youtube, а также ряда других хостингов, можно посредством утилиты **youtube-dl**, доступной в основном репозитории Fedora:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install youtube-dl
 
 Скачивание видео с настройками по умолчанию в наилучшем качестве:
 
-.. code-block:: bash
+.. code-block:: text
 
     youtube-dl -f bestvideo https://www.youtube.com/watch?v=XXXXXXXXXX
 
@@ -133,7 +133,7 @@
 
 Чтобы гарантировано скачать видео с указанным кодеком со звуком требуется дополнительно установить пакет **ffmpeg** из репозиториев :ref:`RPM Fusion <rpmfusion>`:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install ffmpeg
 
@@ -145,7 +145,7 @@
 
 Данная утилита имеет множество параметров командной строки, справку по которым можно найти в её странице man:
 
-.. code-block:: bash
+.. code-block:: text
 
     man youtube-dl
 
@@ -159,7 +159,7 @@
 
 К сожалению, :ref:`штатный способ <usb-flash>` записи посредством использования утилиты dd не сработает в случае ISO образов MS Windows, поэтому для этого следует применять утилиту WoeUSB:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install WoeUSB
 
@@ -173,7 +173,7 @@
 
 Пример перекодировки файла из cp1251 (Windows-1251) в юникод (UTF-8):
 
-.. code-block:: bash
+.. code-block:: text
 
     iconv -f cp1251 -t utf8 test.txt > result.txt
 
@@ -189,25 +189,25 @@
 
 Установим пакет **jmtpfs**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install jmtpfs fuse
 
 Создадим каталог, в который будет смонтирована ФС смартфона:
 
-.. code-block:: bash
+.. code-block:: text
 
     mkdir -p ~/myphone
 
 Подключим устройство к компьютеру или ноутбуку по USB, разблокируем его и выберем режим MTP, после чего выполним:
 
-.. code-block:: bash
+.. code-block:: text
 
     jmtpfs ~/myphone
 
 По окончании работы обязательно завершим MTP сессию:
 
-.. code-block:: bash
+.. code-block:: text
 
     fusermount -u ~/myphone
 
@@ -219,7 +219,7 @@
 
 Для простой и эффективной работы со смартфоном на базе ОС Android пользователи рабочей среды KDE Plasma 5 могут использовать KDE Connect:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install kde-connect
 
@@ -238,13 +238,13 @@ KDE Connect не видит мой смартфон. Как исправить?
 
 Добавим правило, разрешающее входящие соединения к сервису kdeconnectd посредством :ref:`Firewalld <firewalld-about>`:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo firewall-cmd --add-service=kde-connect --permanent
 
 Применим новые правила:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo firewall-cmd --reload
 
@@ -256,13 +256,13 @@ KDE Connect не видит мой смартфон. Как исправить?
 
 Сначала получим пути, в которых KDE пытается обнаружить *ярлыки* шаблонов новых файлов:
 
-.. code-block:: bash
+.. code-block:: text
 
     kf5-config --path templates
 
 По умолчанию это ``~/.local/share/templates`` и он не существует, поэтому создадим его:
 
-.. code-block:: bash
+.. code-block:: text
 
     mkdir -p ~/.local/share/templates
 
@@ -297,7 +297,7 @@ KDE Connect не видит мой смартфон. Как исправить?
 
 В отличие от :ref:`Dolphin в KDE <dolphin-templates>`, Nautilus в Gnome ищет файлы шаблонов в стандартном каталоге :ref:`$XDG_TEMPLATES_DIR <xdg-reallocate>`. Получим путь к нему:
 
-.. code-block:: bash
+.. code-block:: text
 
     xdg-user-dir TEMPLATES
 
@@ -342,7 +342,7 @@ KDE Connect не видит мой смартфон. Как исправить?
 
 Удалим старые файлы из профилей Thunderbird:
 
-.. code-block:: bash
+.. code-block:: text
 
     rm -f ~/.thunderbird/*/extensions/langpack-ru@thunderbird.mozilla.org.xpi
     rm -f ~/.thunderbird/*/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi
@@ -350,7 +350,7 @@ KDE Connect не видит мой смартфон. Как исправить?
 
 Создадим символические ссылки на месте удалённых XPI файлов:
 
-.. code-block:: bash
+.. code-block:: text
 
     ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-ru@thunderbird.mozilla.org.xpi ~/.thunderbird/*/extensions/langpack-ru@thunderbird.mozilla.org.xpi
     ln -s /usr/lib64/thunderbird/distribution/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi ~/.thunderbird/*/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi
@@ -366,13 +366,13 @@ KDE Connect не видит мой смартфон. Как исправить?
 
 Для распознавания бар-кода на изображении и получения его содержимого воспользуемся пакетом **zbar**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install zbar
 
 Применим утилиту **zbarimg** для получения содержимого кодов внутри файла изображения ``foo-bar.png``:
 
-.. code-block:: bash
+.. code-block:: text
 
     zbarimg --noxml foo-bar.png
 
@@ -388,19 +388,19 @@ KDE Connect не видит мой смартфон. Как исправить?
 
 Установим Tesseract и набор файлов для русского языка:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install tesseract tesseract-langpack-rus
 
 Установим утилиту gImageReader с интерфейсом на Qt (для пользователей KDE, LXQt):
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install gimagereader-qt
 
 Установим утилиту gImageReader с интерфейсом на GTK3 (для пользователей Gnome, XFCE, LXDE, Mate, Cinnamon и т.д.):
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install gimagereader-gtk
 
@@ -418,7 +418,7 @@ Zip-архивы, созданные штатными средствами ОС 
 
 Утилита unzip поддерживает явное указание кодировки, поэтому воспользуемся данной функцией:
 
-.. code-block:: bash
+.. code-block:: text
 
     unzip -O cp1251 foo-bar.zip -d /path/to/destination
 
@@ -458,7 +458,7 @@ Zip-архивы, созданные штатными средствами ОС 
 
 Запустим скачивание ресурса **example.org**:
 
-.. code-block:: bash
+.. code-block:: text
 
     wget --random-wait -r -p -e robots=off -U "Mozilla/5.0 (X11; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0" https://example.org
 
@@ -472,13 +472,13 @@ Zip-архивы, созданные штатными средствами ОС 
 
 Установим пакет ImageMagick:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install ImageMagick
 
 Осуществим извлечение метаданных `EXIF <https://ru.wikipedia.org/wiki/EXIF>`__ файла **foo-bar.jpg**:
 
-.. code-block:: bash
+.. code-block:: text
 
     identify -verbose foo-bar.jpg
 
@@ -498,7 +498,7 @@ Zip-архивы, созданные штатными средствами ОС 
 
 Перейдём в каталог, в котором находится файл **bookmarks.html** и запустим проверку:
 
-.. code-block:: bash
+.. code-block:: text
 
     wget --spider --force-html --no-verbose --tries=1 --timeout=10 -i bookmarks.html
 

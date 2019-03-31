@@ -35,7 +35,7 @@
 
 Для получения информации о текущих параметрах ядра достаточно выполнить:
 
-.. code-block:: bash
+.. code-block:: text
 
     cat /proc/cmdline
 
@@ -47,7 +47,7 @@
 
 Для получения информации о загруженных модулях ядра следует применять **lsmod**:
 
-.. code-block:: bash
+.. code-block:: text
 
     lsmod
 
@@ -59,7 +59,7 @@
 
 Для получения краткой справочной информации о поддерживаемых параметрах конкретного модуля ядра необходимо использовать **modinfo**:
 
-.. code-block:: bash
+.. code-block:: text
 
     modinfo foo-bar
 
@@ -73,13 +73,13 @@
 
 Чтобы посмотреть журнал работы системы с момента загрузки, нужно выполнить:
 
-.. code-block:: bash
+.. code-block:: text
 
     journalctl -b
 
 Чтобы посмотреть только журнал работы ядра (аналог dmesg):
 
-.. code-block:: bash
+.. code-block:: text
 
     journalctl -k
 
@@ -91,13 +91,13 @@
 
 Вывести список всех загрузок:
 
-.. code-block:: bash
+.. code-block:: text
 
     journalctl --list-boots
 
 Вывести содержимое журнала загрузки с идентификатором **X**:
 
-.. code-block:: bash
+.. code-block:: text
 
     journalctl -b -X
 
@@ -109,13 +109,13 @@
 
 Необходимо перенаправить поток стандартного вывода в файл:
 
-.. code-block:: bash
+.. code-block:: text
 
     journalctl -b > ~/abc.txt
 
 Также можно воспользоваться утилитой fpaste для автоматической загрузки файла на сервис `fpaste.org <https://paste.fedoraproject.org/>`__:
 
-.. code-block:: bash
+.. code-block:: text
 
     journalctl -b | fpaste
 
@@ -131,13 +131,13 @@
 
 Для начала создадим каталог для точки монтирования:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo mkdir /media/fedora
 
 Смонтируем корневой раздел установленной ОС:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo mount -t ext4 /dev/sda1 /media/fedora
 
@@ -145,7 +145,7 @@
 
 Переходим в каталог с корневой ФС и монтируем ряд необходимых для работы окружения виртуальных ФС:
 
-.. code-block:: bash
+.. code-block:: text
 
     cd /media/fedora
     sudo mount -t proc /proc proc
@@ -158,19 +158,19 @@
 
 Теперь выполняем вход в chroot:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo chroot /media/fedora
 
 Выполняем нужные действия, а по окончании завершаем работу chroot окружения:
 
-.. code-block:: bash
+.. code-block:: text
 
     logout
 
 Отмонтируем раздел:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo umount /media/fedora
 
@@ -206,13 +206,13 @@
 
 Выполним принудительную ротацию системных журналов для сброса их из памяти на диск:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo journalctl --rotate
 
 Очистим все записи с диска, старше 1 секунды:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo journalctl --vacuum-time=1s
 
@@ -264,7 +264,7 @@
 
 Чтобы очистить кэши и буферы нужно выполнить:
 
-.. code-block:: bash
+.. code-block:: text
 
     sync && echo 3 > /proc/sys/vm/drop_caches && sync
 
@@ -276,13 +276,13 @@
 
 Переключение аппаратных часов компьютера в UTC из localtime:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo timedatectl set-local-rtc no
 
 Переключение аппаратных часов компьютера в localtime из UTC:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo timedatectl set-local-rtc yes
 
@@ -309,7 +309,7 @@
 
 Для запуска простейшего веб-сервера можно использовать Python и модуль, входящий в состав базового пакета:
 
-.. code-block:: bash
+.. code-block:: text
 
     python3 -m http.server 8080
 
@@ -323,7 +323,7 @@
 
 Изменение имени хоста возможно посредством **hostnamectl**:
 
-.. code-block:: bash
+.. code-block:: text
 
     hostnamectl set-hostname NEW
 
@@ -345,7 +345,7 @@
 
 Если файловая система была повреждена, необходимо запустить **fsck** и разрешить ему исправить её. При использовании настроек по умолчанию (LVM, ФС ext4) это делается так:
 
-.. code-block:: bash
+.. code-block:: text
 
     fsck -t ext4 /dev/mapper/fedora-root
     fsck -t ext4 /dev/mapper/fedora-home
@@ -360,7 +360,7 @@
 
 Если используется классическая схема с обычными разделами, то утилите **fsck** необходимо передавать соответствующее блочное устройство, например:
 
-.. code-block:: bash
+.. code-block:: text
 
     fsck -t ext4 /dev/sda2
     fsck -t ext4 /dev/sda3
@@ -369,7 +369,7 @@
 
 Полный список доступных устройств хранения данных можно получить:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo fdisk -l
 
@@ -382,7 +382,7 @@
 
 Если используются зашифрованные LUKS разделы, то сначала откроем соответствующее устройство:
 
-.. code-block:: bash
+.. code-block:: text
 
     cryptsetup luksOpen /dev/sda2 luks-root
 
@@ -390,7 +390,7 @@
 
 Теперь запустим проверку файловой системы:
 
-.. code-block:: bash
+.. code-block:: text
 
     fsck -t ext4 /dev/mapper/luks-root
 
@@ -398,7 +398,7 @@
 
 По окончании обязательно отключим LUKS том:
 
-.. code-block:: bash
+.. code-block:: text
 
     cryptsetup luksClose /dev/mapper/luks-root
 
@@ -436,13 +436,13 @@
 
 Включение zram в Fedora:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo systemctl enable --now zram-swap
 
 Отключение zram в Fedora:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo systemctl stop zram-swap
     sudo systemctl disable zram-swap
@@ -457,13 +457,13 @@
 
 Для точных замеров производительности сети нам потребуется как минимум два компьютера (либо компьютер и мобильное устройство), а также утилита iperf, присутствующая в репозиториях Fedora. Установим её:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install iperf2
 
 На первом устройстве запустим сервер iperf:
 
-.. code-block:: bash
+.. code-block:: text
 
     iperf -s
 
@@ -471,7 +471,7 @@
 
 Теперь временно разрешим входящие соединения на данный порт посредством :ref:`Firewalld <firewalld-about>` (правило будет действовать до перезагрузки):
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo firewall-cmd --add-port=5001/tcp
 
@@ -499,7 +499,7 @@
 
 Временно установить любой параметр ядра возможно через sysctl:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo sysctl -w foo.bar=X
 
@@ -522,7 +522,7 @@
 
 Для вступления изменений в силу требуется перезагрузка:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo systemctl reboot
 
@@ -548,25 +548,25 @@
 
 Чтобы активировать запуск Fedora в текстовом режиме, нужно переключиться на цель ``multi-user.target``:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo systemctl set-default multi-user.target
 
 Чтобы активировать запуск в графическом режиме, необходимо убедиться в том, что установлен какой-либо менеджер графического входа в систему (GDM, SDDM, LightDM и т.д.), а затем переключиться на цель ``graphical.target``:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo systemctl set-default graphical.target
 
 Определить используемый в настоящее время режим можно так:
 
-.. code-block:: bash
+.. code-block:: text
 
     systemctl get-default
 
 Изменения вступят в силу лишь после перезапуска системы:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo systemctl reboot
 
@@ -578,25 +578,25 @@
 
 Создадим файл подкачки на 4 ГБ:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dd if=/dev/zero of=/media/pagefile count=4096 bs=1M
 
 Установим правильный chmod:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo chmod 600 /media/pagefile
 
 Подготовим swapfs к работе:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo mkswap /media/pagefile
 
 Активируем файл подкачки:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo swapon /media/pagefile
 
@@ -616,7 +616,7 @@
 
 Передача содержимого локального каталога на удалённый сервер посредством rsync:
 
-.. code-block:: bash
+.. code-block:: text
 
     rsync -chavzP --stats /path/to/local user@example.org:/path/to/remote
 
@@ -630,7 +630,7 @@
 
 Получение содержимого каталога с удалённого сервера посредством rsync:
 
-.. code-block:: bash
+.. code-block:: text
 
     rsync -chavzP --stats user@example.org:/path/to/remote /path/to/local
 
@@ -644,25 +644,25 @@
 
 Для мониторинга дисковой активности существуют улититы **iotop** и **fatrace**. Установим их:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install iotop fatrace
 
 Запустим iotop в режиме накопления показаний:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo iotop -a
 
 Запустим fatrace в режиме накопления с выводом лишь информации о событиях записи на диск:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo fatrace -f W
 
 Запустим fatrace в режиме накопления с выводом информации о событиях записи на диск в файл в течение 10 минут (600 секунд):
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo fatrace -f W -o ~/disk-usage.log -s 600
 
@@ -674,13 +674,13 @@
 
 Смена метки раздела с файловой системой ext2, ext3 и ext4:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo e2label /dev/sda1 "NewLabel"
 
 Смена метки раздела с файловой системой XFS:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo xfs_admin -L "NewLabel" /dev/sda1
 
@@ -694,13 +694,13 @@
 
 Для получения всех UUID можно использовать утилиту **blkid**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo blkid
 
 Вывод UUID для указанного раздела:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo blkid /dev/sda1
 
@@ -714,13 +714,13 @@
 
 Смена UUID раздела с файловой системой ext2, ext3 и ext4:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo tune2fs /dev/sda1 -U $(uuidgen)
 
 Смена UUID раздела с файловой системой XFS:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo xfs_admin -U generate /dev/sda1
 
@@ -752,13 +752,13 @@
 
 По умолчанию ICMP трафик разрешён для большей части зон, поэтому запретить его можно вручную:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo firewall-cmd --zone=public --remove-icmp-block={echo-request,echo-reply,timestamp-reply,timestamp-request} --permanent
 
 Применим новые правила:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo firewall-cmd --reload
 
@@ -772,20 +772,20 @@
 
 Сначала отключим правило по умолчанию для :ref:`OpenVPN <using-openvpn>`, разрешающее доступ к серверу с любых IP адресов:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo firewall-cmd --zone=public --remove-service openvpn --permanent
 
 Теперь создадим rich rule, разрешающее доступ с указанных IP-адресов (или подсетей):
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo firewall-cmd --zone=public --add-rich-rule='rule family=ipv4 source address="1.2.3.4" service name="openvpn" accept' --permanent
     sudo firewall-cmd --zone=public --add-rich-rule='rule family=ipv4 source address="5.6.7.0/24" service name="openvpn" accept' --permanent
 
 Применим новые правила:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo firewall-cmd --reload
 
@@ -799,20 +799,20 @@
 
 Сначала отключим правило по умолчанию для :ref:`WireGuard <using-wireguard>`, разрешающее доступ к серверу с любых IP адресов:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo firewall-cmd --zone=public --remove-port=27015/udp --permanent
 
 Теперь создадим rich rule, разрешающее доступ с указанных IP-адресов (или подсетей):
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo firewall-cmd --zone=public --add-rich-rule='rule family=ipv4 source address="1.2.3.4" port port=27015 protocol=udp accept' --permanent
     sudo firewall-cmd --zone=public --add-rich-rule='rule family=ipv4 source address="5.6.7.0/24" port port=27015 protocol=udp accept' --permanent
 
 Применим новые правила:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo firewall-cmd --reload
 
@@ -826,7 +826,7 @@
 
 Для этой цели можно использовать внешний сервис, возвращающий только внешний IP и утилиту **curl**:
 
-.. code-block:: bash
+.. code-block:: text
 
     curl https://ifconfig.me
 
@@ -838,7 +838,7 @@
 
 Для получения идентификатора запущенного процесса (PID), следует применять утилиту **pidof**:
 
-.. code-block:: bash
+.. code-block:: text
 
     pidof foo-bar
 
@@ -860,7 +860,7 @@
 
 Чтобы отправить сигнал SIGTERM процессу с определённым :ref:`PID <get-pid>`, воспользуемся утилитой **kill**:
 
-.. code-block:: bash
+.. code-block:: text
 
     kill -15 XXXX
 
@@ -868,7 +868,7 @@
 
 Вместо явного указания PID процесса существует возможность завершить работу процесса с указанным именем посредством **killall**:
 
-.. code-block:: bash
+.. code-block:: text
 
     killall -15 foo-bar
 
@@ -886,7 +886,7 @@
 
 Чтобы отправить сигнал SIGKILL процессу с определённым :ref:`PID <get-pid>`, воспользуемся утилитой **kill**:
 
-.. code-block:: bash
+.. code-block:: text
 
     kill -9 XXXX
 
@@ -894,7 +894,7 @@
 
 Вместо явного указания PID процесса существует возможность завершить работу процесса с указанным именем посредством **killall**:
 
-.. code-block:: bash
+.. code-block:: text
 
     killall -9 foo-bar
 
@@ -934,7 +934,7 @@
 
 Сначала отключим правило по умолчанию для веб-сервера, разрешающее доступ с любых IP адресов:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo firewall-cmd --zone=public --remove-service http --permanent
     sudo firewall-cmd --zone=public --remove-service https --permanent
@@ -964,13 +964,13 @@
 
 Запустим наш скрипт:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo ./foo-bar.sh
 
 Применим новые правила файрвола:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo firewall-cmd --reload
 
@@ -992,7 +992,7 @@
 
 Вместо Docker в Fedora рекомендуется установить и использовать Podman, т.к. он не требует прав суперпользователя для работы:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install podman
 
@@ -1006,13 +1006,13 @@
 
 Для проверки работоспособности сети и наличия, либо отсутствия потерь пакетов между узлами маршрута, широко используется утилита **mtr**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install mtr
 
 Запустим проверку маршрута до узла **example.org**:
 
-.. code-block:: bash
+.. code-block:: text
 
     mtr example.org
 
@@ -1028,7 +1028,7 @@
 
 В качестве примера проверим статус опции ``CONFIG_EFI_STUB`` текущего ядра:
 
-.. code-block:: bash
+.. code-block:: text
 
     grep CONFIG_EFI_STUB /boot/config-$(uname -r)
 
@@ -1042,7 +1042,7 @@
 
 Воспользуемся утилитой **ss** для вывода списка установленных сетевых соединений:
 
-.. code-block:: bash
+.. code-block:: text
 
     ss -tupn
 
@@ -1054,7 +1054,7 @@
 
 Воспользуемся утилитой **ss** для вывода открытых портов, ожидающих входящих соединений:
 
-.. code-block:: bash
+.. code-block:: text
 
     ss -tulpn
 
@@ -1080,7 +1080,7 @@
 
 Для диагностики системы обработки прерываний, ядро имеет встроенный механизм:
 
-.. code-block:: bash
+.. code-block:: text
 
     cat /proc/interrupts
 
@@ -1094,7 +1094,7 @@
 
 Если :ref:`прерывания <kernel-irq>` распределены между процессорными ядрами не равномерно, можно использовать режим ручной балансировки:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo bash -c "echo X > /proc/irq/Y/smp_affinity"
 
@@ -1142,7 +1142,7 @@
 
 Выведем это значение при помощи соответствующей функции ядра:
 
-.. code-block:: bash
+.. code-block:: text
 
     cat /proc/sys/fs/file-max
 
@@ -1220,7 +1220,7 @@
 
 Для конвертирования образов воспользуемся штатной утилитой **qemu-img**:
 
-.. code-block:: bash
+.. code-block:: text
 
     qemu-img convert -f vdi -O qcow2 /path/to/image.vdi /path/to/image.qcow2
 
@@ -1232,13 +1232,13 @@
 
 Вариант 1. Воспользуемся утилитой **virt-v2v**:
 
-.. code-block:: bash
+.. code-block:: text
 
     virt-v2v -i vmx /path/to/image.vmx -o local -os /path/to/kvm -of qcow2
 
 Вариант 2. Воспользуемся утилитой **qemu-img**:
 
-.. code-block:: bash
+.. code-block:: text
 
     qemu-img convert -f vmdk -O qcow2 /path/to/image.vmdk /path/to/image.qcow2
 
@@ -1250,6 +1250,6 @@
 
 Для преобразования образа воспользуемся штатной утилитой **qemu-img**:
 
-.. code-block:: bash
+.. code-block:: text
 
     qemu-img convert -f vpc -O qcow2 /path/to/image.vpc /path/to/image.qcow2

@@ -158,7 +158,7 @@
 
 Да, это возможно. Необходимо выполнить:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo sysctl -w vm.swappiness=10
 
@@ -228,7 +228,7 @@
 
 В актуальных релизах Fedora пакет freetype уже собран с поддержкой субпиксельного сглаживания, поэтому чтобы получить качественный рендеринг шрифтов, необходимо лишь разрешить использование LCD фильтров, создав символическую ссылку на файл ``11-lcdfilter-default.conf`` в каталоге ``/etc/fonts/conf.d``:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo ln -s /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d/
 
@@ -248,7 +248,7 @@
 
 *Способ 2*. Установим пакет шрифтов Terminus:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dnf install terminus-fonts-console
 
@@ -299,7 +299,7 @@
 
 Схемой разбиения диска, на который будет установлен дистрибутив, должна быть **GPT**. Проверить можно посредством выполнения **fdisk**:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo fdisk -l
 
@@ -419,7 +419,7 @@
 
 Т.к. операционная система постоянно обновляется, точную дату установки ОС напрямую получить не представляется возможным. Можно лишь вывести дату последнего форматирования раздела диска, на котором установлена система:
 
-.. code-block:: bash
+.. code-block:: text
 
     sudo dumpe2fs /dev/sda1 | grep 'Filesystem created:'
 
@@ -433,6 +433,6 @@
 
 Определим режим установки системы (:ref:`UEFI <uefi-boot>` или Legacy) посредством проверки наличия, либо отсутствия каталога ``/sys/firmware/efi``:
 
-.. code-block:: bash
+.. code-block:: text
 
     test -d /sys/firmware/efi && echo EFI || echo Legacy
