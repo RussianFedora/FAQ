@@ -788,6 +788,17 @@ foo-bar       hard    nofile          8192
 </pre></div>
 </div>
 </div>
+<div class="section" id="zip-split">
+<span id="index-73"></span><span id="id46"></span><h2>Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?<a class="headerlink" href="#zip-split" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим пакет <strong>p7zip</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install p7zip
+</pre></div>
+</div>
+<p>Упакуем содержимое текущего каталога в 7-Zip архив с использованием алгоритма сжатия LZMA2 c разбиением на тома размером 4480 МБ (для размещения на DVD носителях):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>7za a -m0=LZMA2 -mx9 -r -t7z -v4480m /path/to/archive.7z
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -887,6 +898,7 @@ foo-bar       hard    nofile          8192
 <li class="toctree-l2"><a class="reference internal" href="#virtualbox-kvm">Как преобразовать образ виртуальной машины VirtualBox в формат, совместимый с KVM?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#vmware-kvm">Как преобразовать образ виртуальной машины VMWare в формат, совместимый с KVM?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#hyper-v-kvm">Как преобразовать образ виртуальной машины Hyper-V в формат, совместимый с KVM?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zip-split">Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
