@@ -503,3 +503,17 @@ Zip-архивы, созданные штатными средствами ОС 
     wget --spider --force-html --no-verbose --tries=1 --timeout=10 -i bookmarks.html
 
 В зависимости от размера файла процесс проверки может занять очень много времени.
+
+.. index:: steam, gaming
+.. _steam:
+
+Как установить Steam в Fedora?
+=================================
+
+Подключим репозитории :ref:`RPM Fusion <rpmfusion>` (как free, так и nonfree), после чего установим его:
+
+.. code-block:: text
+
+    sudo dnf install steam
+
+Ярлык запуска клиента Steam появится в главном меню используемой графической среды.

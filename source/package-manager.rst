@@ -868,17 +868,3 @@ Java 11:
 ============================================================
 
 Да, см. `здесь <https://fedoraproject.org/wiki/Infrastructure/Mirroring>`__.
-
-.. index:: steam, gaming
-.. _steam:
-
-Как установить Steam в Fedora?
-=================================
-
-Подключим репозитории :ref:`RPM Fusion <rpmfusion>` (как free, так и nonfree), после чего установим его:
-
-.. code-block:: text
-
-    sudo dnf install steam
-
-Ярлык запуска клиента Steam появится в главном меню используемой графической среды.
