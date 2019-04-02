@@ -649,3 +649,27 @@
 .. code-block:: text
 
     binwalk foo-bar.bin
+
+.. index:: rpmbuild, spec, sources
+.. _spectool:
+
+Как автоматически скачать исходники, прописанные в SPEC-файле?
+=================================================================
+
+Установим необходимые утилиты:
+
+.. code-block:: text
+
+    sudo dnf install rpm-build spectool
+
+Создадим базовую иерархию каталогов для rpmbuild:
+
+.. code-block:: text
+
+    rpmdev-setuptree
+
+Скачаем исходники, прописанные в SPEC-файле **foo-bar.spec**:
+
+.. code-block:: text
+
+    spectool -g -R foo-bar.spec
