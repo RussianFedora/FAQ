@@ -452,6 +452,16 @@ pulseaudio -D
 <p>Здесь <strong>input.mp4</strong> — имя оригинального файла, который требуется перекодировать, а в <strong>output.mp4</strong> будет сохранён результат.</p>
 <p>Больше информации можно найти <a class="reference external" href="https://trac.ffmpeg.org/wiki/HWAccelIntro">здесь</a>.</p>
 </div>
+<div class="section" id="steam-optimus">
+<span id="index-38"></span><span id="id22"></span><h2>Как запустить игру из Steam на дискретной видеокарте с поддержкой Optimus?<a class="headerlink" href="#steam-optimus" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Актуальные версии клиента Steam <a class="reference external" href="https://support.steampowered.com/kb_article.php?ref=6316-GJKC-7437">поддерживают</a> технологию NVIDIA Optimus «из коробки» если установлен <a class="reference internal" href="#nvidia-drivers"><span class="std std-ref">проприетарный драйвер Bumblebee</span></a>.</p>
+<p>Чтобы запустить игру на дискретной видеокарте, нажмём <strong>правой кнопкой мыши</strong> по нужной игре в Библиотеке, выберем пункт контекстного меню <strong>Свойства</strong>, нажмём кнопку <strong>Установить параметры запуска</strong> и в открывшемся окне введём следующее:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>primusrun %command%
+</pre></div>
+</div>
+<p>Сохраним изменения, нажав <strong>OK</strong> и <strong>Закрыть</strong>.</p>
+<p>Теперь данная игра будет всегда запускаться на дискретном видеоадаптере ноутбука.</p>
+</div>
 </div>
 
 
@@ -520,6 +530,7 @@ pulseaudio -D
 <li class="toctree-l2"><a class="reference internal" href="#kde">Как сбросить настройки экрана в KDE?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pa-reset">Как сбросить настройки звука?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nvidia-encoding">Как ускорить кодирование видео с использованием видеокарт NVIDIA?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#steam-optimus">Как запустить игру из Steam на дискретной видеокарте с поддержкой Optimus?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>

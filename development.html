@@ -471,6 +471,21 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 </pre></div>
 </div>
 </div>
+<div class="section" id="spec">
+<span id="spectool"></span><span id="index-27"></span><h2>Как автоматически скачать исходники, прописанные в SPEC-файле?<a class="headerlink" href="#spec" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим необходимые утилиты:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install rpm-build spectool
+</pre></div>
+</div>
+<p>Создадим базовую иерархию каталогов для rpmbuild:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rpmdev-setuptree
+</pre></div>
+</div>
+<p>Скачаем исходники, прописанные в SPEC-файле <strong>foo-bar.spec</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>spectool -g -R foo-bar.spec
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -529,6 +544,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 <li class="toctree-l2"><a class="reference internal" href="#cxx-ide">Какую IDE использовать для разработки на C++ в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#python-ide">Какую IDE использовать для разработки на Python в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fw-image">Как получить информацию о содержимом образа бинарной прошивки?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spec">Как автоматически скачать исходники, прописанные в SPEC-файле?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
