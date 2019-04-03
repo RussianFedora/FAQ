@@ -673,3 +673,21 @@
 .. code-block:: text
 
     spectool -g -R foo-bar.spec
+
+.. index:: spec, version, tag
+.. _spec-auto:
+
+Как автоматически инкрементировать релиз в SPEC-файле?
+==========================================================
+
+Установим необходимый для работы пакет:
+
+.. code-block:: text
+
+    sudo dnf install rpmdevtools
+
+Инкрементируем релиз SPEC-файла (директива *Release*) с автоматическим созданием новой строки в *%changelog*:
+
+.. code-block:: text
+
+    rpmdev-bumpspec -c "Updated to latest snapshot."
