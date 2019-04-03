@@ -691,3 +691,15 @@
 .. code-block:: text
 
     rpmdev-bumpspec -c "Updated to latest snapshot."
+
+.. index:: git, pull, bash, find
+.. _git-multi:
+
+Как загрузить изменения во всех вложенных репозиториях из данного каталога?
+==============================================================================
+
+Если Git репозитории были клонированы в общий каталог ``~/foo-bar``, то загрузим изменения в каждом из вложенных проектов при помощи **find** и **bash**:
+
+.. code-block:: text
+
+    find ~/foo-bar -maxdepth 1 ! -path . -type d -exec bash -c "pushd '{}' ; git pull ; popd" \;
