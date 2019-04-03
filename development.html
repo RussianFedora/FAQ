@@ -474,7 +474,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 <div class="section" id="spec">
 <span id="spectool"></span><span id="index-27"></span><h2>Как автоматически скачать исходники, прописанные в SPEC-файле?<a class="headerlink" href="#spec" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим необходимые утилиты:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install rpm-build spectool
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install rpm-build rpmdevtools
 </pre></div>
 </div>
 <p>Создадим базовую иерархию каталогов для rpmbuild:</p>
@@ -483,6 +483,24 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 </div>
 <p>Скачаем исходники, прописанные в SPEC-файле <strong>foo-bar.spec</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>spectool -g -R foo-bar.spec
+</pre></div>
+</div>
+</div>
+<div class="section" id="spec-auto">
+<span id="index-28"></span><span id="id16"></span><h2>Как автоматически инкрементировать релиз в SPEC-файле?<a class="headerlink" href="#spec-auto" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим необходимый для работы пакет:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install rpmdevtools
+</pre></div>
+</div>
+<p>Инкрементируем релиз SPEC-файла (директива <em>Release</em>) с автоматическим созданием новой строки в <em>%changelog</em>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rpmdev-bumpspec -c &quot;Updated to latest snapshot.&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="git-multi">
+<span id="index-29"></span><span id="id17"></span><h2>Как загрузить изменения во всех вложенных репозиториях из данного каталога?<a class="headerlink" href="#git-multi" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если Git репозитории были клонированы в общий каталог <code class="docutils literal notranslate"><span class="pre">~/foo-bar</span></code>, то загрузим изменения в каждом из вложенных проектов при помощи <strong>find</strong> и <strong>bash</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find ~/foo-bar -maxdepth 1 ! -path . -type d -exec bash -c &quot;pushd &#39;{}&#39; ; git pull ; popd&quot; \;
 </pre></div>
 </div>
 </div>
@@ -545,6 +563,8 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 <li class="toctree-l2"><a class="reference internal" href="#python-ide">Какую IDE использовать для разработки на Python в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fw-image">Как получить информацию о содержимом образа бинарной прошивки?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#spec">Как автоматически скачать исходники, прописанные в SPEC-файле?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spec-auto">Как автоматически инкрементировать релиз в SPEC-файле?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-multi">Как загрузить изменения во всех вложенных репозиториях из данного каталога?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
