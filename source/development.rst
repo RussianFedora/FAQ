@@ -660,7 +660,7 @@
 
 .. code-block:: text
 
-    sudo dnf install rpm-build spectool
+    sudo dnf install rpm-build rpmdevtools
 
 Создадим базовую иерархию каталогов для rpmbuild:
 
