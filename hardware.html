@@ -567,7 +567,7 @@ pulseaudio -D
 </div>
 <div class="section" id="nvidia-encoding">
 <span id="index-43"></span><span id="id27"></span><h2>Как ускорить кодирование видео с использованием видеокарт NVIDIA?<a class="headerlink" href="#nvidia-encoding" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для этого нужно установить ffmpeg, а также проприетарные драйверы NVIDIA из репозиториев <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
+<p>Для этого нужно установить ffmpeg, а также <a class="reference internal" href="#nvidia-drivers"><span class="std std-ref">проприетарные драйверы NVIDIA</span></a> из репозиториев <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
 <p>Использование NVENC:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ffmpeg -i input.mp4 -acodec aac -ac 2 -ab 128k -vcodec h264_nvenc -profile high444p -pixel_format yuv444p -preset default output.mp4
 </pre></div>
@@ -581,7 +581,7 @@ pulseaudio -D
 </div>
 <div class="section" id="steam-optimus">
 <span id="index-44"></span><span id="id28"></span><h2>Как запустить игру из Steam на дискретной видеокарте с поддержкой Optimus?<a class="headerlink" href="#steam-optimus" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Актуальные версии клиента Steam <a class="reference external" href="https://support.steampowered.com/kb_article.php?ref=6316-GJKC-7437">поддерживают</a> технологию NVIDIA Optimus «из коробки» если установлен <a class="reference internal" href="#nvidia-drivers"><span class="std std-ref">проприетарный драйвер Bumblebee</span></a>.</p>
+<p>Актуальные версии клиента Steam <a class="reference external" href="https://support.steampowered.com/kb_article.php?ref=6316-GJKC-7437">поддерживают</a> технологию NVIDIA Optimus «из коробки» если установлен <a class="reference internal" href="#nvidia-optimus"><span class="std std-ref">проприетарный драйвер Bumblebee</span></a>.</p>
 <p>Чтобы запустить игру на дискретной видеокарте, нажмём <strong>правой кнопкой мыши</strong> по нужной игре в Библиотеке, выберем пункт контекстного меню <strong>Свойства</strong>, нажмём кнопку <strong>Установить параметры запуска</strong> и в открывшемся окне введём следующее:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>primusrun %command%
 </pre></div>
