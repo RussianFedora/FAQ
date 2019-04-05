@@ -203,6 +203,26 @@
 
 Также необходимо зайти в модуль настройки UEFI BIOS компьютера или ноутбука и отключить функцию :ref:`UEFI Secure Boot <secure-boot>`, т.к. модули ядра проприетарного драйвера не имеют цифровой подписи, поэтому не могут быть загружены в данном режиме и, как следствие, возникнет чёрный экран, а также перевести его из режима **Windows Only** в **Other OS**.
 
+.. index:: video, gpu, repository, nvidia, drivers, third-party, bumblebee, primus, optimus
+.. _nvidia-remove:
+
+Как удалить проприетарные драйверы NVIDIA?
+=============================================
+
+Удалим :ref:`стандартные драйверы всех типов <nvidia-standard>`:
+
+.. code-block:: text
+
+    sudo dnf remove \*nvidia\*
+
+Удалим :ref:`драйверы Optimus <nvidia-optimus>`:
+
+.. code-block:: text
+
+    sudo dnf remove bumblebee\* bbswitch\* primus\* VirtualGL\*
+
+Пересоберём :ref:`образ initrd <initrd-rebuild>`, а также :ref:`конфиг Grub 2 <grub-rebuild>`.
+
 .. index:: video, gpu, amd, ati, drivers
 .. _amd-drivers:
 
