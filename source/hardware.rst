@@ -27,8 +27,11 @@
 
 Существует два варианта проприетарных драйверов NVIDIA:
 
-  1. стандартный драйвер (десктопы, серии GeForce, Quadro, Titan);
-  2. NVIDIA Optimus драйвер (ноутбуки с гибридной графикой).
+  * стандартный драйвер (десктопы, серии GeForce, Quadro, Titan):
+    * :ref:`современные поколения видеокарт (900, 1000, 1600 и 2000) <nvidia-standard>`;
+    * :ref:`более старые поколения видеокарт (300, 400, 500, 600 и 700) <nvidia-legacy-390>`;
+    * :ref:`устаревшие поколения видеокарт (серии 6000, 7000, 8000, 9000 и 200) <nvidia-legacy-340>`;
+  * NVIDIA Optimus драйвер (ноутбуки с гибридной графикой).
 
 .. index:: video, gpu, repository, nvidia, drivers, third-party
 .. _nvidia-standard:
@@ -83,6 +86,40 @@
 .. code-block:: text
 
     sudo dnf install xorg-x11-drv-nvidia-390xx-libs.i686
+
+Подождём 3-5 минут и убедимся, что модули были успешно собраны:
+
+.. code-block:: text
+
+    sudo akmods --force
+
+Пересоберём образ initrd:
+
+.. code-block:: text
+
+    sudo dracut --force
+
+Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
+
+.. index:: video, gpu, repository, nvidia, drivers, third-party
+.. _nvidia-legacy-340:
+
+Как установить стандартный драйвер видеокарт NVIDIA для устаревших видеокарт?
+================================================================================
+
+Подключим репозитории :ref:`RPM Fusion <rpmfusion>`.
+
+Установим стандартные драйверы из LTS ветки 340.xx для устаревших видеокарт:
+
+.. code-block:: text
+
+    sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia-340xx xorg-x11-drv-nvidia-340xx xorg-x11-drv-nvidia-340xx-libs
+
+Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:
+
+.. code-block:: text
+
+    sudo dnf install xorg-x11-drv-nvidia-340xx-libs.i686
 
 Подождём 3-5 минут и убедимся, что модули были успешно собраны:
 
