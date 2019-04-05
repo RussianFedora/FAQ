@@ -61,7 +61,7 @@
 
     sudo akmods --force
 
-Пересоберём образ initrd:
+Пересоберём :ref:`образ initrd <initrd-rebuild>`:
 
 .. code-block:: text
 
@@ -95,7 +95,7 @@
 
     sudo akmods --force
 
-Пересоберём образ initrd:
+Пересоберём :ref:`образ initrd <initrd-rebuild>`:
 
 .. code-block:: text
 
@@ -129,7 +129,7 @@
 
     sudo akmods --force
 
-Пересоберём образ initrd:
+Пересоберём :ref:`образ initrd <initrd-rebuild>`:
 
 .. code-block:: text
 
@@ -164,6 +164,20 @@
     sudo dnf install VirtualGL.i686 primus.i686
 
 Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
+
+.. index:: video, gpu, repository, nvidia, drivers, third-party, bumblebee, primus, optimus
+.. _nvidia-troubleshooting:
+
+После установки драйверов NVIDIA возникает чёрный экран. Что делать?
+=======================================================================
+
+Если по окончании установки и перезагрузки вместо окна входа в систему появится чёрный экран, то в загрузчике добавим через пробел :ref:`следующие параметры ядра <kernelpm-once>`:
+
+.. code-block:: text
+
+    rd.drivers.blacklist=nouveau nouveau.modeset=0
+
+Также необходимо зайти в модуль настройки UEFI BIOS компьютера или ноутбука и отключить функцию :ref:`UEFI Secure Boot <secure-boot>`, т.к. модули ядра проприетарного драйвера не имеют цифровой подписи, поэтому не могут быть загружены в данном режиме и, как следствие, возникнет чёрный экран, а также перевести его из режима **Windows Only** в **Other OS**.
 
 .. index:: video, gpu, amd, ati, drivers
 .. _amd-drivers:
