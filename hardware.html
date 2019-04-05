@@ -45,26 +45,153 @@
 </div>
 <div class="section" id="nvidia">
 <span id="nvidia-drivers"></span><span id="index-1"></span><h2>Как правильно установить драйверы для видеокарт NVIDIA?<a class="headerlink" href="#nvidia" title="Ссылка на этот заголовок">¶</a></h2>
-<p>См. <a class="reference external" href="https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html">здесь</a>.</p>
+<p>Существует несколько вариантов проприетарных драйверов NVIDIA:</p>
+<blockquote>
+<div><ul class="simple">
+<li>стандартный драйвер (десктопы, серии GeForce, Quadro, Titan):<ul>
+<li><a class="reference internal" href="#nvidia-standard"><span class="std std-ref">современные поколения видеокарт (900, 1000, 1600 и 2000)</span></a>;</li>
+<li><a class="reference internal" href="#nvidia-legacy-390"><span class="std std-ref">более старые поколения видеокарт (300, 400, 500, 600 и 700)</span></a>;</li>
+<li><a class="reference internal" href="#nvidia-legacy-340"><span class="std std-ref">устаревшие поколения видеокарт (серии 6000, 7000, 8000, 9000 и 200)</span></a>;</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nvidia-optimus"><span class="std std-ref">NVIDIA Optimus драйвер (ноутбуки с гибридной графикой)</span></a>.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="nvidia-standard">
+<span id="index-2"></span><span id="id2"></span><h2>Как установить стандартный драйвер (десктопы) видеокарт NVIDIA?<a class="headerlink" href="#nvidia-standard" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Подключим репозитории <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
+<p>Загрузим все обновления системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
+</pre></div>
+</div>
+<p>Установим стандартные драйверы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs
+</pre></div>
+</div>
+<p>Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install xorg-x11-drv-nvidia-libs.i686
+</pre></div>
+</div>
+<p>Подождём 3-5 минут и убедимся, что модули были успешно собраны:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo akmods --force
+</pre></div>
+</div>
+<p>Пересоберём <a class="reference internal" href="using-system.html#initrd-rebuild"><span class="std std-ref">образ initrd</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut --force
+</pre></div>
+</div>
+<p>Более подробная информация доступна <a class="reference external" href="https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html">здесь</a>.</p>
+</div>
+<div class="section" id="nvidia-legacy-390">
+<span id="index-3"></span><span id="id3"></span><h2>Как установить стандартный драйвер видеокарт NVIDIA для старых видеокарт?<a class="headerlink" href="#nvidia-legacy-390" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Подключим репозитории <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
+<p>Загрузим все обновления системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
+</pre></div>
+</div>
+<p>Установим стандартные драйверы из LTS ветки 390.xx для старых видеокарт:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia-390xx xorg-x11-drv-nvidia-390xx xorg-x11-drv-nvidia-390xx-libs nvidia-settings-390xx
+</pre></div>
+</div>
+<p>Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install xorg-x11-drv-nvidia-390xx-libs.i686
+</pre></div>
+</div>
+<p>Подождём 3-5 минут и убедимся, что модули были успешно собраны:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo akmods --force
+</pre></div>
+</div>
+<p>Пересоберём <a class="reference internal" href="using-system.html#initrd-rebuild"><span class="std std-ref">образ initrd</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut --force
+</pre></div>
+</div>
+<p>Более подробная информация доступна <a class="reference external" href="https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html">здесь</a>.</p>
+</div>
+<div class="section" id="nvidia-legacy-340">
+<span id="index-4"></span><span id="id4"></span><h2>Как установить стандартный драйвер видеокарт NVIDIA для устаревших видеокарт?<a class="headerlink" href="#nvidia-legacy-340" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Подключим репозитории <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
+<p>Загрузим все обновления системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
+</pre></div>
+</div>
+<p>Установим стандартные драйверы из LTS ветки 340.xx для устаревших видеокарт:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia-340xx xorg-x11-drv-nvidia-340xx xorg-x11-drv-nvidia-340xx-libs
+</pre></div>
+</div>
+<p>Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install xorg-x11-drv-nvidia-340xx-libs.i686
+</pre></div>
+</div>
+<p>Подождём 3-5 минут и убедимся, что модули были успешно собраны:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo akmods --force
+</pre></div>
+</div>
+<p>Пересоберём <a class="reference internal" href="using-system.html#initrd-rebuild"><span class="std std-ref">образ initrd</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut --force
+</pre></div>
+</div>
+<p>Более подробная информация доступна <a class="reference external" href="https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html">здесь</a>.</p>
+</div>
+<div class="section" id="nvidia-optimus">
+<span id="index-5"></span><span id="id5"></span><h2>Как установить драйвер видеокарт NVIDIA для ноутбуков?<a class="headerlink" href="#nvidia-optimus" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если в ноутбуке установлена видеокарта, отличная от <a class="reference internal" href="#nvidia-gtx1050"><span class="std std-ref">NVIDIA GeForce GTX 1050</span></a>, то процесс пройдёт в штатном режиме. Старые поколения (ниже серии 700 не поддерживаются).</p>
+<p>Загрузим все обновления системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
+</pre></div>
+</div>
+<p>Подключим репозиторий с Bumblebee:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf --nogpgcheck install https://linux.itecs.ncsu.edu/redhat/public/bumblebee/fedora$(rpm -E %fedora)/noarch/bumblebee-release-1.3-1.noarch.rpm https://linux.itecs.ncsu.edu/redhat/public/bumblebee-nonfree/fedora$(rpm -E %fedora)/noarch/bumblebee-nonfree-release-1.3-1.noarch.rpm
+</pre></div>
+</div>
+<p>Установим проприетарные драйверы с поддержкой NVIDIA Optimus:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc kernel-headers kernel-devel bumblebee-nvidia bbswitch-dkms primus
+</pre></div>
+</div>
+<p>Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install VirtualGL.i686 primus.i686
+</pre></div>
+</div>
+<p>Более подробная информация доступна <a class="reference external" href="https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html">здесь</a>.</p>
+</div>
+<div class="section" id="nvidia-troubleshooting">
+<span id="index-6"></span><span id="id6"></span><h2>После установки драйверов NVIDIA возникает чёрный экран. Что делать?<a class="headerlink" href="#nvidia-troubleshooting" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если по окончании установки и перезагрузки вместо окна входа в систему появится чёрный экран, то в загрузчике добавим через пробел <a class="reference internal" href="administration.html#kernelpm-once"><span class="std std-ref">следующие параметры ядра</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rd.drivers.blacklist=nouveau nouveau.modeset=0
+</pre></div>
+</div>
+<p>Также необходимо зайти в модуль настройки UEFI BIOS компьютера или ноутбука и отключить функцию <a class="reference internal" href="installation.html#secure-boot"><span class="std std-ref">UEFI Secure Boot</span></a>, т.к. модули ядра проприетарного драйвера не имеют цифровой подписи, поэтому не могут быть загружены в данном режиме и, как следствие, возникнет чёрный экран, а также перевести его из режима <strong>Windows Only</strong> в <strong>Other OS</strong>.</p>
+</div>
+<div class="section" id="nvidia-remove">
+<span id="index-7"></span><span id="id7"></span><h2>Как удалить проприетарные драйверы NVIDIA?<a class="headerlink" href="#nvidia-remove" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим <a class="reference internal" href="#nvidia-standard"><span class="std std-ref">стандартные драйверы всех типов</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove \*nvidia\*
+</pre></div>
+</div>
+<p>Удалим <a class="reference internal" href="#nvidia-optimus"><span class="std std-ref">драйверы Optimus</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove bumblebee\* bbswitch\* primus\* VirtualGL\*
+</pre></div>
+</div>
+<p>Пересоберём <a class="reference internal" href="using-system.html#initrd-rebuild"><span class="std std-ref">образ initrd</span></a>, а также <a class="reference internal" href="using-system.html#grub-rebuild"><span class="std std-ref">конфиг Grub 2</span></a>.</p>
 </div>
 <div class="section" id="amd">
-<span id="amd-drivers"></span><span id="index-2"></span><h2>Как правильно установить драйверы для видеокарт AMD?<a class="headerlink" href="#amd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="amd-drivers"></span><span id="index-8"></span><h2>Как правильно установить драйверы для видеокарт AMD?<a class="headerlink" href="#amd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установка драйверов для видеокарт AMD (ATI) не требуется, т.к. как amdgpu (современные видеокарты), так и radeon (устаревшие модели) входят в состав ядра Linux.</p>
 </div>
 <div class="section" id="opencl-amd">
-<span id="amdgpu-pro"></span><span id="index-3"></span><h2>Как заставить работать OpenCL на видеокартах AMD?<a class="headerlink" href="#opencl-amd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="amdgpu-pro"></span><span id="index-9"></span><h2>Как заставить работать OpenCL на видеокартах AMD?<a class="headerlink" href="#opencl-amd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>AMD предоставляет поддержку <a class="reference external" href="https://ru.wikipedia.org/wiki/OpenCL">OpenCL</a> на своих видеокартах исключительно на проприетарных драйверах AMDGPU-PRO, которые выпускаются только для Ubuntu LTS и на Fedora работать не будут.</p>
 <p>Вместо OpenCL для кодирования и декодирования мультимедиа можно использовать VA-API, который работает «из коробки».</p>
 </div>
 <div class="section" id="cuda-nvidia">
-<span id="nvidia-cuda"></span><span id="index-4"></span><h2>Как установить поддержку CUDA на видеокартах NVIDIA?<a class="headerlink" href="#cuda-nvidia" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="nvidia-cuda"></span><span id="index-10"></span><h2>Как установить поддержку CUDA на видеокартах NVIDIA?<a class="headerlink" href="#cuda-nvidia" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Поддержка <a class="reference external" href="https://ru.wikipedia.org/wiki/CUDA">CUDA</a> доступна исключительно в <a class="reference internal" href="#nvidia-drivers"><span class="std std-ref">проприетарных драйверах</span></a> NVIDIA. Установим необходимые пакеты:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
 </pre></div>
 </div>
 </div>
 <div class="section" id="linux-hardware">
-<span id="index-5"></span><span id="id2"></span><h2>На что в первую очередь следует обратить внимание при выборе ноутбука для Linux?<a class="headerlink" href="#linux-hardware" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-11"></span><span id="id8"></span><h2>На что в первую очередь следует обратить внимание при выборе ноутбука для Linux?<a class="headerlink" href="#linux-hardware" title="Ссылка на этот заголовок">¶</a></h2>
 <blockquote>
 <div><ol class="arabic simple">
 <li>Следует обратить внимание на производителя <a class="reference internal" href="#wifi-chip"><span class="std std-ref">установленного Wi-Fi модуля</span></a>.</li>
@@ -75,7 +202,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="uefi-bios-fedora">
-<span id="fedora-fwupd"></span><span id="index-6"></span><h2>Как обновить прошивку UEFI BIOS и других устройств непосредственно из Fedora?<a class="headerlink" href="#uefi-bios-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fedora-fwupd"></span><span id="index-12"></span><h2>Как обновить прошивку UEFI BIOS и других устройств непосредственно из Fedora?<a class="headerlink" href="#uefi-bios-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для оперативного обновления микропрограмм (прошивок) существует утилита <a class="reference external" href="https://github.com/hughsie/fwupd">fwupd</a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install fwupd
 </pre></div>
@@ -103,7 +230,7 @@
 </div>
 </div>
 <div class="section" id="wi-fi-linux">
-<span id="wifi-chip"></span><span id="index-7"></span><h2>Какие модули Wi-Fi корректно работают в Linux?<a class="headerlink" href="#wi-fi-linux" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="wifi-chip"></span><span id="index-13"></span><h2>Какие модули Wi-Fi корректно работают в Linux?<a class="headerlink" href="#wi-fi-linux" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Без проблем работают Wi-Fi модули следующих производителей:</p>
 <blockquote>
 <div><ul class="simple">
@@ -126,20 +253,20 @@
 </div></blockquote>
 </div>
 <div class="section" id="nvidia-geforce-gtx-1050">
-<span id="nvidia-gtx1050"></span><span id="index-8"></span><h2>В моём ноутбуке установлена видеокарта NVIDIA GeForce GTX 1050 и после запуска система зависает. Что делать?<a class="headerlink" href="#nvidia-geforce-gtx-1050" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="nvidia-gtx1050"></span><span id="index-14"></span><h2>В моём ноутбуке установлена видеокарта NVIDIA GeForce GTX 1050 и после запуска система зависает. Что делать?<a class="headerlink" href="#nvidia-geforce-gtx-1050" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Случайные зависания системы, неработоспособность тачпада и других USB устройств - это следствие сбоев при работе свободного драйвера nouveau на данной видеокарте.</p>
 <p>В качестве решения необходимо установить проприетарные драйверы по такому алгоритму:</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li>произвести чистую установку систему со <a class="reference internal" href="generic-info.html#download"><span class="std std-ref">свежего Fedora Live USB</span></a> (respin);</li>
-<li>войти в систему, установить все обновления и, <strong>не перезагружаясь</strong>, выполнить установку <a class="reference internal" href="#nvidia-drivers"><span class="std std-ref">проприетарных драйверов</span></a> Optimus;</li>
+<li>войти в систему, установить все обновления и, <strong>не перезагружаясь</strong>, выполнить установку <a class="reference internal" href="#nvidia-optimus"><span class="std std-ref">проприетарных драйверов Optimus</span></a>;</li>
 <li>выполнить перезагрузку системы.</li>
 </ol>
 </div></blockquote>
 <p>Если всё сделано верно, то система начнёт функционировать в штатном режиме. В противном случае следует повторить с самого начала.</p>
 </div>
 <div class="section" id="driver-disable">
-<span id="index-9"></span><span id="id3"></span><h2>Как можно навсегда отключить определённый драйвер устройства?<a class="headerlink" href="#driver-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-15"></span><span id="id9"></span><h2>Как можно навсегда отключить определённый драйвер устройства?<a class="headerlink" href="#driver-disable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы навсегда отключить какой-то драйвер в Linux, необходимо создать файл в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/modprobe.d</span></code> с любым именем, например <code class="docutils literal notranslate"><span class="pre">disable-nv.conf</span></code>, и примерно таким содержанием:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>install nouveau /bin/false
 </pre></div>
@@ -156,7 +283,7 @@
 <p>Чтобы отменить действие, достаточно удалить созданный файл и снова пересобрать initrd.</p>
 </div>
 <div class="section" id="rfkill-status">
-<span id="index-10"></span><span id="id4"></span><h2>Модуль настройки сети не отображает беспроводных устройств. Что делать?<a class="headerlink" href="#rfkill-status" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-16"></span><span id="id10"></span><h2>Модуль настройки сети не отображает беспроводных устройств. Что делать?<a class="headerlink" href="#rfkill-status" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для начала воспользуемся утилитой <strong>rfkill</strong> для того, чтобы определить состояние беспроводных модулей:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rfkill
 </pre></div>
@@ -165,7 +292,7 @@
 <p>Статус <strong>soft blocked</strong> означает, что устройство отключено программно, например режимом <em>В самолёте</em>.</p>
 </div>
 <div class="section" id="wi-fi">
-<span id="rfkill-wifi"></span><span id="index-11"></span><h2>Как программно включить или отключить беспроводной модуль Wi-Fi?<a class="headerlink" href="#wi-fi" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="rfkill-wifi"></span><span id="index-17"></span><h2>Как программно включить или отключить беспроводной модуль Wi-Fi?<a class="headerlink" href="#wi-fi" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Снимем программную блокировку Wi-Fi и активируем модуль:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rfkill unblock wlan
 </pre></div>
@@ -176,7 +303,7 @@
 </div>
 </div>
 <div class="section" id="bluetooth">
-<span id="rfkill-bluetooth"></span><span id="index-12"></span><h2>Как программно включить или отключить беспроводной модуль Bluetooth?<a class="headerlink" href="#bluetooth" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="rfkill-bluetooth"></span><span id="index-18"></span><h2>Как программно включить или отключить беспроводной модуль Bluetooth?<a class="headerlink" href="#bluetooth" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Снимем программную блокировку Bluetooth и активируем модуль:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rfkill unblock bluetooth
 </pre></div>
@@ -187,7 +314,7 @@
 </div>
 </div>
 <div class="section" id="lte-4g">
-<span id="rfkill-lte"></span><span id="index-13"></span><h2>Как программно включить или отключить беспроводной модуль LTE (4G)?<a class="headerlink" href="#lte-4g" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="rfkill-lte"></span><span id="index-19"></span><h2>Как программно включить или отключить беспроводной модуль LTE (4G)?<a class="headerlink" href="#lte-4g" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Снимем программную блокировку LTE (4G) и активируем модуль:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rfkill unblock wwan
 </pre></div>
@@ -198,7 +325,7 @@
 </div>
 </div>
 <div class="section" id="com-rs-232">
-<span id="screen-com"></span><span id="index-14"></span><h2>Как правильно работать с COM портами (RS-232)?<a class="headerlink" href="#com-rs-232" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="screen-com"></span><span id="index-20"></span><h2>Как правильно работать с COM портами (RS-232)?<a class="headerlink" href="#com-rs-232" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для работы с COM портами (RS-232) можно применять следующие утилиты:</p>
 <blockquote>
 <div><ul class="simple">
@@ -218,7 +345,7 @@
 <p>Если при попытке подключения появляется сообщение об ошибке <em>access denied</em>, необходимо добавить аккаунт в <a class="reference internal" href="security.html#com-dialout"><span class="std std-ref">группу dialout</span></a>.</p>
 </div>
 <div class="section" id="dac-ddc">
-<span id="index-15"></span><span id="id5"></span><h2>При подключении монитора через переходник отображается неправильное разрешение. Как исправить?<a class="headerlink" href="#dac-ddc" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-21"></span><span id="id11"></span><h2>При подключении монитора через переходник отображается неправильное разрешение. Как исправить?<a class="headerlink" href="#dac-ddc" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Большинство «переходников» из цифры в аналог (DVI-D -&gt; D-SUB, HDMI -&gt; D-SUB и т.д.) не передают данные с монитора о поддерживаемых им разрешениях экрана системе посредством протокола <a class="reference external" href="https://ru.wikipedia.org/wiki/Display_Data_Channel">Display Data Channel (DDC)</a>, поэтому существует два решения:</p>
 <blockquote>
 <div><ul class="simple">
@@ -228,7 +355,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="x11-resulutions">
-<span id="index-16"></span><span id="id6"></span><h2>Как прописать список поддерживаемых монитором разрешений?<a class="headerlink" href="#x11-resulutions" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-22"></span><span id="id12"></span><h2>Как прописать список поддерживаемых монитором разрешений?<a class="headerlink" href="#x11-resulutions" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Создадим отдельный файл конфигурации для монитора <code class="docutils literal notranslate"><span class="pre">10-monitor.conf</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/X11/xorg.conf.d</span></code> и пропишем доступные разрешения и используемый драйвер.</p>
 <p>Сначала посредством запуска утилиты <strong>cvt</strong> вычислим значение строки <code class="docutils literal notranslate"><span class="pre">Modeline</span></code> для требуемого разрешения:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cvt 1920 1080 60
@@ -260,7 +387,7 @@ EndSection
 <p>Вместо <strong>intel</strong> укажем реально используемый драйвер видеокарты. Изменения вступят в силу при следующей загрузке системы.</p>
 </div>
 <div class="section" id="benchmark-cpu">
-<span id="index-17"></span><span id="id7"></span><h2>Какой бенчмарк можно использовать для оценки производительности системы?<a class="headerlink" href="#benchmark-cpu" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-23"></span><span id="id13"></span><h2>Какой бенчмарк можно использовать для оценки производительности системы?<a class="headerlink" href="#benchmark-cpu" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В качестве CPU бенчмарка рекомендуется использовать <a class="reference external" href="https://github.com/akopytov/sysbench#usage">sysbench</a>, либо <a class="reference external" href="https://kernel.ubuntu.com/~cking/stress-ng/">stress-ng</a>:</p>
 <p>Установим sysbench:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install sysbench
@@ -272,7 +399,7 @@ EndSection
 </div>
 </div>
 <div class="section" id="benchmark-gpu">
-<span id="index-18"></span><span id="id8"></span><h2>Какой бенчмарк можно использовать для оценки производительности видеокарты?<a class="headerlink" href="#benchmark-gpu" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-24"></span><span id="id14"></span><h2>Какой бенчмарк можно использовать для оценки производительности видеокарты?<a class="headerlink" href="#benchmark-gpu" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В настоящее время существует несколько бенчмарков:</p>
 <div class="section" id="glxgears">
 <h3>Glxgears<a class="headerlink" href="#glxgears" title="Ссылка на этот заголовок">¶</a></h3>
@@ -310,27 +437,27 @@ chmod +x Unigine_Superposition-1.0.run
 </div>
 </div>
 <div class="section" id="firmware">
-<span id="linux-firmware"></span><span id="index-19"></span><h2>Что такое firmware и для чего она необходима?<a class="headerlink" href="#firmware" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="linux-firmware"></span><span id="index-25"></span><h2>Что такое firmware и для чего она необходима?<a class="headerlink" href="#firmware" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Firmware - это бинарный проприетарный блоб, содержащий образ прошивки, который загружается и используется определённым устройством.</p>
 <p>В большинстве случаев, соответствующее устройство не будет функционировать без наличия данной прошивки в каталоге прошивок ядра Linux.</p>
 </div>
 <div class="section" id="firmware-install">
-<span id="index-20"></span><span id="id9"></span><h2>Где взять бинарные прошивки для устройств и как их установить?<a class="headerlink" href="#firmware-install" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-26"></span><span id="id15"></span><h2>Где взять бинарные прошивки для устройств и как их установить?<a class="headerlink" href="#firmware-install" title="Ссылка на этот заголовок">¶</a></h2>
 <p><a class="reference internal" href="#linux-firmware"><span class="std std-ref">Бинарные прошивки</span></a> для большей части устройств уже находятся в пакете <strong>linux-firmware</strong>, но некоторые (например часть принтеров HP), загружают их самостоятельно, либо поставляют внутри отдельных firmware-пакетов.</p>
 </div>
 <div class="section" id="firmware-status">
-<span id="index-21"></span><span id="id10"></span><h2>Как проверить используются ли в моём устройстве бинарные прошивки?<a class="headerlink" href="#firmware-status" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-27"></span><span id="id16"></span><h2>Как проверить используются ли в моём устройстве бинарные прошивки?<a class="headerlink" href="#firmware-status" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При загрузке <a class="reference internal" href="#linux-firmware"><span class="std std-ref">бинарных прошивок</span></a> ядро обязательно сохраняет информацию об этом в <a class="reference internal" href="administration.html#journal-current"><span class="std std-ref">системный журнал</span></a>, поэтому достаточно лишь отфильтровать его по ключевому слову <em>firmware</em>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>journalctl -b | grep firmware
 </pre></div>
 </div>
 </div>
 <div class="section" id="display-resolution">
-<span id="index-22"></span><span id="id11"></span><h2>Можно ли использовать несколько дисплеев с разным разрешением?<a class="headerlink" href="#display-resolution" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-28"></span><span id="id17"></span><h2>Можно ли использовать несколько дисплеев с разным разрешением?<a class="headerlink" href="#display-resolution" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Дисплеи с разным разрешением поддерживаются как X11, так и Wayland в полной мере и настраиваются либо в графическом режиме средствами установленной графической среды, либо через <strong>xrandr</strong>.</p>
 </div>
 <div class="section" id="dpi">
-<span id="display-dpi"></span><span id="index-23"></span><h2>Можно ли использовать несколько дисплеев с разным значением DPI?<a class="headerlink" href="#dpi" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="display-dpi"></span><span id="index-29"></span><h2>Можно ли использовать несколько дисплеев с разным значением DPI?<a class="headerlink" href="#dpi" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Дисплеи с разным значением DPI (PPI) не поддерживаются в X11 (но будут в будущем полноценно поддерживаться в Wayland), поэтому для вывода изображения на таких конфигурациях применяется одна из двух конфигураций:</p>
 <blockquote>
 <div><ul class="simple">
@@ -341,7 +468,7 @@ chmod +x Unigine_Superposition-1.0.run
 <p>Оба этих метода далеки от совершенства, что сильно портит качество изображения. Таким образом, при выборе нескольких мониторов следует убедиться в том, чтобы их DPI были одинаковыми.</p>
 </div>
 <div class="section" id="scan-drivers">
-<span id="index-24"></span><span id="id12"></span><h2>Как настроить сканер?<a class="headerlink" href="#scan-drivers" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-30"></span><span id="id18"></span><h2>Как настроить сканер?<a class="headerlink" href="#scan-drivers" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет <strong>sane-backends</strong>, содержащий драйверы поддерживаемых сканеров:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install sane-backends sane-backends-drivers-scanners
 </pre></div>
@@ -349,7 +476,7 @@ chmod +x Unigine_Superposition-1.0.run
 <p>Перезапустим <a class="reference internal" href="#scan-app"><span class="std std-ref">приложения</span></a>, поддерживающие работу со сканерами, для вступления изменений в силу.</p>
 </div>
 <div class="section" id="scan-app">
-<span id="index-25"></span><span id="id13"></span><h2>При помощи какого приложения можно осуществлять сканирование документов?<a class="headerlink" href="#scan-app" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-31"></span><span id="id19"></span><h2>При помощи какого приложения можно осуществлять сканирование документов?<a class="headerlink" href="#scan-app" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для работы со сканерами существует приложение XSane. Установим его:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install xsane
 </pre></div>
@@ -357,7 +484,7 @@ chmod +x Unigine_Superposition-1.0.run
 <p>Если в нём не отображаются устройства сканирования, необходимо <a class="reference internal" href="#scan-drivers"><span class="std std-ref">установить драйверы</span></a>.</p>
 </div>
 <div class="section" id="hdd-ssd">
-<span id="smart-status"></span><span id="index-26"></span><h2>Как получить информацию о состоянии HDD или SSD накопителя?<a class="headerlink" href="#hdd-ssd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="smart-status"></span><span id="index-32"></span><h2>Как получить информацию о состоянии HDD или SSD накопителя?<a class="headerlink" href="#hdd-ssd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Подробную информацию о состоянии накопителя можно получить из вывода системы самодиагностики <a class="reference external" href="https://ru.wikipedia.org/wiki/S.M.A.R.T.">S.M.A.R.T.</a> при помощи утилиты <strong>smartctl</strong>.</p>
 <p>Установим её:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install smartmontools
@@ -370,55 +497,55 @@ chmod +x Unigine_Superposition-1.0.run
 <p>Здесь вместо <strong>/dev/sda</strong> следует указать устройство, информацию по состоянию которого требуется вывести.</p>
 </div>
 <div class="section" id="icc-profile">
-<span id="index-27"></span><span id="id14"></span><h2>Как улучшить цветопередачу монитора, либо дисплея ноутбука?<a class="headerlink" href="#icc-profile" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-33"></span><span id="id20"></span><h2>Как улучшить цветопередачу монитора, либо дисплея ноутбука?<a class="headerlink" href="#icc-profile" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для улучшения цветопередачи рекомендуется загрузить и установить соответствующий данной ЖК матрице цветовой профиль (ICC profile).</p>
 </div>
 <div class="section" id="icc">
-<span id="icc-download"></span><span id="index-28"></span><h2>Где найти ICC профиль для установленного в моём мониторе или ноутбуке дисплея?<a class="headerlink" href="#icc" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="icc-download"></span><span id="index-34"></span><h2>Где найти ICC профиль для установленного в моём мониторе или ноутбуке дисплея?<a class="headerlink" href="#icc" title="Ссылка на этот заголовок">¶</a></h2>
 <p>ICC профиль можно получить либо на сайте производителя устройства, либо извлечь из набора драйверов дисплея для Windows, либо найти готовый, созданный на специальном оборудовании.</p>
 <p>Большое количество готовых цветовых профилей для ноутбуков, созданных на специальном калибровочном оборудовании, можно найти на сайте <a class="reference external" href="https://www.notebookcheck.net">Notebook Check</a>.</p>
 </div>
 <div class="section" id="icc-install">
-<span id="index-29"></span><span id="id15"></span><h2>Я нашёл цветовой профиль для дисплея. Как мне его установить в систему?<a class="headerlink" href="#icc-install" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-35"></span><span id="id21"></span><h2>Я нашёл цветовой профиль для дисплея. Как мне его установить в систему?<a class="headerlink" href="#icc-install" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Пользователям KDE необходимо открыть <strong>Параметры системы</strong> - <strong>Оборудование</strong> - <strong>Цветовая коррекция</strong>, перейти на вкладку <strong>Профили</strong>, нажать кнопку <strong>Добавить профиль</strong>, указать ICC-файл на диске, после чего подвердить установку. Теперь на вкладке <strong>Устройства</strong> можно заменить стандартный цветовой профиль на только что установленный. Также его можно назначить по умолчанию для всех пользователей системы (потребуется <a class="reference internal" href="security.html#sudo-password"><span class="std std-ref">доступ к sudo</span></a>).</p>
 <p>Пользователи Gnome должны установить утилиту Gnome Color Manager, после чего импортировать и применить загруженный ICC-файл.</p>
 <p>Изменения вступают в силу немедленно.</p>
 </div>
 <div class="section" id="tlp">
-<span id="tlp-battery"></span><span id="index-30"></span><h2>Нужно ли использовать TLP для оптимизации работы батареи?<a class="headerlink" href="#tlp" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="tlp-battery"></span><span id="index-36"></span><h2>Нужно ли использовать TLP для оптимизации работы батареи?<a class="headerlink" href="#tlp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>На современных поколениях ноутбуков использовать TLP не следует, т.к. контроллеры аккумуляторных батарей способны самостоятельно контролировать уровень заряда и балансировать износ ячеек.</p>
 <p>Если всё же требуется установить предел заряда например от 70% до 90%, вместо TLP лучше один раз воспользоваться фирменной утилитой производителя устройства, задать необходимые настройки и сохранить изменения в NVRAM материнской платы. В таком случае они будут работать в любой ОС.</p>
 </div>
 <div class="section" id="cpu-virt">
-<span id="index-31"></span><span id="id16"></span><h2>Как определить имеет ли процессор аппаратную поддержку виртуализации?<a class="headerlink" href="#cpu-virt" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-37"></span><span id="id22"></span><h2>Как определить имеет ли процессор аппаратную поддержку виртуализации?<a class="headerlink" href="#cpu-virt" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проверим наличие флагов <strong>vmx</strong> (Intel), либо <strong>svm</strong> (AMD) в выводе <code class="docutils literal notranslate"><span class="pre">/proc/cpuinfo</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>grep -Eq &#39;(vmx|svm)&#39; /proc/cpuinfo &amp;&amp; echo Yes || echo No
 </pre></div>
 </div>
 </div>
 <div class="section" id="gl-engine">
-<span id="index-32"></span><span id="id17"></span><h2>Как определить какой движок используется для вывода трёхмерной графики?<a class="headerlink" href="#gl-engine" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-38"></span><span id="id23"></span><h2>Как определить какой движок используется для вывода трёхмерной графики?<a class="headerlink" href="#gl-engine" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Воспользуемся утилитой <strong>glxinfo</strong> для вывода информации об используемом OpenGL движке:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>glxinfo | grep -E &#39;OpenGL version|OpenGL renderer&#39;
 </pre></div>
 </div>
 </div>
 <div class="section" id="microcode-version">
-<span id="index-33"></span><span id="id18"></span><h2>Как определить версию установленного микрокода процессора?<a class="headerlink" href="#microcode-version" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-39"></span><span id="id24"></span><h2>Как определить версию установленного микрокода процессора?<a class="headerlink" href="#microcode-version" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Получим версию микрокода из вывода <code class="docutils literal notranslate"><span class="pre">/proc/cpuinfo</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/cpuinfo | grep microcode | uniq
 </pre></div>
 </div>
 </div>
 <div class="section" id="vsync-off">
-<span id="index-34"></span><span id="id19"></span><h2>Как отключить вертикальную синхронизацию для одного приложения?<a class="headerlink" href="#vsync-off" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-40"></span><span id="id25"></span><h2>Как отключить вертикальную синхронизацию для одного приложения?<a class="headerlink" href="#vsync-off" title="Ссылка на этот заголовок">¶</a></h2>
 <p>На видеокартах NVIDIA с установленным <a class="reference internal" href="#nvidia-drivers"><span class="std std-ref">проприетарным драйвером</span></a> отключить вертикальную синхронизацию для одного приложения можно посредством установки <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменной окружения</span></a> <code class="docutils literal notranslate"><span class="pre">__GL_SYNC_TO_VBLANK</span></code> значения <code class="docutils literal notranslate"><span class="pre">0</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>__GL_SYNC_TO_VBLANK=0 /usr/bin/foo-bar
 </pre></div>
 </div>
 </div>
 <div class="section" id="kde">
-<span id="kde-video-reset"></span><span id="index-35"></span><h2>Как сбросить настройки экрана в KDE?<a class="headerlink" href="#kde" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="kde-video-reset"></span><span id="index-41"></span><h2>Как сбросить настройки экрана в KDE?<a class="headerlink" href="#kde" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Настройки экрана хранятся внутри JSON файлов в каталоге <code class="docutils literal notranslate"><span class="pre">~/.local/share/kscreen</span></code>, поэтому для того, чтобы их сбросить, достаточно очистить его:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rm -f ~/.local/share/kscreen/*
 </pre></div>
@@ -426,7 +553,7 @@ chmod +x Unigine_Superposition-1.0.run
 <p>Изменения вступят в силу при следующем входе в систему.</p>
 </div>
 <div class="section" id="pa-reset">
-<span id="index-36"></span><span id="id20"></span><h2>Как сбросить настройки звука?<a class="headerlink" href="#pa-reset" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-42"></span><span id="id26"></span><h2>Как сбросить настройки звука?<a class="headerlink" href="#pa-reset" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В Fedora настройками звука управляет PulseAudio, поэтому для того, чтобы сбросить его настройки, удалим всё содержимое каталога <code class="docutils literal notranslate"><span class="pre">~/.config/pulse</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rm -f ~/.config/pulse/*
 </pre></div>
@@ -439,7 +566,7 @@ pulseaudio -D
 <p>Сразу после этого все настройки звука будут сброшены на установленные по умолчанию.</p>
 </div>
 <div class="section" id="nvidia-encoding">
-<span id="index-37"></span><span id="id21"></span><h2>Как ускорить кодирование видео с использованием видеокарт NVIDIA?<a class="headerlink" href="#nvidia-encoding" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-43"></span><span id="id27"></span><h2>Как ускорить кодирование видео с использованием видеокарт NVIDIA?<a class="headerlink" href="#nvidia-encoding" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этого нужно установить ffmpeg, а также проприетарные драйверы NVIDIA из репозиториев <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
 <p>Использование NVENC:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ffmpeg -i input.mp4 -acodec aac -ac 2 -ab 128k -vcodec h264_nvenc -profile high444p -pixel_format yuv444p -preset default output.mp4
@@ -453,7 +580,7 @@ pulseaudio -D
 <p>Больше информации можно найти <a class="reference external" href="https://trac.ffmpeg.org/wiki/HWAccelIntro">здесь</a>.</p>
 </div>
 <div class="section" id="steam-optimus">
-<span id="index-38"></span><span id="id22"></span><h2>Как запустить игру из Steam на дискретной видеокарте с поддержкой Optimus?<a class="headerlink" href="#steam-optimus" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-44"></span><span id="id28"></span><h2>Как запустить игру из Steam на дискретной видеокарте с поддержкой Optimus?<a class="headerlink" href="#steam-optimus" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Актуальные версии клиента Steam <a class="reference external" href="https://support.steampowered.com/kb_article.php?ref=6316-GJKC-7437">поддерживают</a> технологию NVIDIA Optimus «из коробки» если установлен <a class="reference internal" href="#nvidia-drivers"><span class="std std-ref">проприетарный драйвер Bumblebee</span></a>.</p>
 <p>Чтобы запустить игру на дискретной видеокарте, нажмём <strong>правой кнопкой мыши</strong> по нужной игре в Библиотеке, выберем пункт контекстного меню <strong>Свойства</strong>, нажмём кнопку <strong>Установить параметры запуска</strong> и в открывшемся окне введём следующее:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>primusrun %command%
@@ -494,6 +621,12 @@ pulseaudio -D
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные с использованием различного оборудования</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#linux">Какие видеокарты лучше всего работают на Linux?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nvidia">Как правильно установить драйверы для видеокарт NVIDIA?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvidia-standard">Как установить стандартный драйвер (десктопы) видеокарт NVIDIA?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvidia-legacy-390">Как установить стандартный драйвер видеокарт NVIDIA для старых видеокарт?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvidia-legacy-340">Как установить стандартный драйвер видеокарт NVIDIA для устаревших видеокарт?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvidia-optimus">Как установить драйвер видеокарт NVIDIA для ноутбуков?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvidia-troubleshooting">После установки драйверов NVIDIA возникает чёрный экран. Что делать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvidia-remove">Как удалить проприетарные драйверы NVIDIA?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#amd">Как правильно установить драйверы для видеокарт AMD?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#opencl-amd">Как заставить работать OpenCL на видеокартах AMD?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cuda-nvidia">Как установить поддержку CUDA на видеокартах NVIDIA?</a></li>
