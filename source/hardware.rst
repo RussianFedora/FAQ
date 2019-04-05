@@ -25,7 +25,12 @@
 Как правильно установить драйверы для видеокарт NVIDIA?
 ==========================================================
 
-См. `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
+Существует два варианта проприетарных драйверов NVIDIA:
+
+  1. стандартный драйвер (десктопы, серии GeForce, Quadro, Titan);
+  2. NVIDIA Optimus драйвер (ноутбуки с гибридной графикой).
+
+Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
 
 .. index:: video, gpu, amd, ati, drivers
 .. _amd-drivers:
