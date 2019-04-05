@@ -25,13 +25,15 @@
 Как правильно установить драйверы для видеокарт NVIDIA?
 ==========================================================
 
-Существует два варианта проприетарных драйверов NVIDIA:
+Существует несколько вариантов проприетарных драйверов NVIDIA:
 
   * стандартный драйвер (десктопы, серии GeForce, Quadro, Titan):
+
     * :ref:`современные поколения видеокарт (900, 1000, 1600 и 2000) <nvidia-standard>`;
     * :ref:`более старые поколения видеокарт (300, 400, 500, 600 и 700) <nvidia-legacy-390>`;
     * :ref:`устаревшие поколения видеокарт (серии 6000, 7000, 8000, 9000 и 200) <nvidia-legacy-340>`;
-  * NVIDIA Optimus драйвер (ноутбуки с гибридной графикой).
+
+  * :ref:`NVIDIA Optimus драйвер (ноутбуки с гибридной графикой) <nvidia-optimus>`.
 
 .. index:: video, gpu, repository, nvidia, drivers, third-party
 .. _nvidia-standard:
@@ -132,6 +134,32 @@
 .. code-block:: text
 
     sudo dracut --force
+
+Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
+
+.. index:: video, gpu, repository, nvidia, drivers, third-party, bumblebee, primus, optimus
+.. _nvidia-optimus:
+
+Как установить драйвер видеокарт NVIDIA для ноутбуков?
+=========================================================
+
+Подключим репозиторий с Bumblebee:
+
+.. code-block:: text
+
+    sudo dnf --nogpgcheck install https://linux.itecs.ncsu.edu/redhat/public/bumblebee/fedora$(rpm -E %fedora)/noarch/bumblebee-release-1.3-1.noarch.rpm https://linux.itecs.ncsu.edu/redhat/public/bumblebee-nonfree/fedora$(rpm -E %fedora)/noarch/bumblebee-nonfree-release-1.3-1.noarch.rpm
+
+Установим проприетарные драйверы с поддержкой NVIDIA Optimus:
+
+.. code-block:: text
+
+    sudo dnf install gcc kernel-headers kernel-devel bumblebee-nvidia bbswitch-dkms primus
+
+Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:
+
+.. code-block:: text
+
+    sudo dnf install VirtualGL.i686 primus.i686
 
 Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
 
