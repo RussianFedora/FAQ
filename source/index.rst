@@ -18,6 +18,7 @@
    package-manager.rst
    administration.rst
    networking.rst
+   virtualization.rst
    security.rst
    using-system.rst
    using-applications.rst
