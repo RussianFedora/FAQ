@@ -703,3 +703,21 @@
 .. code-block:: text
 
     find ~/foo-bar -maxdepth 1 ! -path . -type d -exec bash -c "pushd '{}' ; git pull ; popd" \;
+
+.. index:: git, checkout, branch
+.. _git-empty:
+
+Как создать пустую ветку в Git без общей истории?
+====================================================
+
+Создадим новую пустую ветку **foo-bar** от текущего HEAD:
+
+.. code-block:: text
+
+    git checkout --orphan foo-bar
+
+Создадим удалим всё проиндексированное содержимое данной ветки:
+
+.. code-block:: text
+
+    git reset --hard
