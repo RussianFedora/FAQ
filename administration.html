@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Вопросы, связанные с администрированием системы &#8212; Документация Fedora FAQ RU 2019.03.25</title>
+    <title>Вопросы, связанные с системным администрированием &#8212; Документация Fedora FAQ RU 2019.03.25</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="_static/faq-icon.ico"/>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
-    <link rel="next" title="Вопросы, связанные с безопасностью" href="security.html" />
+    <link rel="next" title="Вопросы, связанные с сетевым администрированием" href="networking.html" />
     <link rel="prev" title="Вопросы, связанные с пакетным менеджером и установкой пакетов" href="package-manager.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -38,7 +38,7 @@
           <div class="body" role="main">
             
   <div class="section" id="administration">
-<span id="id1"></span><h1>Вопросы, связанные с администрированием системы<a class="headerlink" href="#administration" title="Ссылка на этот заголовок">¶</a></h1>
+<span id="id1"></span><h1>Вопросы, связанные с системным администрированием<a class="headerlink" href="#administration" title="Ссылка на этот заголовок">¶</a></h1>
 <div class="section" id="kernelpm-once">
 <span id="index-0"></span><span id="id2"></span><h2>Как однократно передать параметр ядра?<a class="headerlink" href="#kernelpm-once" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для передачи параметра необходимо в меню загрузчика Grub 2 выбрать нужную строку и нажать клавишу <strong>E</strong> на клавиатуре для перехода к её редактированию, затем в конце через пробел дописать нужный параметр (или параметры), после чего нажать <strong>Enter</strong>, чтобы начать процесс загрузки.</p>
@@ -143,16 +143,12 @@ sudo mount -t efivarfs efivarfs sys/firmware/efi/efivars
 <span id="configure-ups"></span><span id="index-9"></span><h2>Как настроить ИБП (UPS) в Fedora?<a class="headerlink" href="#ups-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2012/10/01/podnimaem-nut-v-linux.html">здесь</a>.</p>
 </div>
-<div class="section" id="ssh">
-<span id="ssh-keys-error"></span><span id="index-10"></span><h2>При использовании SSH появляется ошибка доступа к ключам. Как исправить?<a class="headerlink" href="#ssh" title="Ссылка на этот заголовок">¶</a></h2>
-<p>См. <a class="reference external" href="https://www.easycoding.org/2016/07/31/reshaem-problemu-s-ssh-klyuchami-v-fedora-24.html">здесь</a>.</p>
-</div>
 <div class="section" id="journald-limit">
-<span id="index-11"></span><span id="id10"></span><h2>Системные журналы занимают слишком много места. Как их ограничить?<a class="headerlink" href="#journald-limit" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-10"></span><span id="id10"></span><h2>Системные журналы занимают слишком много места. Как их ограничить?<a class="headerlink" href="#journald-limit" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2016/08/24/ogranichivaem-sistemnye-zhurnaly-v-fedora-24.html">здесь</a>.</p>
 </div>
 <div class="section" id="journald-wipe">
-<span id="index-12"></span><span id="id11"></span><h2>Как немедленно очистить все системные журналы?<a class="headerlink" href="#journald-wipe" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-11"></span><span id="id11"></span><h2>Как немедленно очистить все системные журналы?<a class="headerlink" href="#journald-wipe" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Выполним принудительную ротацию системных журналов для сброса их из памяти на диск:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo journalctl --rotate
 </pre></div>
@@ -162,35 +158,19 @@ sudo mount -t efivarfs efivarfs sys/firmware/efi/efivars
 </pre></div>
 </div>
 </div>
-<div class="section" id="firewalld-port-forwarding">
-<span id="index-13"></span><span id="id12"></span><h2>Как пробросить локальный порт на удалённый хост?<a class="headerlink" href="#firewalld-port-forwarding" title="Ссылка на этот заголовок">¶</a></h2>
-<p>См. <a class="reference external" href="https://www.easycoding.org/2017/05/23/probrasyvaem-lokalnyj-port-na-udalyonnyj-xost.html">здесь</a>.</p>
-</div>
-<div class="section" id="openvpn-fedora">
-<span id="using-openvpn"></span><span id="index-14"></span><h2>Как поднять OpenVPN сервер в Fedora?<a class="headerlink" href="#openvpn-fedora" title="Ссылка на этот заголовок">¶</a></h2>
-<p>См. <a class="reference external" href="https://www.easycoding.org/2017/07/24/podnimaem-ovn-server-na-fedora.html">здесь</a>. В данной статье вместо <strong>ovn</strong> следует использовать <strong>openvpn</strong> во всех путях и именах юнитов.</p>
-</div>
-<div class="section" id="wireguard-fedora">
-<span id="using-wireguard"></span><span id="index-15"></span><h2>Как поднять WireGuard сервер в Fedora?<a class="headerlink" href="#wireguard-fedora" title="Ссылка на этот заголовок">¶</a></h2>
-<p>См. <a class="reference external" href="https://www.easycoding.org/2019/02/28/podnimaem-wireguard-server-na-fedora.html">здесь</a>.</p>
-</div>
 <div class="section" id="systemd">
-<span id="systemd-info"></span><span id="index-16"></span><h2>Что такое systemd и как с ним работать?<a class="headerlink" href="#systemd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="systemd-info"></span><span id="index-12"></span><h2>Что такое systemd и как с ним работать?<a class="headerlink" href="#systemd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2017/11/05/upravlyaem-systemd-v-fedora.html">здесь</a>.</p>
 </div>
-<div class="section" id="matrix-fedora">
-<span id="matrix-server"></span><span id="index-17"></span><h2>Как поднять свой сервер Matrix в Fedora?<a class="headerlink" href="#matrix-fedora" title="Ссылка на этот заголовок">¶</a></h2>
-<p>См. <a class="reference external" href="https://www.easycoding.org/2018/04/15/podnimaem-sobstvennyj-matrix-server-v-fedora.html">здесь</a>.</p>
-</div>
 <div class="section" id="drop-fs-caches">
-<span id="index-18"></span><span id="id13"></span><h2>Как очистить кэши и буферы всех файловых систем?<a class="headerlink" href="#drop-fs-caches" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-13"></span><span id="id12"></span><h2>Как очистить кэши и буферы всех файловых систем?<a class="headerlink" href="#drop-fs-caches" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы очистить кэши и буферы нужно выполнить:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sync &amp;&amp; echo 3 &gt; /proc/sys/vm/drop_caches &amp;&amp; sync
 </pre></div>
 </div>
 </div>
 <div class="section" id="utc">
-<span id="system-time-utc"></span><span id="index-19"></span><h2>Как настроить системные часы в UTC или локального времени и наоборот?<a class="headerlink" href="#utc" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="system-time-utc"></span><span id="index-14"></span><h2>Как настроить системные часы в UTC или локального времени и наоборот?<a class="headerlink" href="#utc" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Переключение аппаратных часов компьютера в UTC из localtime:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo timedatectl set-local-rtc no
 </pre></div>
@@ -201,7 +181,7 @@ sudo mount -t efivarfs efivarfs sys/firmware/efi/efivars
 </div>
 </div>
 <div class="section" id="fedora-windows">
-<span id="windows-utc"></span><span id="index-20"></span><h2>У меня в дуалбуте с Fedora установлена Windows и часы постоянно сбиваются. В чём дело?<a class="headerlink" href="#fedora-windows" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="windows-utc"></span><span id="index-15"></span><h2>У меня в дуалбуте с Fedora установлена Windows и часы постоянно сбиваются. В чём дело?<a class="headerlink" href="#fedora-windows" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы такого не происходило, обе операционные системы должны хранить время в формате UTC. Для этого в Windows нужно применить следующий файл реестра:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">Windows Registry Editor Version 5.00</span>
 
@@ -210,28 +190,35 @@ sudo mount -t efivarfs efivarfs sys/firmware/efi/efivars
 </pre></div>
 </div>
 </div>
-<div class="section" id="fedora">
-<span id="simple-web-server"></span><span id="index-21"></span><h2>Как запустить простейший веб-сервер в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для запуска простейшего веб-сервера можно использовать Python и модуль, входящий в состав базового пакета:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python3 -m http.server 8080
+<div class="section" id="gdm-sddm">
+<span id="change-dm"></span><span id="index-16"></span><h2>У меня в системе используется GDM, но я хочу заменить его на SDDM. Это возможно?<a class="headerlink" href="#gdm-sddm" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установка SDDM:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install sddm
 </pre></div>
 </div>
-<p>Веб-сервер будет запущен на порту <strong>8080</strong>. В качестве webroot будет использоваться текущий рабочий каталог.</p>
+<p>Отключение GDM и активация SDDM:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl -f enable sddm
+</pre></div>
+</div>
+<p>Изменения вступят в силу при следующей загрузке системы.</p>
+</div>
+<div class="section" id="java">
+<span id="alternatives-java"></span><span id="index-17"></span><h2>Как мне выбрать версию Java по умолчанию?<a class="headerlink" href="#java" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для выбора дефолтной <a class="reference internal" href="package-manager.html#java-multiple"><span class="std std-ref">версии Java</span></a> следует использовать систему альтернатив:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo update-alternatives --config java
+</pre></div>
+</div>
 </div>
 <div class="section" id="change-hostname">
-<span id="index-22"></span><span id="id14"></span><h2>Как изменить имя хоста?<a class="headerlink" href="#change-hostname" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-18"></span><span id="id13"></span><h2>Как изменить имя хоста?<a class="headerlink" href="#change-hostname" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Изменение имени хоста возможно посредством <strong>hostnamectl</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>hostnamectl set-hostname NEW
 </pre></div>
 </div>
 <p>Здесь вместо <strong>NEW</strong> следует указать новое значение. Изменения вступят в силу немедленно.</p>
 </div>
-<div class="section" id="network-configuration">
-<span id="index-23"></span><span id="id15"></span><h2>Как лучше настраивать сетевые подключения?<a class="headerlink" href="#network-configuration" title="Ссылка на этот заголовок">¶</a></h2>
-<p>В Fedora для настройки сети используется Network Manager. Для работы с ним доступны как графические менеджеры (встроены в каждую DE), так и консольный <strong>nm-cli</strong>.</p>
-</div>
 <div class="section" id="lvm-liveusb">
-<span id="fs-check-lvm"></span><span id="index-24"></span><h2>Как мне проверить ФС в составе LVM с LiveUSB?<a class="headerlink" href="#lvm-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fs-check-lvm"></span><span id="index-19"></span><h2>Как мне проверить ФС в составе LVM с LiveUSB?<a class="headerlink" href="#lvm-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если файловая система была повреждена, необходимо запустить <strong>fsck</strong> и разрешить ему исправить её. При использовании настроек по умолчанию (LVM, ФС ext4) это делается так:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/mapper/fedora-root
 fsck -t ext4 /dev/mapper/fedora-home
@@ -240,7 +227,7 @@ fsck -t ext4 /dev/mapper/fedora-home
 <p>Если вместо ext4 применяется другая файловая система, необходимо указать её после параметра <strong>-t</strong>.</p>
 </div>
 <div class="section" id="liveusb">
-<span id="fs-check-partitions"></span><span id="index-25"></span><h2>Как мне проверить ФС при использовании классических разделов с LiveUSB?<a class="headerlink" href="#liveusb" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fs-check-partitions"></span><span id="index-20"></span><h2>Как мне проверить ФС при использовании классических разделов с LiveUSB?<a class="headerlink" href="#liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если используется классическая схема с обычными разделами, то утилите <strong>fsck</strong> необходимо передавать соответствующее блочное устройство, например:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/sda2
 fsck -t ext4 /dev/sda3
@@ -253,7 +240,7 @@ fsck -t ext4 /dev/sda3
 </div>
 </div>
 <div class="section" id="luks-liveusb">
-<span id="fs-check-luks"></span><span id="index-26"></span><h2>Как мне проверить ФС на зашифрованном LUKS разделе с LiveUSB?<a class="headerlink" href="#luks-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fs-check-luks"></span><span id="index-21"></span><h2>Как мне проверить ФС на зашифрованном LUKS разделе с LiveUSB?<a class="headerlink" href="#luks-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если используются зашифрованные LUKS разделы, то сначала откроем соответствующее устройство:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cryptsetup luksOpen /dev/sda2 luks-root
 </pre></div>
@@ -269,20 +256,16 @@ fsck -t ext4 /dev/sda3
 </pre></div>
 </div>
 </div>
-<div class="section" id="dlna">
-<span id="dlna-server"></span><span id="index-27"></span><h2>Как поднять DLNA сервер в локальной сети?<a class="headerlink" href="#dlna" title="Ссылка на этот заголовок">¶</a></h2>
-<p>См. <a class="reference external" href="https://www.easycoding.org/2018/09/08/podnimaem-dlna-server-v-fedora.html">здесь</a>.</p>
-</div>
 <div class="section" id="deduplication-memory">
-<span id="index-28"></span><span id="id16"></span><h2>Возможна ли полная дедупликация оперативной памяти?<a class="headerlink" href="#deduplication-memory" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Да, дедупликация памяти <a class="reference external" href="https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html">поддерживается</a> в ядре Linux начиная с версии 2.6.32 модулем <a class="reference external" href="https://ru.wikipedia.org/wiki/KSM">KSM</a> и по умолчанию применяется лишь в системах виртуализации, например в <a class="reference internal" href="package-manager.html#kvm"><span class="std std-ref">KVM</span></a>.</p>
+<span id="index-22"></span><span id="id14"></span><h2>Возможна ли полная дедупликация оперативной памяти?<a class="headerlink" href="#deduplication-memory" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, дедупликация памяти <a class="reference external" href="https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html">поддерживается</a> в ядре Linux начиная с версии 2.6.32 модулем <a class="reference external" href="https://ru.wikipedia.org/wiki/KSM">KSM</a> и по умолчанию применяется лишь в системах виртуализации, например в <a class="reference internal" href="virtualization.html#kvm"><span class="std std-ref">KVM</span></a>.</p>
 </div>
 <div class="section" id="deduplication-disk">
-<span id="index-29"></span><span id="id17"></span><h2>Возможна ли полная дедупликация данных на дисках?<a class="headerlink" href="#deduplication-disk" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-23"></span><span id="id15"></span><h2>Возможна ли полная дедупликация данных на дисках?<a class="headerlink" href="#deduplication-disk" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Полная автоматическая дедупликация данных на дисках <a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/Deduplication">поддерживается</a> лишь файловой системой <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a>.</p>
 </div>
 <div class="section" id="memory-compression">
-<span id="index-30"></span><span id="id18"></span><h2>Можно ли включить сжатие оперативной памяти?<a class="headerlink" href="#memory-compression" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-24"></span><span id="id16"></span><h2>Можно ли включить сжатие оперативной памяти?<a class="headerlink" href="#memory-compression" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, в ядро Linux начиная с версии 3.14 по умолчанию входит модуль zram, который позволяет увеличить производительность системы посредством использования вместо дисковой подкачки виртуального устройства в оперативной памяти с активным сжатием.</p>
 <p>Включение zram в Fedora:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable --now zram-swap
@@ -295,34 +278,8 @@ sudo systemctl disable zram-swap
 </div>
 <p>После использования вышеуказанных команд рекомендуется выполнить перезагрузку системы.</p>
 </div>
-<div class="section" id="fedora-iperf">
-<span id="index-31"></span><span id="id19"></span><h2>Как сделать замеры скорости локальной или беспроводной сети?<a class="headerlink" href="#fedora-iperf" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для точных замеров производительности сети нам потребуется как минимум два компьютера (либо компьютер и мобильное устройство), а также утилита iperf, присутствующая в репозиториях Fedora. Установим её:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install iperf2
-</pre></div>
-</div>
-<p>На первом устройстве запустим сервер iperf:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>iperf -s
-</pre></div>
-</div>
-<p>По умолчанию iperf прослушивает порт <strong>5001/tcp</strong> на всех доступных сетевых соединениях.</p>
-<p>Теперь временно разрешим входящие соединения на данный порт посредством <a class="reference internal" href="security.html#firewalld-about"><span class="std std-ref">Firewalld</span></a> (правило будет действовать до перезагрузки):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --add-port=5001/tcp
-</pre></div>
-</div>
-<p>На втором устройстве запустим клиент и подключимся к серверу:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>iperf -c 192.168.1.2
-</pre></div>
-</div>
-<p>В качестве клиента может выступать и мобильное устройство на базе ОС Android с установленным <a class="reference external" href="https://play.google.com/store/apps/details?id=net.he.networktools">Network Tools</a>. В этом случае в главном меню программы следует выбрать пункт <strong>Iperf2</strong>, а в окне подключения ввести:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-c 192.168.1.2
-</pre></div>
-</div>
-<p>Параметр <strong>-c</strong> обязателен. Если он не указан, программа выдаст ошибку.</p>
-<p><strong>192.168.1.2</strong> - это внутренний IP-адрес устройства в ЛВС, на котором запущен сервер. Номер порта указывать не требуется.</p>
-</div>
 <div class="section" id="sysctl">
-<span id="sysctl-temporary"></span><span id="index-32"></span><h2>Как временно изменить параметр sysctl?<a class="headerlink" href="#sysctl" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="sysctl-temporary"></span><span id="index-25"></span><h2>Как временно изменить параметр sysctl?<a class="headerlink" href="#sysctl" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Временно установить любой параметр ядра возможно через sysctl:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w foo.bar=X
 </pre></div>
@@ -330,7 +287,7 @@ sudo systemctl disable zram-swap
 <p>Здесь <strong>foo.bar</strong> имя параметра, а <strong>X</strong> - его значение. Изменения вступят в силу немедленно и сохранятся до перезагрузки системы.</p>
 </div>
 <div class="section" id="sysctl-permanent">
-<span id="index-33"></span><span id="id20"></span><h2>Как задать и сохранить параметр sysctl?<a class="headerlink" href="#sysctl-permanent" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-26"></span><span id="id17"></span><h2>Как задать и сохранить параметр sysctl?<a class="headerlink" href="#sysctl-permanent" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы сохранить параметр ядра, создадим специальный файл <code class="docutils literal notranslate"><span class="pre">99-foobar.conf</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/sysctl.d</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo.bar1=X1
 foo.bar2=X2
@@ -343,7 +300,7 @@ foo.bar2=X2
 </div>
 </div>
 <div class="section" id="sysctl-order">
-<span id="index-34"></span><span id="id21"></span><h2>В каком порядке загружаются sysctl файлы настроек?<a class="headerlink" href="#sysctl-order" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-27"></span><span id="id18"></span><h2>В каком порядке загружаются sysctl файлы настроек?<a class="headerlink" href="#sysctl-order" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При загрузке ядро проверяет следующие каталоги в поисках <strong>.conf</strong> файлов:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -355,7 +312,7 @@ foo.bar2=X2
 <p>Порядок выполнения - в алфавитном порядке, поэтому для его изменения многие конфиги содержат цифры и буквы. Например конфиг <code class="docutils literal notranslate"><span class="pre">00-foobar.conf</span></code> выполнится раньше, чем <code class="docutils literal notranslate"><span class="pre">zz-foobar.conf</span></code>.</p>
 </div>
 <div class="section" id="configure-runlevel">
-<span id="index-35"></span><span id="id22"></span><h2>Как переключить запуск системы в текстовый режим и обратно?<a class="headerlink" href="#configure-runlevel" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-28"></span><span id="id19"></span><h2>Как переключить запуск системы в текстовый режим и обратно?<a class="headerlink" href="#configure-runlevel" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы активировать запуск Fedora в текстовом режиме, нужно переключиться на цель <code class="docutils literal notranslate"><span class="pre">multi-user.target</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl set-default multi-user.target
 </pre></div>
@@ -373,8 +330,8 @@ foo.bar2=X2
 </pre></div>
 </div>
 </div>
-<div class="section" id="swap-to-file">
-<span id="index-36"></span><span id="id23"></span><h2>Как настроить подкачку в файл в Fedora?<a class="headerlink" href="#swap-to-file" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="fedora">
+<span id="swap-to-file"></span><span id="index-29"></span><h2>Как настроить подкачку в файл в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Создадим файл подкачки на 4 ГБ:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/zero of=/media/pagefile count=4096 bs=1M
 </pre></div>
@@ -397,24 +354,8 @@ foo.bar2=X2
 </div>
 <p>Действия вступят в силу немедленно.</p>
 </div>
-<div class="section" id="rsync-remote">
-<span id="index-37"></span><span id="id24"></span><h2>Как передать содержимое каталога на удалённый сервер?<a class="headerlink" href="#rsync-remote" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Передача содержимого локального каталога на удалённый сервер посредством rsync:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rsync -chavzP --stats /path/to/local user@example.org:/path/to/remote
-</pre></div>
-</div>
-<p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.</p>
-</div>
-<div class="section" id="rsync-local">
-<span id="index-38"></span><span id="id25"></span><h2>Как получить содержимое каталога с удалённого сервера?<a class="headerlink" href="#rsync-local" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Получение содержимого каталога с удалённого сервера посредством rsync:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rsync -chavzP --stats user@example.org:/path/to/remote /path/to/local
-</pre></div>
-</div>
-<p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.</p>
-</div>
 <div class="section" id="disk-usage">
-<span id="index-39"></span><span id="id26"></span><h2>Как узнать какой процесс осуществляет запись на диск?<a class="headerlink" href="#disk-usage" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-30"></span><span id="id20"></span><h2>Как узнать какой процесс осуществляет запись на диск?<a class="headerlink" href="#disk-usage" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для мониторинга дисковой активности существуют улититы <strong>iotop</strong> и <strong>fatrace</strong>. Установим их:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install iotop fatrace
 </pre></div>
@@ -433,7 +374,7 @@ foo.bar2=X2
 </div>
 </div>
 <div class="section" id="change-label">
-<span id="index-40"></span><span id="id27"></span><h2>Как сменить метку раздела?<a class="headerlink" href="#change-label" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-31"></span><span id="id21"></span><h2>Как сменить метку раздела?<a class="headerlink" href="#change-label" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Смена метки раздела с файловой системой ext2, ext3 и ext4:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo e2label /dev/sda1 &quot;NewLabel&quot;
 </pre></div>
@@ -445,7 +386,7 @@ foo.bar2=X2
 <p>Здесь <strong>/dev/sda1</strong> - раздел, на котором требуется изменить метку.</p>
 </div>
 <div class="section" id="uuid">
-<span id="get-uuid"></span><span id="index-41"></span><h2>Как получить UUID всех смонтированных разделов?<a class="headerlink" href="#uuid" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="get-uuid"></span><span id="index-32"></span><h2>Как получить UUID всех смонтированных разделов?<a class="headerlink" href="#uuid" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для получения всех UUID можно использовать утилиту <strong>blkid</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo blkid
 </pre></div>
@@ -457,7 +398,7 @@ foo.bar2=X2
 <p>Здесь <strong>/dev/sda1</strong> - раздел, для которого требуется вывести UUID.</p>
 </div>
 <div class="section" id="change-uuid">
-<span id="index-42"></span><span id="id28"></span><h2>Как изменить UUID раздела?<a class="headerlink" href="#change-uuid" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-33"></span><span id="id22"></span><h2>Как изменить UUID раздела?<a class="headerlink" href="#change-uuid" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Смена UUID раздела с файловой системой ext2, ext3 и ext4:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo tune2fs /dev/sda1 -U $(uuidgen)
 </pre></div>
@@ -468,70 +409,8 @@ foo.bar2=X2
 </div>
 <p>Здесь <strong>/dev/sda1</strong> - раздел, на котором требуется изменить UUID.</p>
 </div>
-<div class="section" id="dns-fedora">
-<span id="change-dns"></span><span id="index-43"></span><h2>Как правильно указать DNS серверы в Fedora?<a class="headerlink" href="#dns-fedora" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для того, чтобы указать другие DNS серверы, необходимо использовать Network Manager (графический или консольный): <strong>свойства соединения</strong> -&gt; страница <strong>IPv4</strong> -&gt; <strong>другие DNS серверы</strong>.</p>
-</div>
-<div class="section" id="etc-resolv-conf-fedora">
-<span id="dns-resolv"></span><span id="index-44"></span><h2>Можно ли править файл /etc/resolv.conf в Fedora?<a class="headerlink" href="#etc-resolv-conf-fedora" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Нет, т.к. этот файл целиком управляется Network Manager и перезаписывается при каждом изменении статуса подключения (активация-деактивация соединений, перезапуск сервиса и т.д.).</p>
-<p>Если необходимо указать другие DNS серверы, это следует производить через <a class="reference internal" href="#change-dns"><span class="std std-ref">свойства</span></a> соответствующего соединения.</p>
-</div>
-<div class="section" id="firewalld-icmp">
-<span id="disable-icmp"></span><span id="index-45"></span><h2>Как можно средствами Firewalld запретить ICMP?<a class="headerlink" href="#firewalld-icmp" title="Ссылка на этот заголовок">¶</a></h2>
-<p>По умолчанию ICMP трафик разрешён для большей части зон, поэтому запретить его можно вручную:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone=public --remove-icmp-block={echo-request,echo-reply,timestamp-reply,timestamp-request} --permanent
-</pre></div>
-</div>
-<p>Применим новые правила:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
-</pre></div>
-</div>
-<p>В данном примере для зоны <strong>public</strong> блокируются как входящие, так и исходящие ICMP ECHO и ICMP TIMESTAMP.</p>
-</div>
-<div class="section" id="firewalld-openvpn-ip">
-<span id="openvpn-allowed-ips"></span><span id="index-46"></span><h2>Как средствами Firewalld разрешить подключение к OpenVPN серверу только с разрешённых IP адресов?<a class="headerlink" href="#firewalld-openvpn-ip" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Сначала отключим правило по умолчанию для <a class="reference internal" href="#using-openvpn"><span class="std std-ref">OpenVPN</span></a>, разрешающее доступ к серверу с любых IP адресов:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone=public --remove-service openvpn --permanent
-</pre></div>
-</div>
-<p>Теперь создадим rich rule, разрешающее доступ с указанных IP-адресов (или подсетей):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone=public --add-rich-rule=&#39;rule family=ipv4 source address=&quot;1.2.3.4&quot; service name=&quot;openvpn&quot; accept&#39; --permanent
-sudo firewall-cmd --zone=public --add-rich-rule=&#39;rule family=ipv4 source address=&quot;5.6.7.0/24&quot; service name=&quot;openvpn&quot; accept&#39; --permanent
-</pre></div>
-</div>
-<p>Применим новые правила:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
-</pre></div>
-</div>
-<p>Здесь <strong>public</strong> - имя зоны для публичного интерфейса, <strong>1.2.3.4</strong> - IP-адрес, а <strong>5.6.7.0/24</strong> - подсеть, доступ для адресов из которой следует разрешить.</p>
-</div>
-<div class="section" id="firewalld-wireguard-ip">
-<span id="wireguard-allowed-ips"></span><span id="index-47"></span><h2>Как средствами Firewalld разрешить подключение к WireGuard серверу только с разрешённых IP адресов?<a class="headerlink" href="#firewalld-wireguard-ip" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Сначала отключим правило по умолчанию для <a class="reference internal" href="#using-wireguard"><span class="std std-ref">WireGuard</span></a>, разрешающее доступ к серверу с любых IP адресов:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone=public --remove-port=27015/udp --permanent
-</pre></div>
-</div>
-<p>Теперь создадим rich rule, разрешающее доступ с указанных IP-адресов (или подсетей):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone=public --add-rich-rule=&#39;rule family=ipv4 source address=&quot;1.2.3.4&quot; port port=27015 protocol=udp accept&#39; --permanent
-sudo firewall-cmd --zone=public --add-rich-rule=&#39;rule family=ipv4 source address=&quot;5.6.7.0/24&quot; port port=27015 protocol=udp accept&#39; --permanent
-</pre></div>
-</div>
-<p>Применим новые правила:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
-</pre></div>
-</div>
-<p>Здесь <strong>27015</strong> - порт сервера WireGuard, <strong>public</strong> - имя зоны для публичного интерфейса, <strong>1.2.3.4</strong> - IP-адрес, а <strong>5.6.7.0/24</strong> - подсеть, доступ для адресов из которой следует разрешить.</p>
-</div>
-<div class="section" id="ip-nat">
-<span id="get-external-ip"></span><span id="index-48"></span><h2>Как узнать внешний IP адрес за NAT провайдера?<a class="headerlink" href="#ip-nat" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для этой цели можно использовать внешний сервис, возвращающий только внешний IP и утилиту <strong>curl</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>curl https://ifconfig.me
-</pre></div>
-</div>
-</div>
 <div class="section" id="pid">
-<span id="get-pid"></span><span id="index-49"></span><h2>Как получить PID запущенного процесса?<a class="headerlink" href="#pid" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="get-pid"></span><span id="index-34"></span><h2>Как получить PID запущенного процесса?<a class="headerlink" href="#pid" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для получения идентификатора запущенного процесса (PID), следует применять утилиту <strong>pidof</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pidof foo-bar
 </pre></div>
@@ -539,7 +418,7 @@ sudo firewall-cmd --zone=public --add-rich-rule=&#39;rule family=ipv4 source add
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, информацию о котором требуется получить.</p>
 </div>
 <div class="section" id="kill-sigterm">
-<span id="index-50"></span><span id="id29"></span><h2>Как правильно завершить работу процесса?<a class="headerlink" href="#kill-sigterm" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-35"></span><span id="id23"></span><h2>Как правильно завершить работу процесса?<a class="headerlink" href="#kill-sigterm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы завершить работу процесса, необходимо отправить ему сигнал <strong>SIGTERM</strong>. После получения данного сигнала процесс должен немедленно начать завершение своей работы:</p>
 <blockquote>
 <div><ul class="simple">
@@ -562,7 +441,7 @@ sudo firewall-cmd --zone=public --add-rich-rule=&#39;rule family=ipv4 source add
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, который требуется завершить, однако её следует применять с особой осторожностью ибо если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
 </div>
 <div class="section" id="kill-sigkill">
-<span id="index-51"></span><span id="id30"></span><h2>Как принудительно завершить работу процесса?<a class="headerlink" href="#kill-sigkill" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-36"></span><span id="id24"></span><h2>Как принудительно завершить работу процесса?<a class="headerlink" href="#kill-sigkill" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если какой-либо процесс завис и не отвечает на требование завершения посредством <a class="reference internal" href="#kill-sigterm"><span class="std std-ref">SIGTERM</span></a>, можно заставить операционную систему принудительно завершить его работу сигналом <strong>SIGKILL</strong>, который не может быть перехвачен и проигнорирован процессом.</p>
 <p>Данный сигнал следует использовать с особой осторожностью, т.к. в этом случае процесс не сможет корректно освободить все дескрипторы и занятые ресурсы, а также сообщить своим потомкам о своём завершении, что может повлечь за собой появление т.н. <a class="reference internal" href="#process-orphan"><span class="std std-ref">процессов-сирот</span></a>.</p>
 <p>Чтобы отправить сигнал SIGKILL процессу с определённым <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>, воспользуемся утилитой <strong>kill</strong>:</p>
@@ -577,82 +456,27 @@ sudo firewall-cmd --zone=public --add-rich-rule=&#39;rule family=ipv4 source add
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса. Если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
 </div>
 <div class="section" id="process-zombie">
-<span id="index-52"></span><span id="id31"></span><h2>Что такое процесс-зомби?<a class="headerlink" href="#process-zombie" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-37"></span><span id="id25"></span><h2>Что такое процесс-зомби?<a class="headerlink" href="#process-zombie" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Процессы-зомби появляются в системе если потомок завершил свою работу раньше родительского процесса, а последний не отрегировал на отправленный ему сигнал <strong>SIGCHLD</strong>.</p>
 <p>Такие процессы не занимают ресурсов в системе (ибо успешно завершили свою работу), за исключением строки в таблице процессов, хранящей его <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>.</p>
 <p>Все зомби будут автоматически удалены из таблицы процессов после того, как завершит свою работу их родитель.</p>
 </div>
 <div class="section" id="process-orphan">
-<span id="index-53"></span><span id="id32"></span><h2>Что такое процесс-сирота?<a class="headerlink" href="#process-orphan" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-38"></span><span id="id26"></span><h2>Что такое процесс-сирота?<a class="headerlink" href="#process-orphan" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Процессы-сироты появляются в системе если их родитель был аварийно уничтожен системой сигналом <a class="reference internal" href="#kill-sigkill"><span class="std std-ref">SIGKILL</span></a> и не смог сообщить своим потомкам о своём завершении работы.</p>
 <p>В отличие от <a class="reference internal" href="#process-zombie"><span class="std std-ref">зомби</span></a>, такие процессы расходуют ресурсы системы и могут быть источником множества проблем.</p>
 <p>При обнаружении таких процессов система выполняет операцию переподчинения и устанавливает их родителем главный процесс инициализации.</p>
 </div>
-<div class="section" id="firewalld-ip-cloudflare">
-<span id="firewalld-cloudflare"></span><span id="index-54"></span><h2>Как средствами Firewalld разрешить подключение к веб-серверу только с IP адресов CloudFlare?<a class="headerlink" href="#firewalld-ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
-<p>При использовании CloudFlare в качестве системы защиты от DDoS атак, а также WAF, возникает необходимость разрешать входящие подключения исключительно с IP адресов данного сервиса.</p>
-<p>Сначала отключим правило по умолчанию для веб-сервера, разрешающее доступ с любых IP адресов:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone=public --remove-service http --permanent
-sudo firewall-cmd --zone=public --remove-service https --permanent
-</pre></div>
-</div>
-<p>Напишем небольшой скрипт <code class="docutils literal notranslate"><span class="pre">foo-bar.sh</span></code>, который получит актуальные пулы IP-адресов и создаст rich rule, разрешающие доступ лишь с подсетей CloudFlare (<a class="reference external" href="https://www.cloudflare.com/ips-v4">IPv4</a>, <a class="reference external" href="https://www.cloudflare.com/ips-v6">IPv6</a>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-<span class="nb">set</span> -ef
-
-<span class="nv">API</span><span class="o">=</span>https://www.cloudflare.com/ips-v
-<span class="nv">ZONE</span><span class="o">=</span>public
-
-<span class="k">function</span> fw_add <span class="o">{</span>
-    <span class="nb">local</span> <span class="nv">IFS</span><span class="o">=</span><span class="s1">$&#39;\n&#39;</span>
-    <span class="nb">local</span> <span class="nv">lines</span><span class="o">=(</span><span class="k">$(</span>curl -sS <span class="nv">$API$1</span><span class="k">)</span><span class="o">)</span>
-    <span class="k">for</span> i in <span class="s2">&quot;</span><span class="si">${</span><span class="nv">lines</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="k">do</span>
-        firewall-cmd --zone<span class="o">=</span><span class="nv">$ZONE</span> --add-rich-rule<span class="o">=</span><span class="s2">&quot;rule family=ipv</span><span class="nv">$1</span><span class="s2"> source address=\&quot;</span><span class="nv">$i</span><span class="s2">\&quot; service name=\&quot;http\&quot; accept&quot;</span> --permanent
-        firewall-cmd --zone<span class="o">=</span><span class="nv">$ZONE</span> --add-rich-rule<span class="o">=</span><span class="s2">&quot;rule family=ipv</span><span class="nv">$1</span><span class="s2"> source address=\&quot;</span><span class="nv">$i</span><span class="s2">\&quot; service name=\&quot;https\&quot; accept&quot;</span> --permanent
-    <span class="k">done</span>
-<span class="o">}</span>
-
-fw_add <span class="m">4</span>
-fw_add <span class="m">6</span>
-</pre></div>
-</div>
-<p>Запустим наш скрипт:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo ./foo-bar.sh
-</pre></div>
-</div>
-<p>Применим новые правила файрвола:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
-</pre></div>
-</div>
-<p>Здесь <strong>public</strong> - имя зоны для публичного сетевого интерфейса.</p>
-</div>
-<div class="section" id="ip-cloudflare">
-<span id="cloudflare-forwarding"></span><span id="index-55"></span><h2>Как пробросить IP адреса клиентов за CloudFlare?<a class="headerlink" href="#ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
-<p>См. <a class="reference external" href="https://www.easycoding.org/2013/08/12/nastraivaem-probros-ip-klientov-za-cloudflare.html">здесь</a>.</p>
-</div>
 <div class="section" id="docker-fedora">
-<span id="index-56"></span><span id="id33"></span><h2>Как правильно установить Docker в Fedora?<a class="headerlink" href="#docker-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-39"></span><span id="id27"></span><h2>Как правильно установить Docker в Fedora?<a class="headerlink" href="#docker-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Вместо Docker в Fedora рекомендуется установить и использовать Podman, т.к. он не требует прав суперпользователя для работы:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install podman
 </pre></div>
 </div>
 <p>Синтаксис команд аналогичен Docker.</p>
 </div>
-<div class="section" id="using-mtr">
-<span id="index-57"></span><span id="id34"></span><h2>Как проверить наличие или отсутствие потерь пакетов до узла?<a class="headerlink" href="#using-mtr" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для проверки работоспособности сети и наличия, либо отсутствия потерь пакетов между узлами маршрута, широко используется утилита <strong>mtr</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install mtr
-</pre></div>
-</div>
-<p>Запустим проверку маршрута до узла <strong>example.org</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mtr example.org
-</pre></div>
-</div>
-<p>Приостановить работу можно нажатием клавиши <strong>P</strong>, для возобновить - <strong>пробел</strong>, а для выхода - <strong>Q</strong>.</p>
-</div>
 <div class="section" id="kernel-bs">
-<span id="index-58"></span><span id="id35"></span><h2>Как определить включена ли определённая опция ядра во время компиляции?<a class="headerlink" href="#kernel-bs" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-40"></span><span id="id28"></span><h2>Как определить включена ли определённая опция ядра во время компиляции?<a class="headerlink" href="#kernel-bs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Полный список опций, заданных на этапе компиляции ядра, всегда можно найти в config-файлах, внутри каталога <code class="docutils literal notranslate"><span class="pre">/boot</span></code>.</p>
 <p>В качестве примера проверим статус опции <code class="docutils literal notranslate"><span class="pre">CONFIG_EFI_STUB</span></code> текущего ядра:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>grep CONFIG_EFI_STUB /boot/config-$(uname -r)
@@ -660,29 +484,14 @@ fw_add <span class="m">6</span>
 </div>
 <p>В выводе <strong>y</strong> означает, что опция была включена, а <strong>not set</strong>, соответственно, выключена.</p>
 </div>
-<div class="section" id="ss-established">
-<span id="index-59"></span><span id="id36"></span><h2>Как получить список установленных сетевых соединений?<a class="headerlink" href="#ss-established" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Воспользуемся утилитой <strong>ss</strong> для вывода списка установленных сетевых соединений:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ss -tupn
-</pre></div>
-</div>
-</div>
-<div class="section" id="ss-listening">
-<span id="index-60"></span><span id="id37"></span><h2>Как получить список открытых портов?<a class="headerlink" href="#ss-listening" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Воспользуемся утилитой <strong>ss</strong> для вывода открытых портов, ожидающих входящих соединений:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ss -tulpn
-</pre></div>
-</div>
-<p>Статус <strong>LISTEN</strong> означает, что TCP-порт открыт и ожидает входящих соединений. В то же время для UDP-портов будет отображаться статус <strong>UNCONN</strong>, т.к. этот протокол не подразумевает предварительное открытие подключений.</p>
-</div>
 <div class="section" id="ksoftirqd">
-<span id="index-61"></span><span id="id38"></span><h2>Процесс ksoftirqd съедает все ресурсы системы. Что делать?<a class="headerlink" href="#ksoftirqd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-41"></span><span id="id29"></span><h2>Процесс ksoftirqd съедает все ресурсы системы. Что делать?<a class="headerlink" href="#ksoftirqd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Ядро операционной системы взаимодействует с устройствами посредством прерываний. Когда возникает новое прерывание, оно немедленно приостанавливает работу текущего выполняемого процесса, переключается в режим ядра и начинает его обработку.</p>
 <p>Может случиться так, что прерывания будут генерироваться настолько часто, что ядро не сможет их обрабатывать немедленно, в порядке получения. На этот случай имеется специальный механизм, помещающий полученные прерывания в очередь для дальнейшей обработки. Этой очередью управляет особый поток ядра <strong>ksoftirqd</strong> (создаётся по одному на каждый имеющийся процессор или ядро многоядерного процессора).</p>
 <p>Если потоки ядра ksoftirqd потребляют значительное количество ресурсов центрального процессора, значит система находится под очень высокой нагрузкой по прерываниям.</p>
 </div>
 <div class="section" id="kernel-irq">
-<span id="index-62"></span><span id="id39"></span><h2>Как определить какое устройство генерирует огромное количество прерываний?<a class="headerlink" href="#kernel-irq" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-42"></span><span id="id30"></span><h2>Как определить какое устройство генерирует огромное количество прерываний?<a class="headerlink" href="#kernel-irq" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для диагностики системы обработки прерываний, ядро имеет встроенный механизм:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/interrupts
 </pre></div>
@@ -690,7 +499,7 @@ fw_add <span class="m">6</span>
 <p>Числа в таблице означают точное количество прерываний, инициированных соответствующим устройством или подсистемой, с момента загрузки.</p>
 </div>
 <div class="section" id="irq-manual">
-<span id="index-63"></span><span id="id40"></span><h2>Как произвести ручную балансировку прерываний?<a class="headerlink" href="#irq-manual" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-43"></span><span id="id31"></span><h2>Как произвести ручную балансировку прерываний?<a class="headerlink" href="#irq-manual" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если <a class="reference internal" href="#kernel-irq"><span class="std std-ref">прерывания</span></a> распределены между процессорными ядрами не равномерно, можно использовать режим ручной балансировки:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo bash -c &quot;echo X &gt; /proc/irq/Y/smp_affinity&quot;
 </pre></div>
@@ -699,11 +508,11 @@ fw_add <span class="m">6</span>
 <p>Чтобы вычислить маску следует возвести число 2 в степень, равную порядкому номеру процессора, и результат перевести в шестнадцатиричную систему счисления.</p>
 </div>
 <div class="section" id="too-many-open-files">
-<span id="fd-limit"></span><span id="index-64"></span><h2>При работе приложения возникает ошибка Too many open files. Что делать?<a class="headerlink" href="#too-many-open-files" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fd-limit"></span><span id="index-44"></span><h2>При работе приложения возникает ошибка Too many open files. Что делать?<a class="headerlink" href="#too-many-open-files" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Ошибка <em>Too many open files</em> возникает при превышении количества открытых дескрипторов файлов процессом. Для её исправления, нужно <a class="reference internal" href="#fd-increase"><span class="std std-ref">увеличить это ограничение</span></a>.</p>
 </div>
 <div class="section" id="fd-hard-soft">
-<span id="index-65"></span><span id="id41"></span><h2>Как узнать текущий лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-hard-soft" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-45"></span><span id="id32"></span><h2>Как узнать текущий лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-hard-soft" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Существует два типа ограничений: мягкий (soft) и жёсткий (hard). Жёсткий задаётся администратором системы, а мягкий может регулироваться как пользователем, так и запущенным приложением, но не может превышать максимально заданное значение жёсткого лимита, а также <a class="reference internal" href="#fd-kernel"><span class="std std-ref">глобальное для всего ядра</span></a>.</p>
 <p>Получим значение мягкого ограничителя:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ulimit -Sn
@@ -716,7 +525,7 @@ fw_add <span class="m">6</span>
 <p>Значения по умолчанию <strong>1024</strong> (soft) и <strong>4096</strong> (hard).</p>
 </div>
 <div class="section" id="fd-kernel">
-<span id="index-66"></span><span id="id42"></span><h2>Как узнать глобальный лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-kernel" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-46"></span><span id="id33"></span><h2>Как узнать глобальный лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-kernel" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Наряду с <a class="reference internal" href="#fd-hard-soft"><span class="std std-ref">мягким и жёстким лимитами</span></a> открытых файловых дескрипторов существует и глобальный, который ядро Linux способно адресовать и корректно обработать.</p>
 <p>Выведем это значение при помощи соответствующей функции ядра:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/sys/fs/file-max
@@ -724,7 +533,7 @@ fw_add <span class="m">6</span>
 </div>
 </div>
 <div class="section" id="fd-increase">
-<span id="index-67"></span><span id="id43"></span><h2>Как увеличить лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-increase" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-47"></span><span id="id34"></span><h2>Как увеличить лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-increase" title="Ссылка на этот заголовок">¶</a></h2>
 <p><a class="reference internal" href="#fd-hard-soft"><span class="std std-ref">Мягкие и жёсткие лимиты</span></a> на количество дескрипторов открытых файлов задаются в файле <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.conf</span></code> суперпользователем, но при этом не могут превышать <a class="reference internal" href="#fd-kernel"><span class="std std-ref">глобальный</span></a>.</p>
 <p>Увеличим ограничение для пользователя <strong>foo-bar</strong> до 8192/2048:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar       soft    nofile          2048
@@ -739,7 +548,7 @@ foo-bar       hard    nofile          8192
 <p>Изменения вступят в силу при следующем входе в систему.</p>
 </div>
 <div class="section" id="task-affinity">
-<span id="index-68"></span><span id="id44"></span><h2>Как запустить процесс так, чтобы он мог использовать лишь определённые ядра процессора?<a class="headerlink" href="#task-affinity" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-48"></span><span id="id35"></span><h2>Как запустить процесс так, чтобы он мог использовать лишь определённые ядра процессора?<a class="headerlink" href="#task-affinity" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию процесс выполняется на любых доступных для Linux процессорах (или их ядрах).</p>
 <p>Выбором наиболее подходящего ядра CPU для каждого потока процесса занимается непосредственно ядро, однако существует возможность и ручного переопределения.</p>
 <p>Запустим приложение <strong>foo-bar</strong> на каждом чётном ядре (нумерация всегда начинается с нуля):</p>
@@ -752,7 +561,7 @@ foo-bar       hard    nofile          8192
 </div>
 </div>
 <div class="section" id="task-priority">
-<span id="index-69"></span><span id="id45"></span><h2>Как изменить приоритет процесса?<a class="headerlink" href="#task-priority" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-49"></span><span id="id36"></span><h2>Как изменить приоритет процесса?<a class="headerlink" href="#task-priority" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Допустимые значения приоритета находятся в диапазоне от -20 (наиболее высокий приоритет) до 19 (наиболее низкий). Отрицательные значения может устанавливать лишь суперпользователь.</p>
 <p>Запустим приложение <strong>foo-bar</strong> с приоритетом <strong>10</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nice -n 10 foo-bar
@@ -763,33 +572,8 @@ foo-bar       hard    nofile          8192
 </pre></div>
 </div>
 </div>
-<div class="section" id="virtualbox-kvm">
-<span id="vdi-to-qcow2"></span><span id="index-70"></span><h2>Как преобразовать образ виртуальной машины VirtualBox в формат, совместимый с KVM?<a class="headerlink" href="#virtualbox-kvm" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для конвертирования образов воспользуемся штатной утилитой <strong>qemu-img</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f vdi -O qcow2 /path/to/image.vdi /path/to/image.qcow2
-</pre></div>
-</div>
-</div>
-<div class="section" id="vmware-kvm">
-<span id="vmdk-to-qcow2"></span><span id="index-71"></span><h2>Как преобразовать образ виртуальной машины VMWare в формат, совместимый с KVM?<a class="headerlink" href="#vmware-kvm" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Вариант 1. Воспользуемся утилитой <strong>virt-v2v</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>virt-v2v -i vmx /path/to/image.vmx -o local -os /path/to/kvm -of qcow2
-</pre></div>
-</div>
-<p>Вариант 2. Воспользуемся утилитой <strong>qemu-img</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f vmdk -O qcow2 /path/to/image.vmdk /path/to/image.qcow2
-</pre></div>
-</div>
-</div>
-<div class="section" id="hyper-v-kvm">
-<span id="vpc-to-qcow2"></span><span id="index-72"></span><h2>Как преобразовать образ виртуальной машины Hyper-V в формат, совместимый с KVM?<a class="headerlink" href="#hyper-v-kvm" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для преобразования образа воспользуемся штатной утилитой <strong>qemu-img</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f vpc -O qcow2 /path/to/image.vpc /path/to/image.qcow2
-</pre></div>
-</div>
-</div>
 <div class="section" id="zip-split">
-<span id="index-73"></span><span id="id46"></span><h2>Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?<a class="headerlink" href="#zip-split" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-50"></span><span id="id37"></span><h2>Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?<a class="headerlink" href="#zip-split" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет <strong>p7zip</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install p7zip
 </pre></div>
@@ -798,6 +582,11 @@ foo-bar       hard    nofile          8192
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>7za a -m0=LZMA2 -mx9 -r -t7z -v4480m /path/to/archive.7z
 </pre></div>
 </div>
+</div>
+<div class="section" id="effective-uid-real-uid">
+<span id="euid-vs-ruid"></span><span id="index-51"></span><h2>Чем отличается Effective UID процесса от Real UID?<a class="headerlink" href="#effective-uid-real-uid" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В мире UNIX считается нормальным, когда один процесс запускается от одного пользователя, но при этом получает права совсем другого (чаще всего это суперпользователь root).</p>
+<p>В качестве простого примера рассмтрим ситуацию, когда пользователь <strong>user1</strong> запускает бинарник с установленным suid-битом <strong>/usr/bin/foo-bar</strong>. Таким образом, у процесса <strong>foo-bar</strong> в качестве <em>Real user ID</em> будет установлен <strong>user1</strong>, а <em>Effective user ID</em> - <strong>root</strong>. Это сделано для того, чтобы приложение могло самостоятельно отказаться от повышенных прав, либо переключаться между ними при помощи соответствующего системного вызова.</p>
 </div>
 </div>
 
@@ -824,7 +613,7 @@ foo-bar       hard    nofile          8192
 <li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Вопросы, связанные с установкой системы</a></li>
 <li class="toctree-l1"><a class="reference internal" href="package-manager.html">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные с администрированием системы</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные с системным администрированием</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#kernelpm-once">Как однократно передать параметр ядра?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kernelpm-perm">Как мне задать параметр ядра для постоянного использования?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kernelpm-list">Как определить какие параметры ядра заданы в настоящее время?</a></li>
@@ -835,57 +624,37 @@ foo-bar       hard    nofile          8192
 <li class="toctree-l2"><a class="reference internal" href="#journal-tofile">Как мне выгрузить журнал в файл?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#chroot-liveusb">Как сделать chroot в установленную систему с LiveUSB?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ups-fedora">Как настроить ИБП (UPS) в Fedora?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ssh">При использовании SSH появляется ошибка доступа к ключам. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#journald-limit">Системные журналы занимают слишком много места. Как их ограничить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#journald-wipe">Как немедленно очистить все системные журналы?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#firewalld-port-forwarding">Как пробросить локальный порт на удалённый хост?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#openvpn-fedora">Как поднять OpenVPN сервер в Fedora?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#wireguard-fedora">Как поднять WireGuard сервер в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#systemd">Что такое systemd и как с ним работать?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#matrix-fedora">Как поднять свой сервер Matrix в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#drop-fs-caches">Как очистить кэши и буферы всех файловых систем?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#utc">Как настроить системные часы в UTC или локального времени и наоборот?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora-windows">У меня в дуалбуте с Fedora установлена Windows и часы постоянно сбиваются. В чём дело?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#fedora">Как запустить простейший веб-сервер в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gdm-sddm">У меня в системе используется GDM, но я хочу заменить его на SDDM. Это возможно?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#java">Как мне выбрать версию Java по умолчанию?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#change-hostname">Как изменить имя хоста?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#network-configuration">Как лучше настраивать сетевые подключения?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lvm-liveusb">Как мне проверить ФС в составе LVM с LiveUSB?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#liveusb">Как мне проверить ФС при использовании классических разделов с LiveUSB?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#luks-liveusb">Как мне проверить ФС на зашифрованном LUKS разделе с LiveUSB?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dlna">Как поднять DLNA сервер в локальной сети?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#deduplication-memory">Возможна ли полная дедупликация оперативной памяти?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#deduplication-disk">Возможна ли полная дедупликация данных на дисках?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#memory-compression">Можно ли включить сжатие оперативной памяти?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#fedora-iperf">Как сделать замеры скорости локальной или беспроводной сети?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sysctl">Как временно изменить параметр sysctl?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sysctl-permanent">Как задать и сохранить параметр sysctl?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sysctl-order">В каком порядке загружаются sysctl файлы настроек?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configure-runlevel">Как переключить запуск системы в текстовый режим и обратно?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#swap-to-file">Как настроить подкачку в файл в Fedora?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rsync-remote">Как передать содержимое каталога на удалённый сервер?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rsync-local">Как получить содержимое каталога с удалённого сервера?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora">Как настроить подкачку в файл в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#disk-usage">Как узнать какой процесс осуществляет запись на диск?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#change-label">Как сменить метку раздела?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uuid">Как получить UUID всех смонтированных разделов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#change-uuid">Как изменить UUID раздела?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dns-fedora">Как правильно указать DNS серверы в Fedora?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#etc-resolv-conf-fedora">Можно ли править файл /etc/resolv.conf в Fedora?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#firewalld-icmp">Как можно средствами Firewalld запретить ICMP?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#firewalld-openvpn-ip">Как средствами Firewalld разрешить подключение к OpenVPN серверу только с разрешённых IP адресов?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#firewalld-wireguard-ip">Как средствами Firewalld разрешить подключение к WireGuard серверу только с разрешённых IP адресов?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ip-nat">Как узнать внешний IP адрес за NAT провайдера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pid">Как получить PID запущенного процесса?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kill-sigterm">Как правильно завершить работу процесса?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kill-sigkill">Как принудительно завершить работу процесса?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#process-zombie">Что такое процесс-зомби?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#process-orphan">Что такое процесс-сирота?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#firewalld-ip-cloudflare">Как средствами Firewalld разрешить подключение к веб-серверу только с IP адресов CloudFlare?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ip-cloudflare">Как пробросить IP адреса клиентов за CloudFlare?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#docker-fedora">Как правильно установить Docker в Fedora?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#using-mtr">Как проверить наличие или отсутствие потерь пакетов до узла?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kernel-bs">Как определить включена ли определённая опция ядра во время компиляции?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ss-established">Как получить список установленных сетевых соединений?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ss-listening">Как получить список открытых портов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ksoftirqd">Процесс ksoftirqd съедает все ресурсы системы. Что делать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kernel-irq">Как определить какое устройство генерирует огромное количество прерываний?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#irq-manual">Как произвести ручную балансировку прерываний?</a></li>
@@ -895,12 +664,12 @@ foo-bar       hard    nofile          8192
 <li class="toctree-l2"><a class="reference internal" href="#fd-increase">Как увеличить лимит открытых файловых дескрипторов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#task-affinity">Как запустить процесс так, чтобы он мог использовать лишь определённые ядра процессора?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#task-priority">Как изменить приоритет процесса?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#virtualbox-kvm">Как преобразовать образ виртуальной машины VirtualBox в формат, совместимый с KVM?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#vmware-kvm">Как преобразовать образ виртуальной машины VMWare в формат, совместимый с KVM?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#hyper-v-kvm">Как преобразовать образ виртуальной машины Hyper-V в формат, совместимый с KVM?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#zip-split">Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#effective-uid-real-uid">Чем отличается Effective UID процесса от Real UID?</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="networking.html">Вопросы, связанные с сетевым администрированием</a></li>
+<li class="toctree-l1"><a class="reference internal" href="virtualization.html">Вопросы, связанные с виртуализацией</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using-applications.html">Вопросы, связанные со сторонними приложениями</a></li>
@@ -915,7 +684,7 @@ foo-bar       hard    nofile          8192
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="package-manager.html" title="предыдущая глава">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
-      <li>Next: <a href="security.html" title="следующая глава">Вопросы, связанные с безопасностью</a></li>
+      <li>Next: <a href="networking.html" title="следующая глава">Вопросы, связанные с сетевым администрированием</a></li>
   </ul></li>
 </ul>
 </div>

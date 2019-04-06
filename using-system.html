@@ -212,7 +212,7 @@ export QT_SCALE_FACTOR=2
 </div>
 <div class="section" id="failed-to-start-load-kernel-modules">
 <span id="failed-to-start"></span><span id="index-20"></span><h2>При загрузке системы появляется ошибка Failed to start Load Kernel Modules. Как исправить?<a class="headerlink" href="#failed-to-start-load-kernel-modules" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Это известная проблема системы виртуализации <a class="reference internal" href="package-manager.html#virtualbox"><span class="std std-ref">VirtualBox</span></a>, использующей out-of-tree модули ядра, но может также проявляться и у пользователей проприетарных <a class="reference internal" href="package-manager.html#broadcom-drivers"><span class="std std-ref">драйверов Broadcom</span></a>.</p>
+<p>Это известная проблема системы виртуализации <a class="reference internal" href="virtualization.html#virtualbox"><span class="std std-ref">VirtualBox</span></a>, использующей out-of-tree модули ядра, но может также проявляться и у пользователей проприетарных <a class="reference internal" href="hardware.html#broadcom-drivers"><span class="std std-ref">драйверов Broadcom</span></a>.</p>
 <p>Для исправления необходимо <strong>после каждого обновления ядра</strong> выполнять пересборку initrd:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut -f
 </pre></div>
@@ -569,7 +569,9 @@ export SUDO_EDITOR=vim
 <li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Вопросы, связанные с установкой системы</a></li>
 <li class="toctree-l1"><a class="reference internal" href="package-manager.html">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
-<li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с системным администрированием</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networking.html">Вопросы, связанные с сетевым администрированием</a></li>
+<li class="toctree-l1"><a class="reference internal" href="virtualization.html">Вопросы, связанные с виртуализацией</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные с работой в системе</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#autocompletion">У меня в системе не работает автодополнение команд. Как исправить?</a></li>

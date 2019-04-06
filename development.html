@@ -504,6 +504,17 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 </pre></div>
 </div>
 </div>
+<div class="section" id="git-empty">
+<span id="index-30"></span><span id="id18"></span><h2>Как создать пустую ветку в Git без общей истории?<a class="headerlink" href="#git-empty" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Создадим новую пустую ветку <strong>foo-bar</strong> от текущего HEAD:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout --orphan foo-bar
+</pre></div>
+</div>
+<p>Создадим удалим всё проиндексированное содержимое данной ветки:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git reset --hard
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -529,7 +540,9 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 <li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Вопросы, связанные с установкой системы</a></li>
 <li class="toctree-l1"><a class="reference internal" href="package-manager.html">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
-<li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с системным администрированием</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networking.html">Вопросы, связанные с сетевым администрированием</a></li>
+<li class="toctree-l1"><a class="reference internal" href="virtualization.html">Вопросы, связанные с виртуализацией</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using-applications.html">Вопросы, связанные со сторонними приложениями</a></li>
@@ -565,6 +578,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 <li class="toctree-l2"><a class="reference internal" href="#spec">Как автоматически скачать исходники, прописанные в SPEC-файле?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#spec-auto">Как автоматически инкрементировать релиз в SPEC-файле?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-multi">Как загрузить изменения во всех вложенных репозиториях из данного каталога?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-empty">Как создать пустую ветку в Git без общей истории?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>

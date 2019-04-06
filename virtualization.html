@@ -1,0 +1,194 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Вопросы, связанные с виртуализацией &#8212; Документация Fedora FAQ RU 2019.03.25</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="shortcut icon" href="_static/faq-icon.ico"/>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="Вопросы, связанные с безопасностью" href="security.html" />
+    <link rel="prev" title="Вопросы, связанные с сетевым администрированием" href="networking.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+    <link rel="apple-touch-icon" href="_static/faq-icon.png" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="virtualization">
+<span id="id1"></span><h1>Вопросы, связанные с виртуализацией<a class="headerlink" href="#virtualization" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="id2">
+<span id="id3"></span><h2>Какую систему управления виртуальными машинами лучше установить?<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Рекомендуется использовать <a class="reference internal" href="#kvm"><span class="std std-ref">KVM</span></a>, т.к. её гипервизор и необходимые модули уже находятся в ядре Linux и не вызывают проблем.</p>
+</div>
+<div class="section" id="cpu-virt">
+<span id="index-1"></span><span id="id4"></span><h2>Как определить имеет ли процессор аппаратную поддержку виртуализации?<a class="headerlink" href="#cpu-virt" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Проверим наличие флагов <strong>vmx</strong> (Intel), либо <strong>svm</strong> (AMD) в выводе <code class="docutils literal notranslate"><span class="pre">/proc/cpuinfo</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>grep -Eq &#39;(vmx|svm)&#39; /proc/cpuinfo &amp;&amp; echo Yes || echo No
+</pre></div>
+</div>
+</div>
+<div class="section" id="kvm">
+<span id="index-2"></span><span id="id5"></span><h2>Как правильно установить систему виртуализации KVM?<a class="headerlink" href="#kvm" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим KVM и графическую утилиту управления виртуальными машинами <strong>virt-manager</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf group install Virtualization
+</pre></div>
+</div>
+<p>Перезагрузим машину для вступления изменений в силу:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</div>
+<div class="section" id="kvm-users">
+<span id="index-3"></span><span id="id6"></span><h2>Как отключить запрос пароля во время запуска или остановки виртуальных машин при использовании KVM?<a class="headerlink" href="#kvm-users" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Возможностью управления виртуальными машинами обладают члены группы <strong>libvirt</strong>, поэтому нужно добавить в неё свой аккаунт:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G libvirt $(whoami)
+</pre></div>
+</div>
+</div>
+<div class="section" id="virtualbox-fedora">
+<span id="virtualbox"></span><span id="index-4"></span><h2>Как правильно установить VirtualBox в Fedora?<a class="headerlink" href="#virtualbox-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Сначала нужно подключить репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>, затем выполнить:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
+sudo dnf install gcc kernel-devel kernel-headers akmod-VirtualBox VirtualBox
+</pre></div>
+</div>
+<p>Для нормальной работы с USB устройствами и общими папками потребуется также добавить свой аккаунт в группу <strong>vboxusers</strong> и <strong>vboxsf</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G vboxusers $(whoami)
+sudo usermod -a -G vboxsf $(whoami)
+</pre></div>
+</div>
+</div>
+<div class="section" id="virtualbox-kvm">
+<span id="vdi-to-qcow2"></span><span id="index-5"></span><h2>Как преобразовать образ виртуальной машины VirtualBox в формат, совместимый с KVM?<a class="headerlink" href="#virtualbox-kvm" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для конвертирования образов воспользуемся штатной утилитой <strong>qemu-img</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f vdi -O qcow2 /path/to/image.vdi /path/to/image.qcow2
+</pre></div>
+</div>
+</div>
+<div class="section" id="vmware-kvm">
+<span id="vmdk-to-qcow2"></span><span id="index-6"></span><h2>Как преобразовать образ виртуальной машины VMWare в формат, совместимый с KVM?<a class="headerlink" href="#vmware-kvm" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Вариант 1. Воспользуемся утилитой <strong>virt-v2v</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>virt-v2v -i vmx /path/to/image.vmx -o local -os /path/to/kvm -of qcow2
+</pre></div>
+</div>
+<p>Вариант 2. Воспользуемся утилитой <strong>qemu-img</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f vmdk -O qcow2 /path/to/image.vmdk /path/to/image.qcow2
+</pre></div>
+</div>
+</div>
+<div class="section" id="hyper-v-kvm">
+<span id="vpc-to-qcow2"></span><span id="index-7"></span><h2>Как преобразовать образ виртуальной машины Hyper-V в формат, совместимый с KVM?<a class="headerlink" href="#hyper-v-kvm" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для преобразования образа воспользуемся штатной утилитой <strong>qemu-img</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f vpc -O qcow2 /path/to/image.vpc /path/to/image.qcow2
+</pre></div>
+</div>
+</div>
+<div class="section" id="cpu-windows">
+<span id="windows-cpuvuln"></span><span id="index-8"></span><h2>Можно ли отключить защиту от уязвимостей CPU в гостевых Windows внутри виртуальных машин?<a class="headerlink" href="#cpu-windows" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, <a class="reference external" href="https://support.microsoft.com/en-us/help/4072698/">согласно MSDN</a>, при помощи следующего REG файла:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">Windows Registry Editor Version 5.00</span>
+
+<span class="k">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]</span>
+<span class="na">&quot;FeatureSettingsOverride&quot;</span><span class="o">=</span><span class="s">dword:00000003</span>
+<span class="na">&quot;FeatureSettingsOverrideMask&quot;</span><span class="o">=</span><span class="s">dword:00000003</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Искать" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Навигация</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Вопросы, связанные с установкой системы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package-manager.html">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с системным администрированием</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networking.html">Вопросы, связанные с сетевым администрированием</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные с виртуализацией</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Какую систему управления виртуальными машинами лучше установить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cpu-virt">Как определить имеет ли процессор аппаратную поддержку виртуализации?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kvm">Как правильно установить систему виртуализации KVM?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kvm-users">Как отключить запрос пароля во время запуска или остановки виртуальных машин при использовании KVM?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#virtualbox-fedora">Как правильно установить VirtualBox в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#virtualbox-kvm">Как преобразовать образ виртуальной машины VirtualBox в формат, совместимый с KVM?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vmware-kvm">Как преобразовать образ виртуальной машины VMWare в формат, совместимый с KVM?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hyper-v-kvm">Как преобразовать образ виртуальной машины Hyper-V в формат, совместимый с KVM?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cpu-windows">Можно ли отключить защиту от уязвимостей CPU в гостевых Windows внутри виртуальных машин?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-applications.html">Вопросы, связанные со сторонними приложениями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
+<li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="networking.html" title="предыдущая глава">Вопросы, связанные с сетевым администрированием</a></li>
+      <li>Next: <a href="security.html" title="следующая глава">Вопросы, связанные с безопасностью</a></li>
+  </ul></li>
+</ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018 - 2019, EasyCoding Team and contributors.
+      
+    </div>
+
+    
+    <a href="https://github.com/RussianFedora/FAQ" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="_static/forkme_right_green.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

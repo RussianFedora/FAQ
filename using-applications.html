@@ -86,22 +86,36 @@ gfx.xrender.enabled = true
 </div></blockquote>
 <p>Теперь можно установить <a class="reference internal" href="#telegram-fedora"><span class="std std-ref">версию</span></a> из <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
 </div>
+<div class="section" id="chromium">
+<span id="chromium-codecs"></span><span id="index-5"></span><h2>Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?<a class="headerlink" href="#chromium" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Из-за патентных ограничений браузер Chromium в репозиториях Fedora сильно кастрирован. Для восстановления полной функциональности необходимо подключить <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установить пакет с кодеками для данного браузера:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install chromium-libs-media-freeworld
+</pre></div>
+</div>
+</div>
+<div class="section" id="firefox-codecs">
+<span id="index-6"></span><span id="id4"></span><h2>Как активировать все доступные кодеки в браузере Firefox?<a class="headerlink" href="#firefox-codecs" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Браузер Mozilla Firefox использует ffmpeg для работы с мультимедийным контентом, поэтому необходимо его установить из репозитория <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install ffmpeg-libs
+</pre></div>
+</div>
+</div>
 <div class="section" id="latex">
-<span id="latex-editor"></span><span id="index-5"></span><h2>В репозиториях есть полнофункциональные редакторы LaTeX?<a class="headerlink" href="#latex" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="latex-editor"></span><span id="index-7"></span><h2>В репозиториях есть полнофункциональные редакторы LaTeX?<a class="headerlink" href="#latex" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Для работы с документами в формате LaTeX рекомендуется использовать <strong>texmaker</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install texmaker
 </pre></div>
 </div>
 </div>
 <div class="section" id="latex-cyrillic">
-<span id="index-6"></span><span id="id4"></span><h2>Как установить поддержку кириллических шрифтов для LaTeX?<a class="headerlink" href="#latex-cyrillic" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-8"></span><span id="id5"></span><h2>Как установить поддержку кириллических шрифтов для LaTeX?<a class="headerlink" href="#latex-cyrillic" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Наборы кириллических шрифтов доступны в виде коллекции:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install texlive-collection-langcyrillic texlive-cyrillic texlive-russ texlive-babel-russian
 </pre></div>
 </div>
 </div>
 <div class="section" id="youtube">
-<span id="youtube-download"></span><span id="index-7"></span><h2>Как скачать видео с Youtube?<a class="headerlink" href="#youtube" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="youtube-download"></span><span id="index-9"></span><h2>Как скачать видео с Youtube?<a class="headerlink" href="#youtube" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Скачать любое интересующее видео с Youtube, а также ряда других хостингов, можно посредством утилиты <strong>youtube-dl</strong>, доступной в основном репозитории Fedora:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install youtube-dl
 </pre></div>
@@ -126,14 +140,14 @@ gfx.xrender.enabled = true
 <p>Для выхода из окна просмотра справки достаточно нажать <strong>Q</strong>.</p>
 </div>
 <div class="section" id="fedora-ms-windows">
-<span id="fedora-winiso"></span><span id="index-8"></span><h2>Как из Fedora записать образ с MS Windows на флешку?<a class="headerlink" href="#fedora-ms-windows" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fedora-winiso"></span><span id="index-10"></span><h2>Как из Fedora записать образ с MS Windows на флешку?<a class="headerlink" href="#fedora-ms-windows" title="Ссылка на этот заголовок">¶</a></h2>
 <p>К сожалению, <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">штатный способ</span></a> записи посредством использования утилиты dd не сработает в случае ISO образов MS Windows, поэтому для этого следует применять утилиту WoeUSB:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install WoeUSB
 </pre></div>
 </div>
 </div>
 <div class="section" id="iconv-convert">
-<span id="index-9"></span><span id="id5"></span><h2>Как конвертировать текстовый файл из одной кодировки в другую?<a class="headerlink" href="#iconv-convert" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-11"></span><span id="id6"></span><h2>Как конвертировать текстовый файл из одной кодировки в другую?<a class="headerlink" href="#iconv-convert" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для быстрой перекодировки текстовых файлов из одной кодировки в другую можно использовать утилиту iconv.</p>
 <p>Пример перекодировки файла из cp1251 (Windows-1251) в юникод (UTF-8):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>iconv -f cp1251 -t utf8 test.txt &gt; result.txt
@@ -142,7 +156,7 @@ gfx.xrender.enabled = true
 <p>Здесь <strong>test.txt</strong> - исходный файл с неправильной кодировкой, а <strong>result.txt</strong> используется для записи результата преобразования.</p>
 </div>
 <div class="section" id="android-mtp">
-<span id="fuze-mtp"></span><span id="index-10"></span><h2>Как подключить смартфон на Android посредством протокола MTP?<a class="headerlink" href="#android-mtp" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fuze-mtp"></span><span id="index-12"></span><h2>Как подключить смартфон на Android посредством протокола MTP?<a class="headerlink" href="#android-mtp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для простой и удобной работы с файловой системой смартфона вне зависимости от используемых приложений, рабочей среды и файлового менеджера, мы рекомендуем использовать основанную на FUSE реализацию.</p>
 <p>Установим пакет <strong>jmtpfs</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install jmtpfs fuse
@@ -162,7 +176,7 @@ gfx.xrender.enabled = true
 </div>
 </div>
 <div class="section" id="kde-connect">
-<span id="index-11"></span><span id="id6"></span><h2>Как лучше работать со смартфоном посредством компьютера или ноутбука?<a class="headerlink" href="#kde-connect" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-13"></span><span id="id7"></span><h2>Как лучше работать со смартфоном посредством компьютера или ноутбука?<a class="headerlink" href="#kde-connect" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для простой и эффективной работы со смартфоном на базе ОС Android пользователи рабочей среды KDE Plasma 5 могут использовать KDE Connect:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install kde-connect
 </pre></div>
@@ -177,7 +191,7 @@ gfx.xrender.enabled = true
 <p>Запустим плазмоид KDE Connect и выполним сопряжение.</p>
 </div>
 <div class="section" id="kde-connect-firewalld">
-<span id="index-12"></span><span id="id7"></span><h2>KDE Connect не видит мой смартфон. Как исправить?<a class="headerlink" href="#kde-connect-firewalld" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-14"></span><span id="id8"></span><h2>KDE Connect не видит мой смартфон. Как исправить?<a class="headerlink" href="#kde-connect-firewalld" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Добавим правило, разрешающее входящие соединения к сервису kdeconnectd посредством <a class="reference internal" href="security.html#firewalld-about"><span class="std std-ref">Firewalld</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --add-service=kde-connect --permanent
 </pre></div>
@@ -188,7 +202,7 @@ gfx.xrender.enabled = true
 </div>
 </div>
 <div class="section" id="dolphin">
-<span id="dolphin-templates"></span><span id="index-13"></span><h2>Как добавить новый тип файлов в меню Создать в Dolphin?<a class="headerlink" href="#dolphin" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="dolphin-templates"></span><span id="index-15"></span><h2>Как добавить новый тип файлов в меню Создать в Dolphin?<a class="headerlink" href="#dolphin" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сначала получим пути, в которых KDE пытается обнаружить <em>ярлыки</em> шаблонов новых файлов:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kf5-config --path templates
 </pre></div>
@@ -216,7 +230,7 @@ gfx.xrender.enabled = true
 <p>Изменения вступят в силу немедленно и через несколько секунд в меню <em>Создать</em> файлового менеджера Dolphin появится новый пункт.</p>
 </div>
 <div class="section" id="nautilus">
-<span id="nautilus-templates"></span><span id="index-14"></span><h2>Как добавить новый тип файлов в меню Создать в Nautilus?<a class="headerlink" href="#nautilus" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="nautilus-templates"></span><span id="index-16"></span><h2>Как добавить новый тип файлов в меню Создать в Nautilus?<a class="headerlink" href="#nautilus" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В отличие от <a class="reference internal" href="#dolphin-templates"><span class="std std-ref">Dolphin в KDE</span></a>, Nautilus в Gnome ищет файлы шаблонов в стандартном каталоге <a class="reference internal" href="using-system.html#xdg-reallocate"><span class="std std-ref">$XDG_TEMPLATES_DIR</span></a>. Получим путь к нему:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>xdg-user-dir TEMPLATES
 </pre></div>
@@ -229,8 +243,8 @@ gfx.xrender.enabled = true
 </div>
 <p>Изменения вступят в силу немедленно и через несколько секунд в меню <em>Создать</em> файлового менеджера Nautilus появится новый пункт.</p>
 </div>
-<div class="section" id="chromium">
-<span id="chromium-commandline"></span><span id="index-15"></span><h2>Как постоянно запускать браузер Chromium с определёнными параметрами?<a class="headerlink" href="#chromium" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="chromium-commandline">
+<span id="index-17"></span><span id="id9"></span><h2>Как постоянно запускать браузер Chromium с определёнными параметрами?<a class="headerlink" href="#chromium-commandline" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы постоянно запускать браузер Chromium с определёнными <a class="reference external" href="https://peter.sh/experiments/chromium-command-line-switches/">параметрами запуска</a>, необходимо создать файл <code class="docutils literal notranslate"><span class="pre">~/.config/chromium-flags.conf</span></code> и прописать их в нём.</p>
 <p>В качестве разделителя применяется пробел, либо символ разрыва строки. Строки, которые начинаются с символа решётки (<strong>#</strong>) считаются комментариями и игнорируются.</p>
 <p>Пример:</p>
@@ -242,7 +256,7 @@ gfx.xrender.enabled = true
 </div>
 </div>
 <div class="section" id="thunderbird-lightning">
-<span id="thunderbird-symlinks"></span><span id="index-16"></span><h2>В установленном Thunderbird не обновляется расширение Lightning и языковые пакеты. Как исправить?<a class="headerlink" href="#thunderbird-lightning" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="thunderbird-symlinks"></span><span id="index-18"></span><h2>В установленном Thunderbird не обновляется расширение Lightning и языковые пакеты. Как исправить?<a class="headerlink" href="#thunderbird-lightning" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проблема заключается в том, что системные расширения и пакеты с переводами должны копироваться в профиль пользователя при каждом обновлении клиента, но RPM пакетам <a class="reference external" href="https://docs.fedoraproject.org/en-US/packaging-guidelines/">запрещено</a> вносить любые изменения в домашние каталоги пользователей, поэтому они автоматически не обновляются.</p>
 <p>Чтобы исправить проблему необходимо и достаточно создать символические ссылки на XPI файлы, обновляемые пакетом.</p>
 <p>Удалим старые файлы из профилей Thunderbird:</p>
@@ -260,7 +274,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Перезапустим Thunderbird для того, чтобы изменения вступили в силу.</p>
 </div>
 <div class="section" id="qr">
-<span id="qr-code"></span><span id="index-17"></span><h2>Как распознать QR-код или штрих-код из консоли?<a class="headerlink" href="#qr" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="qr-code"></span><span id="index-19"></span><h2>Как распознать QR-код или штрих-код из консоли?<a class="headerlink" href="#qr" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для распознавания бар-кода на изображении и получения его содержимого воспользуемся пакетом <strong>zbar</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install zbar
 </pre></div>
@@ -272,7 +286,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Результат (или результаты (по одному на каждый обнаруженный бар-код)) будут выведены в консоль.</p>
 </div>
 <div class="section" id="ocr-app">
-<span id="index-18"></span><span id="id8"></span><h2>Как можно распознать текст с изображения или сканера?<a class="headerlink" href="#ocr-app" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-20"></span><span id="id10"></span><h2>Как можно распознать текст с изображения или сканера?<a class="headerlink" href="#ocr-app" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для получения текста из файлов изображений, либо PDF, можно воспользоваться системой оптического распознавания символов Tesseract, а также графической утилитой gImageReader.</p>
 <p>Установим Tesseract и набор файлов для русского языка:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install tesseract tesseract-langpack-rus
@@ -290,7 +304,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Результат может быть сохранён в файл с панели результатов распознавания.</p>
 </div>
 <div class="section" id="zip">
-<span id="zip-encoding"></span><span id="index-19"></span><h2>При распаковке Zip архива появляются кракозябры вместо имён файлов. Как исправить?<a class="headerlink" href="#zip" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="zip-encoding"></span><span id="index-21"></span><h2>При распаковке Zip архива появляются кракозябры вместо имён файлов. Как исправить?<a class="headerlink" href="#zip" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Zip-архивы, созданные штатными средствами ОС Windows, сохраняют имена файлов внутри архива исключительно в однобайтовой кодировке системы по умолчанию (в русской версии это Windows-1251 (cp1251), в английской - Windows-1252 (cp1252)), поэтому при распаковке таких архивов вместо русских букв будут отображаться кракозябры.</p>
 <p>Утилита unzip поддерживает явное указание кодировки, поэтому воспользуемся данной функцией:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>unzip -O cp1251 foo-bar.zip -d /path/to/destination
@@ -299,7 +313,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Здесь <strong>cp1251</strong> - кодировка имён файлов, <strong>foo-bar.zip</strong> - имя архива, а <strong>/path/to/destination</strong> - каталог, в который он будет распакован.</p>
 </div>
 <div class="section" id="tmpfs">
-<span id="browser-tmpfs"></span><span id="index-20"></span><h2>Стоит ли переносить кэши браузеров в tmpfs?<a class="headerlink" href="#tmpfs" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="browser-tmpfs"></span><span id="index-22"></span><h2>Стоит ли переносить кэши браузеров в tmpfs?<a class="headerlink" href="#tmpfs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, т.к. это даёт следующие преимущества:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -309,7 +323,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div></blockquote>
 </div>
 <div class="section" id="firefox-tmpfs">
-<span id="firefox-cache"></span><span id="index-21"></span><h2>Как перенести кэш браузера Firefox в tmpfs?<a class="headerlink" href="#firefox-tmpfs" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="firefox-cache"></span><span id="index-23"></span><h2>Как перенести кэш браузера Firefox в tmpfs?<a class="headerlink" href="#firefox-tmpfs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В Fedora каталог <strong>/tmp</strong> по умолчанию монтируется в tmpfs, поэтому осуществим перенос кэшей данного браузера именно в него:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -321,7 +335,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div></blockquote>
 </div>
 <div class="section" id="wget-crawler">
-<span id="index-22"></span><span id="id9"></span><h2>Как скачать веб-страницу рекурсивно?<a class="headerlink" href="#wget-crawler" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-24"></span><span id="id11"></span><h2>Как скачать веб-страницу рекурсивно?<a class="headerlink" href="#wget-crawler" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для рекурсивного скачивания статических веб-страниц можно использовать wget в специальном режиме.</p>
 <p>Запустим скачивание ресурса <strong>example.org</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>wget --random-wait -r -p -e robots=off -U &quot;Mozilla/5.0 (X11; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0&quot; https://example.org
@@ -330,7 +344,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Рекурсивное скачивание может занять много времени и места на диске. Настоятельно не рекомендуется использовать этот режим на ресурсах с динамическим контентом.</p>
 </div>
 <div class="section" id="exif">
-<span id="exif-data"></span><span id="index-23"></span><h2>Как извлечь метаданные EXIF из файла изображения?<a class="headerlink" href="#exif" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="exif-data"></span><span id="index-25"></span><h2>Как извлечь метаданные EXIF из файла изображения?<a class="headerlink" href="#exif" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет ImageMagick:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install ImageMagick
 </pre></div>
@@ -341,7 +355,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 </div>
 <div class="section" id="wget-spider">
-<span id="index-24"></span><span id="id10"></span><h2>Как проверить действительность ссылок в закладках без сторонних расширений?<a class="headerlink" href="#wget-spider" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-26"></span><span id="id12"></span><h2>Как проверить действительность ссылок в закладках без сторонних расширений?<a class="headerlink" href="#wget-spider" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проверить действительность любых ссылок, указанных в файле, можно средствами <strong>wget</strong> в режиме <em>spider</em>.</p>
 <p>Запустим веб-браузер и экспортируем список закладок в файл, совместимый с форматом <em>Netscape Bookmarks</em>. В Firefox это можно сделать так:</p>
 <blockquote>
@@ -358,12 +372,54 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>В зависимости от размера файла процесс проверки может занять очень много времени.</p>
 </div>
 <div class="section" id="steam-fedora">
-<span id="steam"></span><span id="index-25"></span><h2>Как установить Steam в Fedora?<a class="headerlink" href="#steam-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="steam"></span><span id="index-27"></span><h2>Как установить Steam в Fedora?<a class="headerlink" href="#steam-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Подключим репозитории <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> (как free, так и nonfree), после чего установим его:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install steam
 </pre></div>
 </div>
 <p>Ярлык запуска клиента Steam появится в главном меню используемой графической среды.</p>
+</div>
+<div class="section" id="gnome-shell">
+<span id="gnome-shell-extensions"></span><span id="index-28"></span><h2>Откуда правильно устанавливать расширения для Gnome Shell?<a class="headerlink" href="#gnome-shell" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Расширения для Gnome Shell можно устанавливать как в виде пакета из репозиториев, так и напрямую из <a class="reference external" href="https://extensions.gnome.org/">Магазина расширений Gnome</a>. Разница лишь в том, что расширения, установленные пакетом, будут доступны сразу для всех пользователей системы.</p>
+<p>Рекомендуется устанавливать расширения из Магазина, т.к. многие пакеты очень редко получают обновления.</p>
+</div>
+<div class="section" id="gnome-shell-browser">
+<span id="index-29"></span><span id="id13"></span><h2>Как разрешить установку расширений Gnome Shell из веб-браузера?<a class="headerlink" href="#gnome-shell-browser" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для того, чтобы разрешить установку <a class="reference internal" href="#gnome-shell-extensions"><span class="std std-ref">расширений Gnome Shell</span></a> из браузеров, необходимо установить соответствующий пакет:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gnome-shell-browser
+</pre></div>
+</div>
+<p>Также данное дополнение можно установить и вручную:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://addons.mozilla.org/ru/firefox/addon/gnome-shell-integration/">Firefox</a>;</li>
+<li><a class="reference external" href="https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=ru">Chrome/Chromium</a>.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="kde-plasma">
+<span id="plasma-browser"></span><span id="index-30"></span><h2>Как разрешить установку расширений KDE Plasma из веб-браузера?<a class="headerlink" href="#kde-plasma" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для того, чтобы разрешить установку расширений оболочки KDE Plasma из браузеров, необходимо установить соответствующий пакет:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install plasma-browser-integration
+</pre></div>
+</div>
+<p>Также данное дополнение можно установить и вручную:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://addons.mozilla.org/ru/firefox/addon/plasma-integration/">Firefox</a>;</li>
+<li><a class="reference external" href="https://chrome.google.com/webstore/detail/plasma-integration/cimiefiiaegbelhefglklhhakcgmhkai?hl=ru">Chrome/Chromium</a>.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="gnome-shell-tray">
+<span id="index-31"></span><span id="id14"></span><h2>Как вернуть классический системный лоток (трей) в Gnome Shell?<a class="headerlink" href="#gnome-shell-tray" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Начиная с Gnome 3.26, из области уведомлений оболочки была удалена поддержка классического системного лотка, поэтому многие приложения при закрытии или сворачивании могут не завершать свою работу, а продолжать работать в фоне без отображения видимого окна.</p>
+<p>Восстановить трей можно посредством установки одного из <a class="reference internal" href="#gnome-shell-extensions"><span class="std std-ref">расширений Gnome Shell</span></a>. Самым популярным является <a class="reference external" href="https://extensions.gnome.org/extension/1031/topicons/">TopIcons Plus</a>.</p>
+<p>Установка для всех пользователей в виде пакета из репозиториев Fedora:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gnome-shell-extension-topicons-plus
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -390,7 +446,9 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Вопросы, связанные с установкой системы</a></li>
 <li class="toctree-l1"><a class="reference internal" href="package-manager.html">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
-<li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с системным администрированием</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networking.html">Вопросы, связанные с сетевым администрированием</a></li>
+<li class="toctree-l1"><a class="reference internal" href="virtualization.html">Вопросы, связанные с виртуализацией</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные со сторонними приложениями</a><ul>
@@ -399,6 +457,8 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#video-hwaccel">В каких проигрывателях реализовано аппаратное ускорение декодирования мультимедиа?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#telegram-desktop-fedora">Как лучше установить Telegram Desktop в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#telegram-desktop">Ранее я устанавливал официальную версию Telegram Desktop. Как мне очистить её остатки?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#chromium">Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firefox-codecs">Как активировать все доступные кодеки в браузере Firefox?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#latex">В репозиториях есть полнофункциональные редакторы LaTeX?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#latex-cyrillic">Как установить поддержку кириллических шрифтов для LaTeX?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#youtube">Как скачать видео с Youtube?</a></li>
@@ -409,7 +469,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#kde-connect-firewalld">KDE Connect не видит мой смартфон. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dolphin">Как добавить новый тип файлов в меню Создать в Dolphin?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nautilus">Как добавить новый тип файлов в меню Создать в Nautilus?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#chromium">Как постоянно запускать браузер Chromium с определёнными параметрами?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#chromium-commandline">Как постоянно запускать браузер Chromium с определёнными параметрами?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#thunderbird-lightning">В установленном Thunderbird не обновляется расширение Lightning и языковые пакеты. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qr">Как распознать QR-код или штрих-код из консоли?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ocr-app">Как можно распознать текст с изображения или сканера?</a></li>
@@ -420,6 +480,10 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#exif">Как извлечь метаданные EXIF из файла изображения?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#wget-spider">Как проверить действительность ссылок в закладках без сторонних расширений?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#steam-fedora">Как установить Steam в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gnome-shell">Откуда правильно устанавливать расширения для Gnome Shell?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gnome-shell-browser">Как разрешить установку расширений Gnome Shell из веб-браузера?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kde-plasma">Как разрешить установку расширений KDE Plasma из веб-браузера?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gnome-shell-tray">Как вернуть классический системный лоток (трей) в Gnome Shell?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>

@@ -248,7 +248,7 @@
 <p>Не работают:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Broadcom (для их работы необходима установка <a class="reference internal" href="package-manager.html#broadcom-drivers"><span class="std std-ref">проприетарных драйверов</span></a>, которые часто ведут себя непредсказуемо и могут вызывать сбои в работе ядра системы).</li>
+<li>Broadcom (для их работы необходима установка <a class="reference internal" href="#broadcom-drivers"><span class="std std-ref">проприетарных драйверов</span></a>, которые часто ведут себя непредсказуемо и могут вызывать сбои в работе ядра системы).</li>
 </ul>
 </div></blockquote>
 </div>
@@ -516,36 +516,29 @@ chmod +x Unigine_Superposition-1.0.run
 <p>На современных поколениях ноутбуков использовать TLP не следует, т.к. контроллеры аккумуляторных батарей способны самостоятельно контролировать уровень заряда и балансировать износ ячеек.</p>
 <p>Если всё же требуется установить предел заряда например от 70% до 90%, вместо TLP лучше один раз воспользоваться фирменной утилитой производителя устройства, задать необходимые настройки и сохранить изменения в NVRAM материнской платы. В таком случае они будут работать в любой ОС.</p>
 </div>
-<div class="section" id="cpu-virt">
-<span id="index-37"></span><span id="id22"></span><h2>Как определить имеет ли процессор аппаратную поддержку виртуализации?<a class="headerlink" href="#cpu-virt" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Проверим наличие флагов <strong>vmx</strong> (Intel), либо <strong>svm</strong> (AMD) в выводе <code class="docutils literal notranslate"><span class="pre">/proc/cpuinfo</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>grep -Eq &#39;(vmx|svm)&#39; /proc/cpuinfo &amp;&amp; echo Yes || echo No
-</pre></div>
-</div>
-</div>
 <div class="section" id="gl-engine">
-<span id="index-38"></span><span id="id23"></span><h2>Как определить какой движок используется для вывода трёхмерной графики?<a class="headerlink" href="#gl-engine" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-37"></span><span id="id22"></span><h2>Как определить какой движок используется для вывода трёхмерной графики?<a class="headerlink" href="#gl-engine" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Воспользуемся утилитой <strong>glxinfo</strong> для вывода информации об используемом OpenGL движке:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>glxinfo | grep -E &#39;OpenGL version|OpenGL renderer&#39;
 </pre></div>
 </div>
 </div>
 <div class="section" id="microcode-version">
-<span id="index-39"></span><span id="id24"></span><h2>Как определить версию установленного микрокода процессора?<a class="headerlink" href="#microcode-version" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-38"></span><span id="id23"></span><h2>Как определить версию установленного микрокода процессора?<a class="headerlink" href="#microcode-version" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Получим версию микрокода из вывода <code class="docutils literal notranslate"><span class="pre">/proc/cpuinfo</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/cpuinfo | grep microcode | uniq
 </pre></div>
 </div>
 </div>
 <div class="section" id="vsync-off">
-<span id="index-40"></span><span id="id25"></span><h2>Как отключить вертикальную синхронизацию для одного приложения?<a class="headerlink" href="#vsync-off" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-39"></span><span id="id24"></span><h2>Как отключить вертикальную синхронизацию для одного приложения?<a class="headerlink" href="#vsync-off" title="Ссылка на этот заголовок">¶</a></h2>
 <p>На видеокартах NVIDIA с установленным <a class="reference internal" href="#nvidia-drivers"><span class="std std-ref">проприетарным драйвером</span></a> отключить вертикальную синхронизацию для одного приложения можно посредством установки <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменной окружения</span></a> <code class="docutils literal notranslate"><span class="pre">__GL_SYNC_TO_VBLANK</span></code> значения <code class="docutils literal notranslate"><span class="pre">0</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>__GL_SYNC_TO_VBLANK=0 /usr/bin/foo-bar
 </pre></div>
 </div>
 </div>
 <div class="section" id="kde">
-<span id="kde-video-reset"></span><span id="index-41"></span><h2>Как сбросить настройки экрана в KDE?<a class="headerlink" href="#kde" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="kde-video-reset"></span><span id="index-40"></span><h2>Как сбросить настройки экрана в KDE?<a class="headerlink" href="#kde" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Настройки экрана хранятся внутри JSON файлов в каталоге <code class="docutils literal notranslate"><span class="pre">~/.local/share/kscreen</span></code>, поэтому для того, чтобы их сбросить, достаточно очистить его:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rm -f ~/.local/share/kscreen/*
 </pre></div>
@@ -553,7 +546,7 @@ chmod +x Unigine_Superposition-1.0.run
 <p>Изменения вступят в силу при следующем входе в систему.</p>
 </div>
 <div class="section" id="pa-reset">
-<span id="index-42"></span><span id="id26"></span><h2>Как сбросить настройки звука?<a class="headerlink" href="#pa-reset" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-41"></span><span id="id25"></span><h2>Как сбросить настройки звука?<a class="headerlink" href="#pa-reset" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В Fedora настройками звука управляет PulseAudio, поэтому для того, чтобы сбросить его настройки, удалим всё содержимое каталога <code class="docutils literal notranslate"><span class="pre">~/.config/pulse</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rm -f ~/.config/pulse/*
 </pre></div>
@@ -566,7 +559,7 @@ pulseaudio -D
 <p>Сразу после этого все настройки звука будут сброшены на установленные по умолчанию.</p>
 </div>
 <div class="section" id="nvidia-encoding">
-<span id="index-43"></span><span id="id27"></span><h2>Как ускорить кодирование видео с использованием видеокарт NVIDIA?<a class="headerlink" href="#nvidia-encoding" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-42"></span><span id="id26"></span><h2>Как ускорить кодирование видео с использованием видеокарт NVIDIA?<a class="headerlink" href="#nvidia-encoding" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этого нужно установить ffmpeg, а также <a class="reference internal" href="#nvidia-drivers"><span class="std std-ref">проприетарные драйверы NVIDIA</span></a> из репозиториев <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
 <p>Использование NVENC:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ffmpeg -i input.mp4 -acodec aac -ac 2 -ab 128k -vcodec h264_nvenc -profile high444p -pixel_format yuv444p -preset default output.mp4
@@ -580,7 +573,7 @@ pulseaudio -D
 <p>Больше информации можно найти <a class="reference external" href="https://trac.ffmpeg.org/wiki/HWAccelIntro">здесь</a>.</p>
 </div>
 <div class="section" id="steam-optimus">
-<span id="index-44"></span><span id="id28"></span><h2>Как запустить игру из Steam на дискретной видеокарте с поддержкой Optimus?<a class="headerlink" href="#steam-optimus" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-43"></span><span id="id27"></span><h2>Как запустить игру из Steam на дискретной видеокарте с поддержкой Optimus?<a class="headerlink" href="#steam-optimus" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Актуальные версии клиента Steam <a class="reference external" href="https://support.steampowered.com/kb_article.php?ref=6316-GJKC-7437">поддерживают</a> технологию NVIDIA Optimus «из коробки» если установлен <a class="reference internal" href="#nvidia-optimus"><span class="std std-ref">проприетарный драйвер Bumblebee</span></a>.</p>
 <p>Чтобы запустить игру на дискретной видеокарте, нажмём <strong>правой кнопкой мыши</strong> по нужной игре в Библиотеке, выберем пункт контекстного меню <strong>Свойства</strong>, нажмём кнопку <strong>Установить параметры запуска</strong> и в открывшемся окне введём следующее:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>primusrun %command%
@@ -588,6 +581,19 @@ pulseaudio -D
 </div>
 <p>Сохраним изменения, нажав <strong>OK</strong> и <strong>Закрыть</strong>.</p>
 <p>Теперь данная игра будет всегда запускаться на дискретном видеоадаптере ноутбука.</p>
+</div>
+<div class="section" id="wayland-nvidia">
+<span id="nvidia-wayland"></span><span id="index-44"></span><h2>Корректно ли работает Wayland на видеокартах NVIDIA?<a class="headerlink" href="#wayland-nvidia" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Из-за того, что NVIDIA <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%A1%D0%B8%D0%BD%D0%B4%D1%80%D0%BE%D0%BC_%D0%BD%D0%B5%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D1%8F_%D1%87%D1%83%D0%B6%D0%BE%D0%B9_%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B8">отказывается поддержать</a> существующие технологии вывода в Wayland, на видеокартах этого производителя он не поддерживается в настоящее время.</p>
+<p>Таким образом, пользователям Fedora с <a class="reference internal" href="#nvidia-drivers"><span class="std std-ref">проприетарными драйверами NVIDIA</span></a> следует убедиться, что в файле <code class="docutils literal notranslate"><span class="pre">/etc/gdm/custom.conf</span></code> убран символ комментария (<strong>#</strong>) около строки <code class="docutils literal notranslate"><span class="pre">WaylandEnable=false</span></code>.</p>
+</div>
+<div class="section" id="wi-fi-broadcom">
+<span id="broadcom-drivers"></span><span id="index-45"></span><h2>Как правильно установить драйверы Wi-Fi модулей Broadcom?<a class="headerlink" href="#wi-fi-broadcom" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Сначала нужно подключить <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>, затем выполнить:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
+sudo dnf install gcc kernel-devel kernel-headers akmod-wl
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -614,7 +620,9 @@ pulseaudio -D
 <li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Вопросы, связанные с установкой системы</a></li>
 <li class="toctree-l1"><a class="reference internal" href="package-manager.html">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
-<li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с системным администрированием</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networking.html">Вопросы, связанные с сетевым администрированием</a></li>
+<li class="toctree-l1"><a class="reference internal" href="virtualization.html">Вопросы, связанные с виртуализацией</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using-applications.html">Вопросы, связанные со сторонними приложениями</a></li>
@@ -656,7 +664,6 @@ pulseaudio -D
 <li class="toctree-l2"><a class="reference internal" href="#icc">Где найти ICC профиль для установленного в моём мониторе или ноутбуке дисплея?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#icc-install">Я нашёл цветовой профиль для дисплея. Как мне его установить в систему?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tlp">Нужно ли использовать TLP для оптимизации работы батареи?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#cpu-virt">Как определить имеет ли процессор аппаратную поддержку виртуализации?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gl-engine">Как определить какой движок используется для вывода трёхмерной графики?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#microcode-version">Как определить версию установленного микрокода процессора?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#vsync-off">Как отключить вертикальную синхронизацию для одного приложения?</a></li>
@@ -664,6 +671,8 @@ pulseaudio -D
 <li class="toctree-l2"><a class="reference internal" href="#pa-reset">Как сбросить настройки звука?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nvidia-encoding">Как ускорить кодирование видео с использованием видеокарт NVIDIA?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#steam-optimus">Как запустить игру из Steam на дискретной видеокарте с поддержкой Optimus?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wayland-nvidia">Корректно ли работает Wayland на видеокартах NVIDIA?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wi-fi-broadcom">Как правильно установить драйверы Wi-Fi модулей Broadcom?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
