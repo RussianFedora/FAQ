@@ -862,48 +862,6 @@
 
     renice -n 8 -p $(pidof foo-bar)
 
-.. index:: virtualbox, drive image, disk image, kvm, qemu, qcow2, vdi
-.. _vdi-to-qcow2:
-
-Как преобразовать образ виртуальной машины VirtualBox в формат, совместимый с KVM?
-======================================================================================
-
-Для конвертирования образов воспользуемся штатной утилитой **qemu-img**:
-
-.. code-block:: text
-
-    qemu-img convert -f vdi -O qcow2 /path/to/image.vdi /path/to/image.qcow2
-
-.. index:: vmware, drive image, disk image, kvm, qemu, qcow2, vmx, vmdk
-.. _vmdk-to-qcow2:
-
-Как преобразовать образ виртуальной машины VMWare в формат, совместимый с KVM?
-===================================================================================
-
-Вариант 1. Воспользуемся утилитой **virt-v2v**:
-
-.. code-block:: text
-
-    virt-v2v -i vmx /path/to/image.vmx -o local -os /path/to/kvm -of qcow2
-
-Вариант 2. Воспользуемся утилитой **qemu-img**:
-
-.. code-block:: text
-
-    qemu-img convert -f vmdk -O qcow2 /path/to/image.vmdk /path/to/image.qcow2
-
-.. index:: hyper-v, drive image, disk image, kvm, qemu, qcow2, vpc
-.. _vpc-to-qcow2:
-
-Как преобразовать образ виртуальной машины Hyper-V в формат, совместимый с KVM?
-===================================================================================
-
-Для преобразования образа воспользуемся штатной утилитой **qemu-img**:
-
-.. code-block:: text
-
-    qemu-img convert -f vpc -O qcow2 /path/to/image.vpc /path/to/image.qcow2
-
 .. index:: 7zip, archive, split, optical drive, dvd, p7zip
 .. _7zip-split:
 

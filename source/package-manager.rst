@@ -363,64 +363,6 @@ Dnf сохраняет старые ядра. Это нормально?
 
     sudo dnf install ffmpeg-libs
 
-.. index:: virtualization, vm, kvm, virtualbox
-.. _virtualization:
-
-Какую систему управления виртуальными машинами лучше установить?
-=====================================================================
-
-Рекомендуется использовать :ref:`KVM <kvm>`, т.к. её гипервизор и необходимые модули уже находятся в ядре Linux и не вызывают проблем.
-
-.. index:: virtualization, kvm, vm
-.. _kvm:
-
-Как правильно установить систему виртуализации KVM?
-=======================================================
-
-Установим KVM и графическую утилиту управления виртуальными машинами **virt-manager**:
-
-.. code-block:: text
-
-    sudo dnf group install Virtualization
-
-Перезагрузим машину для вступления изменений в силу:
-
-.. code-block:: text
-
-    sudo systemctl reboot
-
-.. index:: virtualization, kvm, polkit
-.. _kvm-users:
-
-Как отключить запрос пароля во время запуска или остановки виртуальных машин при использовании KVM?
-=======================================================================================================
-
-Возможностью управления виртуальными машинами обладают члены группы **libvirt**, поэтому нужно добавить в неё свой аккаунт:
-
-.. code-block:: text
-
-    sudo usermod -a -G libvirt $(whoami)
-
-.. index:: virtualization, repository, virtualbox, vm
-.. _virtualbox:
-
-Как правильно установить VirtualBox в Fedora?
-================================================
-
-Сначала нужно подключить репозиторий :ref:`RPM Fusion <rpmfusion>`, затем выполнить:
-
-.. code-block:: text
-
-    sudo dnf upgrade --refresh
-    sudo dnf install gcc kernel-devel kernel-headers akmod-VirtualBox VirtualBox
-
-Для нормальной работы с USB устройствами и общими папками потребуется также добавить свой аккаунт в группу **vboxusers** и **vboxsf**:
-
-.. code-block:: text
-
-    sudo usermod -a -G vboxusers $(whoami)
-    sudo usermod -a -G vboxsf $(whoami)
-
 .. index:: repository, broadcom, drivers, third-party
 .. _broadcom-drivers:
 
