@@ -39,19 +39,19 @@
             
   <div class="section" id="virtualization">
 <span id="id1"></span><h1>Вопросы, связанные с виртуализацией<a class="headerlink" href="#virtualization" title="Ссылка на этот заголовок">¶</a></h1>
-<div class="section" id="id2">
-<span id="id3"></span><h2>Какую систему управления виртуальными машинами лучше установить?<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="virt-selection">
+<span id="index-0"></span><span id="id2"></span><h2>Какую систему управления виртуальными машинами лучше установить?<a class="headerlink" href="#virt-selection" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Рекомендуется использовать <a class="reference internal" href="#kvm"><span class="std std-ref">KVM</span></a>, т.к. её гипервизор и необходимые модули уже находятся в ядре Linux и не вызывают проблем.</p>
 </div>
 <div class="section" id="cpu-virt">
-<span id="index-1"></span><span id="id4"></span><h2>Как определить имеет ли процессор аппаратную поддержку виртуализации?<a class="headerlink" href="#cpu-virt" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-1"></span><span id="id3"></span><h2>Как определить имеет ли процессор аппаратную поддержку виртуализации?<a class="headerlink" href="#cpu-virt" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проверим наличие флагов <strong>vmx</strong> (Intel), либо <strong>svm</strong> (AMD) в выводе <code class="docutils literal notranslate"><span class="pre">/proc/cpuinfo</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>grep -Eq &#39;(vmx|svm)&#39; /proc/cpuinfo &amp;&amp; echo Yes || echo No
 </pre></div>
 </div>
 </div>
 <div class="section" id="kvm">
-<span id="index-2"></span><span id="id5"></span><h2>Как правильно установить систему виртуализации KVM?<a class="headerlink" href="#kvm" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-2"></span><span id="id4"></span><h2>Как правильно установить систему виртуализации KVM?<a class="headerlink" href="#kvm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим KVM и графическую утилиту управления виртуальными машинами <strong>virt-manager</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf group install Virtualization
 </pre></div>
@@ -62,7 +62,7 @@
 </div>
 </div>
 <div class="section" id="kvm-users">
-<span id="index-3"></span><span id="id6"></span><h2>Как отключить запрос пароля во время запуска или остановки виртуальных машин при использовании KVM?<a class="headerlink" href="#kvm-users" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-3"></span><span id="id5"></span><h2>Как отключить запрос пароля во время запуска или остановки виртуальных машин при использовании KVM?<a class="headerlink" href="#kvm-users" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Возможностью управления виртуальными машинами обладают члены группы <strong>libvirt</strong>, поэтому нужно добавить в неё свой аккаунт:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G libvirt $(whoami)
 </pre></div>
@@ -145,7 +145,7 @@ sudo usermod -a -G vboxsf $(whoami)
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с системным администрированием</a></li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Вопросы, связанные с сетевым администрированием</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные с виртуализацией</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">Какую систему управления виртуальными машинами лучше установить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#virt-selection">Какую систему управления виртуальными машинами лучше установить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cpu-virt">Как определить имеет ли процессор аппаратную поддержку виртуализации?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kvm">Как правильно установить систему виртуализации KVM?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kvm-users">Как отключить запрос пароля во время запуска или остановки виртуальных машин при использовании KVM?</a></li>
