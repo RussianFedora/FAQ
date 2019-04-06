@@ -5,7 +5,7 @@
 .. 
 .. You should have received a copy of the license along with this
 .. work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
-.. _administration-network:
+.. _networking:
 
 **************************************************
 Вопросы, связанные с сетевым администрированием

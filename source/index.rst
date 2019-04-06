@@ -16,8 +16,8 @@
    generic-info.rst
    installation.rst
    package-manager.rst
-   administration-system.rst
-   administration-network.rst
+   administration.rst
+   networking.rst
    security.rst
    using-system.rst
    using-applications.rst
