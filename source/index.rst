@@ -17,6 +17,7 @@
    installation.rst
    package-manager.rst
    administration-system.rst
+   administration-network.rst
    security.rst
    using-system.rst
    using-applications.rst
