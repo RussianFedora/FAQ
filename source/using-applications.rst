@@ -87,6 +87,30 @@
 
 Теперь можно установить :ref:`версию <telegram-fedora>` из :ref:`RPM Fusion <rpmfusion>`.
 
+.. index:: repository, codecs, multimedia, chromium, third-party
+.. _chromium-codecs:
+
+Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?
+==============================================================================================================================
+
+Из-за патентных ограничений браузер Chromium в репозиториях Fedora сильно кастрирован. Для восстановления полной функциональности необходимо подключить :ref:`RPM Fusion <rpmfusion>` и установить пакет с кодеками для данного браузера:
+
+.. code-block:: text
+
+    sudo dnf install chromium-libs-media-freeworld
+
+.. index:: repository, codecs, multimedia, third-party, ffmpeg
+.. _firefox-codecs:
+
+Как активировать все доступные кодеки в браузере Firefox?
+==============================================================
+
+Браузер Mozilla Firefox использует ffmpeg для работы с мультимедийным контентом, поэтому необходимо его установить из репозитория :ref:`RPM Fusion <rpmfusion>`:
+
+.. code-block:: text
+
+    sudo dnf install ffmpeg-libs
+
 .. index:: latex, editor
 .. _latex-editor:
 
@@ -517,3 +541,63 @@ Zip-архивы, созданные штатными средствами ОС 
     sudo dnf install steam
 
 Ярлык запуска клиента Steam появится в главном меню используемой графической среды.
+
+.. index:: gnome, shell, extension
+.. _gnome-shell-extensions:
+
+Откуда правильно устанавливать расширения для Gnome Shell?
+==============================================================
+
+Расширения для Gnome Shell можно устанавливать как в виде пакета из репозиториев, так и напрямую из `Магазина расширений Gnome <https://extensions.gnome.org/>`__. Разница лишь в том, что расширения, установленные пакетом, будут доступны сразу для всех пользователей системы.
+
+Рекомендуется устанавливать расширения из Магазина, т.к. многие пакеты очень редко получают обновления.
+
+.. index:: gnome, shell, extension, firefox, chromium
+.. _gnome-shell-browser:
+
+Как разрешить установку расширений Gnome Shell из веб-браузера?
+==================================================================
+
+Для того, чтобы разрешить установку :ref:`расширений Gnome Shell <gnome-shell-extensions>` из браузеров, необходимо установить соответствующий пакет:
+
+.. code-block:: text
+
+    sudo dnf install gnome-shell-browser
+
+Также данное дополнение можно установить и вручную:
+
+ * `Firefox <https://addons.mozilla.org/ru/firefox/addon/gnome-shell-integration/>`__;
+ * `Chrome/Chromium <https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=ru>`__.
+
+.. index:: kde, plasma, extension, firefox, chromium
+.. _plasma-browser:
+
+Как разрешить установку расширений KDE Plasma из веб-браузера?
+=================================================================
+
+Для того, чтобы разрешить установку расширений оболочки KDE Plasma из браузеров, необходимо установить соответствующий пакет:
+
+.. code-block:: text
+
+    sudo dnf install plasma-browser-integration
+
+Также данное дополнение можно установить и вручную:
+
+ * `Firefox <https://addons.mozilla.org/ru/firefox/addon/plasma-integration/>`__;
+ * `Chrome/Chromium <https://chrome.google.com/webstore/detail/plasma-integration/cimiefiiaegbelhefglklhhakcgmhkai?hl=ru>`__.
+
+.. index:: gnome, shell, tray, system tray, icon
+.. _gnome-shell-tray:
+
+Как вернуть классический системный лоток (трей) в Gnome Shell?
+==================================================================
+
+Начиная с Gnome 3.26, из области уведомлений оболочки была удалена поддержка классического системного лотка, поэтому многие приложения при закрытии или сворачивании могут не завершать свою работу, а продолжать работать в фоне без отображения видимого окна.
+
+Восстановить трей можно посредством установки одного из :ref:`расширений Gnome Shell <gnome-shell-extensions>`. Самым популярным является `TopIcons Plus <https://extensions.gnome.org/extension/1031/topicons/>`__.
+
+Установка для всех пользователей в виде пакета из репозиториев Fedora:
+
+.. code-block:: text
+
+    sudo dnf install gnome-shell-extension-topicons-plus

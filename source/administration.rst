@@ -261,6 +261,38 @@
     [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation]
     "RealTimeIsUniversal"=dword:00000001
 
+.. index:: dm change, dm, display manager, sddm, gdm
+.. _change-dm:
+
+У меня в системе используется GDM, но я хочу заменить его на SDDM. Это возможно?
+==================================================================================
+
+Установка SDDM:
+
+.. code-block:: text
+
+    sudo dnf install sddm
+
+Отключение GDM и активация SDDM:
+
+.. code-block:: text
+
+    sudo systemctl -f enable sddm
+
+Изменения вступят в силу при следующей загрузке системы.
+
+.. index:: dnf, java, alternatives, multiple
+.. _alternatives-java:
+
+Как мне выбрать версию Java по умолчанию?
+==============================================
+
+Для выбора дефолтной :ref:`версии Java <java-multiple>` следует использовать систему альтернатив:
+
+.. code-block:: text
+
+    sudo update-alternatives --config java
+
 .. index:: console, change hostname, hostname
 .. _change-hostname:
 

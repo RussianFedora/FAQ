@@ -860,3 +860,16 @@ ICC профиль можно получить либо на сайте прои
 Из-за того, что NVIDIA `отказывается поддержать <https://ru.wikipedia.org/wiki/%D0%A1%D0%B8%D0%BD%D0%B4%D1%80%D0%BE%D0%BC_%D0%BD%D0%B5%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D1%8F_%D1%87%D1%83%D0%B6%D0%BE%D0%B9_%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B8>`__ существующие технологии вывода в Wayland, на видеокартах этого производителя он не поддерживается в настоящее время.
 
 Таким образом, пользователям Fedora с :ref:`проприетарными драйверами NVIDIA <nvidia-drivers>` следует убедиться, что в файле ``/etc/gdm/custom.conf`` убран символ комментария (**#**) около строки ``WaylandEnable=false``.
+
+.. index:: repository, broadcom, drivers, third-party
+.. _broadcom-drivers:
+
+Как правильно установить драйверы Wi-Fi модулей Broadcom?
+=============================================================
+
+Сначала нужно подключить :ref:`RPM Fusion <rpmfusion>`, затем выполнить:
+
+.. code-block:: text
+
+    sudo dnf upgrade --refresh
+    sudo dnf install gcc kernel-devel kernel-headers akmod-wl
