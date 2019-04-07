@@ -595,6 +595,31 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 </pre></div>
 </div>
 </div>
+<div class="section" id="bluetooth-auto">
+<span id="index-46"></span><span id="id28"></span><h2>Как включить автоматическое подключение Bluetooth устройств при загрузке?<a class="headerlink" href="#bluetooth-auto" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Включим автоматический запуск systemd-юнита:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable --now bluetooth.service
+</pre></div>
+</div>
+<p>Отредактируем файл конфигурации <code class="docutils literal notranslate"><span class="pre">/etc/bluetooth/main.conf</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/bluetooth/main.conf
+</pre></div>
+</div>
+<p>Активируем автоматическое подключение доверенных устройств при запуске:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Policy]</span>
+<span class="na">AutoEnable</span><span class="o">=</span><span class="s">true</span>
+</pre></div>
+</div>
+<p>Любым способом определим HW-адрес устройства (отображается как при поиске, так и в списке подключённых), затем войдём в консоль настройки Blueooth сервера:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>bluetoothctl
+</pre></div>
+</div>
+<p>Назначим устройство c HW <strong>AA:BB:CC:DD:EE:FF</strong> доверенным:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>trust AA:BB:CC:DD:EE:FF
+</pre></div>
+</div>
+<p>Теперь при следующей загрузке системы, а также выходе из режима сна, выбранное устройство подключится автоматически (при его доступности конечно же).</p>
+</div>
 </div>
 
 
@@ -673,6 +698,7 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 <li class="toctree-l2"><a class="reference internal" href="#steam-optimus">Как запустить игру из Steam на дискретной видеокарте с поддержкой Optimus?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#wayland-nvidia">Корректно ли работает Wayland на видеокартах NVIDIA?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#wi-fi-broadcom">Как правильно установить драйверы Wi-Fi модулей Broadcom?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bluetooth-auto">Как включить автоматическое подключение Bluetooth устройств при загрузке?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
