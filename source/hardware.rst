@@ -873,3 +873,42 @@ ICC профиль можно получить либо на сайте прои
 
     sudo dnf upgrade --refresh
     sudo dnf install gcc kernel-devel kernel-headers akmod-wl
+
+.. index:: bluetooth, mouse, reconnect
+.. _bluetooth-auto:
+
+Как включить автоматическое подключение Bluetooth устройств при загрузке?
+============================================================================
+
+Включим автоматический запуск systemd-юнита:
+
+.. code-block:: text
+
+    sudo systemctl enable --now bluetooth.service
+
+Отредактируем файл конфигурации ``/etc/bluetooth/main.conf``:
+
+.. code-block:: text
+
+    sudoedit /etc/bluetooth/main.conf
+
+Активируем автоматическое подключение доверенных устройств при запуске:
+
+.. code-block:: ini
+
+    [Policy]
+    AutoEnable=true
+
+Любым способом определим HW-адрес устройства (отображается как при поиске, так и в списке подключённых), затем войдём в консоль настройки Blueooth сервера:
+
+.. code-block:: text
+
+    bluetoothctl
+
+Назначим устройство c HW **AA:BB:CC:DD:EE:FF** доверенным:
+
+.. code-block:: text
+
+    trust AA:BB:CC:DD:EE:FF
+
+Теперь при следующей загрузке системы, а также выходе из режима сна, выбранное устройство подключится автоматически (при его доступности конечно же).
