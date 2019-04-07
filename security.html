@@ -628,27 +628,8 @@ Match Group sftp
 </pre></div>
 </div>
 </div>
-<div class="section" id="vpn">
-<span id="vpn-selection"></span><span id="index-61"></span><h2>Хочу обезопасить свой Интернет-трафик. Какую реализацию VPN выбрать?<a class="headerlink" href="#vpn" title="Ссылка на этот заголовок">¶</a></h2>
-<div class="section" id="wireguard">
-<h3>WireGuard<a class="headerlink" href="#wireguard" title="Ссылка на этот заголовок">¶</a></h3>
-<p><a class="reference internal" href="networking.html#using-wireguard"><span class="std std-ref">WireGuard</span></a> - самый современный и актуальный протокол для VPN. Обеспечивает максимальную скорость работы за счёт реализации в виде модуля ядра Linux и надёжную криптографическую защиту от прослушивания.</p>
-</div>
-<div class="section" id="openvpn">
-<h3>OpenVPN<a class="headerlink" href="#openvpn" title="Ссылка на этот заголовок">¶</a></h3>
-<p><a class="reference internal" href="networking.html#using-openvpn"><span class="std std-ref">OpenVPN</span></a> - cамая популярная и стабильная в настоящее время реализация VPN. Способен работать как через UDP, так и TCP, имеет плагины маскировки под TLS, обеспечивает высокую защищённость, но имеет низкую производительность из-за постоянных переключений между режимами пользователя и ядра.</p>
-</div>
-<div class="section" id="l2tp-ipsec">
-<h3>L2TP/IPSec<a class="headerlink" href="#l2tp-ipsec" title="Ссылка на этот заголовок">¶</a></h3>
-<p>Поддерживается большинством роутеров «из коробки», но является устаревшим. Изначально создавался для Windows, поэтому многие серверы заточены под соответствующие реализации клиентов.</p>
-</div>
-<div class="section" id="pptp">
-<h3>PPTP<a class="headerlink" href="#pptp" title="Ссылка на этот заголовок">¶</a></h3>
-<p>Устаревший, <a class="reference external" href="https://xakep.ru/2012/07/30/59067/">уязвимый by design</a> протокол. Трафик, проходящий через сеть, использующую данный протокол, может быть легко расшифрован за несколько часов. Категорически не рекомендуется к применению даже на устаревшем оборудовании.</p>
-</div>
-</div>
 <div class="section" id="com">
-<span id="com-dialout"></span><span id="index-62"></span><h2>Как получить доступ к COM портам без наличия прав суперпользователя?<a class="headerlink" href="#com" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="com-dialout"></span><span id="index-61"></span><h2>Как получить доступ к COM портам без наличия прав суперпользователя?<a class="headerlink" href="#com" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы получить доступ к <a class="reference internal" href="hardware.html#screen-com"><span class="std std-ref">COM порту (RS-232)</span></a> без наличия прав суперпользователя, необходимо добавить свой аккаунт в группу <strong>dialout</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G dialout $(whoami)
 </pre></div>
@@ -656,7 +637,7 @@ Match Group sftp
 <p>Изменения вступят в силу при следующем входе в систему.</p>
 </div>
 <div class="section" id="gnupg-kwallet">
-<span id="gpg-kwallet"></span><span id="index-63"></span><h2>Можно ли сохранить пароль GnuPG ключа в связке ключей KWallet?<a class="headerlink" href="#gnupg-kwallet" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="gpg-kwallet"></span><span id="index-62"></span><h2>Можно ли сохранить пароль GnuPG ключа в связке ключей KWallet?<a class="headerlink" href="#gnupg-kwallet" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Установим пакет <strong>kwalletcli</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install kwalletcli
 </pre></div>
@@ -668,20 +649,20 @@ Match Group sftp
 <p>Выполним выход из системы. При следующем вводе пароля расшифровки закрытого ключа, KWallet предложит сохранить его в связке ключей.</p>
 </div>
 <div class="section" id="gpg-gui">
-<span id="index-64"></span><span id="id46"></span><h2>Безопасно ли использовать менеджеры связки ключей GnuPG с графическим интерфейсом?<a class="headerlink" href="#gpg-gui" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-63"></span><span id="id46"></span><h2>Безопасно ли использовать менеджеры связки ключей GnuPG с графическим интерфейсом?<a class="headerlink" href="#gpg-gui" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да.</p>
 </div>
 <div class="section" id="kleopatra-kgpg">
-<span id="gpg-kleopatra"></span><span id="index-65"></span><h2>Можно ли одновременно использовать Kleopatra и KGpg?<a class="headerlink" href="#kleopatra-kgpg" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="gpg-kleopatra"></span><span id="index-64"></span><h2>Можно ли одновременно использовать Kleopatra и KGpg?<a class="headerlink" href="#kleopatra-kgpg" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Нет, не следует использовать одновременно разные графические менеджеры, т.к. настройки, вносимые ими в файл конфигурации GnuPG, будут конфликтовать и приводить к непредсказуемым последствиям.</p>
 <p>Пользователям KDE мы рекомендуем Kleopatra, как наиболее современную и функциональную оболочку.</p>
 </div>
 <div class="section" id="gpg-token">
-<span id="index-66"></span><span id="id47"></span><h2>Какой токен для безопасного хранения GnuPG ключей вы можете порекомендовать?<a class="headerlink" href="#gpg-token" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-65"></span><span id="id47"></span><h2>Какой токен для безопасного хранения GnuPG ключей вы можете порекомендовать?<a class="headerlink" href="#gpg-token" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы рекомендуем использовать токены <a class="reference external" href="https://www.nitrokey.com/ru">Nitrokey Pro 2</a>, т.к. они имеют как открытое железо, так и софт (спецификации, прошивки, а также программное обеспечение опубликовано под свободными лицензиями).</p>
 </div>
 <div class="section" id="gpg-use-token">
-<span id="index-67"></span><span id="id48"></span><h2>Как работать с токеном или смарт-картой из консоли?<a class="headerlink" href="#gpg-use-token" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-66"></span><span id="id48"></span><h2>Как работать с токеном или смарт-картой из консоли?<a class="headerlink" href="#gpg-use-token" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для работы с аппаратным токеном будем использовать утилиту GnuPG2.</p>
 <p>Вставим устройство в USB порт компьютера или ноутбука, либо смарт-карту в считыватель, затем выведем его статус:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gpg2 --card-status
@@ -712,7 +693,7 @@ Match Group sftp
 <p>Если всё сделано верно, то новая ключевая пара появится в списке немедленно.</p>
 </div>
 <div class="section" id="gpg-ssh">
-<span id="index-68"></span><span id="id49"></span><h2>Как использовать токен для аутентификации SSH?<a class="headerlink" href="#gpg-ssh" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-67"></span><span id="id49"></span><h2>Как использовать токен для аутентификации SSH?<a class="headerlink" href="#gpg-ssh" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сначала нам необходимо добавить в нашу ключевую пару особый ключ для аутентификации. По умолчанию он не создаётся.</p>
 <p>Выведем список доступных ключевых пар:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gpg2 --list-secret-keys
@@ -756,7 +737,7 @@ gpgconf --launch gpg-agent
 <p>Добавим этот скрипт а автозагрузку используемой DE, либо в <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> и выполним новый вход в систему.</p>
 </div>
 <div class="section" id="gpg-transfer">
-<span id="index-69"></span><span id="id50"></span><h2>Можно ли переместить на токен уже имеющуюся ключевую пару GnuPG?<a class="headerlink" href="#gpg-transfer" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-68"></span><span id="id50"></span><h2>Можно ли переместить на токен уже имеющуюся ключевую пару GnuPG?<a class="headerlink" href="#gpg-transfer" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Выведем список доступных ключевых пар:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gpg2 --list-secret-keys
 </pre></div>
@@ -779,7 +760,7 @@ keytocard
 <p>Здесь <strong>XXXXXXXXX</strong> - ID нашего ключа.</p>
 </div>
 <div class="section" id="nmap-scan">
-<span id="index-70"></span><span id="id51"></span><h2>Как просканировать хост на наличие работающих сервисов?<a class="headerlink" href="#nmap-scan" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-69"></span><span id="id51"></span><h2>Как просканировать хост на наличие работающих сервисов?<a class="headerlink" href="#nmap-scan" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Стандартное сканирование самых популярных портов:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nmap -A -T4 -Pn 127.0.0.1
 </pre></div>
@@ -888,7 +869,6 @@ keytocard
 <li class="toctree-l2"><a class="reference internal" href="#users-logged">Как получить список вошедших в систему пользователей?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#users-activity">Как получить список вошедших в систему пользователей и информацию об их деятельности?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#users-last">Как получить информацию обо всех входах в систему?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#vpn">Хочу обезопасить свой Интернет-трафик. Какую реализацию VPN выбрать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#com">Как получить доступ к COM портам без наличия прав суперпользователя?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gnupg-kwallet">Можно ли сохранить пароль GnuPG ключа в связке ключей KWallet?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gpg-gui">Безопасно ли использовать менеджеры связки ключей GnuPG с графическим интерфейсом?</a></li>
