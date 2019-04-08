@@ -614,11 +614,46 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>bluetoothctl
 </pre></div>
 </div>
-<p>Назначим устройство c HW <strong>AA:BB:CC:DD:EE:FF</strong> доверенным:</p>
+<p>Получим список сопряжённых устройств:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>paired-devices
+</pre></div>
+</div>
+<p>Если нужное нам оборудование c HW <strong>AA:BB:CC:DD:EE:FF</strong> уже числится в списке, удалим его:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>remove AA:BB:CC:DD:EE:FF
+</pre></div>
+</div>
+<p>Запустим процесс поиска новых устройств, убедимся, что девайс обнаруживается, затем отключим его:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>scan on
+scan off
+</pre></div>
+</div>
+<p>Назначим доверенным:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>trust AA:BB:CC:DD:EE:FF
 </pre></div>
 </div>
+<p>Произведём сопряжение и осуществим подключение:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pair AA:BB:CC:DD:EE:FF
+connect AA:BB:CC:DD:EE:FF
+</pre></div>
+</div>
 <p>Теперь при следующей загрузке системы, а также выходе из режима сна, выбранное устройство подключится автоматически (при его доступности конечно же).</p>
+</div>
+<div class="section" id="hdd-spindown">
+<span id="index-47"></span><span id="id29"></span><h2>Как принудительно остановить жёсткий диск?<a class="headerlink" href="#hdd-spindown" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для принудительной остановки накопителя на жёстких магнитных дисках воспользуемся утилитой <strong>hdparam</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo hdparam -y /dev/sda
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sda</strong> - устройство диска, который требуется остановить. Перед выполнением команды необходимо размонтировать все разделы, расположенные на нём.</p>
+<p>Внимание! Внезапная остановка HDD может привести к выходу его из строя. Следует использовать её на свой страх и риск.</p>
+</div>
+<div class="section" id="hdd-timeout">
+<span id="index-48"></span><span id="id30"></span><h2>Как установить таймаут остановки жёсткого диска?<a class="headerlink" href="#hdd-timeout" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Воспользуемся утилитой <strong>hdparam</strong> для установки таймаута бездействия, по истечении которого накопитель будет автоматически <a class="reference internal" href="#hdd-spindown"><span class="std std-ref">остановлен</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo hdparam -S 300 /dev/sda
+</pre></div>
+</div>
+<p>Здесь <strong>300</strong> - интервал неактивности в секундах, а <strong>/dev/sda</strong> - устройство диска, который будет остановлен.</p>
 </div>
 </div>
 
@@ -699,6 +734,8 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 <li class="toctree-l2"><a class="reference internal" href="#wayland-nvidia">Корректно ли работает Wayland на видеокартах NVIDIA?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#wi-fi-broadcom">Как правильно установить драйверы Wi-Fi модулей Broadcom?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bluetooth-auto">Как включить автоматическое подключение Bluetooth устройств при загрузке?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hdd-spindown">Как принудительно остановить жёсткий диск?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hdd-timeout">Как установить таймаут остановки жёсткого диска?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
