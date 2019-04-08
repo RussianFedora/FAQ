@@ -421,6 +421,17 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </pre></div>
 </div>
 </div>
+<div class="section" id="zip-split">
+<span id="index-32"></span><span id="id15"></span><h2>Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?<a class="headerlink" href="#zip-split" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим пакет <strong>p7zip</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install p7zip
+</pre></div>
+</div>
+<p>Упакуем содержимое текущего каталога в 7-Zip архив с использованием алгоритма сжатия LZMA2 c разбиением на тома размером 4480 МБ (для размещения на DVD носителях):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>7za a -m0=LZMA2 -mx9 -r -t7z -v4480m /path/to/archive.7z
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -484,6 +495,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#gnome-shell-browser">Как разрешить установку расширений Gnome Shell из веб-браузера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde-plasma">Как разрешить установку расширений KDE Plasma из веб-браузера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gnome-shell-tray">Как вернуть классический системный лоток (трей) в Gnome Shell?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zip-split">Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>

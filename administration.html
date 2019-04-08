@@ -572,19 +572,8 @@ foo-bar       hard    nofile          8192
 </pre></div>
 </div>
 </div>
-<div class="section" id="zip-split">
-<span id="index-50"></span><span id="id37"></span><h2>Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?<a class="headerlink" href="#zip-split" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Установим пакет <strong>p7zip</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install p7zip
-</pre></div>
-</div>
-<p>Упакуем содержимое текущего каталога в 7-Zip архив с использованием алгоритма сжатия LZMA2 c разбиением на тома размером 4480 МБ (для размещения на DVD носителях):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>7za a -m0=LZMA2 -mx9 -r -t7z -v4480m /path/to/archive.7z
-</pre></div>
-</div>
-</div>
 <div class="section" id="effective-uid-real-uid">
-<span id="euid-vs-ruid"></span><span id="index-51"></span><h2>Чем отличается Effective UID процесса от Real UID?<a class="headerlink" href="#effective-uid-real-uid" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="euid-vs-ruid"></span><span id="index-50"></span><h2>Чем отличается Effective UID процесса от Real UID?<a class="headerlink" href="#effective-uid-real-uid" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В мире UNIX считается нормальным, когда один процесс запускается от одного пользователя, но при этом получает права совсем другого (чаще всего это суперпользователь root).</p>
 <p>В качестве простого примера рассмтрим ситуацию, когда пользователь <strong>user1</strong> запускает бинарник с установленным suid-битом <strong>/usr/bin/foo-bar</strong>. Таким образом, у процесса <strong>foo-bar</strong> в качестве <em>Real user ID</em> будет установлен <strong>user1</strong>, а <em>Effective user ID</em> - <strong>root</strong>. Это сделано для того, чтобы приложение могло самостоятельно отказаться от повышенных прав, либо переключаться между ними при помощи соответствующего системного вызова.</p>
 </div>
@@ -664,7 +653,6 @@ foo-bar       hard    nofile          8192
 <li class="toctree-l2"><a class="reference internal" href="#fd-increase">Как увеличить лимит открытых файловых дескрипторов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#task-affinity">Как запустить процесс так, чтобы он мог использовать лишь определённые ядра процессора?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#task-priority">Как изменить приоритет процесса?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#zip-split">Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#effective-uid-real-uid">Чем отличается Effective UID процесса от Real UID?</a></li>
 </ul>
 </li>
