@@ -132,7 +132,7 @@ Flatpak - это современный, прогрессивный формат
 
 Здесь **foo-bar** - название venv контейнера. Допускается создавать неограниченное их количество.
 
-.. index:: fedora, update
+.. index:: fedora, update, dnf
 .. _dnf-update:
 
 Как правильно обновлять систему?
@@ -158,7 +158,27 @@ Fedora поддерживает два вида обновлений: через
 
 Мы рекомендуем устанавливать :ref:`обновления системы <dnf-update>` ежедневно.
 
-.. index:: fedora, upgrade
+.. index:: fedora, automatic updates, update, dnf
+.. _update-auto:
+
+Можно ли автоматизировать установку критических обновлений?
+==============================================================
+
+Да. Установим специальный сервис для автоматической проверки и установки обновлений:
+
+.. code-block:: text
+
+    sudo dnf install dnf-automatic
+
+Активируем systemd-таймер:
+
+.. code-block:: text
+
+    sudo systemctl enable dnf-automatic.timer
+
+Все параметры могут быть тонко настроены в конфигурационном файле ``/etc/dnf/automatic.conf``.
+
+.. index:: fedora, upgrade, dnf
 .. _dist-upgrade:
 
 Как мне обновить Fedora до новой версии?
@@ -192,7 +212,7 @@ Fedora 29 и новее:
 
     sudo dnf clean all
 
-.. index:: fedora, upgrade, rawhide
+.. index:: fedora, upgrade, rawhide, dnf
 .. _dist-rawhide:
 
 Как мне обновить Fedora до Rawhide?
