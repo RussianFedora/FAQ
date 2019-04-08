@@ -362,14 +362,6 @@ Dnf сохраняет старые ядра. Это нормально?
 
 Здесь **4.10.14** - это версия удаляемого ядра.
 
-.. index:: fonts, msttcorefonts, corefonts
-.. _msttcorefonts:
-
-Как установить шрифты Microsoft в Fedora?
-=============================================
-
-См. `здесь <https://www.easycoding.org/2011/08/14/ustanovka-microsoft-core-fonts-v-fedora.html>`__.
-
 .. index:: repository, third-party
 .. _3rd-repositories:
 

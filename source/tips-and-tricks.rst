@@ -209,3 +209,11 @@ SWF файл - это исполняемый файл формата Adobe Flash
 Здесь **XXXXXXXXXX** - :ref:`UUID раздела <get-uuid>`, а **ext4** - используемая :ref:`файловая система <fs-selection>`.
 
 Следует помнить, что это действие не повлияет на запуск различных скриптов интерпретаторами, т.е. запуск ``./foo-bar`` с установленным битом исполнения будет запрещён, но в то же время ``bash foo-bar`` выполнится в штатном режиме.
+
+.. index:: fonts, msttcorefonts, corefonts
+.. _msttcorefonts:
+
+Как установить шрифты Microsoft в Fedora?
+=============================================
+
+См. `здесь <https://www.easycoding.org/2011/08/14/ustanovka-microsoft-core-fonts-v-fedora.html>`__.
