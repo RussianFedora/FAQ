@@ -894,24 +894,6 @@
 
     renice -n 8 -p $(pidof foo-bar)
 
-.. index:: 7zip, archive, split, optical drive, dvd, p7zip
-.. _7zip-split:
-
-Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?
-==================================================================================================
-
-Установим пакет **p7zip**:
-
-.. code-block:: text
-
-    sudo dnf install p7zip
-
-Упакуем содержимое текущего каталога в 7-Zip архив с использованием алгоритма сжатия LZMA2 c разбиением на тома размером 4480 МБ (для размещения на DVD носителях):
-
-.. code-block:: text
-
-    7za a -m0=LZMA2 -mx9 -r -t7z -v4480m /path/to/archive.7z
-
 .. index:: user id, effective user id, real user id, id, uid
 .. _euid-vs-ruid:
 
