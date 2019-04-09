@@ -139,9 +139,9 @@
 
 .. code-block:: text
 
-    sudo mount -t ext4 /dev/sda1 /media/fedora
+    sudo mount -t ext4 /dev/sda3 /media/fedora
 
-Здесь **/dev/sda1** - раздел, на котором установлена ОС, а **ext4** - его файловая система. Внесём соответствующие правки если это не так.
+Здесь **/dev/sda3** - раздел, на котором установлена ОС, а **ext4** - его файловая система. Внесём соответствующие правки если это не так.
 
 Переходим в каталог с корневой ФС и монтируем ряд необходимых для работы окружения виртуальных ФС:
 
@@ -155,7 +155,14 @@
     sudo mount --make-rslave dev
     sudo mount -t tmpfs tmpfs tmp
 
-Теперь выполняем вход в chroot:
+При необходимости смонтируем ``/boot`` и ``/boot/efi`` разделы:
+
+.. code-block:: text
+
+    sudo mount -t ext4 /dev/sda2 boot
+    sudo mount -t vfat /dev/sda1 boot/efi
+
+Теперь осуществим вход в chroot:
 
 .. code-block:: text
 
