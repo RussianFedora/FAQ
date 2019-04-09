@@ -111,10 +111,10 @@
 </pre></div>
 </div>
 <p>Смонтируем корневой раздел установленной ОС:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mount -t ext4 /dev/sda1 /media/fedora
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mount -t ext4 /dev/sda3 /media/fedora
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sda1</strong> - раздел, на котором установлена ОС, а <strong>ext4</strong> - его файловая система. Внесём соответствующие правки если это не так.</p>
+<p>Здесь <strong>/dev/sda3</strong> - раздел, на котором установлена ОС, а <strong>ext4</strong> - его файловая система. Внесём соответствующие правки если это не так.</p>
 <p>Переходим в каталог с корневой ФС и монтируем ряд необходимых для работы окружения виртуальных ФС:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd /media/fedora
 sudo mount -t proc /proc proc
@@ -123,10 +123,14 @@ sudo mount --make-rslave sys
 sudo mount --rbind /dev dev
 sudo mount --make-rslave dev
 sudo mount -t tmpfs tmpfs tmp
-sudo mount -t efivarfs efivarfs sys/firmware/efi/efivars
 </pre></div>
 </div>
-<p>Теперь выполняем вход в chroot:</p>
+<p>При необходимости смонтируем <code class="docutils literal notranslate"><span class="pre">/boot</span></code> и <code class="docutils literal notranslate"><span class="pre">/boot/efi</span></code> разделы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mount -t ext4 /dev/sda2 boot
+sudo mount -t vfat /dev/sda1 boot/efi
+</pre></div>
+</div>
+<p>Теперь осуществим вход в chroot:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chroot /media/fedora
 </pre></div>
 </div>
