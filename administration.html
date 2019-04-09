@@ -105,7 +105,7 @@
 </div>
 <div class="section" id="chroot-liveusb">
 <span id="chroot"></span><span id="index-8"></span><h2>Как сделать chroot в установленную систему с LiveUSB?<a class="headerlink" href="#chroot-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Загружаемся с LiveCD/USB и запускаем эмулятор терминала или переходим в виртуальную консоль (особой разницы не имеет).</p>
+<p>Загружаемся с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a> и запускаем эмулятор терминала или переходим в виртуальную консоль (особой разницы не имеет).</p>
 <p>Для начала создадим каталог для точки монтирования:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/fedora
 </pre></div>
@@ -581,6 +581,26 @@ foo-bar       hard    nofile          8192
 <p>В мире UNIX считается нормальным, когда один процесс запускается от одного пользователя, но при этом получает права совсем другого (чаще всего это суперпользователь root).</p>
 <p>В качестве простого примера рассмтрим ситуацию, когда пользователь <strong>user1</strong> запускает бинарник с установленным suid-битом <strong>/usr/bin/foo-bar</strong>. Таким образом, у процесса <strong>foo-bar</strong> в качестве <em>Real user ID</em> будет установлен <strong>user1</strong>, а <em>Effective user ID</em> - <strong>root</strong>. Это сделано для того, чтобы приложение могло самостоятельно отказаться от повышенных прав, либо переключаться между ними при помощи соответствующего системного вызова.</p>
 </div>
+<div class="section" id="copying-data">
+<span id="index-51"></span><span id="id37"></span><h2>Как скопировать данные с одного раздела на другой?<a class="headerlink" href="#copying-data" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для копирования файлов с одного раздела на другой лучше всего использовать утилиту <strong>rsync</strong> с опциями на сохранение прав доступа.</p>
+<p>Загрузимся с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>, затем смонтируем старый и новый разделы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/old-root
+sudo mount -t ext4 /dev/sda1 /media/old-root
+sudo mkdir /media/new-root
+sudo mount -t ext4 /dev/sdb1 /media/new-root
+</pre></div>
+</div>
+<p>Запустим процесс копирования:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rsync -axHAWXS --numeric-ids --info=progress2 /media/old-root/ /media/new-root/
+</pre></div>
+</div>
+<p>По окончании работы обязательно размонтируем оба раздела:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /media/old-root
+sudo umount /media/new-root
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -658,6 +678,7 @@ foo-bar       hard    nofile          8192
 <li class="toctree-l2"><a class="reference internal" href="#task-affinity">Как запустить процесс так, чтобы он мог использовать лишь определённые ядра процессора?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#task-priority">Как изменить приоритет процесса?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#effective-uid-real-uid">Чем отличается Effective UID процесса от Real UID?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copying-data">Как скопировать данные с одного раздела на другой?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Вопросы, связанные с сетевым администрированием</a></li>

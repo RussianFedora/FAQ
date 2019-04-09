@@ -95,10 +95,10 @@
 <p>Да. Алгоритм такой:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>загрузка с LiveUSB;</li>
+<li>загрузка с <a class="reference internal" href="#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>;</li>
 <li>создание разделов для новой установки Fedora посредством GParted или любой другой утилиты разбиения дисков;</li>
 <li>монтирование старых и новых разделов;</li>
-<li>копирование всех файлов и каталогов со старого накопителя на новый с сохранением прав доступа посредством <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">cp</span></code> или <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">rsync</span></code>;</li>
+<li><a class="reference internal" href="administration.html#copying-data"><span class="std std-ref">копирование всех файлов и каталогов</span></a> со старого накопителя на новый с сохранением прав доступа;</li>
 <li>редактирование файла <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> нового накопителя так, чтобы в нём были указаны UUID новых разделов;</li>
 <li>создание в корневом каталоге нового накопителя файла <code class="docutils literal notranslate"><span class="pre">/.autorelabel</span></code> для автоматической установки контекста безопасности SELinux;</li>
 <li>установка загрузчика (если необходимо).</li>
@@ -207,7 +207,7 @@
 </div>
 <div class="section" id="fedora-uefi">
 <span id="uefi-boot"></span><span id="index-24"></span><h2>Как установить Fedora в UEFI режиме?<a class="headerlink" href="#fedora-uefi" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Загрузка LiveUSB образа должна производиться исключительно в UEFI режиме. На большинстве материнских плат в меню вариантов загрузки требуется выбрать режим <em>UEFI External Drive</em> или <em>UEFI USB HDD</em>.</p>
+<p>Загрузка <a class="reference internal" href="#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a> образа должна производиться исключительно в UEFI режиме. На большинстве материнских плат в меню вариантов загрузки требуется выбрать режим <em>UEFI External Drive</em> или <em>UEFI USB HDD</em>.</p>
 <p>Схемой разбиения диска, на который будет установлен дистрибутив, должна быть <strong>GPT</strong>. Проверить можно посредством выполнения <strong>fdisk</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fdisk -l
 </pre></div>
