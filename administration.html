@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Вопросы, связанные с системным администрированием &#8212; Документация Fedora FAQ RU 2019.03.25</title>
+    <title>Вопросы, связанные с системным администрированием &#8212; Документация Fedora FAQ RU 2019.04.12</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -601,6 +601,84 @@ sudo umount /media/new-root
 </pre></div>
 </div>
 </div>
+<div class="section" id="chmod-immutable">
+<span id="index-52"></span><span id="id38"></span><h2>Как запретить модификацию файла даже владельцу и суперпользователю?<a class="headerlink" href="#chmod-immutable" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Чтобы запретить модификацию файла (изменение, удаление) любым пользователем (включая владельца и суперпользователя), установим ему расширенный атрибут <code class="docutils literal notranslate"><span class="pre">+i</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chattr +i foo-bar.txt
+</pre></div>
+</div>
+<p>Чтобы отменить произведённые изменения, выполним:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chattr -i foo-bar.txt
+</pre></div>
+</div>
+<p>Управлять расширенными атрибутами может лишь суперпользователь.</p>
+</div>
+<div class="section" id="chmod-lsattr">
+<span id="index-53"></span><span id="id39"></span><h2>Как узнать какие расширенные атрибуты применены для конкретного файла?<a class="headerlink" href="#chmod-lsattr" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для получения расширенных атрибутов воспользуемся утилитой <strong>lsattr</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>lsattr foo-bar.txt
+</pre></div>
+</div>
+</div>
+<div class="section" id="chmod-addonly">
+<span id="index-54"></span><span id="id40"></span><h2>Как разрешить лишь дописывать данные в файл?<a class="headerlink" href="#chmod-addonly" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Чтобы разрешить лишь добавление данных в файл любым пользователем (включая владельца и суперпользователя), установим ему расширенный атрибут <code class="docutils literal notranslate"><span class="pre">+a</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chattr +a foo-bar.txt
+</pre></div>
+</div>
+<p>Чтобы отменить произведённые изменения, выполним:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chattr -a foo-bar.txt
+</pre></div>
+</div>
+</div>
+<div class="section" id="ssh">
+<span id="ssh-alias"></span><span id="index-55"></span><h2>Как создать алиасы для быстрого подключения к SSH серверам?<a class="headerlink" href="#ssh" title="Ссылка на этот заголовок">¶</a></h2>
+<p>OpenSSH позволяет создавать неограниченное количество алиасов для быстрых подключений:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Host foo
+    HostName example1.org
+    Port 22
+    User user1
+
+Host bar
+    HostName example2.org
+    Port 22
+    User user2
+    IdentityFile ~/.ssh/id_rsa2
+</pre></div>
+</div>
+<p>Для каждого могут быть указаны индивидуальные настройки, включая <a class="reference internal" href="security.html#ssh-keys"><span class="std std-ref">различные SSH ключи</span></a>.</p>
+<p>Подключимся к первому серверу:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ssh foo
+</pre></div>
+</div>
+<p>Подключимся ко второму серверу:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ssh bar
+</pre></div>
+</div>
+</div>
+<div class="section" id="fuse">
+<span id="fuse-info"></span><span id="index-56"></span><h2>Что такое FUSE?<a class="headerlink" href="#fuse" title="Ссылка на этот заголовок">¶</a></h2>
+<p>FUSE (file system in userspace) - это модуль ядра и набор утилит для работы с ним, предназначенные для запуска различных файловых систем в пользовательском пространстве.</p>
+<p>Благодаря FUSE в Fedora могут использоваться файловые системы, которые по какой-либо причине не могут войти напрямую в состав ядра Linux из-за лицензионных проблем, либо патентов.</p>
+<p>Некоторые примеры подобных реализаций:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="using-system.html#fedora-exfat"><span class="std std-ref">exFAT</span></a>;</li>
+<li><a class="reference internal" href="using-applications.html#fuse-mtp"><span class="std std-ref">MTP</span></a>;</li>
+<li>NTFS;</li>
+<li>ZFS;</li>
+<li>SSHFS;</li>
+<li>WebDAV.</li>
+</ul>
+</div></blockquote>
+<p>Из-за работы в пользовательском режиме возникает ряд проблем:</p>
+<blockquote>
+<div><ul class="simple">
+<li>очень медленная работа за счёт постоянных переключений контекста;</li>
+<li>в зависимости от параметров монтирования может быть не видна для работающих системных сервисов.</li>
+</ul>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -679,6 +757,11 @@ sudo umount /media/new-root
 <li class="toctree-l2"><a class="reference internal" href="#task-priority">Как изменить приоритет процесса?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#effective-uid-real-uid">Чем отличается Effective UID процесса от Real UID?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#copying-data">Как скопировать данные с одного раздела на другой?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#chmod-immutable">Как запретить модификацию файла даже владельцу и суперпользователю?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#chmod-lsattr">Как узнать какие расширенные атрибуты применены для конкретного файла?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#chmod-addonly">Как разрешить лишь дописывать данные в файл?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ssh">Как создать алиасы для быстрого подключения к SSH серверам?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fuse">Что такое FUSE?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Вопросы, связанные с сетевым администрированием</a></li>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Вопросы, связанные с работой в системе &#8212; Документация Fedora FAQ RU 2019.03.25</title>
+    <title>Вопросы, связанные с работой в системе &#8212; Документация Fedora FAQ RU 2019.04.12</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -544,6 +544,10 @@ export SUDO_EDITOR=vim
 </pre></div>
 </div>
 </div>
+<div class="section" id="plymouth-disable">
+<span id="index-49"></span><span id="id31"></span><h2>Как отключить анимированную каплю при загрузке системы?<a class="headerlink" href="#plymouth-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для отключения анимации загрузки (plymouth boot screen) необходимо и достаточно <a class="reference internal" href="administration.html#kernelpm-perm"><span class="std std-ref">добавить параметры ядра</span></a> <code class="docutils literal notranslate"><span class="pre">rd.plymouth=0</span> <span class="pre">plymouth.enable=0</span></code>, после чего <a class="reference internal" href="#grub-rebuild"><span class="std std-ref">пересобрать конфиг Grub 2</span></a>.</p>
+</div>
 </div>
 
 
@@ -623,6 +627,7 @@ export SUDO_EDITOR=vim
 <li class="toctree-l2"><a class="reference internal" href="#x11-wayland">Как определить какой тип сессии используется: X11 или Wayland?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#neofetch">Как вывести в консоль краткую информацию об установленной системе?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde-icons-refresh">Как обновить кэш значков приложений в главном меню KDE Plasma 5?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plymouth-disable">Как отключить анимированную каплю при загрузке системы?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-applications.html">Вопросы, связанные со сторонними приложениями</a></li>
