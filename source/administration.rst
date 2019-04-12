@@ -940,7 +940,7 @@
     sudo umount /media/old-root
     sudo umount /media/new-root
 
-.. index:: chmod, immutable, access control, file
+.. index:: chmod, immutable, access control, file, chattr
 .. _chmod-immutable:
 
 Как запретить модификацию файла даже владельцу и суперпользователю?
@@ -950,13 +950,24 @@
 
 .. code-block:: text
 
-    sudo sudo chattr +i foo-bar.txt
+    sudo chattr +i foo-bar.txt
 
 Чтобы отменить произведённые изменения, выполним:
 
 .. code-block:: text
 
-    sudo sudo chattr -i foo-bar.txt
+    sudo chattr -i foo-bar.txt
 
 Управлять расширенными атрибутами может лишь суперпользователь.
 
+.. index:: chmod, chattr, access control, lsattr
+.. _chmod-lsattr:
+
+Как узнать какие расширенные атрибуты применены для конкретного файла?
+=========================================================================
+
+Для получения расширенных атрибутов воспользуемся утилитой **lsattr**:
+
+.. code-block:: text
+
+    lsattr foo-bar.txt
