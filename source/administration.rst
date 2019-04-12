@@ -989,3 +989,38 @@
 .. code-block:: text
 
     sudo chattr -a foo-bar.txt
+
+.. index:: ssh, config, alias
+.. _ssh-alias:
+
+Как создать алиасы для быстрого подключения к SSH серверам?
+==============================================================
+
+OpenSSH позволяет создавать неограниченное количество алиасов для быстрых подключений:
+
+.. code-block:: text
+
+    Host foo
+        HostName example1.org
+        Port 22
+        User user1
+
+    Host bar
+        HostName example2.org
+        Port 22
+        User user2
+        IdentityFile ~/.ssh/id_rsa2
+
+Для каждого могут быть указаны индивидуальные настройки, включая :ref:`различные SSH ключи <ssh-keys>`.
+
+Подключимся к первому серверу:
+
+.. code-block:: text
+
+    ssh foo
+
+Подключимся ко второму серверу:
+
+.. code-block:: text
+
+    ssh bar
