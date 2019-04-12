@@ -837,3 +837,11 @@ KDE предоставляет особый PAM модуль для автома
 .. code-block:: text
 
     kbuildsycoca5 --noincremental
+
+.. index:: boot, plymouth, animation
+.. _plymouth-disable:
+
+Как отключить анимированную каплю при загрузке системы?
+==========================================================
+
+Для отключения анимации загрузки (plymouth boot screen) необходимо и достаточно :ref:`добавить параметры ядра <kernelpm-perm>` ``rd.plymouth=0 plymouth.enable=0``, после чего :ref:`пересобрать конфиг Grub 2 <grub-rebuild>`.
