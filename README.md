@@ -1,8 +1,10 @@
-# Big Fedora FAQ in russian
+# Unofficial Fedora FAQ in russian
 
 We decided to find and document answers to the most of the frequently asked questions from our conferences about Fedora for convenience of end users.
 
 You can ask new questions in issues of this repository or you can help us and contribute project by sending your pull requests.
+
+This FAQ maintained by independent community members. Not related to Fedora Project. Fedora is a registered trademark of Red Hat, Inc.
 
 # Build HTML
 
