@@ -694,12 +694,12 @@ Host bar
 </div>
 <div class="section" id="kerberos-renew">
 <span id="index-58"></span><span id="id41"></span><h2>Как обновить Kerberos-тикет?<a class="headerlink" href="#kerberos-renew" title="Ссылка на этот заголовок">¶</a></h2>
-<p>В зависимости от настроек сервера полученный <a class="reference internal" href="#kerberos-auth"><span class="std std-ref">Kerberos-тикет</span></a> обычно действует в течение 24 часов, затем даётся ещё от 24 до 48 часов для его обновления без необходимости прохождения повторной процедуры авторизации.</p>
+<p>В зависимости от настроек сервера, полученный <a class="reference internal" href="#kerberos-auth"><span class="std std-ref">Kerberos-тикет</span></a> обычно действует в течение 24 часов, затем даётся ещё от 24 до 48 часов для его обновления без необходимости прохождения повторной процедуры авторизации.</p>
 <p>Проверим актуальность Kerberos тикетов:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>klist -A
 </pre></div>
 </div>
-<p>При необходимости обновим нужный:</p>
+<p>При необходимости обновим необходимый:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit -R foo-bar@FEDORAPROJECT.ORG
 </pre></div>
 </div>
