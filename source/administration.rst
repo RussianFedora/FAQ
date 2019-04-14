@@ -323,8 +323,8 @@
 
 .. code-block:: text
 
-    fsck -t ext4 /dev/mapper/fedora-root
-    fsck -t ext4 /dev/mapper/fedora-home
+    sudo fsck -t ext4 /dev/mapper/fedora-root
+    sudo fsck -t ext4 /dev/mapper/fedora-home
 
 Если вместо ext4 применяется другая файловая система, необходимо указать её после параметра **-t**.
 
@@ -338,8 +338,8 @@
 
 .. code-block:: text
 
-    fsck -t ext4 /dev/sda2
-    fsck -t ext4 /dev/sda3
+    sudo fsck -t ext4 /dev/sda2
+    sudo fsck -t ext4 /dev/sda3
 
 Если вместо **ext4** применяется другая файловая система, необходимо указать её после параметра **-t**. Также вместо **/dev/sda2** следует прописать соответствующее блочное устройство с повреждённой ФС.
 
@@ -360,7 +360,7 @@
 
 .. code-block:: text
 
-    cryptsetup luksOpen /dev/sda2 luks-root
+    sudo cryptsetup luksOpen /dev/sda2 luks-root
 
 Здесь вместо **/dev/sda2** следует прописать соответствующее блочное устройство зашифрованного накопителя.
 
@@ -368,7 +368,7 @@
 
 .. code-block:: text
 
-    fsck -t ext4 /dev/mapper/luks-root
+    sudo fsck -t ext4 /dev/mapper/luks-root
 
 Если вместо **ext4** применяется другая файловая система, необходимо указать её после параметра **-t**.
 
@@ -376,7 +376,7 @@
 
 .. code-block:: text
 
-    cryptsetup luksClose /dev/mapper/luks-root
+    sudo cryptsetup luksClose /dev/mapper/luks-root
 
 .. index:: memory deduplication, memory, deduplication
 .. _deduplication-memory:
