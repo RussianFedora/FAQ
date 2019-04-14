@@ -224,8 +224,8 @@ sudo mount -t vfat /dev/sda1 boot/efi
 <div class="section" id="lvm-liveusb">
 <span id="fs-check-lvm"></span><span id="index-19"></span><h2>Как мне проверить ФС в составе LVM с LiveUSB?<a class="headerlink" href="#lvm-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если файловая система была повреждена, необходимо запустить <strong>fsck</strong> и разрешить ему исправить её. При использовании настроек по умолчанию (LVM, ФС ext4) это делается так:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/mapper/fedora-root
-fsck -t ext4 /dev/mapper/fedora-home
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fsck -t ext4 /dev/mapper/fedora-root
+sudo fsck -t ext4 /dev/mapper/fedora-home
 </pre></div>
 </div>
 <p>Если вместо ext4 применяется другая файловая система, необходимо указать её после параметра <strong>-t</strong>.</p>
@@ -233,8 +233,8 @@ fsck -t ext4 /dev/mapper/fedora-home
 <div class="section" id="liveusb">
 <span id="fs-check-partitions"></span><span id="index-20"></span><h2>Как мне проверить ФС при использовании классических разделов с LiveUSB?<a class="headerlink" href="#liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если используется классическая схема с обычными разделами, то утилите <strong>fsck</strong> необходимо передавать соответствующее блочное устройство, например:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/sda2
-fsck -t ext4 /dev/sda3
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fsck -t ext4 /dev/sda2
+sudo fsck -t ext4 /dev/sda3
 </pre></div>
 </div>
 <p>Если вместо <strong>ext4</strong> применяется другая файловая система, необходимо указать её после параметра <strong>-t</strong>. Также вместо <strong>/dev/sda2</strong> следует прописать соответствующее блочное устройство с повреждённой ФС.</p>
@@ -246,17 +246,17 @@ fsck -t ext4 /dev/sda3
 <div class="section" id="luks-liveusb">
 <span id="fs-check-luks"></span><span id="index-21"></span><h2>Как мне проверить ФС на зашифрованном LUKS разделе с LiveUSB?<a class="headerlink" href="#luks-liveusb" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если используются зашифрованные LUKS разделы, то сначала откроем соответствующее устройство:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cryptsetup luksOpen /dev/sda2 luks-root
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksOpen /dev/sda2 luks-root
 </pre></div>
 </div>
 <p>Здесь вместо <strong>/dev/sda2</strong> следует прописать соответствующее блочное устройство зашифрованного накопителя.</p>
 <p>Теперь запустим проверку файловой системы:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fsck -t ext4 /dev/mapper/luks-root
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fsck -t ext4 /dev/mapper/luks-root
 </pre></div>
 </div>
 <p>Если вместо <strong>ext4</strong> применяется другая файловая система, необходимо указать её после параметра <strong>-t</strong>.</p>
 <p>По окончании обязательно отключим LUKS том:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cryptsetup luksClose /dev/mapper/luks-root
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksClose /dev/mapper/luks-root
 </pre></div>
 </div>
 </div>
@@ -679,6 +679,32 @@ Host bar
 </ul>
 </div></blockquote>
 </div>
+<div class="section" id="kerberos">
+<span id="kerberos-auth"></span><span id="index-57"></span><h2>Как авторизоваться на удалённой системе с использованием Kerberos?<a class="headerlink" href="#kerberos" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим необходимые пакеты для работы с Kerberos 5:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install krb5-workstation
+</pre></div>
+</div>
+<p>Произведём авторизацию на удалённой системе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit foo-bar@FEDORAPROJECT.ORG
+</pre></div>
+</div>
+<p>Здесь <strong>foo-bar</strong> - логин на удалённой системе, а <strong>FEDORAPROJECT.ORG</strong> - имя домена (должно быть указано строго в верхнем регистре).</p>
+<p>В случае ввода верных авторизационных данных процесс должен пройти в штатном режиме.</p>
+</div>
+<div class="section" id="kerberos-renew">
+<span id="index-58"></span><span id="id41"></span><h2>Как обновить Kerberos-тикет?<a class="headerlink" href="#kerberos-renew" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В зависимости от настроек сервера полученный <a class="reference internal" href="#kerberos-auth"><span class="std std-ref">Kerberos-тикет</span></a> обычно действует в течение 24 часов, затем даётся ещё от 24 до 48 часов для его обновления без необходимости прохождения повторной процедуры авторизации.</p>
+<p>Проверим актуальность Kerberos тикетов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>klist -A
+</pre></div>
+</div>
+<p>При необходимости обновим нужный:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit -R foo-bar@FEDORAPROJECT.ORG
+</pre></div>
+</div>
+<p>Здесь <strong>foo-bar</strong> - логин на удалённой системе, а <strong>FEDORAPROJECT.ORG</strong> - имя домена (должно быть указано строго в верхнем регистре).</p>
+</div>
 </div>
 
 
@@ -762,6 +788,8 @@ Host bar
 <li class="toctree-l2"><a class="reference internal" href="#chmod-addonly">Как разрешить лишь дописывать данные в файл?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ssh">Как создать алиасы для быстрого подключения к SSH серверам?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fuse">Что такое FUSE?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kerberos">Как авторизоваться на удалённой системе с использованием Kerberos?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kerberos-renew">Как обновить Kerberos-тикет?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Вопросы, связанные с сетевым администрированием</a></li>
