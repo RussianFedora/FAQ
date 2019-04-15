@@ -705,6 +705,52 @@ Host bar
 </div>
 <p>Здесь <strong>foo-bar</strong> - логин на удалённой системе, а <strong>FEDORAPROJECT.ORG</strong> - имя домена (должно быть указано строго в верхнем регистре).</p>
 </div>
+<div class="section" id="delete-inode">
+<span id="index-59"></span><span id="id42"></span><h2>В каталоге появился файл с некорректным именем, который не удаётся удалить. Что делать?<a class="headerlink" href="#delete-inode" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Файлы с некорректными именами могут возникать при повреждениях файловой системы, либо сбоях в приложениях, которые создали их.</p>
+<p>Штатно такие файлы удалить не удастся, поэтому придётся уничтожить соответствующий данному файлу I-узел (I-Node).</p>
+<p>Перейдём в каталог с удаляемым файлом:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd ~/foo-bar
+</pre></div>
+</div>
+<p>Выведем листинг содержимого каталога с включённым отображением номеров I-узлов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ls -li
+</pre></div>
+</div>
+<p>Найдём в выводе необходимый файл и сохраним значение его I-узла. Теперь мы можем удалить его:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find . -maxdepth 1 -type f -inum XXXXXXX -delete
+</pre></div>
+</div>
+<p>Здесь <strong>XXXXXXX</strong> - номер I-узла некорректного файла.</p>
+</div>
+<div class="section" id="ext4">
+<span id="defrag-info"></span><span id="index-60"></span><h2>Нужно ли выполнять дефрагментацию для разделов с ФС ext4?<a class="headerlink" href="#ext4" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В большинстве случаев дефрагментация диска на разделах с файловой системой ext4 не требуется, т.к. драйвер осуществляет предварительное размещение файлов на свободном месте так, чтобы они заняли его целиком, оставляя при этом небольшой участок пространства для дальнейшего расширения.</p>
+<p>Однако при определённых обстоятельствах (например если точный размер при создании неизвестен, либо в него постоянно производится добавление-удаление данных), некоторые файлы могут фрагментироваться.</p>
+</div>
+<div class="section" id="defrag-custom">
+<span id="index-61"></span><span id="id43"></span><h2>Как выполнить дефрагментацию отдельных файлов на разделе ФС ext4?<a class="headerlink" href="#defrag-custom" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для выполнения частичной дефрагментации, можно использовать утилиту <strong>e4defrag</strong>, входящую в пакет <strong>e2fsprogs</strong>.</p>
+<p>Данная утилита работает со <strong>смонтированным</strong> диском, т.к. непосредственно дефрагментацией будет заниматься драйвер файловой системы, а утилита лишь укажет ему цели.</p>
+<p>Разрешается выполнять оптимизацию отдельных файлов, либо всего содержимого указанных каталогов.</p>
+<p>Выполним дефрагментацию крупной базы данных <code class="docutils literal notranslate"><span class="pre">/var/db/foo-bar.db</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo e4defrag /var/db/foo-bar.db
+</pre></div>
+</div>
+<p>Выполним дефрагментацию всего корня:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo e4defrag /
+</pre></div>
+</div>
+</div>
+<div class="section" id="defrag-full">
+<span id="index-62"></span><span id="id44"></span><h2>Как выполнить дефрагментацию всего раздела с ФС ext4?<a class="headerlink" href="#defrag-full" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Полную дефрагментацию можно осуществить при помощи средства <a class="reference internal" href="#fs-check-lvm"><span class="std std-ref">проверки диска</span></a> на <strong>размонтированном</strong> разделе, например при запуске с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>.</p>
+<p>Запустим процесс:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fsck -t ext4 -fn /dev/sda2
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sda2</strong> - раздел, на котором следует провести процесс дефрагментации. Операция займёт достаточно много времени (в зависимости от размера диска). Прерывать её не следует, т.к. это может привести к полной потере данных.</p>
+</div>
 </div>
 
 
@@ -790,6 +836,10 @@ Host bar
 <li class="toctree-l2"><a class="reference internal" href="#fuse">Что такое FUSE?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kerberos">Как авторизоваться на удалённой системе с использованием Kerberos?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kerberos-renew">Как обновить Kerberos-тикет?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#delete-inode">В каталоге появился файл с некорректным именем, который не удаётся удалить. Что делать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ext4">Нужно ли выполнять дефрагментацию для разделов с ФС ext4?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#defrag-custom">Как выполнить дефрагментацию отдельных файлов на разделе ФС ext4?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#defrag-full">Как выполнить дефрагментацию всего раздела с ФС ext4?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Вопросы, связанные с сетевым администрированием</a></li>
