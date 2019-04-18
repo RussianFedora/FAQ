@@ -7,7 +7,7 @@
 .. work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
 .. _index:
 
-Большой FAQ по Fedora
+Неофициальный FAQ по Fedora
 ===============================================
 
 .. toctree::
