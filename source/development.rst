@@ -721,3 +721,52 @@
 .. code-block:: text
 
     git reset --hard
+
+.. index:: mock, transfer, build, move
+.. _mock-move:
+
+Можно ли перенести каталоги сборки и кэшей mock на другой диск?
+==================================================================
+
+Система автоматической сборки пакетов mock занимает огромное количество места на корневом разделе, поэтому многие мейнтейнеры хотели бы перенести её на другой диск. Штатно это сделать не представляется возможным ибо значения каталогов по умолчанию ``/var/cache/mock`` и ``/var/lib/mock`` жёстко прописаны внутри приложения и не подлежат изменению со стороны пользователя, поэтому воспользуемся символическими ссылками.
+
+Создадим на другом накопителе (его файловая система должна поддерживать права доступа Unix) базовый каталог для mock:
+
+.. code-block:: text
+
+    cd /media/foo-bar
+    sudo mkdir mock
+    sudo chown root:mock mock
+    sudo chmod 42775 mock
+
+Переместим содержимое текущих рабочих каталогов mock:
+
+.. code-block:: text
+
+    sudo mv /var/cache/mock /media/foo-bar/mock/cache
+    sudo mv /var/lib/mock /media/foo-bar/mock/lib
+
+Создадим на месте старых рабочих каталогов символические ссылки:
+
+.. code-block:: text
+
+    sudo ln -s /media/foo-bar/mock/cache /var/cache/mock
+    sudo ln -s /media/foo-bar/mock/lib /var/lib/mock
+
+Зададим контекст SELinux по умолчанию для нового хранилища:
+
+.. code-block:: text
+
+    sudo semanage fcontext -a -t mock_cache_t "/media/foo-bar/mock/cache(/.*)?"
+    sudo semanage fcontext -a -t mock_var_lib_t "/media/foo-bar/mock/lib(/.*)?"
+
+Сбросим контекст SELinux для старого и нового рабочих каталогов:
+
+.. code-block:: text
+
+    sudo restorecon -Rv /var/cache/mock
+    sudo restorecon -Rv /var/lib/mock
+    sudo restorecon -Rv /media/foo-bar/mock/cache
+    sudo restorecon -Rv /media/foo-bar/mock/lib
+
+Здесь **/media/foo-bar** - точка монтирования нового накопителя, на котором будут располагаться кэши mock.
