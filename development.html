@@ -515,6 +515,40 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 </pre></div>
 </div>
 </div>
+<div class="section" id="mock">
+<span id="mock-move"></span><span id="index-31"></span><h2>Можно ли перенести каталоги сборки и кэшей mock на другой диск?<a class="headerlink" href="#mock" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Система автоматической сборки пакетов mock занимает огромное количество места на корневом разделе, поэтому многие мейнтейнеры хотели бы перенести её на другой диск. Штатно это сделать не представляется возможным ибо значения каталогов по умолчанию <code class="docutils literal notranslate"><span class="pre">/var/cache/mock</span></code> и <code class="docutils literal notranslate"><span class="pre">/var/lib/mock</span></code> жёстко прописаны внутри приложения и не подлежат изменению со стороны пользователя, поэтому воспользуемся символическими ссылками.</p>
+<p>Создадим на другом накопителе (его файловая система должна поддерживать права доступа Unix) базовый каталог для mock:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd /media/foo-bar
+sudo mkdir mock
+sudo chown root:mock mock
+sudo chmod 42775 mock
+</pre></div>
+</div>
+<p>Переместим содержимое текущих рабочих каталогов mock:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mv /var/cache/mock /media/foo-bar/mock/cache
+sudo mv /var/lib/mock /media/foo-bar/mock/lib
+</pre></div>
+</div>
+<p>Создадим на месте старых рабочих каталогов символические ссылки:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo ln -s /media/foo-bar/mock/cache /var/cache/mock
+sudo ln -s /media/foo-bar/mock/lib /var/lib/mock
+</pre></div>
+</div>
+<p>Зададим контекст SELinux по умолчанию для нового хранилища:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -a -t mock_cache_t &quot;/media/foo-bar/mock/cache(/.*)?&quot;
+sudo semanage fcontext -a -t mock_var_lib_t &quot;/media/foo-bar/mock/lib(/.*)?&quot;
+</pre></div>
+</div>
+<p>Сбросим контекст SELinux для старого и нового рабочих каталогов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo restorecon -Rv /var/cache/mock
+sudo restorecon -Rv /var/lib/mock
+sudo restorecon -Rv /media/foo-bar/mock/cache
+sudo restorecon -Rv /media/foo-bar/mock/lib
+</pre></div>
+</div>
+<p>Здесь <strong>/media/foo-bar</strong> - точка монтирования нового накопителя, на котором будут располагаться кэши mock.</p>
+</div>
 </div>
 
 
@@ -579,6 +613,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 <li class="toctree-l2"><a class="reference internal" href="#spec-auto">Как автоматически инкрементировать релиз в SPEC-файле?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-multi">Как загрузить изменения во всех вложенных репозиториях из данного каталога?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-empty">Как создать пустую ветку в Git без общей истории?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mock">Можно ли перенести каталоги сборки и кэшей mock на другой диск?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
