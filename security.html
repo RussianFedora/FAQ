@@ -779,6 +779,63 @@ keytocard
 </div>
 <p>Сканирование UDP требует прав суперпользователя.</p>
 </div>
+<div class="section" id="luks-addkey">
+<span id="index-70"></span><span id="id52"></span><h2>Как добавить ключевой файл для разблокировки зашифрованного LUKS раздела?<a class="headerlink" href="#luks-addkey" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Создадим каталог для хранения ключей <code class="docutils literal notranslate"><span class="pre">/var/lib/luks</span></code> (может быть любым):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir -p /var/lib/luks
+</pre></div>
+</div>
+<p>Сгенерируем ключевой файл <code class="docutils literal notranslate"><span class="pre">foo-bar.key</span></code> размером 4 КБ на основе системного генератора псевдослучайных чисел:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/urandom of=/var/lib/luks/foo-bar.key bs=1024 count=4
+</pre></div>
+</div>
+<p>Установим корректные права доступа:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chown root:root /var/lib/luks/foo-bar.key
+sudo chmod 0400 /var/lib/luks/foo-bar.key
+</pre></div>
+</div>
+<p>Добавим ключ в свободный слот LUKS заголовка зашифрованного раздела:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksAddKey /dev/sda2 /var/lib/luks/foo-bar.key
+</pre></div>
+</div>
+<p>Утилита cryptsetup запросит ввод мастер-пароля.</p>
+<p>Здесь <strong>/dev/sda2</strong> - устройство зашифрованного LUKS тома, для которого требуется добавить ключевой файл.</p>
+</div>
+<div class="section" id="luks-removekey">
+<span id="index-71"></span><span id="id53"></span><h2>Как удалить ключевой файл разблокировки зашифрованного LUKS раздела?<a class="headerlink" href="#luks-removekey" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если разблокировка по ключевому файлу более не требуется, его можно удалить.</p>
+<p>Удалим слот с ключом <code class="docutils literal notranslate"><span class="pre">foo-bar.key</span></code> из LUKS заголовка зашифрованного раздела:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksRemoveKey /dev/sda2 /var/lib/luks/foo-bar.key
+</pre></div>
+</div>
+<p>Надёжно <a class="reference internal" href="#destroy-file"><span class="std std-ref">уничтожим</span></a> ключевой файл:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo shred -u -v /var/lib/luks/foo-bar.key
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sda2</strong> - устройство зашифрованного LUKS тома, у которого требуется удалить слот с ключевым файлом.</p>
+</div>
+<div class="section" id="luks-auto">
+<span id="index-72"></span><span id="id54"></span><h2>Как настроить автоматическую расшифровку LUKS разделов при загрузке?<a class="headerlink" href="#luks-auto" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code> в <a class="reference internal" href="using-system.html#editor-selection"><span class="std std-ref">редакторе по умолчанию</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/crypttab
+</pre></div>
+</div>
+<p>Добавим в конец файла строку вида:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar UUID=XXXXXX /var/lib/luks/foo-bar.key luks
+</pre></div>
+</div>
+<p>Здесь <strong>foo-bar</strong> - внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> - <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, <strong>/var/lib/luks/foo-bar.key</strong> - полный путь к <a class="reference internal" href="#luks-addkey"><span class="std std-ref">ключевому файлу</span></a>. При шифровании <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">SSD накопителя</span></a> вместо параметра <strong>luks</strong> следует использовать <strong>discard</strong>.</p>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
+</pre></div>
+</div>
+<p>Добавим в конец строку вида:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/dev/mapper/foo-bar /media/data ext4 defaults 1 2
+</pre></div>
+</div>
+<p>Здесь <strong>foo-bar</strong> - внутреннее имя, указанное ранее в crypttab, <strong>/media/data</strong> - точка монтирования, а <strong>ext4</strong> - используемая файловая система.</p>
+<p>Если всё сделано верно, то при следующей загрузке раздел будет смонтирован автоматически без запроса пароля.</p>
+</div>
 </div>
 
 
@@ -878,6 +935,9 @@ keytocard
 <li class="toctree-l2"><a class="reference internal" href="#gpg-ssh">Как использовать токен для аутентификации SSH?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gpg-transfer">Можно ли переместить на токен уже имеющуюся ключевую пару GnuPG?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nmap-scan">Как просканировать хост на наличие работающих сервисов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#luks-addkey">Как добавить ключевой файл для разблокировки зашифрованного LUKS раздела?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#luks-removekey">Как удалить ключевой файл разблокировки зашифрованного LUKS раздела?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#luks-auto">Как настроить автоматическую расшифровку LUKS разделов при загрузке?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
