@@ -46,7 +46,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Fedora FAQ RU'
+project = 'Неофициальный FAQ по Fedora'
 copyright = '2018 - 2019, EasyCoding Team and contributors'
 author = 'EasyCoding Team and contributors'
 
@@ -153,7 +153,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'fedora-faq-ru.tex', 'Fedora FAQ RU',
+    (master_doc, 'fedora-faq-ru.tex', 'Неофициальный FAQ по Fedora',
      'EasyCoding Team and contributors', 'manual'),
 ]
 
@@ -163,7 +163,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'fedora-faq-ru', 'Fedora FAQ RU',
+    (master_doc, 'fedora-faq-ru', 'Неофициальный FAQ по Fedora',
      [author], 1)
 ]
 
@@ -174,7 +174,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'fedora-faq-ru', 'Fedora FAQ RU',
-     author, 'fedora-faq-ru', 'Big Fedora FAQ in russian.',
+    (master_doc, 'fedora-faq-ru', 'Неофициальный FAQ по Fedora',
+     author, 'fedora-faq-ru', 'Неофициальный FAQ по Fedora на русском языке.',
      'Miscellaneous'),
 ]
