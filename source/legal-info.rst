@@ -35,6 +35,19 @@
 
 Полный список авторов и вклад каждого можно увидеть на странице `Contributors <https://github.com/RussianFedora/FAQ/graphs/contributors>`__ репозитория на GitHub.
 
+.. index:: contribution, legal
+.. _contribution:
+
+Участие в проекте
+====================
+
+Принять участие в проекте может любой желающий. Для этого нужно лишь следовать :ref:`стандартной процедуре <git-pull-request>`, а именно:
+
+  1. зарегистрироваться, либо войти в свой аккаунт на GitHub;
+  2. клонировать `репозиторий проекта <https://github.com/RussianFedora/FAQ>`__;
+  3. внести свои правки;
+  4. отправить Pull Request.
+
 .. index:: license, agreement, legal
 .. _license:
 
