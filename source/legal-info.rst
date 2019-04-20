@@ -41,7 +41,7 @@
   * `@sotnikov123 <https://github.com/sotnikov123>`__;
   * `@ZaWertun <https://github.com/ZaWertun>`__;
   * `@krepver <https://github.com/krepver>`__;
-  * `@jsonguard <https://github.com/xvitaly>`__.
+  * `@jsonguard <https://github.com/jsonguard>`__.
 
 Полный список авторов и вклад каждого можно увидеть на странице `Contributors <https://github.com/RussianFedora/FAQ/graphs/contributors>`__.
 
