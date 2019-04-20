@@ -33,7 +33,17 @@
 Авторы
 ===========
 
-Полный список авторов и вклад каждого можно увидеть на странице `Contributors <https://github.com/RussianFedora/FAQ/graphs/contributors>`__ репозитория на GitHub.
+Пользователи, принявшие участие в данном проекте:
+
+  * `@xvitaly <https://github.com/xvitaly>`__;
+  * `@tim77 <https://github.com/tim77>`__;
+  * `@Vascom <https://github.com/Vascom>`__;
+  * `@sotnikov123 <https://github.com/sotnikov123>`__;
+  * `@ZaWertun <https://github.com/ZaWertun>`__;
+  * `@krepver <https://github.com/krepver>`__;
+  * `@jsonguard <https://github.com/xvitaly>`__.
+
+Полный список авторов и вклад каждого можно увидеть на странице `Contributors <https://github.com/RussianFedora/FAQ/graphs/contributors>`__.
 
 .. index:: contribution, legal
 .. _contribution:
