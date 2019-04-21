@@ -792,8 +792,8 @@
 
 Изменения вступят в силу при следующем запуске оболочки.
 
-.. index:: patch, diff, unified
-.. _patch-create:
+.. index:: patch, diff, unified, file
+.. _patch-file:
 
 Как создать унифицированный патч изменений между двумя файлами?
 ==================================================================
@@ -805,5 +805,19 @@
 .. code-block:: text
 
     diff -Naur foo-bar.txt.orig foo-bar.txt > result.patch
+
+Результат будет сохранён в файле **result.patch**.
+
+.. index:: patch, diff, unified, file, directory
+.. _patch-directory:
+
+Как создать унифицированный патч изменений между двумя каталогами?
+=====================================================================
+
+Создадим унифицрованный патч с разностью между каталогами **foo-bar_orig** (оригинальный) и **foo-bar** (текущий):
+
+.. code-block:: text
+
+    diff -Naur foo-bar_orig foo-bar > result.patch
 
 Результат будет сохранён в файле **result.patch**.
