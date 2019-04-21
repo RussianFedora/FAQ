@@ -770,3 +770,24 @@
     sudo restorecon -Rv /media/foo-bar/mock/lib
 
 Здесь **/media/foo-bar** - точка монтирования нового накопителя, на котором будут располагаться кэши mock.
+
+.. index:: git, bash, branch
+.. _bash-git-branch:
+
+Как включить отображение текущей ветки Git в Bash?
+=====================================================
+
+Модуль интеграции с Bash входит в состав пакета Git. Добавим в :ref:`приветствие Bash <bash-shell>` следующую строку:
+
+.. code-block:: text
+
+    export PS1="[\u@\h \W$(declare -F __git_ps1 &>/dev/null && __git_ps1 " (%s)")]\$ "
+
+В качестве опциональных параметров поддерживаются ``GIT_PS1_SHOWDIRTYSTATE`` (показывать наличие незакреплённых изменений внутри каталога) и ``GIT_PS1_SHOWUNTRACKEDFILES`` (учитывать, либо нет не отслеживаемые системой контроля версий файлы):
+
+.. code-block:: text
+
+    export GIT_PS1_SHOWDIRTYSTATE=true
+    export GIT_PS1_SHOWUNTRACKEDFILES=true
+
+Изменения вступят в силу при следующем запуске оболочки.
