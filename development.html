@@ -549,6 +549,84 @@ sudo restorecon -Rv /media/foo-bar/mock/lib
 </div>
 <p>Здесь <strong>/media/foo-bar</strong> - точка монтирования нового накопителя, на котором будут располагаться кэши mock.</p>
 </div>
+<div class="section" id="git-bash">
+<span id="bash-git-branch"></span><span id="index-32"></span><h2>Как включить отображение текущей ветки Git в Bash?<a class="headerlink" href="#git-bash" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Модуль интеграции с Bash входит в состав пакета Git. Добавим в <a class="reference internal" href="using-system.html#bash-shell"><span class="std std-ref">приветствие Bash</span></a> следующую строку:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export PS1=&#39;[\u@\h \W$(declare -F __git_ps1 &amp;&gt;/dev/null &amp;&amp; __git_ps1 &quot; (%s)&quot;)]\$ &#39;
+</pre></div>
+</div>
+<p>В качестве опциональных параметров поддерживаются <code class="docutils literal notranslate"><span class="pre">GIT_PS1_SHOWDIRTYSTATE</span></code> (показывать наличие незакреплённых изменений внутри каталога) и <code class="docutils literal notranslate"><span class="pre">GIT_PS1_SHOWUNTRACKEDFILES</span></code> (учитывать, либо нет не отслеживаемые системой контроля версий файлы):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWUNTRACKEDFILES=true
+</pre></div>
+</div>
+<p>Изменения вступят в силу при следующем запуске оболочки.</p>
+</div>
+<div class="section" id="patch-file">
+<span id="index-33"></span><span id="id19"></span><h2>Как создать унифицированный патч изменений между двумя файлами?<a class="headerlink" href="#patch-file" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для создания патча нам необходимо две версии файла: оригинальная и текущая.</p>
+<p>Создадим унифицрованный патч с разностью между файлами <strong>foo-bar.txt.orig</strong> (оригинальный) и <strong>foo-bar.txt</strong> (текущий):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>diff -Naur foo-bar.txt.orig foo-bar.txt &gt; result.patch
+</pre></div>
+</div>
+<p>Результат будет сохранён в файле <strong>result.patch</strong>.</p>
+</div>
+<div class="section" id="patch-directory">
+<span id="index-34"></span><span id="id20"></span><h2>Как создать унифицированный патч изменений между двумя каталогами?<a class="headerlink" href="#patch-directory" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Создадим унифицрованный патч с разностью между каталогами <strong>foo-bar_orig</strong> (оригинальный) и <strong>foo-bar</strong> (текущий):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>diff -Naur foo-bar_orig foo-bar &gt; result.patch
+</pre></div>
+</div>
+<p>Результат будет сохранён в файле <strong>result.patch</strong>.</p>
+</div>
+<div class="section" id="patch-apply">
+<span id="index-35"></span><span id="id21"></span><h2>Как применить унифицированный патч?<a class="headerlink" href="#patch-apply" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Проверим возможность применения патча <strong>foo-bar.patch</strong> без внесения каких-либо изменений:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>patch -p0 --dry-run -i foo-bar.patch
+</pre></div>
+</div>
+<p>Применим патч:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>patch -p0 -i foo-bar.patch
+</pre></div>
+</div>
+<p>Параметром <code class="docutils literal notranslate"><span class="pre">-p</span></code> задаётся количество каталогов, которые будут отброшены при поиске файлов, указанных внутри унифицированного патча.</p>
+</div>
+<div class="section" id="patch-revert">
+<span id="index-36"></span><span id="id22"></span><h2>Как откатить наложенный унифицированный патч?<a class="headerlink" href="#patch-revert" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Проверим возможность отката патча <strong>foo-bar.patch</strong> без внесения каких-либо изменений:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>patch -p0 -R --dry-run -i foo-bar.patch
+</pre></div>
+</div>
+<p>Откатитим внесённые изменения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>patch -p0 -R -i foo-bar.patch
+</pre></div>
+</div>
+<p>Параметром <code class="docutils literal notranslate"><span class="pre">-p</span></code> задаётся количество каталогов, которые будут отброшены при поиске файлов, указанных внутри унифицированного патча.</p>
+</div>
+<div class="section" id="patch-git-create">
+<span id="index-37"></span><span id="id23"></span><h2>Как создать унифицированный патч между двумя коммитами?<a class="headerlink" href="#patch-git-create" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Создадим патч между двумя коммитами <strong>AAA</strong> и <strong>BBB</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git diff AAA BBB &gt; result.patch
+</pre></div>
+</div>
+<p>Создадим патч коммитом <strong>CCC</strong> и текущим рабочей рабочей версией:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git diff CCC &gt; result.patch
+</pre></div>
+</div>
+<p>Здесь <strong>AAA</strong>, <strong>BBB</strong> и <strong>CCC</strong> - хеши коммитов в Git репозитории.</p>
+</div>
+<div class="section" id="patch-git-export">
+<span id="index-38"></span><span id="id24"></span><h2>Как экспортировать Git коммит для отправки по электронной почте?<a class="headerlink" href="#patch-git-export" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В Git имеется встроенное средство экспорта коммитов для их дальнейшей отправки по электронной почте.</p>
+<p>Экспортируем один коммит:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git format-patch -1
+</pre></div>
+</div>
+<p>Экспортируем сразу 3 коммита:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git format-patch -3
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -614,6 +692,13 @@ sudo restorecon -Rv /media/foo-bar/mock/lib
 <li class="toctree-l2"><a class="reference internal" href="#git-multi">Как загрузить изменения во всех вложенных репозиториях из данного каталога?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-empty">Как создать пустую ветку в Git без общей истории?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mock">Можно ли перенести каталоги сборки и кэшей mock на другой диск?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-bash">Как включить отображение текущей ветки Git в Bash?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#patch-file">Как создать унифицированный патч изменений между двумя файлами?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#patch-directory">Как создать унифицированный патч изменений между двумя каталогами?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#patch-apply">Как применить унифицированный патч?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#patch-revert">Как откатить наложенный унифицированный патч?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#patch-git-create">Как создать унифицированный патч между двумя коммитами?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#patch-git-export">Как экспортировать Git коммит для отправки по электронной почте?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
