@@ -781,7 +781,7 @@
 
 .. code-block:: text
 
-    export PS1="[\u@\h \W$(declare -F __git_ps1 &>/dev/null && __git_ps1 " (%s)")]\$ "
+    export PS1='[\u@\h \W$(declare -F __git_ps1 &>/dev/null && __git_ps1 " (%s)")]\$ '
 
 В качестве опциональных параметров поддерживаются ``GIT_PS1_SHOWDIRTYSTATE`` (показывать наличие незакреплённых изменений внутри каталога) и ``GIT_PS1_SHOWUNTRACKEDFILES`` (учитывать, либо нет не отслеживаемые системой контроля версий файлы):
 
