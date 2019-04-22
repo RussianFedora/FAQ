@@ -997,3 +997,24 @@
 .. code-block:: text
 
     git push
+
+.. index:: fedora, package, build, fedpkg
+.. _fedpkg-build:
+
+Как осуществить сборку пакета для публикации в репозиториях?
+===============================================================
+
+После успешной :ref:`загрузки файлов с исходными кодами <fedpkg-upload>` пакета, осуществим :ref:`вход в инфраструктуру <fedora-login>` Fedora, а затем приступим к непосредственно сборке в :ref:`Fedora Koji <koji-about>`:
+
+.. code-block:: text
+
+    cd foo-bar
+    fedpkg switch-branch master
+    fedpkg build
+
+При необходимости соберём и для других поддерживаемых релизов Fedora:
+
+.. code-block:: text
+
+    fedpkg switch-branch f30
+    fedpkg build
