@@ -612,7 +612,9 @@
 
     sudo dnf install qt5-qtbase-doc qt5-qtbase-examples qt-creator-doc
 
-Если Qt Creator при попытке загрузить документацию выдаёт ошибку *Error loading: qthelp://org.qt-project.qtcreator.472/doc/index.html*, необходимо выбрать **Tools** - **Options** - **Help** - **Documentation** - **Add** и указать файл ``/usr/share/qtcreator/doc/qtcreator.qch``.
+Если Qt Creator при попытке загрузить документацию выдаёт ошибку *Error loading: qthelp://org.qt-project.qtcreator.472/doc/index.html*, выберем пункт меню **Tools** - **Options** - **Help** - **Documentation** - **Add** и укажем файлы ``/usr/share/doc/qtcreator/qtcreator.qch``, а также ``/usr/share/doc/qtcreator/qtcreator-dev.qch``.
+
+Изменения вступят в силу после перезапуска IDE.
 
 .. index:: python, ide, pycharm
 .. _python-ide:
