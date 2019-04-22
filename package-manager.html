@@ -501,6 +501,11 @@ sudo dnf config-manager --set-enabled updates-modular
 <span id="index-49"></span><span id="id40"></span><h2>Можно ли создать собственное зеркало репозиториев Fedora?<a class="headerlink" href="#dnf-mirror" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, см. <a class="reference external" href="https://fedoraproject.org/wiki/Infrastructure/Mirroring">здесь</a>.</p>
 </div>
+<div class="section" id="dnf-signatures">
+<span id="index-50"></span><span id="id41"></span><h2>Безопасно ли устанавливать обновления через небезопасные соединения?<a class="headerlink" href="#dnf-signatures" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Все пакеты в репозиториях Fedora подписываются цифровыми подписями GnuPG, которые в обязательном порядке проверяются перед установкой и обновлением.</p>
+<p>В случае если пакет был заменён, он не сможет быть установлен, т.к. его ЭЦП не будет соответстствовать подписи репозитория.</p>
+</div>
 </div>
 
 
@@ -576,6 +581,7 @@ sudo dnf config-manager --set-enabled updates-modular
 <li class="toctree-l2"><a class="reference internal" href="#dnf-user">При запуске dnf без прав суперпользователя он заново загружает и обновляет кэши. Это нормально?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-remove-32bit">Как удалить все установленные в системе 32-битные пакеты?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-mirror">Можно ли создать собственное зеркало репозиториев Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-signatures">Безопасно ли устанавливать обновления через небезопасные соединения?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с системным администрированием</a></li>

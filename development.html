@@ -627,6 +627,103 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 </pre></div>
 </div>
 </div>
+<div class="section" id="fedora-login">
+<span id="index-39"></span><span id="id25"></span><h2>Как авторизоваться в инфраструктуре Fedora?<a class="headerlink" href="#fedora-login" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для авторизации мы должны использовать вход в домен <a class="reference internal" href="administration.html#kerberos-auth"><span class="std std-ref">посредством Kerberos</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit foo-bar@FEDORAPROJECT.ORG
+</pre></div>
+</div>
+<p>Здесь <strong>foo-bar</strong> - логин в FAS. Имя домена должно быть указано строго в верхнем регистре.</p>
+<p>Также для некоторых операций необходимо <a class="reference internal" href="security.html#ssh-keygen"><span class="std std-ref">загрузить публичный ключ</span></a> SSH в <a class="reference external" href="https://admin.fedoraproject.org/accounts">FAS аккаунт</a>.</p>
+</div>
+<div class="section" id="package-request">
+<span id="index-40"></span><span id="id26"></span><h2>Как запросить создание пакета в репозитории?<a class="headerlink" href="#package-request" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Сразу после окончания <a class="reference internal" href="#becoming-maintainer"><span class="std std-ref">процедуры package review</span></a>, мейнтейнер должен запросить создание пакета в репозиториях Fedora.</p>
+<p>Установим утилиту <strong>fedpkg</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install fedpkg
+</pre></div>
+</div>
+<p><a class="reference external" href="https://pagure.io/settings">Получим новый токен</a> в Pagure, который будет использоваться утилитой fedpkg для создания заявки. Для этого перейдём в раздел <strong>Settings</strong> - <strong>API Keys</strong> - <strong>Create new key</strong>, затем в списке доступных разрешений (<strong>ACLs</strong>) установим флажок только около опции <strong>Create a new ticket</strong> и нажмём кнопку <strong>Add</strong>.</p>
+<p>Создадим файл конфигурации fedpkg:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/.config/rpkg
+touch ~/.config/rpkg/fedpkg.conf
+</pre></div>
+</div>
+<p>Загрузим созданный файл <code class="docutils literal notranslate"><span class="pre">~/.config/rpkg/fedpkg.conf</span></code> в любом текстовом редакторе и добавим:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[fedpkg.pagure]</span>
+<span class="na">token</span> <span class="o">=</span> <span class="s">XXXXXXXXXX</span>
+</pre></div>
+</div>
+<p>Здесь <strong>XXXXXXXXXX</strong> - полученный от Pagure токен.</p>
+<p>Запросим создание нового пакета в репозитории, а также веток для всех поддерживаемых релизов Fedora:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg request-repo --namespace rpms --monitor monitoring foo-bar YYYYYY
+fedpkg request-branch --namespace rpms --repo foo-bar --all-releases
+</pre></div>
+</div>
+<p>Здесь <strong>foo-bar</strong> - имя пакета, а <strong>YYYYYY</strong> - номер заявки в Red Hat BugZilla с успешно завершённым package review.</p>
+</div>
+<div class="section" id="fedpkg-upload">
+<span id="index-41"></span><span id="id27"></span><h2>Как загрузить файлы с исходными кодами пакета в систему сборки?<a class="headerlink" href="#fedpkg-upload" title="Ссылка на этот заголовок">¶</a></h2>
+<p>После успешного <a class="reference internal" href="#package-request"><span class="std std-ref">создания пакета</span></a> осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora, затем скачаем репозиторий пакета из Fedora SCM, содержащий SPEC файл и набор патчей (при необходимости), а также прочие службные файлы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg clone foo-bar
+cd foo-bar
+</pre></div>
+</div>
+<p>Самым простым способом загрузки является импорт готового SRPM файла, поэтому выполним именно эту процедуру:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch master
+fedpkg import /путь/к/foo-bar-1.0-1.fc30.src.rpm
+</pre></div>
+</div>
+<p>Проверим внесённые изменения и если всё верно, жмём <strong>Q</strong> для выхода. Зафиксируем наши изменения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git commit -m &quot;Initial import.&quot;
+</pre></div>
+</div>
+<p>При необходимости внесём изменения и в ветки поддерживаемых релизов Fedora:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch f30
+git merge master
+</pre></div>
+</div>
+<p>Отправим изменения на сервер:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git push
+</pre></div>
+</div>
+</div>
+<div class="section" id="fedpkg-build">
+<span id="index-42"></span><span id="id28"></span><h2>Как осуществить сборку пакета для публикации в репозиториях?<a class="headerlink" href="#fedpkg-build" title="Ссылка на этот заголовок">¶</a></h2>
+<p>После успешной <a class="reference internal" href="#fedpkg-upload"><span class="std std-ref">загрузки файлов с исходными кодами</span></a> пакета, осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora, а затем приступим к непосредственно сборке в <a class="reference internal" href="#koji-about"><span class="std std-ref">Fedora Koji</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
+fedpkg switch-branch master
+fedpkg build
+</pre></div>
+</div>
+<p>При необходимости соберём и для других поддерживаемых релизов Fedora:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch f30
+fedpkg build
+</pre></div>
+</div>
+</div>
+<div class="section" id="fedpkg-scratch">
+<span id="index-43"></span><span id="id29"></span><h2>Как осуществить тестовую сборку пакета для определённой архитектуры?<a class="headerlink" href="#fedpkg-scratch" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora.</p>
+<p>Выполним стандартную scratch-сборку для всех поддерживаемых данным выпуском архитектур:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
+fedpkg switch-branch master
+fedpkg build --scratch
+</pre></div>
+</div>
+<p>Выполним scratch-сборку только для указанных архитектур:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
+fedpkg switch-branch master
+fedpkg scratch-build --arches x86_64 aarch64
+</pre></div>
+</div>
+</div>
+<div class="section" id="fedpkg-publish">
+<span id="index-44"></span><span id="id30"></span><h2>Как выложить собранный пакет в репозитории?<a class="headerlink" href="#fedpkg-publish" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По окончании <a class="reference internal" href="#fedpkg-build"><span class="std std-ref">сборки</span></a> мы можем воспользоваться <a class="reference external" href="https://bodhi.fedoraproject.org/">Fedora Bodhi</a> и <a class="reference external" href="https://bodhi.fedoraproject.org/updates/new">выложить обновление</a> в репозитории.</p>
+<p>Сначала все обновления попадают в тестовые репозитории Fedora (<em>updates-testing</em>) и лишь после получения положительной кармы от других участников сообщества (уровень задаётся мейнтейнером, но не может быть меньше 1), либо по истечении 7 дней, оно может попасть в стабильные (<em>updates</em>) и будет доставлено конечным пользователям.</p>
+<p>Заполним стандартную, хорошо документированную форму, затем нажмём кнопку <strong>Submit</strong>.</p>
+</div>
 </div>
 
 
@@ -699,6 +796,12 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <li class="toctree-l2"><a class="reference internal" href="#patch-revert">Как откатить наложенный унифицированный патч?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#patch-git-create">Как создать унифицированный патч между двумя коммитами?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#patch-git-export">Как экспортировать Git коммит для отправки по электронной почте?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora-login">Как авторизоваться в инфраструктуре Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#package-request">Как запросить создание пакета в репозитории?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedpkg-upload">Как загрузить файлы с исходными кодами пакета в систему сборки?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedpkg-build">Как осуществить сборку пакета для публикации в репозиториях?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedpkg-scratch">Как осуществить тестовую сборку пакета для определённой архитектуры?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedpkg-publish">Как выложить собранный пакет в репозитории?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
