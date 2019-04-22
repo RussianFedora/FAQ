@@ -901,3 +901,44 @@
 .. code-block:: text
 
     git format-patch -3
+
+.. index:: fedora, package, request
+.. _package-request:
+
+Как запросить создание пакета в репозитории?
+===============================================
+
+Сразу после окончания :ref:`процедуры package review <becoming-maintainer>`, мейнтейнер должен запросить создание пакета в репозиториях Fedora.
+
+Установим утилиту **fedpkg**
+
+.. code-block:: text
+
+    sudo dnf install fedpkg
+
+`Получим новый токен <https://pagure.io/settings>`__ в Pagure, который будет использоваться утилитой fedpkg для создания заявки. Для этого перейдём в раздел **Settings** - **API Keys** - **Create new key**, затем в списке доступных разрешений (**ACLs**) установим флажок только около опции **Create a new ticket** и нажмём кнопку **Add**.
+
+Создадим файл конфигурации fedpkg:
+
+.. code-block:: text
+
+    mkdir -p ~/.config/rpkg
+    touch ~/.config/rpkg/fedpkg.conf
+
+Загрузим созданный файл ``~/.config/rpkg/fedpkg.conf`` в любом текстовом редакторе и добавим:
+
+.. code-block:: ini
+
+    [fedpkg.pagure]
+    token = XXXXXXXXXX
+
+Здесь **XXXXXXXXXX** - полученный от Pagure токен.
+
+Запросим создание нового пакета в репозитории, а также веток для всех поддерживаемых релизов Fedora:
+
+.. code-block:: text
+
+    fedpkg request-repo --namespace rpms --monitor monitoring foo-bar YYYYYY
+    fedpkg request-branch --namespace rpms --repo foo-bar --all-releases
+
+Здесь **foo-bar** - имя пакета, а **YYYYYY** - номер заявки в Red Hat BugZilla с успешно завершённым package review.
