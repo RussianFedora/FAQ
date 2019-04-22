@@ -1018,3 +1018,27 @@
 
     fedpkg switch-branch f30
     fedpkg build
+
+.. index:: fedora, package, build, fedpkg, scratch
+.. _fedpkg-scratch:
+
+Как осуществить тестовую сборку пакета для определённой архитектуры?
+=======================================================================
+
+Осуществим :ref:`вход в инфраструктуру <fedora-login>` Fedora.
+
+Выполним стандартную scratch-сборку для всех поддерживаемых данным выпуском архитектур:
+
+.. code-block:: text
+
+    cd foo-bar
+    fedpkg switch-branch master
+    fedpkg build --scratch
+
+Выполним scratch-сборку только для указанных архитектур:
+
+.. code-block:: text
+
+    cd foo-bar
+    fedpkg switch-branch master
+    fedpkg scratch-build --arches x86_64 aarch64
