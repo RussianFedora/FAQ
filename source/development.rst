@@ -902,7 +902,7 @@
 
     git format-patch -3
 
-.. index:: fedora, infrastructure, authentication
+.. index:: fedora, infrastructure, authentication, kerberos, kinit
 .. _fedora-login:
 
 Как авторизоваться в инфраструктуре Fedora?
@@ -918,7 +918,7 @@
 
 Также для некоторых операций необходимо :ref:`загрузить публичный ключ <ssh-keygen>` SSH в `FAS аккаунт <https://admin.fedoraproject.org/accounts>`__.
 
-.. index:: fedora, package, request
+.. index:: fedora, package, request, fedpkg
 .. _package-request:
 
 Как запросить создание пакета в репозитории?
@@ -959,23 +959,24 @@
 
 Здесь **foo-bar** - имя пакета, а **YYYYYY** - номер заявки в Red Hat BugZilla с успешно завершённым package review.
 
-.. index:: fedora, package, upload
+.. index:: fedora, package, upload, fedpkg
 .. _fedpkg-upload:
 
 Как загрузить файлы с исходными кодами пакета в систему сборки?
 ==================================================================
 
-После успешного :ref:`создания пакета <package-request>` осуществим вход в инфраструктуру Fedora, затем скачаем репозиторий пакета из Fedora SCM, содержащий SPEC файл и набор патчей (при необходимости), а также прочие службные файлы:
+После успешного :ref:`создания пакета <package-request>` осуществим :ref:`вход в инфраструктуру <fedora-login>` Fedora, затем скачаем репозиторий пакета из Fedora SCM, содержащий SPEC файл и набор патчей (при необходимости), а также прочие службные файлы:
 
 .. code-block:: text
 
     fedpkg clone foo-bar
     cd foo-bar
 
-Самым простым способом является импорт готового SRPM файла, поэтому выполним эту процедуру:
+Самым простым способом загрузки является импорт готового SRPM файла, поэтому выполним именно эту процедуру:
 
 .. code-block:: text
 
+    fedpkg switch-branch master
     fedpkg import /путь/к/foo-bar-1.0-1.fc30.src.rpm
 
 Проверим внесённые изменения и если всё верно, жмём **Q** для выхода. Зафиксируем наши изменения:
@@ -983,6 +984,13 @@
 .. code-block:: text
 
     git commit -m "Initial import."
+
+При необходимости внесём изменения и в ветки поддерживаемых релизов Fedora:
+
+.. code-block:: text
+
+    fedpkg switch-branch f30
+    git merge master
 
 Отправим изменения на сервер:
 
