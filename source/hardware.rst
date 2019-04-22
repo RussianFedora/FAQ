@@ -591,9 +591,9 @@ Unigine Benchmark
 
 .. code-block:: text
 
-    wget https://assets.unigine.com/d/Unigine_Superposition-1.0.run
-    chmod +x Unigine_Superposition-1.0.run
-    ./Unigine_Superposition-1.0.run
+    wget https://assets.unigine.com/d/Unigine_Superposition-1.1.run
+    chmod +x Unigine_Superposition-1.1.run
+    ./Unigine_Superposition-1.1.run
 
 Запускать бенчмарк следует при помощи созданного ярлыка в меню приложений.
 
