@@ -606,6 +606,14 @@
 
     sudo dnf install gcc gcc-c++ qt-creator qt5-qtbase-devel cmake
 
+При необходимости установим также документацию Qt и готовые примеры стандартных приложений:
+
+.. code-block:: text
+
+    sudo dnf install qt5-qtbase-doc qt5-qtbase-examples qt-creator-doc
+
+Если Qt Creator при попытке загрузить документацию выдаёт ошибку *Error loading: qthelp://org.qt-project.qtcreator.472/doc/index.html*, необходимо выбрать **Tools** - **Options** - **Help** - **Documentation** - **Add** и указать файл ``/usr/share/qtcreator/doc/qtcreator.qch``.
+
 .. index:: python, ide, pycharm
 .. _python-ide:
 
@@ -618,7 +626,7 @@
 
 .. code-block:: text
 
-    dnf copr enable phracek/PyCharm
+    sudo dnf copr enable phracek/PyCharm
 
 Установим IDE:
 
