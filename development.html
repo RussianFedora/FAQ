@@ -443,12 +443,17 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc gcc-c++ qt-creator qt5-qtbase-devel cmake
 </pre></div>
 </div>
+<p>При необходимости установим также документацию Qt и готовые примеры стандартных приложений:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install qt5-qtbase-doc qt5-qtbase-examples qt-creator-doc
+</pre></div>
+</div>
+<p>Если Qt Creator при попытке загрузить документацию выдаёт ошибку <em>Error loading: qthelp://org.qt-project.qtcreator.472/doc/index.html</em>, необходимо выбрать <strong>Tools</strong> - <strong>Options</strong> - <strong>Help</strong> - <strong>Documentation</strong> - <strong>Add</strong> и указать файл <code class="docutils literal notranslate"><span class="pre">/usr/share/qtcreator/doc/qtcreator.qch</span></code>.</p>
 </div>
 <div class="section" id="python-ide">
 <span id="index-25"></span><span id="ide-python-fedora"></span><h2>Какую IDE использовать для разработки на Python в Fedora?<a class="headerlink" href="#python-ide" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы рекомендуем PyCharm Community Edition.</p>
 <p>Подключим COPR репозиторий:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf copr enable phracek/PyCharm
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf copr enable phracek/PyCharm
 </pre></div>
 </div>
 <p>Установим IDE:</p>
