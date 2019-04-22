@@ -634,16 +634,16 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 </pre></div>
 </div>
 <p>Здесь <strong>foo-bar</strong> - логин в FAS. Имя домена должно быть указано строго в верхнем регистре.</p>
-<p>Также для некоторых операций необходимо <a class="reference internal" href="security.html#ssh-keygen"><span class="std std-ref">загрузить публичный ключ</span></a> SSH в <a class="reference external" href="https://admin.fedoraproject.org/accounts">FAS аккаунт</a>.</p>
+<p>Также для некоторых операций необходимо загрузить <a class="reference internal" href="security.html#ssh-keygen"><span class="std std-ref">публичный ключ</span></a> SSH в <a class="reference external" href="https://admin.fedoraproject.org/accounts">FAS аккаунт</a>.</p>
 </div>
 <div class="section" id="package-request">
 <span id="index-40"></span><span id="id26"></span><h2>Как запросить создание пакета в репозитории?<a class="headerlink" href="#package-request" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Сразу после окончания <a class="reference internal" href="#becoming-maintainer"><span class="std std-ref">процедуры package review</span></a>, мейнтейнер должен запросить создание пакета в репозиториях Fedora.</p>
+<p>Сразу после завершения <a class="reference internal" href="#becoming-maintainer"><span class="std std-ref">процедуры package review</span></a>, мейнтейнер должен запросить создание пакета в репозиториях Fedora.</p>
 <p>Установим утилиту <strong>fedpkg</strong></p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install fedpkg
 </pre></div>
 </div>
-<p><a class="reference external" href="https://pagure.io/settings">Получим новый токен</a> в Pagure, который будет использоваться утилитой fedpkg для создания заявки. Для этого перейдём в раздел <strong>Settings</strong> - <strong>API Keys</strong> - <strong>Create new key</strong>, затем в списке доступных разрешений (<strong>ACLs</strong>) установим флажок только около опции <strong>Create a new ticket</strong> и нажмём кнопку <strong>Add</strong>.</p>
+<p>Получим <a class="reference external" href="https://pagure.io/settings">новый токен</a> в Pagure, который будет использоваться утилитой fedpkg для создания заявки. Для этого перейдём в раздел <strong>Settings</strong> - <strong>API Keys</strong> - <strong>Create new key</strong>, затем в списке доступных разрешений (<strong>ACLs</strong>) установим флажок только около опции <strong>Create a new ticket</strong> и нажмём кнопку <strong>Add</strong>.</p>
 <p>Создадим файл конфигурации fedpkg:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/.config/rpkg
 touch ~/.config/rpkg/fedpkg.conf
@@ -664,7 +664,7 @@ fedpkg request-branch --namespace rpms --repo foo-bar --all-releases
 </div>
 <div class="section" id="fedpkg-upload">
 <span id="index-41"></span><span id="id27"></span><h2>Как загрузить файлы с исходными кодами пакета в систему сборки?<a class="headerlink" href="#fedpkg-upload" title="Ссылка на этот заголовок">¶</a></h2>
-<p>После успешного <a class="reference internal" href="#package-request"><span class="std std-ref">создания пакета</span></a> осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora, затем скачаем репозиторий пакета из Fedora SCM, содержащий SPEC файл и набор патчей (при необходимости), а также прочие службные файлы:</p>
+<p>После <a class="reference internal" href="#package-request"><span class="std std-ref">создания пакета</span></a> осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora, затем скачаем репозиторий пакета из Fedora SCM, содержащий SPEC файл и набор патчей (при необходимости), а также прочие службные файлы:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg clone foo-bar
 cd foo-bar
 </pre></div>
@@ -690,7 +690,7 @@ git merge master
 </div>
 <div class="section" id="fedpkg-build">
 <span id="index-42"></span><span id="id28"></span><h2>Как осуществить сборку пакета для публикации в репозиториях?<a class="headerlink" href="#fedpkg-build" title="Ссылка на этот заголовок">¶</a></h2>
-<p>После успешной <a class="reference internal" href="#fedpkg-upload"><span class="std std-ref">загрузки файлов с исходными кодами</span></a> пакета, осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora, а затем приступим к непосредственно сборке в <a class="reference internal" href="#koji-about"><span class="std std-ref">Fedora Koji</span></a>:</p>
+<p>После <a class="reference internal" href="#fedpkg-upload"><span class="std std-ref">загрузки файлов с исходными кодами</span></a> пакета, осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora, а затем приступим к непосредственно сборке в <a class="reference internal" href="#koji-about"><span class="std std-ref">Fedora Koji</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
 fedpkg switch-branch master
 fedpkg build
