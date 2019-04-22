@@ -902,6 +902,22 @@
 
     git format-patch -3
 
+.. index:: fedora, infrastructure, authentication
+.. _fedora-login:
+
+Как авторизоваться в инфраструктуре Fedora?
+==============================================
+
+Для авторизации мы должны использовать вход в домен :ref:`посредством Kerberos <kerberos-auth>`:
+
+.. code-block:: text
+
+    kinit foo-bar@FEDORAPROJECT.ORG
+
+Здесь **foo-bar** - логин в FAS. Имя домена должно быть указано строго в верхнем регистре.
+
+Также для некоторых операций необходимо :ref:`загрузить публичный ключ <ssh-keygen>` SSH в `FAS аккаунт <https://admin.fedoraproject.org/accounts>`__.
+
 .. index:: fedora, package, request
 .. _package-request:
 
