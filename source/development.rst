@@ -942,3 +942,34 @@
     fedpkg request-branch --namespace rpms --repo foo-bar --all-releases
 
 Здесь **foo-bar** - имя пакета, а **YYYYYY** - номер заявки в Red Hat BugZilla с успешно завершённым package review.
+
+.. index:: fedora, package, upload
+.. _fedpkg-upload:
+
+Как загрузить файлы с исходными кодами пакета в систему сборки?
+==================================================================
+
+После успешного :ref:`создания пакета <package-request>` осуществим вход в инфраструктуру Fedora, затем скачаем репозиторий пакета из Fedora SCM, содержащий SPEC файл и набор патчей (при необходимости), а также прочие службные файлы:
+
+.. code-block:: text
+
+    fedpkg clone foo-bar
+    cd foo-bar
+
+Самым простым способом является импорт готового SRPM файла, поэтому выполним эту процедуру:
+
+.. code-block:: text
+
+    fedpkg import /путь/к/foo-bar-1.0-1.fc30.src.rpm
+
+Проверим внесённые изменения и если всё верно, жмём **Q** для выхода. Зафиксируем наши изменения:
+
+.. code-block:: text
+
+    git commit -m "Initial import."
+
+Отправим изменения на сервер:
+
+.. code-block:: text
+
+    git push
