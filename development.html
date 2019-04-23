@@ -447,11 +447,39 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install qt5-qtbase-doc qt5-qtbase-examples qt-creator-doc
 </pre></div>
 </div>
-<p>Если Qt Creator при попытке загрузить документацию выдаёт ошибку <em>Error loading: qthelp://org.qt-project.qtcreator.472/doc/index.html</em>, выберем пункт меню <strong>Tools</strong> - <strong>Options</strong> - <strong>Help</strong> - <strong>Documentation</strong> - <strong>Add</strong> и укажем файлы <code class="docutils literal notranslate"><span class="pre">/usr/share/doc/qtcreator/qtcreator.qch</span></code>, а также <code class="docutils literal notranslate"><span class="pre">/usr/share/doc/qtcreator/qtcreator-dev.qch</span></code>.</p>
+</div>
+<div class="section" id="qt-creator">
+<span id="qtcreator-docs"></span><span id="index-25"></span><h2>В Qt Creator отсутствует документация. Как исправить?<a class="headerlink" href="#qt-creator" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если Qt Creator при попытке загрузить документацию выдаёт ошибку <em>Error loading: qthelp://org.qt-project.qtcreator.472/doc/index.html</em>, выберем пункт меню <strong>Tools</strong> - <strong>Options</strong> - <strong>Help</strong> - <strong>Documentation</strong> - <strong>Add</strong>, затем вручную добавим следующие файлы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/usr/share/doc/qt5/qmake.qch
+/usr/share/doc/qt5/qtconcurrent.qch
+/usr/share/doc/qt5/qtcore.qch
+/usr/share/doc/qt5/qtdbus.qch
+/usr/share/doc/qt5/qtgui.qch
+/usr/share/doc/qt5/qtnetwork.qch
+/usr/share/doc/qt5/qtnetworkauth.qch
+/usr/share/doc/qt5/qtopengl.qch
+/usr/share/doc/qt5/qtplatformheaders.qch
+/usr/share/doc/qt5/qtprintsupport.qch
+/usr/share/doc/qt5/qtsql.qch
+/usr/share/doc/qt5/qttestlib.qch
+/usr/share/doc/qt5/qtwidgets.qch
+/usr/share/doc/qt5/qtxml.qch
+/usr/share/doc/qt5/qtxmlpatterns.qch
+/usr/share/doc/qtcreator/qtcreator.qch
+/usr/share/doc/qtcreator/qtcreator-dev.qch
+</pre></div>
+</div>
 <p>Изменения вступят в силу после перезапуска IDE.</p>
 </div>
+<div class="section" id="qtcreator-kits">
+<span id="index-26"></span><span id="id15"></span><h2>В Qt Creator отсутствуют компиляторы. Как исправить?<a class="headerlink" href="#qtcreator-kits" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если Qt Creator не смог самостоятельно обнаружить установленный в системе фреймворк Qt, а также компилятор, то необходимо добавить их самостоятельно.</p>
+<p>Для этого войдём в настройки IDE, затем сначала добавим компилятор GCC <code class="docutils literal notranslate"><span class="pre">/usr/bin/gcc</span></code>, а затем тулчейн Qt - <code class="docutils literal notranslate"><span class="pre">/usr/bin/qmake-qt5</span></code>. После этого на вкладке <strong>Kits</strong> создадим новый набор из данных компонентов.</p>
+<p>Сохраним изменения в настройках и добавим созданный Kit к своему проекту.</p>
+</div>
 <div class="section" id="python-ide">
-<span id="index-25"></span><span id="ide-python-fedora"></span><h2>Какую IDE использовать для разработки на Python в Fedora?<a class="headerlink" href="#python-ide" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-27"></span><span id="ide-python-fedora"></span><h2>Какую IDE использовать для разработки на Python в Fedora?<a class="headerlink" href="#python-ide" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы рекомендуем PyCharm Community Edition.</p>
 <p>Подключим COPR репозиторий:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf copr enable phracek/PyCharm
@@ -467,7 +495,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 </div>
 </div>
 <div class="section" id="fw-image">
-<span id="index-26"></span><span id="id15"></span><h2>Как получить информацию о содержимом образа бинарной прошивки?<a class="headerlink" href="#fw-image" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-28"></span><span id="id16"></span><h2>Как получить информацию о содержимом образа бинарной прошивки?<a class="headerlink" href="#fw-image" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для работы с образами прошивок можно использовать утилиту <strong>binwalk</strong>. Установим её:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install binwalk
 </pre></div>
@@ -478,7 +506,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 </div>
 </div>
 <div class="section" id="spec">
-<span id="spectool"></span><span id="index-27"></span><h2>Как автоматически скачать исходники, прописанные в SPEC-файле?<a class="headerlink" href="#spec" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="spectool"></span><span id="index-29"></span><h2>Как автоматически скачать исходники, прописанные в SPEC-файле?<a class="headerlink" href="#spec" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим необходимые утилиты:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install rpm-build rpmdevtools
 </pre></div>
@@ -493,7 +521,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 </div>
 </div>
 <div class="section" id="spec-auto">
-<span id="index-28"></span><span id="id16"></span><h2>Как автоматически инкрементировать релиз в SPEC-файле?<a class="headerlink" href="#spec-auto" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-30"></span><span id="id17"></span><h2>Как автоматически инкрементировать релиз в SPEC-файле?<a class="headerlink" href="#spec-auto" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим необходимый для работы пакет:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install rpmdevtools
 </pre></div>
@@ -504,14 +532,14 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 </div>
 </div>
 <div class="section" id="git-multi">
-<span id="index-29"></span><span id="id17"></span><h2>Как загрузить изменения во всех вложенных репозиториях из данного каталога?<a class="headerlink" href="#git-multi" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-31"></span><span id="id18"></span><h2>Как загрузить изменения во всех вложенных репозиториях из данного каталога?<a class="headerlink" href="#git-multi" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если Git репозитории были клонированы в общий каталог <code class="docutils literal notranslate"><span class="pre">~/foo-bar</span></code>, то загрузим изменения в каждом из вложенных проектов при помощи <strong>find</strong> и <strong>bash</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find ~/foo-bar -maxdepth 1 ! -path . -type d -exec bash -c &quot;pushd &#39;{}&#39; ; git pull ; popd&quot; \;
 </pre></div>
 </div>
 </div>
 <div class="section" id="git-empty">
-<span id="index-30"></span><span id="id18"></span><h2>Как создать пустую ветку в Git без общей истории?<a class="headerlink" href="#git-empty" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-32"></span><span id="id19"></span><h2>Как создать пустую ветку в Git без общей истории?<a class="headerlink" href="#git-empty" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Создадим новую пустую ветку <strong>foo-bar</strong> от текущего HEAD:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout --orphan foo-bar
 </pre></div>
@@ -522,7 +550,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 </div>
 </div>
 <div class="section" id="mock">
-<span id="mock-move"></span><span id="index-31"></span><h2>Можно ли перенести каталоги сборки и кэшей mock на другой диск?<a class="headerlink" href="#mock" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="mock-move"></span><span id="index-33"></span><h2>Можно ли перенести каталоги сборки и кэшей mock на другой диск?<a class="headerlink" href="#mock" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Система автоматической <a class="reference internal" href="#build-package"><span class="std std-ref">сборки пакетов mock</span></a> занимает огромное количество места в корневом разделе, поэтому многие мейнтейнеры хотели бы перенести её на другой диск. Штатно это сделать не представляется возможным ибо значения каталогов по умолчанию <code class="docutils literal notranslate"><span class="pre">/var/cache/mock</span></code> и <code class="docutils literal notranslate"><span class="pre">/var/lib/mock</span></code> жёстко прописаны внутри приложения и не подлежат изменению со стороны пользователя, поэтому воспользуемся символическими ссылками.</p>
 <p>Создадим на другом накопителе (его файловая система должна поддерживать права доступа Unix) базовый каталог для mock:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd /media/foo-bar
@@ -556,7 +584,7 @@ sudo restorecon -Rv /media/foo-bar/mock/lib
 <p>Здесь <strong>/media/foo-bar</strong> - точка монтирования нового накопителя, на котором будут располагаться кэши mock.</p>
 </div>
 <div class="section" id="git-bash">
-<span id="bash-git-branch"></span><span id="index-32"></span><h2>Как включить отображение текущей ветки Git в Bash?<a class="headerlink" href="#git-bash" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="bash-git-branch"></span><span id="index-34"></span><h2>Как включить отображение текущей ветки Git в Bash?<a class="headerlink" href="#git-bash" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Модуль интеграции с Bash входит в состав пакета Git. Добавим в <a class="reference internal" href="using-system.html#bash-shell"><span class="std std-ref">приветствие Bash</span></a> следующую строку:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export PS1=&#39;[\u@\h \W$(declare -F __git_ps1 &amp;&gt;/dev/null &amp;&amp; __git_ps1 &quot; (%s)&quot;)]\$ &#39;
 </pre></div>
@@ -569,7 +597,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <p>Изменения вступят в силу при следующем запуске оболочки.</p>
 </div>
 <div class="section" id="patch-file">
-<span id="index-33"></span><span id="id19"></span><h2>Как создать унифицированный патч изменений между двумя файлами?<a class="headerlink" href="#patch-file" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-35"></span><span id="id20"></span><h2>Как создать унифицированный патч изменений между двумя файлами?<a class="headerlink" href="#patch-file" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для создания патча нам необходимо две версии файла: оригинальная и текущая.</p>
 <p>Создадим унифицрованный патч с разностью между файлами <strong>foo-bar.txt.orig</strong> (оригинальный) и <strong>foo-bar.txt</strong> (текущий):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>diff -Naur foo-bar.txt.orig foo-bar.txt &gt; result.patch
@@ -578,7 +606,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <p>Результат будет сохранён в файле <strong>result.patch</strong>.</p>
 </div>
 <div class="section" id="patch-directory">
-<span id="index-34"></span><span id="id20"></span><h2>Как создать унифицированный патч изменений между двумя каталогами?<a class="headerlink" href="#patch-directory" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-36"></span><span id="id21"></span><h2>Как создать унифицированный патч изменений между двумя каталогами?<a class="headerlink" href="#patch-directory" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Создадим унифицрованный патч с разностью между каталогами <strong>foo-bar_orig</strong> (оригинальный) и <strong>foo-bar</strong> (текущий):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>diff -Naur foo-bar_orig foo-bar &gt; result.patch
 </pre></div>
@@ -586,7 +614,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <p>Результат будет сохранён в файле <strong>result.patch</strong>.</p>
 </div>
 <div class="section" id="patch-apply">
-<span id="index-35"></span><span id="id21"></span><h2>Как применить унифицированный патч?<a class="headerlink" href="#patch-apply" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-37"></span><span id="id22"></span><h2>Как применить унифицированный патч?<a class="headerlink" href="#patch-apply" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проверим возможность применения патча <strong>foo-bar.patch</strong> без внесения каких-либо изменений:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>patch -p0 --dry-run -i foo-bar.patch
 </pre></div>
@@ -598,7 +626,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <p>Параметром <code class="docutils literal notranslate"><span class="pre">-p</span></code> задаётся количество каталогов, которые будут отброшены при поиске файлов, указанных внутри унифицированного патча.</p>
 </div>
 <div class="section" id="patch-revert">
-<span id="index-36"></span><span id="id22"></span><h2>Как откатить наложенный унифицированный патч?<a class="headerlink" href="#patch-revert" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-38"></span><span id="id23"></span><h2>Как откатить наложенный унифицированный патч?<a class="headerlink" href="#patch-revert" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проверим возможность отката патча <strong>foo-bar.patch</strong> без внесения каких-либо изменений:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>patch -p0 -R --dry-run -i foo-bar.patch
 </pre></div>
@@ -610,7 +638,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <p>Параметром <code class="docutils literal notranslate"><span class="pre">-p</span></code> задаётся количество каталогов, которые будут отброшены при поиске файлов, указанных внутри унифицированного патча.</p>
 </div>
 <div class="section" id="patch-git-create">
-<span id="index-37"></span><span id="id23"></span><h2>Как создать унифицированный патч между двумя коммитами?<a class="headerlink" href="#patch-git-create" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-39"></span><span id="id24"></span><h2>Как создать унифицированный патч между двумя коммитами?<a class="headerlink" href="#patch-git-create" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Создадим патч между двумя коммитами <strong>AAA</strong> и <strong>BBB</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git diff AAA BBB &gt; result.patch
 </pre></div>
@@ -622,7 +650,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <p>Здесь <strong>AAA</strong>, <strong>BBB</strong> и <strong>CCC</strong> - хеши коммитов в Git репозитории.</p>
 </div>
 <div class="section" id="patch-git-export">
-<span id="index-38"></span><span id="id24"></span><h2>Как экспортировать Git коммит для отправки по электронной почте?<a class="headerlink" href="#patch-git-export" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-40"></span><span id="id25"></span><h2>Как экспортировать Git коммит для отправки по электронной почте?<a class="headerlink" href="#patch-git-export" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В Git имеется встроенное средство экспорта коммитов для их дальнейшей отправки по электронной почте.</p>
 <p>Экспортируем один коммит:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git format-patch -1
@@ -634,7 +662,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 </div>
 </div>
 <div class="section" id="fedora-login">
-<span id="index-39"></span><span id="id25"></span><h2>Как авторизоваться в инфраструктуре Fedora?<a class="headerlink" href="#fedora-login" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-41"></span><span id="id26"></span><h2>Как авторизоваться в инфраструктуре Fedora?<a class="headerlink" href="#fedora-login" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для авторизации мы должны использовать вход в домен <a class="reference internal" href="administration.html#kerberos-auth"><span class="std std-ref">посредством Kerberos</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit foo-bar@FEDORAPROJECT.ORG
 </pre></div>
@@ -643,7 +671,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <p>Также для некоторых операций необходимо загрузить <a class="reference internal" href="security.html#ssh-keygen"><span class="std std-ref">публичный ключ</span></a> SSH в <a class="reference external" href="https://admin.fedoraproject.org/accounts">FAS аккаунт</a>.</p>
 </div>
 <div class="section" id="package-request">
-<span id="index-40"></span><span id="id26"></span><h2>Как запросить создание пакета в репозитории?<a class="headerlink" href="#package-request" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-42"></span><span id="id27"></span><h2>Как запросить создание пакета в репозитории?<a class="headerlink" href="#package-request" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сразу после завершения <a class="reference internal" href="#becoming-maintainer"><span class="std std-ref">процедуры package review</span></a>, мейнтейнер должен запросить создание пакета в репозиториях Fedora.</p>
 <p>Установим утилиту <strong>fedpkg</strong></p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install fedpkg
@@ -669,7 +697,7 @@ fedpkg request-branch --namespace rpms --repo foo-bar --all-releases
 <p>Здесь <strong>foo-bar</strong> - имя пакета, а <strong>YYYYYY</strong> - номер заявки в Red Hat BugZilla с успешно завершённым package review.</p>
 </div>
 <div class="section" id="fedpkg-upload">
-<span id="index-41"></span><span id="id27"></span><h2>Как загрузить файлы с исходными кодами пакета в систему сборки?<a class="headerlink" href="#fedpkg-upload" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-43"></span><span id="id28"></span><h2>Как загрузить файлы с исходными кодами пакета в систему сборки?<a class="headerlink" href="#fedpkg-upload" title="Ссылка на этот заголовок">¶</a></h2>
 <p>После <a class="reference internal" href="#package-request"><span class="std std-ref">создания пакета</span></a> осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora, затем скачаем репозиторий пакета из Fedora SCM, содержащий SPEC файл и набор патчей (при необходимости), а также прочие службные файлы:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg clone foo-bar
 cd foo-bar
@@ -695,7 +723,7 @@ git merge master
 </div>
 </div>
 <div class="section" id="fedpkg-build">
-<span id="index-42"></span><span id="id28"></span><h2>Как осуществить сборку пакета для публикации в репозиториях?<a class="headerlink" href="#fedpkg-build" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-44"></span><span id="id29"></span><h2>Как осуществить сборку пакета для публикации в репозиториях?<a class="headerlink" href="#fedpkg-build" title="Ссылка на этот заголовок">¶</a></h2>
 <p>После <a class="reference internal" href="#fedpkg-upload"><span class="std std-ref">загрузки файлов с исходными кодами</span></a> пакета, осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora, а затем приступим к непосредственно сборке в <a class="reference internal" href="#koji-about"><span class="std std-ref">Fedora Koji</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
 fedpkg switch-branch master
@@ -709,7 +737,7 @@ fedpkg build
 </div>
 </div>
 <div class="section" id="fedpkg-scratch">
-<span id="index-43"></span><span id="id29"></span><h2>Как осуществить тестовую сборку пакета для определённой архитектуры?<a class="headerlink" href="#fedpkg-scratch" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-45"></span><span id="id30"></span><h2>Как осуществить тестовую сборку пакета для определённой архитектуры?<a class="headerlink" href="#fedpkg-scratch" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora.</p>
 <p>Выполним стандартную scratch-сборку для всех поддерживаемых данным выпуском архитектур:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
@@ -725,7 +753,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 </div>
 </div>
 <div class="section" id="fedpkg-publish">
-<span id="index-44"></span><span id="id30"></span><h2>Как выложить собранный пакет в репозитории?<a class="headerlink" href="#fedpkg-publish" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-46"></span><span id="id31"></span><h2>Как выложить собранный пакет в репозитории?<a class="headerlink" href="#fedpkg-publish" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По окончании <a class="reference internal" href="#fedpkg-build"><span class="std std-ref">сборки</span></a> мы можем воспользоваться <a class="reference external" href="https://bodhi.fedoraproject.org/">Fedora Bodhi</a> и <a class="reference external" href="https://bodhi.fedoraproject.org/updates/new">выложить обновление</a> в репозитории.</p>
 <p>Сначала все обновления попадают в тестовые репозитории Fedora (<em>updates-testing</em>) и лишь после получения положительной кармы от других участников сообщества (уровень задаётся мейнтейнером, но не может быть меньше 1), либо по истечении 7 дней, оно может попасть в стабильные (<em>updates</em>) и будет доставлено конечным пользователям.</p>
 <p>Заполним стандартную, хорошо документированную форму, затем нажмём кнопку <strong>Submit</strong>.</p>
@@ -788,6 +816,8 @@ fedpkg scratch-build --arches x86_64 aarch64
 <li class="toctree-l2"><a class="reference internal" href="#pipe-order">В каком порядке запускаются процессы через канал (пайп)?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#build-flags">Можно ли использовать собственные флаги компиляции при сборке пакета?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cxx-ide">Какую IDE использовать для разработки на C++ в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qt-creator">В Qt Creator отсутствует документация. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qtcreator-kits">В Qt Creator отсутствуют компиляторы. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#python-ide">Какую IDE использовать для разработки на Python в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fw-image">Как получить информацию о содержимом образа бинарной прошивки?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#spec">Как автоматически скачать исходники, прописанные в SPEC-файле?</a></li>
