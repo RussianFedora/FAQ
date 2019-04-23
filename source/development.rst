@@ -612,7 +612,33 @@
 
     sudo dnf install qt5-qtbase-doc qt5-qtbase-examples qt-creator-doc
 
-Если Qt Creator при попытке загрузить документацию выдаёт ошибку *Error loading: qthelp://org.qt-project.qtcreator.472/doc/index.html*, выберем пункт меню **Tools** - **Options** - **Help** - **Documentation** - **Add** и укажем файлы ``/usr/share/doc/qtcreator/qtcreator.qch``, а также ``/usr/share/doc/qtcreator/qtcreator-dev.qch``.
+.. index:: c++, ide, qt creator, qt, docs
+.. _qtcreator-docs:
+
+В Qt Creator отсутствует документация. Как исправить?
+========================================================
+
+Если Qt Creator при попытке загрузить документацию выдаёт ошибку *Error loading: qthelp://org.qt-project.qtcreator.472/doc/index.html*, выберем пункт меню **Tools** - **Options** - **Help** - **Documentation** - **Add**, затем вручную добавим следующие файлы:
+
+.. code-block:: text
+
+    /usr/share/doc/qt5/qmake.qch
+    /usr/share/doc/qt5/qtconcurrent.qch
+    /usr/share/doc/qt5/qtcore.qch
+    /usr/share/doc/qt5/qtdbus.qch
+    /usr/share/doc/qt5/qtgui.qch
+    /usr/share/doc/qt5/qtnetwork.qch
+    /usr/share/doc/qt5/qtnetworkauth.qch
+    /usr/share/doc/qt5/qtopengl.qch
+    /usr/share/doc/qt5/qtplatformheaders.qch
+    /usr/share/doc/qt5/qtprintsupport.qch
+    /usr/share/doc/qt5/qtsql.qch
+    /usr/share/doc/qt5/qttestlib.qch
+    /usr/share/doc/qt5/qtwidgets.qch
+    /usr/share/doc/qt5/qtxml.qch
+    /usr/share/doc/qt5/qtxmlpatterns.qch
+    /usr/share/doc/qtcreator/qtcreator.qch
+    /usr/share/doc/qtcreator/qtcreator-dev.qch
 
 Изменения вступят в силу после перезапуска IDE.
 
