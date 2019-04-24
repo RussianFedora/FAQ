@@ -438,6 +438,27 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Откроем <strong>настройки Gnome</strong>, выберем пункт <strong>Онлайн учётные записи</strong>, нажмём кнопку с символом <strong>+</strong> для добавления нового, в конце списка выберем вариант <strong>Другие</strong>, а затем <strong>Enterprise login (Kerberos)</strong>.</p>
 <p>В появившемся окне введём авторизационные данные и подтвердим добавление аккаунта.</p>
 </div>
+<div class="section" id="transmission-server">
+<span id="index-34"></span><span id="id17"></span><h2>Как запустить фоновый клиент для загрузки торрентов?<a class="headerlink" href="#transmission-server" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим Transsmission в виде сервиса:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install transmission-daemon
+</pre></div>
+</div>
+<p>Установим «тонкий клиент» Transsmission Remote:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install transmission-remote-gtk
+</pre></div>
+</div>
+<p>Активируем и запустим сервер:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable --now transmission-daemon.service
+</pre></div>
+</div>
+<p>В Firewalld разрешим входящие BitTorrent подключения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --add-service=transmission-client --permanent
+</pre></div>
+</div>
+<p>Запустим «тонкий клиент», подключимся к серверу <strong>127.0.0.1:9091</strong>, перейдём в <strong>Опции</strong> - <strong>Настройки сервера</strong> и внесём свои правки, указав например каталог для загрузок.</p>
+<p>Изменения вступают в силу немедленно. Сервер будет запускаться автоматически при каждой загрузке системы и сразу же осуществлять загрузку, либо раздачу торрентов.</p>
+</div>
 </div>
 
 
@@ -503,6 +524,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#gnome-shell-tray">Как вернуть классический системный лоток (трей) в Gnome Shell?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#zip-split">Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kerberos-gnome">Как настроить автоматическое обновление Kerberos-тикетов в Gnome?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transmission-server">Как запустить фоновый клиент для загрузки торрентов?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
