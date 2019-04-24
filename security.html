@@ -836,6 +836,11 @@ sudo chmod 0400 /var/lib/luks/foo-bar.key
 <p>Здесь <strong>foo-bar</strong> - внутреннее имя, указанное ранее в crypttab, <strong>/media/data</strong> - точка монтирования, а <strong>ext4</strong> - используемая файловая система.</p>
 <p>Если всё сделано верно, то при следующей загрузке раздел будет смонтирован автоматически без запроса пароля.</p>
 </div>
+<div class="section" id="root-reset">
+<span id="index-73"></span><span id="id55"></span><h2>Я забыл пароль суперпользователя. Как мне его сбросить?<a class="headerlink" href="#root-reset" title="Ссылка на этот заголовок">¶</a></h2>
+<p>При наличии доступа к sudo, пароль суперпользователя можно изменить <a class="reference internal" href="#root-password"><span class="std std-ref">в штатном режиме</span></a>.</p>
+<p>Если текущий пользователь не может использовать sudo, но есть физический доступ к устройству, см. <a class="reference external" href="https://docs.fedoraproject.org/en-US/quick-docs/reset-root-password/">здесь</a>.</p>
+</div>
 </div>
 
 
@@ -938,6 +943,7 @@ sudo chmod 0400 /var/lib/luks/foo-bar.key
 <li class="toctree-l2"><a class="reference internal" href="#luks-addkey">Как добавить ключевой файл для разблокировки зашифрованного LUKS раздела?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#luks-removekey">Как удалить ключевой файл разблокировки зашифрованного LUKS раздела?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#luks-auto">Как настроить автоматическую расшифровку LUKS разделов при загрузке?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#root-reset">Я забыл пароль суперпользователя. Как мне его сбросить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
