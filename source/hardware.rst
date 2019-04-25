@@ -187,6 +187,19 @@
 
     sudo dnf install VirtualGL.i686 primus.i686
 
+Добавим аккаунт пользователя в группу **bumblebee**:
+
+.. code-block:: text
+
+    sudo usermod -a -G bumblebee $(whoami)
+
+Произведём настройку сервисов:
+
+.. code-block:: text
+
+    sudo systemctl enable bumblebeed.service
+    sudo systemctl mask nvidia-fallback.service
+
 Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
 
 .. index:: video, gpu, repository, nvidia, drivers, third-party, bumblebee, primus, optimus
