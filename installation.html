@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Вопросы, связанные с установкой системы &#8212; Документация Неофициальный FAQ по Fedora 2019.04.12</title>
+    <title>Вопросы, связанные с установкой системы &#8212; Документация Неофициальный FAQ по Fedora 2019.04.25</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -96,12 +96,12 @@
 <blockquote>
 <div><ol class="arabic simple">
 <li>загрузка с <a class="reference internal" href="#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>;</li>
-<li>создание разделов для новой установки Fedora посредством GParted или любой другой утилиты разбиения дисков;</li>
+<li><a class="reference internal" href="#fedora-partitions"><span class="std std-ref">создание разделов</span></a> для новой установки Fedora посредством GParted или любой другой утилиты разбиения дисков;</li>
 <li>монтирование старых и новых разделов;</li>
 <li><a class="reference internal" href="administration.html#copying-data"><span class="std std-ref">копирование всех файлов и каталогов</span></a> со старого накопителя на новый с сохранением прав доступа;</li>
-<li>редактирование файла <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> нового накопителя так, чтобы в нём были указаны UUID новых разделов;</li>
+<li>редактирование файла <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> нового накопителя так, чтобы в нём были указаны <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID</span></a> новых разделов;</li>
 <li>создание в корневом каталоге нового накопителя файла <code class="docutils literal notranslate"><span class="pre">/.autorelabel</span></code> для автоматической установки контекста безопасности SELinux;</li>
-<li>установка загрузчика (если необходимо).</li>
+<li><a class="reference internal" href="using-system.html#grub-rebuild"><span class="std std-ref">установка загрузчика</span></a> (если необходимо).</li>
 </ol>
 </div></blockquote>
 </div>
@@ -309,12 +309,8 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <span id="grub2-restore"></span><span id="index-28"></span><h2>После установки Windows был затёрт UEFI загрузчик Fedora. Как его восстановить?<a class="headerlink" href="#windows-uefi-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Во время своей установки ОС Microsoft Windows всегда осуществляет форматирование служебного ESP раздела диска, поэтому придётся вручную восстановить загрузчик.</p>
 <p>Выполним вход в <a class="reference internal" href="administration.html#chroot"><span class="std std-ref">chroot установленной системы</span></a>.</p>
-<p>Смонтируем служебный ESP раздел диска:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mount -t vfat /dev/sda1 /boot/efi
-</pre></div>
-</div>
 <p>Выполним переустановку загрузчиков Grub2 и shim:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf reinstall grub2-efi shim
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf reinstall grub2\* shim
 </pre></div>
 </div>
 <p><a class="reference internal" href="using-system.html#grub-rebuild"><span class="std std-ref">Пересоберём</span></a> конфиг Grub2:</p>

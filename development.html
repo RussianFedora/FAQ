@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Вопросы, связанные с разработкой и сборкой пакетов &#8212; Документация Неофициальный FAQ по Fedora 2019.04.12</title>
+    <title>Вопросы, связанные с разработкой и сборкой пакетов &#8212; Документация Неофициальный FAQ по Fedora 2019.04.25</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -758,6 +758,10 @@ fedpkg scratch-build --arches x86_64 aarch64
 <p>Сначала все обновления попадают в тестовые репозитории Fedora (<em>updates-testing</em>) и лишь после получения положительной кармы от других участников сообщества (уровень задаётся мейнтейнером, но не может быть меньше 1), либо по истечении 7 дней, оно может попасть в стабильные (<em>updates</em>) и будет доставлено конечным пользователям.</p>
 <p>Заполним стандартную, хорошо документированную форму, затем нажмём кнопку <strong>Submit</strong>.</p>
 </div>
+<div class="section" id="copr">
+<span id="copr-legal"></span><span id="index-47"></span><h2>Что разрешается хранить в COPR репозиториях?<a class="headerlink" href="#copr" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В <a class="reference internal" href="generic-info.html#copr"><span class="std std-ref">COPR</span></a> разрешается распространять всё то же, что и в <a class="reference internal" href="#fedora-licenses"><span class="std std-ref">основных репозиториях</span></a> Fedora. Сборка и публикация запатентованного и проприетарного программного обеспечения в пользовательских оверлеях не допускается.</p>
+</div>
 </div>
 
 
@@ -838,6 +842,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <li class="toctree-l2"><a class="reference internal" href="#fedpkg-build">Как осуществить сборку пакета для публикации в репозиториях?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedpkg-scratch">Как осуществить тестовую сборку пакета для определённой архитектуры?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedpkg-publish">Как выложить собранный пакет в репозитории?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copr">Что разрешается хранить в COPR репозиториях?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>

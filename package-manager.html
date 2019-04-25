@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Вопросы, связанные с пакетным менеджером и установкой пакетов &#8212; Документация Неофициальный FAQ по Fedora 2019.04.12</title>
+    <title>Вопросы, связанные с пакетным менеджером и установкой пакетов &#8212; Документация Неофициальный FAQ по Fedora 2019.04.25</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -506,6 +506,20 @@ sudo dnf config-manager --set-enabled updates-modular
 <p>Да. Все пакеты в репозиториях Fedora подписываются цифровыми подписями GnuPG, которые в обязательном порядке проверяются перед установкой и обновлением.</p>
 <p>В случае если пакет был заменён, он не сможет быть установлен, т.к. его ЭЦП не будет соответстствовать подписи репозитория.</p>
 </div>
+<div class="section" id="rfremix-fedora">
+<span id="rfremix-to-fedora"></span><span id="index-51"></span><h2>Как превратить RFRemix в Fedora и наоборот?<a class="headerlink" href="#rfremix-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для превращения Fedora в <a class="reference internal" href="generic-info.html#rfremix"><span class="std std-ref">RFRemix</span></a> необходимо и достаточно подключить репозиторий <a class="reference internal" href="generic-info.html#russian-fedora"><span class="std std-ref">russianfedora-branding</span></a>, а чтобы вернуть всё назад - отключить его.</p>
+<p>После подключения/отключения необходимо выполнить синхронизацию:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf swap rfremix-release fedora-release --allowerasing
+sudo dnf distro-sync --allowerasing
+</pre></div>
+</div>
+</div>
+<div class="section" id="copr">
+<span id="copr-use"></span><span id="index-52"></span><h2>Безопасно ли использовать COPR репозитории?<a class="headerlink" href="#copr" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Т.к. все пакеты в <a class="reference internal" href="generic-info.html#copr"><span class="std std-ref">COPR</span></a> создаются простыми пользователями, поэтому их качество значительно отличается. Есть как хорошие репозитории, так и те, что способны вывести систему из строя.</p>
+<p>Перед подключением мы рекомендуем проверить является ли владелец репозитория мейнтейнером Fedora или нет и если нет, то отказаться от этого.</p>
+</div>
 </div>
 
 
@@ -582,6 +596,8 @@ sudo dnf config-manager --set-enabled updates-modular
 <li class="toctree-l2"><a class="reference internal" href="#dnf-remove-32bit">Как удалить все установленные в системе 32-битные пакеты?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-mirror">Можно ли создать собственное зеркало репозиториев Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-signatures">Безопасно ли устанавливать обновления через небезопасные соединения?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rfremix-fedora">Как превратить RFRemix в Fedora и наоборот?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copr">Безопасно ли использовать COPR репозитории?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с системным администрированием</a></li>
