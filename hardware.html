@@ -152,6 +152,15 @@
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install VirtualGL.i686 primus.i686
 </pre></div>
 </div>
+<p>Добавим аккаунт пользователя в группу <strong>bumblebee</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G bumblebee $(whoami)
+</pre></div>
+</div>
+<p>Произведём настройку сервисов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable bumblebeed.service
+sudo systemctl mask nvidia-fallback.service
+</pre></div>
+</div>
 <p>Более подробная информация доступна <a class="reference external" href="https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="nvidia-troubleshooting">
