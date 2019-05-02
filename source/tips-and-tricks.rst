@@ -87,14 +87,17 @@
 
 .. code-block:: text
 
-    sudo dnf remove GTK2
+    sudo dnf remove gtk2
 
-Удалим остальные KDE приложения:
+.. index:: bug, missing library, libcurl-gnutls
+.. _libcurl-workaround:
+
+Как максимально очистить KDE от неиспользуемых программ:
+=============================================================
 
 .. code-block:: text
-
-    sudo dnf remove  discover krdc akonadi qt abrt PackageKit kdepim-runtime-libs kde-connect kdeconnectd ark dragon kontact okular gwenview ktorrent kget konversation konqueror falkon kmail dnfdragora kdewallet krusader kwrite spectacle krfb akregator juk kamoso k3b calligra* kfind kgpg kmouth kmag
-
+    
+    sudo dnf remove  discover krdc akonadi qt abrt PackageKit kdepim-runtime-libs kde-connect kdeconnectd dragon kontact ktorrent kget konversation konqueror falkon kmail dnfdragora kdewallet krusader spectacle krfb akregator juk kamoso k3b calligra* kfind kgpg kmouth kmag
 
 Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?
 =====================================================================
