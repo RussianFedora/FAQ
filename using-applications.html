@@ -459,6 +459,15 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Запустим «тонкий клиент», подключимся к серверу <strong>127.0.0.1:9091</strong>, перейдём в <strong>Опции</strong> - <strong>Настройки сервера</strong> и внесём свои правки, указав например каталог для загрузок.</p>
 <p>Изменения вступают в силу немедленно. Сервер будет запускаться автоматически при каждой загрузке системы и сразу же осуществлять загрузку, либо раздачу торрентов.</p>
 </div>
+<div class="section" id="gnome-shell-reset">
+<span id="index-35"></span><span id="id18"></span><h2>Как сбросить все настройки Gnome Shell?<a class="headerlink" href="#gnome-shell-reset" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Чтобы сбросить все настройки Gnome и Gnome Shell, выполним:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dconf reset -f /
+</pre></div>
+</div>
+<p>Это действие удалит все настройки Gnome, включая приложения, использующие dconf для хранения пользовательских настроек, аккаунтов и т.д., параметры системы, настройки среды, установленные темы и расширения и т.д. Перед использованием рекомендуется создать резеврную копию.</p>
+<p>При следующем входе будут восстановлены значения по умолчанию.</p>
+</div>
 </div>
 
 
@@ -525,6 +534,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#zip-split">Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kerberos-gnome">Как настроить автоматическое обновление Kerberos-тикетов в Gnome?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#transmission-server">Как запустить фоновый клиент для загрузки торрентов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gnome-shell-reset">Как сбросить все настройки Gnome Shell?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>

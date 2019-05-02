@@ -167,16 +167,16 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 </div>
 <div class="section" id="grub-legacy-error">
 <span id="index-8"></span><span id="id3"></span><h2>После обновления дистрибутива с 29 версии до 30 не могу загрузить систему. Как исправить?<a class="headerlink" href="#grub-legacy-error" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Некоторые пользователи, до сих пор использующие Legacy загрузку (BIOS), после обновления с Fedora 29 до 30 не могут запустить систему из-за ошибок, связанных с загрузчиком Grub 2.</p>
-<p>Это <a class="reference external" href="https://fedoraproject.org/wiki/Common_F30_bugs#GRUB_boot_menu_is_not_populated_after_an_upgrade">известная проблема</a>. Для её решения выполним следующую последовательность:</p>
+<p>Некоторые пользователи, до сих пор использующие Legacy загрузку (BIOS), после <a class="reference internal" href="package-manager.html#dist-upgrade"><span class="std std-ref">обновления</span></a> с Fedora 29 до 30 не могут запустить систему из-за ошибок, связанных с загрузчиком Grub 2.</p>
+<p>Это <a class="reference external" href="https://fedoraproject.org/wiki/Common_F30_bugs#GRUB_boot_menu_is_not_populated_after_an_upgrade">известная проблема</a>. Для её решения осуществим следующую последовательность:</p>
 <ol class="arabic simple">
-<li>сразу после появления ошибки Grub 2 и перехода в emergency режим, выполним команду:</li>
+<li>после появления ошибки Grub 2 и перехода в emergency режим, выполним команду:</li>
 </ol>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>configfile /grub2/grub.cfg.rpmsave
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li>после успешной загрузки, осуществим переустановку Grub 2 в MBR диска:</li>
+<li>после успешной загрузки, произведём переустановку Grub 2 в MBR диска:</li>
 </ol>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo grub2-install /dev/sda
 </pre></div>
