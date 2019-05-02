@@ -92,7 +92,7 @@
 
 .. code-block:: text
 
-    sudo dnf remove  discover krdc akonadi qt abrt PackageKit kdepim-runtime-libs kde-connect kdeconn    ectd ark dragon kontact okular gwenview ktorrent kget konversation konqueror falkon kmail dnfdragora kdewallet krusader kwrite spectacle krfb akregator juk kamoso k3b calligra* kfind kgpg kmouth kmag
+    sudo dnf remove  discover krdc akonadi qt abrt PackageKit kdepim-runtime-libs kde-connect kdeconnectd ark dragon kontact okular gwenview ktorrent kget konversation konqueror falkon kmail dnfdragora kdewallet krusader kwrite spectacle krfb akregator juk kamoso k3b calligra* kfind kgpg kmouth kmag
 
 
 Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?
