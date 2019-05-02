@@ -87,8 +87,9 @@
 
 .. code-block:: text
 
-    sudo dnf remove gtk2
-Удалим весь ненужный Windows подобный софт
+    sudo dnf remove GTK2
+
+Удалим остальные KDE приложения:
 
 .. code-block:: text
 
