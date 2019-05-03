@@ -140,11 +140,11 @@
 </div>
 <div class="section" id="fedora-ssd">
 <span id="ssd-tuning"></span><span id="index-17"></span><h2>Нужно ли как-то настраивать Fedora для работы с SSD?<a class="headerlink" href="#fedora-ssd" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Актуальные версии не требуют особой настройки если были сразу установлены на SSD. Достаточно лишь убедиться, что TRIM таймер активен:</p>
+<p>Особой настройки не требуется. Необходимо лишь убедиться, что таймер процедуры TRIM активен:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl status fstrim.timer
 </pre></div>
 </div>
-<p>Если это не так, нужно активировать его:</p>
+<p>Если это не так, активируем его:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable fstrim.timer
 </pre></div>
 </div>
@@ -161,8 +161,13 @@
 <p>Однако следует помнить, что на некоторых накопителях реалтаймовый TRIM может вызвать сбой в работе контроллера и привести к потере всех данных. Именно поэтому он по умолчанию и не применяется.</p>
 <p>Все изменения вступят в силу при следующей загрузке системы.</p>
 </div>
+<div class="section" id="trim">
+<span id="ssd-timer"></span><span id="index-19"></span><h2>Почему таймер TRIM отключён по умолчанию?<a class="headerlink" href="#trim" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Изначально <a class="reference internal" href="#ssd-tuning"><span class="std std-ref">таймер TRIM</span></a> активировался автоматически если установка Fedora производилась на SSD накопитель, но через некоторое время обнаружилась серьёзная проблема с noname-накопителями, контроллеры которых делегировали поддержку процедуры TRIM, однако при её выполнении теряли все данные на носителе.</p>
+<p>Из-за достаточно большого количества жалоб на потерю данных с таких дешёвых контрафактных noname накопителей, созданных на базе простейших контроллеров от флешек и микросхем памяти из отбраковки, было решено таймер отключить.</p>
+</div>
 <div class="section" id="fonts-cleartype">
-<span id="index-19"></span><span id="id14"></span><h2>Как улучшить отображение шрифтов в Fedora?<a class="headerlink" href="#fonts-cleartype" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-20"></span><span id="id14"></span><h2>Как улучшить отображение шрифтов в Fedora?<a class="headerlink" href="#fonts-cleartype" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В актуальных релизах Fedora пакет freetype уже собран с поддержкой субпиксельного сглаживания, поэтому чтобы получить качественный рендеринг шрифтов, необходимо лишь разрешить использование LCD фильтров, создав символическую ссылку на файл <code class="docutils literal notranslate"><span class="pre">11-lcdfilter-default.conf</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/fonts/conf.d</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo ln -s /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d/
 </pre></div>
@@ -170,7 +175,7 @@
 <p>Для вступления изменений в силу необходимо повторно войти в систему, либо перезагрузить компьютер.</p>
 </div>
 <div class="section" id="fonts-console">
-<span id="index-20"></span><span id="id15"></span><h2>В консолях фреймбуфера отображаются кракозябры. Как это починить?<a class="headerlink" href="#fonts-console" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-21"></span><span id="id15"></span><h2>В консолях фреймбуфера отображаются кракозябры. Как это починить?<a class="headerlink" href="#fonts-console" title="Ссылка на этот заголовок">¶</a></h2>
 <p><em>Способ 1</em>. Зададим следующий параметр ядра:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>vconsole.font=latarcyrheb-sun16
 </pre></div>
@@ -185,16 +190,16 @@
 </div>
 </div>
 <div class="section" id="fs-selection">
-<span id="index-21"></span><span id="id16"></span><h2>Какую файловую систему рекомендуется использовать на Fedora?<a class="headerlink" href="#fs-selection" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-22"></span><span id="id16"></span><h2>Какую файловую систему рекомендуется использовать на Fedora?<a class="headerlink" href="#fs-selection" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию применяется <a class="reference external" href="https://ru.wikipedia.org/wiki/Ext4">ext4</a>. На наш взгляд, это самая стабильная и популярная файловая система в настоящее время.</p>
 <p>Для хранения больших объёмов данных можно использовать <a class="reference external" href="https://ru.wikipedia.org/wiki/XFS">XFS</a>. Это также стабильная и быстрая ФС, но следует помнить, что при сбоях электропитания вместо файлов, в которые в этот момент шла запись, могут оказаться нули. Таким образом, XFS лучше применять только если есть источник бесперебойного питания (UPS), либо на ноутбуках.</p>
 </div>
 <div class="section" id="btrfs">
-<span id="fs-btrfs"></span><span id="index-22"></span><h2>Что вы скажете об установке системы на BTRFS?<a class="headerlink" href="#btrfs" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fs-btrfs"></span><span id="index-23"></span><h2>Что вы скажете об установке системы на BTRFS?<a class="headerlink" href="#btrfs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы настоятельно не рекомендуем её использовать. Данная ФС очень нестабильна и часто приводит к полной потере всех данных на устройстве без возможности восстановления даже в идеальных условиях (было множество случаев у пользователей нашего канала).</p>
 </div>
 <div class="section" id="fs-convert">
-<span id="index-23"></span><span id="id17"></span><h2>Можно ли без потерь данных преобразовать одну файловую систему в другую?<a class="headerlink" href="#fs-convert" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-24"></span><span id="id17"></span><h2>Можно ли без потерь данных преобразовать одну файловую систему в другую?<a class="headerlink" href="#fs-convert" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Нет, конвертирование ФС без потери данных не представляется возможным, поэтому для выполнения данной процедуры необходим другой раздел диска подходящего размера с поддержкой прав доступа Unix. Алгоритм следующий:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -206,7 +211,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="fedora-uefi">
-<span id="uefi-boot"></span><span id="index-24"></span><h2>Как установить Fedora в UEFI режиме?<a class="headerlink" href="#fedora-uefi" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="uefi-boot"></span><span id="index-25"></span><h2>Как установить Fedora в UEFI режиме?<a class="headerlink" href="#fedora-uefi" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Загрузка <a class="reference internal" href="#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a> образа должна производиться исключительно в UEFI режиме. На большинстве материнских плат в меню вариантов загрузки требуется выбрать режим <em>UEFI External Drive</em> или <em>UEFI USB HDD</em>.</p>
 <p>Схемой разбиения диска, на который будет установлен дистрибутив, должна быть <strong>GPT</strong>. Проверить можно посредством выполнения <strong>fdisk</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fdisk -l
@@ -216,7 +221,7 @@
 <p>Теперь можно приступать к установке. Автоматическое разбиение в Anaconda произведёт все действия самостоятельно.</p>
 </div>
 <div class="section" id="lvm-vs-partitions">
-<span id="index-25"></span><span id="id18"></span><h2>Какой способ разбиения диска лучше выбрать?<a class="headerlink" href="#lvm-vs-partitions" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-26"></span><span id="id18"></span><h2>Какой способ разбиения диска лучше выбрать?<a class="headerlink" href="#lvm-vs-partitions" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Существует 2 способа:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -227,7 +232,7 @@
 <p>Если возможности LVM использовать не планируется на ПК или ноутбуке, то рекомендуется применять <a class="reference internal" href="#fedora-partitions"><span class="std std-ref">классическое разбиение</span></a>, т.к. такая схема работает быстрее и надёжнее.</p>
 </div>
 <div class="section" id="fedora-partitions">
-<span id="index-26"></span><span id="id19"></span><h2>Как лучше разбить диск самостоятельно?<a class="headerlink" href="#fedora-partitions" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-27"></span><span id="id19"></span><h2>Как лучше разбить диск самостоятельно?<a class="headerlink" href="#fedora-partitions" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если по какой-то причине не хочется доверять автоматическому разбиению, мы рекомендуем следующую конфигурацию (порядок важен):</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -281,7 +286,7 @@
 <p>Здесь <strong>RAM</strong> - объём установленной оперативной памяти.</p>
 </div>
 <div class="section" id="grub">
-<span id="grub-hide"></span><span id="index-27"></span><h2>Как полностью скрыть меню Grub?<a class="headerlink" href="#grub" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="grub-hide"></span><span id="index-28"></span><h2>Как полностью скрыть меню Grub?<a class="headerlink" href="#grub" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Скрытие меню загрузки на UEFI конфигурациях:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo grub2-editenv - set menu_auto_hide=1
 sudo grub2-mkconfig -o /etc/grub2-efi.cfg
@@ -306,7 +311,7 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <p>Получить доступ к элементам скрытого меню можно посредством зажатия клавиши <strong>Shift</strong> или <strong>F8</strong> во время начальной загрузки системы.</p>
 </div>
 <div class="section" id="windows-uefi-fedora">
-<span id="grub2-restore"></span><span id="index-28"></span><h2>После установки Windows был затёрт UEFI загрузчик Fedora. Как его восстановить?<a class="headerlink" href="#windows-uefi-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="grub2-restore"></span><span id="index-29"></span><h2>После установки Windows был затёрт UEFI загрузчик Fedora. Как его восстановить?<a class="headerlink" href="#windows-uefi-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Во время своей установки ОС Microsoft Windows всегда осуществляет форматирование служебного ESP раздела диска, поэтому придётся вручную восстановить загрузчик.</p>
 <p>Выполним вход в <a class="reference internal" href="administration.html#chroot"><span class="std std-ref">chroot установленной системы</span></a>.</p>
 <p>Выполним переустановку загрузчиков Grub2 и shim:</p>
@@ -323,13 +328,13 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 </div>
 </div>
 <div class="section" id="root-no-password">
-<span id="index-29"></span><span id="id20"></span><h2>При установке не предлагается установить пароль для суперпользователя. Это нормально?<a class="headerlink" href="#root-no-password" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-30"></span><span id="id20"></span><h2>При установке не предлагается установить пароль для суперпользователя. Это нормально?<a class="headerlink" href="#root-no-password" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Если при установке системы был создан <a class="reference internal" href="security.html#admin-vs-user"><span class="std std-ref">пользователь-администратор</span></a>, то пароль для учётной записи суперпользователя (root) не устанавливается.</p>
 <p>Для выполнения команд с привилегиями суперпользователя в настоящее время рекомендуется <a class="reference internal" href="security.html#sudo-run"><span class="std std-ref">использовать sudo</span></a>.</p>
 <p>Однако если по какой-то причине работающая учётная запись root необходима, можно её активировать, <a class="reference internal" href="security.html#root-password"><span class="std std-ref">установив пароль</span></a>.</p>
 </div>
 <div class="section" id="installation-date">
-<span id="index-30"></span><span id="id21"></span><h2>Как определить точную дату установки ОС?<a class="headerlink" href="#installation-date" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-31"></span><span id="id21"></span><h2>Как определить точную дату установки ОС?<a class="headerlink" href="#installation-date" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Т.к. операционная система постоянно обновляется, точную дату установки ОС напрямую получить не представляется возможным. Можно лишь вывести дату последнего форматирования раздела диска, на котором установлена система:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dumpe2fs /dev/sda1 | grep &#39;Filesystem created:&#39;
 </pre></div>
@@ -337,7 +342,7 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <p>Здесь <strong>/dev/sda1</strong> - раздел диска с Fedora.</p>
 </div>
 <div class="section" id="installation-mode">
-<span id="index-31"></span><span id="id22"></span><h2>Как определить в каком режиме была произведена установка системы?<a class="headerlink" href="#installation-mode" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-32"></span><span id="id22"></span><h2>Как определить в каком режиме была произведена установка системы?<a class="headerlink" href="#installation-mode" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Определим режим установки системы (<a class="reference internal" href="#uefi-boot"><span class="std std-ref">UEFI</span></a> или Legacy) посредством проверки наличия, либо отсутствия каталога <code class="docutils literal notranslate"><span class="pre">/sys/firmware/efi</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>test -d /sys/firmware/efi &amp;&amp; echo EFI || echo Legacy
 </pre></div>
@@ -386,6 +391,7 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <li class="toctree-l2"><a class="reference internal" href="#ssd">Можно ли не переносить на SSD домашние каталоги пользователей?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora-ssd">Нужно ли как-то настраивать Fedora для работы с SSD?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora-trim">Возможно ли в Fedora включить TRIM в реальном времени?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trim">Почему таймер TRIM отключён по умолчанию?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fonts-cleartype">Как улучшить отображение шрифтов в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fonts-console">В консолях фреймбуфера отображаются кракозябры. Как это починить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fs-selection">Какую файловую систему рекомендуется использовать на Fedora?</a></li>

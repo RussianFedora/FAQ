@@ -762,6 +762,25 @@ fedpkg scratch-build --arches x86_64 aarch64
 <span id="copr-legal"></span><span id="index-47"></span><h2>Что разрешается хранить в COPR репозиториях?<a class="headerlink" href="#copr" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В <a class="reference internal" href="generic-info.html#copr"><span class="std std-ref">COPR</span></a> разрешается распространять всё то же, что и в <a class="reference internal" href="#fedora-licenses"><span class="std std-ref">основных репозиториях</span></a> Fedora. Сборка и публикация запатентованного и проприетарного программного обеспечения в пользовательских оверлеях не допускается.</p>
 </div>
+<div class="section" id="linux-vdso-so-1">
+<span id="linux-vdso"></span><span id="index-48"></span><h2>Что такое linux-vdso.so.1 и почему она загружена в каждый процесс?<a class="headerlink" href="#linux-vdso-so-1" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Библиотека <strong>linux-vdso.so.1</strong> не является обычной динамической библиотекой. Это виртуальный динамически разделяемый объект (VDSO), который отображается на адресное пространство каждого запущенного процесса ядром Linux и представляет собой интерфейс для осуществления быстрых системных вызовов.</p>
+<p>Данный объект можно обнаружить в <a class="reference internal" href="#linux-ldd"><span class="std std-ref">выводе ldd</span></a> для любого бинарного ELF-файла, но без прямого пути, т.к. он не является реальным файлом.</p>
+</div>
+<div class="section" id="linux-ldd">
+<span id="index-49"></span><span id="id32"></span><h2>Как определить зависимости конкретного бинарника?<a class="headerlink" href="#linux-ldd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для определения зависимостей любых ELF-файлов, воспользуемся утилитой <strong>ldd</strong>.</p>
+<p>Определим зависимости динамически разделяемой библиотеки:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ldd /path/to/shared/library.so.1
+</pre></div>
+</div>
+<p>Определим зависимости исполняемого файла:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ldd /path/to/application
+</pre></div>
+</div>
+<p>Если библиотека была найдена в системе, наряду с именем будет указан абсолютный путь к её файлу на диске, а также адрес предполагаемой загрузки.</p>
+<p>Исключение составляют <a class="reference internal" href="#linux-vdso"><span class="std std-ref">виртуальные объекты</span></a>, для которых будет указан лишь адрес, без пути.</p>
+</div>
 </div>
 
 
@@ -843,6 +862,8 @@ fedpkg scratch-build --arches x86_64 aarch64
 <li class="toctree-l2"><a class="reference internal" href="#fedpkg-scratch">Как осуществить тестовую сборку пакета для определённой архитектуры?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedpkg-publish">Как выложить собранный пакет в репозитории?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#copr">Что разрешается хранить в COPR репозиториях?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linux-vdso-so-1">Что такое linux-vdso.so.1 и почему она загружена в каждый процесс?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linux-ldd">Как определить зависимости конкретного бинарника?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
