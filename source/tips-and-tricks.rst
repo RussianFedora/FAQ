@@ -92,6 +92,13 @@
 .. index:: bug, missing library, libcurl-gnutls
 .. _libcurl-workaround:
 
+Как максимально очистить KDE от неиспользуемых программ:
+=============================================================
+
+.. code-block:: text
+    
+    sudo dnf remove  discover krdc akonadi qt abrt PackageKit kdepim-runtime-libs kde-connect kdeconnectd dragon kontact ktorrent kget konversation konqueror falkon kmail dnfdragora kdewallet krusader spectacle krfb akregator juk kamoso k3b calligra* kfind kgpg kmouth kmag
+
 Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?
 =====================================================================
 
