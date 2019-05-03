@@ -73,7 +73,7 @@
 </pre></div>
 </div>
 <p>Удалим Магазин приложений (графический менеджер пакетов):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove PackageKit
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove PackageKit plasma-discover dnfdragora
 </pre></div>
 </div>
 <p>Удалим runtime библиотеки для экономии ОЗУ (при этом по зависимостям будут удалены некоторые приложения, например KMail и KOrganizer):</p>
@@ -89,12 +89,22 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="kde-wipe-unused">
+<span id="index-2"></span><span id="id2"></span><h2>Как максимально очистить KDE от неиспользуемых программ?<a class="headerlink" href="#kde-wipe-unused" title="Ссылка на этот заголовок">¶</a></h2>
+<ol class="arabic simple">
+<li>Произведём стандартную очистку по <a class="reference internal" href="#kde-reduce-ram-usage"><span class="std std-ref">описанному выше</span></a> сценарию.</li>
+<li>Удалим оставшиеся редко используемые пакеты:</li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove krdc dragon kontact ktorrent kget konversation konqueror falkon kmail krusader krfb akregator juk kamoso k3b calligra\* kfind kgpg kmouth kmag
+</pre></div>
+</div>
+</div>
 <div class="section" id="libcurl-gnutls-so-4">
-<span id="libcurl-workaround"></span><span id="index-2"></span><h2>Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?<a class="headerlink" href="#libcurl-gnutls-so-4" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="libcurl-workaround"></span><span id="index-3"></span><h2>Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?<a class="headerlink" href="#libcurl-gnutls-so-4" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2018/04/03/reshaem-problemu-otsutstviya-libcurl-gnutls-v-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="bfq-hdd">
-<span id="bfq-scheduler"></span><span id="index-3"></span><h2>Как задействовать планировщик ввода/вывода BFQ для HDD?<a class="headerlink" href="#bfq-hdd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="bfq-scheduler"></span><span id="index-4"></span><h2>Как задействовать планировщик ввода/вывода BFQ для HDD?<a class="headerlink" href="#bfq-hdd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>BFQ - это планировщик ввода-вывода (I/O), предназначенный для повышения отзывчивости пользовательского окружения при значительных нагрузках на дисковую подсистему.</p>
 <p>Для его активации произведём редактирование файла шаблонов GRUB:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/default/grub
@@ -115,7 +125,7 @@
 </div>
 </div>
 <div class="section" id="swf-flash">
-<span id="swf-player"></span><span id="index-4"></span><h2>Чем можно запустить SWF файл без установки Flash плагина в браузер?<a class="headerlink" href="#swf-flash" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="swf-player"></span><span id="index-5"></span><h2>Чем можно запустить SWF файл без установки Flash плагина в браузер?<a class="headerlink" href="#swf-flash" title="Ссылка на этот заголовок">¶</a></h2>
 <p>SWF файл - это исполняемый файл формата Adobe Flash. Для того, чтобы проиграть его без установки соответствующего плагина в браузер, можно загрузить специальную версию Flash Projector (ранее назывался Standalone).</p>
 <p>Скачаем Projector:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>wget https://fpdownload.macromedia.com/pub/flashplayer/updaters/32/flash_player_sa_linux.x86_64.tar.gz -O fpsa.tar.gz
@@ -138,7 +148,7 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <p>Внимание! Запускать SWF файлы следует с особой осторожностью, т.к. плеер выполняется без какой-либо изоляции и имеет полный доступ к домашнему каталогу пользователя.</p>
 </div>
 <div class="section" id="python-2">
-<span id="python2-remove"></span><span id="index-5"></span><h2>Можно ли удалить Python 2 из системы?<a class="headerlink" href="#python-2" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="python2-remove"></span><span id="index-6"></span><h2>Можно ли удалить Python 2 из системы?<a class="headerlink" href="#python-2" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Поскольку поддержка Python версии 2 прекратится 01.01.2020, его уже не рекомендуется использовать. Вместо него следует применять Python 3. Большая часть активных проектов и библиотек уже давно была портирована на эту версию.</p>
 <p>Возможность полностью избавиться от Python 2 появилась у пользователей Fedora 30 и выше. От данной версии интерпретатора более не зависят важные компоненты и его можно смело удалить:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove python2
@@ -147,7 +157,7 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <p>Это действие автоматически удалит и все его зависимости.</p>
 </div>
 <div class="section" id="fs-noexec">
-<span id="index-6"></span><span id="id2"></span><h2>Как запретить возможность исполнения любых файлов из домашнего каталога?<a class="headerlink" href="#fs-noexec" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-7"></span><span id="id3"></span><h2>Как запретить возможность исполнения любых файлов из домашнего каталога?<a class="headerlink" href="#fs-noexec" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для максимальной безопасности можно запретить запуск любых исполняемых файлов, а также загрузку динамических библиотек из домашнего каталога.</p>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> в <a class="reference internal" href="using-system.html#editor-selection"><span class="std std-ref">текстовом редакторе</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
@@ -162,11 +172,11 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <p>Следует помнить, что это действие не повлияет на запуск различных скриптов интерпретаторами, т.е. запуск <code class="docutils literal notranslate"><span class="pre">./foo-bar</span></code> с установленным битом исполнения будет запрещён, но в то же время <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">foo-bar</span></code> выполнится в штатном режиме.</p>
 </div>
 <div class="section" id="microsoft-fedora">
-<span id="msttcorefonts"></span><span id="index-7"></span><h2>Как установить шрифты Microsoft в Fedora?<a class="headerlink" href="#microsoft-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="msttcorefonts"></span><span id="index-8"></span><h2>Как установить шрифты Microsoft в Fedora?<a class="headerlink" href="#microsoft-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2011/08/14/ustanovka-microsoft-core-fonts-v-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="grub-legacy-error">
-<span id="index-8"></span><span id="id3"></span><h2>После обновления дистрибутива с 29 версии до 30 не могу загрузить систему. Как исправить?<a class="headerlink" href="#grub-legacy-error" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-9"></span><span id="id4"></span><h2>После обновления дистрибутива с 29 версии до 30 не могу загрузить систему. Как исправить?<a class="headerlink" href="#grub-legacy-error" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Некоторые пользователи, до сих пор использующие Legacy загрузку (BIOS), после <a class="reference internal" href="package-manager.html#dist-upgrade"><span class="std std-ref">обновления</span></a> с Fedora 29 до 30 не могут запустить систему из-за ошибок, связанных с загрузчиком Grub 2.</p>
 <p>Это <a class="reference external" href="https://fedoraproject.org/wiki/Common_F30_bugs#GRUB_boot_menu_is_not_populated_after_an_upgrade">известная проблема</a>. Для её решения осуществим следующую последовательность:</p>
 <ol class="arabic simple">
@@ -219,6 +229,7 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные с оптимизацией и тонкой настройкой</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#gnome-3">Как уменьшить потребление оперативной памяти средой рабочего стола GNOME 3?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde">Как уменьшить потребление оперативной памяти средой рабочего стола KDE?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kde-wipe-unused">Как максимально очистить KDE от неиспользуемых программ?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#libcurl-gnutls-so-4">Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bfq-hdd">Как задействовать планировщик ввода/вывода BFQ для HDD?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#swf-flash">Чем можно запустить SWF файл без установки Flash плагина в браузер?</a></li>
