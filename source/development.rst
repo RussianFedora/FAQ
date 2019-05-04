@@ -798,8 +798,8 @@
 
 .. code-block:: text
 
-    sudo ln -s /media/foo-bar/mock/cache /var/cache/mock
-    sudo ln -s /media/foo-bar/mock/lib /var/lib/mock
+    sudo ln -s /media/foo-bar/mock/cache/mock /var/cache/mock
+    sudo ln -s /media/foo-bar/mock/lib/mock /var/lib/mock
 
 Зададим контекст :ref:`SELinux <selinux>` по умолчанию для нового хранилища:
 
