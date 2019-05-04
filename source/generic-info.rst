@@ -35,7 +35,7 @@ Fedora - это один из дистрибутивов GNU/Linux, разраб
 
 Два: текущий стабильный и предыдущий.
 
-.. index:: difference, fedora, distribution
+.. index:: difference, fedora, bleeding edge, distribution
 .. _differences:
 
 В чём отличие от других дистрибутивов?
@@ -43,13 +43,17 @@ Fedora - это один из дистрибутивов GNU/Linux, разраб
 
 Fedora - это `bleeding edge <https://en.wikipedia.org/wiki/Bleeding_edge_technology>`__ дистрибутив. Он всегда находится на острие прогресса. Сначала новые разработки появляются здесь и лишь спустя определённое время в остальных дистрибутивах. Из-за этого некоторые называют федору «тестовым полигоном», но это в корне не верно ибо :ref:`релизы <supported>` достаточно стабильны.
 
-.. index:: fedora, download
+.. index:: fedora, download, iso, respins
 .. _download:
 
 Где скачать Fedora?
 ==========================================
 
-Загрузить ISO образ дистрибутива можно с `официального сайта <https://getfedora.org/ru/workstation/download/>`__.
+Загрузить ISO образ дистрибутива можно с официального сайта:
+
+  * `Fedora Workstation (с Gnome 3) <https://getfedora.org/ru/workstation/download/>`__;
+  * `Fedora с другими DE <https://spins.fedoraproject.org/>`__;
+  * `официальные торренты <https://torrents.fedoraproject.org/>`__.
 
 Также существуют еженедельные `автоматически сборки <https://dl.fedoraproject.org/pub/alt/live-respins/>`__ («respins»), содержащие все выпущенные на данный момент обновления.
 
@@ -61,7 +65,7 @@ Fedora - это `bleeding edge <https://en.wikipedia.org/wiki/Bleeding_edge_tech
 
 Gnome 3 (версия Workstation), KDE, XFCE, LXDE, LXQt, Cinnamon, Mate.
 
-.. index:: releases, rolling, fedora
+.. index:: releases, rolling, fedora, rawhide
 .. _rolling-model:
 
 Я хочу использовать rolling модель обновлений. Это возможно?
@@ -77,7 +81,7 @@ Gnome 3 (версия Workstation), KDE, XFCE, LXDE, LXQt, Cinnamon, Mate.
 
 Вполне ибо его качество уже давно на уровне альфа-версий других дистрибутивов.
 
-.. index:: boot, grub
+.. index:: boot, grub, loader, boot
 .. _grub-loader:
 
 Какая версия загрузчика Grub используется в Fedora?
