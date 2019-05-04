@@ -45,11 +45,11 @@
 </div>
 <div class="section" id="live">
 <span id="live-to-ram"></span><span id="index-1"></span><h2>Как загрузить Live образ целиком в память?<a class="headerlink" href="#live" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для загрузки <a class="reference internal" href="#live-to-ram"><span class="std std-ref">Live образа</span></a> целиком в память, необходимо выбрать пункт <strong>Start Fedora Live</strong>, нажать <strong>Tab</strong>, затем в строке редактирования параметров добавить <code class="docutils literal notranslate"><span class="pre">rd.live.ram</span></code> через пробел сразу после <code class="docutils literal notranslate"><span class="pre">quiet</span></code> и нажать <strong>Enter</strong>.</p>
+<p>Для загрузки <a class="reference internal" href="#live-to-ram"><span class="std std-ref">Live образа</span></a> целиком в память, необходимо стрелками выбрать пункт <strong>Start Fedora Live</strong>, нажать <strong>Tab</strong>, затем в строке редактирования параметров добавить <code class="docutils literal notranslate"><span class="pre">rd.live.ram</span></code> через пробел сразу после <code class="docutils literal notranslate"><span class="pre">quiet</span></code> и после этого нажать <strong>Enter</strong>.</p>
 </div>
 <div class="section" id="package-selection">
 <span id="index-2"></span><span id="id3"></span><h2>Есть возможность самому выбрать пакеты для установки?<a class="headerlink" href="#package-selection" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Да, при помощи netinstall образа, но лишь группами.</p>
+<p>Да, при помощи netinstall образа, но лишь <a class="reference internal" href="package-manager.html#dnf-groups"><span class="std std-ref">группами</span></a>.</p>
 </div>
 <div class="section" id="web-install">
 <span id="index-3"></span><span id="id4"></span><h2>Необходим ли доступ в Интернет при установке?<a class="headerlink" href="#web-install" title="Ссылка на этот заголовок">¶</a></h2>
@@ -76,15 +76,15 @@
 </div>
 <div class="section" id="secure-boot">
 <span id="index-7"></span><span id="id7"></span><h2>Поддерживается ли технология Secure Boot?<a class="headerlink" href="#secure-boot" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Да. Полностью.</p>
+<p>Да, полностью. В качестве предварительного загрузчика используется shim, подписанный цифровой подписью Microsoft.</p>
 </div>
 <div class="section" id="uefi-boot-fedora">
 <span id="uefi-reorder"></span><span id="index-8"></span><h2>Возможно ли настроить порядок загрузки в UEFI Boot из Fedora?<a class="headerlink" href="#uefi-boot-fedora" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Да, при помощи утилиты <strong>efibootmgr</strong>. Вывод текущего списка загрузки UEFI Boot:</p>
+<p>Выведем текущий список загрузки UEFI Boot при помощи утилиты <strong>efibootmgr</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo efibootmgr -v
 </pre></div>
 </div>
-<p>Изменение порядка:</p>
+<p>Изменим порядок по своему усмотрению:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo efibootmgr -o 0000,0002,0003,0001
 </pre></div>
 </div>
@@ -100,7 +100,7 @@
 <li>монтирование старых и новых разделов;</li>
 <li><a class="reference internal" href="administration.html#copying-data"><span class="std std-ref">копирование всех файлов и каталогов</span></a> со старого накопителя на новый с сохранением прав доступа;</li>
 <li>редактирование файла <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> нового накопителя так, чтобы в нём были указаны <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID</span></a> новых разделов;</li>
-<li>создание в корневом каталоге нового накопителя файла <code class="docutils literal notranslate"><span class="pre">/.autorelabel</span></code> для автоматической установки контекста безопасности SELinux;</li>
+<li>создание в корневом каталоге нового накопителя файла <code class="docutils literal notranslate"><span class="pre">/.autorelabel</span></code> для автоматической установки <a class="reference internal" href="security.html#selinux-boot-error"><span class="std std-ref">контекста безопасности</span></a> SELinux;</li>
 <li><a class="reference internal" href="using-system.html#grub-rebuild"><span class="std std-ref">установка загрузчика</span></a> (если необходимо).</li>
 </ol>
 </div></blockquote>
@@ -136,7 +136,9 @@
 </div>
 <div class="section" id="ssd">
 <span id="speedup-home"></span><span id="index-16"></span><h2>Можно ли не переносить на SSD домашние каталоги пользователей?<a class="headerlink" href="#ssd" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Можно, но мы не рекомендуем это ибо в таком случае прирост к скорости работы системы будет далеко не таким большим, как мог бы быть. Поэтому мы настоятельно рекомендуем размещать на SSD накопителе как корневой каталог, так и пользовательские.</p>
+<p>Можно, но настоятельно не рекомендуется так делать ибо в таком случае прирост к скорости работы системы будет далеко не таким большим, каким мог бы быть, т.к. колонна всегда двигается со скоростью самой медленной машины, а это всегда жёсткий диск.</p>
+<p>Большая часть приложений хранят в домашних каталогах пользователей свои файлы конфигурации, а также различные кэши. В итоге, они загрузятся быстро, а затем перейдут в состояние iowait для ожидания этих данных с медленного накопителя.</p>
+<p>Таким образом, лучше всего размещать на быстром SSD накопителе как корневой каталог, так и пользовательские.</p>
 </div>
 <div class="section" id="fedora-ssd">
 <span id="ssd-tuning"></span><span id="index-17"></span><h2>Нужно ли как-то настраивать Fedora для работы с SSD?<a class="headerlink" href="#fedora-ssd" title="Ссылка на этот заголовок">¶</a></h2>

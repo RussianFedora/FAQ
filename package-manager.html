@@ -520,6 +520,33 @@ sudo dnf distro-sync --allowerasing
 <p>Т.к. все пакеты в <a class="reference internal" href="generic-info.html#copr"><span class="std std-ref">COPR</span></a> создаются простыми пользователями, поэтому их качество значительно отличается. Есть как хорошие репозитории, так и те, что способны вывести систему из строя.</p>
 <p>Перед подключением мы рекомендуем проверить является ли владелец репозитория мейнтейнером Fedora или нет и если нет, то отказаться от этого.</p>
 </div>
+<div class="section" id="fedora-snap">
+<span id="index-53"></span><span id="id42"></span><h2>Можно ли использовать в Fedora Snap пакеты?<a class="headerlink" href="#fedora-snap" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Технически возможно, однако мы настоятельно не рекомендуем этого делать ибо качество большинства Snap пакетов очень низкое, к тому же в некоторых из них <a class="reference external" href="https://xakep.ru/2018/05/14/snap-store-miner/">были обнаружены</a> вредоносные майнеры.</p>
+</div>
+<div class="section" id="dnf-groups">
+<span id="index-54"></span><span id="id43"></span><h2>Безопасно ли устанавливать и удалять пакеты группами?<a class="headerlink" href="#dnf-groups" title="Ссылка на этот заголовок">¶</a></h2>
+<p><a class="reference internal" href="#dnf-group-install"><span class="std std-ref">Устанавливать</span></a> пакеты группами абсолютно безопасно, однако <a class="reference internal" href="#dnf-group-remove"><span class="std std-ref">удалять</span></a> - нет, т.к. это приведёт к удалению всех её членов, что может привести к полной неработоспособности системы из-за удаления важных компонентов, таких как графическое окружение, менеджер входа в систему и т.д.</p>
+<p>Вывод списка доступных групп:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf grouplist
+</pre></div>
+</div>
+</div>
+<div class="section" id="dnf-group-install">
+<span id="index-55"></span><span id="id44"></span><h2>Как установить группу пакетов?<a class="headerlink" href="#dnf-group-install" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установка группы <strong>Fedora Workstation</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf groupinstall &#39;Fedora Workstation&#39;
+</pre></div>
+</div>
+</div>
+<div class="section" id="dnf-group-remove">
+<span id="index-56"></span><span id="id45"></span><h2>Как удалить группу пакетов?<a class="headerlink" href="#dnf-group-remove" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удаление группы <strong>Fedora Workstation</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf groupremove &#39;Fedora Workstation&#39;
+</pre></div>
+</div>
+<p>Настоятельно <a class="reference internal" href="#dnf-groups"><span class="std std-ref">не рекомендуется</span></a> удалять группы таким способом.</p>
+</div>
 </div>
 
 
@@ -598,6 +625,10 @@ sudo dnf distro-sync --allowerasing
 <li class="toctree-l2"><a class="reference internal" href="#dnf-signatures">Безопасно ли устанавливать обновления через небезопасные соединения?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rfremix-fedora">Как превратить RFRemix в Fedora и наоборот?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#copr">Безопасно ли использовать COPR репозитории?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora-snap">Можно ли использовать в Fedora Snap пакеты?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-groups">Безопасно ли устанавливать и удалять пакеты группами?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-group-install">Как установить группу пакетов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-group-remove">Как удалить группу пакетов?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с системным администрированием</a></li>
