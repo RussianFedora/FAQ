@@ -41,7 +41,7 @@ Fedora - это один из дистрибутивов GNU/Linux, разраб
 В чём отличие от других дистрибутивов?
 ==========================================
 
-Fedora - это bleeding edge дистрибутив. Он всегда находится на острие прогресса. Сначала новые разработки появляются здесь и только через некоторое время в остальных дистрибутивах. Из-за этого некоторые называют федору «тестовым полигоном», но это в корне не верно ибо релизы достаточно стабильны.
+Fedora - это `bleeding edge <https://en.wikipedia.org/wiki/Bleeding_edge_technology>`__ дистрибутив. Он всегда находится на острие прогресса. Сначала новые разработки появляются здесь и лишь спустя определённое время в остальных дистрибутивах. Из-за этого некоторые называют федору «тестовым полигоном», но это в корне не верно ибо :ref:`релизы <supported>` достаточно стабильны.
 
 .. index:: fedora, download
 .. _download:
@@ -59,7 +59,7 @@ Fedora - это bleeding edge дистрибутив. Он всегда нахо
 Какие DE поддерживаются?
 ==========================================
 
-Gnome 3 (версия Workstation), KDE, XFCE, LXDE, LXQt, Cinnamon.
+Gnome 3 (версия Workstation), KDE, XFCE, LXDE, LXQt, Cinnamon, Mate.
 
 .. index:: releases, rolling, fedora
 .. _rolling-model:
@@ -67,7 +67,7 @@ Gnome 3 (версия Workstation), KDE, XFCE, LXDE, LXQt, Cinnamon.
 Я хочу использовать rolling модель обновлений. Это возможно?
 ===============================================================
 
-Да, ибо существует Fedora Rawhide.
+Да, ибо существует :ref:`Fedora Rawhide <using-rawhide>`.
 
 .. index:: rawhide, rolling, fedora
 .. _using-rawhide:
@@ -83,7 +83,7 @@ Gnome 3 (версия Workstation), KDE, XFCE, LXDE, LXQt, Cinnamon.
 Какая версия загрузчика Grub используется в Fedora?
 ======================================================
 
-Grub 2.
+:ref:`Grub 2 <grub-reinstall>`.
 
 .. index:: repository, installation, software
 .. _software-installation:
@@ -94,14 +94,6 @@ Grub 2.
 В Fedora, а равно как и любых других пакетных дистрибутивах, следует устанавливать программное обеспечение исключительно из репозиториев дистрибутива, :ref:`доверенных сторонних репозиториев <3rd-repositories>`, либо посредством самодостаточных Flatpak пакетов.
 
 Ни в коем случае не следует использовать установку посредством :ref:`make install <make-install>`, т.к. это породит в системе кучу никем не отслеживаемых зависимостей и создаст множество проблем при дальнейшем использовании системы.
-
-.. index:: installation, software, snap
-.. _snap:
-
-Можно ли использовать в Fedora Snap пакеты?
-===============================================
-
-Технически возможно, однако мы настоятельно не рекомендуем этого делать ибо качество большинства Snap пакетов очень низкое, к тому же в некоторых из них `были обнаружены <https://xakep.ru/2018/05/14/snap-store-miner/>`__ вредоносные майнеры.
 
 .. index:: repository, rpmfusion, third-party
 .. _rpmfusion:
@@ -145,6 +137,8 @@ Grub 2.
 
     sudo dnf remove russianfedora-free-release russianfedora-nonfree-release
 
+С апреля 2019 года репозиторий находится в отпуске на 1 релиз Fedora. Подключать данный репозиторий в настоящее время не следует.
+
 .. index:: repository, copr, overlay, third-party
 .. _copr:
 
@@ -161,13 +155,17 @@ Fedora COPR - это бесплатный хостинг для размещен
 
 RFRemix - это ремикс оргинального дистрибутива Fedora с использованием репозиториев :ref:`RPM Fusion <rpmfusion>` и :ref:`Russian Fedora <russian-fedora>`, адаптированный для российских пользователей. Больше информации можно найти `здесь <https://ru.fedoracommunity.org/stories/rfremix/>`__.
 
+Из-за отпуска команды :ref:`Russian Fedora <russian-fedora>`, выпуск RFRemix временно приостановлен.
+
 .. index:: bug report, report, bug
 .. _bug-report:
 
 Я нашёл ошибку в программе. Как мне сообщить о ней?
 ======================================================
 
-Для начала следует `создать тикет <https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora>`__ в RHBZ.
+Необходимо `создать тикет <https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora>`__ в Red Hat BugZilla для проблеммного компонента и подробно описать суть возникшей проблемы.
+
+При необходимости разработчики могут запросить более подробную информацию, а также журналы работы системы.
 
 .. index:: get help, telegram, irc, channels, chats, im, help
 .. _get-help:
