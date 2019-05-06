@@ -468,6 +468,21 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Это действие удалит все настройки Gnome, включая приложения, использующие dconf для хранения пользовательских настроек, аккаунтов и т.д., параметры системы, настройки среды, установленные темы и расширения и т.д. Перед использованием рекомендуется создать резеврную копию.</p>
 <p>При следующем входе будут восстановлены значения по умолчанию.</p>
 </div>
+<div class="section" id="directory-tree">
+<span id="index-36"></span><span id="id19"></span><h2>Как построить дерево каталогов и сохранить его в файл?<a class="headerlink" href="#directory-tree" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для построения дерева каталогов воспользуемся утилитой <strong>tree</strong>, затем перенаправим вывод в файл:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>tree /path/to/directory &gt; ~/foo-bar.txt
+</pre></div>
+</div>
+<p>Здесь <strong>/path/to/directory</strong> - путь к каталогу, дерево которого нужно построить, а <strong>~/foo-bar.txt</strong> - файл, в котором будет сохранён результат.</p>
+</div>
+<div class="section" id="trash-terminal">
+<span id="index-37"></span><span id="id20"></span><h2>Как из терминала удалить файл в корзину?<a class="headerlink" href="#trash-terminal" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для удаления в корзину из оболочки воспользуемся утилитой <strong>gio</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gio trash /path/to/file.txt
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -535,6 +550,8 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#kerberos-gnome">Как настроить автоматическое обновление Kerberos-тикетов в Gnome?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#transmission-server">Как запустить фоновый клиент для загрузки торрентов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gnome-shell-reset">Как сбросить все настройки Gnome Shell?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#directory-tree">Как построить дерево каталогов и сохранить его в файл?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trash-terminal">Как из терминала удалить файл в корзину?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>

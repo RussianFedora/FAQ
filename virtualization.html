@@ -117,6 +117,23 @@ sudo usermod -a -G vboxsf $(whoami)
 </pre></div>
 </div>
 </div>
+<div class="section" id="image-type">
+<span id="index-9"></span><span id="id6"></span><h2>Какие дисковые образы лучше: динамически расширяющиеся или фиксированного размера?<a class="headerlink" href="#image-type" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Фиксированного размера, т.к. они меньше фрагментируются.</p>
+</div>
+<div class="section" id="convert-to-fixed">
+<span id="index-10"></span><span id="id7"></span><h2>Как конвертировать динамически расширяющийся образ диска VirtualBox в фиксированный?<a class="headerlink" href="#convert-to-fixed" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Динамическая конвертация не поддерживается, поэтому воспользуемся утилитой <strong>VBoxManage</strong>, входящей в базовую поставку VirtualBox, для создания нового дискового образа на базе старого:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>VBoxManage clonehd /path/to/System.vdi /path/to/System_fixed.vdi --variant Fixed
+</pre></div>
+</div>
+<p>Теперь в свойствах виртуальной машины подключим новый образ фиксированного размера. Старый при этом можно удалить.</p>
+</div>
+<div class="section" id="kvm-cpu">
+<span id="kvm-no-acceleration"></span><span id="index-11"></span><h2>Можно ли использовать KVM на CPU без поддержки аппаратной виртуализации?<a class="headerlink" href="#kvm-cpu" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Нет. KVM требует наличие активной <a class="reference internal" href="#cpu-virt"><span class="std std-ref">аппаратной виртуализации</span></a> и при её осутствии работать не будет.</p>
+<p>В то же время, без наличия этой функции со стороны CPU, могут работать VirtualBox и VMWare, хотя и с очень низкой производительностью.</p>
+</div>
 </div>
 
 
@@ -154,6 +171,9 @@ sudo usermod -a -G vboxsf $(whoami)
 <li class="toctree-l2"><a class="reference internal" href="#vmware-kvm">Как преобразовать образ виртуальной машины VMWare в формат, совместимый с KVM?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#hyper-v-kvm">Как преобразовать образ виртуальной машины Hyper-V в формат, совместимый с KVM?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cpu-windows">Можно ли отключить защиту от уязвимостей CPU в гостевых Windows внутри виртуальных машин?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#image-type">Какие дисковые образы лучше: динамически расширяющиеся или фиксированного размера?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#convert-to-fixed">Как конвертировать динамически расширяющийся образ диска VirtualBox в фиксированный?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kvm-cpu">Можно ли использовать KVM на CPU без поддержки аппаратной виртуализации?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
