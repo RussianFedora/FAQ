@@ -139,6 +139,14 @@
     "FeatureSettingsOverride"=dword:00000003
     "FeatureSettingsOverrideMask"=dword:00000003
 
+.. index:: drive image, disk image, virtualbox
+.. _image-type:
+
+Какие дисковые образы лучше: динамически расширяющиеся или фиксированного размера?
+=====================================================================================
+
+Фиксированного размера, т.к. они меньше фрагментируются.
+
 .. index:: drive image, disk image, virtualbox, vdi
 .. _convert-to-fixed:
 
