@@ -695,3 +695,15 @@ Zip-архивы, созданные штатными средствами ОС 
     tree /path/to/directory > ~/foo-bar.txt
 
 Здесь **/path/to/directory** - путь к каталогу, дерево которого нужно построить, а **~/foo-bar.txt** - файл, в котором будет сохранён результат.
+
+.. index:: recycle bin, delete file, trash, terminal
+.. _trash-terminal:
+
+Как из терминала удалить файл в корзину?
+===========================================
+
+Для удаления в корзину из оболочки воспользуемся утилитой **gio**:
+
+.. code-block:: text
+
+    gio trash /path/to/file.txt
