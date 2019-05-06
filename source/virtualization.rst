@@ -138,3 +138,17 @@
     [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]
     "FeatureSettingsOverride"=dword:00000003
     "FeatureSettingsOverrideMask"=dword:00000003
+
+.. index:: drive image, disk image, virtualbox, vdi
+.. _convert-to-fixed:
+
+Как конвертировать динамически расширяющийся образ диска VirtualBox в фиксированный?
+========================================================================================
+
+Динамическая конвертация не поддерживается, поэтому воспользуемся утилитой **VBoxManage**, входящей в базовую поставку VirtualBox, для создания нового дискового образа на базе старого:
+
+.. code-block:: text
+
+    VBoxManage clonehd /path/to/System.vdi /path/to/System_fixed.vdi --variant Fixed
+
+Теперь в свойствах виртуальной машины подключим новый образ фиксированного размера. Старый при этом можно удалить.
