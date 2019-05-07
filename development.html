@@ -781,6 +781,18 @@ fedpkg scratch-build --arches x86_64 aarch64
 <p>Если библиотека была найдена в системе, наряду с именем будет указан абсолютный путь к её файлу на диске, а также адрес предполагаемой загрузки.</p>
 <p>Исключение составляют <a class="reference internal" href="#linux-vdso"><span class="std std-ref">виртуальные объекты</span></a>, для которых будет указан лишь адрес, без пути.</p>
 </div>
+<div class="section" id="git-switch-remote">
+<span id="index-50"></span><span id="id33"></span><h2>Как изменить адрес Git репозитория после его переезда?<a class="headerlink" href="#git-switch-remote" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Получим список подключённых удалённых ресурсов текущего Git репозитория:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git remote -v
+</pre></div>
+</div>
+<p>Изменим апстрим для <code class="docutils literal notranslate"><span class="pre">origin</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git remote set-url origin https://github.com/foo-bar/new_repo.git
+</pre></div>
+</div>
+<p>После этого команды Git, отвечающие за работу с удалёнными ресурсами, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>, начнут использовать новый апстрим.</p>
+</div>
 </div>
 
 
@@ -864,6 +876,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <li class="toctree-l2"><a class="reference internal" href="#copr">Что разрешается хранить в COPR репозиториях?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#linux-vdso-so-1">Что такое linux-vdso.so.1 и почему она загружена в каждый процесс?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#linux-ldd">Как определить зависимости конкретного бинарника?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-switch-remote">Как изменить адрес Git репозитория после его переезда?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>

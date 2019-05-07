@@ -781,21 +781,21 @@ keytocard
 </div>
 <div class="section" id="luks-addkey">
 <span id="index-70"></span><span id="id52"></span><h2>Как добавить ключевой файл для разблокировки зашифрованного LUKS раздела?<a class="headerlink" href="#luks-addkey" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Создадим каталог для хранения ключей <code class="docutils literal notranslate"><span class="pre">/var/lib/luks</span></code> (может быть любым):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir -p /var/lib/luks
+<p>Создадим каталог для хранения ключей <code class="docutils literal notranslate"><span class="pre">/etc/luks</span></code> (может быть любым):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir -p /etc/luks
 </pre></div>
 </div>
 <p>Сгенерируем ключевой файл <code class="docutils literal notranslate"><span class="pre">foo-bar.key</span></code> размером 4 КБ на основе системного генератора псевдослучайных чисел:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/urandom of=/var/lib/luks/foo-bar.key bs=1024 count=4
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/urandom of=/etc/luks/foo-bar.key bs=1024 count=4
 </pre></div>
 </div>
 <p>Установим корректные права доступа:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chown root:root /var/lib/luks/foo-bar.key
-sudo chmod 0400 /var/lib/luks/foo-bar.key
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chown root:root /etc/luks/foo-bar.key
+sudo chmod 0400 /etc/luks/foo-bar.key
 </pre></div>
 </div>
 <p>Добавим ключ в свободный слот LUKS заголовка зашифрованного раздела:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksAddKey /dev/sda2 /var/lib/luks/foo-bar.key
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksAddKey /dev/sda2 /etc/luks/foo-bar.key
 </pre></div>
 </div>
 <p>Утилита cryptsetup запросит ввод мастер-пароля.</p>
@@ -805,11 +805,11 @@ sudo chmod 0400 /var/lib/luks/foo-bar.key
 <span id="index-71"></span><span id="id53"></span><h2>Как удалить ключевой файл разблокировки зашифрованного LUKS раздела?<a class="headerlink" href="#luks-removekey" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если разблокировка по ключевому файлу более не требуется, его можно удалить.</p>
 <p>Удалим слот с ключом <code class="docutils literal notranslate"><span class="pre">foo-bar.key</span></code> из LUKS заголовка зашифрованного раздела:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksRemoveKey /dev/sda2 /var/lib/luks/foo-bar.key
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksRemoveKey /dev/sda2 /etc/luks/foo-bar.key
 </pre></div>
 </div>
 <p>Надёжно <a class="reference internal" href="#destroy-file"><span class="std std-ref">уничтожим</span></a> ключевой файл:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo shred -u -v /var/lib/luks/foo-bar.key
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo shred -u -v /etc/luks/foo-bar.key
 </pre></div>
 </div>
 <p>Здесь <strong>/dev/sda2</strong> - устройство зашифрованного LUKS тома, у которого требуется удалить слот с ключевым файлом.</p>
@@ -821,10 +821,10 @@ sudo chmod 0400 /var/lib/luks/foo-bar.key
 </pre></div>
 </div>
 <p>Добавим в конец файла строку вида:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar UUID=XXXXXX /var/lib/luks/foo-bar.key luks
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar UUID=XXXXXX /etc/luks/foo-bar.key luks
 </pre></div>
 </div>
-<p>Здесь <strong>foo-bar</strong> - внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> - <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, <strong>/var/lib/luks/foo-bar.key</strong> - полный путь к <a class="reference internal" href="#luks-addkey"><span class="std std-ref">ключевому файлу</span></a>. При шифровании <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">SSD накопителя</span></a> вместо параметра <strong>luks</strong> следует использовать <strong>discard</strong>.</p>
+<p>Здесь <strong>foo-bar</strong> - внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> - <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, <strong>/etc/luks/foo-bar.key</strong> - полный путь к <a class="reference internal" href="#luks-addkey"><span class="std std-ref">ключевому файлу</span></a>. При шифровании <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">SSD накопителя</span></a> вместо параметра <strong>luks</strong> следует использовать <strong>discard</strong>.</p>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
 </pre></div>
@@ -840,6 +840,15 @@ sudo chmod 0400 /var/lib/luks/foo-bar.key
 <span id="index-73"></span><span id="id55"></span><h2>Я забыл пароль суперпользователя. Как мне его сбросить?<a class="headerlink" href="#root-reset" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При наличии доступа к sudo, пароль суперпользователя можно изменить <a class="reference internal" href="#root-password"><span class="std std-ref">в штатном режиме</span></a>.</p>
 <p>Если текущий пользователь не может использовать sudo, но есть физический доступ к устройству, см. <a class="reference external" href="https://docs.fedoraproject.org/en-US/quick-docs/reset-root-password/">здесь</a>.</p>
+</div>
+<div class="section" id="luks-noauto">
+<span id="index-74"></span><span id="id56"></span><h2>Можно ли отключить автоматическое монтирование устройств LUKS при загрузке?<a class="headerlink" href="#luks-noauto" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Для этого добавим параметр <code class="docutils literal notranslate"><span class="pre">noauto</span></code> для соответствующей записи в файле <code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar UUID=XXXXXX /etc/luks/foo-bar.key noauto
+</pre></div>
+</div>
+<p>Здесь <strong>foo-bar</strong> - внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> - <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, <strong>/etc/luks/foo-bar.key</strong> - полный путь к <a class="reference internal" href="#luks-addkey"><span class="std std-ref">ключевому файлу</span></a>. Параметр <strong>noauto</strong> должен применяться только совместно с ключом.</p>
+<p>Данное зашифрованное устройство будет смонтировано и автоматически расшифровано при первой попытке доступа к нему.</p>
 </div>
 </div>
 
@@ -944,6 +953,7 @@ sudo chmod 0400 /var/lib/luks/foo-bar.key
 <li class="toctree-l2"><a class="reference internal" href="#luks-removekey">Как удалить ключевой файл разблокировки зашифрованного LUKS раздела?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#luks-auto">Как настроить автоматическую расшифровку LUKS разделов при загрузке?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#root-reset">Я забыл пароль суперпользователя. Как мне его сбросить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#luks-noauto">Можно ли отключить автоматическое монтирование устройств LUKS при загрузке?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
