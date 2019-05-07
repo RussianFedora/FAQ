@@ -7,9 +7,9 @@
 .. work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
 .. _using-applications:
 
-*************************************************
-Вопросы, связанные со сторонними приложениями
-*************************************************
+********************
+Сторонние приложения
+********************
 
 .. index:: firefox, hardware acceleration
 .. _firefox-hwaccel:

@@ -7,9 +7,9 @@
 .. work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
 .. _virtualization:
 
-**************************************
-Вопросы, связанные с виртуализацией
-**************************************
+*************
+Виртуализация
+*************
 
 .. index:: virtualization, vm, kvm, virtualbox
 .. _virt-selection:
