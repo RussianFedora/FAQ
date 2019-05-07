@@ -93,7 +93,7 @@
 </div>
 <div class="section" id="journal-tofile">
 <span id="index-7"></span><span id="id9"></span><h2>Как мне выгрузить журнал в файл?<a class="headerlink" href="#journal-tofile" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо :ref:<a href="#id10"><span class="problematic" id="id11">`</span></a>bash-pipelines &lt;usb-flash&gt;`перенаправить поток стандартного вывода в файл:</p>
+<p>Необходимо <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">bash-pipelines</span></a> перенаправить поток стандартного вывода в файл:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>journalctl -b &gt; ~/abc.txt
 </pre></div>
 </div>
@@ -148,11 +148,11 @@ sudo mount -t vfat /dev/sda1 boot/efi
 <p>См. <a class="reference external" href="https://www.easycoding.org/2012/10/01/podnimaem-nut-v-linux.html">здесь</a>.</p>
 </div>
 <div class="section" id="journald-limit">
-<span id="index-10"></span><span id="id12"></span><h2>Системные журналы занимают слишком много места. Как их ограничить?<a class="headerlink" href="#journald-limit" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-10"></span><span id="id10"></span><h2>Системные журналы занимают слишком много места. Как их ограничить?<a class="headerlink" href="#journald-limit" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2016/08/24/ogranichivaem-sistemnye-zhurnaly-v-fedora-24.html">здесь</a>.</p>
 </div>
 <div class="section" id="journald-wipe">
-<span id="index-11"></span><span id="id13"></span><h2>Как немедленно очистить все системные журналы?<a class="headerlink" href="#journald-wipe" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-11"></span><span id="id11"></span><h2>Как немедленно очистить все системные журналы?<a class="headerlink" href="#journald-wipe" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Выполним принудительную ротацию системных журналов для сброса их из памяти на диск:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo journalctl --rotate
 </pre></div>
@@ -167,7 +167,7 @@ sudo mount -t vfat /dev/sda1 boot/efi
 <p>См. <a class="reference external" href="https://www.easycoding.org/2017/11/05/upravlyaem-systemd-v-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="drop-fs-caches">
-<span id="index-13"></span><span id="id14"></span><h2>Как очистить кэши и буферы всех файловых систем?<a class="headerlink" href="#drop-fs-caches" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-13"></span><span id="id12"></span><h2>Как очистить кэши и буферы всех файловых систем?<a class="headerlink" href="#drop-fs-caches" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы очистить кэши и буферы нужно выполнить:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sync &amp;&amp; echo 3 &gt; /proc/sys/vm/drop_caches &amp;&amp; sync
 </pre></div>
@@ -214,7 +214,7 @@ sudo mount -t vfat /dev/sda1 boot/efi
 </div>
 </div>
 <div class="section" id="change-hostname">
-<span id="index-18"></span><span id="id15"></span><h2>Как изменить имя хоста?<a class="headerlink" href="#change-hostname" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-18"></span><span id="id13"></span><h2>Как изменить имя хоста?<a class="headerlink" href="#change-hostname" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Изменение имени хоста возможно посредством <strong>hostnamectl</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>hostnamectl set-hostname NEW
 </pre></div>
@@ -261,15 +261,15 @@ sudo fsck -t ext4 /dev/sda3
 </div>
 </div>
 <div class="section" id="deduplication-memory">
-<span id="index-22"></span><span id="id16"></span><h2>Возможна ли полная дедупликация оперативной памяти?<a class="headerlink" href="#deduplication-memory" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-22"></span><span id="id14"></span><h2>Возможна ли полная дедупликация оперативной памяти?<a class="headerlink" href="#deduplication-memory" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, дедупликация памяти <a class="reference external" href="https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html">поддерживается</a> в ядре Linux начиная с версии 2.6.32 модулем <a class="reference external" href="https://ru.wikipedia.org/wiki/KSM">KSM</a> и по умолчанию применяется лишь в системах виртуализации, например в <a class="reference internal" href="virtualization.html#kvm"><span class="std std-ref">KVM</span></a>.</p>
 </div>
 <div class="section" id="deduplication-disk">
-<span id="index-23"></span><span id="id17"></span><h2>Возможна ли полная дедупликация данных на дисках?<a class="headerlink" href="#deduplication-disk" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-23"></span><span id="id15"></span><h2>Возможна ли полная дедупликация данных на дисках?<a class="headerlink" href="#deduplication-disk" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Полная автоматическая дедупликация данных на дисках <a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/Deduplication">поддерживается</a> лишь файловой системой <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a>.</p>
 </div>
 <div class="section" id="memory-compression">
-<span id="index-24"></span><span id="id18"></span><h2>Можно ли включить сжатие оперативной памяти?<a class="headerlink" href="#memory-compression" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-24"></span><span id="id16"></span><h2>Можно ли включить сжатие оперативной памяти?<a class="headerlink" href="#memory-compression" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, в ядро Linux начиная с версии 3.14 по умолчанию входит модуль zram, который позволяет увеличить производительность системы посредством использования вместо дисковой подкачки виртуального устройства в оперативной памяти с активным сжатием.</p>
 <p>Включение zram в Fedora:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable --now zram-swap
@@ -291,7 +291,7 @@ sudo systemctl disable zram-swap
 <p>Здесь <strong>foo.bar</strong> имя параметра, а <strong>X</strong> - его значение. Изменения вступят в силу немедленно и сохранятся до перезагрузки системы.</p>
 </div>
 <div class="section" id="sysctl-permanent">
-<span id="index-26"></span><span id="id19"></span><h2>Как задать и сохранить параметр sysctl?<a class="headerlink" href="#sysctl-permanent" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-26"></span><span id="id17"></span><h2>Как задать и сохранить параметр sysctl?<a class="headerlink" href="#sysctl-permanent" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы сохранить параметр ядра, создадим специальный файл <code class="docutils literal notranslate"><span class="pre">99-foobar.conf</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/sysctl.d</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo.bar1=X1
 foo.bar2=X2
@@ -304,7 +304,7 @@ foo.bar2=X2
 </div>
 </div>
 <div class="section" id="sysctl-order">
-<span id="index-27"></span><span id="id20"></span><h2>В каком порядке загружаются sysctl файлы настроек?<a class="headerlink" href="#sysctl-order" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-27"></span><span id="id18"></span><h2>В каком порядке загружаются sysctl файлы настроек?<a class="headerlink" href="#sysctl-order" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При загрузке ядро проверяет следующие каталоги в поисках <strong>.conf</strong> файлов:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -316,7 +316,7 @@ foo.bar2=X2
 <p>Порядок выполнения - в алфавитном порядке, поэтому для его изменения многие конфиги содержат цифры и буквы. Например конфиг <code class="docutils literal notranslate"><span class="pre">00-foobar.conf</span></code> выполнится раньше, чем <code class="docutils literal notranslate"><span class="pre">zz-foobar.conf</span></code>.</p>
 </div>
 <div class="section" id="configure-runlevel">
-<span id="index-28"></span><span id="id21"></span><h2>Как переключить запуск системы в текстовый режим и обратно?<a class="headerlink" href="#configure-runlevel" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-28"></span><span id="id19"></span><h2>Как переключить запуск системы в текстовый режим и обратно?<a class="headerlink" href="#configure-runlevel" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы активировать запуск Fedora в текстовом режиме, нужно переключиться на цель <code class="docutils literal notranslate"><span class="pre">multi-user.target</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl set-default multi-user.target
 </pre></div>
@@ -359,7 +359,7 @@ foo.bar2=X2
 <p>Действия вступят в силу немедленно.</p>
 </div>
 <div class="section" id="disk-usage">
-<span id="index-30"></span><span id="id22"></span><h2>Как узнать какой процесс осуществляет запись на диск?<a class="headerlink" href="#disk-usage" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-30"></span><span id="id20"></span><h2>Как узнать какой процесс осуществляет запись на диск?<a class="headerlink" href="#disk-usage" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для мониторинга дисковой активности существуют улититы <strong>iotop</strong> и <strong>fatrace</strong>. Установим их:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install iotop fatrace
 </pre></div>
@@ -378,7 +378,7 @@ foo.bar2=X2
 </div>
 </div>
 <div class="section" id="change-label">
-<span id="index-31"></span><span id="id23"></span><h2>Как сменить метку раздела?<a class="headerlink" href="#change-label" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-31"></span><span id="id21"></span><h2>Как сменить метку раздела?<a class="headerlink" href="#change-label" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Смена метки раздела с файловой системой ext2, ext3 и ext4:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo e2label /dev/sda1 &quot;NewLabel&quot;
 </pre></div>
@@ -402,7 +402,7 @@ foo.bar2=X2
 <p>Здесь <strong>/dev/sda1</strong> - раздел, для которого требуется вывести UUID.</p>
 </div>
 <div class="section" id="change-uuid">
-<span id="index-33"></span><span id="id24"></span><h2>Как изменить UUID раздела?<a class="headerlink" href="#change-uuid" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-33"></span><span id="id22"></span><h2>Как изменить UUID раздела?<a class="headerlink" href="#change-uuid" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Смена UUID раздела с файловой системой ext2, ext3 и ext4:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo tune2fs /dev/sda1 -U $(uuidgen)
 </pre></div>
@@ -422,7 +422,7 @@ foo.bar2=X2
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, информацию о котором требуется получить.</p>
 </div>
 <div class="section" id="kill-sigterm">
-<span id="index-35"></span><span id="id25"></span><h2>Как правильно завершить работу процесса?<a class="headerlink" href="#kill-sigterm" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-35"></span><span id="id23"></span><h2>Как правильно завершить работу процесса?<a class="headerlink" href="#kill-sigterm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы завершить работу процесса, необходимо отправить ему сигнал <strong>SIGTERM</strong>. После получения данного сигнала процесс должен немедленно начать завершение своей работы:</p>
 <blockquote>
 <div><ul class="simple">
@@ -445,7 +445,7 @@ foo.bar2=X2
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, который требуется завершить, однако её следует применять с особой осторожностью ибо если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
 </div>
 <div class="section" id="kill-sigkill">
-<span id="index-36"></span><span id="id26"></span><h2>Как принудительно завершить работу процесса?<a class="headerlink" href="#kill-sigkill" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-36"></span><span id="id24"></span><h2>Как принудительно завершить работу процесса?<a class="headerlink" href="#kill-sigkill" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если какой-либо процесс завис и не отвечает на требование завершения посредством <a class="reference internal" href="#kill-sigterm"><span class="std std-ref">SIGTERM</span></a>, можно заставить операционную систему принудительно завершить его работу сигналом <strong>SIGKILL</strong>, который не может быть перехвачен и проигнорирован процессом.</p>
 <p>Данный сигнал следует использовать с особой осторожностью, т.к. в этом случае процесс не сможет корректно освободить все дескрипторы и занятые ресурсы, а также сообщить своим потомкам о своём завершении, что может повлечь за собой появление т.н. <a class="reference internal" href="#process-orphan"><span class="std std-ref">процессов-сирот</span></a>.</p>
 <p>Чтобы отправить сигнал SIGKILL процессу с определённым <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>, воспользуемся утилитой <strong>kill</strong>:</p>
@@ -460,19 +460,19 @@ foo.bar2=X2
 <p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса. Если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
 </div>
 <div class="section" id="process-zombie">
-<span id="index-37"></span><span id="id27"></span><h2>Что такое процесс-зомби?<a class="headerlink" href="#process-zombie" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-37"></span><span id="id25"></span><h2>Что такое процесс-зомби?<a class="headerlink" href="#process-zombie" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Процессы-зомби появляются в системе если потомок завершил свою работу раньше родительского процесса, а последний не отрегировал на отправленный ему сигнал <strong>SIGCHLD</strong>.</p>
 <p>Такие процессы не занимают ресурсов в системе (ибо успешно завершили свою работу), за исключением строки в таблице процессов, хранящей его <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>.</p>
 <p>Все зомби будут автоматически удалены из таблицы процессов после того, как завершит свою работу их родитель.</p>
 </div>
 <div class="section" id="process-orphan">
-<span id="index-38"></span><span id="id28"></span><h2>Что такое процесс-сирота?<a class="headerlink" href="#process-orphan" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-38"></span><span id="id26"></span><h2>Что такое процесс-сирота?<a class="headerlink" href="#process-orphan" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Процессы-сироты появляются в системе если их родитель был аварийно уничтожен системой сигналом <a class="reference internal" href="#kill-sigkill"><span class="std std-ref">SIGKILL</span></a> и не смог сообщить своим потомкам о своём завершении работы.</p>
 <p>В отличие от <a class="reference internal" href="#process-zombie"><span class="std std-ref">зомби</span></a>, такие процессы расходуют ресурсы системы и могут быть источником множества проблем.</p>
 <p>При обнаружении таких процессов система выполняет операцию переподчинения и устанавливает их родителем главный процесс инициализации.</p>
 </div>
 <div class="section" id="docker-fedora">
-<span id="index-39"></span><span id="id29"></span><h2>Как правильно установить Docker в Fedora?<a class="headerlink" href="#docker-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-39"></span><span id="id27"></span><h2>Как правильно установить Docker в Fedora?<a class="headerlink" href="#docker-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Вместо Docker в Fedora рекомендуется установить и использовать Podman, т.к. он не требует прав суперпользователя для работы:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install podman
 </pre></div>
@@ -480,7 +480,7 @@ foo.bar2=X2
 <p>Синтаксис команд аналогичен Docker.</p>
 </div>
 <div class="section" id="kernel-bs">
-<span id="index-40"></span><span id="id30"></span><h2>Как определить включена ли определённая опция ядра во время компиляции?<a class="headerlink" href="#kernel-bs" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-40"></span><span id="id28"></span><h2>Как определить включена ли определённая опция ядра во время компиляции?<a class="headerlink" href="#kernel-bs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Полный список опций, заданных на этапе компиляции ядра, всегда можно найти в config-файлах, внутри каталога <code class="docutils literal notranslate"><span class="pre">/boot</span></code>.</p>
 <p>В качестве примера проверим статус опции <code class="docutils literal notranslate"><span class="pre">CONFIG_EFI_STUB</span></code> текущего ядра:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>grep CONFIG_EFI_STUB /boot/config-$(uname -r)
@@ -489,13 +489,13 @@ foo.bar2=X2
 <p>В выводе <strong>y</strong> означает, что опция была включена, а <strong>not set</strong>, соответственно, выключена.</p>
 </div>
 <div class="section" id="ksoftirqd">
-<span id="index-41"></span><span id="id31"></span><h2>Процесс ksoftirqd съедает все ресурсы системы. Что делать?<a class="headerlink" href="#ksoftirqd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-41"></span><span id="id29"></span><h2>Процесс ksoftirqd съедает все ресурсы системы. Что делать?<a class="headerlink" href="#ksoftirqd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Ядро операционной системы взаимодействует с устройствами посредством прерываний. Когда возникает новое прерывание, оно немедленно приостанавливает работу текущего выполняемого процесса, переключается в режим ядра и начинает его обработку.</p>
 <p>Может случиться так, что прерывания будут генерироваться настолько часто, что ядро не сможет их обрабатывать немедленно, в порядке получения. На этот случай имеется специальный механизм, помещающий полученные прерывания в очередь для дальнейшей обработки. Этой очередью управляет особый поток ядра <strong>ksoftirqd</strong> (создаётся по одному на каждый имеющийся процессор или ядро многоядерного процессора).</p>
 <p>Если потоки ядра ksoftirqd потребляют значительное количество ресурсов центрального процессора, значит система находится под очень высокой нагрузкой по прерываниям.</p>
 </div>
 <div class="section" id="kernel-irq">
-<span id="index-42"></span><span id="id32"></span><h2>Как определить какое устройство генерирует огромное количество прерываний?<a class="headerlink" href="#kernel-irq" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-42"></span><span id="id30"></span><h2>Как определить какое устройство генерирует огромное количество прерываний?<a class="headerlink" href="#kernel-irq" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для диагностики системы обработки прерываний, ядро имеет встроенный механизм:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/interrupts
 </pre></div>
@@ -503,7 +503,7 @@ foo.bar2=X2
 <p>Числа в таблице означают точное количество прерываний, инициированных соответствующим устройством или подсистемой, с момента загрузки.</p>
 </div>
 <div class="section" id="irq-manual">
-<span id="index-43"></span><span id="id33"></span><h2>Как произвести ручную балансировку прерываний?<a class="headerlink" href="#irq-manual" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-43"></span><span id="id31"></span><h2>Как произвести ручную балансировку прерываний?<a class="headerlink" href="#irq-manual" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если <a class="reference internal" href="#kernel-irq"><span class="std std-ref">прерывания</span></a> распределены между процессорными ядрами не равномерно, можно использовать режим ручной балансировки:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo bash -c &quot;echo X &gt; /proc/irq/Y/smp_affinity&quot;
 </pre></div>
@@ -516,7 +516,7 @@ foo.bar2=X2
 <p>Ошибка <em>Too many open files</em> возникает при превышении количества открытых дескрипторов файлов процессом. Для её исправления, нужно <a class="reference internal" href="#fd-increase"><span class="std std-ref">увеличить это ограничение</span></a>.</p>
 </div>
 <div class="section" id="fd-hard-soft">
-<span id="index-45"></span><span id="id34"></span><h2>Как узнать текущий лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-hard-soft" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-45"></span><span id="id32"></span><h2>Как узнать текущий лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-hard-soft" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Существует два типа ограничений: мягкий (soft) и жёсткий (hard). Жёсткий задаётся администратором системы, а мягкий может регулироваться как пользователем, так и запущенным приложением, но не может превышать максимально заданное значение жёсткого лимита, а также <a class="reference internal" href="#fd-kernel"><span class="std std-ref">глобальное для всего ядра</span></a>.</p>
 <p>Получим значение мягкого ограничителя:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ulimit -Sn
@@ -529,7 +529,7 @@ foo.bar2=X2
 <p>Значения по умолчанию <strong>1024</strong> (soft) и <strong>4096</strong> (hard).</p>
 </div>
 <div class="section" id="fd-kernel">
-<span id="index-46"></span><span id="id35"></span><h2>Как узнать глобальный лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-kernel" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-46"></span><span id="id33"></span><h2>Как узнать глобальный лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-kernel" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Наряду с <a class="reference internal" href="#fd-hard-soft"><span class="std std-ref">мягким и жёстким лимитами</span></a> открытых файловых дескрипторов существует и глобальный, который ядро Linux способно адресовать и корректно обработать.</p>
 <p>Выведем это значение при помощи соответствующей функции ядра:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/sys/fs/file-max
@@ -537,7 +537,7 @@ foo.bar2=X2
 </div>
 </div>
 <div class="section" id="fd-increase">
-<span id="index-47"></span><span id="id36"></span><h2>Как увеличить лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-increase" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-47"></span><span id="id34"></span><h2>Как увеличить лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-increase" title="Ссылка на этот заголовок">¶</a></h2>
 <p><a class="reference internal" href="#fd-hard-soft"><span class="std std-ref">Мягкие и жёсткие лимиты</span></a> на количество дескрипторов открытых файлов задаются в файле <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.conf</span></code> суперпользователем, но при этом не могут превышать <a class="reference internal" href="#fd-kernel"><span class="std std-ref">глобальный</span></a>.</p>
 <p>Увеличим ограничение для пользователя <strong>foo-bar</strong> до 8192/2048:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar       soft    nofile          2048
@@ -552,7 +552,7 @@ foo-bar       hard    nofile          8192
 <p>Изменения вступят в силу при следующем входе в систему.</p>
 </div>
 <div class="section" id="task-affinity">
-<span id="index-48"></span><span id="id37"></span><h2>Как запустить процесс так, чтобы он мог использовать лишь определённые ядра процессора?<a class="headerlink" href="#task-affinity" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-48"></span><span id="id35"></span><h2>Как запустить процесс так, чтобы он мог использовать лишь определённые ядра процессора?<a class="headerlink" href="#task-affinity" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию процесс выполняется на любых доступных для Linux процессорах (или их ядрах).</p>
 <p>Выбором наиболее подходящего ядра CPU для каждого потока процесса занимается непосредственно ядро, однако существует возможность и ручного переопределения.</p>
 <p>Запустим приложение <strong>foo-bar</strong> на каждом чётном ядре (нумерация всегда начинается с нуля):</p>
@@ -565,7 +565,7 @@ foo-bar       hard    nofile          8192
 </div>
 </div>
 <div class="section" id="task-priority">
-<span id="index-49"></span><span id="id38"></span><h2>Как изменить приоритет процесса?<a class="headerlink" href="#task-priority" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-49"></span><span id="id36"></span><h2>Как изменить приоритет процесса?<a class="headerlink" href="#task-priority" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Допустимые значения приоритета находятся в диапазоне от -20 (наиболее высокий приоритет) до 19 (наиболее низкий). Отрицательные значения может устанавливать лишь суперпользователь.</p>
 <p>Запустим приложение <strong>foo-bar</strong> с приоритетом <strong>10</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nice -n 10 foo-bar
@@ -582,7 +582,7 @@ foo-bar       hard    nofile          8192
 <p>В качестве простого примера рассмтрим ситуацию, когда пользователь <strong>user1</strong> запускает бинарник с установленным suid-битом <strong>/usr/bin/foo-bar</strong>. Таким образом, у процесса <strong>foo-bar</strong> в качестве <em>Real user ID</em> будет установлен <strong>user1</strong>, а <em>Effective user ID</em> - <strong>root</strong>. Это сделано для того, чтобы приложение могло самостоятельно отказаться от повышенных прав, либо переключаться между ними при помощи соответствующего системного вызова.</p>
 </div>
 <div class="section" id="copying-data">
-<span id="index-51"></span><span id="id39"></span><h2>Как скопировать данные с одного раздела на другой?<a class="headerlink" href="#copying-data" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-51"></span><span id="id37"></span><h2>Как скопировать данные с одного раздела на другой?<a class="headerlink" href="#copying-data" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для копирования файлов с одного раздела на другой лучше всего использовать утилиту <strong>rsync</strong> с опциями на сохранение прав доступа.</p>
 <p>Загрузимся с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>, затем смонтируем старый и новый разделы:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/old-root
@@ -602,7 +602,7 @@ sudo umount /media/new-root
 </div>
 </div>
 <div class="section" id="chmod-immutable">
-<span id="index-52"></span><span id="id40"></span><h2>Как запретить модификацию файла даже владельцу и суперпользователю?<a class="headerlink" href="#chmod-immutable" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-52"></span><span id="id38"></span><h2>Как запретить модификацию файла даже владельцу и суперпользователю?<a class="headerlink" href="#chmod-immutable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы запретить модификацию файла (изменение, удаление) любым пользователем (включая владельца и суперпользователя), установим ему расширенный атрибут <code class="docutils literal notranslate"><span class="pre">+i</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chattr +i foo-bar.txt
 </pre></div>
@@ -614,14 +614,14 @@ sudo umount /media/new-root
 <p>Управлять расширенными атрибутами может лишь суперпользователь.</p>
 </div>
 <div class="section" id="chmod-lsattr">
-<span id="index-53"></span><span id="id41"></span><h2>Как узнать какие расширенные атрибуты применены для конкретного файла?<a class="headerlink" href="#chmod-lsattr" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-53"></span><span id="id39"></span><h2>Как узнать какие расширенные атрибуты применены для конкретного файла?<a class="headerlink" href="#chmod-lsattr" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для получения расширенных атрибутов воспользуемся утилитой <strong>lsattr</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>lsattr foo-bar.txt
 </pre></div>
 </div>
 </div>
 <div class="section" id="chmod-addonly">
-<span id="index-54"></span><span id="id42"></span><h2>Как разрешить лишь дописывать данные в файл?<a class="headerlink" href="#chmod-addonly" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-54"></span><span id="id40"></span><h2>Как разрешить лишь дописывать данные в файл?<a class="headerlink" href="#chmod-addonly" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы разрешить лишь добавление данных в файл любым пользователем (включая владельца и суперпользователя), установим ему расширенный атрибут <code class="docutils literal notranslate"><span class="pre">+a</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chattr +a foo-bar.txt
 </pre></div>
@@ -693,7 +693,7 @@ Host bar
 <p>В случае ввода верных авторизационных данных процесс должен пройти в штатном режиме.</p>
 </div>
 <div class="section" id="kerberos-renew">
-<span id="index-58"></span><span id="id43"></span><h2>Как обновить Kerberos-тикет?<a class="headerlink" href="#kerberos-renew" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-58"></span><span id="id41"></span><h2>Как обновить Kerberos-тикет?<a class="headerlink" href="#kerberos-renew" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В зависимости от настроек сервера, полученный <a class="reference internal" href="#kerberos-auth"><span class="std std-ref">Kerberos-тикет</span></a> обычно действует в течение 24 часов, затем даётся ещё от 24 до 48 часов для его обновления без необходимости прохождения повторной процедуры авторизации.</p>
 <p>Проверим актуальность Kerberos тикетов:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>klist -A
@@ -706,7 +706,7 @@ Host bar
 <p>Здесь <strong>foo-bar</strong> - логин на удалённой системе, а <strong>FEDORAPROJECT.ORG</strong> - имя домена (должно быть указано строго в верхнем регистре).</p>
 </div>
 <div class="section" id="delete-inode">
-<span id="index-59"></span><span id="id44"></span><h2>В каталоге появился файл с некорректным именем, который не удаётся удалить. Что делать?<a class="headerlink" href="#delete-inode" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-59"></span><span id="id42"></span><h2>В каталоге появился файл с некорректным именем, который не удаётся удалить. Что делать?<a class="headerlink" href="#delete-inode" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Файлы с некорректными именами могут возникать при повреждениях файловой системы, либо сбоях в приложениях, которые создали их.</p>
 <p>Штатно такие файлы удалить не удастся, поэтому придётся уничтожить соответствующий данному файлу I-узел (I-Node).</p>
 <p>Перейдём в каталог с удаляемым файлом:</p>
@@ -729,7 +729,7 @@ Host bar
 <p>Однако при определённых обстоятельствах (например если точный размер при создании неизвестен, либо в него постоянно производится добавление-удаление данных), некоторые файлы могут фрагментироваться.</p>
 </div>
 <div class="section" id="defrag-custom">
-<span id="index-61"></span><span id="id45"></span><h2>Как выполнить дефрагментацию отдельных файлов на разделе ФС ext4?<a class="headerlink" href="#defrag-custom" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-61"></span><span id="id43"></span><h2>Как выполнить дефрагментацию отдельных файлов на разделе ФС ext4?<a class="headerlink" href="#defrag-custom" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для выполнения частичной дефрагментации, можно использовать утилиту <strong>e4defrag</strong>, входящую в пакет <strong>e2fsprogs</strong>.</p>
 <p>Данная утилита работает со <strong>смонтированным</strong> диском, т.к. непосредственно дефрагментацией будет заниматься драйвер файловой системы, а утилита лишь укажет ему цели.</p>
 <p>Разрешается выполнять оптимизацию отдельных файлов, либо всего содержимого указанных каталогов.</p>
@@ -743,7 +743,7 @@ Host bar
 </div>
 </div>
 <div class="section" id="defrag-full">
-<span id="index-62"></span><span id="id46"></span><h2>Как выполнить дефрагментацию всего раздела с ФС ext4?<a class="headerlink" href="#defrag-full" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-62"></span><span id="id44"></span><h2>Как выполнить дефрагментацию всего раздела с ФС ext4?<a class="headerlink" href="#defrag-full" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Полную дефрагментацию можно осуществить при помощи средства <a class="reference internal" href="#fs-check-lvm"><span class="std std-ref">проверки диска</span></a> на <strong>размонтированном</strong> разделе, например при запуске с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>.</p>
 <p>Запустим процесс:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fsck -t ext4 -fn /dev/sda2
@@ -752,7 +752,7 @@ Host bar
 <p>Здесь <strong>/dev/sda2</strong> - раздел, на котором следует провести процесс дефрагментации. Операция займёт достаточно много времени (в зависимости от размера диска). Прерывать её не следует, т.к. это может привести к полной потере данных.</p>
 </div>
 <div class="section" id="cpu-cores">
-<span id="index-63"></span><span id="id47"></span><h2>Как определить количество доступных процессоров или ядер?<a class="headerlink" href="#cpu-cores" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-63"></span><span id="id45"></span><h2>Как определить количество доступных процессоров или ядер?<a class="headerlink" href="#cpu-cores" title="Ссылка на этот заголовок">¶</a></h2>
 <p><em>Основной способ.</em> Применим утилиту <strong>nproc</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nproc --all
 </pre></div>
@@ -764,7 +764,7 @@ Host bar
 </div>
 </div>
 <div class="section" id="bash-pipelines">
-<span id="index-64"></span><span id="id48"></span><h2>Как перенаправить стандартный ввод-вывод в файлы?<a class="headerlink" href="#bash-pipelines" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-64"></span><span id="id46"></span><h2>Как перенаправить стандартный ввод-вывод в файлы?<a class="headerlink" href="#bash-pipelines" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Перенаправление потока стандартного вывода утилиты <strong>ls</strong>, запущенной с параметром, в файл:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ls -l &gt; ~/foo-bar.txt
 </pre></div>
