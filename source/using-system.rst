@@ -7,9 +7,9 @@
 .. work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
 .. _using-system:
 
-*********************************************
-Вопросы, связанные с работой в системе
-*********************************************
+****************
+Работа в системе
+****************
 
 .. index:: autocompletion, bash
 .. _autocompletion:

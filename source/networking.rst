@@ -7,9 +7,9 @@
 .. work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
 .. _networking:
 
-**************************************************
-Вопросы, связанные с сетевым администрированием
-**************************************************
+*************************
+Сетевое администрирование
+*************************
 
 .. index:: openvpn, vpn, traffic encryption, pptp, l2tp, ipsec, wireguard
 .. _vpn-selection:
