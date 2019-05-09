@@ -13,6 +13,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="shortcut icon" href="_static/faq-icon.ico"/>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
@@ -786,6 +787,32 @@ Host bar
 </pre></div>
 </div>
 </div>
+<div class="section" id="mount-nopass">
+<span id="index-65"></span><span id="id47"></span><h2>Как разрешить монтирование любых дисков без ввода пароля?<a class="headerlink" href="#mount-nopass" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По умолчанию пароль не запрашивается только при монтировании сменных накопителей, однако если требуется реализовать это для любых, потребуется добавить новое правило Polkit.</p>
+<p>Создадим новый конфиг:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo touch /etc/polkit-1/rules.d/10-mount-nopass.rules
+sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
+</pre></div>
+</div>
+<p>Загрузим его в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/polkit-1/rules.d/10-mount-nopass.rules
+</pre></div>
+</div>
+<p>Добавим следующее правило:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>polkit.addRule(function(action, subject) {
+    if ((action.id == &quot;org.freedesktop.udisks2.filesystem-mount-system&quot; ||
+        action.id == &quot;org.freedesktop.udisks.filesystem-mount-system-internal&quot;) &amp;&amp;
+        subject.local &amp;&amp; subject.active &amp;&amp; subject.isInGroup(&quot;wheel&quot;))
+    {
+            return polkit.Result.YES;
+    }
+});
+</pre></div>
+</div>
+<p>Сохраним изменения в файле.</p>
+<p>Теперь пользователи с <a class="reference internal" href="security.html#admin-vs-user"><span class="std std-ref">административными правами</span></a> (входящие в группу <strong>wheel</strong>) смогут монтировать любые диски без ввода пароля.</p>
+</div>
 </div>
 
 
@@ -877,6 +904,7 @@ Host bar
 <li class="toctree-l2"><a class="reference internal" href="#defrag-full">Как выполнить дефрагментацию всего раздела с ФС ext4?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cpu-cores">Как определить количество доступных процессоров или ядер?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bash-pipelines">Как перенаправить стандартный ввод-вывод в файлы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mount-nopass">Как разрешить монтирование любых дисков без ввода пароля?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>
