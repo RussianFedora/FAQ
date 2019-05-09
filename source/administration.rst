@@ -1228,3 +1228,41 @@ FUSE (file system in userspace) - это модуль ядра и набор у�
 .. code-block:: text
 
     /usr/bin/foo < ~/foo-bar.txt > ~/result.txt 2> /dev/null
+
+.. index:: polkit, mount, password, rules
+.. _mount-nopass:
+
+Как разрешить монтирование любых дисков без ввода пароля?
+============================================================
+
+По умолчанию пароль не запрашивается только при монтировании сменных накопителей, однако если требуется реализовать это для любых, потребуется добавить новое правило Polkit.
+
+Создадим новый конфиг:
+
+.. code-block:: text
+
+    sudo touch /etc/polkit-1/rules.d/10-mount-nopass.rules
+    sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
+
+Загрузим его в текстовом редакторе:
+
+.. code-block:: text
+
+    sudoedit /etc/polkit-1/rules.d/10-mount-nopass.rules
+
+Добавим следующее правило:
+
+.. code-block:: text
+
+    polkit.addRule(function(action, subject) {
+        if ((action.id == "org.freedesktop.udisks2.filesystem-mount-system" ||
+            action.id == "org.freedesktop.udisks.filesystem-mount-system-internal") &&
+            subject.local && subject.active && subject.isInGroup("wheel"))
+        {
+                return polkit.Result.YES;
+        }
+    });
+
+Сохраним изменения в файле.
+
+Теперь пользователи с :ref:`административными правами <admin-vs-user>` (входящие в группу **wheel**) смогут монтировать любые диски без ввода пароля.
