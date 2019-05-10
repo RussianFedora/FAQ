@@ -795,6 +795,46 @@ fedpkg scratch-build --arches x86_64 aarch64
 </div>
 <p>После этого команды Git, отвечающие за работу с удалёнными ресурсами, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>, начнут использовать новый апстрим.</p>
 </div>
+<div class="section" id="irc-freenode">
+<span id="irc-nopass"></span><span id="index-51"></span><h2>Можно ли входить в IRC сеть FreeNode без ввода пароля?<a class="headerlink" href="#irc-freenode" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, сеть FreeNode с недавних пор поддерживает вход по ключам.</p>
+<p>Создадим каталог для хранения ключей HexChat:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/.config/hexchat/certs
+</pre></div>
+</div>
+<p>Воспользуемся утилитой <strong>openssl</strong>, чтобы сгенерировать ключевую пару:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>openssl req -x509 -new -newkey rsa:4096 -sha256 -days 1825 -nodes -out ~/.config/hexchat/certs/freenode.pem -keyout ~/.config/hexchat/certs/freenode.pem
+</pre></div>
+</div>
+<p>Будут заданы стандартные вопросы. На них можно отвечать как угодно (сервер не проверяет валидность данных), за исключением <strong>Common Name</strong> (зарегистрированный ник в сети freenode) и <strong>Email Address</strong> (привязанный к учётной записи адрес электронной почты).</p>
+<p>Установим корректный chmod:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>chmod 0400 ~/.config/hexchat/certs/freenode.pem
+</pre></div>
+</div>
+<p>Запустим HexChat, откроем список сетей и убедимся, что FreeNode называется <strong>freenode</strong> (в нижнем регистре; важно, чтобы имя файла сертификата соответствовало названию сети). Если это не так, нажмём <strong>F2</strong> и осуществим переименование.</p>
+<p>Зайдём в расширенные настройки сети freenode, укажем в качестве основного сервера <code class="docutils literal notranslate"><span class="pre">irc.freenode.net/6697</span></code> (остальные лучше вообще удалить), затем установим следующие параметры:</p>
+<blockquote>
+<div><ul class="simple">
+<li>флажок <strong>соединяться только с выделенным сервером</strong> - включено;</li>
+<li>флажок <strong>использовать SSL для всех серверов в этой сети</strong> - включено;</li>
+<li><strong>метод авторизации</strong> - SASL external (cert).</li>
+</ul>
+</div></blockquote>
+<p>Получим SHA1 отпечаток созданного сертификата:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>openssl x509 -in ~/.config/hexchat/certs/freenode.pem -outform der | sha1sum -b | cut -d&#39; &#39; -f1
+</pre></div>
+</div>
+<p>Подключимся к серверу, затем авторизуемся в системе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/ns identify PASSWORD
+</pre></div>
+</div>
+<p>Добавим SHA1 отпечаток сертификата в доверенные:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/ns cert add XXXXXXXXXX
+</pre></div>
+</div>
+<p>Здесь <strong>PASSWORD</strong> - текущий пароль пользователя, а <strong>XXXXXXXXXX</strong> - отпечаток сертификата.</p>
+<p>Теперь можно отключиться и подключиться заново. Вход будет выполнен уже безопасным способом без использования паролей.</p>
+</div>
 </div>
 
 
@@ -879,6 +919,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <li class="toctree-l2"><a class="reference internal" href="#linux-vdso-so-1">Что такое linux-vdso.so.1 и почему она загружена в каждый процесс?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#linux-ldd">Как определить зависимости конкретного бинарника?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-switch-remote">Как изменить адрес Git репозитория после его переезда?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#irc-freenode">Можно ли входить в IRC сеть FreeNode без ввода пароля?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>
