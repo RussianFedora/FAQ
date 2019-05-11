@@ -510,11 +510,11 @@ Java 11:
 Как очистить журнал транзакций dnf?
 =======================================
 
-Для очистки журнала транзакций dnf history, выполним:
+Для очистки журнала транзакций ``dnf history``, выполним:
 
 .. code-block:: text
 
-    sudo rm -rf /var/lib/dnf/history/*
+    sudo rm -f /var/lib/dnf/history.sql*
 
 .. index:: dnf, installed list export, export, list, packages
 .. _dnf-list-export:
