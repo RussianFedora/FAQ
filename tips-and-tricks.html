@@ -194,6 +194,19 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 </div>
 <p>Здесь <strong>/dev/sda</strong> - дисковое устройство, на котором установлена Fedora.</p>
 </div>
+<div class="section" id="zchunk-checksum-error">
+<span id="zchunk-checksum"></span><span id="index-10"></span><h2>При попытке обновления появляется ошибка zchunk checksum error. Как исправить?<a class="headerlink" href="#zchunk-checksum-error" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1706321">известная проблема</a>. В качестве временного решения запретим использование zchunk в dnf.</p>
+<p>Откроем главный конфигурационный файл dnf:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Добавим в самый конец следующую строку:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>zchunk=False
+</pre></div>
+</div>
+<p>Сохраним изменения в файле и повторим попытку обновления. На этот раз она должна пройти без ошибок.</p>
+</div>
 </div>
 
 
@@ -238,6 +251,7 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <li class="toctree-l2"><a class="reference internal" href="#fs-noexec">Как запретить возможность исполнения любых файлов из домашнего каталога?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#microsoft-fedora">Как установить шрифты Microsoft в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#grub-legacy-error">После обновления дистрибутива с 29 версии до 30 не могу загрузить систему. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zchunk-checksum-error">При попытке обновления появляется ошибка zchunk checksum error. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
