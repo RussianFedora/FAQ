@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Системное администрирование &#8212; Документация Неофициальный FAQ по Fedora 2019.04.25</title>
+    <title>Системное администрирование &#8212; Документация Неофициальный FAQ по Fedora 2019.05.12</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -813,6 +813,45 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <p>Сохраним изменения в файле.</p>
 <p>Теперь пользователи с <a class="reference internal" href="security.html#admin-vs-user"><span class="std std-ref">административными правами</span></a> (входящие в группу <strong>wheel</strong>) смогут монтировать любые диски без ввода пароля.</p>
 </div>
+<div class="section" id="coredump-systemd">
+<span id="codedump-info"></span><span id="index-66"></span><h2>Что такое coredump и почему systemd сохраняет их?<a class="headerlink" href="#coredump-systemd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Coredump - это дамп закрытой памяти процесса, создаваемый в момент возникновения в нём внештатной ситуации, приводящей к аварийному завершению. Эти дампы используются всевозможными системами анализа и необходимы для создания правильных <a class="reference internal" href="generic-info.html#bug-report"><span class="std std-ref">баг-репортов</span></a>.</p>
+<p>По умолчанию systemd при падениях любых процессов (как системных, так и пользовательских), сохраняет дампы их закрытой памяти в каталоге <strong>/var/lib/systemd/coredump</strong>, поэтому он может занимать десятки гигабайт.</p>
+<p>Возможно их <a class="reference internal" href="#codedump-limit"><span class="std std-ref">ограничить</span></a>, либо полностью <a class="reference internal" href="#codedump-disable"><span class="std std-ref">отключить</span></a>.</p>
+</div>
+<div class="section" id="codedump-limit">
+<span id="index-67"></span><span id="id48"></span><h2>Как ограничить размер сохраняемых дампов памяти?<a class="headerlink" href="#codedump-limit" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл конфигурации <a class="reference internal" href="#codedump-info"><span class="std std-ref">systemd-coredump</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/systemd/coredump.conf
+</pre></div>
+</div>
+<p>Внесём правки, убирая символ комментария <strong>#</strong> перед каждой строкой:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Coredump]</span>
+<span class="na">Storage</span><span class="o">=</span><span class="s">external</span>
+<span class="na">Compress</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">ProcessSizeMax</span><span class="o">=</span><span class="s">1G</span>
+<span class="na">ExternalSizeMax</span><span class="o">=</span><span class="s">1G</span>
+<span class="na">JournalSizeMax</span><span class="o">=</span><span class="s">200M</span>
+<span class="na">MaxUse</span><span class="o">=</span><span class="s">5</span>
+<span class="na">KeepFree</span><span class="o">=</span>
+</pre></div>
+</div>
+<p>В данном примере мы задаём максимальный размер одного дампа в 1 ГБ (<strong>ProcessSizeMax</strong> и <strong>ProcessSizeMax</strong>) с ограничением хранения не более 5 (<strong>MaxUse</strong>).</p>
+<p>Изменения вступят в силу при следующей загрузке системы.</p>
+</div>
+<div class="section" id="codedump-disable">
+<span id="index-68"></span><span id="id49"></span><h2>Как полностью отключение сохранение дампов памяти?<a class="headerlink" href="#codedump-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл конфигурации <a class="reference internal" href="#codedump-info"><span class="std std-ref">systemd-coredump</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/systemd/coredump.conf
+</pre></div>
+</div>
+<p>Уберём символ комментария <strong>#</strong> лишь перед первой строкой и изменим её значение:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Coredump]</span>
+<span class="na">Storage</span><span class="o">=</span><span class="s">none</span>
+</pre></div>
+</div>
+<p>Изменения вступят в силу при следующей загрузке системы.</p>
+</div>
 </div>
 
 
@@ -905,6 +944,9 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <li class="toctree-l2"><a class="reference internal" href="#cpu-cores">Как определить количество доступных процессоров или ядер?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bash-pipelines">Как перенаправить стандартный ввод-вывод в файлы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mount-nopass">Как разрешить монтирование любых дисков без ввода пароля?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#coredump-systemd">Что такое coredump и почему systemd сохраняет их?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#codedump-limit">Как ограничить размер сохраняемых дампов памяти?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#codedump-disable">Как полностью отключение сохранение дампов памяти?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>
