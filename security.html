@@ -851,6 +851,77 @@ sudo chmod 0400 /etc/luks/foo-bar.key
 <p>Здесь <strong>foo-bar</strong> - внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> - <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, <strong>/etc/luks/foo-bar.key</strong> - полный путь к <a class="reference internal" href="#luks-addkey"><span class="std std-ref">ключевому файлу</span></a>. Параметр <strong>noauto</strong> должен применяться только совместно с ключом.</p>
 <p>Данное зашифрованное устройство будет смонтировано и автоматически расшифровано при первой попытке доступа к нему.</p>
 </div>
+<div class="section" id="truecrypt-fedora">
+<span id="index-75"></span><span id="id57"></span><h2>Как работать с TrueCrypt контейнерами в Fedora?<a class="headerlink" href="#truecrypt-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Из-за <a class="reference internal" href="development.html#fedora-licenses"><span class="std std-ref">несвободной лицензии</span></a> TrueCrypt и все его форки (в т.ч. VeraCrypt) не могут быть добавлены в репозитории Fedora, однако в настоящее время утилита <strong>cryptsetup</strong> полностью их поддерживает.</p>
+<p>Cryptsetup поддерживает монтирование как <a class="reference internal" href="#truecrypt-mount"><span class="std std-ref">TrueCrypt</span></a>, так и <a class="reference internal" href="#veracrypt-mount"><span class="std std-ref">VeraCrypt</span></a> томов (файлы и устройства), а также умеет их администрировать (управлять ключами, паролями). Ограничение лишь одно - нельзя создавать новые зашифрованные данными механизмами контейнеры.</p>
+</div>
+<div class="section" id="truecrypt-mount">
+<span id="index-76"></span><span id="id58"></span><h2>Как смонтировать TrueCrypt контейнер в Fedora?<a class="headerlink" href="#truecrypt-mount" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл контейнера средствами cryptsetup:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --type tcrypt open /path/to/container.tc mydata
+</pre></div>
+</div>
+<p>Смонтируем файловую систему:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/mydata
+sudo mount -t auto /dev/mapper/mydata /media/mydata
+</pre></div>
+</div>
+<p>По окончании работы произведём размонтирование:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /media/mydata
+sudo rmdir /media/mydata
+</pre></div>
+</div>
+<p>Закроем файл контейнера:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --type tcrypt close /dev/mapper/mydata
+</pre></div>
+</div>
+<p>Здесь <strong>/path/to/container.tc</strong> полный путь к файлу контейнера на диске (либо зашифрованному устройству), а <strong>mydata</strong> - внутреннее название для dev-mapper.</p>
+</div>
+<div class="section" id="veracrypt-fedora">
+<span id="veracrypt-mount"></span><span id="index-77"></span><h2>Как смонтировать VeraCrypt контейнер в Fedora?<a class="headerlink" href="#veracrypt-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл контейнера средствами cryptsetup:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --veracrypt --type tcrypt open /path/to/container.hc mydata
+</pre></div>
+</div>
+<p>Смонтируем файловую систему:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/mydata
+sudo mount -t auto /dev/mapper/mydata /media/mydata
+</pre></div>
+</div>
+<p>По окончании работы произведём размонтирование:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /media/mydata
+sudo rmdir /media/mydata
+</pre></div>
+</div>
+<p>Закроем файл контейнера:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --veracrypt --type tcrypt close /dev/mapper/mydata
+</pre></div>
+</div>
+<p>Здесь <strong>/path/to/container.hc</strong> полный путь к файлу контейнера на диске (либо зашифрованному устройству), а <strong>mydata</strong> - внутреннее название для dev-mapper.</p>
+</div>
+<div class="section" id="veracrypt">
+<span id="veracrypt-auto"></span><span id="index-78"></span><h2>Как настроить автоматическое монтирование VeraCrypt томов при загрузке?<a class="headerlink" href="#veracrypt" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code> в <a class="reference internal" href="using-system.html#editor-selection"><span class="std std-ref">редакторе по умолчанию</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/crypttab
+</pre></div>
+</div>
+<p>Добавим в конец файла строку вида:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar UUID=XXXXXX /etc/keys/foo-bar.key tcrypt-veracrypt
+</pre></div>
+</div>
+<p>Здесь <strong>foo-bar</strong> - внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> - <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, либо полный путь к файлу контейнера, <strong>/etc/keys/foo-bar.key</strong> - полный путь к ключевому файлу, либо файлу с паролем (разрыв строки в конце файла не ставится).</p>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
+</pre></div>
+</div>
+<p>Добавим в конец строку вида:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/dev/mapper/foo-bar /media/data auto defaults,x-systemd.automount 0 0
+</pre></div>
+</div>
+<p>Здесь <strong>foo-bar</strong> - внутреннее имя, указанное ранее в crypttab, а <strong>/media/data</strong> - точка монтирования.</p>
+<p>Если всё сделано верно, то при следующей загрузке зашифрованный VeraCrypt том будет смонтирован автоматически.</p>
+</div>
 </div>
 
 
@@ -955,6 +1026,10 @@ sudo chmod 0400 /etc/luks/foo-bar.key
 <li class="toctree-l2"><a class="reference internal" href="#luks-auto">Как настроить автоматическую расшифровку LUKS разделов при загрузке?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#root-reset">Я забыл пароль суперпользователя. Как мне его сбросить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#luks-noauto">Можно ли отключить автоматическое монтирование устройств LUKS при загрузке?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#truecrypt-fedora">Как работать с TrueCrypt контейнерами в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#truecrypt-mount">Как смонтировать TrueCrypt контейнер в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#veracrypt-fedora">Как смонтировать VeraCrypt контейнер в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#veracrypt">Как настроить автоматическое монтирование VeraCrypt томов при загрузке?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Работа в системе</a></li>
