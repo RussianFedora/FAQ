@@ -859,46 +859,46 @@ sudo chmod 0400 /etc/luks/foo-bar.key
 <div class="section" id="truecrypt-mount">
 <span id="index-76"></span><span id="id58"></span><h2>Как смонтировать TrueCrypt контейнер в Fedora?<a class="headerlink" href="#truecrypt-mount" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Откроем файл контейнера средствами cryptsetup:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --type tcrypt open /path/to/container.tc mydata
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --type tcrypt open /path/to/container.tc foo-bar
 </pre></div>
 </div>
 <p>Смонтируем файловую систему:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/mydata
-sudo mount -t auto /dev/mapper/mydata /media/mydata
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/data
+sudo mount -t auto /dev/mapper/foo-bar /media/data
 </pre></div>
 </div>
 <p>По окончании работы произведём размонтирование:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /media/mydata
-sudo rmdir /media/mydata
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /media/data
+sudo rmdir /media/data
 </pre></div>
 </div>
 <p>Закроем файл контейнера:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --type tcrypt close /dev/mapper/mydata
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --type tcrypt close /dev/mapper/foo-bar
 </pre></div>
 </div>
-<p>Здесь <strong>/path/to/container.tc</strong> полный путь к файлу контейнера на диске (либо зашифрованному устройству), а <strong>mydata</strong> - внутреннее название для dev-mapper.</p>
+<p>Здесь <strong>/path/to/container.tc</strong> полный путь к файлу контейнера на диске (либо зашифрованному устройству), а <strong>foo-bar</strong> - внутреннее имя для dev-mapper.</p>
 </div>
 <div class="section" id="veracrypt-fedora">
 <span id="veracrypt-mount"></span><span id="index-77"></span><h2>Как смонтировать VeraCrypt контейнер в Fedora?<a class="headerlink" href="#veracrypt-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Откроем файл контейнера средствами cryptsetup:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --veracrypt --type tcrypt open /path/to/container.hc mydata
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --veracrypt --type tcrypt open /path/to/container.hc foo-bar
 </pre></div>
 </div>
 <p>Смонтируем файловую систему:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/mydata
-sudo mount -t auto /dev/mapper/mydata /media/mydata
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/data
+sudo mount -t auto /dev/mapper/foo-bar /media/data
 </pre></div>
 </div>
 <p>По окончании работы произведём размонтирование:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /media/mydata
-sudo rmdir /media/mydata
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /media/data
+sudo rmdir /media/data
 </pre></div>
 </div>
 <p>Закроем файл контейнера:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --veracrypt --type tcrypt close /dev/mapper/mydata
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --veracrypt --type tcrypt close /dev/mapper/foo-bar
 </pre></div>
 </div>
-<p>Здесь <strong>/path/to/container.hc</strong> полный путь к файлу контейнера на диске (либо зашифрованному устройству), а <strong>mydata</strong> - внутреннее название для dev-mapper.</p>
+<p>Здесь <strong>/path/to/container.hc</strong> полный путь к файлу контейнера на диске (либо зашифрованному устройству), а <strong>foo-bar</strong> - внутреннее имя для dev-mapper.</p>
 </div>
 <div class="section" id="veracrypt">
 <span id="veracrypt-auto"></span><span id="index-78"></span><h2>Как настроить автоматическое монтирование VeraCrypt томов при загрузке?<a class="headerlink" href="#veracrypt" title="Ссылка на этот заголовок">¶</a></h2>
