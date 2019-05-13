@@ -1385,3 +1385,39 @@ Cryptsetup поддерживает монтирование TrueCrypt и VeraCr
 .. code-block:: text
 
     sudo cryptsetup --type tcrypt close /dev/mapper/mydata
+
+Здесь **/path/to/container.tc** полный путь к файлу контейнера на диске (либо зашифрованному устройству), а **mydata** - внутреннее название для dev-mapper.
+
+.. index:: encryption, cryptsetup, veracrypt, mount
+.. _veracrypt-mount:
+
+Как смонтировать VeraCrypt контейнер в Fedora?
+=================================================
+
+Откроем файл контейнера средствами cryptsetup:
+
+.. code-block:: text
+
+    sudo cryptsetup --veracrypt --type tcrypt open /path/to/container.hc mydata
+
+Смонтируем файловую систему:
+
+.. code-block:: text
+
+    sudo mkdir /media/mydata
+    sudo mount -t auto /dev/mapper/mydata /media/mydata
+
+По окончании работы произведём размонтирование:
+
+.. code-block:: text
+
+    sudo umount /media/mydata
+    sudo rmdir /media/mydata
+
+Закроем файл контейнера:
+
+.. code-block:: text
+
+    sudo cryptsetup --veracrypt --type tcrypt close /dev/mapper/mydata
+
+Здесь **/path/to/container.hc** полный путь к файлу контейнера на диске (либо зашифрованному устройству), а **mydata** - внутреннее название для dev-mapper.
