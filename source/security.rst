@@ -1421,3 +1421,39 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
     sudo cryptsetup --veracrypt --type tcrypt close /dev/mapper/mydata
 
 Здесь **/path/to/container.hc** полный путь к файлу контейнера на диске (либо зашифрованному устройству), а **mydata** - внутреннее название для dev-mapper.
+
+.. index:: encryption, cryptsetup, fstab, crypttab, veracrypt, truecrypt
+.. _veracrypt-auto:
+
+Как настроить автоматическое монтирование VeraCrypt томов при загрузке?
+===========================================================================
+
+Откроем файл ``/etc/crypttab`` в :ref:`редакторе по умолчанию <editor-selection>`:
+
+.. code-block:: text
+
+    sudoedit /etc/crypttab
+
+Добавим в конец файла строку вида:
+
+.. code-block:: text
+
+    foo-bar UUID=XXXXXX /etc/keys/foo-bar.key tcrypt-veracrypt
+
+Здесь **foo-bar** - внутреннее имя, которое будет использоваться dev-mapper, **XXXXXX** - :ref:`UUID диска <get-uuid>`, либо полный путь к файлу контейнера, **/etc/keys/foo-bar.key** - полный путь к ключевому файлу, либо файлу с паролем (разрыв строки в конце файла не ставится).
+
+Откроем файл ``/etc/fstab``:
+
+.. code-block:: text
+
+    sudoedit /etc/fstab
+
+Добавим в конец строку вида:
+
+.. code-block:: text
+
+    /dev/mapper/foo-bar /media/data auto defaults,x-systemd.automount 0 0
+
+Здесь **foo-bar** - внутреннее имя, указанное ранее в crypttab, а **/media/data** - точка монтирования.
+
+Если всё сделано верно, то при следующей загрузке зашифрованный VeraCrypt том будет смонтирован автоматически.
