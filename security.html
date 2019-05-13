@@ -782,21 +782,21 @@ keytocard
 </div>
 <div class="section" id="luks-addkey">
 <span id="index-70"></span><span id="id52"></span><h2>Как добавить ключевой файл для разблокировки зашифрованного LUKS раздела?<a class="headerlink" href="#luks-addkey" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Создадим каталог для хранения ключей <code class="docutils literal notranslate"><span class="pre">/etc/luks</span></code> (может быть любым):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir -p /etc/luks
+<p>Создадим каталог для хранения ключей <code class="docutils literal notranslate"><span class="pre">/etc/keys</span></code> (может быть любым):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir -p /etc/keys
 </pre></div>
 </div>
 <p>Сгенерируем ключевой файл <code class="docutils literal notranslate"><span class="pre">foo-bar.key</span></code> размером 4 КБ на основе системного генератора псевдослучайных чисел:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/urandom of=/etc/luks/foo-bar.key bs=1024 count=4
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/urandom of=/etc/keys/foo-bar.key bs=1024 count=4
 </pre></div>
 </div>
 <p>Установим корректные права доступа:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chown root:root /etc/luks/foo-bar.key
-sudo chmod 0400 /etc/luks/foo-bar.key
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chown root:root /etc/keys/foo-bar.key
+sudo chmod 0400 /etc/keys/foo-bar.key
 </pre></div>
 </div>
 <p>Добавим ключ в свободный слот LUKS заголовка зашифрованного раздела:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksAddKey /dev/sda2 /etc/luks/foo-bar.key
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksAddKey /dev/sda2 /etc/keys/foo-bar.key
 </pre></div>
 </div>
 <p>Утилита cryptsetup запросит ввод мастер-пароля.</p>
@@ -806,11 +806,11 @@ sudo chmod 0400 /etc/luks/foo-bar.key
 <span id="index-71"></span><span id="id53"></span><h2>Как удалить ключевой файл разблокировки зашифрованного LUKS раздела?<a class="headerlink" href="#luks-removekey" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если разблокировка по ключевому файлу более не требуется, его можно удалить.</p>
 <p>Удалим слот с ключом <code class="docutils literal notranslate"><span class="pre">foo-bar.key</span></code> из LUKS заголовка зашифрованного раздела:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksRemoveKey /dev/sda2 /etc/luks/foo-bar.key
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksRemoveKey /dev/sda2 /etc/keys/foo-bar.key
 </pre></div>
 </div>
 <p>Надёжно <a class="reference internal" href="#destroy-file"><span class="std std-ref">уничтожим</span></a> ключевой файл:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo shred -u -v /etc/luks/foo-bar.key
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo shred -u -v /etc/keys/foo-bar.key
 </pre></div>
 </div>
 <p>Здесь <strong>/dev/sda2</strong> - устройство зашифрованного LUKS тома, у которого требуется удалить слот с ключевым файлом.</p>
@@ -822,10 +822,10 @@ sudo chmod 0400 /etc/luks/foo-bar.key
 </pre></div>
 </div>
 <p>Добавим в конец файла строку вида:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar UUID=XXXXXX /etc/luks/foo-bar.key luks
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar UUID=XXXXXX /etc/keys/foo-bar.key luks
 </pre></div>
 </div>
-<p>Здесь <strong>foo-bar</strong> - внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> - <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, <strong>/etc/luks/foo-bar.key</strong> - полный путь к <a class="reference internal" href="#luks-addkey"><span class="std std-ref">ключевому файлу</span></a>. При шифровании <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">SSD накопителя</span></a> вместо параметра <strong>luks</strong> следует использовать <strong>discard</strong>.</p>
+<p>Здесь <strong>foo-bar</strong> - внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> - <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, <strong>/etc/keys/foo-bar.key</strong> - полный путь к <a class="reference internal" href="#luks-addkey"><span class="std std-ref">ключевому файлу</span></a>. При шифровании <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">SSD накопителя</span></a> вместо параметра <strong>luks</strong> следует использовать <strong>discard</strong>.</p>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
 </pre></div>
@@ -845,10 +845,10 @@ sudo chmod 0400 /etc/luks/foo-bar.key
 <div class="section" id="luks-noauto">
 <span id="index-74"></span><span id="id56"></span><h2>Можно ли отключить автоматическое монтирование устройств LUKS при загрузке?<a class="headerlink" href="#luks-noauto" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Для этого добавим параметр <code class="docutils literal notranslate"><span class="pre">noauto</span></code> для соответствующей записи в файле <code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar UUID=XXXXXX /etc/luks/foo-bar.key noauto
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar UUID=XXXXXX /etc/keys/foo-bar.key noauto
 </pre></div>
 </div>
-<p>Здесь <strong>foo-bar</strong> - внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> - <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, <strong>/etc/luks/foo-bar.key</strong> - полный путь к <a class="reference internal" href="#luks-addkey"><span class="std std-ref">ключевому файлу</span></a>. Параметр <strong>noauto</strong> должен применяться только совместно с ключом.</p>
+<p>Здесь <strong>foo-bar</strong> - внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> - <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, <strong>/etc/keys/foo-bar.key</strong> - полный путь к <a class="reference internal" href="#luks-addkey"><span class="std std-ref">ключевому файлу</span></a>. Параметр <strong>noauto</strong> должен применяться только совместно с ключом.</p>
 <p>Данное зашифрованное устройство будет смонтировано и автоматически расшифровано при первой попытке доступа к нему.</p>
 </div>
 <div class="section" id="truecrypt-fedora">
