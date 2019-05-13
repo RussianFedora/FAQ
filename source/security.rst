@@ -1364,29 +1364,29 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
 
 .. code-block:: text
 
-    sudo cryptsetup --type tcrypt open /path/to/container.tc mydata
+    sudo cryptsetup --type tcrypt open /path/to/container.tc foo-bar
 
 Смонтируем файловую систему:
 
 .. code-block:: text
 
-    sudo mkdir /media/mydata
-    sudo mount -t auto /dev/mapper/mydata /media/mydata
+    sudo mkdir /media/data
+    sudo mount -t auto /dev/mapper/foo-bar /media/data
 
 По окончании работы произведём размонтирование:
 
 .. code-block:: text
 
-    sudo umount /media/mydata
-    sudo rmdir /media/mydata
+    sudo umount /media/data
+    sudo rmdir /media/data
 
 Закроем файл контейнера:
 
 .. code-block:: text
 
-    sudo cryptsetup --type tcrypt close /dev/mapper/mydata
+    sudo cryptsetup --type tcrypt close /dev/mapper/foo-bar
 
-Здесь **/path/to/container.tc** полный путь к файлу контейнера на диске (либо зашифрованному устройству), а **mydata** - внутреннее название для dev-mapper.
+Здесь **/path/to/container.tc** полный путь к файлу контейнера на диске (либо зашифрованному устройству), а **foo-bar** - внутреннее имя для dev-mapper.
 
 .. index:: encryption, cryptsetup, veracrypt, mount
 .. _veracrypt-mount:
@@ -1398,29 +1398,29 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
 
 .. code-block:: text
 
-    sudo cryptsetup --veracrypt --type tcrypt open /path/to/container.hc mydata
+    sudo cryptsetup --veracrypt --type tcrypt open /path/to/container.hc foo-bar
 
 Смонтируем файловую систему:
 
 .. code-block:: text
 
-    sudo mkdir /media/mydata
-    sudo mount -t auto /dev/mapper/mydata /media/mydata
+    sudo mkdir /media/data
+    sudo mount -t auto /dev/mapper/foo-bar /media/data
 
 По окончании работы произведём размонтирование:
 
 .. code-block:: text
 
-    sudo umount /media/mydata
-    sudo rmdir /media/mydata
+    sudo umount /media/data
+    sudo rmdir /media/data
 
 Закроем файл контейнера:
 
 .. code-block:: text
 
-    sudo cryptsetup --veracrypt --type tcrypt close /dev/mapper/mydata
+    sudo cryptsetup --veracrypt --type tcrypt close /dev/mapper/foo-bar
 
-Здесь **/path/to/container.hc** полный путь к файлу контейнера на диске (либо зашифрованному устройству), а **mydata** - внутреннее название для dev-mapper.
+Здесь **/path/to/container.hc** полный путь к файлу контейнера на диске (либо зашифрованному устройству), а **foo-bar** - внутреннее имя для dev-mapper.
 
 .. index:: encryption, cryptsetup, fstab, crypttab, veracrypt, truecrypt
 .. _veracrypt-auto:
