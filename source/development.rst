@@ -1166,3 +1166,25 @@
     git remote set-url origin https://github.com/foo-bar/new_repo.git
 
 После этого команды Git, отвечающие за работу с удалёнными ресурсами, ``git pull``, ``git fetch``, ``git push``, начнут использовать новый апстрим.
+
+.. index:: rpmbuild, move
+.. _rpmbuild-move:
+
+Можно ли перенести стандартный каталог сборки rpmbuild?
+==========================================================
+
+Да, это возможно. Откроем файл ``~/.rpmmacros`` в любом текстовом редаторе, найдём строку:
+
+.. code-block:: text
+
+    %_topdir %(echo $HOME)/rpmbuild
+
+Заменим её на следующую:
+
+.. code-block:: text
+
+    %_topdir /media/foo-bar/rpmbuild
+
+Здесь **/media/foo-bar** - новый каталог размещения базовой иерархии rpmbuuild.
+
+Сохраним изменения, которые вступят в силу немеденно.
