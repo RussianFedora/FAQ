@@ -795,6 +795,19 @@ fedpkg scratch-build --arches x86_64 aarch64
 </div>
 <p>После этого команды Git, отвечающие за работу с удалёнными ресурсами, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>, начнут использовать новый апстрим.</p>
 </div>
+<div class="section" id="rpmbuild">
+<span id="rpmbuild-move"></span><span id="index-51"></span><h2>Можно ли перенести стандартный каталог сборки rpmbuild?<a class="headerlink" href="#rpmbuild" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, это возможно. Откроем файл <code class="docutils literal notranslate"><span class="pre">~/.rpmmacros</span></code> в любом текстовом редаторе, найдём строку:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%_topdir %(echo $HOME)/rpmbuild
+</pre></div>
+</div>
+<p>Заменим её на следующую:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%_topdir /media/foo-bar/rpmbuild
+</pre></div>
+</div>
+<p>Здесь <strong>/media/foo-bar</strong> - новый каталог размещения базовой иерархии rpmbuuild.</p>
+<p>Сохраним изменения, которые вступят в силу немеденно.</p>
+</div>
 </div>
 
 
@@ -879,6 +892,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <li class="toctree-l2"><a class="reference internal" href="#linux-vdso-so-1">Что такое linux-vdso.so.1 и почему она загружена в каждый процесс?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#linux-ldd">Как определить зависимости конкретного бинарника?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-switch-remote">Как изменить адрес Git репозитория после его переезда?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpmbuild">Можно ли перенести стандартный каталог сборки rpmbuild?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>
