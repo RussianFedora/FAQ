@@ -524,6 +524,15 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Здесь <strong>PASSWORD</strong> - текущий пароль пользователя, а <strong>XXXXXXXXXX</strong> - отпечаток сертификата.</p>
 <p>Теперь можно отключиться и подключиться заново. Вход будет выполнен уже безопасным способом без использования паролей.</p>
 </div>
+<div class="section" id="kde">
+<span id="kickoff-reset"></span><span id="index-39"></span><h2>В меню KDE перестали отображаться значки приложений и документов. Как исправить?<a class="headerlink" href="#kde" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Исчезновение значков приложений, либо документов в меню KDE Plasma 5 часто происходит при повреждении баз данных компонента KDE activity manager.</p>
+<p>Произведём удаление старых баз (при необходимости можно сделать резервную копию):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rm -rf ~/.local/share/kactivitymanagerd
+</pre></div>
+</div>
+<p>При следующем входе в систему все настройки Kickoff будут сброшены, включая страницу <em>Избранное</em> и при этом должна восстановиться его правильная работа.</p>
+</div>
 </div>
 
 
@@ -594,6 +603,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#directory-tree">Как построить дерево каталогов и сохранить его в файл?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#trash-terminal">Как из терминала удалить файл в корзину?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#irc-freenode">Можно ли входить в IRC сеть FreeNode без ввода пароля?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kde">В меню KDE перестали отображаться значки приложений и документов. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
