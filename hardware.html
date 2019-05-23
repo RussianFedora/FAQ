@@ -671,6 +671,42 @@ connect AA:BB:CC:DD:EE:FF
 <p>Некоторые матрицы могут программно подавлять его за счёт постоянной внутренней перерисовки, но большинство не предпринимают ничего.</p>
 <p>Послесвечение не является гарантийным случаем, поэтому перед покупкой рекомендуется проверять матрицу монитора на наличие этого эффекта.</p>
 </div>
+<div class="section" id="memory-testing">
+<span id="index-50"></span><span id="id32"></span><h2>Как проверить оперативную память компьютера?<a class="headerlink" href="#memory-testing" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Каждый <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Live образ</span></a> Fedora содержит специальную утилиту memtest86+, однако она требует загрузки в Legacy режиме (<a class="reference internal" href="installation.html#uefi-boot"><span class="std std-ref">UEFI</span></a> не поддерживается).</p>
+<p>Для проверки выполним следующее:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>осуществим загрузку с DVD/USB <em>в Legacy режиме</em>;</li>
+<li>в меню выберем вариант <strong>Memory test</strong>;</li>
+<li>выберем однопоточный, либо многопоточный режим (на многих процессорах многопоточный приводит к зависаниям системы, поэтому лучше выбирать однопоточный);</li>
+<li>запустим тест и подождём несколько часов (рекомендуется выполнять тестирование в течение как минимум 8-12 часов для выявления всех возможных дефектов памяти);</li>
+<li>по окончании нажмём <strong>Esc</strong> для выхода и перезагрузки компьютера.</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="cups">
+<span id="cups-web"></span><span id="index-51"></span><h2>Какой войти в веб-интерфейс CUPS?<a class="headerlink" href="#cups" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Система печати CUPS предоставляет возможность входа через веб-интерфейс, который запущен локально на <a class="reference external" href="http://127.0.0.1:631/">127.0.0.1:631</a>.</p>
+</div>
+<div class="section" id="hp-p1102">
+<span id="hp1102-drivers"></span><span id="index-52"></span><h2>Можно ли заставить работать принтер HP P1102 на свободных драйверах?<a class="headerlink" href="#hp-p1102" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, это возможно.</p>
+<p>Удалим hplip:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove hplip\*
+</pre></div>
+</div>
+<p>Установим стандартные драйверы принтеров:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install foomatic-db foomatic-db-ppds
+</pre></div>
+</div>
+<p>Установим пакет с <a class="reference external" href="http://foo2zjs.rkkda.com/">необходимыми утилитами</a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install foo2zjs foo2xqx
+</pre></div>
+</div>
+<p>Запустим модуль настройки CUPS (графический из используемой DE, либо <a class="reference internal" href="#cups-web"><span class="std std-ref">веб-интерфейс</span></a>), выберем из списка наше устройство <em>с суффиксом</em> <strong>driverless</strong>, осуществим стандартные настройки и завершим процедуру.</p>
+<p>Теперь принтер сможет работать без использования проприетарных плагинов и прошивок.</p>
+</div>
 </div>
 
 
@@ -753,6 +789,9 @@ connect AA:BB:CC:DD:EE:FF
 <li class="toctree-l2"><a class="reference internal" href="#hdd-spindown">Как принудительно остановить жёсткий диск?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#hdd-timeout">Как установить таймаут остановки жёсткого диска?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ips-ghosting">На мониторе отображаются артефакты уже закрытых окон. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#memory-testing">Как проверить оперативную память компьютера?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cups">Какой войти в веб-интерфейс CUPS?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hp-p1102">Можно ли заставить работать принтер HP P1102 на свободных драйверах?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Разработка и сборка пакетов</a></li>
