@@ -47,14 +47,19 @@
 Как лучше всего делать резервную копию корневого раздела?
 =============================================================
 
-Необходимо загрузиться с :ref:`Fedora LiveUSB <usb-flash>`, смонтировать раздел с корневой файловой системой и выполнить:
+Обязательно загрузимся с :ref:`Fedora LiveUSB <usb-flash>`, откроем эмулятор терминала запустим создание :ref:`посекторного образа <dd-mount>`:
 
 .. code-block:: text
 
-    sudo tar --one-file-system --selinux \
-    --exclude="$bdir/tmp/*" \
-    --exclude="$bdir/var/tmp/*" \
-    -cvJpf /путь/к/бэкапу.tar.xz -C /путь/к/корню .
+    sudo dd if=/dev/sda1 of=/path/to/image.raw bs=32M status=progress
+
+Воспользуемся утилитой **xz** для эффективного сжатия полученного образа диска:
+
+.. code-block:: text
+
+    sudo xz -9 -T$(nproc) /path/to/image.raw
+
+Здесь **/dev/sda1** - раздел диска, резервную копию которого требуется создать, а **/path/to/image.raw** - полный путь к файлу образа (должен находиться на другом диске).
 
 .. index:: initrd, rebuild initrd
 .. _initrd-rebuild:
