@@ -58,13 +58,15 @@
 </div>
 <div class="section" id="backup-create">
 <span id="index-3"></span><span id="id5"></span><h2>Как лучше всего делать резервную копию корневого раздела?<a class="headerlink" href="#backup-create" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо загрузиться с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>, смонтировать раздел с корневой файловой системой и выполнить:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo tar --one-file-system --selinux \
---exclude=&quot;$bdir/tmp/*&quot; \
---exclude=&quot;$bdir/var/tmp/*&quot; \
--cvJpf /путь/к/бэкапу.tar.xz -C /путь/к/корню .
+<p>Обязательно загрузимся с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>, откроем эмулятор терминала запустим создание <a class="reference internal" href="#dd-mount"><span class="std std-ref">посекторного образа</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/sda1 of=/path/to/image.raw bs=32M status=progress
 </pre></div>
 </div>
+<p>Воспользуемся утилитой <strong>xz</strong> для эффективного сжатия полученного образа диска:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo xz -9 -T$(nproc) /path/to/image.raw
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sda1</strong> - раздел диска, резервную копию которого требуется создать, а <strong>/path/to/image.raw</strong> - полный путь к файлу образа (должен находиться на другом диске).</p>
 </div>
 <div class="section" id="initrd">
 <span id="initrd-rebuild"></span><span id="index-4"></span><h2>Как мне пересобрать образ initrd?<a class="headerlink" href="#initrd" title="Ссылка на этот заголовок">¶</a></h2>
