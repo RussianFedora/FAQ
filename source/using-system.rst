@@ -117,18 +117,6 @@
 
 См. `здесь <https://www.easycoding.org/2016/08/08/uskoryaem-zavershenie-raboty-fedora-24.html>`__.
 
-.. index:: converting multiple files, convert, find
-.. _convert-multiple-files:
-
-Как конвертировать множество файлов в mp3 из текущего каталога?
-===================================================================
-
-Конвертируем все файлы с маской \*.ogg в mp3 в текущем каталоге:
-
-.. code-block:: text
-
-    find . -maxdepth 1 -type f -name "*.ogg" -exec ffmpeg -i "{}" -acodec mp3 -ab 192k "$(basename {}).mp3" \;
-
 .. index:: files, remove, find
 .. _remove-old-files:
 
@@ -243,14 +231,6 @@
 
     systemd-analyze plot > systemd-plot.svg
     xdg-open systemd-plot.svg
-
-.. index:: window, borders, kde plasma, kde
-.. _window-borders:
-
-Как убрать рамки внутри окон в KDE Plasma 5?
-===============================================
-
-Для этого следует открыть **Меню KDE** - **Компьютер** - **Параметры системы** - **Оформление приложений** - страница **Стиль интерфейса** - кнопка **Настроить** - вкладка **Рамки**, **убрать все флажки** из чекбоксов на данной странице и нажать кнопку **OK**.
 
 .. index:: window, gnome, scaling, scaling factor, hidpi, qt
 .. _window-hidpi-qt:
@@ -840,18 +820,6 @@ KDE предоставляет особый PAM модуль для автома
 .. code-block:: text
 
     neofetch
-
-.. index:: icons, cache, kde, plasma
-.. _kde-icons-refresh:
-
-Как обновить кэш значков приложений в главном меню KDE Plasma 5?
-===================================================================
-
-Обычно кэш обновляется автоматически при любых изменениях файлов внутри каталогов ``/usr/share/applications`` (глобально), а также ``~/.local/share/applications`` (пользователь), однако если по какой-то причине этого не произошло, выполним обновление кэшей вручную:
-
-.. code-block:: text
-
-    kbuildsycoca5 --noincremental
 
 .. index:: boot, plymouth, animation
 .. _plymouth-disable:
