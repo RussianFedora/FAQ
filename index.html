@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Неофициальный FAQ по Fedora &#8212; Документация Неофициальный FAQ по Fedora 2019.05.12</title>
+    <title>Неофициальный FAQ по Fedora &#8212; Документация Неофициальный FAQ по Fedora 2019.05.25</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -228,6 +228,8 @@
 <li class="toctree-l2"><a class="reference internal" href="administration.html#coredump-systemd">Что такое coredump и почему systemd сохраняет их?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="administration.html#codedump-limit">Как ограничить размер сохраняемых дампов памяти?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="administration.html#codedump-disable">Как полностью отключение сохранение дампов памяти?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="administration.html#kernel-postinstall">Как настроить автоматическое выполнение скрипта после установки нового ядра?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="administration.html#modprobe">При загрузке модуля ядра через modprobe я получаю ошибку. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a><ul>
@@ -357,6 +359,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Работа в системе</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#autocompletion">У меня в системе не работает автодополнение команд. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-system.html#dnf-completion">Не работает автодополнение имён пакетов. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#backup-system">Можно ли делать резервную копию корневого раздела работающей системы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#backup-home">Как сделать копию домашнего каталога?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#backup-create">Как лучше всего делать резервную копию корневого раздела?</a></li>
@@ -364,7 +367,6 @@
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#grub-2">Как мне переустановить Grub 2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#grub-rebuild">Как пересобрать конфиг Grub 2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#slow-shutdown">Система медленно завершает работу. Можно ли это ускорить?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#mp3">Как конвертировать множество файлов в mp3 из текущего каталога?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#remove-old-files">Как удалить любые файлы, старше 2 суток из указанного каталога?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#kde-gtk">Я использую KDE. Как мне настроить скорость двойного клика в GTK приложениях?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#block-screen">Возможно ли заблокировать экран из командной строки?</a></li>
@@ -372,7 +374,6 @@
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#shell">Можно ли из shell скрипта менять название терминала?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#configure-ntp">Как настроить синхронизацию времени?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#systemd-analyze">Как узнать какой сервис замедляет загрузку системы?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#kde-plasma-5">Как убрать рамки внутри окон в KDE Plasma 5?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#gnome-qt">У меня в Gnome не работает масштабирование окон Qt приложений. Что делать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#sddm">Как отключить виртуальную клавиатуру в SDDM?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#exfat-fedora">Почему я не могу использовать файловую систему exFAT в Fedora?</a></li>
@@ -404,7 +405,6 @@
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#application-timezone">Как запустить приложение с другим часовым поясом?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#x11-wayland">Как определить какой тип сессии используется: X11 или Wayland?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#neofetch">Как вывести в консоль краткую информацию об установленной системе?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#kde-icons-refresh">Как обновить кэш значков приложений в главном меню KDE Plasma 5?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#plymouth-disable">Как отключить анимированную каплю при загрузке системы?</a></li>
 </ul>
 </li>
@@ -426,6 +426,9 @@
 <li class="toctree-l2"><a class="reference internal" href="using-applications.html#kde-connect-firewalld">KDE Connect не видит мой смартфон. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-applications.html#dolphin">Как добавить новый тип файлов в меню Создать в Dolphin?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-applications.html#nautilus">Как добавить новый тип файлов в меню Создать в Nautilus?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#mp3">Как конвертировать множество файлов в mp3 из текущего каталога?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#kde-plasma-5">Как убрать рамки внутри окон в KDE Plasma 5?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#kde-icons-refresh">Как обновить кэш значков приложений в главном меню KDE Plasma 5?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-applications.html#chromium-commandline">Как постоянно запускать браузер Chromium с определёнными параметрами?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-applications.html#thunderbird-lightning">В установленном Thunderbird не обновляется расширение Lightning и языковые пакеты. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-applications.html#qr">Как распознать QR-код или штрих-код из консоли?</a></li>

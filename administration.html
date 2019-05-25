@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Системное администрирование &#8212; Документация Неофициальный FAQ по Fedora 2019.05.12</title>
+    <title>Системное администрирование &#8212; Документация Неофициальный FAQ по Fedora 2019.05.25</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -852,6 +852,17 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 </div>
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
 </div>
+<div class="section" id="kernel-postinstall">
+<span id="index-69"></span><span id="id50"></span><h2>Как настроить автоматическое выполнение скрипта после установки нового ядра?<a class="headerlink" href="#kernel-postinstall" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для того, чтобы выполнять какой-либо shell-скрипт сразу после окончания установки ядра Linux, поместим его в каталог <code class="docutils literal notranslate"><span class="pre">/etc/kernel/postinst.d</span></code> с chmod <strong>0755</strong>.</p>
+<p>Скрипты из него всегда выполняются в алфавитном порядке, т.е. <strong>00-foo.sh</strong> запустится раньше, чем <strong>zz-bar.sh</strong>, поэтому данную особенность можно использовать для изменения порядка их запуска.</p>
+<p>Каждому скрипту в качестве параметра передаётся версия установленного ядра, которую можно получить через <code class="docutils literal notranslate"><span class="pre">${1}</span></code>.</p>
+</div>
+<div class="section" id="modprobe">
+<span id="modprobe-sberr"></span><span id="index-70"></span><h2>При загрузке модуля ядра через modprobe я получаю ошибку. Как исправить?<a class="headerlink" href="#modprobe" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если при попытке загрузки модуля ядра при помощи modprobe с правами суперпользователя воникает ошибка <em>modprobe: ERROR: could not insert „XXXXXXX“: Operation not permitted</em>, значит включён режим <a class="reference internal" href="installation.html#secure-boot"><span class="std std-ref">UEFI Secure Boot</span></a>, а данный модуль не имеет цифровой подписи.</p>
+<p>Необходимо либо отключить Secure Boot в настройках UEFI компьютера, либо подписать его действительной цифровой подписью.</p>
+</div>
 </div>
 
 
@@ -947,6 +958,8 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <li class="toctree-l2"><a class="reference internal" href="#coredump-systemd">Что такое coredump и почему systemd сохраняет их?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#codedump-limit">Как ограничить размер сохраняемых дампов памяти?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#codedump-disable">Как полностью отключение сохранение дампов памяти?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kernel-postinstall">Как настроить автоматическое выполнение скрипта после установки нового ядра?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modprobe">При загрузке модуля ядра через modprobe я получаю ошибку. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>

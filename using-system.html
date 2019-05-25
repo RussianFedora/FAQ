@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Работа в системе &#8212; Документация Неофициальный FAQ по Fedora 2019.05.12</title>
+    <title>Работа в системе &#8212; Документация Неофициальный FAQ по Fedora 2019.05.25</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -48,16 +48,21 @@
 </div>
 <p>При определённых условиях он может не быть установлен и из-за этого система автоматического дополнения команд может перестать функционировать.</p>
 </div>
+<div class="section" id="dnf-completion">
+<span id="index-1"></span><span id="id3"></span><h2>Не работает автодополнение имён пакетов. Как исправить?<a class="headerlink" href="#dnf-completion" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Существует <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1625674">баг</a>, который блокирует возможность использования автоматического дополнения имён пакетов в dnf при наличии в системе подключённых сторонних репозиториев.</p>
+<p>В качестве временного решения можно прекратить их использование.</p>
+</div>
 <div class="section" id="backup-system">
-<span id="index-1"></span><span id="id3"></span><h2>Можно ли делать резервную копию корневого раздела работающей системы?<a class="headerlink" href="#backup-system" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-2"></span><span id="id4"></span><h2>Можно ли делать резервную копию корневого раздела работающей системы?<a class="headerlink" href="#backup-system" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Настоятельно не рекомендуется из-за множества работающих виртуальных файловых систем и псевдофайлов в <code class="docutils literal notranslate"><span class="pre">/sys</span></code>, <code class="docutils literal notranslate"><span class="pre">/dev</span></code>, <code class="docutils literal notranslate"><span class="pre">/proc</span></code> и т.д.</p>
 </div>
 <div class="section" id="backup-home">
-<span id="index-2"></span><span id="id4"></span><h2>Как сделать копию домашнего каталога?<a class="headerlink" href="#backup-home" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-3"></span><span id="id5"></span><h2>Как сделать копию домашнего каталога?<a class="headerlink" href="#backup-home" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2017/09/03/avtomatiziruem-rezervnoe-kopirovanie-v-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="backup-create">
-<span id="index-3"></span><span id="id5"></span><h2>Как лучше всего делать резервную копию корневого раздела?<a class="headerlink" href="#backup-create" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-4"></span><span id="id6"></span><h2>Как лучше всего делать резервную копию корневого раздела?<a class="headerlink" href="#backup-create" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Обязательно загрузимся с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>, откроем эмулятор терминала запустим создание <a class="reference internal" href="#dd-mount"><span class="std std-ref">посекторного образа</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/sda1 of=/path/to/image.raw bs=32M status=progress
 </pre></div>
@@ -69,18 +74,18 @@
 <p>Здесь <strong>/dev/sda1</strong> - раздел диска, резервную копию которого требуется создать, а <strong>/path/to/image.raw</strong> - полный путь к файлу образа (должен находиться на другом разделе диска).</p>
 </div>
 <div class="section" id="initrd">
-<span id="initrd-rebuild"></span><span id="index-4"></span><h2>Как мне пересобрать образ initrd?<a class="headerlink" href="#initrd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="initrd-rebuild"></span><span id="index-5"></span><h2>Как мне пересобрать образ initrd?<a class="headerlink" href="#initrd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для пересборки образа initrd следует выполнить:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut -f
 </pre></div>
 </div>
 </div>
 <div class="section" id="grub-2">
-<span id="grub-reinstall"></span><span id="index-5"></span><h2>Как мне переустановить Grub 2?<a class="headerlink" href="#grub-2" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="grub-reinstall"></span><span id="index-6"></span><h2>Как мне переустановить Grub 2?<a class="headerlink" href="#grub-2" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://fedoraproject.org/wiki/GRUB_2">здесь</a>.</p>
 </div>
 <div class="section" id="grub-rebuild">
-<span id="index-6"></span><span id="id6"></span><h2>Как пересобрать конфиг Grub 2?<a class="headerlink" href="#grub-rebuild" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-7"></span><span id="id7"></span><h2>Как пересобрать конфиг Grub 2?<a class="headerlink" href="#grub-rebuild" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Пересборка конфига Grub 2 для legacy конфигураций:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 </pre></div>
@@ -91,18 +96,11 @@
 </div>
 </div>
 <div class="section" id="slow-shutdown">
-<span id="index-7"></span><span id="id7"></span><h2>Система медленно завершает работу. Можно ли это ускорить?<a class="headerlink" href="#slow-shutdown" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-8"></span><span id="id8"></span><h2>Система медленно завершает работу. Можно ли это ускорить?<a class="headerlink" href="#slow-shutdown" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2016/08/08/uskoryaem-zavershenie-raboty-fedora-24.html">здесь</a>.</p>
 </div>
-<div class="section" id="mp3">
-<span id="convert-multiple-files"></span><span id="index-8"></span><h2>Как конвертировать множество файлов в mp3 из текущего каталога?<a class="headerlink" href="#mp3" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Конвертируем все файлы с маской *.ogg в mp3 в текущем каталоге:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find . -maxdepth 1 -type f -name &quot;*.ogg&quot; -exec ffmpeg -i &quot;{}&quot; -acodec mp3 -ab 192k &quot;$(basename {}).mp3&quot; \;
-</pre></div>
-</div>
-</div>
 <div class="section" id="remove-old-files">
-<span id="index-9"></span><span id="id8"></span><h2>Как удалить любые файлы, старше 2 суток из указанного каталога?<a class="headerlink" href="#remove-old-files" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-9"></span><span id="id9"></span><h2>Как удалить любые файлы, старше 2 суток из указанного каталога?<a class="headerlink" href="#remove-old-files" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Ресурсивно удаляем файлы старше 2 суток в указанном каталоге:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find ~/foo-bar -type f -mtime +2 -delete
 </pre></div>
@@ -126,7 +124,7 @@
 <p>Здесь <strong>1000</strong> — время в миллисекундах до активации двойного клика. Документация с подробным описанием всех переменных данных файлов конфигурации <a class="reference external" href="https://developer.gnome.org/gtk3/stable/GtkSettings.html">здесь</a>.</p>
 </div>
 <div class="section" id="block-screen">
-<span id="index-11"></span><span id="id9"></span><h2>Возможно ли заблокировать экран из командной строки?<a class="headerlink" href="#block-screen" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-11"></span><span id="id10"></span><h2>Возможно ли заблокировать экран из командной строки?<a class="headerlink" href="#block-screen" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>loginctl lock-session
 </pre></div>
@@ -145,7 +143,7 @@
 <p>Да, при помощи <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B8%D0%B5_%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8_ANSI">управляющих последовательностей</a>. Ими же можно менять цвет текста вывода и многое другое.</p>
 </div>
 <div class="section" id="configure-ntp">
-<span id="index-14"></span><span id="id10"></span><h2>Как настроить синхронизацию времени?<a class="headerlink" href="#configure-ntp" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-14"></span><span id="id11"></span><h2>Как настроить синхронизацию времени?<a class="headerlink" href="#configure-ntp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В Fedora для этой цели используется chronyd, который установлен и запущен по умолчанию.</p>
 <p>Чтобы узнать включена ли синхронизация времени с NTP серверами, можно использовать утилиту <strong>timedatectl</strong>.</p>
 <p>Если синхронизация отключена, нужно убедиться, что сервис chronyd активирован:</p>
@@ -158,7 +156,7 @@
 </div>
 </div>
 <div class="section" id="systemd-analyze">
-<span id="index-15"></span><span id="id11"></span><h2>Как узнать какой сервис замедляет загрузку системы?<a class="headerlink" href="#systemd-analyze" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-15"></span><span id="id12"></span><h2>Как узнать какой сервис замедляет загрузку системы?<a class="headerlink" href="#systemd-analyze" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Вывод информации в виде текста:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemd-analyze blame
 </pre></div>
@@ -169,12 +167,8 @@ xdg-open systemd-plot.svg
 </pre></div>
 </div>
 </div>
-<div class="section" id="kde-plasma-5">
-<span id="window-borders"></span><span id="index-16"></span><h2>Как убрать рамки внутри окон в KDE Plasma 5?<a class="headerlink" href="#kde-plasma-5" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для этого следует открыть <strong>Меню KDE</strong> - <strong>Компьютер</strong> - <strong>Параметры системы</strong> - <strong>Оформление приложений</strong> - страница <strong>Стиль интерфейса</strong> - кнопка <strong>Настроить</strong> - вкладка <strong>Рамки</strong>, <strong>убрать все флажки</strong> из чекбоксов на данной странице и нажать кнопку <strong>OK</strong>.</p>
-</div>
 <div class="section" id="gnome-qt">
-<span id="window-hidpi-qt"></span><span id="index-17"></span><h2>У меня в Gnome не работает масштабирование окон Qt приложений. Что делать?<a class="headerlink" href="#gnome-qt" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="window-hidpi-qt"></span><span id="index-16"></span><h2>У меня в Gnome не работает масштабирование окон Qt приложений. Что делать?<a class="headerlink" href="#gnome-qt" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для активации автоматического масштабирования достаточно прописать в файле <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> следующие строки:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export QT_SCALE_FACTOR=2
@@ -194,7 +188,7 @@ export QT_SCALE_FACTOR=2
 <p>Более подробную информацию можно найти в <a class="reference external" href="https://doc.qt.io/qt-5/highdpi.html">документации Qt</a>.</p>
 </div>
 <div class="section" id="sddm">
-<span id="sddm-disable-vkb"></span><span id="index-18"></span><h2>Как отключить виртуальную клавиатуру в SDDM?<a class="headerlink" href="#sddm" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="sddm-disable-vkb"></span><span id="index-17"></span><h2>Как отключить виртуальную клавиатуру в SDDM?<a class="headerlink" href="#sddm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы отключить поддержку ввода с виртуальной экранной клавиатуры в менеджере входа в систему SDDM, откроем в текстовом редакторе файл <code class="docutils literal notranslate"><span class="pre">/etc/sddm.conf</span></code>, а затем найдём и удалим следующую строку:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>InputMethod=qtvirtualkeyboard
 </pre></div>
@@ -206,7 +200,7 @@ export QT_SCALE_FACTOR=2
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
 </div>
 <div class="section" id="exfat-fedora">
-<span id="fedora-exfat"></span><span id="index-19"></span><h2>Почему я не могу использовать файловую систему exFAT в Fedora?<a class="headerlink" href="#exfat-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fedora-exfat"></span><span id="index-18"></span><h2>Почему я не могу использовать файловую систему exFAT в Fedora?<a class="headerlink" href="#exfat-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p><a class="reference internal" href="installation.html#fs-selection"><span class="std std-ref">Файловая система</span></a> exFAT защищена множеством патентов Microsoft, поэтому она не может быть включена в ядро Linux и соответственно быть доступной в Fedora по умолчанию.</p>
 <p>Для того, чтобы использовать её, необходимо установить пакет <strong>fuse-exfat</strong> из <a class="reference internal" href="package-manager.html#rd-repositories"><span class="std std-ref">репозитория</span></a> <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install fuse fuse-exfat
@@ -214,7 +208,7 @@ export QT_SCALE_FACTOR=2
 </div>
 </div>
 <div class="section" id="failed-to-start-load-kernel-modules">
-<span id="failed-to-start"></span><span id="index-20"></span><h2>При загрузке системы появляется ошибка Failed to start Load Kernel Modules. Как исправить?<a class="headerlink" href="#failed-to-start-load-kernel-modules" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="failed-to-start"></span><span id="index-19"></span><h2>При загрузке системы появляется ошибка Failed to start Load Kernel Modules. Как исправить?<a class="headerlink" href="#failed-to-start-load-kernel-modules" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Это известная проблема системы виртуализации <a class="reference internal" href="virtualization.html#virtualbox"><span class="std std-ref">VirtualBox</span></a>, использующей out-of-tree модули ядра, но может также проявляться и у пользователей проприетарных <a class="reference internal" href="hardware.html#broadcom-drivers"><span class="std std-ref">драйверов Broadcom</span></a>.</p>
 <p>Для исправления необходимо <strong>после каждого обновления ядра</strong> выполнять пересборку initrd:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut -f
@@ -226,7 +220,7 @@ export QT_SCALE_FACTOR=2
 </div>
 </div>
 <div class="section" id="kwallet">
-<span id="kwallet-pam"></span><span id="index-21"></span><h2>Как настроить автоматическую разблокировку связки ключей KWallet при входе в систему?<a class="headerlink" href="#kwallet" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="kwallet-pam"></span><span id="index-20"></span><h2>Как настроить автоматическую разблокировку связки ключей KWallet при входе в систему?<a class="headerlink" href="#kwallet" title="Ссылка на этот заголовок">¶</a></h2>
 <p>KDE предоставляет особый PAM модуль для автоматической разблокировки связки паролей KDE Wallet при входе в систему. Установим его:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install pam-kwallet
 </pre></div>
@@ -235,7 +229,7 @@ export QT_SCALE_FACTOR=2
 <p>Сохраняем изменения и повторно входим в систему.</p>
 </div>
 <div class="section" id="xdg-reallocate">
-<span id="index-22"></span><span id="id12"></span><h2>Как переместить стандартные каталоги для документов, загрузок и т.д.?<a class="headerlink" href="#xdg-reallocate" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-21"></span><span id="id13"></span><h2>Как переместить стандартные каталоги для документов, загрузок и т.д.?<a class="headerlink" href="#xdg-reallocate" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">~/.config/user-dirs.dirs</span></code> в любом текстовом редакторе и внесём свои правки.</p>
 <p>Стандартные настройки:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">XDG_DESKTOP_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Рабочий стол&quot;</span>
@@ -255,7 +249,7 @@ export QT_SCALE_FACTOR=2
 <p>Убедитесь, что перед применением изменений данные каталоги существуют, иначе будет выполнен сброс на стандартное значение.</p>
 </div>
 <div class="section" id="hidpi-sddm">
-<span id="sddm-hidpi"></span><span id="index-23"></span><h2>У меня HiDPI дисплей и в SDDM всё отображается очень мелко. Как настроить?<a class="headerlink" href="#hidpi-sddm" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="sddm-hidpi"></span><span id="index-22"></span><h2>У меня HiDPI дисплей и в SDDM всё отображается очень мелко. Как настроить?<a class="headerlink" href="#hidpi-sddm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/sddm.conf</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/sddm.conf
 </pre></div>
@@ -271,7 +265,7 @@ export QT_SCALE_FACTOR=2
 <p>Сохраним изменения и перезапустим систему.</p>
 </div>
 <div class="section" id="sddm-avatars">
-<span id="index-24"></span><span id="id13"></span><h2>Как отключить отображение пользовательских аватаров в SDDM?<a class="headerlink" href="#sddm-avatars" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-23"></span><span id="id14"></span><h2>Как отключить отображение пользовательских аватаров в SDDM?<a class="headerlink" href="#sddm-avatars" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Пользовательские аватары представляют собой файл <code class="docutils literal notranslate"><span class="pre">~/.face.icon</span></code>. При запуске SDDM пытается прочитать его для каждого существующего пользователя.</p>
 <p>Для отключения данной функции откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/sddm.conf</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/sddm.conf
@@ -285,7 +279,7 @@ export QT_SCALE_FACTOR=2
 <p>Сохраним изменения и перезапустим систему.</p>
 </div>
 <div class="section" id="power-usage">
-<span id="index-25"></span><span id="id14"></span><h2>Как узнать какие процессы больше всего разряжают аккумулятор ноутбука?<a class="headerlink" href="#power-usage" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-24"></span><span id="id15"></span><h2>Как узнать какие процессы больше всего разряжают аккумулятор ноутбука?<a class="headerlink" href="#power-usage" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим утилиту <strong>powertop</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install powertop
 </pre></div>
@@ -297,7 +291,7 @@ export QT_SCALE_FACTOR=2
 <p>Процессы, которые больше всех влияют на скорость разряда аккумуляторных батарей, будут отображаться в верхней части.</p>
 </div>
 <div class="section" id="system-info">
-<span id="index-26"></span><span id="id15"></span><h2>Как собрать информацию о системе?<a class="headerlink" href="#system-info" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-25"></span><span id="id16"></span><h2>Как собрать информацию о системе?<a class="headerlink" href="#system-info" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим утилиту <strong>inxi</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install inxi
 </pre></div>
@@ -309,7 +303,7 @@ export QT_SCALE_FACTOR=2
 <p>На выходе будет сгенерирована уникальная ссылка, которую можно передать на <a class="reference internal" href="generic-info.html#get-help"><span class="std std-ref">форум, в чат</span></a> и т.д.</p>
 </div>
 <div class="section" id="l2tp">
-<span id="nm-l2tp"></span><span id="index-27"></span><h2>Мой провайдер использует L2TP. Как мне добавить его поддержку?<a class="headerlink" href="#l2tp" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="nm-l2tp"></span><span id="index-26"></span><h2>Мой провайдер использует L2TP. Как мне добавить его поддержку?<a class="headerlink" href="#l2tp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Плагин L2TP для Network Manager должен присутствовать в Workstation и всех spin live образах по умолчанию, но если его по какой-то причине нет (например была выборана минимальная установка netinstall), то добавить его можно самостоятельно.</p>
 <p>Для Gnome/XFCE и других, основанных на GTK:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install NetworkManager-l2tp-gnome
@@ -323,7 +317,7 @@ export QT_SCALE_FACTOR=2
 <p>Однако следует помнить, что у некоторых провайдеров используется L2TP со специальными патчами Microsoft (т.н. win реализация), что может вызывать нестабильность и сбои при подключении. В таком случае рекомендуется приобрести любой недорогой роутер с поддержкой L2TP (можно б/у) и использовать его в качестве клиента для подключения к сети провайдера.</p>
 </div>
 <div class="section" id="wi-fi">
-<span id="nm-wificon"></span><span id="index-28"></span><h2>Как подключиться к Wi-Fi из консоли?<a class="headerlink" href="#wi-fi" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="nm-wificon"></span><span id="index-27"></span><h2>Как подключиться к Wi-Fi из консоли?<a class="headerlink" href="#wi-fi" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если ранее уже были созданы Wi-Fi подключения, то выведем их список:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nmcli connection | grep wifi
 </pre></div>
@@ -334,7 +328,7 @@ export QT_SCALE_FACTOR=2
 </div>
 </div>
 <div class="section" id="nm-wificli">
-<span id="index-29"></span><span id="id16"></span><h2>Как подключиться к Wi-Fi из консоли при отсутствии соединений?<a class="headerlink" href="#nm-wificli" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-28"></span><span id="id17"></span><h2>Как подключиться к Wi-Fi из консоли при отсутствии соединений?<a class="headerlink" href="#nm-wificli" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если <a class="reference internal" href="#nm-wificon"><span class="std std-ref">готовых соединений</span></a> для Wi-Fi нет, но известны SSID и пароль, то можно осуществить подключение напрямую:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nmcli device wifi connect MY_NETWORK password XXXXXXXXXX
 </pre></div>
@@ -342,7 +336,7 @@ export QT_SCALE_FACTOR=2
 <p>Здесь <strong>MY_NETWORK</strong> - название SSID точки доступа, к которой мы планируем подключиться, а <strong>XXXXXXXXXX</strong> - её пароль.</p>
 </div>
 <div class="section" id="editor-selection">
-<span id="index-30"></span><span id="id17"></span><h2>Как выбрать предпочитаемый текстовый редактор в консольном режиме?<a class="headerlink" href="#editor-selection" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-29"></span><span id="id18"></span><h2>Как выбрать предпочитаемый текстовый редактор в консольном режиме?<a class="headerlink" href="#editor-selection" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для выбора предпочитаемого текстового редактора следует применять <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменные окружения</span></a>, прописав их в личном файле <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export VISUAL=vim
 export EDITOR=vim
@@ -352,14 +346,14 @@ export SUDO_EDITOR=vim
 <p><strong>VISUAL</strong> - предпочитаемый текстовый редактор с графическим интерфейсом пользователя, <strong>EDITOR</strong> - текстовый, а <strong>SUDO_EDITOR</strong> используется в <a class="reference internal" href="security.html#sudo-edit-config"><span class="std std-ref">sudoedit</span></a>.</p>
 </div>
 <div class="section" id="git">
-<span id="editor-git"></span><span id="index-31"></span><h2>Как выбрать предпочитаемый текстовый редактор для Git?<a class="headerlink" href="#git" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="editor-git"></span><span id="index-30"></span><h2>Как выбрать предпочитаемый текстовый редактор для Git?<a class="headerlink" href="#git" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Хотя Git подчиняется настройкам <a class="reference internal" href="#editor-selection"><span class="std std-ref">редактора по умолчанию</span></a>, допустимо его указать явно в файле конфигурации:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git config --global core.editor vim
 </pre></div>
 </div>
 </div>
 <div class="section" id="iso-fedora">
-<span id="iso-mount"></span><span id="index-32"></span><h2>Как смонтировать ISO образ в Fedora?<a class="headerlink" href="#iso-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="iso-mount"></span><span id="index-31"></span><h2>Как смонтировать ISO образ в Fedora?<a class="headerlink" href="#iso-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Создадим точку монтирования:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /mnt/iso
 </pre></div>
@@ -374,7 +368,7 @@ export SUDO_EDITOR=vim
 </div>
 </div>
 <div class="section" id="cd-dvd-iso">
-<span id="iso-create"></span><span id="index-33"></span><h2>Как считать содержимое CD/DVD диска в файл ISO образа?<a class="headerlink" href="#cd-dvd-iso" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="iso-create"></span><span id="index-32"></span><h2>Как считать содержимое CD/DVD диска в файл ISO образа?<a class="headerlink" href="#cd-dvd-iso" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этого можно воспользоваться утилитой <strong>dd</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/sr0 of=/path/to/image.iso bs=4M status=progress
 </pre></div>
@@ -382,7 +376,7 @@ export SUDO_EDITOR=vim
 <p>Здесь <strong>/dev/sr0</strong> имя устройства привода для чтения оптических дисков, а <strong>/path/to/image.iso</strong> - файл образа, в котором будет сохранён результат.</p>
 </div>
 <div class="section" id="dd-mount">
-<span id="index-34"></span><span id="id18"></span><h2>Как смонтировать посекторный образ раздела?<a class="headerlink" href="#dd-mount" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-33"></span><span id="id19"></span><h2>Как смонтировать посекторный образ раздела?<a class="headerlink" href="#dd-mount" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Монтирование raw образа раздела, созданного посредством утилиты <strong>dd</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mount -o ro,loop /path/to/image.raw /mnt/dd-image
 </pre></div>
@@ -394,7 +388,7 @@ export SUDO_EDITOR=vim
 <p>Здесь <strong>/path/to/image.iso</strong> - файл образа на диске.</p>
 </div>
 <div class="section" id="dd-fullraw">
-<span id="index-35"></span><span id="id19"></span><h2>Как смонтировать посекторный образ диска целиком?<a class="headerlink" href="#dd-fullraw" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-34"></span><span id="id20"></span><h2>Как смонтировать посекторный образ диска целиком?<a class="headerlink" href="#dd-fullraw" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Смонтировать образ диска целиком напрямую не получится, поэтому сначала придётся определить смещения разделов относительно его начала.</p>
 <p>Запустим утилиту <strong>fdisk</strong> и попытаемся найти внутри образа разделы:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fdisk -l /path/to/image.raw
@@ -413,14 +407,14 @@ export SUDO_EDITOR=vim
 <p>Здесь <strong>/path/to/image.iso</strong> - файл образа на диске.</p>
 </div>
 <div class="section" id="set-timezone">
-<span id="index-36"></span><span id="id20"></span><h2>Как изменить часовой пояс?<a class="headerlink" href="#set-timezone" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-35"></span><span id="id21"></span><h2>Как изменить часовой пояс?<a class="headerlink" href="#set-timezone" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Изменить часовой пояс можно посредством утилиты <strong>timedatectl</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo timedatectl set-timezone Europe/Moscow
 </pre></div>
 </div>
 </div>
 <div class="section" id="set-keyboard-gui">
-<span id="index-37"></span><span id="id21"></span><h2>Как изменить список доступных раскладок клавиатуры и настроить их переключение в графическом режиме?<a class="headerlink" href="#set-keyboard-gui" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-36"></span><span id="id22"></span><h2>Как изменить список доступных раскладок клавиатуры и настроить их переключение в графическом режиме?<a class="headerlink" href="#set-keyboard-gui" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Настройка переключения по <strong>Alt + Shift</strong>, раскладки EN и RU:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo localectl set-x11-keymap us,ru pc105 &quot;&quot; grp:alt_shift_toggle
 </pre></div>
@@ -431,7 +425,7 @@ export SUDO_EDITOR=vim
 </div>
 </div>
 <div class="section" id="set-keyboard-console">
-<span id="index-38"></span><span id="id22"></span><h2>Как изменить список доступных раскладок клавиатуры и настроить их переключение в текстовом режиме?<a class="headerlink" href="#set-keyboard-console" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-37"></span><span id="id23"></span><h2>Как изменить список доступных раскладок клавиатуры и настроить их переключение в текстовом режиме?<a class="headerlink" href="#set-keyboard-console" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установка русской раскладки и режимов переключения по умолчанию (<strong>Alt + Shift</strong>):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo localectl set-keymap ru
 </pre></div>
@@ -446,7 +440,7 @@ export SUDO_EDITOR=vim
 </div>
 </div>
 <div class="section" id="gtk-kde">
-<span id="gtk-plasma-style"></span><span id="index-39"></span><h2>Можно ли заставить GTK приложения выглядеть нативно в KDE?<a class="headerlink" href="#gtk-kde" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="gtk-plasma-style"></span><span id="index-38"></span><h2>Можно ли заставить GTK приложения выглядеть нативно в KDE?<a class="headerlink" href="#gtk-kde" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет с темой Breeze для GTK2 и GTK3:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install breeze-gtk
 </pre></div>
@@ -456,7 +450,7 @@ export SUDO_EDITOR=vim
 <p>Также установим <strong>Breeze</strong> для курсоров мыши и темы значков. Применим изменения и перезапустим все GTK приложения.</p>
 </div>
 <div class="section" id="bash-hotkeys">
-<span id="index-40"></span><span id="id23"></span><h2>Какие полезные комбинации клавиш существуют при наборе команд в терминале?<a class="headerlink" href="#bash-hotkeys" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-39"></span><span id="id24"></span><h2>Какие полезные комбинации клавиш существуют при наборе команд в терминале?<a class="headerlink" href="#bash-hotkeys" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Существуют следующие комбинации:</p>
 <blockquote>
 <div><ul class="simple">
@@ -475,12 +469,12 @@ export SUDO_EDITOR=vim
 </div></blockquote>
 </div>
 <div class="section" id="kde-link-mime">
-<span id="index-41"></span><span id="id24"></span><h2>При нажатии по любой гиперссылке она открывается не в браузере, а соответствующем приложении. Как исправить?<a class="headerlink" href="#kde-link-mime" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-40"></span><span id="id25"></span><h2>При нажатии по любой гиперссылке она открывается не в браузере, а соответствующем приложении. Как исправить?<a class="headerlink" href="#kde-link-mime" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Согласно настроек по умолчанию, при нажатии на любую ссылку вне браузера (например в мессенджере) компонент KDE KIO попытается определить mime-тип файла, загружаемого по ней, и открыть её в ассоциированном с приложении. Например если это изображение JPEG, то оно будет загружено в Gwenview.</p>
 <p>Отключить данную функцию можно в <strong>Параметры системы</strong> - <strong>Предпочтения пользователя</strong> - <strong>Приложения</strong> - <strong>Приложения по умолчанию</strong> - раздел <strong>Браузер</strong> - пункт <strong>Открывать адреса http и https</strong> - <strong>В следующем приложении</strong> - <strong>Firefox</strong>.</p>
 </div>
 <div class="section" id="file-types">
-<span id="index-42"></span><span id="id25"></span><h2>Как файловые менеджеры определяют типы файлов?<a class="headerlink" href="#file-types" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-41"></span><span id="id26"></span><h2>Как файловые менеджеры определяют типы файлов?<a class="headerlink" href="#file-types" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если в ОС Microsoft Windows тип файлов определяется исключительно по их расширению, то в GNU/Linux для этого используется <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_MIME-%D1%82%D0%B8%D0%BF%D0%BE%D0%B2">mime-типы</a>.</p>
 <p>В системе ведётся база соответствия mime-типов установленным приложениям, соответствующая <a class="reference external" href="https://specifications.freedesktop.org/mime-apps-spec/mime-apps-spec-latest.html">стандарту XDG Free Desktop</a>.</p>
 <p>Для получения mime-типа конкретного файла можно использовать утилиту <strong>file</strong>:</p>
@@ -493,7 +487,7 @@ export SUDO_EDITOR=vim
 </div>
 </div>
 <div class="section" id="system-locale">
-<span id="index-43"></span><span id="id26"></span><h2>Как изменить язык (локализацию) системы?<a class="headerlink" href="#system-locale" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-42"></span><span id="id27"></span><h2>Как изменить язык (локализацию) системы?<a class="headerlink" href="#system-locale" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Получим список доступных локалей:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>localectl list-locales
 </pre></div>
@@ -508,14 +502,14 @@ export SUDO_EDITOR=vim
 </div>
 </div>
 <div class="section" id="application-locale">
-<span id="index-44"></span><span id="id27"></span><h2>Как запустить приложение с другой локалью?<a class="headerlink" href="#application-locale" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-43"></span><span id="id28"></span><h2>Как запустить приложение с другой локалью?<a class="headerlink" href="#application-locale" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для запуска приложения с другой локалью необходимо передать ему новое значение в <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменной окружения</span></a> <strong>LANG</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>LANG=en_US.utf8 foo-bar
 </pre></div>
 </div>
 </div>
 <div class="section" id="application-timezone">
-<span id="index-45"></span><span id="id28"></span><h2>Как запустить приложение с другим часовым поясом?<a class="headerlink" href="#application-timezone" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-44"></span><span id="id29"></span><h2>Как запустить приложение с другим часовым поясом?<a class="headerlink" href="#application-timezone" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для запуска приложения с другим часовым поясом необходимо передать ему новое значение в <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменной окружения</span></a> <strong>TZ</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>TZ=CET foo-bar
 </pre></div>
@@ -523,14 +517,14 @@ export SUDO_EDITOR=vim
 <p>Здесь вместо <strong>CET</strong> следует указать название часового пояса.</p>
 </div>
 <div class="section" id="x11-wayland">
-<span id="session-type"></span><span id="index-46"></span><h2>Как определить какой тип сессии используется: X11 или Wayland?<a class="headerlink" href="#x11-wayland" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="session-type"></span><span id="index-45"></span><h2>Как определить какой тип сессии используется: X11 или Wayland?<a class="headerlink" href="#x11-wayland" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для определения типа текущей сессии, необходимо получить значение глобальной <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменной окружения</span></a> <strong>XDG_SESSION_TYPE</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>echo $XDG_SESSION_TYPE
 </pre></div>
 </div>
 </div>
 <div class="section" id="neofetch">
-<span id="index-47"></span><span id="id29"></span><h2>Как вывести в консоль краткую информацию об установленной системе?<a class="headerlink" href="#neofetch" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-46"></span><span id="id30"></span><h2>Как вывести в консоль краткую информацию об установленной системе?<a class="headerlink" href="#neofetch" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим neofetch:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install neofetch
 </pre></div>
@@ -540,15 +534,8 @@ export SUDO_EDITOR=vim
 </pre></div>
 </div>
 </div>
-<div class="section" id="kde-icons-refresh">
-<span id="index-48"></span><span id="id30"></span><h2>Как обновить кэш значков приложений в главном меню KDE Plasma 5?<a class="headerlink" href="#kde-icons-refresh" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Обычно кэш обновляется автоматически при любых изменениях файлов внутри каталогов <code class="docutils literal notranslate"><span class="pre">/usr/share/applications</span></code> (глобально), а также <code class="docutils literal notranslate"><span class="pre">~/.local/share/applications</span></code> (пользователь), однако если по какой-то причине этого не произошло, выполним обновление кэшей вручную:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kbuildsycoca5 --noincremental
-</pre></div>
-</div>
-</div>
 <div class="section" id="plymouth-disable">
-<span id="index-49"></span><span id="id31"></span><h2>Как отключить анимированную каплю при загрузке системы?<a class="headerlink" href="#plymouth-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-47"></span><span id="id31"></span><h2>Как отключить анимированную каплю при загрузке системы?<a class="headerlink" href="#plymouth-disable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для отключения анимации загрузки (plymouth boot screen) необходимо и достаточно <a class="reference internal" href="administration.html#kernelpm-perm"><span class="std std-ref">добавить параметры ядра</span></a> <code class="docutils literal notranslate"><span class="pre">rd.plymouth=0</span> <span class="pre">plymouth.enable=0</span></code>, после чего <a class="reference internal" href="#grub-rebuild"><span class="std std-ref">пересобрать конфиг Grub 2</span></a>.</p>
 </div>
 </div>
@@ -582,6 +569,7 @@ export SUDO_EDITOR=vim
 <li class="toctree-l1"><a class="reference internal" href="security.html">Безопасность</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Работа в системе</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#autocompletion">У меня в системе не работает автодополнение команд. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-completion">Не работает автодополнение имён пакетов. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#backup-system">Можно ли делать резервную копию корневого раздела работающей системы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#backup-home">Как сделать копию домашнего каталога?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#backup-create">Как лучше всего делать резервную копию корневого раздела?</a></li>
@@ -589,7 +577,6 @@ export SUDO_EDITOR=vim
 <li class="toctree-l2"><a class="reference internal" href="#grub-2">Как мне переустановить Grub 2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#grub-rebuild">Как пересобрать конфиг Grub 2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slow-shutdown">Система медленно завершает работу. Можно ли это ускорить?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#mp3">Как конвертировать множество файлов в mp3 из текущего каталога?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#remove-old-files">Как удалить любые файлы, старше 2 суток из указанного каталога?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde-gtk">Я использую KDE. Как мне настроить скорость двойного клика в GTK приложениях?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#block-screen">Возможно ли заблокировать экран из командной строки?</a></li>
@@ -597,7 +584,6 @@ export SUDO_EDITOR=vim
 <li class="toctree-l2"><a class="reference internal" href="#shell">Можно ли из shell скрипта менять название терминала?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configure-ntp">Как настроить синхронизацию времени?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#systemd-analyze">Как узнать какой сервис замедляет загрузку системы?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#kde-plasma-5">Как убрать рамки внутри окон в KDE Plasma 5?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gnome-qt">У меня в Gnome не работает масштабирование окон Qt приложений. Что делать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sddm">Как отключить виртуальную клавиатуру в SDDM?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#exfat-fedora">Почему я не могу использовать файловую систему exFAT в Fedora?</a></li>
@@ -629,7 +615,6 @@ export SUDO_EDITOR=vim
 <li class="toctree-l2"><a class="reference internal" href="#application-timezone">Как запустить приложение с другим часовым поясом?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x11-wayland">Как определить какой тип сессии используется: X11 или Wayland?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#neofetch">Как вывести в консоль краткую информацию об установленной системе?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#kde-icons-refresh">Как обновить кэш значков приложений в главном меню KDE Plasma 5?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#plymouth-disable">Как отключить анимированную каплю при загрузке системы?</a></li>
 </ul>
 </li>
