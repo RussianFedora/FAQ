@@ -808,6 +808,18 @@ fedpkg scratch-build --arches x86_64 aarch64
 <p>Здесь <strong>/media/foo-bar</strong> - новый каталог размещения базовой иерархии rpmbuild.</p>
 <p>Сохраним изменения, которые вступят в силу немеденно.</p>
 </div>
+<div class="section" id="license-check">
+<span id="index-52"></span><span id="id34"></span><h2>Как определить какие лицензии используются в проекте?<a class="headerlink" href="#license-check" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим утилиту <strong>licensecheck</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install licensecheck
+</pre></div>
+</div>
+<p>Запустим проверку проекта:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>licensecheck --recursive --merge-licenses --no-verbose /path/to/foo-bar &gt; ~/results.txt
+</pre></div>
+</div>
+<p>Здесь <strong>/path/to/foo-bar</strong> - путь к распакованным исходникам проекта, а <strong>~/results.txt</strong> - имя файла, в котором будут сохранены результаты проверки.</p>
+</div>
 </div>
 
 
@@ -893,6 +905,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <li class="toctree-l2"><a class="reference internal" href="#linux-ldd">Как определить зависимости конкретного бинарника?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-switch-remote">Как изменить адрес Git репозитория после его переезда?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpmbuild">Можно ли перенести стандартный каталог сборки rpmbuild?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license-check">Как определить какие лицензии используются в проекте?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>
