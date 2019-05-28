@@ -1188,3 +1188,23 @@
 Здесь **/media/foo-bar** - новый каталог размещения базовой иерархии rpmbuild.
 
 Сохраним изменения, которые вступят в силу немеденно.
+
+.. index:: license, checker, copyright
+.. _license-check:
+
+Как определить какие лицензии используются в проекте?
+=========================================================
+
+Установим утилиту **licensecheck**:
+
+.. code-block:: text
+
+    sudo dnf install licensecheck
+
+Запустим проверку проекта:
+
+.. code-block:: text
+
+    licensecheck --recursive --merge-licenses --no-verbose /path/to/foo-bar > ~/results.txt
+
+Здесь **/path/to/foo-bar** - путь к распакованным исходникам проекта, а **~/results.txt** - имя файла, в котором будут сохранены результаты проверки.
