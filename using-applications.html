@@ -348,7 +348,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <div><ol class="arabic simple">
 <li>запустим Firefox и откроем страницу <code class="docutils literal notranslate"><span class="pre">about:config</span></code>;</li>
 <li>найдём в списке переменную <code class="docutils literal notranslate"><span class="pre">browser.cache.disk.parent_directory</span></code> (при отсутствии создадим) и присвоим ему строковое значение <code class="docutils literal notranslate"><span class="pre">/tmp/firefox</span></code>;</li>
-<li>чтобы кэш очень сильно не разрастался, укажем в переменной <code class="docutils literal notranslate"><span class="pre">browser.cache.disk.capacity</span></code> максимальный размер в байтах, например <code class="docutils literal notranslate"><span class="pre">262144</span></code> (256 МБ);</li>
+<li>чтобы кэш очень сильно не разрастался, укажем в переменной <code class="docutils literal notranslate"><span class="pre">browser.cache.disk.capacity</span></code> (тип <em>целое</em>) максимальный размер в килобайтах, например <code class="docutils literal notranslate"><span class="pre">262144</span></code> (256 МБ);</li>
 <li>перезапустим браузер для применения новых изменений.</li>
 </ol>
 </div></blockquote>
