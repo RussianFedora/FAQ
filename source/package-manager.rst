@@ -470,7 +470,7 @@ Dnf сохраняет старые ядра. Это нормально?
 
     sudo dnf provides */имя_бинарника
 
-.. index:: dnf, java, alternatives, multiple
+.. index:: dnf, java, alternatives, multiple, openjdk
 .. _java-multiple:
 
 Можно ли установить несколько версий Java в систему?
@@ -495,6 +495,8 @@ Java 12 (preview):
 .. code-block:: text
 
     sudo dnf install java-latest-openjdk
+
+После установки укажем необходимую версию :ref:`Java по умолчанию <alternatives-java>`.
 
 .. index:: dnf, repository contents, list
 .. _dnf-repo-contents:

@@ -287,7 +287,7 @@
 
 Изменения вступят в силу при следующей загрузке системы.
 
-.. index:: dnf, java, alternatives, multiple
+.. index:: dnf, java, alternatives, multiple, openjdk
 .. _alternatives-java:
 
 Как мне выбрать версию Java по умолчанию?
