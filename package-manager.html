@@ -333,14 +333,15 @@ proxy_password=PASSWORD
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install java-1.8.0-openjdk
 </pre></div>
 </div>
-<p>Java 9:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install java-9-openjdk
-</pre></div>
-</div>
 <p>Java 11:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install java-11-openjdk
 </pre></div>
 </div>
+<p>Java 12 (preview):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install java-latest-openjdk
+</pre></div>
+</div>
+<p>После установки укажем необходимую версию <a class="reference internal" href="administration.html#alternatives-java"><span class="std std-ref">Java по умолчанию</span></a>.</p>
 </div>
 <div class="section" id="dnf-repo-contents">
 <span id="index-34"></span><span id="id26"></span><h2>Как вывести список пакетов из определённого репозитория?<a class="headerlink" href="#dnf-repo-contents" title="Ссылка на этот заголовок">¶</a></h2>
@@ -560,6 +561,38 @@ sudo dnf distro-sync --allowerasing
 </div>
 <p>Настоятельно <a class="reference internal" href="#dnf-groups"><span class="std std-ref">не рекомендуется</span></a> удалять группы таким способом.</p>
 </div>
+<div class="section" id="dnf-autoremove">
+<span id="index-59"></span><span id="id47"></span><h2>Как автоматически удалить не нужные более пакеты?<a class="headerlink" href="#dnf-autoremove" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Dnf автоматически удаляет зависимости, не нужные более для работы установленных пакетов, однако этот процесс можно инициировать и вручную:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf autoremove
+</pre></div>
+</div>
+<p>Следует соблюдать максимальную осторожность при использовании данной команды, т.к. это может повлечь за собой удаление важных, но автоматически установленных компонентов рабочей среды.</p>
+<p>Если какие-либо из кандидатов необходимы для дальнейшей работы, их лучше всего пометить, как <a class="reference internal" href="#dnf-mark"><span class="std std-ref">установленные пользователем</span></a>.</p>
+</div>
+<div class="section" id="dnf-mark">
+<span id="index-60"></span><span id="id48"></span><h2>Как отметить пакет в качестве установленного пользователем?<a class="headerlink" href="#dnf-mark" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Отметим пакет <strong>foo-bar</strong> в качестве установленного пользователем:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf mark install foo-bar
+</pre></div>
+</div>
+<p>После этого пакет не будет автоматически помечаться в качестве <a class="reference internal" href="#dnf-autoremove"><span class="std std-ref">кандидата на удаление</span></a>.</p>
+</div>
+<div class="section" id="dnf-noautoremove">
+<span id="index-61"></span><span id="id49"></span><h2>Как запретить автоматически удалять не нужные более зависимости?<a class="headerlink" href="#dnf-noautoremove" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Необходимо открыть файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в любом текстовом редакторе и изменить значение переменной <code class="docutils literal notranslate"><span class="pre">clean_requirements_on_remove</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>clean_requirements_on_remove=true
+</pre></div>
+</div>
+</div>
+<div class="section" id="dnf-param">
+<span id="index-62"></span><span id="id50"></span><h2>Как однократно передать dnf параметр?<a class="headerlink" href="#dnf-param" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для однократной передачи параметра воспользуемся опцией <code class="docutils literal notranslate"><span class="pre">--setopt</span></code>.</p>
+<p>Например в качестве примера удалим пакет <strong>foo-bar</strong>, сохранив при этом его <a class="reference internal" href="#dnf-noautoremove"><span class="std std-ref">зависимости</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove foo-bar --setopt=clean_requirements_on_remove=true
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -644,6 +677,10 @@ sudo dnf distro-sync --allowerasing
 <li class="toctree-l2"><a class="reference internal" href="#dnf-groups">Безопасно ли устанавливать и удалять пакеты группами?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-group-install">Как установить группу пакетов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-group-remove">Как удалить группу пакетов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-autoremove">Как автоматически удалить не нужные более пакеты?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-mark">Как отметить пакет в качестве установленного пользователем?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-noautoremove">Как запретить автоматически удалять не нужные более зависимости?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-param">Как однократно передать dnf параметр?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Системное администрирование</a></li>
