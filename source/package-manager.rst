@@ -484,17 +484,17 @@ Java 8:
 
     sudo dnf install java-1.8.0-openjdk
 
-Java 9:
-
-.. code-block:: text
-
-    sudo dnf install java-9-openjdk
-
 Java 11:
 
 .. code-block:: text
 
     sudo dnf install java-11-openjdk
+
+Java 12 (preview):
+
+.. code-block:: text
+
+    sudo dnf install java-latest-openjdk
 
 .. index:: dnf, repository contents, list
 .. _dnf-repo-contents:
