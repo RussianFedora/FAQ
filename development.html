@@ -820,6 +820,23 @@ fedpkg scratch-build --arches x86_64 aarch64
 </div>
 <p>Здесь <strong>/path/to/foo-bar</strong> - путь к распакованным исходникам проекта, а <strong>~/results.txt</strong> - имя файла, в котором будут сохранены результаты проверки.</p>
 </div>
+<div class="section" id="gdb-coredump">
+<span id="index-53"></span><span id="id35"></span><h2>Как загрузить в gdb отладчик coredump падения?<a class="headerlink" href="#gdb-coredump" title="Ссылка на этот заголовок">¶</a></h2>
+<p>GDB позволяет не только отлаживать приложения напрямую, но и загружать <a class="reference internal" href="administration.html#codedump-info"><span class="std std-ref">coredump падений</span></a>.</p>
+<p>Установим утилиту <strong>lz4</strong> для распаковки сжатых файлов с дампами:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install lz4
+</pre></div>
+</div>
+<p>Распакуем coredump:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>unlz4 /path/to/coredump.lz4
+</pre></div>
+</div>
+<p>Воспользуемся <a class="reference internal" href="#debug-application"><span class="std std-ref">описанным выше</span></a> способом получения backtrace падения, но слегка модифицируем команду запуска отладчика:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gdb /usr/bin/foo-bar /path/to/coredump 2&gt;&amp;1 | tee ~/backtrace.log
+</pre></div>
+</div>
+<p>Здесь <strong>/usr/bin/foo-bar</strong> - путь к отлаживаемому приложению, <strong>/path/to/coredump</strong> - coredump падения (версия приложения и дампа, снятого с него, должны обязательно совпадать), а <strong>~/backtrace.log</strong> - файл, в котором будет сохранён трейс падения.</p>
+</div>
 </div>
 
 
@@ -906,6 +923,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <li class="toctree-l2"><a class="reference internal" href="#git-switch-remote">Как изменить адрес Git репозитория после его переезда?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpmbuild">Можно ли перенести стандартный каталог сборки rpmbuild?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#license-check">Как определить какие лицензии используются в проекте?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gdb-coredump">Как загрузить в gdb отладчик coredump падения?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>

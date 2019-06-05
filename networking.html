@@ -269,6 +269,15 @@ fw_add <span class="m">6</span>
 </div>
 <p>Статус <strong>LISTEN</strong> означает, что TCP-порт открыт и ожидает входящих соединений. В то же время для UDP-портов будет отображаться статус <strong>UNCONN</strong>, т.к. этот протокол не подразумевает предварительное открытие подключений.</p>
 </div>
+<div class="section" id="transient-hostname">
+<span id="index-23"></span><span id="id10"></span><h2>Почему при подключении к сети имя хоста машины изменяется?<a class="headerlink" href="#transient-hostname" title="Ссылка на этот заголовок">¶</a></h2>
+<p>DHCP сервер провайдера способен выдавать помимо IP-адресов и DNS-серверов ещё и нестандартное имя хоста. Полученное таким способом значение называется <em>transient hostname</em>. Оно будет применимо с компьютеру с момента установки соединения и до отключения от соответствующей сети.</p>
+<p>Если на компьютере имеется несколько сетевых подключений, каждое из которых предоставляет свой hostname, основным будет считаться то, чьё соединение было установлено последним.</p>
+</div>
+<div class="section" id="transient-disable">
+<span id="index-24"></span><span id="id11"></span><h2>Как запретить использование полученного от провайдера имени хоста?<a class="headerlink" href="#transient-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для того, чтобы запретить использование полученного от DHCP сервера <a class="reference internal" href="#transient-hostname"><span class="std std-ref">transient hostname</span></a>, установим <a class="reference internal" href="administration.html#change-hostname"><span class="std std-ref">статическое имя хоста</span></a>.</p>
+</div>
 </div>
 
 
@@ -319,6 +328,8 @@ fw_add <span class="m">6</span>
 <li class="toctree-l2"><a class="reference internal" href="#using-mtr">Как проверить наличие или отсутствие потерь пакетов до узла?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ss-established">Как получить список установленных сетевых соединений?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ss-listening">Как получить список открытых портов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transient-hostname">Почему при подключении к сети имя хоста машины изменяется?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transient-disable">Как запретить использование полученного от провайдера имени хоста?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="virtualization.html">Виртуализация</a></li>
