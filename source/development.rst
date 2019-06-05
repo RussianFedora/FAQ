@@ -1208,3 +1208,31 @@
     licensecheck --recursive --merge-licenses --no-verbose /path/to/foo-bar > ~/results.txt
 
 Здесь **/path/to/foo-bar** - путь к распакованным исходникам проекта, а **~/results.txt** - имя файла, в котором будут сохранены результаты проверки.
+
+.. index:: gdb, debugging, backtrace, coredump
+.. _gdb-coredump:
+
+Как загрузить в gdb отладчик coredump падения?
+=================================================
+
+GDB позволяет не только отлаживать приложения напрямую, но и загружать :ref:`coredump падений <codedump-info>`.
+
+Установим утилиту **lz4** для распаковки сжатых файлов с дампами:
+
+.. code-block:: text
+
+    sudo dnf install lz4
+
+Распакуем coredump:
+
+.. code-block:: text
+
+    unlz4 /path/to/coredump.lz4
+
+Воспользуемся :ref:`описанным выше <debug-application>` способом получения backtrace падения, но слегка модифицируем команду запуска отладчика:
+
+.. code-block:: text
+
+    gdb /usr/bin/foo-bar /path/to/coredump 2>&1 | tee ~/backtrace.log
+
+Здесь **/usr/bin/foo-bar** - путь к отлаживаемому приложению, **/path/to/coredump** - coredump падения (версия приложения и дампа, снятого с него, должны обязательно совпадать), а **~/backtrace.log** - файл, в котором будет сохранён трейс падения.
