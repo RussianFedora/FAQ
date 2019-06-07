@@ -211,7 +211,7 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <span id="eshell-error"></span><span id="index-11"></span><h2>При загрузке режима восстановления появляется ошибка root account is locked. Как исправить?<a class="headerlink" href="#root-account-is-locked" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Ошибка <em>Cannot open access to console, the root account is locked</em> появляется при запуске системы в режиме восстановления в том случае если при установке Fedora был создан <a class="reference internal" href="security.html#admin-vs-user"><span class="std std-ref">пользователь-администратор</span></a> и не был задан пароль для учётной записи суперпользователя.</p>
 <p>Таким образом, при недоступности раздела /home, войти в систему в emergency режиме не представляется возможным, т.к. отсутствуют пользователи с доступными профилями (суперпользователь заблокирован, а обычные пользовательские учётные записи отключены из-за отсутствия доступа к их домашним каталогам).</p>
-<p>Решим данную проблему посредством загрузки с LiveUSB, выполнением chroot в установленную систему и <a class="reference internal" href="security.html#root-password"><span class="std std-ref">установкой пароля для root</span></a>:</p>
+<p>Решим данную проблему посредством загрузки с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>, выполнением <a class="reference internal" href="administration.html#chroot"><span class="std std-ref">chroot</span></a> в установленную систему и <a class="reference internal" href="security.html#root-password"><span class="std std-ref">установкой пароля для root</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>passwd root
 </pre></div>
 </div>
