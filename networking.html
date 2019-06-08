@@ -315,7 +315,7 @@ sudo systemctl restart systemd-resolved.service
 </div>
 <div class="section" id="dns-tls">
 <span id="dns-crypt"></span><span id="index-27"></span><h2>Можно ли зашифровать DNS при помощи TLS?<a class="headerlink" href="#dns-tls" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Да, systemd-resolved, входяющий в поставку системы начиная с Fedora 30, полностью поддерживает технологию <a class="reference external" href="https://ru.wikipedia.org/wiki/DNS_%D0%BF%D0%BE%D0%B2%D0%B5%D1%80%D1%85_TLS">DNS-over-TLS</a>, позволяющую зашифровать весь DNS трафик.</p>
+<p>Да, systemd-resolved, входящий в поставку системы начиная с Fedora 30, полностью поддерживает технологию <a class="reference external" href="https://ru.wikipedia.org/wiki/DNS_%D0%BF%D0%BE%D0%B2%D0%B5%D1%80%D1%85_TLS">DNS-over-TLS</a>, позволяющую зашифровать весь DNS трафик устройства.</p>
 <p>Настроим систему на использование <a class="reference internal" href="#nm-resolved"><span class="std std-ref">systemd-resolved совместно с Network Manager</span></a>, затем откроем файл конфигурации <code class="docutils literal notranslate"><span class="pre">/etc/systemd/resolved.conf</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/systemd/resolved.conf
 </pre></div>
@@ -339,7 +339,7 @@ sudo systemctl restart systemd-resolved.service
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl restart systemd-resolved.service
 </pre></div>
 </div>
-<p>Теперь в <a class="reference internal" href="#dns-crypt"><span class="std std-ref">информации</span></a> должна отображаться информация об использовании этой технологии.</p>
+<p>Теперь в <a class="reference internal" href="#dns-crypt"><span class="std std-ref">информации об используемых DNS</span></a> должна отображаться информация об использовании этой технологии.</p>
 </div>
 </div>
 
