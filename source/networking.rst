@@ -460,3 +460,43 @@ DHCP сервер провайдера способен выдавать пом�
 .. code-block:: text
 
     resolvectl statistics
+
+.. index:: network, dns, resolv.conf, resolver, resolved
+.. _dns-crypt:
+
+Можно ли зашифровать DNS при помощи TLS?
+===========================================
+
+Да, systemd-resolved, входяющий в поставку системы начиная с Fedora 30, полностью поддерживает технологию `DNS-over-TLS <https://ru.wikipedia.org/wiki/DNS_%D0%BF%D0%BE%D0%B2%D0%B5%D1%80%D1%85_TLS>`__, позволяющую зашифровать весь DNS трафик.
+
+Настроим систему на использование :ref:`systemd-resolved совместно с Network Manager <nm-resolved>`, затем откроем файл конфигурации ``/etc/systemd/resolved.conf``:
+
+.. code-block:: text
+
+    sudoedit /etc/systemd/resolved.conf
+
+Внесём следующие правки:
+
+.. code-block:: ini
+
+    [Resolve]
+    DNS=1.1.1.1 1.0.0.1 2606:4700:4700::1111 2606:4700:4700::1001
+    FallbackDNS=8.8.8.8 8.8.4.4 2001:4860:4860::8888 2001:4860:4860::8844
+    #Domains=
+    #LLMNR=yes
+    MulticastDNS=yes
+    DNSSEC=allow-downgrade
+    DNSOverTLS=opportunistic
+    Cache=yes
+    DNSStubListener=yes
+    ReadEtcHosts=yes
+
+Здесь используются серверы `CloudFlare <https://cloudflare-dns.com/dns/>`__ с поддержкой DNS-over-TLS.
+
+Сохраним изменения в файле и перезапустим systemd-resolved:
+
+.. code-block:: text
+
+    sudo systemctl restart systemd-resolved.service
+
+Теперь в :ref:`информации <dns-crypt>` должна отображаться информация об использовании этой технологии.
