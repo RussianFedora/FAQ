@@ -279,7 +279,7 @@ fw_add <span class="m">6</span>
 <p>Для того, чтобы запретить использование полученного от DHCP сервера <a class="reference internal" href="#transient-hostname"><span class="std std-ref">transient hostname</span></a>, установим <a class="reference internal" href="administration.html#change-hostname"><span class="std std-ref">статическое имя хоста</span></a>.</p>
 </div>
 <div class="section" id="network-manager-systemd-resolved">
-<span id="nm-resolved"></span><span id="index-25"></span><h2>Как переключить Network Manager на использование systemd-resolved?<a class="headerlink" href="#network-manager-systemd-resolved" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="resolved-nm"></span><span id="index-25"></span><h2>Как переключить Network Manager на использование systemd-resolved?<a class="headerlink" href="#network-manager-systemd-resolved" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Начиная с Fedora 30, в комплект базовой системы входит systemd-resolved, который занимается преобразованием имён DNS в IP-адреса, имеет встроенный DNS-кэш и активирован по умолчанию.</p>
 <p>В то же время, Network Manager с настройками по умолчанию использует собственный виртуальный файл конфигурации <a class="reference internal" href="#dns-resolv"><span class="std std-ref">resolv.conf</span></a>, игнорирующий присутствие systemd-resolved.</p>
 <p>Для исправления этой ситуации, убедимся, что systemd-neworkd запущен и функционирует:</p>
@@ -291,12 +291,21 @@ fw_add <span class="m">6</span>
 <span class="na">dns</span><span class="o">=</span><span class="s">systemd-resolved</span>
 </pre></div>
 </div>
+<p>Убедимся, что файл <code class="docutils literal notranslate"><span class="pre">/etc/resolv.conf</span></code> является символической ссылкой на <code class="docutils literal notranslate"><span class="pre">/run/NetworkManager/resolv.conf</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>file /etc/resolv.conf
+</pre></div>
+</div>
+<p>Если по какой-то причине это не так, то внесём соответствующие правки:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rm -f /etc/resolv.conf
+sudo ln -sf /run/NetworkManager/resolv.conf /etc/resolv.conf
+</pre></div>
+</div>
 <p>Перезапустим затронутые сервисы:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl restart NetworkManager.service
 sudo systemctl restart systemd-resolved.service
 </pre></div>
 </div>
-<p>Убедимся, что в качестве основного сервера DNS применяется виртуальная заглушка:</p>
+<p>Проверим, что в качестве основного сервера DNS применяется виртуальная заглушка:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /etc/resolv.conf
 </pre></div>
 </div>
@@ -313,10 +322,22 @@ sudo systemctl restart systemd-resolved.service
 </pre></div>
 </div>
 </div>
+<div class="section" id="resolved-default">
+<span id="index-27"></span><span id="id12"></span><h2>Как сделать systemd-resolved основным резолвером?<a class="headerlink" href="#resolved-default" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим существующую символическую ссылку, указывающую на Network Manager:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rm -f /etc/resolv.conf
+</pre></div>
+</div>
+<p>Установим systemd-resolved основным резолвером:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+</pre></div>
+</div>
+<p>Изменения вступят в силу немедленно.</p>
+</div>
 <div class="section" id="dns-tls">
-<span id="dns-crypt"></span><span id="index-27"></span><h2>Можно ли зашифровать DNS при помощи TLS?<a class="headerlink" href="#dns-tls" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="dns-crypt"></span><span id="index-28"></span><h2>Можно ли зашифровать DNS при помощи TLS?<a class="headerlink" href="#dns-tls" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, systemd-resolved, входящий в поставку системы начиная с Fedora 30, полностью поддерживает технологию <a class="reference external" href="https://ru.wikipedia.org/wiki/DNS_%D0%BF%D0%BE%D0%B2%D0%B5%D1%80%D1%85_TLS">DNS-over-TLS</a>, позволяющую зашифровать весь DNS трафик устройства.</p>
-<p>Настроим систему на использование <a class="reference internal" href="#nm-resolved"><span class="std std-ref">systemd-resolved совместно с Network Manager</span></a>, затем откроем файл конфигурации <code class="docutils literal notranslate"><span class="pre">/etc/systemd/resolved.conf</span></code>:</p>
+<p>Настроим систему на использование systemd-resolved либо <a class="reference internal" href="#resolved-nm"><span class="std std-ref">совместно с Network Manager</span></a>, либо в <a class="reference internal" href="#resolved-default"><span class="std std-ref">монопольном режиме</span></a>, затем откроем файл конфигурации <code class="docutils literal notranslate"><span class="pre">/etc/systemd/resolved.conf</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/systemd/resolved.conf
 </pre></div>
 </div>
@@ -342,7 +363,7 @@ sudo systemctl restart systemd-resolved.service
 <p>Теперь в <a class="reference internal" href="#resolved-status"><span class="std std-ref">информации об используемых DNS</span></a> должна отображаться информация об использовании этой технологии.</p>
 </div>
 <div class="section" id="resolved-flush">
-<span id="index-28"></span><span id="id12"></span><h2>Как очистить кэши systemd-resolved?<a class="headerlink" href="#resolved-flush" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-29"></span><span id="id13"></span><h2>Как очистить кэши systemd-resolved?<a class="headerlink" href="#resolved-flush" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Очистим кэш systemd-resolved:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>resolvectl flush-caches
 </pre></div>
@@ -402,6 +423,7 @@ sudo systemctl restart systemd-resolved.service
 <li class="toctree-l2"><a class="reference internal" href="#transient-disable">Как запретить использование полученного от провайдера имени хоста?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#network-manager-systemd-resolved">Как переключить Network Manager на использование systemd-resolved?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#systemd-resolved">Как проверить статус работы systemd-resolved?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resolved-default">Как сделать systemd-resolved основным резолвером?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dns-tls">Можно ли зашифровать DNS при помощи TLS?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#resolved-flush">Как очистить кэши systemd-resolved?</a></li>
 </ul>
