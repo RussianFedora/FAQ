@@ -500,3 +500,15 @@ DHCP сервер провайдера способен выдавать пом�
     sudo systemctl restart systemd-resolved.service
 
 Теперь в :ref:`информации об используемых DNS <resolved-status>` должна отображаться информация об использовании этой технологии.
+
+.. index:: network, dns, resolv.conf, resolver, resolved, cache, flush
+.. _resolved-flush:
+
+Как очистить кэши systemd-resolved?
+======================================
+
+Очистим кэш systemd-resolved:
+
+.. code-block:: text
+
+    resolvectl flush-caches
