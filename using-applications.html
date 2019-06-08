@@ -551,6 +551,55 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 <p>При следующем входе в систему все настройки Kickoff будут сброшены, включая страницу <em>Избранное</em> и при этом должна восстановиться его правильная работа.</p>
 </div>
+<div class="section" id="sqlite-firefox">
+<span id="firefox-vacuum"></span><span id="index-43"></span><h2>Как сжать базы данных sqlite браузера Firefox?<a class="headerlink" href="#sqlite-firefox" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Браузер Mozilla Firefox сохраняет данные внутри стандартных баз sqlite3, поэтому даже после очистки истории, cookies, кэшей и т.д. их размер на диске не уменьшается, т.к. данные в них лишь помечаются удалёнными, а непосредственная очистка (vacuum) производится по таймеру во время простоя несколько раз в месяц.</p>
+<p>Сжать все базы данных можно и вручную. Для этого установим пакет sqlite:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install sqlite
+</pre></div>
+</div>
+<p>Убедимся, что Firefox <strong>не запущен</strong>, затем выполним команду vaccuum для всех sqlite файлов внутри локальных профилей браузера:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find ~/.mozilla/firefox -name *.sqlite -exec sqlite3 {} VACUUM \;
+</pre></div>
+</div>
+<p>Это действие абсолютно безопасно, т.к. физически удаляет лишь те данные, которые в них были помечены в качестве удалённых.</p>
+</div>
+<div class="section" id="f3chk-safe">
+<span id="index-44"></span><span id="id22"></span><h2>Как безопасно проверить объём накопителя?<a class="headerlink" href="#f3chk-safe" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим пакет <strong>f3</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install f3
+</pre></div>
+</div>
+<p>Подключим накопитель и смонтируем его, затем начнём проверку:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>f3write /media/foo-bar
+</pre></div>
+</div>
+<p>По окончании работы осуществим проверку записанных данных:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>f3read /media/foo-bar
+</pre></div>
+</div>
+<p>Если проверки прошли успешно, накопитель имеет действительный объём.</p>
+<p>Удалим созданные проверочные данные:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find /media/foo-bar -name *.h2w -delete \;
+</pre></div>
+</div>
+<p>Здесь <strong>/media/foo-bar</strong> - точка монтирования накопителя, объём которого требуется проверить.</p>
+</div>
+<div class="section" id="f3chk-deep">
+<span id="index-45"></span><span id="id23"></span><h2>Как выполнить глубокую проверку объёма накопителя?<a class="headerlink" href="#f3chk-deep" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим пакет <strong>f3</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install f3
+</pre></div>
+</div>
+<p>Подключим накопитель, но не будем его монтировать.</p>
+<p>Внимание! Все данные с этого устройства будет безвозвратно потеряны.</p>
+<p>Запустим глубокую проверку:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo f3probe --destructive --time-ops /dev/sdb
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sdb</strong> - устройство, объём которого требуется проверить.</p>
+<p>После завершения процесса потребуется заново создать раздел и файловую систему на проверяемом устройстве при помощи таких утилит, как GParted, Gnome Disks, KDE Disk Manager и т.д.</p>
+</div>
 </div>
 
 
@@ -625,6 +674,9 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#trash-terminal">Как из терминала удалить файл в корзину?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#irc-freenode">Можно ли входить в IRC сеть FreeNode без ввода пароля?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde">В меню KDE перестали отображаться значки приложений и документов. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sqlite-firefox">Как сжать базы данных sqlite браузера Firefox?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#f3chk-safe">Как безопасно проверить объём накопителя?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#f3chk-deep">Как выполнить глубокую проверку объёма накопителя?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>

@@ -278,6 +278,69 @@ fw_add <span class="m">6</span>
 <span id="index-24"></span><span id="id11"></span><h2>Как запретить использование полученного от провайдера имени хоста?<a class="headerlink" href="#transient-disable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы запретить использование полученного от DHCP сервера <a class="reference internal" href="#transient-hostname"><span class="std std-ref">transient hostname</span></a>, установим <a class="reference internal" href="administration.html#change-hostname"><span class="std std-ref">статическое имя хоста</span></a>.</p>
 </div>
+<div class="section" id="network-manager-systemd-resolved">
+<span id="nm-resolved"></span><span id="index-25"></span><h2>Как переключить Network Manager на использование systemd-resolved?<a class="headerlink" href="#network-manager-systemd-resolved" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Начиная с Fedora 30, в комплект базовой системы входит systemd-resolved, который занимается преобразованием имён DNS в IP-адреса, имеет встроенный DNS-кэш и активирован по умолчанию.</p>
+<p>В то же время, Network Manager с настройками по умолчанию использует собственный виртуальный файл конфигурации <a class="reference internal" href="#dns-resolv"><span class="std std-ref">resolv.conf</span></a>, игнорирующий присутствие systemd-resolved.</p>
+<p>Для исправления этой ситуации, убедимся, что systemd-neworkd запущен и функционирует:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable --now systemd-resolved.service
+</pre></div>
+</div>
+<p>Создадим в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/NetworkManager/conf.d</span></code> файл <code class="docutils literal notranslate"><span class="pre">99-resolved.conf</span></code> следующего содержания:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[main]</span>
+<span class="na">dns</span><span class="o">=</span><span class="s">systemd-resolved</span>
+</pre></div>
+</div>
+<p>Перезапустим затронутые сервисы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl restart NetworkManager.service
+sudo systemctl restart systemd-resolved.service
+</pre></div>
+</div>
+<p>Убедимся, что в качестве основного сервера DNS применяется виртуальная заглушка:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /etc/resolv.conf
+</pre></div>
+</div>
+<p>Если в выводе присутствует строка <code class="docutils literal notranslate"><span class="pre">nameserver</span> <span class="pre">127.0.0.53</span></code>, значит всё настроено верно.</p>
+</div>
+<div class="section" id="systemd-resolved">
+<span id="resolved-status"></span><span id="index-26"></span><h2>Как проверить статус работы systemd-resolved?<a class="headerlink" href="#systemd-resolved" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Выведем статус systemd-resolved, включающий список используемых DNS серверов и общие параметры конфигурации:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>resolvectl status
+</pre></div>
+</div>
+<p>Выведем статистические данные об использовании systemd-resolved (состояние кэша, количество запросов и т.д.):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>resolvectl statistics
+</pre></div>
+</div>
+</div>
+<div class="section" id="dns-tls">
+<span id="dns-crypt"></span><span id="index-27"></span><h2>Можно ли зашифровать DNS при помощи TLS?<a class="headerlink" href="#dns-tls" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, systemd-resolved, входяющий в поставку системы начиная с Fedora 30, полностью поддерживает технологию <a class="reference external" href="https://ru.wikipedia.org/wiki/DNS_%D0%BF%D0%BE%D0%B2%D0%B5%D1%80%D1%85_TLS">DNS-over-TLS</a>, позволяющую зашифровать весь DNS трафик.</p>
+<p>Настроим систему на использование <a class="reference internal" href="#nm-resolved"><span class="std std-ref">systemd-resolved совместно с Network Manager</span></a>, затем откроем файл конфигурации <code class="docutils literal notranslate"><span class="pre">/etc/systemd/resolved.conf</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/systemd/resolved.conf
+</pre></div>
+</div>
+<p>Внесём следующие правки:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Resolve]</span>
+<span class="na">DNS</span><span class="o">=</span><span class="s">1.1.1.1 1.0.0.1 2606:4700:4700::1111 2606:4700:4700::1001</span>
+<span class="na">FallbackDNS</span><span class="o">=</span><span class="s">8.8.8.8 8.8.4.4 2001:4860:4860::8888 2001:4860:4860::8844</span>
+<span class="c1">#Domains=</span>
+<span class="c1">#LLMNR=yes</span>
+<span class="na">MulticastDNS</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">DNSSEC</span><span class="o">=</span><span class="s">allow-downgrade</span>
+<span class="na">DNSOverTLS</span><span class="o">=</span><span class="s">opportunistic</span>
+<span class="na">Cache</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">DNSStubListener</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">ReadEtcHosts</span><span class="o">=</span><span class="s">yes</span>
+</pre></div>
+</div>
+<p>Здесь используются серверы <a class="reference external" href="https://cloudflare-dns.com/dns/">CloudFlare</a> с поддержкой DNS-over-TLS.</p>
+<p>Сохраним изменения в файле и перезапустим systemd-resolved:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl restart systemd-resolved.service
+</pre></div>
+</div>
+<p>Теперь в <a class="reference internal" href="#dns-crypt"><span class="std std-ref">информации</span></a> должна отображаться информация об использовании этой технологии.</p>
+</div>
 </div>
 
 
@@ -330,6 +393,9 @@ fw_add <span class="m">6</span>
 <li class="toctree-l2"><a class="reference internal" href="#ss-listening">Как получить список открытых портов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#transient-hostname">Почему при подключении к сети имя хоста машины изменяется?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#transient-disable">Как запретить использование полученного от провайдера имени хоста?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#network-manager-systemd-resolved">Как переключить Network Manager на использование systemd-resolved?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#systemd-resolved">Как проверить статус работы systemd-resolved?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dns-tls">Можно ли зашифровать DNS при помощи TLS?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="virtualization.html">Виртуализация</a></li>
