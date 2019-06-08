@@ -341,6 +341,13 @@ sudo systemctl restart systemd-resolved.service
 </div>
 <p>Теперь в <a class="reference internal" href="#resolved-status"><span class="std std-ref">информации об используемых DNS</span></a> должна отображаться информация об использовании этой технологии.</p>
 </div>
+<div class="section" id="resolved-flush">
+<span id="index-28"></span><span id="id12"></span><h2>Как очистить кэши systemd-resolved?<a class="headerlink" href="#resolved-flush" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Очистим кэш systemd-resolved:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>resolvectl flush-caches
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -396,6 +403,7 @@ sudo systemctl restart systemd-resolved.service
 <li class="toctree-l2"><a class="reference internal" href="#network-manager-systemd-resolved">Как переключить Network Manager на использование systemd-resolved?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#systemd-resolved">Как проверить статус работы systemd-resolved?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dns-tls">Можно ли зашифровать DNS при помощи TLS?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resolved-flush">Как очистить кэши systemd-resolved?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="virtualization.html">Виртуализация</a></li>
