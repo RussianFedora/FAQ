@@ -555,8 +555,8 @@ export SUDO_EDITOR=vim
 <p>Параметр <code class="docutils literal notranslate"><span class="pre">-R</span></code> включает автоматическую <a class="reference internal" href="#initrd-rebuild"><span class="std std-ref">пересборку initrd</span></a> ядра.</p>
 </div>
 <div class="section" id="plymouth-nologo">
-<span id="index-49"></span><span id="id33"></span><h2>Как отключить вывод логотип производителя устройства при загрузке системы?<a class="headerlink" href="#plymouth-nologo" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Начиная с Fedora 30, для Plymouth по умолчанию устанавливается тема <strong>bgrt</strong>, поддерживающая вывод логотипа производителя устройства если система загружается в <a class="reference internal" href="installation.html#uefi-boot"><span class="std std-ref">UEFI режиме</span></a>.</p>
+<span id="index-49"></span><span id="id33"></span><h2>Как отключить вывод логотипа производителя устройства при загрузке системы?<a class="headerlink" href="#plymouth-nologo" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Начиная с Fedora 30, для Plymouth по умолчанию устанавливается тема <strong>bgrt</strong>, поддерживающая вывод логотипа производителя устройства, если система загружается в <a class="reference internal" href="installation.html#uefi-boot"><span class="std std-ref">UEFI режиме</span></a>.</p>
 <p>Чтобы убрать его, <a class="reference internal" href="#plymouth-themes"><span class="std std-ref">сменим тему</span></a> загрузочного экрана например на <strong>charge</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo plymouth-set-default-theme charge -R
 </pre></div>
@@ -642,7 +642,7 @@ export SUDO_EDITOR=vim
 <li class="toctree-l2"><a class="reference internal" href="#neofetch">Как вывести в консоль краткую информацию об установленной системе?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#plymouth-disable">Как отключить анимированную каплю при загрузке системы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#plymouth-themes">Как изменить тему экрана, отображающегося при загрузке системы?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#plymouth-nologo">Как отключить вывод логотип производителя устройства при загрузке системы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plymouth-nologo">Как отключить вывод логотипа производителя устройства при загрузке системы?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-applications.html">Сторонние приложения</a></li>
