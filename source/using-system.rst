@@ -828,3 +828,29 @@ KDE предоставляет особый PAM модуль для автома
 ==========================================================
 
 Для отключения анимации загрузки (plymouth boot screen) необходимо и достаточно :ref:`добавить параметры ядра <kernelpm-perm>` ``rd.plymouth=0 plymouth.enable=0``, после чего :ref:`пересобрать конфиг Grub 2 <grub-rebuild>`.
+
+.. index:: boot, plymouth, theme
+.. _plymouth-themes:
+
+Как изменить тему экрана, отображающегося при загрузке системы?
+===================================================================
+
+Выведем список установленных тем Plymouth boot screen:
+
+.. code-block:: text
+
+    plymouth-set-default-theme --list
+
+Определим текущую:
+
+.. code-block:: text
+
+    plymouth-set-default-theme
+
+Установим например **charge**:
+
+.. code-block:: text
+
+    sudo plymouth-set-default-theme charge -R
+
+Параметр ``-R`` включает автоматическую пересборку initrd ядра.
