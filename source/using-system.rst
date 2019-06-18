@@ -77,11 +77,17 @@
 Как мне пересобрать образ initrd?
 ====================================
 
-Для пересборки образа initrd следует выполнить:
+Выполним пересборку образа initrd загруженного ядра:
 
 .. code-block:: text
 
     sudo dracut -f
+
+Выполним пересборку образов initrd всех установленных в системе ядер:
+
+.. code-block:: text
+
+    sudo dracut --regenerate-all --force
 
 .. index:: boot, grub
 .. _grub-reinstall:
