@@ -221,6 +221,16 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 </div>
 <p>При следующей загрузке работа режима восстановления будет полностью восстановлена.</p>
 </div>
+<div class="section" id="red-hat-subscription-managment">
+<span id="rhelsm-error"></span><span id="index-12"></span><h2>При попытке обновления появляется ошибка, связанная с Red Hat Subscription Managment. Как исправить?<a class="headerlink" href="#red-hat-subscription-managment" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Пользователи, установшие систему со <a class="reference internal" href="generic-info.html#download"><span class="std std-ref">свежих образов</span></a> Fedora 30, при попытке <a class="reference internal" href="package-manager.html#dnf-update"><span class="std std-ref">установки обновлений</span></a> стали замечать ошибку с текстом <em>This system is not registered to Red Hat Subscription Managment. You can use subscription-manager to register</em>.</p>
+<p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1718622">известная проблема</a>, из-за которой пакет <strong>subscription-manager</strong>, предназначенный для Red Hat Enterprise Linux, ошибочно включался в состав ISO образов Fedora.</p>
+<p>Режим данную проблему посредством удаления данного пакета:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove subscription-manager
+</pre></div>
+</div>
+<p>Теперь ошибки при работе пакетного менеджера будут полностью устранены.</p>
+</div>
 </div>
 
 
@@ -267,6 +277,7 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <li class="toctree-l2"><a class="reference internal" href="#grub-legacy-error">После обновления дистрибутива с 29 версии до 30 не могу загрузить систему. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#zchunk-checksum-error">При попытке обновления появляется ошибка zchunk checksum error. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#root-account-is-locked">При загрузке режима восстановления появляется ошибка root account is locked. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#red-hat-subscription-managment">При попытке обновления появляется ошибка, связанная с Red Hat Subscription Managment. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
