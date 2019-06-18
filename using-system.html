@@ -75,8 +75,12 @@
 </div>
 <div class="section" id="initrd">
 <span id="initrd-rebuild"></span><span id="index-5"></span><h2>Как мне пересобрать образ initrd?<a class="headerlink" href="#initrd" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для пересборки образа initrd следует выполнить:</p>
+<p>Выполним пересборку образа initrd загруженного ядра:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut -f
+</pre></div>
+</div>
+<p>Выполним пересборку образов initrd всех установленных в системе ядер:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut --regenerate-all --force
 </pre></div>
 </div>
 </div>
