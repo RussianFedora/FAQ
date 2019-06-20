@@ -169,7 +169,7 @@ sudo dnf system-upgrade reboot
 <p>Fedora 29 и новее:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
 sudo dnf install dnf-plugin-system-upgrade
-sudo dnf system-upgrade download --releasever=$(($(rpm -E %fedora) + 1)) --setopt=&#39;module_platform_id=platform:f$(($(rpm -E %fedora) + 1))&#39;
+sudo dnf system-upgrade download --releasever=$(($(rpm -E %fedora) + 1)) --setopt=module_platform_id=platform:f$(($(rpm -E %fedora) + 1))
 sudo dnf system-upgrade reboot
 </pre></div>
 </div>
@@ -223,7 +223,11 @@ sudo dnf system-upgrade reboot
 </div>
 <div class="section" id="dnf-kernel-change">
 <span id="index-18"></span><span id="id12"></span><h2>Как можно уменьшить количество сохраняемых ядер?<a class="headerlink" href="#dnf-kernel-change" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо открыть файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в любом текстовом редакторе и изменить значение переменной <code class="docutils literal notranslate"><span class="pre">installonly_limit</span></code>:</p>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">installonly_limit</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>installonly_limit=2
 </pre></div>
 </div>
@@ -231,12 +235,16 @@ sudo dnf system-upgrade reboot
 </div>
 <div class="section" id="dnf-proxy">
 <span id="index-19"></span><span id="id13"></span><h2>Как настроить работу dnf через прокси?<a class="headerlink" href="#dnf-proxy" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо открыть файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в любом текстовом редакторе и изменить значение переменной <code class="docutils literal notranslate"><span class="pre">proxy</span></code> (при отсутствии добавить):</p>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">proxy</span></code> (при отсутствии добавим):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>proxy=socks5://localhost:8080
 </pre></div>
 </div>
 <p>Поддерживаются HTTP, HTTPS и SOCKS.</p>
-<p>Если используемый прокси-сервер требует проверки подлинности (аутентификации), то необходимо также указать данные для входа:</p>
+<p>Если используемый прокси-сервер требует проверки подлинности (аутентификации), то укажем также и авторизационные данные для подключения:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>proxy_username=LOGIN
 proxy_password=PASSWORD
 </pre></div>
@@ -245,18 +253,26 @@ proxy_password=PASSWORD
 </div>
 <div class="section" id="dnf-weakdeps">
 <span id="index-20"></span><span id="id14"></span><h2>Как отключить установку слабых зависимостей?<a class="headerlink" href="#dnf-weakdeps" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо открыть файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в любом текстовом редакторе и изменить значение переменной <code class="docutils literal notranslate"><span class="pre">install_weak_deps</span></code> (при отсутствии добавить):</p>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">install_weak_deps</span></code> (при отсутствии добавим):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>install_weak_deps=0
 </pre></div>
 </div>
 </div>
 <div class="section" id="dnf-pkgupdates">
 <span id="index-21"></span><span id="id15"></span><h2>Как мне запретить установку обновлений для ряда пакетов?<a class="headerlink" href="#dnf-pkgupdates" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо открыть файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в любом текстовом редакторе и изменить значение переменной <code class="docutils literal notranslate"><span class="pre">exclude</span></code> (при отсутствии добавить):</p>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">exclude</span></code> (при отсутствии добавим):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>exclude=kernel* PackageKit*
 </pre></div>
 </div>
-<p>Здесь вместо примера следует указать нужные пакеты, разделяя их пробелом. Допускаются символы подстановки.</p>
+<p>Здесь вместо примера укажем нужные пакеты, разделяя их пробелом. Допускаются стандартные символы подстановки.</p>
 </div>
 <div class="section" id="delta-rpm">
 <span id="dnf-drpm"></span><span id="index-22"></span><h2>Что такое Delta RPM?<a class="headerlink" href="#delta-rpm" title="Ссылка на этот заголовок">¶</a></h2>
@@ -265,7 +281,11 @@ proxy_password=PASSWORD
 </div>
 <div class="section" id="drpm-disable">
 <span id="index-23"></span><span id="id16"></span><h2>Как отключить использование Delta RPM?<a class="headerlink" href="#drpm-disable" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо открыть файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в любом текстовом редакторе и изменить значение переменной <code class="docutils literal notranslate"><span class="pre">deltarpm</span></code> (при отсутствии добавить):</p>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">deltarpm</span></code> (при отсутствии добавим):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>deltarpm=0
 </pre></div>
 </div>
@@ -580,8 +600,12 @@ sudo dnf distro-sync --allowerasing
 </div>
 <div class="section" id="dnf-noautoremove">
 <span id="index-61"></span><span id="id49"></span><h2>Как запретить автоматически удалять не нужные более зависимости?<a class="headerlink" href="#dnf-noautoremove" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо открыть файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в любом текстовом редакторе и изменить значение переменной <code class="docutils literal notranslate"><span class="pre">clean_requirements_on_remove</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>clean_requirements_on_remove=true
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">clean_requirements_on_remove</span></code> (при отсутствии добавим):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>clean_requirements_on_remove=True
 </pre></div>
 </div>
 </div>
@@ -589,7 +613,7 @@ sudo dnf distro-sync --allowerasing
 <span id="index-62"></span><span id="id50"></span><h2>Как однократно передать dnf параметр?<a class="headerlink" href="#dnf-param" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для однократной передачи параметра воспользуемся опцией <code class="docutils literal notranslate"><span class="pre">--setopt</span></code>.</p>
 <p>Например в качестве примера удалим пакет <strong>foo-bar</strong>, сохранив при этом его <a class="reference internal" href="#dnf-noautoremove"><span class="std std-ref">зависимости</span></a>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove foo-bar --setopt=clean_requirements_on_remove=true
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove foo-bar --setopt=clean_requirements_on_remove=True
 </pre></div>
 </div>
 </div>
