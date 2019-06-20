@@ -201,7 +201,7 @@ Fedora 29 и новее:
 
     sudo dnf upgrade --refresh
     sudo dnf install dnf-plugin-system-upgrade
-    sudo dnf system-upgrade download --releasever=$(($(rpm -E %fedora) + 1)) --setopt='module_platform_id=platform:f$(($(rpm -E %fedora) + 1))'
+    sudo dnf system-upgrade download --releasever=$(($(rpm -E %fedora) + 1)) --setopt=module_platform_id=platform:f$(($(rpm -E %fedora) + 1))
     sudo dnf system-upgrade reboot
 
 Весь процесс установки будет выполнен во время следующей загрузки системы.
