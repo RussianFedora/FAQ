@@ -926,11 +926,17 @@ Dnf автоматически удаляет зависимости, не ну�
 Как запретить автоматически удалять не нужные более зависимости?
 ===================================================================
 
-Необходимо открыть файл ``/etc/dnf/dnf.conf`` в любом текстовом редакторе и изменить значение переменной ``clean_requirements_on_remove``:
+Откроем файл ``/etc/dnf/dnf.conf`` в текстовом редакторе:
 
 .. code-block:: text
 
-    clean_requirements_on_remove=true
+    sudoedit /etc/dnf/dnf.conf
+
+Изменим значение переменной ``clean_requirements_on_remove`` (при отсутствии добавим):
+
+.. code-block:: text
+
+    clean_requirements_on_remove=True
 
 .. index:: dnf, option, parameter, config
 .. _dnf-param:
@@ -944,4 +950,4 @@ Dnf автоматически удаляет зависимости, не ну�
 
 .. code-block:: text
 
-    sudo dnf remove foo-bar --setopt=clean_requirements_on_remove=true
+    sudo dnf remove foo-bar --setopt=clean_requirements_on_remove=True
