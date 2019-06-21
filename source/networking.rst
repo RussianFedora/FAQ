@@ -592,4 +592,4 @@ DHCP сервер провайдера способен выдавать пом�
 
 .. code-block:: text
 
-    firewall-cmd --reload
+    sudo firewall-cmd --reload
