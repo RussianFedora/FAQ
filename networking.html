@@ -386,13 +386,13 @@ sudo systemctl restart systemd-resolved.service
 </pre></div>
 </div>
 <p>Внесём правки, добавив возможность использования порта <strong>2222/tcp</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;service&gt;
-    &lt;short&gt;SSH&lt;/short&gt;
-    &lt;description&gt;Secure Shell (SSH) is a protocol.&lt;/description&gt;
-    &lt;port protocol=&quot;tcp&quot; port=&quot;22&quot;/&gt;
-    &lt;port protocol=&quot;tcp&quot; port=&quot;2222&quot;/&gt;
-&lt;/service&gt;
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;service&gt;</span>
+    <span class="nt">&lt;short&gt;</span>SSH<span class="nt">&lt;/short&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Secure Shell (SSH) is a protocol.<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;port</span> <span class="na">protocol=</span><span class="s">&quot;tcp&quot;</span> <span class="na">port=</span><span class="s">&quot;22&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;port</span> <span class="na">protocol=</span><span class="s">&quot;tcp&quot;</span> <span class="na">port=</span><span class="s">&quot;2222&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/service&gt;</span>
 </pre></div>
 </div>
 <p>Перезагрузим настройки Firewalld для вступления изменений в силу:</p>
