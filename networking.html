@@ -369,6 +369,37 @@ sudo systemctl restart systemd-resolved.service
 </pre></div>
 </div>
 </div>
+<div class="section" id="firewalld">
+<span id="firewalld-services"></span><span id="index-30"></span><h2>Где расположены файлы конфигурации доступных сервисов Firewalld?<a class="headerlink" href="#firewalld" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Предустановленные файлы конфигурации служб Firewalld находятся в каталоге <code class="docutils literal notranslate"><span class="pre">/usr/lib/firewalld/services</span></code>.</p>
+<p>Настоятельно не рекомендуется что-либо изменять в нём ибо при следующем обновлении пакета все изменения будут потеряны. Вместо этого следует создать <a class="reference internal" href="#firewalld-override"><span class="std std-ref">пользовательское переопределение</span></a>.</p>
+</div>
+<div class="section" id="firewalld-override">
+<span id="index-31"></span><span id="id14"></span><h2>Как переопределить предустановленный сервис в Firewalld?<a class="headerlink" href="#firewalld-override" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Пользовательские переопределения должны храниться в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/firewalld/services</span></code>.</p>
+<p>В качестве примера создадим оверрайд для сервиса SSH на базе настроек по умолчанию:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cp /usr/lib/firewalld/services/ssh.xml /etc/firewalld/services/ssh.xml
+</pre></div>
+</div>
+<p>Откроем скопированный файл в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/firewalld/services/ssh.xml
+</pre></div>
+</div>
+<p>Внесём правки, добавив возможность использования порта <strong>2222/tcp</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;service&gt;
+    &lt;short&gt;SSH&lt;/short&gt;
+    &lt;description&gt;Secure Shell (SSH) is a protocol.&lt;/description&gt;
+    &lt;port protocol=&quot;tcp&quot; port=&quot;22&quot;/&gt;
+    &lt;port protocol=&quot;tcp&quot; port=&quot;2222&quot;/&gt;
+&lt;/service&gt;
+</pre></div>
+</div>
+<p>Перезагрузим настройки Firewalld для вступления изменений в силу:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>firewall-cmd --reload
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -426,6 +457,8 @@ sudo systemctl restart systemd-resolved.service
 <li class="toctree-l2"><a class="reference internal" href="#resolved-default">Как сделать systemd-resolved основным резолвером?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dns-tls">Можно ли зашифровать DNS при помощи TLS?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#resolved-flush">Как очистить кэши systemd-resolved?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firewalld">Где расположены файлы конфигурации доступных сервисов Firewalld?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firewalld-override">Как переопределить предустановленный сервис в Firewalld?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="virtualization.html">Виртуализация</a></li>
