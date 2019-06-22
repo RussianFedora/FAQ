@@ -628,7 +628,7 @@ Zip-архивы, созданные штатными средствами ОС 
 
 Восстановить трей можно посредством установки одного из :ref:`расширений Gnome Shell <gnome-shell-extensions>`:
 
-  1. `TopIcons Plus <https://extensions.gnome.org/extension/1031/topicons/>`__ (также доступно в виде пакета ``gnome-shell-extension-topicons-plus`` в репозиториях).
+  1. `TopIcons Plus <https://extensions.gnome.org/extension/1031/topicons/>`__ (также доступно в виде пакета ``gnome-shell-extension-topicons-plus`` в репозиториях);
   2. `AppIndicator Support <https://extensions.gnome.org/extension/615/appindicator-support/>`__.
 
 .. index:: 7zip, archive, split, optical drive, dvd, p7zip
