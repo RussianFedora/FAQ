@@ -626,13 +626,17 @@ Zip-архивы, созданные штатными средствами ОС 
 
 Начиная с Gnome 3.26, из области уведомлений оболочки была удалена поддержка классического системного лотка, поэтому многие приложения при закрытии или сворачивании могут не завершать свою работу, а продолжать работать в фоне без отображения видимого окна.
 
-Восстановить трей можно посредством установки одного из :ref:`расширений Gnome Shell <gnome-shell-extensions>`. Самым популярным является `TopIcons Plus <https://extensions.gnome.org/extension/1031/topicons/>`__.
+Восстановить трей можно посредством установки одного из :ref:`расширений Gnome Shell <gnome-shell-extensions>`.
+
+1. `TopIcons Plus <https://extensions.gnome.org/extension/1031/topicons/>`_
 
 Установка для всех пользователей в виде пакета из репозиториев Fedora:
 
 .. code-block:: text
 
     sudo dnf install gnome-shell-extension-topicons-plus
+
+2. `AppIndicator Support <https://extensions.gnome.org/extension/615/appindicator-support/>`_
 
 .. index:: 7zip, archive, split, optical drive, dvd, p7zip
 .. _7zip-split:
