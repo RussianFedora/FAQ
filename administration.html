@@ -863,6 +863,10 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <p>Если при попытке загрузки модуля ядра при помощи modprobe с правами суперпользователя воникает ошибка <em>modprobe: ERROR: could not insert „XXXXXXX“: Operation not permitted</em>, значит включён режим <a class="reference internal" href="installation.html#secure-boot"><span class="std std-ref">UEFI Secure Boot</span></a>, а данный модуль не имеет цифровой подписи.</p>
 <p>Необходимо либо отключить Secure Boot в настройках UEFI компьютера, либо подписать его действительной цифровой подписью.</p>
 </div>
+<div class="section" id="systemd-boot">
+<span id="index-71"></span><span id="id51"></span><h2>Как настроить загрузку системы при помощи systemd-boot?<a class="headerlink" href="#systemd-boot" title="Ссылка на этот заголовок">¶</a></h2>
+<p>См. <a class="reference external" href="https://www.easycoding.org/2019/06/27/zagruzhaem-fedora-pri-pomoshhi-systemd-boot.html">здесь</a>.</p>
+</div>
 </div>
 
 
@@ -960,6 +964,7 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <li class="toctree-l2"><a class="reference internal" href="#codedump-disable">Как полностью отключение сохранение дампов памяти?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kernel-postinstall">Как настроить автоматическое выполнение скрипта после установки нового ядра?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#modprobe">При загрузке модуля ядра через modprobe я получаю ошибку. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#systemd-boot">Как настроить загрузку системы при помощи systemd-boot?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>
