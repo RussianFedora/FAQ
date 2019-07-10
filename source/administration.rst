@@ -415,15 +415,6 @@
     sudo systemctl stop zram-swap
     sudo systemctl disable zram-swap
 
-По умолчанию создаётся модуль zram обьёмом в половину размера ОЗУ.
-Для того, чтобы изменить обьём модуля zram равному обьёму ОЗУ, нужно внести изменения в параметр FACTOR
-.. code-block:: text
-
-    sudoedit /etc/zram.conf
-    FACTOR=1
-
-
-
 После использования вышеуказанных команд рекомендуется выполнить перезагрузку системы.
 
 .. index:: sysctl, kernel option
