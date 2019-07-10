@@ -951,3 +951,21 @@ Dnf автоматически удаляет зависимости, не ну�
 .. code-block:: text
 
     sudo dnf remove foo-bar --setopt=clean_requirements_on_remove=True
+
+.. index:: dnf, mirror, speed, fastestmirror
+.. _dnf-fastestmirror:
+
+Как включить в dnf использование плагина fastestmirror?
+===========================================================
+
+Откроем файл ``/etc/dnf/dnf.conf`` в текстовом редакторе:
+
+.. code-block:: text
+
+    sudoedit /etc/dnf/dnf.conf
+
+Изменим значение переменной ``fastestmirror`` (при отсутствии добавим):
+
+.. code-block:: text
+
+    fastestmirror=1
