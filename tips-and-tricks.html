@@ -231,6 +231,20 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 </div>
 <p>Теперь ошибки при работе пакетного менеджера будут полностью устранены.</p>
 </div>
+<div class="section" id="zram-pool-size">
+<span id="index-13"></span><span id="id5"></span><h2>Как изменить размер пула сжатия памяти?<a class="headerlink" href="#zram-pool-size" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По умолчанию модуль <a class="reference internal" href="administration.html#memory-compression"><span class="std std-ref">сжатия памяти zram</span></a> создаёт пул, равный половине объёма имеющейся оперативной памяти.</p>
+<p>Для изменения настроек по умолчанию, откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/zram.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/zram.conf
+</pre></div>
+</div>
+<p>Внесём изменения в переменную <code class="docutils literal notranslate"><span class="pre">FACTOR</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FACTOR=1
+</pre></div>
+</div>
+<p>Здесь значение <strong>1</strong> означает использование всего объёма RAM, <strong>0.25</strong> - 25% и т.д.</p>
+<p>Изменения вступят в силу при следующей загрузке системы.</p>
+</div>
 </div>
 
 
@@ -278,6 +292,7 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <li class="toctree-l2"><a class="reference internal" href="#zchunk-checksum-error">При попытке обновления появляется ошибка zchunk checksum error. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#root-account-is-locked">При загрузке режима восстановления появляется ошибка root account is locked. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#red-hat-subscription-managment">При попытке обновления появляется ошибка, связанная с Red Hat Subscription Managment. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zram-pool-size">Как изменить размер пула сжатия памяти?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>

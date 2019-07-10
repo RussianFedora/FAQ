@@ -50,7 +50,7 @@
 </div>
 <div class="section" id="flatpak">
 <span id="flatpak-info"></span><span id="index-2"></span><h2>Что такое Flatpak пакеты?<a class="headerlink" href="#flatpak" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Flatpak - это современный, прогрессивный формат самодостаточных пакетов для GNU/Linux. Он поддерживает рантаймы, изоляцию внутри песочниц, установку без наличия прав суперпользователя и многое другое.</p>
+<p>Flatpak - это современный прогрессивный формат самодостаточных пакетов для GNU/Linux. Он поддерживает рантаймы, изоляцию внутри песочниц, установку без наличия прав суперпользователя и многое другое.</p>
 </div>
 <div class="section" id="flatpak-advantages">
 <span id="index-3"></span><span id="id4"></span><h2>Какие преимущества и недостатки у Flatpak пакетов?<a class="headerlink" href="#flatpak-advantages" title="Ссылка на этот заголовок">¶</a></h2>
@@ -80,7 +80,7 @@
 </div>
 <div class="section" id="make-install">
 <span id="index-4"></span><span id="id5"></span><h2>Можно ли устанавливать программы посредством make install?<a class="headerlink" href="#make-install" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Категорически не рекомендуется ибо:</p>
+<p>Категорически не рекомендуется, ибо:</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li>make install порождает в системе кучу никем и ничем не отслеживаемых файлов: бинарников, конфигов, прочих файлов. Это в большинстве случаев приведёт к множеству проблем при обновлении или удалении;</li>
@@ -103,7 +103,7 @@
 </div>
 <div class="section" id="pip-npm">
 <span id="using-pip"></span><span id="index-5"></span><h2>Можно ли использовать PIP или NPM для установки программ и модулей?<a class="headerlink" href="#pip-npm" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Нет. Глобальная установка чего-либо через pip (pip2, pip3), либо npm, по своей деструктивности аналогична <a class="reference internal" href="#make-install"><span class="std std-ref">make install</span></a>.</p>
+<p>Нет. Глобальная установка чего-либо через pip (pip2, pip3) либо npm по своей деструктивности аналогична <a class="reference internal" href="#make-install"><span class="std std-ref">make install</span></a>.</p>
 </div>
 <div class="section" id="python-pip">
 <span id="pip-user"></span><span id="index-6"></span><h2>Нужной Python библиотеки нет в репозиториях. Как можно безопасно использовать PIP?<a class="headerlink" href="#python-pip" title="Ссылка на этот заголовок">¶</a></h2>
@@ -327,7 +327,7 @@ proxy_password=PASSWORD
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh foo-bar* --enablerepo=updates-testing
 </pre></div>
 </div>
-<p>Репозиторий <strong>updates-testing</strong> подключается однократно, только для данного сеанса работы dnf.</p>
+<p>Репозиторий <strong>updates-testing</strong> подключается однократно только для данного сеанса работы dnf.</p>
 </div>
 <div class="section" id="dnf-list-contents">
 <span id="index-31"></span><span id="id24"></span><h2>Как получить список файлов установленного пакета?<a class="headerlink" href="#dnf-list-contents" title="Ссылка на этот заголовок">¶</a></h2>
@@ -460,12 +460,12 @@ sudo dnf config-manager --set-enabled updates-modular
 </div>
 <div class="section" id="dnf-gui-updates">
 <span id="index-42"></span><span id="id34"></span><h2>Можно ли устанавливать обновления через dnf из графического режима?<a class="headerlink" href="#dnf-gui-updates" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Устанавливать обновления посредством dnf из графического режима конечно же возможно, однако мы настоятельно не рекомендуем этого делать ибо в случае любого сбоя и падения приложения с эмулятором терминала, упадёт и менеджер пакетов, после чего ваша система может быть серьёзно повреждена и станет непригодной для использования.</p>
+<p>Устанавливать обновления посредством dnf из графического режима конечно же возможно, однако мы настоятельно не рекомендуем этого делать. В случае любого сбоя и падения приложения с эмулятором терминала, упадёт и менеджер пакетов, после чего ваша система может быть серьёзно повреждена и станет непригодной для использования.</p>
 <p>Для установки обновлений посредством dnf рекомендуется два варианта:</p>
 <blockquote>
 <div><ul class="simple">
 <li>переключение в консоль фреймбуфера посредством нажатия комбинации <strong>Ctrl+Alt+F2</strong> (для возврата в графический режим - <strong>Ctrl+Alt+F1</strong>), выполнение в ней нового входа в систему и запуск процесса обновления;</li>
-<li>использование screen сессии. В таком случае в случае падения эмулятора терминала, процесс не будет прерван.</li>
+<li>использование screen сессии. Тогда, в случае падения эмулятора терминала, процесс не будет прерван.</li>
 </ul>
 </div></blockquote>
 </div>
@@ -551,12 +551,12 @@ sudo dnf distro-sync --allowerasing
 </div>
 <div class="section" id="copr">
 <span id="copr-use"></span><span id="index-54"></span><h2>Безопасно ли использовать COPR репозитории?<a class="headerlink" href="#copr" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Т.к. все пакеты в <a class="reference internal" href="generic-info.html#copr"><span class="std std-ref">COPR</span></a> создаются простыми пользователями, поэтому их качество значительно отличается. Есть как хорошие репозитории, так и те, что способны вывести систему из строя.</p>
-<p>Перед подключением мы рекомендуем проверить является ли владелец репозитория мейнтейнером Fedora или нет и если нет, то отказаться от этого.</p>
+<p>Т.к. все пакеты в <a class="reference internal" href="generic-info.html#copr"><span class="std std-ref">COPR</span></a> создаются простыми пользователями, их качество значительно отличается. Есть как хорошие репозитории, так и те, что способны вывести систему из строя.</p>
+<p>Перед подключением мы рекомендуем проверить является ли владелец репозитория мейнтейнером Fedora или нет и, если нет, отказаться от этого.</p>
 </div>
 <div class="section" id="fedora-snap">
 <span id="index-55"></span><span id="id43"></span><h2>Можно ли использовать в Fedora Snap пакеты?<a class="headerlink" href="#fedora-snap" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Технически возможно, однако мы настоятельно не рекомендуем этого делать ибо качество большинства Snap пакетов очень низкое, к тому же в некоторых из них <a class="reference external" href="https://xakep.ru/2018/05/14/snap-store-miner/">были обнаружены</a> вредоносные майнеры.</p>
+<p>Технически возможно, однако мы настоятельно не рекомендуем этого делать, ибо качество большинства Snap пакетов очень низкое, к тому же в некоторых из них <a class="reference external" href="https://xakep.ru/2018/05/14/snap-store-miner/">были обнаружены</a> вредоносные майнеры.</p>
 </div>
 <div class="section" id="dnf-groups">
 <span id="index-56"></span><span id="id44"></span><h2>Безопасно ли устанавливать и удалять пакеты группами?<a class="headerlink" href="#dnf-groups" title="Ссылка на этот заголовок">¶</a></h2>
@@ -588,7 +588,7 @@ sudo dnf distro-sync --allowerasing
 </pre></div>
 </div>
 <p>Следует соблюдать максимальную осторожность при использовании данной команды, т.к. это может повлечь за собой удаление важных, но автоматически установленных компонентов рабочей среды.</p>
-<p>Если какие-либо из кандидатов необходимы для дальнейшей работы, их лучше всего пометить, как <a class="reference internal" href="#dnf-mark"><span class="std std-ref">установленные пользователем</span></a>.</p>
+<p>Если какие-либо из кандидатов необходимы для дальнейшей работы, их лучше всего пометить как <a class="reference internal" href="#dnf-mark"><span class="std std-ref">установленные пользователем</span></a>.</p>
 </div>
 <div class="section" id="dnf-mark">
 <span id="index-60"></span><span id="id48"></span><h2>Как отметить пакет в качестве установленного пользователем?<a class="headerlink" href="#dnf-mark" title="Ссылка на этот заголовок">¶</a></h2>
@@ -614,6 +614,29 @@ sudo dnf distro-sync --allowerasing
 <p>Для однократной передачи параметра воспользуемся опцией <code class="docutils literal notranslate"><span class="pre">--setopt</span></code>.</p>
 <p>Например в качестве примера удалим пакет <strong>foo-bar</strong>, сохранив при этом его <a class="reference internal" href="#dnf-noautoremove"><span class="std std-ref">зависимости</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove foo-bar --setopt=clean_requirements_on_remove=True
+</pre></div>
+</div>
+</div>
+<div class="section" id="dnf-mirrors">
+<span id="index-63"></span><span id="id51"></span><h2>Как dnf определяет зеркала, с которых будет загружать пакеты?<a class="headerlink" href="#dnf-mirrors" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По умолчанию в актуальных версиях Fedora применяется <a class="reference external" href="https://www.metalinker.org/">технология metalink</a>, при помощи которой на основе внешнего IP-адреса сервер определяет ближайшие зеркала по географическому признаку и отдаёт результат в виде отсортированного списка с указанием приоритетов.</p>
+<p>Также существует альтернативная реализация в виде <a class="reference internal" href="#dnf-fastestmirror"><span class="std std-ref">плагина fastestmirror</span></a>, который определяет самое быстрое зеркало локально при помощи ICMP PING. Реальных замеров скорости при этом не производится, поэтому их качество остаётся на достаточно низком уровне.</p>
+</div>
+<div class="section" id="dnf-fastestmirror">
+<span id="index-64"></span><span id="id52"></span><h2>Как включить в dnf использование плагина fastestmirror?<a class="headerlink" href="#dnf-fastestmirror" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">fastestmirror</span></code> (при отсутствии добавим):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fastestmirror=1
+</pre></div>
+</div>
+</div>
+<div class="section" id="fastestmirror-clear">
+<span id="index-65"></span><span id="id53"></span><h2>Как очистить кэш плагина dnf fastestmirror?<a class="headerlink" href="#fastestmirror-clear" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим файл с кэшем плагина fastestmirror:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rm -f /var/cache/dnf/fastestmirror.cache
 </pre></div>
 </div>
 </div>
@@ -705,6 +728,9 @@ sudo dnf distro-sync --allowerasing
 <li class="toctree-l2"><a class="reference internal" href="#dnf-mark">Как отметить пакет в качестве установленного пользователем?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-noautoremove">Как запретить автоматически удалять не нужные более зависимости?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-param">Как однократно передать dnf параметр?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-mirrors">Как dnf определяет зеркала, с которых будет загружать пакеты?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-fastestmirror">Как включить в dnf использование плагина fastestmirror?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fastestmirror-clear">Как очистить кэш плагина dnf fastestmirror?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Системное администрирование</a></li>

@@ -166,16 +166,16 @@
 </div>
 <div class="section" id="trim">
 <span id="ssd-timer"></span><span id="index-19"></span><h2>Почему таймер TRIM отключён по умолчанию?<a class="headerlink" href="#trim" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Изначально <a class="reference internal" href="#ssd-tuning"><span class="std std-ref">таймер TRIM</span></a> активировался автоматически если установка Fedora производилась на SSD накопитель, но через некоторое время обнаружилась серьёзная проблема с noname-накопителями, контроллеры которых делегировали поддержку процедуры TRIM, однако при её выполнении теряли все данные на носителе.</p>
+<p>Изначально <a class="reference internal" href="#ssd-tuning"><span class="std std-ref">таймер TRIM</span></a> активировался автоматически, если установка Fedora производилась на SSD накопитель, но через некоторое время обнаружилась серьёзная проблема с noname-накопителями. Их контроллеры делегировали поддержку процедуры TRIM, однако при её выполнении теряли все данные на носителе.</p>
 <p>Из-за достаточно большого количества жалоб на потерю данных с таких дешёвых контрафактных noname накопителей, созданных на базе простейших контроллеров от флешек и микросхем памяти из отбраковки, было решено таймер отключить.</p>
 </div>
 <div class="section" id="fonts-cleartype">
 <span id="index-20"></span><span id="id14"></span><h2>Как улучшить отображение шрифтов в Fedora?<a class="headerlink" href="#fonts-cleartype" title="Ссылка на этот заголовок">¶</a></h2>
-<p>В актуальных релизах Fedora пакет freetype уже собран с поддержкой субпиксельного сглаживания, поэтому чтобы получить качественный рендеринг шрифтов, необходимо лишь разрешить использование LCD фильтров, создав символическую ссылку на файл <code class="docutils literal notranslate"><span class="pre">11-lcdfilter-default.conf</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/fonts/conf.d</span></code>:</p>
+<p>В актуальных релизах Fedora пакет freetype уже собран с поддержкой субпиксельного сглаживания, поэтому, чтобы получить качественный рендеринг шрифтов, необходимо лишь разрешить использование LCD фильтров, создав символическую ссылку на файл <code class="docutils literal notranslate"><span class="pre">11-lcdfilter-default.conf</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/fonts/conf.d</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo ln -s /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d/
 </pre></div>
 </div>
-<p>Для вступления изменений в силу необходимо повторно войти в систему, либо перезагрузить компьютер.</p>
+<p>Для вступления изменений в силу необходимо повторно войти в систему либо перезагрузить компьютер.</p>
 </div>
 <div class="section" id="fonts-console">
 <span id="index-21"></span><span id="id15"></span><h2>В консолях фреймбуфера отображаются кракозябры. Как это починить?<a class="headerlink" href="#fonts-console" title="Ссылка на этот заголовок">¶</a></h2>
@@ -195,7 +195,7 @@
 <div class="section" id="fs-selection">
 <span id="index-22"></span><span id="id16"></span><h2>Какую файловую систему рекомендуется использовать на Fedora?<a class="headerlink" href="#fs-selection" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию применяется <a class="reference external" href="https://ru.wikipedia.org/wiki/Ext4">ext4</a>. На наш взгляд, это самая стабильная и популярная файловая система в настоящее время.</p>
-<p>Для хранения больших объёмов данных можно использовать <a class="reference external" href="https://ru.wikipedia.org/wiki/XFS">XFS</a>. Это также стабильная и быстрая ФС, но следует помнить, что при сбоях электропитания вместо файлов, в которые в этот момент шла запись, могут оказаться нули. Таким образом, XFS лучше применять только если есть источник бесперебойного питания (UPS), либо на ноутбуках.</p>
+<p>Для хранения больших объёмов данных можно использовать <a class="reference external" href="https://ru.wikipedia.org/wiki/XFS">XFS</a>. Это также стабильная и быстрая ФС, но следует помнить, что при сбоях электропитания вместо файлов, в которые в этот момент шла запись, могут оказаться нули. Таким образом, XFS лучше применять только если есть источник бесперебойного питания (UPS) либо на ноутбуках.</p>
 </div>
 <div class="section" id="btrfs">
 <span id="fs-btrfs"></span><span id="index-23"></span><h2>Что вы скажете об установке системы на BTRFS?<a class="headerlink" href="#btrfs" title="Ссылка на этот заголовок">¶</a></h2>
@@ -346,7 +346,7 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 </div>
 <div class="section" id="installation-mode">
 <span id="index-32"></span><span id="id22"></span><h2>Как определить в каком режиме была произведена установка системы?<a class="headerlink" href="#installation-mode" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Определим режим установки системы (<a class="reference internal" href="#uefi-boot"><span class="std std-ref">UEFI</span></a> или Legacy) посредством проверки наличия, либо отсутствия каталога <code class="docutils literal notranslate"><span class="pre">/sys/firmware/efi</span></code>:</p>
+<p>Определим режим установки системы (<a class="reference internal" href="#uefi-boot"><span class="std std-ref">UEFI</span></a> или Legacy) посредством проверки наличия либо отсутствия каталога <code class="docutils literal notranslate"><span class="pre">/sys/firmware/efi</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>test -d /sys/firmware/efi &amp;&amp; echo EFI || echo Legacy
 </pre></div>
 </div>
