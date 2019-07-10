@@ -415,6 +415,8 @@
     sudo systemctl stop zram-swap
     sudo systemctl disable zram-swap
 
+Допускается :ref:`изменить размера пула <zram-pool-size>` сжатия памяти.
+
 После использования вышеуказанных команд рекомендуется выполнить перезагрузку системы.
 
 .. index:: sysctl, kernel option
