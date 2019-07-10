@@ -979,3 +979,15 @@ Dnf автоматически удаляет зависимости, не ну�
 .. code-block:: text
 
     fastestmirror=1
+
+.. index:: dnf, fastestmirror, cache
+.. _fastestmirror-clear:
+
+Как очистить кэш плагина dnf fastestmirror?
+==============================================
+
+Удалим файл с кэшем плагина fastestmirror:
+
+.. code-block:: text
+
+    sudo rm -f /var/cache/dnf/fastestmirror.cache
