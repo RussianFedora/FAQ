@@ -234,7 +234,7 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <div class="section" id="zram-pool-size">
 <span id="index-13"></span><span id="id5"></span><h2>Как изменить размер пула сжатия памяти?<a class="headerlink" href="#zram-pool-size" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию модуль <a class="reference internal" href="administration.html#memory-compression"><span class="std std-ref">сжатия памяти zram</span></a> создаёт пул, равный половине объёма имеющейся оперативной памяти.</p>
-<p>Изменять размер пула выше стандартного значения <strong>0.5</strong> не категорически рекомендуется, т.к. это может приводить к зависаниям системы.</p>
+<p>Увеличивать размер пула выше стандартного значения <strong>0.5</strong> категорически не рекомендуется, т.к. это может приводить к зависаниям системы.</p>
 <p>Если всё-таки хочется внести поправки, откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/zram.conf</span></code> в текстовом редакторе:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/zram.conf
 </pre></div>
