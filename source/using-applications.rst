@@ -25,6 +25,7 @@
     layers.offmainthreadcomposition.enabled = true
     webgl.force-enabled = true
     gfx.xrender.enabled = true
+    gfx.webrender.all = true
 
 Изменения вступят в силу при следующем запуске браузера.
 
