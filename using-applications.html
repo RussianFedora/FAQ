@@ -603,6 +603,22 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Здесь <strong>/dev/sdb</strong> - устройство, объём которого требуется проверить.</p>
 <p>После завершения процесса потребуется заново создать раздел и файловую систему на проверяемом устройстве при помощи таких утилит, как GParted, Gnome Disks, KDE Disk Manager и т.д.</p>
 </div>
+<div class="section" id="markdown-pdf">
+<span id="index-46"></span><span id="id24"></span><h2>Как из документа в формате Markdown создать PDF?<a class="headerlink" href="#markdown-pdf" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим универсальный конвертер документов pandoc:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install pandoc
+</pre></div>
+</div>
+<p>Установим движок xelatex:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install texlive-xetex
+</pre></div>
+</div>
+<p>Преобразуем документ <code class="docutils literal notranslate"><span class="pre">foo-bar.md</span></code> из формата Markdown в PDF:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pandoc foo-bar.md --pdf-engine=xelatex --variable papersize=a4 --variable fontsize=12pt --variable mathfont=&quot;DejaVu Sans&quot; --variable mainfont=&quot;DejaVu Serif&quot; --variable sansfont=&quot;DejaVu Sans&quot; --variable monofont=&quot;DejaVu Sans Mono&quot; -o foo-bar.pdf
+</pre></div>
+</div>
+<p>Допускается указать любые установленные в системе OpenType шрифты.</p>
+</div>
 </div>
 
 
@@ -680,6 +696,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#sqlite-firefox">Как сжать базы данных sqlite браузера Firefox?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#f3chk-safe">Как безопасно проверить объём накопителя?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#f3chk-deep">Как выполнить глубокую проверку объёма накопителя?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#markdown-pdf">Как из документа в формате Markdown создать PDF?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
