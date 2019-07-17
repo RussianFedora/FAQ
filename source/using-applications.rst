@@ -893,3 +893,29 @@ Zip-архивы, созданные штатными средствами ОС 
 Здесь **/dev/sdb** - устройство, объём которого требуется проверить.
 
 После завершения процесса потребуется заново создать раздел и файловую систему на проверяемом устройстве при помощи таких утилит, как GParted, Gnome Disks, KDE Disk Manager и т.д.
+
+.. index:: latex, texlive, pdf, markdown, xelatex, xetex
+.. _markdown-pdf:
+
+Как из документа в формате Markdown создать PDF?
+====================================================
+
+Установим универсальный конвертер документов pandoc:
+
+.. code-block:: text
+
+    sudo dnf install pandoc
+
+Установим движок xelatex:
+
+.. code-block:: text
+
+    sudo dnf install texlive-xetex
+
+Преобразуем документ ``foo-bar.md`` из формата Markdown в PDF:
+
+.. code-block:: text
+
+    pandoc foo-bar.md --pdf-engine=xelatex -V papersize=a4 -V mathfont="DejaVu Sans" -V mainfont="DejaVu Serif" -V sansfont="DejaVu Sans" -V monofont="DejaVu Sans Mono" -o foo-bar.pdf
+
+Допускается указать любые установленные в системе OpenType шрифты.
