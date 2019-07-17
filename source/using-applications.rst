@@ -916,6 +916,6 @@ Zip-архивы, созданные штатными средствами ОС 
 
 .. code-block:: text
 
-    pandoc foo-bar.md --pdf-engine=xelatex -V papersize=a4 -V mathfont="DejaVu Sans" -V mainfont="DejaVu Serif" -V sansfont="DejaVu Sans" -V monofont="DejaVu Sans Mono" -o foo-bar.pdf
+    pandoc foo-bar.md --pdf-engine=xelatex --variable papersize=a4 --variable fontsize=12pt --variable mathfont="DejaVu Sans" --variable mainfont="DejaVu Serif" --variable sansfont="DejaVu Sans" --variable monofont="DejaVu Sans Mono" -o foo-bar.pdf
 
 Допускается указать любые установленные в системе OpenType шрифты.
