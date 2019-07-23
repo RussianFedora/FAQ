@@ -179,12 +179,23 @@ RFRemix - это ремикс оргинального дистрибутива 
 
 Вы всегда можете обратиться за помощью к другим участникам сообщества.
 
-Чаты и каналы:
+Чаты в Telegram:
 
- * `Russian Fedora <https://t.me/russianfedora>`__ чат в Telegram;
- * `Fedora <https://t.me/fedora>`__ чат в Telegram (на английском языке);
- * `#russianfedora:matrix.org <https://matrix.to/#/#russianfedora:matrix.org>`__ чат в Matrix;
- * `#fedora <https://webchat.freenode.net/?channels=#fedora>`__ в IRC сети FreeNode (на английском языке).
+ * `Russian Fedora <https://t.me/russianfedora>`__ - основной чат на русском языке;
+ * `Fedora <https://t.me/fedora>`__ - основной чат на английском языке;
+ * `Russian Fedora Flood <https://t.me/russianfedora_flood>`__ - специальный чат для флуда и оффтопика.
+
+Чаты в Matrix:
+
+ * `#russianfedora:matrix.org <https://matrix.to/#/#russianfedora:matrix.org>`__ - основной чат на русском языке;
+ * `#fedora-rpm-ru:matrix.org <https://matrix.to/#/#fedora-rpm-ru:matrix.org>`__ - технические вопросы по созданию RPM пакетов для Fedora;
+ * `#rust-rpm-ru:matrix.org <https://matrix.to/#/#rust-rpm-ru:matrix.org>`__ - чат по особенностям пакетирования приложений на Rust.
+
+Чаты в IRC:
+
+ * `#fedora <https://webchat.freenode.net/?channels=#fedora>`__ - основной чат на английском языке;
+ * `#fedora-devel <https://webchat.freenode.net/?channels=#fedora-devel>`__ - чат для разработчиков на английском языке;
+ * `#rpmfusion <https://webchat.freenode.net/?channels=#rpmfusion>`__ - чат поддержки репозитория :ref:`RPM Fusion <rpmfusion>` на английском языке.
 
 Форумы:
 
