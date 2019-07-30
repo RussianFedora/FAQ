@@ -65,7 +65,7 @@
 
 Здесь **foo-bar** - имя модуля, информацию о котором требуется вывести.
 
-.. index:: order, boot, boot order, uefi
+.. index:: order, boot, boot list, uefi
 .. _uefi-list:
 
 Как определить список загружаемых ОС в меню UEFI Boot из Fedora?
@@ -95,7 +95,7 @@
 
 Изменения вступают в силу немедленно.
 
-.. index:: boot, uefi
+.. index:: boot, remove entry, uefi
 .. _uefi-remove:
 
 Как удалить ненужный пункт меню UEFI Boot из Fedora?
