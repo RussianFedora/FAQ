@@ -521,18 +521,48 @@ Match Group sftp
 </pre></div>
 </div>
 </div>
+<div class="section" id="sata-ssd">
+<span id="wipe-ssd"></span><span id="index-50"></span><h2>Как полностью очистить SATA SSD без возможности восстановления?<a class="headerlink" href="#sata-ssd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Все модели SATA SSD поддерживают специальную ATA-команду <a class="reference external" href="https://ata.wiki.kernel.org/index.php/ATA_Secure_Erase">Secure Erase</a>, при получении которой контроллер обязан полностью очистить все ячейки диска и вернуть все параметры к настройкам по умолчанию.</p>
+<p>Установим утилиту <strong>hdparm</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install hdparm
+</pre></div>
+</div>
+<p>Далее <strong>/dev/sdb</strong> - это устройство SSD накопителя, который мы планируем очистить. Очищать устройство, на котором установлена система, можно только после загрузки с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>.</p>
+<p>Убедимся, что UEFI BIOS не блокирует функцию самоуничтожения диска:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo hdparm -I /dev/sdb
+</pre></div>
+</div>
+<p>Если в выводе присутствует <strong>frozen</strong>, значит диск блокируется и сначала нужно её снять.</p>
+<p>В большинстве реализаций UEFI BIOS сбросить блокировку с SATA накопителей можно лишь посредством «горячего» подключения устройства. Необходимо включить компьютер, не подсоединяя SATA-кабель к накопителю, а затем уже после загрузки системы подключить его.</p>
+<p>Если всё сделано верно, в выводе обнаружим <strong>not frozen</strong> и сможем продолжить процесс.</p>
+<p>Установим специальный пароль блокировки накопителя, т.к. без передачи верного пароля команда ATA Secure Erase будет проигнорирована:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo hdparm --user-master u --security-set-pass FooBar /dev/sdb
+</pre></div>
+</div>
+<p>Ни в коем случае не следует устанавливать новое значение пароля в виде пустой строки, либо NULL, т.к. на многих материнских платах это приведёт к невозможности загрузки с этого устройства, а равно как и его смены.</p>
+<p>Запустим процесс очистки:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo hdparm --user-master u --security-erase FooBar /dev/sdb
+</pre></div>
+</div>
+<p>Через некоторое время (зависит от объёма и производительности контроллера устройства) диск будет полностью очищен, а все настройки, включая пароль блокировки, сброшены.</p>
+<p>В случае <strong>если произошёл сбой</strong> очистки, сбросим установленный пароль вручную:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo hdparm --user-master u --security-disable FooBar /dev/sdb
+</pre></div>
+</div>
+</div>
 <div class="section" id="newfile-permissions">
-<span id="index-50"></span><span id="id39"></span><h2>Как рассчитываются права доступа для новых файлов и каталогов?<a class="headerlink" href="#newfile-permissions" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-51"></span><span id="id39"></span><h2>Как рассчитываются права доступа для новых файлов и каталогов?<a class="headerlink" href="#newfile-permissions" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Права доступа (chmod) в GNU/Linux рассчитываются в по формуле <code class="docutils literal notranslate"><span class="pre">$default-chmod</span> <span class="pre">-</span> <span class="pre">$current-umask</span></code>. <code class="docutils literal notranslate"><span class="pre">$default-chmod</span></code> для файлов равен <code class="docutils literal notranslate"><span class="pre">0666</span></code>, а для каталогов - <code class="docutils literal notranslate"><span class="pre">0777</span></code>.</p>
 <p>В Fedora umask по умолчанию для пользоватьских учётных записей равен <code class="docutils literal notranslate"><span class="pre">0002</span></code> (ведущий нуль в chmod означает использование восьмеричной системы счисления).</p>
 <p>Таким образом, chmod для новых файлов <code class="docutils literal notranslate"><span class="pre">0666</span> <span class="pre">-</span> <span class="pre">0002</span> <span class="pre">=</span> <span class="pre">0664</span></code> (<code class="docutils literal notranslate"><span class="pre">-rw-rw--r--</span></code>), а для каталогов - <code class="docutils literal notranslate"><span class="pre">0777</span> <span class="pre">-</span> <span class="pre">0002</span> <span class="pre">=</span> <span class="pre">0775</span></code> (<code class="docutils literal notranslate"><span class="pre">drwxrwxr-x</span></code>).</p>
 </div>
 <div class="section" id="fedora">
-<span id="fedora-gost"></span><span id="index-51"></span><h2>Можно ли включить поддержку российской криптографии в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fedora-gost"></span><span id="index-52"></span><h2>Можно ли включить поддержку российской криптографии в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2018/11/28/dobavlyaem-podderzhku-gost-dlya-openssl-v-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="mac-wi-fi-fedora">
-<span id="mac-randomize"></span><span id="index-52"></span><h2>Как включить рандомизацию MAC адресов при подключении к Wi-Fi точкам в Fedora?<a class="headerlink" href="#mac-wi-fi-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="mac-randomize"></span><span id="index-53"></span><h2>Как включить рандомизацию MAC адресов при подключении к Wi-Fi точкам в Fedora?<a class="headerlink" href="#mac-wi-fi-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Network Manager поддерживает два сценария рандомизации MAC адресов:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -566,7 +596,7 @@ Match Group sftp
 <p>Для отключения рандомизации и возвращения настроек по умолчанию достаточно просто удалить созданный файл и перезапустить Network Manager.</p>
 </div>
 <div class="section" id="add-custom-ca">
-<span id="index-53"></span><span id="id40"></span><h2>Как добавить собственный удостоверяющий центр в список доверенных?<a class="headerlink" href="#add-custom-ca" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-54"></span><span id="id40"></span><h2>Как добавить собственный удостоверяющий центр в список доверенных?<a class="headerlink" href="#add-custom-ca" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для добавления нового удостоверяющего центра необходимо скопировать файл его сертификата в формате PEM или DER в каталог <code class="docutils literal notranslate"><span class="pre">/etc/pki/ca-trust/source/anchors</span></code>, после чего выполнить:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo update-ca-trust
 </pre></div>
@@ -574,7 +604,7 @@ Match Group sftp
 <p>Следует помнить, что данное действие не будет распространяться на браузер Mozilla Firefox, имеющий собственную базу доверенных корневых УЦ.</p>
 </div>
 <div class="section" id="blackist-ca">
-<span id="index-54"></span><span id="id41"></span><h2>Как внести удостоверяющий центр в список запрещённых?<a class="headerlink" href="#blackist-ca" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-55"></span><span id="id41"></span><h2>Как внести удостоверяющий центр в список запрещённых?<a class="headerlink" href="#blackist-ca" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для добавления удостоверяющего центра в список заблокированных необходимо скопировать файл его сертификата в формате PEM или DER в каталог <code class="docutils literal notranslate"><span class="pre">/etc/pki/ca-trust/source/blacklist</span></code>, после чего выполнить:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo update-ca-trust
 </pre></div>
@@ -582,7 +612,7 @@ Match Group sftp
 <p>Следует помнить, что данное действие не будет распространяться на браузер Mozilla Firefox, имеющий собственную базу доверенных корневых УЦ.</p>
 </div>
 <div class="section" id="rsa-openssl">
-<span id="openssl-decrypt-key"></span><span id="index-55"></span><h2>Как убрать пароль шифрования закрытого RSA ключа средствами OpenSSL?<a class="headerlink" href="#rsa-openssl" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="openssl-decrypt-key"></span><span id="index-56"></span><h2>Как убрать пароль шифрования закрытого RSA ключа средствами OpenSSL?<a class="headerlink" href="#rsa-openssl" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Воспользуемся утилитой <strong>openssl</strong> для расшифровки:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>openssl rsa -in foo-bar.key -out foo-bar-nopass.key
 </pre></div>
@@ -590,7 +620,7 @@ Match Group sftp
 <p>Здесь <strong>foo-bar.key</strong> - имя файла с закрытым RSA ключом, который необходимо расшифровать. После ввода верного пароля, результат появится в файле <strong>foo-bar-nopass.key</strong>.</p>
 </div>
 <div class="section" id="openssl-encrypt-key">
-<span id="index-56"></span><span id="id42"></span><h2>Как установить или изменить пароль шифрования закрытого RSA ключа средствами OpenSSL?<a class="headerlink" href="#openssl-encrypt-key" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-57"></span><span id="id42"></span><h2>Как установить или изменить пароль шифрования закрытого RSA ключа средствами OpenSSL?<a class="headerlink" href="#openssl-encrypt-key" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Воспользуемся утилитой <strong>openssl</strong> для установки или изменения пароля:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>openssl rsa -aes256 -in foo-bar-nopass.key -out foo-bar.key
 </pre></div>
@@ -598,7 +628,7 @@ Match Group sftp
 <p>Здесь <strong>-aes256</strong> - используемый алгоритм шифрования (AES-256), <strong>foo-bar-nokey.key</strong> - имя файла с закрытым RSA ключом, пароль которого нужно задать или изменить. Результат будет сохранён в файле <strong>foo-bar.key</strong>.</p>
 </div>
 <div class="section" id="sudo-multi">
-<span id="index-57"></span><span id="id43"></span><h2>Как посредством sudo запустить сразу несколько команд?<a class="headerlink" href="#sudo-multi" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-58"></span><span id="id43"></span><h2>Как посредством sudo запустить сразу несколько команд?<a class="headerlink" href="#sudo-multi" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Команда <a class="reference internal" href="#sudo-access"><span class="std std-ref">sudo</span></a> предназначена для запуска исключительно одной команды от имени другого пользователя, поэтому если необходимо запустить сразу несколько команд, либо осуществлять перенаправление вывода, придётся использовать другой вариант:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo bash -c &quot;first | seconds &amp;&amp; third&quot;
 </pre></div>
@@ -606,7 +636,7 @@ Match Group sftp
 <p>В данном примере все три приложения будут запущены с правами суперпользователя, причём стандартный вывод <em>first</em> перенаправляется в стандартный ввод <em>second</em> через канал (pipe) и при успешном завершении запустится процесс <em>third</em>.</p>
 </div>
 <div class="section" id="wireshark">
-<span id="wireshark-no-root"></span><span id="index-58"></span><h2>Как запускать WireShark без предоставления ему прав суперпользователя?<a class="headerlink" href="#wireshark" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="wireshark-no-root"></span><span id="index-59"></span><h2>Как запускать WireShark без предоставления ему прав суперпользователя?<a class="headerlink" href="#wireshark" title="Ссылка на этот заголовок">¶</a></h2>
 <p>WireShark поддерживает запуска как с правами суперпользователя, так и без них. Добавим свой аккаунт в группу <strong>wireshark</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G wireshark $(whoami)
 </pre></div>
@@ -614,7 +644,7 @@ Match Group sftp
 <p>Изменения вступят в силу при следующем входе в систему.</p>
 </div>
 <div class="section" id="password-gen">
-<span id="index-59"></span><span id="id44"></span><h2>Как сгенерировать криптостойкий пароль без использования стороннего ПО?<a class="headerlink" href="#password-gen" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-60"></span><span id="id44"></span><h2>Как сгенерировать криптостойкий пароль без использования стороннего ПО?<a class="headerlink" href="#password-gen" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы сгенерировать криптостойкий пароль не обязательно устанавливать и применять специальные утилиты.</p>
 <p>Воспользуемся штатными средствами, входящими в базовый пакет GNU Coreutils:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /dev/urandom | tr -dc &#39;a-zA-Z0-9&#39; | fold -w 20 | head -n 4
@@ -623,28 +653,28 @@ Match Group sftp
 <p>Данный пример сгенерирует 4 криптостойких пароля по 20 символов каждый.</p>
 </div>
 <div class="section" id="users-logged">
-<span id="index-60"></span><span id="id45"></span><h2>Как получить список вошедших в систему пользователей?<a class="headerlink" href="#users-logged" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-61"></span><span id="id45"></span><h2>Как получить список вошедших в систему пользователей?<a class="headerlink" href="#users-logged" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Список вошедших в систему пользователей можно получить посредством утилиты <strong>who</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>who
 </pre></div>
 </div>
 </div>
 <div class="section" id="users-activity">
-<span id="index-61"></span><span id="id46"></span><h2>Как получить список вошедших в систему пользователей и информацию об их деятельности?<a class="headerlink" href="#users-activity" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-62"></span><span id="id46"></span><h2>Как получить список вошедших в систему пользователей и информацию об их деятельности?<a class="headerlink" href="#users-activity" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Список вошедших в систему пользователей и базовую информацию об их действиях можно получить посредством утилиты <strong>w</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>w
 </pre></div>
 </div>
 </div>
 <div class="section" id="users-last">
-<span id="index-62"></span><span id="id47"></span><h2>Как получить информацию обо всех входах в систему?<a class="headerlink" href="#users-last" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-63"></span><span id="id47"></span><h2>Как получить информацию обо всех входах в систему?<a class="headerlink" href="#users-last" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Информацию о любых попытках входа в систему можно получить посредством утилиты <strong>last</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>last
 </pre></div>
 </div>
 </div>
 <div class="section" id="com">
-<span id="com-dialout"></span><span id="index-63"></span><h2>Как получить доступ к COM портам без наличия прав суперпользователя?<a class="headerlink" href="#com" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="com-dialout"></span><span id="index-64"></span><h2>Как получить доступ к COM портам без наличия прав суперпользователя?<a class="headerlink" href="#com" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы получить доступ к <a class="reference internal" href="hardware.html#screen-com"><span class="std std-ref">COM порту (RS-232)</span></a> без наличия прав суперпользователя, необходимо добавить свой аккаунт в группу <strong>dialout</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G dialout $(whoami)
 </pre></div>
@@ -652,7 +682,7 @@ Match Group sftp
 <p>Изменения вступят в силу при следующем входе в систему.</p>
 </div>
 <div class="section" id="gnupg-kwallet">
-<span id="gpg-kwallet"></span><span id="index-64"></span><h2>Можно ли сохранить пароль GnuPG ключа в связке ключей KWallet?<a class="headerlink" href="#gnupg-kwallet" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="gpg-kwallet"></span><span id="index-65"></span><h2>Можно ли сохранить пароль GnuPG ключа в связке ключей KWallet?<a class="headerlink" href="#gnupg-kwallet" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Установим пакет <strong>kwalletcli</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install kwalletcli
 </pre></div>
@@ -664,20 +694,20 @@ Match Group sftp
 <p>Выполним выход из системы. При следующем вводе пароля расшифровки закрытого ключа, KWallet предложит сохранить его в связке ключей.</p>
 </div>
 <div class="section" id="gpg-gui">
-<span id="index-65"></span><span id="id48"></span><h2>Безопасно ли использовать менеджеры связки ключей GnuPG с графическим интерфейсом?<a class="headerlink" href="#gpg-gui" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-66"></span><span id="id48"></span><h2>Безопасно ли использовать менеджеры связки ключей GnuPG с графическим интерфейсом?<a class="headerlink" href="#gpg-gui" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да.</p>
 </div>
 <div class="section" id="kleopatra-kgpg">
-<span id="gpg-kleopatra"></span><span id="index-66"></span><h2>Можно ли одновременно использовать Kleopatra и KGpg?<a class="headerlink" href="#kleopatra-kgpg" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="gpg-kleopatra"></span><span id="index-67"></span><h2>Можно ли одновременно использовать Kleopatra и KGpg?<a class="headerlink" href="#kleopatra-kgpg" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Нет, не следует использовать одновременно разные графические менеджеры, т.к. настройки, вносимые ими в файл конфигурации GnuPG, будут конфликтовать и приводить к непредсказуемым последствиям.</p>
 <p>Пользователям KDE мы рекомендуем Kleopatra, как наиболее современную и функциональную оболочку.</p>
 </div>
 <div class="section" id="gpg-token">
-<span id="index-67"></span><span id="id49"></span><h2>Какой токен для безопасного хранения GnuPG ключей вы можете порекомендовать?<a class="headerlink" href="#gpg-token" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-68"></span><span id="id49"></span><h2>Какой токен для безопасного хранения GnuPG ключей вы можете порекомендовать?<a class="headerlink" href="#gpg-token" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы рекомендуем использовать токены <a class="reference external" href="https://www.nitrokey.com/ru">Nitrokey Pro 2</a>, т.к. они имеют как открытое железо, так и софт (спецификации, прошивки, а также программное обеспечение опубликовано под свободными лицензиями).</p>
 </div>
 <div class="section" id="gpg-use-token">
-<span id="index-68"></span><span id="id50"></span><h2>Как работать с токеном или смарт-картой из консоли?<a class="headerlink" href="#gpg-use-token" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-69"></span><span id="id50"></span><h2>Как работать с токеном или смарт-картой из консоли?<a class="headerlink" href="#gpg-use-token" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для работы с аппаратным токеном будем использовать утилиту GnuPG2.</p>
 <p>Вставим устройство в USB порт компьютера или ноутбука, либо смарт-карту в считыватель, затем выведем его статус:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gpg2 --card-status
@@ -708,7 +738,7 @@ Match Group sftp
 <p>Если всё сделано верно, то новая ключевая пара появится в списке немедленно.</p>
 </div>
 <div class="section" id="gpg-ssh">
-<span id="index-69"></span><span id="id51"></span><h2>Как использовать токен для аутентификации SSH?<a class="headerlink" href="#gpg-ssh" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-70"></span><span id="id51"></span><h2>Как использовать токен для аутентификации SSH?<a class="headerlink" href="#gpg-ssh" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сначала нам необходимо добавить в нашу ключевую пару особый ключ для аутентификации. По умолчанию он не создаётся.</p>
 <p>Выведем список доступных ключевых пар:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gpg2 --list-secret-keys
@@ -752,7 +782,7 @@ gpgconf --launch gpg-agent
 <p>Добавим этот скрипт а автозагрузку используемой DE, либо в <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> и выполним новый вход в систему.</p>
 </div>
 <div class="section" id="gpg-transfer">
-<span id="index-70"></span><span id="id52"></span><h2>Можно ли переместить на токен уже имеющуюся ключевую пару GnuPG?<a class="headerlink" href="#gpg-transfer" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-71"></span><span id="id52"></span><h2>Можно ли переместить на токен уже имеющуюся ключевую пару GnuPG?<a class="headerlink" href="#gpg-transfer" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Выведем список доступных ключевых пар:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gpg2 --list-secret-keys
 </pre></div>
@@ -775,7 +805,7 @@ keytocard
 <p>Здесь <strong>XXXXXXXXX</strong> - ID нашего ключа.</p>
 </div>
 <div class="section" id="nmap-scan">
-<span id="index-71"></span><span id="id53"></span><h2>Как просканировать хост на наличие работающих сервисов?<a class="headerlink" href="#nmap-scan" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-72"></span><span id="id53"></span><h2>Как просканировать хост на наличие работающих сервисов?<a class="headerlink" href="#nmap-scan" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Стандартное сканирование самых популярных портов:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nmap -A -T4 -Pn 127.0.0.1
 </pre></div>
@@ -795,7 +825,7 @@ keytocard
 <p>Сканирование UDP требует прав суперпользователя.</p>
 </div>
 <div class="section" id="luks-addkey">
-<span id="index-72"></span><span id="id54"></span><h2>Как добавить ключевой файл для разблокировки зашифрованного LUKS раздела?<a class="headerlink" href="#luks-addkey" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-73"></span><span id="id54"></span><h2>Как добавить ключевой файл для разблокировки зашифрованного LUKS раздела?<a class="headerlink" href="#luks-addkey" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Создадим каталог для хранения ключей <code class="docutils literal notranslate"><span class="pre">/etc/keys</span></code> (может быть любым):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir -p /etc/keys
 </pre></div>
@@ -817,7 +847,7 @@ sudo chmod 0400 /etc/keys/foo-bar.key
 <p>Здесь <strong>/dev/sda2</strong> - устройство зашифрованного LUKS тома, для которого требуется добавить ключевой файл.</p>
 </div>
 <div class="section" id="luks-removekey">
-<span id="index-73"></span><span id="id55"></span><h2>Как удалить ключевой файл разблокировки зашифрованного LUKS раздела?<a class="headerlink" href="#luks-removekey" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-74"></span><span id="id55"></span><h2>Как удалить ключевой файл разблокировки зашифрованного LUKS раздела?<a class="headerlink" href="#luks-removekey" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если разблокировка по ключевому файлу более не требуется, его можно удалить.</p>
 <p>Удалим слот с ключом <code class="docutils literal notranslate"><span class="pre">foo-bar.key</span></code> из LUKS заголовка зашифрованного раздела:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksRemoveKey /dev/sda2 /etc/keys/foo-bar.key
@@ -830,7 +860,7 @@ sudo chmod 0400 /etc/keys/foo-bar.key
 <p>Здесь <strong>/dev/sda2</strong> - устройство зашифрованного LUKS тома, у которого требуется удалить слот с ключевым файлом.</p>
 </div>
 <div class="section" id="luks-auto">
-<span id="index-74"></span><span id="id56"></span><h2>Как настроить автоматическую расшифровку LUKS разделов при загрузке?<a class="headerlink" href="#luks-auto" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-75"></span><span id="id56"></span><h2>Как настроить автоматическую расшифровку LUKS разделов при загрузке?<a class="headerlink" href="#luks-auto" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code> в <a class="reference internal" href="using-system.html#editor-selection"><span class="std std-ref">редакторе по умолчанию</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/crypttab
 </pre></div>
@@ -852,12 +882,12 @@ sudo chmod 0400 /etc/keys/foo-bar.key
 <p>Если всё сделано верно, то при следующей загрузке раздел будет смонтирован автоматически без запроса пароля.</p>
 </div>
 <div class="section" id="root-reset">
-<span id="index-75"></span><span id="id57"></span><h2>Я забыл пароль суперпользователя. Как мне его сбросить?<a class="headerlink" href="#root-reset" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-76"></span><span id="id57"></span><h2>Я забыл пароль суперпользователя. Как мне его сбросить?<a class="headerlink" href="#root-reset" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При наличии доступа к sudo, пароль суперпользователя можно изменить <a class="reference internal" href="#root-password"><span class="std std-ref">в штатном режиме</span></a>.</p>
 <p>Если текущий пользователь не может использовать sudo, но есть физический доступ к устройству, см. <a class="reference external" href="https://docs.fedoraproject.org/en-US/quick-docs/reset-root-password/">здесь</a>.</p>
 </div>
 <div class="section" id="luks-noauto">
-<span id="index-76"></span><span id="id58"></span><h2>Можно ли отключить автоматическое монтирование устройств LUKS при загрузке?<a class="headerlink" href="#luks-noauto" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-77"></span><span id="id58"></span><h2>Можно ли отключить автоматическое монтирование устройств LUKS при загрузке?<a class="headerlink" href="#luks-noauto" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Для этого добавим параметр <code class="docutils literal notranslate"><span class="pre">noauto</span></code> для соответствующей записи в файле <code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar UUID=XXXXXX /etc/keys/foo-bar.key noauto
 </pre></div>
@@ -866,12 +896,12 @@ sudo chmod 0400 /etc/keys/foo-bar.key
 <p>Данное зашифрованное устройство будет смонтировано и автоматически расшифровано при первой попытке доступа к нему.</p>
 </div>
 <div class="section" id="truecrypt-fedora">
-<span id="index-77"></span><span id="id59"></span><h2>Как работать с TrueCrypt контейнерами в Fedora?<a class="headerlink" href="#truecrypt-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-78"></span><span id="id59"></span><h2>Как работать с TrueCrypt контейнерами в Fedora?<a class="headerlink" href="#truecrypt-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Из-за <a class="reference internal" href="development.html#fedora-licenses"><span class="std std-ref">несвободной лицензии</span></a> TrueCrypt и все его форки (в т.ч. VeraCrypt) не могут быть добавлены в репозитории Fedora, однако в настоящее время утилита <strong>cryptsetup</strong> полностью поддерживает работу с созданными ими контейнерами.</p>
 <p>Cryptsetup поддерживает монтирование как <a class="reference internal" href="#truecrypt-mount"><span class="std std-ref">TrueCrypt</span></a>, так и <a class="reference internal" href="#veracrypt-mount"><span class="std std-ref">VeraCrypt</span></a> томов (файлы и устройства), а также умеет их администрировать (управлять ключами, паролями). Ограничение лишь одно - нельзя создавать новые зашифрованные данными механизмами контейнеры.</p>
 </div>
 <div class="section" id="truecrypt-mount">
-<span id="index-78"></span><span id="id60"></span><h2>Как смонтировать TrueCrypt контейнер в Fedora?<a class="headerlink" href="#truecrypt-mount" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-79"></span><span id="id60"></span><h2>Как смонтировать TrueCrypt контейнер в Fedora?<a class="headerlink" href="#truecrypt-mount" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Откроем файл контейнера средствами cryptsetup:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --type tcrypt open /path/to/container.tc foo-bar
 </pre></div>
@@ -893,7 +923,7 @@ sudo rmdir /media/data
 <p>Здесь <strong>/path/to/container.tc</strong> полный путь к файлу контейнера на диске (либо зашифрованному устройству), а <strong>foo-bar</strong> - внутреннее имя для dev-mapper.</p>
 </div>
 <div class="section" id="veracrypt-fedora">
-<span id="veracrypt-mount"></span><span id="index-79"></span><h2>Как смонтировать VeraCrypt контейнер в Fedora?<a class="headerlink" href="#veracrypt-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="veracrypt-mount"></span><span id="index-80"></span><h2>Как смонтировать VeraCrypt контейнер в Fedora?<a class="headerlink" href="#veracrypt-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Откроем файл контейнера средствами cryptsetup:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --veracrypt --type tcrypt open /path/to/container.hc foo-bar
 </pre></div>
@@ -915,7 +945,7 @@ sudo rmdir /media/data
 <p>Здесь <strong>/path/to/container.hc</strong> полный путь к файлу контейнера на диске (либо зашифрованному устройству), а <strong>foo-bar</strong> - внутреннее имя для dev-mapper.</p>
 </div>
 <div class="section" id="veracrypt">
-<span id="veracrypt-auto"></span><span id="index-80"></span><h2>Как настроить автоматическое монтирование VeraCrypt томов при загрузке?<a class="headerlink" href="#veracrypt" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="veracrypt-auto"></span><span id="index-81"></span><h2>Как настроить автоматическое монтирование VeraCrypt томов при загрузке?<a class="headerlink" href="#veracrypt" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code> в <a class="reference internal" href="using-system.html#editor-selection"><span class="std std-ref">редакторе по умолчанию</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/crypttab
 </pre></div>
@@ -935,6 +965,36 @@ sudo rmdir /media/data
 </div>
 <p>Здесь <strong>foo-bar</strong> - внутреннее имя, указанное ранее в crypttab, а <strong>/media/data</strong> - точка монтирования.</p>
 <p>Если всё сделано верно, то при следующей загрузке зашифрованный VeraCrypt том будет смонтирован автоматически.</p>
+</div>
+<div class="section" id="selinux-local-storage">
+<span id="index-82"></span><span id="id61"></span><h2>Где хранятся заданные пользователем контексты SELinux?<a class="headerlink" href="#selinux-local-storage" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Заданные пользователем нестандартные контексты, а также переопределения хранятся внутри каталога <code class="docutils literal notranslate"><span class="pre">/etc/selinux/targeted/contexts/files</span></code> в следующих файлах:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">file_contexts.local</span></code> - текстовый формат;</li>
+<li><code class="docutils literal notranslate"><span class="pre">file_contexts.local.bin</span></code> - скомпилированный бинарный формат.</li>
+</ul>
+</div></blockquote>
+<p>Не следует их править в текстовых, либо шестнадцатиричных редакторах, т.к. это может привести к сбою в политиках SELinux и сбросу настроек по умолчанию. Вместо этого необходимо использовать <a class="reference internal" href="#selinux-local-remove"><span class="std std-ref">инструмент semanage</span></a>.</p>
+</div>
+<div class="section" id="selinux-local-list">
+<span id="index-83"></span><span id="id62"></span><h2>Как получить список заданных пользователем контекстов SELinux?<a class="headerlink" href="#selinux-local-list" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Выведем полный список нестандартных контекстов, а также переопределений политик SELinux:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext --list -C
+</pre></div>
+</div>
+</div>
+<div class="section" id="selinux-local-remove">
+<span id="index-84"></span><span id="id63"></span><h2>Как удалить пользовательские контексты SELinux?<a class="headerlink" href="#selinux-local-remove" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим конкретный нестандартный контекст, либо переопределение политик SELinux:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -d &quot;/foo/bar(/.*)?&quot;
+</pre></div>
+</div>
+<p>Удалим все нестандартный контексты, а также переопределение политик SELinux:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -D
+</pre></div>
+</div>
+<p>Для полного вступления изменений в силу рекомендуется <a class="reference internal" href="#selinux-boot-error"><span class="std std-ref">сбросить контекст</span></a> SELinux.</p>
 </div>
 </div>
 
@@ -1015,6 +1075,7 @@ sudo rmdir /media/data
 <li class="toctree-l2"><a class="reference internal" href="#destroy-file">Как безвозвратно уничтожить файл?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#destroy-disk">Можно лишь уничтожить содержимое всего диска?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ssd">Как уничтожить файл на SSD?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sata-ssd">Как полностью очистить SATA SSD без возможности восстановления?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#newfile-permissions">Как рассчитываются права доступа для новых файлов и каталогов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora">Можно ли включить поддержку российской криптографии в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mac-wi-fi-fedora">Как включить рандомизацию MAC адресов при подключении к Wi-Fi точкам в Fedora?</a></li>
@@ -1046,6 +1107,9 @@ sudo rmdir /media/data
 <li class="toctree-l2"><a class="reference internal" href="#truecrypt-mount">Как смонтировать TrueCrypt контейнер в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#veracrypt-fedora">Как смонтировать VeraCrypt контейнер в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#veracrypt">Как настроить автоматическое монтирование VeraCrypt томов при загрузке?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selinux-local-storage">Где хранятся заданные пользователем контексты SELinux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selinux-local-list">Как получить список заданных пользователем контекстов SELinux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selinux-local-remove">Как удалить пользовательские контексты SELinux?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Работа в системе</a></li>

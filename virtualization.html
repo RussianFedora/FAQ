@@ -135,6 +135,22 @@ sudo usermod -a -G vboxsf $(whoami)
 <p>Нет. KVM требует наличие активной <a class="reference internal" href="#cpu-virt"><span class="std std-ref">аппаратной виртуализации</span></a> и при её осутствии работать не будет.</p>
 <p>В то же время, без наличия этой функции со стороны CPU, могут работать VirtualBox и VMWare, хотя и с очень низкой производительностью.</p>
 </div>
+<div class="section" id="kvm-move-directory">
+<span id="index-12"></span><span id="id8"></span><h2>Можно ли перенести каталог с образами виртуальных машин KVM?<a class="headerlink" href="#kvm-move-directory" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По умолчанию образы создаваемых виртуальных машин создаются в каталоге <code class="docutils literal notranslate"><span class="pre">/var/lib/libvirt/images</span></code>, что многих не устраивает.</p>
+<p>Переместим образы виртуальных машин на отдельный накопитель, смонтированный как <code class="docutils literal notranslate"><span class="pre">/media/foo-bar</span></code>. ISO будем размещать в каталоге <code class="docutils literal notranslate"><span class="pre">iso</span></code>, а дисковые образы виртуальных машин - <code class="docutils literal notranslate"><span class="pre">images</span></code>.</p>
+<p>Создаём собственные политики SELinux для указанных каталогов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -a -t virt_image_t &quot;/media/foo-bar/iso(/.*)?&quot;
+sudo semanage fcontext -a -t virt_image_t &quot;/media/foo-bar/images(/.*)?&quot;
+</pre></div>
+</div>
+<p>Сбросим контекст безопасности SELinux для них:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo restorecon -Rv /media/foo-bar/iso
+sudo restorecon -Rv /media/foo-bar/images
+</pre></div>
+</div>
+<p>В настройках Virt Manager добавим новую библиотеку <code class="docutils literal notranslate"><span class="pre">/media/foo-bar/images</span></code> и зададим её использование для всех виртуальных машин по умолчанию.</p>
+</div>
 </div>
 
 
@@ -175,6 +191,7 @@ sudo usermod -a -G vboxsf $(whoami)
 <li class="toctree-l2"><a class="reference internal" href="#image-type">Какие дисковые образы лучше: динамически расширяющиеся или фиксированного размера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#convert-to-fixed">Как конвертировать динамически расширяющийся образ диска VirtualBox в фиксированный?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kvm-cpu">Можно ли использовать KVM на CPU без поддержки аппаратной виртуализации?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kvm-move-directory">Можно ли перенести каталог с образами виртуальных машин KVM?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Безопасность</a></li>
