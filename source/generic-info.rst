@@ -188,8 +188,9 @@ RFRemix - это ремикс оргинального дистрибутива 
 Чаты в Matrix:
 
  * `#russianfedora:matrix.org <https://matrix.to/#/#russianfedora:matrix.org>`__ - основной чат на русском языке;
- * `#fedora-rpm-ru:matrix.org <https://matrix.to/#/#fedora-rpm-ru:matrix.org>`__ - технические вопросы по созданию RPM пакетов для Fedora;
- * `#rust-rpm-ru:matrix.org <https://matrix.to/#/#rust-rpm-ru:matrix.org>`__ - чат по особенностям пакетирования приложений на Rust.
+ * `#fedora-rpm-ru:matrix.org <https://matrix.to/#/#fedora-rpm-ru:matrix.org>`__ - технические вопросы по :ref:`созданию RPM пакетов <create-package>`;
+ * `#rust-rpm-ru:matrix.org <https://matrix.to/#/#rust-rpm-ru:matrix.org>`__ - чат по особенностям пакетирования приложений, написанных на языке программирования Rust;
+ * `#linux-ru-gaming:matrix.org <https://matrix.to/#/#linux-ru-gaming:matrix.org>`__ - обсуждения запуска и работы различных игр, а также :ref:`клиента Steam <steam>`.
 
 Чаты в IRC:
 
