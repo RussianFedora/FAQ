@@ -967,7 +967,7 @@ sudo rmdir /media/data
 <p>Если всё сделано верно, то при следующей загрузке зашифрованный VeraCrypt том будет смонтирован автоматически.</p>
 </div>
 <div class="section" id="selinux-local-storage">
-<span id="index-82"></span><span id="id61"></span><h2>Где хранятся заданные пользователем контексты SELinux?<a class="headerlink" href="#selinux-local-storage" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-82"></span><span id="id61"></span><h2>Где хранятся установленные пользователем контексты SELinux?<a class="headerlink" href="#selinux-local-storage" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Заданные пользователем нестандартные контексты, а также переопределения хранятся внутри каталога <code class="docutils literal notranslate"><span class="pre">/etc/selinux/targeted/contexts/files</span></code> в следующих файлах:</p>
 <blockquote>
 <div><ul class="simple">
@@ -978,7 +978,7 @@ sudo rmdir /media/data
 <p>Не следует их править в текстовых, либо шестнадцатиричных редакторах, т.к. это может привести к сбою в политиках SELinux и сбросу настроек по умолчанию. Вместо этого необходимо использовать <a class="reference internal" href="#selinux-local-remove"><span class="std std-ref">инструмент semanage</span></a>.</p>
 </div>
 <div class="section" id="selinux-local-list">
-<span id="index-83"></span><span id="id62"></span><h2>Как получить список заданных пользователем контекстов SELinux?<a class="headerlink" href="#selinux-local-list" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-83"></span><span id="id62"></span><h2>Как получить список установленных пользователем контекстов SELinux?<a class="headerlink" href="#selinux-local-list" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Выведем полный список нестандартных контекстов, а также переопределений политик SELinux:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext --list -C
 </pre></div>
@@ -990,7 +990,7 @@ sudo rmdir /media/data
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -d &quot;/foo/bar(/.*)?&quot;
 </pre></div>
 </div>
-<p>Удалим все нестандартный контексты, а также переопределение политик SELinux:</p>
+<p>Удалим все нестандартный контексты, а также переопределения политик SELinux:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -D
 </pre></div>
 </div>
@@ -1107,8 +1107,8 @@ sudo rmdir /media/data
 <li class="toctree-l2"><a class="reference internal" href="#truecrypt-mount">Как смонтировать TrueCrypt контейнер в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#veracrypt-fedora">Как смонтировать VeraCrypt контейнер в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#veracrypt">Как настроить автоматическое монтирование VeraCrypt томов при загрузке?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#selinux-local-storage">Где хранятся заданные пользователем контексты SELinux?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#selinux-local-list">Как получить список заданных пользователем контекстов SELinux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selinux-local-storage">Где хранятся установленные пользователем контексты SELinux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selinux-local-list">Как получить список установленных пользователем контекстов SELinux?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#selinux-local-remove">Как удалить пользовательские контексты SELinux?</a></li>
 </ul>
 </li>
