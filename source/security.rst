@@ -1543,7 +1543,7 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
   * ``file_contexts.local`` - текстовый формат;
   * ``file_contexts.local.bin`` - скомпилированный бинарный формат.
 
-Не следует их править в текстовых, либо шестнадцатиричных редакторах, т.к. это может привести к сбою в политиках SELinux и сбросу настроек по умолчанию.
+Не следует их править в текстовых, либо шестнадцатиричных редакторах, т.к. это может привести к сбою в политиках SELinux и сбросу настроек по умолчанию. Вместо этого необходимо использовать :ref:`инструмент semanage <selinux-local-remove>`.
 
 .. index:: selinux, context, semanage
 .. _selinux-local-list:
@@ -1556,3 +1556,23 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
 .. code-block:: text
 
     sudo semanage fcontext --list -C
+
+.. index:: selinux, context, semanage
+.. _selinux-local-remove:
+
+Как удалить пользовательские контексты SELinux?
+===================================================
+
+Удалим конкретный нестандартный контекст, либо переопределение политик SELinux:
+
+.. code-block:: text
+
+    sudo semanage fcontext -d "/foo/bar(/.*)?"
+
+Удалим все нестандартный контексты, а также переопределение политик SELinux:
+
+.. code-block:: text
+
+    sudo semanage fcontext -D
+
+Для полного вступления изменений в силу рекомендуется :ref:`сбросить контекст <selinux-boot-error>` SELinux.
