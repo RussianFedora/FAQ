@@ -170,3 +170,29 @@
 Нет. KVM требует наличие активной :ref:`аппаратной виртуализации <cpu-virt>` и при её осутствии работать не будет.
 
 В то же время, без наличия этой функции со стороны CPU, могут работать VirtualBox и VMWare, хотя и с очень низкой производительностью.
+
+.. index:: kvm, libvirt, selinux, semanage, restorecon
+.. _kvm-move-directory:
+
+Можно ли перенести каталог с образами виртуальных машин KVM?
+===============================================================
+
+По умолчанию образы создаваемых виртуальных машин создаются в каталоге ``/var/lib/libvirt/images``, что многих не устраивает.
+
+Переместим образы виртуальных машин на отдельный накопитель, смонтированный как ``/media/foo-bar``. ISO будем размещать в каталоге ``iso``, а дисковые образы виртуальных машин - ``images``.
+
+Создаём собственные политики SELinux для указанных каталогов:
+
+.. code-block:: text
+
+    sudo semanage fcontext -a -t virt_image_t "/media/foo-bar/iso(/.*)?"
+    sudo semanage fcontext -a -t virt_image_t "/media/foo-bar/images(/.*)?"
+
+Сбросим контекст безопасности SELinux для них:
+
+.. code-block:: text
+
+    sudo restorecon -Rv /media/foo-bar/iso
+    sudo restorecon -Rv /media/foo-bar/images
+
+В настройках Virt Manager добавим новую библиотеку ``/media/foo-bar/images`` и зададим её использование для всех виртуальных машин по умолчанию.
