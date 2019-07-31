@@ -50,10 +50,10 @@ FESCo - `Fedora Engineering Steering Committee <https://docs.fedoraproject.org/e
 .. index:: fedora, elections
 .. _elections:
 
-Кто может принимать участие в голосовании?
-=============================================
+Кто может принимать участие в голосованиях?
+==============================================
 
-Информация о проходящих голосованиях всегда заранее публикуется в списках рассылки, а также блогах сообщества.
+Информация о проходящих голосованиях всегда заранее публикуется в :ref:`списках рассылки <get-help>`, а также `блогах сообщества <https://communityblog.fedoraproject.org/>`__.
 
 Принять участие в большинстве из них могут все участники сообщества, которые когда-либо вносили вклад в развитие дистрибутива: мейнтейнеры, дизайнеры, авторы статей, редакторы и т.д.
 
@@ -221,27 +221,32 @@ RFRemix - это ремикс оргинального дистрибутива 
 
 Чаты в Telegram:
 
- * `Russian Fedora <https://t.me/russianfedora>`__ - основной чат на русском языке;
- * `Fedora <https://t.me/fedora>`__ - основной чат на английском языке;
- * `Russian Fedora Flood <https://t.me/russianfedora_flood>`__ - специальный чат для флуда и оффтопика.
+  * `Russian Fedora <https://t.me/russianfedora>`__ - основной чат на русском языке;
+  * `Fedora <https://t.me/fedora>`__ - основной чат на английском языке;
+  * `Russian Fedora Flood <https://t.me/russianfedora_flood>`__ - специальный чат для флуда и оффтопика.
 
 Чаты в Matrix:
 
- * `#russianfedora:matrix.org <https://matrix.to/#/#russianfedora:matrix.org>`__ - основной чат на русском языке;
- * `#fedora-rpm-ru:matrix.org <https://matrix.to/#/#fedora-rpm-ru:matrix.org>`__ - технические вопросы по :ref:`созданию RPM пакетов <create-package>`;
- * `#rust-rpm-ru:matrix.org <https://matrix.to/#/#rust-rpm-ru:matrix.org>`__ - чат по особенностям пакетирования приложений, написанных на языке программирования Rust;
- * `#linux-ru-gaming:matrix.org <https://matrix.to/#/#linux-ru-gaming:matrix.org>`__ - обсуждения запуска и работы различных игр, а также :ref:`клиента Steam <steam>`.
+  * `#russianfedora:matrix.org <https://matrix.to/#/#russianfedora:matrix.org>`__ - основной чат на русском языке;
+  * `#fedora-rpm-ru:matrix.org <https://matrix.to/#/#fedora-rpm-ru:matrix.org>`__ - технические вопросы по :ref:`созданию RPM пакетов <create-package>`;
+  * `#rust-rpm-ru:matrix.org <https://matrix.to/#/#rust-rpm-ru:matrix.org>`__ - чат по особенностям пакетирования приложений, написанных на языке программирования Rust;
+  * `#linux-ru-gaming:matrix.org <https://matrix.to/#/#linux-ru-gaming:matrix.org>`__ - обсуждения запуска и работы различных игр, а также :ref:`клиента Steam <steam>`.
 
 Чаты в IRC:
 
- * `#fedora <https://webchat.freenode.net/?channels=#fedora>`__ - основной чат на английском языке;
- * `#fedora-devel <https://webchat.freenode.net/?channels=#fedora-devel>`__ - чат для разработчиков на английском языке;
- * `#rpmfusion <https://webchat.freenode.net/?channels=#rpmfusion>`__ - чат поддержки репозитория :ref:`RPM Fusion <rpmfusion>` на английском языке.
+  * `#fedora <https://webchat.freenode.net/?channels=#fedora>`__ - основной чат на английском языке;
+  * `#fedora-devel <https://webchat.freenode.net/?channels=#fedora-devel>`__ - чат для разработчиков на английском языке;
+  * `#rpmfusion <https://webchat.freenode.net/?channels=#rpmfusion>`__ - чат поддержки репозитория :ref:`RPM Fusion <rpmfusion>` на английском языке.
 
 Форумы:
 
- * `Fedora Ask на русском языке <https://ask.fedoraproject.org/ru/questions/>`__;
- * `Fedora Ask на английском языке <https://ask.fedoraproject.org/en/questions/>`__.
+  * `Fedora Ask на русском языке <https://ask.fedoraproject.org/ru/questions/>`__;
+  * `Fedora Ask на английском языке <https://ask.fedoraproject.org/en/questions/>`__.
+
+Списки рассылки:
+
+  * `пользовательский список рассылки на английском языке <https://lists.fedoraproject.org/archives/list/users@lists.fedoraproject.org/>`__;
+  * `список рассылки для разработчиков на английском языке <https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/>`__.
 
 .. index:: popularity, distribution, distrowatch
 .. _distrowatch:
