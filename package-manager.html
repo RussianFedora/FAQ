@@ -640,6 +640,22 @@ sudo dnf distro-sync --allowerasing
 </pre></div>
 </div>
 </div>
+<div class="section" id="dnf-local-verify">
+<span id="index-66"></span><span id="id54"></span><h2>Почему dnf не проверяет подписи локально устанавливаемых пакетов?<a class="headerlink" href="#dnf-local-verify" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По умолчанию это отключено, т.к. предполагается, что большинство локально собранных RPM пакетов не имеют GnuPG подписей.</p>
+<p>При необходимости данная функция <a class="reference internal" href="#dnf-local-enable"><span class="std std-ref">может быть включена</span></a>.</p>
+</div>
+<div class="section" id="dnf-local-enable">
+<span id="index-67"></span><span id="id55"></span><h2>Как включить проверку подписей для локально устанавливаемых пакетов?<a class="headerlink" href="#dnf-local-enable" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">localpkg_gpgcheck</span></code> (при отсутствии добавим):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>localpkg_gpgcheck=1
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -731,6 +747,8 @@ sudo dnf distro-sync --allowerasing
 <li class="toctree-l2"><a class="reference internal" href="#dnf-mirrors">Как dnf определяет зеркала, с которых будет загружать пакеты?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-fastestmirror">Как включить в dnf использование плагина fastestmirror?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fastestmirror-clear">Как очистить кэш плагина dnf fastestmirror?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-local-verify">Почему dnf не проверяет подписи локально устанавливаемых пакетов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-local-enable">Как включить проверку подписей для локально устанавливаемых пакетов?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Системное администрирование</a></li>
