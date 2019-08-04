@@ -71,7 +71,7 @@ SELinux - это мандатная система контроля доступ
 Как узнать текущий статус SELinux?
 =======================================
 
-При помощи команды **getenforce** или **sestatus**.
+Получим текущий статус SELinux при помощи одной из следующих команд: ``getenforce`` или ``sestatus``.
 
 .. index:: auditd, selinux, error, security
 .. _selinux-auditd:
