@@ -1586,7 +1586,7 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
 Для полного вступления изменений в силу рекомендуется :ref:`сбросить контекст <selinux-boot-error>` SELinux.
 
 .. index:: encryption, cryptsetup, luks, container, cryptography
-.. _luks-container:
+.. _luks-container-create:
 
 Как создать зашифрованный контейнер на диске?
 ================================================
@@ -1618,6 +1618,48 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
 .. code-block:: text
 
     sudo mkfs -t ext4 -m 1 -L foo-bar /dev/mapper/foo-bar
+
+Завершим сеанс работы с контейнером:
+
+.. code-block:: text
+
+    sudo cryptsetup luksClose /dev/mapper/foo-bar
+
+.. index:: encryption, cryptsetup, luks, container, cryptography
+.. _luks-container-mount:
+
+Как смонтировать зашифрованный файловый контейнер?
+=====================================================
+
+Загрузим :ref:`криптоконтейнер <luks-container-create>` и расшифруем содержимое:
+
+.. code-block:: text
+
+    sudo cryptsetup luksOpen /media/data/foo-bar.dat foo-bar
+
+Создадим каталог для точки монтирования:
+
+.. code-block:: text
+
+    sudo mkdir /media/foo-bar
+
+Смонтируем файловую систему:
+
+.. code-block:: text
+
+    sudo mount -t auto /dev/mapper/foo-bar /media/foo-bar
+
+По окончании работы произведём размонтирование:
+
+.. code-block:: text
+
+    sudo umount /media/foo-bar
+
+Удалим каталог точки монтирования:
+
+.. code-block:: text
+
+    sudo rmdir /media/foo-bar
 
 Завершим сеанс работы с контейнером:
 
