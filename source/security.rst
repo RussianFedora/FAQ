@@ -1584,3 +1584,43 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
     sudo semanage fcontext -D
 
 Для полного вступления изменений в силу рекомендуется :ref:`сбросить контекст <selinux-boot-error>` SELinux.
+
+.. index:: encryption, cryptsetup, luks, container, cryptography
+.. _luks-container:
+
+Как создать зашифрованный контейнер на диске?
+================================================
+
+При помощи утилиты **dd** создадим пустой файл для хранения криптоконтейнера размером в 1 ГБ:
+
+.. code-block:: text
+
+    sudo dd if=/dev/zero bs=1M count=1024 of=/media/data/foo-bar.dat
+
+Здесь **/media/data/foo-bar.dat** - полный путь к файлу на диске.
+
+Создадим зашифрованный LUKS контейнер:
+
+.. code-block:: text
+
+    sudo cryptsetup --verify-passphrase luksFormat /media/data/foo-bar.dat -c aes-xts-plain64 -s 256 -h sha512
+
+Подтвердим процесс создания посредством набора на клавиатуре **YES** в верхнем регистре, затем укажем пароль, который будет использоваться для шифрования.
+
+Загрузим контейнер и расшифруем содержимое:
+
+.. code-block:: text
+
+    sudo cryptsetup luksOpen /media/data/foo-bar.dat foo-bar
+
+Создадим файловую систему ext4:
+
+.. code-block:: text
+
+    sudo mkfs -t ext4 -m 1 -L foo-bar /dev/mapper/foo-bar
+
+Завершим сеанс работы с контейнером:
+
+.. code-block:: text
+
+    sudo cryptsetup luksClose /dev/mapper/foo-bar
