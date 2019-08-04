@@ -919,3 +919,15 @@ Zip-архивы, созданные штатными средствами ОС 
     pandoc foo-bar.md --pdf-engine=xelatex --variable papersize=a4 --variable fontsize=12pt --variable mathfont="DejaVu Sans" --variable mainfont="DejaVu Serif" --variable sansfont="DejaVu Sans" --variable monofont="DejaVu Sans Mono" -o foo-bar.pdf
 
 Допускается указать любые установленные в системе OpenType шрифты.
+
+.. index:: du, disk usage, coreutils, directory size
+.. _directory-size:
+
+Как из консоли получить размер каталога вместе со всем его содержимым?
+=========================================================================
+
+Выведем общий размер каталога в человеко-читаемом формате, включая вложенные объекты:
+
+.. code-block:: text
+
+    du -sh ~/foo-bar
