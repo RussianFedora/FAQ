@@ -920,8 +920,8 @@ Zip-архивы, созданные штатными средствами ОС 
 
 Допускается указать любые установленные в системе OpenType шрифты.
 
-.. index:: du, disk usage, coreutils, directory size
-.. _directory-size:
+.. index:: du, disk usage, coreutils, directory size, console
+.. _directory-size-console:
 
 Как из консоли получить размер каталога вместе со всем его содержимым?
 =========================================================================
@@ -931,3 +931,23 @@ Zip-архивы, созданные штатными средствами ОС 
 .. code-block:: text
 
     du -sh ~/foo-bar
+
+.. index:: disk usage, directory size, filelight, baobab
+.. _directory-size-gui:
+
+Как вывести содержимое каталога в графическом виде?
+======================================================
+
+В графическом режиме для визуализации содержимого каталога могут применяться такие утилиты, как **Baobab** (Gnome, GTK), либо **Filelight** (KDE, Qt).
+
+Установим **Baobab** (для пользователей Gnome или других DE, основанных на GTK):
+
+.. code-block:: text
+
+    sudo dnf install baobab
+
+Установим **Filelight** (для пользователей KDE):
+
+.. code-block:: text
+
+    sudo dnf install filelight
