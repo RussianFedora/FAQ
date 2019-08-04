@@ -619,6 +619,25 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 <p>Допускается указать любые установленные в системе OpenType шрифты.</p>
 </div>
+<div class="section" id="directory-size-console">
+<span id="index-47"></span><span id="id25"></span><h2>Как из консоли получить размер каталога вместе со всем его содержимым?<a class="headerlink" href="#directory-size-console" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Выведем общий размер каталога в человеко-читаемом формате, включая вложенные объекты:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>du -sh ~/foo-bar
+</pre></div>
+</div>
+</div>
+<div class="section" id="directory-size-gui">
+<span id="index-48"></span><span id="id26"></span><h2>Как вывести содержимое каталога в графическом виде?<a class="headerlink" href="#directory-size-gui" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В графическом режиме для визуализации содержимого каталога могут применяться такие утилиты, как <strong>Baobab</strong> (Gnome, GTK), либо <strong>Filelight</strong> (KDE, Qt).</p>
+<p>Установим <strong>Baobab</strong> (для пользователей Gnome или других DE, основанных на GTK):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install baobab
+</pre></div>
+</div>
+<p>Установим <strong>Filelight</strong> (для пользователей KDE):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install filelight
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -697,6 +716,8 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#f3chk-safe">Как безопасно проверить объём накопителя?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#f3chk-deep">Как выполнить глубокую проверку объёма накопителя?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#markdown-pdf">Как из документа в формате Markdown создать PDF?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#directory-size-console">Как из консоли получить размер каталога вместе со всем его содержимым?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#directory-size-gui">Как вывести содержимое каталога в графическом виде?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>

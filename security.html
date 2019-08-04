@@ -42,30 +42,35 @@
 <span id="id1"></span><h1>Безопасность<a class="headerlink" href="#security" title="Ссылка на этот заголовок">¶</a></h1>
 <div class="section" id="selinux">
 <span id="index-0"></span><span id="id2"></span><h2>Что такое SELinux?<a class="headerlink" href="#selinux" title="Ссылка на этот заголовок">¶</a></h2>
-<p>SELinux - это мандатная система контроля доступа, ограничивающая доступ ряду сервисов к файлам и каталогам. Больше информации <a class="reference external" href="https://ru.wikipedia.org/wiki/SELinux">здесь</a>.</p>
+<p>SELinux - это мандатная система контроля доступа, ограничивающая доступ ряду сервисов к файлам и каталогам.</p>
+<p>Более подробная информация может быть получена <a class="reference external" href="https://ru.wikipedia.org/wiki/SELinux">здесь</a>.</p>
 </div>
 <div class="section" id="selinux-temp">
 <span id="index-1"></span><span id="id3"></span><h2>Как мне временно отключить SELinux?<a class="headerlink" href="#selinux-temp" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Мы настоятельно не рекомендуем этого делать, но если очень хочется, то для временного отключения достаточно выполнить команду:</p>
+<p>Мы настоятельно не рекомендуем этого делать, однако если это необходимо, то для временного однократного отключения SELinux, выполним следующую команду:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo setenforce 0
 </pre></div>
 </div>
-<p>Для повторной активации:</p>
+<p>Для повторной активации данной системы, выполним:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo setenforce 1
 </pre></div>
 </div>
-<p>Также SELinux можно временно отключить при загрузке системы посредством передачи ядру Linux параметра:</p>
+<p>Также SELinux можно временно отключить при загрузке системы посредством <a class="reference internal" href="administration.html#kernelpm-once"><span class="std std-ref">передачи специального параметра ядра</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>SELINUX=0
 </pre></div>
 </div>
 </div>
 <div class="section" id="selinux-disable">
 <span id="index-2"></span><span id="id4"></span><h2>Как мне навсегда отключить SELinux?<a class="headerlink" href="#selinux-disable" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Достаточно открыть файл конфигурации <code class="docutils literal notranslate"><span class="pre">/etc/selinux/config</span></code> в любом текстовом редакторе и изменить значение директивы <code class="docutils literal notranslate"><span class="pre">SELINUX</span></code>. Допустимые значения:</p>
+<p>Для постоянного отключения SELinux, откроем его главный файл файл конфигурации <code class="docutils literal notranslate"><span class="pre">/etc/selinux/config</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/selinux/config
+</pre></div>
+</div>
+<p>Изменить значение директивы <code class="docutils literal notranslate"><span class="pre">SELINUX</span></code> на одно из допустимых значений:</p>
 <blockquote>
 <div><ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">enforcing</span></code> — включён и блокирует всё, что явно не разрешено;</li>
-<li><code class="docutils literal notranslate"><span class="pre">permissive</span></code> — включён, но ничего не блокирует и лишь пишет события в системный журнал;</li>
+<li><code class="docutils literal notranslate"><span class="pre">permissive</span></code> — включён, но ничего не блокирует, а лишь записывает события в <a class="reference internal" href="administration.html#journal-current"><span class="std std-ref">системный журнал</span></a>;</li>
 <li><code class="docutils literal notranslate"><span class="pre">disabled</span></code> — полностью отключён.</li>
 </ul>
 </div></blockquote>
@@ -73,7 +78,7 @@
 </div>
 <div class="section" id="selinux-status">
 <span id="index-3"></span><span id="id5"></span><h2>Как узнать текущий статус SELinux?<a class="headerlink" href="#selinux-status" title="Ссылка на этот заголовок">¶</a></h2>
-<p>При помощи команды <strong>getenforce</strong> или <strong>sestatus</strong>.</p>
+<p>Получим текущий статус SELinux при помощи одной из следующих команд: <code class="docutils literal notranslate"><span class="pre">getenforce</span></code> или <code class="docutils literal notranslate"><span class="pre">sestatus</span></code>.</p>
 </div>
 <div class="section" id="selinux-auditd">
 <span id="index-4"></span><span id="id6"></span><h2>Как разрешить заблокированные действия SELinux?<a class="headerlink" href="#selinux-auditd" title="Ссылка на этот заголовок">¶</a></h2>
@@ -996,6 +1001,58 @@ sudo rmdir /media/data
 </div>
 <p>Для полного вступления изменений в силу рекомендуется <a class="reference internal" href="#selinux-boot-error"><span class="std std-ref">сбросить контекст</span></a> SELinux.</p>
 </div>
+<div class="section" id="luks-container-create">
+<span id="index-85"></span><span id="id64"></span><h2>Как создать зашифрованный контейнер на диске?<a class="headerlink" href="#luks-container-create" title="Ссылка на этот заголовок">¶</a></h2>
+<p>При помощи утилиты <strong>dd</strong> создадим пустой файл для хранения криптоконтейнера размером в 1 ГБ:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/zero bs=1M count=1024 of=/media/data/foo-bar.dat
+</pre></div>
+</div>
+<p>Здесь <strong>/media/data/foo-bar.dat</strong> - полный путь к файлу на диске.</p>
+<p>Создадим зашифрованный LUKS контейнер:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --verify-passphrase luksFormat /media/data/foo-bar.dat -c aes-xts-plain64 -s 256 -h sha512
+</pre></div>
+</div>
+<p>Подтвердим процесс создания посредством набора на клавиатуре <strong>YES</strong> в верхнем регистре, затем укажем пароль, который будет использоваться для шифрования.</p>
+<p>Загрузим контейнер и расшифруем содержимое:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksOpen /media/data/foo-bar.dat foo-bar
+</pre></div>
+</div>
+<p>Создадим файловую систему ext4:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkfs -t ext4 -m 1 -L foo-bar /dev/mapper/foo-bar
+</pre></div>
+</div>
+<p>Завершим сеанс работы с контейнером:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksClose /dev/mapper/foo-bar
+</pre></div>
+</div>
+</div>
+<div class="section" id="luks-container-mount">
+<span id="index-86"></span><span id="id65"></span><h2>Как смонтировать зашифрованный файловый контейнер?<a class="headerlink" href="#luks-container-mount" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Загрузим <a class="reference internal" href="#luks-container-create"><span class="std std-ref">криптоконтейнер</span></a> и расшифруем содержимое:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksOpen /media/data/foo-bar.dat foo-bar
+</pre></div>
+</div>
+<p>Создадим каталог для точки монтирования:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/foo-bar
+</pre></div>
+</div>
+<p>Смонтируем файловую систему:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mount -t auto /dev/mapper/foo-bar /media/foo-bar
+</pre></div>
+</div>
+<p>По окончании работы произведём размонтирование:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /media/foo-bar
+</pre></div>
+</div>
+<p>Удалим каталог точки монтирования:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rmdir /media/foo-bar
+</pre></div>
+</div>
+<p>Завершим сеанс работы с контейнером:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksClose /dev/mapper/foo-bar
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -1110,6 +1167,8 @@ sudo rmdir /media/data
 <li class="toctree-l2"><a class="reference internal" href="#selinux-local-storage">Где хранятся установленные пользователем контексты SELinux?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#selinux-local-list">Как получить список установленных пользователем контекстов SELinux?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#selinux-local-remove">Как удалить пользовательские контексты SELinux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#luks-container-create">Как создать зашифрованный контейнер на диске?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#luks-container-mount">Как смонтировать зашифрованный файловый контейнер?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Работа в системе</a></li>
