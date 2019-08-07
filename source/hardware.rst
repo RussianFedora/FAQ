@@ -1057,3 +1057,49 @@ ICC профиль можно получить либо на сайте прои
 ==================================================================
 
 См. `здесь <https://www.easycoding.org/2019/07/22/reshaem-problemu-s-throttling-na-noutbukax-thinkpad.html>`__.
+
+.. index:: wi-fi, dkms, kernel module, kernel, rtl8821ce, realtek
+.. _rtl8821ce:
+
+Как установить драйверы сетевой карты на чипе rtl8821ce?
+===========================================================
+
+К сожалению, Wi-Fi модули на базе чипа rtl8821ce входят :ref:`в число проблемных <wifi-chip>`, поэтому для их корректной работы необходимо установить сторонний драйвер при помощи :ref:`dkms <dkms-akmods>`.
+
+Отключим технологию :ref:`UEFI Secure Boot <secure-boot>`, т.к. она полностью блокирует возможность загрузки неподписанных модулей.
+
+Установим пакеты git, dkms, компилятор GCC, а также исходники и заголовочные файлы ядра Linux:
+
+.. code-block:: text
+
+    sudo dnf install git gcc dkms kernel-devel kernel-headers
+
+Загрузим `rtl8821ce с GitHub <https://github.com/tomaspinho/rtl8821ce>`__:
+
+.. code-block:: text
+
+    git clone https://github.com/tomaspinho/rtl8821ce.git rtl8821ce
+
+Скопируем содержимое ``rtl8821ce`` в общий каталог хранения исходников, где они будут доступны для dkms:
+
+.. code-block:: text
+
+    sudo cp -r rtl8821ce /usr/src/rtl8821ce-v5.5.2_34066.20190614
+
+Запустим сборку модуля ядра и установим его:
+
+.. code-block:: text
+
+    sudo dkms add -m rtl8821ce -v v5.5.2_34066.20190614
+    sudo dkms build -m rtl8821ce -v v5.5.2_34066.20190614
+    sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
+
+Здесь **v5.5.2_34066.20190614** - версия модуля rtl8821ce, которая может быть получена из файла ``rtl8821ce/include/rtw_version.h`` (без учёта суффикса **BTCOEXVERSION**).
+
+Перезагрузим систему для вступления изменений в силу:
+
+.. code-block:: text
+
+    sudo systemctl reboot
+
+Теперь Wi-Fi адаптер должен появиться в системе и начать корректно функционировать.
