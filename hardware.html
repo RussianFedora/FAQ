@@ -712,6 +712,53 @@ connect AA:BB:CC:DD:EE:FF
 <span id="thinkpad-throttling"></span><span id="index-53"></span><h2>Можно ли исправить проблему с троттлингом ноутбуков ThinkPad?<a class="headerlink" href="#thinkpad" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2019/07/22/reshaem-problemu-s-throttling-na-noutbukax-thinkpad.html">здесь</a>.</p>
 </div>
+<div class="section" id="rtl8821ce">
+<span id="rtl8821ce-install"></span><span id="index-54"></span><h2>Как установить драйверы сетевой карты на чипе rtl8821ce?<a class="headerlink" href="#rtl8821ce" title="Ссылка на этот заголовок">¶</a></h2>
+<p>К сожалению, Wi-Fi модули на базе чипа rtl8821ce входят <a class="reference internal" href="#wifi-chip"><span class="std std-ref">в число проблемных</span></a>, поэтому для их корректной работы необходимо установить сторонний драйвер при помощи <a class="reference internal" href="package-manager.html#dkms-akmods"><span class="std std-ref">dkms</span></a>.</p>
+<p>Отключим технологию <a class="reference internal" href="installation.html#secure-boot"><span class="std std-ref">UEFI Secure Boot</span></a>, т.к. она полностью блокирует возможность загрузки неподписанных модулей.</p>
+<p>Произведём полное <a class="reference internal" href="package-manager.html#dnf-update"><span class="std std-ref">обновление системы</span></a> до актуальной версии:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
+</pre></div>
+</div>
+<p>Установим пакеты git, dkms, компилятор GCC, а также исходники и заголовочные файлы ядра Linux:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install git gcc dkms kernel-devel kernel-headers
+</pre></div>
+</div>
+<p>Загрузим <a class="reference external" href="https://github.com/tomaspinho/rtl8821ce">rtl8821ce с GitHub</a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/tomaspinho/rtl8821ce.git rtl8821ce
+</pre></div>
+</div>
+<p>Скопируем содержимое <code class="docutils literal notranslate"><span class="pre">rtl8821ce</span></code> в общий каталог хранения исходников, где они будут доступны для dkms:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cp -r rtl8821ce /usr/src/rtl8821ce-v5.5.2_34066.20190614
+</pre></div>
+</div>
+<p>Запустим сборку модуля ядра и установим его:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dkms add -m rtl8821ce -v v5.5.2_34066.20190614
+sudo dkms build -m rtl8821ce -v v5.5.2_34066.20190614
+sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
+</pre></div>
+</div>
+<p>Здесь <strong>v5.5.2_34066.20190614</strong> - версия модуля rtl8821ce, которая может быть получена из файла <code class="docutils literal notranslate"><span class="pre">rtl8821ce/include/rtw_version.h</span></code> (без учёта суффикса <strong>BTCOEXVERSION</strong>).</p>
+<p>Перезагрузим систему для вступления изменений в силу:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+<p>Теперь Wi-Fi адаптер должен появиться в системе и начать корректно функционировать.</p>
+</div>
+<div class="section" id="rtl8821ce-update">
+<span id="index-55"></span><span id="id33"></span><h2>Как обновить или удалить драйвер сетевой карты на чипе rtl8821ce?<a class="headerlink" href="#rtl8821ce-update" title="Ссылка на этот заголовок">¶</a></h2>
+<p>При выходе новой версии драйвера rtl8812au рекомендуется сначала удалить старый, затем с нуля установить новую версию.</p>
+<p>Удалим старый драйвер при помощи dkms:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dkms remove rtl8821ce/v5.5.2_34066.20190614 --all
+</pre></div>
+</div>
+<p>Удалим старые исходники:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rm -rf /usr/src/rtl8821ce-v5.5.2_34066.20190614
+</pre></div>
+</div>
+<p>Здесь <strong>v5.5.2_34066.20190614</strong> - версия установленного в системе модуля rtl8821ce.</p>
+<p>Загрузим и установим новую версию по <a class="reference internal" href="#rtl8821ce-install"><span class="std std-ref">стандартной инструкции</span></a>.</p>
+</div>
 </div>
 
 
@@ -798,6 +845,8 @@ connect AA:BB:CC:DD:EE:FF
 <li class="toctree-l2"><a class="reference internal" href="#cups">Как войти в веб-интерфейс CUPS?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#hp-p1102">Можно ли заставить принтер HP P1102 работать на свободных драйверах?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#thinkpad">Можно ли исправить проблему с троттлингом ноутбуков ThinkPad?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rtl8821ce">Как установить драйверы сетевой карты на чипе rtl8821ce?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rtl8821ce-update">Как обновить или удалить драйвер сетевой карты на чипе rtl8821ce?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Разработка и сборка пакетов</a></li>
