@@ -1084,7 +1084,7 @@ ICC профиль можно получить либо на сайте прои
 
 .. code-block:: text
 
-    git clone https://github.com/tomaspinho/rtl8821ce.git rtl8821ce
+    git clone --depth=1 https://github.com/tomaspinho/rtl8821ce.git rtl8821ce
 
 Скопируем содержимое ``rtl8821ce`` в общий каталог хранения исходников, где они будут доступны для dkms:
 
