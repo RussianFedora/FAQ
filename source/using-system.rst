@@ -763,13 +763,13 @@ KDE предоставляет особый PAM модуль для автома
 
 .. code-block:: text
 
-    sudo localectl LANG=en_US.utf8
+    sudo localectl set-locale LANG=en_US.utf8
 
 Установим русскую локаль для системы:
 
 .. code-block:: text
 
-    sudo localectl LANG=ru_RU.utf8
+    sudo localectl set-locale LANG=ru_RU.utf8
 
 .. index:: locale, localization, language
 .. _application-locale:
