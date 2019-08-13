@@ -981,3 +981,15 @@ Zip-архивы, созданные штатными средствами ОС 
 .. code-block:: text
 
     kwin_wayland --replace &>/dev/null &
+
+.. index:: gnome, restart, shell
+.. _gnome-shell-restart:
+
+Как перезапустить зависшую оболочку Gnome Shell?
+===================================================
+
+Перезапустим Gnome Shell:
+
+.. code-block:: text
+
+    gnome-shell --replace
