@@ -638,6 +638,31 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </pre></div>
 </div>
 </div>
+<div class="section" id="plasma-restart">
+<span id="index-49"></span><span id="id27"></span><h2>Как перезапустить зависшую оболочку KDE Plasma 5?<a class="headerlink" href="#plasma-restart" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Перезапустим KDE Plasma 5:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kquitapp5 plasmashell &amp;&amp; kstart plasmashell
+</pre></div>
+</div>
+</div>
+<div class="section" id="kwin-restart">
+<span id="index-50"></span><span id="id28"></span><h2>Как перезапустить оконный менеджер KDE Plasma 5?<a class="headerlink" href="#kwin-restart" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Перезапустим оконный менеджер KWin, работающий поверх X11:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kwin_x11 --replace &amp;&gt;/dev/null &amp;
+</pre></div>
+</div>
+<p>Перезапустим оконный менеджер KWin, работающий поверх Wayland:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kwin_wayland --replace &amp;&gt;/dev/null &amp;
+</pre></div>
+</div>
+</div>
+<div class="section" id="gnome-shell-restart">
+<span id="index-51"></span><span id="id29"></span><h2>Как перезапустить зависшую оболочку Gnome Shell?<a class="headerlink" href="#gnome-shell-restart" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Перезапустим Gnome Shell:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gnome-shell --replace
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -718,6 +743,9 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#markdown-pdf">Как из документа в формате Markdown создать PDF?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#directory-size-console">Как из консоли получить размер каталога вместе со всем его содержимым?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#directory-size-gui">Как вывести содержимое каталога в графическом виде?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plasma-restart">Как перезапустить зависшую оболочку KDE Plasma 5?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kwin-restart">Как перезапустить оконный менеджер KDE Plasma 5?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gnome-shell-restart">Как перезапустить зависшую оболочку Gnome Shell?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
