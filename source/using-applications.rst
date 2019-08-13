@@ -951,3 +951,15 @@ Zip-архивы, созданные штатными средствами ОС 
 .. code-block:: text
 
     sudo dnf install filelight
+
+.. index:: kde, plasma, restart, window manager, shell
+.. _plasma-restart:
+
+Как перезапустить зависшую оболочку KDE Plasma 5?
+====================================================
+
+Перезапустим KDE Plasma 5:
+
+.. code-block:: text
+
+    kquitapp5 plasmashell && kstart plasmashell
