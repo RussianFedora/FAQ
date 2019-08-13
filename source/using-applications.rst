@@ -952,7 +952,7 @@ Zip-архивы, созданные штатными средствами ОС 
 
     sudo dnf install filelight
 
-.. index:: kde, plasma, restart, window manager, shell
+.. index:: kde, plasma, restart, shell
 .. _plasma-restart:
 
 Как перезапустить зависшую оболочку KDE Plasma 5?
@@ -963,3 +963,21 @@ Zip-архивы, созданные штатными средствами ОС 
 .. code-block:: text
 
     kquitapp5 plasmashell && kstart plasmashell
+
+.. index:: kde, plasma, restart, window manager, kwin, x11, wayland
+.. _kwin-restart:
+
+Как перезапустить оконный менеджер KDE Plasma 5?
+====================================================
+
+Перезапустим оконный менеджер KWin, работающий поверх X11:
+
+.. code-block:: text
+
+    kwin_x11 --replace &>/dev/null &
+
+Перезапустим оконный менеджер KWin, работающий поверх Wayland:
+
+.. code-block:: text
+
+    kwin_wayland --replace &>/dev/null &
