@@ -2,6 +2,8 @@
 
 [![GitHub version](https://badge.fury.io/gh/RussianFedora%2FFAQ.svg)](https://github.com/RussianFedora/FAQ/releases)
 [![Github downloads](https://img.shields.io/github/downloads/RussianFedora/FAQ/total.svg?label=PDF%20downloads&maxAge=60)](https://github.com/RussianFedora/FAQ/releases)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/8e3t0hkf2lwa68qy?svg=true)](https://ci.appveyor.com/project/xvitaly/faq)
+[![COPR build status](https://copr.fedorainfracloud.org/coprs/xvitaly/ecrepo/package/fedora-faq-ru/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/xvitaly/ecrepo/package/fedora-faq-ru/)
 [![GitHub issues](https://img.shields.io/github/issues/RussianFedora/FAQ.svg?label=issues&maxAge=60)](https://github.com/RussianFedora/FAQ/issues)
 ---
 
