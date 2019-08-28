@@ -339,7 +339,7 @@ sudo systemctl reboot
 </div>
 <div class="section" id="firewalld-hardened">
 <span id="index-25"></span><span id="id22"></span><h2>Как усилить настройки безопасности Firewalld?<a class="headerlink" href="#firewalld-hardened" title="Ссылка на этот заголовок">¶</a></h2>
-<p>По умолчанию в Fedora Workstation используется зона брандмауэра <strong>FedoraWorkstation</strong>, в которой разрешены все входящие соединения на порты из диапазона 1025-65535, как по TCP, так и UDP.</p>
+<p>По умолчанию в Fedora Workstation применяется зона брандмауэра <strong>FedoraWorkstation</strong>, для которой разрешены входящие соединения на порты из диапазона 1025-65535, как по TCP, так и UDP.</p>
 <p>Если необходимо запретить все входящие подключения, кроме явно разрешённых, переключим зону на <strong>public</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --set-default-zone=public
 </pre></div>
