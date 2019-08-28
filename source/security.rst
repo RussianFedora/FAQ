@@ -784,7 +784,7 @@ Sudoedit безопаснее прямого запуска текстового
 
     sudo systemctl restart sshd.service
 
-.. index:: destroy file, shred
+.. index:: destroy file, shred, wipe, erasing
 .. _destroy-file:
 
 Как безвозвратно уничтожить файл?
@@ -798,7 +798,7 @@ Sudoedit безопаснее прямого запуска текстового
 
 Восстановить такой файл будет практически невозможно ибо сектора диска, на которых он располагался, будут многократно перезаписаны случайной последовательностью, а затем заполнены нулями.
 
-.. index:: destroy disk, shred, disk, drive
+.. index:: destroy disk, shred, disk, drive, wipe, erasing
 .. _destroy-disk:
 
 Можно лишь уничтожить содержимое всего диска?
@@ -812,7 +812,7 @@ Sudoedit безопаснее прямого запуска текстового
 
 Здесь **/dev/sdX** — устройство, которое будет очищено. На больших HDD процесс займёт много времени.
 
-.. index:: destroy file, ssd, trim
+.. index:: destroy file, ssd, trim, wipe, erasing
 .. _destroy-ssd-file:
 
 Как уничтожить файл на SSD?
@@ -826,7 +826,7 @@ Sudoedit безопаснее прямого запуска текстового
 
     sudo systemctl start fstrim.service
 
-.. index:: wipe, ssd, secure erase, uefi, bios, hdparm, sata
+.. index:: wipe, ssd, secure erase, uefi, bios, hdparm, sata, erasing
 .. _wipe-ssd:
 
 Как полностью очистить SATA SSD без возможности восстановления?
@@ -1680,3 +1680,21 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
 .. code-block:: text
 
     sudo cryptsetup luksClose /dev/mapper/foo-bar
+
+.. index:: luks, encryption, key, cryptsetup, wipe, erasing
+.. _luks-erase:
+
+Как быстро уничтожить содержимое LUKS контейнера?
+=====================================================
+
+Быстро и безопасно уничтожим ключи шифрования заголовка LUKS-контейнера:
+
+.. code-block:: text
+
+    sudo cryptsetup luksErase /dev/sda2
+
+Здесь **/dev/sda2** - устройство, данные на котором требуется уничтожить. Он не должен быть смонтирован. Ввод пароля не требуется.
+
+После выполнения данного действия все ключевые слоты LUKS-контейнера будут забиты нулями и доступ к данным, хранящимся на данном разделе, станет невозможен даже при знании верного пароля или наличии ключа.
+
+Внимание! Это действие не затирает данные физически, поэтому после его использования рекомендуется :ref:`провести эту процедуру <destroy-disk>` самостоятельно.
