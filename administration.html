@@ -42,7 +42,7 @@
 <span id="id1"></span><h1>Системное администрирование<a class="headerlink" href="#administration" title="Ссылка на этот заголовок">¶</a></h1>
 <div class="section" id="kernelpm-once">
 <span id="index-0"></span><span id="id2"></span><h2>Как однократно передать параметр ядра?<a class="headerlink" href="#kernelpm-once" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для передачи параметра необходимо в меню загрузчика Grub 2 выбрать нужную строку и нажать клавишу <strong>E</strong> на клавиатуре для перехода к её редактированию, затем в конце через пробел дописать нужный параметр (или параметры), после чего нажать <strong>Enter</strong>, чтобы начать процесс загрузки.</p>
+<p>Для передачи параметра необходимо в меню загрузчика Grub 2 выбрать нужную строку и нажать клавишу <strong>E</strong> на клавиатуре для перехода к её редактированию, затем в конце строки, начинающейся с <strong>linux</strong>, через пробел дописать нужный параметр (или параметры), после чего нажать <strong>Ctrl + X</strong>, чтобы начать процесс загрузки.</p>
 </div>
 <div class="section" id="kernelpm-perm">
 <span id="index-1"></span><span id="id3"></span><h2>Как мне задать параметр ядра для постоянного использования?<a class="headerlink" href="#kernelpm-perm" title="Ссылка на этот заголовок">¶</a></h2>
@@ -84,7 +84,7 @@
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo efibootmgr -o 0000,0002,0003,0001
 </pre></div>
 </div>
-<p>Здесь <strong>0000</strong> и прочие строки из предыдущего вывода утилиты. Ведущие нули указывать не обязательно.</p>
+<p>Здесь <strong>0000</strong> и прочие - результат предыдущего вывода утилиты. Ведущие нули указывать не обязательно.</p>
 <p>Изменения вступают в силу немедленно.</p>
 </div>
 <div class="section" id="uefi-remove">
@@ -120,7 +120,7 @@
 </div>
 <div class="section" id="journal-tofile">
 <span id="index-10"></span><span id="id11"></span><h2>Как мне выгрузить журнал в файл?<a class="headerlink" href="#journal-tofile" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">bash-pipelines</span></a> перенаправить поток стандартного вывода в файл:</p>
+<p>Необходимо <a class="reference internal" href="#bash-pipelines"><span class="std std-ref">перенаправить поток</span></a> стандартного вывода в файл:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>journalctl -b &gt; ~/abc.txt
 </pre></div>
 </div>
@@ -200,8 +200,10 @@ sudo mount -t vfat /dev/sda1 boot/efi
 </pre></div>
 </div>
 </div>
-<div class="section" id="utc">
-<span id="system-time-utc"></span><span id="index-17"></span><h2>Как настроить системные часы в UTC или локального времени и наоборот?<a class="headerlink" href="#utc" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="utc-localtime">
+<span id="system-time-utc"></span><span id="index-17"></span><h2>Как перевести системные часы в UTC или localtime и наоборот?<a class="headerlink" href="#utc-localtime" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Localtime - это хранение в UEFI BIOS компьютера времени с учётом установленного в системе часового пояса. При определённых условиях это может вызывать проблемы с синхронизацией времени, а также работой нескольких операционных систем на одном компьютере.</p>
+<p>UTC - это хранение в UEFI BIOS компьютера всемирного координированного времени по Гринвичу без учёта часовых поясов. Часовыми поясами управляет операционная система, что позволяет каждому пользователю в системе, а также приложениям использовать <a class="reference internal" href="using-system.html#application-timezone"><span class="std std-ref">индивидуальные настройки</span></a>.</p>
 <p>Переключение аппаратных часов компьютера в UTC из localtime:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo timedatectl set-local-rtc no
 </pre></div>
@@ -311,7 +313,7 @@ sudo systemctl disable zram-swap
 <p>После использования вышеуказанных команд рекомендуется выполнить перезагрузку системы.</p>
 </div>
 <div class="section" id="sysctl">
-<span id="sysctl-temporary"></span><span id="index-28"></span><h2>Как временно изменить параметр sysctl?<a class="headerlink" href="#sysctl" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="sysctl-temporary"></span><span id="index-28"></span><h2>Как временно изменить параметр ядра при помощи sysctl?<a class="headerlink" href="#sysctl" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Временно установить любой параметр ядра возможно через sysctl:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w foo.bar=X
 </pre></div>
@@ -319,7 +321,7 @@ sudo systemctl disable zram-swap
 <p>Здесь <strong>foo.bar</strong> имя параметра, а <strong>X</strong> - его значение. Изменения вступят в силу немедленно и сохранятся до перезагрузки системы.</p>
 </div>
 <div class="section" id="sysctl-permanent">
-<span id="index-29"></span><span id="id19"></span><h2>Как задать и сохранить параметр sysctl?<a class="headerlink" href="#sysctl-permanent" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-29"></span><span id="id19"></span><h2>Как задать и сохранить параметр ядра при помощи sysctl?<a class="headerlink" href="#sysctl-permanent" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы сохранить параметр ядра, создадим специальный файл <code class="docutils literal notranslate"><span class="pre">99-foobar.conf</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/sysctl.d</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo.bar1=X1
 foo.bar2=X2
@@ -387,7 +389,7 @@ foo.bar2=X2
 <p>Действия вступят в силу немедленно.</p>
 </div>
 <div class="section" id="disk-usage">
-<span id="index-33"></span><span id="id22"></span><h2>Как узнать какой процесс осуществляет запись на диск?<a class="headerlink" href="#disk-usage" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-33"></span><span id="id22"></span><h2>Как узнать, какой процесс осуществляет запись на диск?<a class="headerlink" href="#disk-usage" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для мониторинга дисковой активности существуют улититы <strong>iotop</strong> и <strong>fatrace</strong>. Установим их:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install iotop fatrace
 </pre></div>
@@ -400,7 +402,7 @@ foo.bar2=X2
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fatrace -f W
 </pre></div>
 </div>
-<p>Запустим fatrace в режиме накопления с выводом информации о событиях записи на диск в файл в течение 10 минут (600 секунд):</p>
+<p>Запустим fatrace в режиме накопления, с выводом информации о событиях записи на диск в файл, в течение 10 минут (600 секунд):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fatrace -f W -o ~/disk-usage.log -s 600
 </pre></div>
 </div>
@@ -661,7 +663,8 @@ sudo umount /media/new-root
 </div>
 <div class="section" id="ssh">
 <span id="ssh-alias"></span><span id="index-58"></span><h2>Как создать алиасы для быстрого подключения к SSH серверам?<a class="headerlink" href="#ssh" title="Ссылка на этот заголовок">¶</a></h2>
-<p>OpenSSH позволяет создавать неограниченное количество алиасов для быстрых подключений:</p>
+<p>OpenSSH позволяет создавать неограниченное количество алиасов для быстрых подключений.</p>
+<p>Чтобы сделать это, откроем (создадим) файл <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code> в любом текстовом редакторе и внесём правки:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Host foo
     HostName example1.org
     Port 22
@@ -674,7 +677,7 @@ Host bar
     IdentityFile ~/.ssh/id_rsa2
 </pre></div>
 </div>
-<p>Для каждого могут быть указаны индивидуальные настройки, включая <a class="reference internal" href="security.html#ssh-keys"><span class="std std-ref">различные SSH ключи</span></a>.</p>
+<p>Здесь <code class="docutils literal notranslate"><span class="pre">foo</span></code> и <code class="docutils literal notranslate"><span class="pre">bar</span></code> - имена сокращений (алиасов), которые будут использоваться для подключения. Для каждого могут быть указаны индивидуальные настройки, включая <a class="reference internal" href="security.html#ssh-keys"><span class="std std-ref">различные SSH ключи</span></a> при помощи директивы <code class="docutils literal notranslate"><span class="pre">IdentityFile</span></code>.</p>
 <p>Подключимся к первому серверу:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ssh foo
 </pre></div>
@@ -966,7 +969,7 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <li class="toctree-l2"><a class="reference internal" href="#journald-wipe">Как немедленно очистить все системные журналы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#systemd">Что такое systemd и как с ним работать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#drop-fs-caches">Как очистить кэши и буферы всех файловых систем?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#utc">Как настроить системные часы в UTC или локального времени и наоборот?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#utc-localtime">Как перевести системные часы в UTC или localtime и наоборот?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora-windows">У меня в дуалбуте с Fedora установлена Windows и часы постоянно сбиваются. В чём дело?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gdm-sddm">У меня в системе используется GDM, но я хочу заменить его на SDDM. Это возможно?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#java">Как мне выбрать версию Java по умолчанию?</a></li>
@@ -977,12 +980,12 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <li class="toctree-l2"><a class="reference internal" href="#deduplication-memory">Возможна ли полная дедупликация оперативной памяти?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#deduplication-disk">Возможна ли полная дедупликация данных на дисках?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#memory-compression">Можно ли включить сжатие оперативной памяти?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#sysctl">Как временно изменить параметр sysctl?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#sysctl-permanent">Как задать и сохранить параметр sysctl?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sysctl">Как временно изменить параметр ядра при помощи sysctl?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sysctl-permanent">Как задать и сохранить параметр ядра при помощи sysctl?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sysctl-order">В каком порядке загружаются sysctl файлы настроек?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configure-runlevel">Как переключить запуск системы в текстовый режим и обратно?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora">Как настроить подкачку в файл в Fedora?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#disk-usage">Как узнать какой процесс осуществляет запись на диск?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#disk-usage">Как узнать, какой процесс осуществляет запись на диск?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#change-label">Как сменить метку раздела?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uuid">Как получить UUID всех смонтированных разделов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#change-uuid">Как изменить UUID раздела?</a></li>
