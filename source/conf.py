@@ -15,7 +15,7 @@
 import os
 import time
 
-rel_version = '2019.07.31'
+rel_version = '2019.08.30'
 rel_snapshot = os.getenv('CI_HASH')
 
 # -- General configuration ------------------------------------------------
