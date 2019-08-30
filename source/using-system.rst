@@ -103,7 +103,7 @@
 Как пересобрать конфиг Grub 2?
 ====================================
 
-Начиная с Fedora 30, по умолчанию вместо `устаревшего способа <https://fedoraproject.org/wiki/Changes/BootLoaderSpecByDefault>`__ с добавлением ядер через grubby, применяется `BLS <https://systemd.io/BOOT_LOADER_SPECIFICATION>`__, поэтому пересборка конфига больше не требуется.
+Начиная с Fedora 30, по умолчанию вместо `устаревшего способа <https://fedoraproject.org/wiki/Changes/BootLoaderSpecByDefault>`__ с добавлением ядер через grubby, применяется :ref:`BLS <grub-bls-info>`, поэтому пересборка конфига больше не требуется.
 
 Пересборка конфига Grub 2 для legacy конфигураций:
 
@@ -116,6 +116,18 @@
 .. code-block:: text
 
     sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+
+.. index:: boot, grub, bls, loader
+.. _grub-bls-info:
+
+Что такое BLS и почему он используется по умолчанию?
+=======================================================
+
+`BLS <https://systemd.io/BOOT_LOADER_SPECIFICATION>`__ - это универсальный формат параметров загрузки, который будет поддерживаться большинством современных загрузчиков.
+
+Все параметры генерируются на этапе компиляции ядра и сохраняются в специальном conf-файле, который устанавливается в каталог ``/boot/loader/entries``.
+
+Т.к. это статические файлы, :ref:`нестандартные параметры ядра <kernelpm-perm>` теперь устанавливаются при помощи ``grubenv``.
 
 .. index:: boot, grub, bls, loader
 .. _grub-to-bls:
