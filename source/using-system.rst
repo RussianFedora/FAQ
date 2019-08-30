@@ -97,7 +97,7 @@
 
 См. `здесь <https://fedoraproject.org/wiki/GRUB_2>`__.
 
-.. index:: boot, grub
+.. index:: boot, grub, bls, loader
 .. _grub-rebuild:
 
 Как пересобрать конфиг Grub 2?
@@ -116,6 +116,18 @@
 .. code-block:: text
 
     sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+
+.. index:: boot, grub, bls, loader
+.. _grub-to-bls:
+
+Как перейти с классического Grub 2 на BLS?
+==============================================
+
+Переход с классического Grub 2 на BLS полностью автоматизирован. Выполним специальный скрипт, входящий в поставку Fedora 30+:
+
+.. code-block:: text
+
+    sudo grub2-switch-to-blscfg
 
 .. index:: slow shutdown, shutdown
 .. _slow-shutdown:
