@@ -103,6 +103,8 @@
 Как пересобрать конфиг Grub 2?
 ====================================
 
+Начиная с Fedora 30, по умолчанию вместо устаревшего способа с добавлением ядер через grubby, `применяется <https://fedoraproject.org/wiki/Changes/BootLoaderSpecByDefault>`__ `BLS <https://systemd.io/BOOT_LOADER_SPECIFICATION>`__, поэтому пересборка конфига больше не требуется.
+
 Пересборка конфига Grub 2 для legacy конфигураций:
 
 .. code-block:: text
