@@ -103,7 +103,7 @@
 Как пересобрать конфиг Grub 2?
 ====================================
 
-Начиная с Fedora 30, по умолчанию вместо устаревшего способа с добавлением ядер через grubby, `применяется <https://fedoraproject.org/wiki/Changes/BootLoaderSpecByDefault>`__ `BLS <https://systemd.io/BOOT_LOADER_SPECIFICATION>`__, поэтому пересборка конфига больше не требуется.
+Начиная с Fedora 30, по умолчанию вместо `устаревшего способа <https://fedoraproject.org/wiki/Changes/BootLoaderSpecByDefault>`__ с добавлением ядер через grubby, применяется `BLS <https://systemd.io/BOOT_LOADER_SPECIFICATION>`__, поэтому пересборка конфига больше не требуется.
 
 Пересборка конфига Grub 2 для legacy конфигураций:
 
@@ -128,6 +128,32 @@
 .. code-block:: text
 
     sudo grub2-switch-to-blscfg
+
+.. index:: boot, grub, bls, loader
+.. _grub-from-bls:
+
+Как вернуться с BLS на классический Grub 2?
+==============================================
+
+Установим legacy-пакет **grubby**, т.к. он используется при добавлении ядер:
+
+.. code-block:: text
+
+    sudo dnf install grubby
+
+Откроем файл конфигурации Grub 2 в текстовом редакторе:
+
+.. code-block:: text
+
+    sudoedit /etc/default/grub
+
+Внесём правки, запретив использование BLS:
+
+.. code-block:: text
+
+    GRUB_ENABLE_BLSCFG=false
+
+:ref:`Пересоберём конфиг Grub 2 <grub-rebuild>` и перезагрузим систему.
 
 .. index:: slow shutdown, shutdown
 .. _slow-shutdown:
