@@ -11,12 +11,13 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-# Configuring version and Git snapshots.
-import os
-import time
+# Importing some Python modules.
+from os import getenv
+from time import strftime
 
+# Configuring version and Git snapshots.
 rel_version = '2019.08.30'
-rel_snapshot = os.getenv('CI_HASH')
+rel_snapshot = getenv('CI_HASH')
 
 # -- General configuration ------------------------------------------------
 
@@ -45,7 +46,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Неофициальный FAQ по Fedora'
-copyright = '2018 - {}, EasyCoding Team and contributors'.format(time.strftime('%Y'))
+copyright = '2018 - {}, EasyCoding Team and contributors'.format(strftime('%Y'))
 author = 'EasyCoding Team and contributors'
 
 # The version info for the project you're documenting, acts as replacement for
