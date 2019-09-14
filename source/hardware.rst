@@ -874,18 +874,37 @@ ICC профиль можно получить либо на сайте прои
 
 Таким образом, пользователям Fedora с :ref:`проприетарными драйверами NVIDIA <nvidia-drivers>` следует убедиться, что в файле ``/etc/gdm/custom.conf`` убран символ комментария (**#**) около строки ``WaylandEnable=false``.
 
-.. index:: repository, broadcom, drivers, third-party
+.. index:: repository, broadcom, drivers, third-party, akmod, wl
 .. _broadcom-drivers:
 
 Как правильно установить драйверы Wi-Fi модулей Broadcom?
 =============================================================
 
-Сначала нужно подключить :ref:`RPM Fusion <rpmfusion>`, затем выполнить:
+Установим пропатченную версию **wpa_supplicant** из :ref:`COPR <copr>`, т.к. с обычной драйверы Broadcom `не работают <https://bugzilla.redhat.com/show_bug.cgi?id=1703745>`__:
+
+.. code-block:: text
+
+    sudo dnf copr enable dcaratti/wpa_supplicant
+    sudo dnf upgrade --refresh wpa_supplicant
+
+Подключим репозитории :ref:`RPM Fusion <rpmfusion>`, затем произведём установку драйвера:
 
 .. code-block:: text
 
     sudo dnf upgrade --refresh
     sudo dnf install gcc kernel-devel kernel-headers akmod-wl
+
+Убедимся, что драйверы установились корректно:
+
+.. code-block:: text
+
+    sudo akmods --force
+
+Перезагрузим систему:
+
+.. code-block:: text
+
+    sudo systemctl reboot
 
 .. index:: bluetooth, mouse, reconnect
 .. _bluetooth-auto:
