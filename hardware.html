@@ -599,9 +599,22 @@ pulseaudio -D
 </div>
 <div class="section" id="wi-fi-broadcom">
 <span id="broadcom-drivers"></span><span id="index-45"></span><h2>Как правильно установить драйверы Wi-Fi модулей Broadcom?<a class="headerlink" href="#wi-fi-broadcom" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Сначала нужно подключить <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>, затем выполнить:</p>
+<p>Установим пропатченную версию <strong>wpa_supplicant</strong> из <a class="reference internal" href="generic-info.html#copr"><span class="std std-ref">COPR</span></a>, т.к. с обычной драйверы Broadcom <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1703745">не работают</a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf copr enable dcaratti/wpa_supplicant
+sudo dnf upgrade --refresh wpa_supplicant
+</pre></div>
+</div>
+<p>Подключим репозитории <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>, затем произведём установку драйвера:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
 sudo dnf install gcc kernel-devel kernel-headers akmod-wl
+</pre></div>
+</div>
+<p>Убедимся, что драйверы установились корректно:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo akmods --force
+</pre></div>
+</div>
+<p>Перезагрузим систему:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
 </pre></div>
 </div>
 </div>
