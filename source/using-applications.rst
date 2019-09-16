@@ -632,6 +632,16 @@ Zip-архивы, созданные штатными средствами ОС 
   1. `TopIcons Plus <https://extensions.gnome.org/extension/1031/topicons/>`__ (также доступно в виде пакета ``gnome-shell-extension-topicons-plus`` в репозиториях);
   2. `AppIndicator Support <https://extensions.gnome.org/extension/615/appindicator-support/>`__ (также доступно в виде пакета ``gnome-shell-extension-appindicator`` в репозиториях).
 
+.. index:: gnome, shell, desktop, icon
+.. _gnome-shell-desktop:
+
+Как вернуть классический рабочий стол в Gnome Shell?
+=======================================================
+
+Начиная с Gnome 3.28, поддержка рабочего стола с возможностью размещения на нём файлов, либо ярлыков приложений, была удалена.
+
+Восстановить классический рабочий стол можно при помощи установки :ref:`расширения Gnome Shell <gnome-shell-extensions>` `Desktop Icons <https://extensions.gnome.org/extension/1465/desktop-icons/>`__ (также доступно в виде пакета ``gnome-shell-extension-desktop-icons`` в репозиториях).
+
 .. index:: 7zip, archive, split, optical drive, dvd, p7zip
 .. _7zip-split:
 
