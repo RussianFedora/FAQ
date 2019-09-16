@@ -443,8 +443,13 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </ol>
 </div></blockquote>
 </div>
+<div class="section" id="gnome-shell-desktop">
+<span id="index-35"></span><span id="id16"></span><h2>Как вернуть классический рабочий стол в Gnome Shell?<a class="headerlink" href="#gnome-shell-desktop" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Начиная с Gnome 3.28, поддержка рабочего стола с возможностью размещения на нём файлов, либо ярлыков приложений, была удалена.</p>
+<p>Восстановить классический рабочий стол можно при помощи установки <a class="reference internal" href="#gnome-shell-extensions"><span class="std std-ref">расширения Gnome Shell</span></a> <a class="reference external" href="https://extensions.gnome.org/extension/1465/desktop-icons/">Desktop Icons</a> (также доступно в виде пакета <code class="docutils literal notranslate"><span class="pre">gnome-shell-extension-desktop-icons</span></code> в репозиториях).</p>
+</div>
 <div class="section" id="zip-split">
-<span id="index-35"></span><span id="id16"></span><h2>Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?<a class="headerlink" href="#zip-split" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-36"></span><span id="id17"></span><h2>Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?<a class="headerlink" href="#zip-split" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет <strong>p7zip</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install p7zip
 </pre></div>
@@ -455,13 +460,13 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 </div>
 <div class="section" id="kerberos-gnome">
-<span id="index-36"></span><span id="id17"></span><h2>Как настроить автоматическое обновление Kerberos-тикетов в Gnome?<a class="headerlink" href="#kerberos-gnome" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-37"></span><span id="id18"></span><h2>Как настроить автоматическое обновление Kerberos-тикетов в Gnome?<a class="headerlink" href="#kerberos-gnome" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Актуальные версии среды Gnome поддерживают автоматическое <a class="reference internal" href="administration.html#kerberos-renew"><span class="std std-ref">обновление</span></a> <a class="reference internal" href="administration.html#kerberos-auth"><span class="std std-ref">Kerberos-тикетов</span></a> «из коробки».</p>
 <p>Откроем <strong>настройки Gnome</strong>, выберем пункт <strong>Онлайн учётные записи</strong>, нажмём кнопку с символом <strong>+</strong> для добавления нового, в конце списка выберем вариант <strong>Другие</strong>, а затем <strong>Enterprise login (Kerberos)</strong>.</p>
 <p>В появившемся окне введём авторизационные данные и подтвердим добавление аккаунта.</p>
 </div>
 <div class="section" id="transmission-server">
-<span id="index-37"></span><span id="id18"></span><h2>Как запустить фоновый клиент для загрузки торрентов?<a class="headerlink" href="#transmission-server" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-38"></span><span id="id19"></span><h2>Как запустить фоновый клиент для загрузки торрентов?<a class="headerlink" href="#transmission-server" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим Transsmission в виде сервиса:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install transmission-daemon
 </pre></div>
@@ -482,7 +487,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Изменения вступают в силу немедленно. Сервер будет запускаться автоматически при каждой загрузке системы и сразу же осуществлять загрузку, либо раздачу торрентов.</p>
 </div>
 <div class="section" id="gnome-shell-reset">
-<span id="index-38"></span><span id="id19"></span><h2>Как сбросить все настройки Gnome Shell?<a class="headerlink" href="#gnome-shell-reset" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-39"></span><span id="id20"></span><h2>Как сбросить все настройки Gnome Shell?<a class="headerlink" href="#gnome-shell-reset" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы сбросить все настройки Gnome и Gnome Shell, выполним:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dconf reset -f /
 </pre></div>
@@ -491,7 +496,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>При следующем входе будут восстановлены значения по умолчанию.</p>
 </div>
 <div class="section" id="directory-tree">
-<span id="index-39"></span><span id="id20"></span><h2>Как построить дерево каталогов и сохранить его в файл?<a class="headerlink" href="#directory-tree" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-40"></span><span id="id21"></span><h2>Как построить дерево каталогов и сохранить его в файл?<a class="headerlink" href="#directory-tree" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для построения дерева каталогов воспользуемся утилитой <strong>tree</strong>, затем перенаправим вывод в файл:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>tree /path/to/directory &gt; ~/foo-bar.txt
 </pre></div>
@@ -499,14 +504,14 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Здесь <strong>/path/to/directory</strong> - путь к каталогу, дерево которого нужно построить, а <strong>~/foo-bar.txt</strong> - файл, в котором будет сохранён результат.</p>
 </div>
 <div class="section" id="trash-terminal">
-<span id="index-40"></span><span id="id21"></span><h2>Как из терминала удалить файл в корзину?<a class="headerlink" href="#trash-terminal" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-41"></span><span id="id22"></span><h2>Как из терминала удалить файл в корзину?<a class="headerlink" href="#trash-terminal" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для удаления в корзину из оболочки воспользуемся утилитой <strong>gio</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gio trash /path/to/file.txt
 </pre></div>
 </div>
 </div>
 <div class="section" id="irc-freenode">
-<span id="irc-nopass"></span><span id="index-41"></span><h2>Можно ли входить в IRC сеть FreeNode без ввода пароля?<a class="headerlink" href="#irc-freenode" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="irc-nopass"></span><span id="index-42"></span><h2>Можно ли входить в IRC сеть FreeNode без ввода пароля?<a class="headerlink" href="#irc-freenode" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, сеть FreeNode с недавних пор поддерживает вход по ключам.</p>
 <p>Создадим каталог для хранения ключей HexChat:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/.config/hexchat/certs
@@ -546,7 +551,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Теперь можно отключиться и подключиться заново. Вход будет выполнен уже безопасным способом без использования паролей.</p>
 </div>
 <div class="section" id="kde">
-<span id="kickoff-reset"></span><span id="index-42"></span><h2>В меню KDE перестали отображаться значки приложений и документов. Как исправить?<a class="headerlink" href="#kde" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="kickoff-reset"></span><span id="index-43"></span><h2>В меню KDE перестали отображаться значки приложений и документов. Как исправить?<a class="headerlink" href="#kde" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Исчезновение значков приложений, либо документов в меню KDE Plasma 5 часто происходит при повреждении баз данных компонента KDE activity manager.</p>
 <p>Произведём удаление старых баз (при необходимости можно сделать резервную копию):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rm -rf ~/.local/share/kactivitymanagerd
@@ -555,7 +560,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>При следующем входе в систему все настройки Kickoff будут сброшены, включая страницу <em>Избранное</em> и при этом должна восстановиться его правильная работа.</p>
 </div>
 <div class="section" id="sqlite-firefox">
-<span id="firefox-vacuum"></span><span id="index-43"></span><h2>Как сжать базы данных sqlite браузера Firefox?<a class="headerlink" href="#sqlite-firefox" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="firefox-vacuum"></span><span id="index-44"></span><h2>Как сжать базы данных sqlite браузера Firefox?<a class="headerlink" href="#sqlite-firefox" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Браузер Mozilla Firefox сохраняет данные внутри стандартных баз sqlite3, поэтому даже после очистки истории, cookies, кэшей и т.д. их размер на диске не уменьшается, т.к. данные в них лишь помечаются удалёнными, а непосредственная очистка (vacuum) производится по таймеру во время простоя несколько раз в месяц.</p>
 <p>Сжать все базы данных можно и вручную. Для этого установим пакет sqlite:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install sqlite
@@ -568,7 +573,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Это действие абсолютно безопасно, т.к. физически удаляет лишь те данные, которые в них были помечены в качестве удалённых.</p>
 </div>
 <div class="section" id="f3chk-safe">
-<span id="index-44"></span><span id="id22"></span><h2>Как безопасно проверить объём накопителя?<a class="headerlink" href="#f3chk-safe" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-45"></span><span id="id23"></span><h2>Как безопасно проверить объём накопителя?<a class="headerlink" href="#f3chk-safe" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет <strong>f3</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install f3
 </pre></div>
@@ -589,7 +594,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Здесь <strong>/media/foo-bar</strong> - точка монтирования накопителя, объём которого требуется проверить.</p>
 </div>
 <div class="section" id="f3chk-deep">
-<span id="index-45"></span><span id="id23"></span><h2>Как выполнить глубокую проверку объёма накопителя?<a class="headerlink" href="#f3chk-deep" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-46"></span><span id="id24"></span><h2>Как выполнить глубокую проверку объёма накопителя?<a class="headerlink" href="#f3chk-deep" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет <strong>f3</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install f3
 </pre></div>
@@ -604,7 +609,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>После завершения процесса потребуется заново создать раздел и файловую систему на проверяемом устройстве при помощи таких утилит, как GParted, Gnome Disks, KDE Disk Manager и т.д.</p>
 </div>
 <div class="section" id="markdown-pdf">
-<span id="index-46"></span><span id="id24"></span><h2>Как из документа в формате Markdown создать PDF?<a class="headerlink" href="#markdown-pdf" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-47"></span><span id="id25"></span><h2>Как из документа в формате Markdown создать PDF?<a class="headerlink" href="#markdown-pdf" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим универсальный конвертер документов pandoc:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install pandoc
 </pre></div>
@@ -620,14 +625,14 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Допускается указать любые установленные в системе OpenType шрифты.</p>
 </div>
 <div class="section" id="directory-size-console">
-<span id="index-47"></span><span id="id25"></span><h2>Как из консоли получить размер каталога вместе со всем его содержимым?<a class="headerlink" href="#directory-size-console" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-48"></span><span id="id26"></span><h2>Как из консоли получить размер каталога вместе со всем его содержимым?<a class="headerlink" href="#directory-size-console" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Выведем общий размер каталога в человеко-читаемом формате, включая вложенные объекты:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>du -sh ~/foo-bar
 </pre></div>
 </div>
 </div>
 <div class="section" id="directory-size-gui">
-<span id="index-48"></span><span id="id26"></span><h2>Как вывести содержимое каталога в графическом виде?<a class="headerlink" href="#directory-size-gui" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-49"></span><span id="id27"></span><h2>Как вывести содержимое каталога в графическом виде?<a class="headerlink" href="#directory-size-gui" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В графическом режиме для визуализации содержимого каталога могут применяться такие утилиты, как <strong>Baobab</strong> (Gnome, GTK), либо <strong>Filelight</strong> (KDE, Qt).</p>
 <p>Установим <strong>Baobab</strong> (для пользователей Gnome или других DE, основанных на GTK):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install baobab
@@ -639,14 +644,14 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 </div>
 <div class="section" id="plasma-restart">
-<span id="index-49"></span><span id="id27"></span><h2>Как перезапустить зависшую оболочку KDE Plasma 5?<a class="headerlink" href="#plasma-restart" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-50"></span><span id="id28"></span><h2>Как перезапустить зависшую оболочку KDE Plasma 5?<a class="headerlink" href="#plasma-restart" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Перезапустим KDE Plasma 5:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kquitapp5 plasmashell &amp;&amp; kstart plasmashell
 </pre></div>
 </div>
 </div>
 <div class="section" id="kwin-restart">
-<span id="index-50"></span><span id="id28"></span><h2>Как перезапустить оконный менеджер KDE Plasma 5?<a class="headerlink" href="#kwin-restart" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-51"></span><span id="id29"></span><h2>Как перезапустить оконный менеджер KDE Plasma 5?<a class="headerlink" href="#kwin-restart" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Перезапустим оконный менеджер KWin, работающий поверх X11:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kwin_x11 --replace &amp;&gt;/dev/null &amp;
 </pre></div>
@@ -657,7 +662,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 </div>
 <div class="section" id="gnome-shell-restart">
-<span id="index-51"></span><span id="id29"></span><h2>Как перезапустить зависшую оболочку Gnome Shell?<a class="headerlink" href="#gnome-shell-restart" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-52"></span><span id="id30"></span><h2>Как перезапустить зависшую оболочку Gnome Shell?<a class="headerlink" href="#gnome-shell-restart" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Перезапустим Gnome Shell:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gnome-shell --replace
 </pre></div>
@@ -729,6 +734,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#gnome-shell-browser">Как разрешить установку расширений Gnome Shell из веб-браузера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde-plasma">Как разрешить установку расширений KDE Plasma из веб-браузера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gnome-shell-tray">Как вернуть классический системный лоток (трей) в Gnome Shell?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gnome-shell-desktop">Как вернуть классический рабочий стол в Gnome Shell?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#zip-split">Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kerberos-gnome">Как настроить автоматическое обновление Kerberos-тикетов в Gnome?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#transmission-server">Как запустить фоновый клиент для загрузки торрентов?</a></li>
