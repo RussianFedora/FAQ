@@ -344,3 +344,28 @@ SWF файл - это исполняемый файл формата Adobe Flash
 Формула расчёта: ``1 / FACTOR``. Значение **2** - выделение под пул 50% (выбор по умолчанию) от оперативной памяти, **4** - 25%, **1** - 100% соответственно (не рекомендуется).
 
 Изменения вступят в силу при следующей загрузке системы.
+
+.. index:: rfremix, remix
+.. _rfremix-fedora:
+
+Как правильно преобразовать RFRemix в Fedora?
+=================================================
+
+Заменим пакеты с брендированием:
+
+.. code-block:: text
+
+    sudo dnf swap rfremix-release fedora-release --allowerasing
+    sudo dnf swap rfremix-logos fedora-logos --allowerasing
+
+Полностью отключим и удалим репозитории Russian Fedora:
+
+.. code-block:: text
+
+    sudo dnf remove 'russianfedora*'
+
+Произведём синхронизацию компонентов дистрибутива:
+
+.. code-block:: text
+
+    sudo dnf distro-sync --allowerasing
