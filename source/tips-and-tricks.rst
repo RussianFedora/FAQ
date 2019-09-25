@@ -369,3 +369,14 @@ SWF файл - это исполняемый файл формата Adobe Flash
 .. code-block:: text
 
     sudo dnf distro-sync --allowerasing
+
+.. index:: rfremix, remix, update
+.. _rfremix-upgrade:
+
+Как правильно обновиться с RFRemix до Fedora?
+=================================================
+
+В связи с прекращением поддержки RFRemix, выполним следующие действия:
+
+  1. преобразуем RFRemix в Fedora.
+  2. установим обновления системы штатным способом.
