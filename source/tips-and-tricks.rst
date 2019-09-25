@@ -345,7 +345,7 @@ SWF файл - это исполняемый файл формата Adobe Flash
 
 Изменения вступят в силу при следующей загрузке системы.
 
-.. index:: rfremix, remix
+.. index:: rfremix
 .. _rfremix-fedora:
 
 Как правильно преобразовать RFRemix в Fedora?
@@ -358,7 +358,7 @@ SWF файл - это исполняемый файл формата Adobe Flash
     sudo dnf swap rfremix-release fedora-release --allowerasing
     sudo dnf swap rfremix-logos fedora-logos --allowerasing
 
-Полностью отключим и удалим репозитории Russian Fedora:
+Полностью отключим и удалим репозитории :ref:`Russian Fedora <russian-fedora>`:
 
 .. code-block:: text
 
@@ -370,7 +370,7 @@ SWF файл - это исполняемый файл формата Adobe Flash
 
     sudo dnf distro-sync --allowerasing
 
-.. index:: rfremix, remix, update
+.. index:: rfremix, update
 .. _rfremix-upgrade:
 
 Как правильно обновиться с RFRemix до Fedora?
