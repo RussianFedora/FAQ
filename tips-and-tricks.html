@@ -246,6 +246,32 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <p>Формула расчёта: <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">FACTOR</span></code>. Значение <strong>2</strong> - выделение под пул 50% (выбор по умолчанию) от оперативной памяти, <strong>4</strong> - 25%, <strong>1</strong> - 100% соответственно (не рекомендуется).</p>
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
 </div>
+<div class="section" id="rfremix-fedora">
+<span id="index-14"></span><span id="id6"></span><h2>Как правильно преобразовать RFRemix в Fedora?<a class="headerlink" href="#rfremix-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Заменим пакеты с брендированием:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf swap rfremix-release fedora-release --allowerasing
+sudo dnf swap rfremix-logos fedora-logos --allowerasing
+</pre></div>
+</div>
+<p>Полностью отключим и удалим репозитории <a class="reference internal" href="generic-info.html#russian-fedora"><span class="std std-ref">Russian Fedora</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove &#39;russianfedora*&#39;
+</pre></div>
+</div>
+<p>Произведём синхронизацию компонентов дистрибутива:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf distro-sync --allowerasing
+</pre></div>
+</div>
+</div>
+<div class="section" id="rfremix-upgrade">
+<span id="index-15"></span><span id="id7"></span><h2>Как правильно обновиться с RFRemix до Fedora?<a class="headerlink" href="#rfremix-upgrade" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В связи с прекращением поддержки RFRemix, выполним следующие действия:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><a class="reference internal" href="#rfremix-fedora"><span class="std std-ref">преобразуем RFRemix в Fedora</span></a>.</li>
+<li><a class="reference internal" href="package-manager.html#dist-upgrade"><span class="std std-ref">установим обновления системы штатным способом</span></a>.</li>
+</ol>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -294,6 +320,8 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <li class="toctree-l2"><a class="reference internal" href="#root-account-is-locked">При загрузке режима восстановления появляется ошибка root account is locked. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#red-hat-subscription-managment">При попытке обновления появляется ошибка, связанная с Red Hat Subscription Managment. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#zram-pool-size">Как изменить размер пула сжатия памяти?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rfremix-fedora">Как правильно преобразовать RFRemix в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rfremix-upgrade">Как правильно обновиться с RFRemix до Fedora?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
