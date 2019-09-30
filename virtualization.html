@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Виртуализация &#8212; Документация Неофициальный FAQ по Fedora 2019.08.30</title>
+    <title>Виртуализация &#8212; Документация Неофициальный FAQ по Fedora 2019.09.30</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -151,6 +151,37 @@ sudo restorecon -Rv /media/foo-bar/images
 </div>
 <p>В настройках Virt Manager добавим новую библиотеку <code class="docutils literal notranslate"><span class="pre">/media/foo-bar/images</span></code> и зададим её использование для всех виртуальных машин по умолчанию.</p>
 </div>
+<div class="section" id="kvm-transfer">
+<span id="index-13"></span><span id="id9"></span><h2>Как переместить виртуальную машину KVM на другой ПК?<a class="headerlink" href="#kvm-transfer" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Переместим образы дисков из каталога <code class="docutils literal notranslate"><span class="pre">/var/lib/libvirt/images</span></code> старого хоста на новый <a class="reference internal" href="administration.html#copying-data"><span class="std std-ref">любым удобным способом</span></a>.</p>
+<p>Экспортируем конфигурацию виртуальной машины:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>virsh dumpxml vmname &gt; vmname.xml
+</pre></div>
+</div>
+<p>Здесь <strong>vmname</strong> - название машины KVM, а <strong>vmname.xml</strong> - имя файла, в котором будут сохранены настройки.</p>
+<p>Импортируем ранее сохранённую конфигурацию:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>virsh define /path/to/vmname.xml
+</pre></div>
+</div>
+<p>Новая виртуальная машина появится в списке и будет готова к работе немедленно.</p>
+</div>
+<div class="section" id="virtualbox-transfer">
+<span id="index-14"></span><span id="id10"></span><h2>Как переместить виртуальную машину VirtualBox на другой ПК?<a class="headerlink" href="#virtualbox-transfer" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Получим список доступных виртуальных машин VirtualBox:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>vboxmanage list vms
+</pre></div>
+</div>
+<p>Экспортируем настройки и данные в открытый формат виртуализации версии 2.0:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>vboxmanage export vmname -o vmname.ova --ovf20
+</pre></div>
+</div>
+<p>Здесь <strong>vmname</strong> - название виртуальной машины VirtualBox, а <strong>vmname.ova</strong> - имя файла экспорта.</p>
+<p>Переместим полученный файл на новый хост <a class="reference internal" href="administration.html#copying-data"><span class="std std-ref">любым удобным способом</span></a>, затем осуществим его импорт:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>vboxmanage import /path/to/vmname.ova --options importtovdi
+</pre></div>
+</div>
+<p>Через некоторое время новая виртуальная машина появится в списке и будет готова к работе.</p>
+</div>
 </div>
 
 
@@ -192,6 +223,8 @@ sudo restorecon -Rv /media/foo-bar/images
 <li class="toctree-l2"><a class="reference internal" href="#convert-to-fixed">Как конвертировать динамически расширяющийся образ диска VirtualBox в фиксированный?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kvm-cpu">Можно ли использовать KVM на CPU без поддержки аппаратной виртуализации?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kvm-move-directory">Можно ли перенести каталог с образами виртуальных машин KVM?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kvm-transfer">Как переместить виртуальную машину KVM на другой ПК?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#virtualbox-transfer">Как переместить виртуальную машину VirtualBox на другой ПК?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Безопасность</a></li>
