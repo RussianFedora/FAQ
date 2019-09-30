@@ -220,3 +220,31 @@
     virsh define /path/to/vmname.xml
 
 Изменения вступят в силу немедленно.
+
+.. index:: virtualization, virtualbox, transfer
+.. _virtualbox-transfer:
+
+Как переместить виртуальную машину VirtualBox на другой ПК?
+===============================================================
+
+Получим список доступных виртуальных машин:
+
+.. code-block:: text
+
+    vboxmanage list vms
+
+Экспортируем настройки и данные в открытый формат виртуализации 2.0:
+
+.. code-block:: text
+
+    vboxmanage export vmname -o vmname.ova --ovf20
+
+Здесь **vmname** - название виртуальной машины VirtualBox, а **vmname.ova** - имя файла экспорта.
+
+Переместим полученный файл на новый хост любым удобным способом, затем осуществим его импорт:
+
+.. code-block:: text
+
+    vboxmanage import /path/to/vmname.ova --options importtovdi
+
+Через некоторое время новая виртуальная машина появится в списке и будет готова к работе.
