@@ -671,7 +671,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <div class="section" id="dir-hash-save">
 <span id="index-53"></span><span id="id31"></span><h2>Как сохранить контрольные суммы файлов в каталоге рекурсивно?<a class="headerlink" href="#dir-hash-save" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Cгенерируем файл с контрольными суммами SHA2 (SHA-512) содержимого текущего каталога при помощи утилит <strong>find</strong> и <strong>sha512sum</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find -type f \( -not -name &quot;sha512sum.txt&quot; \) -exec sha512sum &#39;{}&#39; \; &gt; sha512sum.txt
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find -type f \( -not -name &#39;sha512sum.txt&#39; \) -exec sha512sum &#39;{}&#39; \; &gt; sha512sum.txt
 </pre></div>
 </div>
 <p>Результат будет сохранён в файле с именем <strong>sha512sum.txt</strong>.</p>
