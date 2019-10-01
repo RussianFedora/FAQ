@@ -1014,7 +1014,7 @@ Cгенерируем файл с контрольными суммами SHA2 (
 
 .. code-block:: text
 
-    find -type f \( -not -name "sha512sum.txt" \) -exec sha512sum '{}' \; > sha512sum.txt
+    find -type f \( -not -name 'sha512sum.txt' \) -exec sha512sum '{}' \; > sha512sum.txt
 
 Результат будет сохранён в файле с именем **sha512sum.txt**.
 
