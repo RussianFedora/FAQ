@@ -668,6 +668,22 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </pre></div>
 </div>
 </div>
+<div class="section" id="dir-hash-save">
+<span id="index-53"></span><span id="id31"></span><h2>Как сохранить контрольные суммы файлов в каталоге рекурсивно?<a class="headerlink" href="#dir-hash-save" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Cгенерируем файл с контрольными суммами SHA2 (SHA-512) содержимого текущего каталога при помощи утилит <strong>find</strong> и <strong>sha512sum</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find -type f \( -not -name &quot;sha512sum.txt&quot; \) -exec sha512sum &#39;{}&#39; \; &gt; sha512sum.txt
+</pre></div>
+</div>
+<p>Результат будет сохранён в файле с именем <strong>sha512sum.txt</strong>.</p>
+</div>
+<div class="section" id="dir-hash-verify">
+<span id="index-54"></span><span id="id32"></span><h2>Как проверить контрольные суммы файлов в каталоге?<a class="headerlink" href="#dir-hash-verify" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Проверим контрольные суммы SHA2 (SHA-512), сохранённые в <strong>sha512sum.txt</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sha512sum -c sha512sum.txt &gt; check_results.txt
+</pre></div>
+</div>
+<p>Для удобства <a class="reference internal" href="administration.html#bash-pipelines"><span class="std std-ref">перенаправим вывод</span></a> в файл <strong>check_results.txt</strong> ибо он может быть очень большим и не поместиться на экране.</p>
+</div>
 </div>
 
 
@@ -752,6 +768,8 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#plasma-restart">Как перезапустить зависшую оболочку KDE Plasma 5?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kwin-restart">Как перезапустить оконный менеджер KDE Plasma 5?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gnome-shell-restart">Как перезапустить зависшую оболочку Gnome Shell?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dir-hash-save">Как сохранить контрольные суммы файлов в каталоге рекурсивно?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dir-hash-verify">Как проверить контрольные суммы файлов в каталоге?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
