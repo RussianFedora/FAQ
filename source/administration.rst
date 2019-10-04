@@ -278,7 +278,7 @@
 
 .. code-block:: text
 
-    sync && echo 3 > /proc/sys/vm/drop_caches && sync
+    sudo bash -c "sync && echo 3 > /proc/sys/vm/drop_caches && sync"
 
 .. index:: timezone, utc, hardware clock
 .. _system-time-utc:
