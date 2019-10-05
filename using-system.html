@@ -597,6 +597,17 @@ export SUDO_EDITOR=vim
 </div>
 <p>Изменения вступят в силу при следующей загрузке системы. Логотип больше отображаться не будет.</p>
 </div>
+<div class="section" id="ntfs">
+<span id="ntfs-readonly"></span><span id="index-53"></span><h2>Все NTFS тома монтируются в режиме только для чтения. Как исправить?<a class="headerlink" href="#ntfs" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Некорректное размонтирование разделов - это особенность работы режима гибридного завершения работы (<a class="reference external" href="https://docs.microsoft.com/en-us/windows-hardware/drivers/kernel/distinguishing-fast-startup-from-wake-from-hibernation">hybrid shutdown</a>) в ОС Microsoft Windows, при котором система не завершает свою работу, а вместо этого всегда переходит в режим глубокого сна.</p>
+<p>Данный режим несовместим с другими операционными системами, в т.ч. GNU/Linux, поэтому должен быть отключён в обязательном порядке при использовании <a class="reference internal" href="installation.html#dual-boot"><span class="std std-ref">dual-boot</span></a>.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>запустим командную строку с правами администратора, затем выполним <code class="docutils literal notranslate"><span class="pre">powercfg</span> <span class="pre">-h</span> <span class="pre">off</span></code>;</li>
+<li>запретим использование режима быстрой загрузки (fast boot) в настройках UEFI BIOS.</li>
+</ol>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -680,6 +691,7 @@ export SUDO_EDITOR=vim
 <li class="toctree-l2"><a class="reference internal" href="#plymouth-disable">Как отключить анимированную каплю при загрузке системы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#plymouth-themes">Как изменить тему экрана, отображающегося при загрузке системы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#plymouth-nologo">Как отключить вывод логотипа производителя устройства при загрузке системы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ntfs">Все NTFS тома монтируются в режиме только для чтения. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-applications.html">Сторонние приложения</a></li>

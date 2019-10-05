@@ -272,6 +272,17 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 </ol>
 </div></blockquote>
 </div>
+<div class="section" id="windows-dual-boot">
+<span id="dual-boot-optimizations"></span><span id="index-16"></span><h2>Как оптимизировать Windows для корректной работы в dual-boot?<a class="headerlink" href="#windows-dual-boot" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если необходимо использовать Fedora вместе с Microsoft Windows в режиме двойной загрузки, то необходимо применить ряд оптимизаций, специфичных для данной ОС:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>переведём часы в UTC во всех установленных ОС: <a class="reference internal" href="administration.html#system-time-utc"><span class="std std-ref">Fedora</span></a>, <a class="reference internal" href="administration.html#windows-utc"><span class="std std-ref">Windows</span></a>;</li>
+<li>отключим использование <a class="reference internal" href="using-system.html#ntfs-readonly"><span class="std std-ref">гибридного режима завершения работы</span></a>.</li>
+</ol>
+</div></blockquote>
+<p>После выполнения указанных действий, обе ОС смогут сосуществовать на одном устройстве.</p>
+</div>
 </div>
 
 
@@ -322,6 +333,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 <li class="toctree-l2"><a class="reference internal" href="#zram-pool-size">Как изменить размер пула сжатия памяти?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rfremix-fedora">Как правильно преобразовать RFRemix в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rfremix-upgrade">Как правильно обновиться с RFRemix до Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows-dual-boot">Как оптимизировать Windows для корректной работы в dual-boot?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>

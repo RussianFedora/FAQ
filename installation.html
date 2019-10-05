@@ -339,6 +339,26 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 </pre></div>
 </div>
 </div>
+<div class="section" id="fedora-dual-boot">
+<span id="dual-boot"></span><span id="index-32"></span><h2>Как установить Fedora в dual-boot вместе с другой ОС?<a class="headerlink" href="#fedora-dual-boot" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Существует два способа: автоматический и ручной.</p>
+<p><em>Автоматический способ.</em></p>
+<p>Загрузим систему с <a class="reference internal" href="#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>, выберем автоматической способ разбиения. Все действия будут выполнены автоматически с настройками по умолчанию.</p>
+<p><em>Ручной способ.</em></p>
+<p>Выполним следующие шаги в строго указанном порядке:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>загрузим систему с <a class="reference internal" href="#usb-flash"><span class="std std-ref">Live образа</span></a>;</li>
+<li>установим менеджер разделов <strong>GParted</strong> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">gparted</span></code> (потребуется доступ к Интернету; в XFCE и LXDE Live он уже присутствует внутри базового образа);</li>
+<li>запустим GParted, затем уменьшим раздел другой ОС так, чтобы на диске появилось свободное место достаточного объёма;</li>
+<li>создадим <a class="reference internal" href="#fedora-partitions"><span class="std std-ref">новые разделы</span></a> для Fedora;</li>
+<li>запустим установку в режиме ручного разбиения диска, затем укажем точки монтирования для созданных разделов;</li>
+<li>завершим установку и перезагрузимся в установленную ОС;</li>
+<li>в случае если другой ОС является Microsoft Windows, применим <a class="reference internal" href="tips-and-tricks.html#dual-boot-optimizations"><span class="std std-ref">следующие оптимизации</span></a>.</li>
+</ol>
+</div></blockquote>
+<p>Загрузчик <a class="reference internal" href="generic-info.html#grub-loader"><span class="std std-ref">Grub 2</span></a> автоматически обнаружит другие операционные системы на устройстве и добавит их в список загрузки.</p>
+</div>
 </div>
 
 
@@ -395,6 +415,7 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <li class="toctree-l2"><a class="reference internal" href="#root-no-password">При установке не предлагается установить пароль для суперпользователя. Это нормально?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation-date">Как определить точную дату установки ОС?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation-mode">Как определить в каком режиме была произведена установка системы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora-dual-boot">Как установить Fedora в dual-boot вместе с другой ОС?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="package-manager.html">Пакетный менеджер и установка пакетов</a></li>

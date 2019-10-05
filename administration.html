@@ -196,7 +196,7 @@ sudo mount -t vfat /dev/sda1 boot/efi
 <div class="section" id="drop-fs-caches">
 <span id="index-16"></span><span id="id14"></span><h2>Как очистить кэши и буферы всех файловых систем?<a class="headerlink" href="#drop-fs-caches" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы очистить кэши и буферы нужно выполнить:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sync &amp;&amp; echo 3 &gt; /proc/sys/vm/drop_caches &amp;&amp; sync
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo bash -c &quot;sync &amp;&amp; echo 3 &gt; /proc/sys/vm/drop_caches &amp;&amp; sync&quot;
 </pre></div>
 </div>
 </div>
