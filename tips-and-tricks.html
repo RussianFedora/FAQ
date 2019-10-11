@@ -283,6 +283,12 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 </div></blockquote>
 <p>После выполнения указанных действий, обе ОС смогут сосуществовать на одном устройстве.</p>
 </div>
+<div class="section" id="webkitgtk">
+<span id="webkitgtk-legacy"></span><span id="index-17"></span><h2>Приложение требует webkitgtk. Что делать?<a class="headerlink" href="#webkitgtk" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Библиотека webkitgtk более не поддерживается апстримом, имеет сотни незакрытых критических уязвимостей (в т.ч. допускающих удалённое исполнение кода), и по этой причине она была удалена из репозиториев Fedora начиная с версии 25.</p>
+<p>Если приложение требует webkitgtk, то лучше всего воздержаться от его использования, однако если это по какой-либо причине невозможно, то проще всего будет применить загрузку библиотеки через <a class="reference internal" href="development.html#library-path"><span class="std std-ref">переопределение LD_LIBRARY_PATH</span></a>.</p>
+<p>Настоятельно не рекомендуется устанавливать данную библиотеку глобально в систему!</p>
+</div>
 </div>
 
 
@@ -334,6 +340,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 <li class="toctree-l2"><a class="reference internal" href="#rfremix-fedora">Как правильно преобразовать RFRemix в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rfremix-upgrade">Как правильно обновиться с RFRemix до Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#windows-dual-boot">Как оптимизировать Windows для корректной работы в dual-boot?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#webkitgtk">Приложение требует webkitgtk. Что делать?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
