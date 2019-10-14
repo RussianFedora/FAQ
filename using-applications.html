@@ -678,11 +678,22 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 <div class="section" id="dir-hash-verify">
 <span id="index-54"></span><span id="id32"></span><h2>Как проверить контрольные суммы файлов в каталоге?<a class="headerlink" href="#dir-hash-verify" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Проверим контрольные суммы SHA2 (SHA-512), сохранённые в <strong>sha512sum.txt</strong>:</p>
+<p>Проверим контрольные суммы SHA2 (SHA-512), <a class="reference internal" href="#dir-hash-save"><span class="std std-ref">сохранённые</span></a> в <strong>sha512sum.txt</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sha512sum -c sha512sum.txt &gt; check_results.txt
 </pre></div>
 </div>
 <p>Для удобства <a class="reference internal" href="administration.html#bash-pipelines"><span class="std std-ref">перенаправим вывод</span></a> в файл <strong>check_results.txt</strong> ибо он может быть очень большим и не поместиться на экране.</p>
+</div>
+<div class="section" id="dir-hash-missmatch">
+<span id="index-55"></span><span id="id33"></span><h2>Как вывести список не совпадающих с сохранёнными контрольными суммами файлов?<a class="headerlink" href="#dir-hash-missmatch" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Проверим контрольные суммы SHA2 (SHA-512), <a class="reference internal" href="#dir-hash-save"><span class="std std-ref">сохранённые</span></a> в <strong>sha512sum.txt</strong> и выведем лишь те, проверка которых завершилась неудачно:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sha512sum -c sha512sum.txt | grep -v &#39;OK&#39;
+</pre></div>
+</div>
+<p>Для удобства <a class="reference internal" href="administration.html#bash-pipelines"><span class="std std-ref">перенаправим вывод</span></a> в файл <strong>failed_results.txt</strong> ибо он может быть очень большим и не поместиться на экране:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sha512sum -c sha512sum.txt | grep -v &#39;OK&#39; &gt; failed_results.txt
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -770,6 +781,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#gnome-shell-restart">Как перезапустить зависшую оболочку Gnome Shell?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dir-hash-save">Как сохранить контрольные суммы файлов в каталоге рекурсивно?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dir-hash-verify">Как проверить контрольные суммы файлов в каталоге?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dir-hash-missmatch">Как вывести список не совпадающих с сохранёнными контрольными суммами файлов?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
