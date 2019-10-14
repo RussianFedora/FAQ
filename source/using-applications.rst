@@ -1031,3 +1031,21 @@ Cгенерируем файл с контрольными суммами SHA2 (
     sha512sum -c sha512sum.txt > check_results.txt
 
 Для удобства :ref:`перенаправим вывод <bash-pipelines>` в файл **check_results.txt** ибо он может быть очень большим и не поместиться на экране.
+
+.. index:: hash, bash, check, verification, files, sha512sum, sha2, sha512
+.. _dir-hash-missmatch:
+
+Как вывести список не совпадающих с сохранёнными контрольными суммами файлов?
+=================================================================================
+
+Проверим контрольные суммы SHA2 (SHA-512), сохранённые в **sha512sum.txt** и выведем лишь те, проверка которых завершилась неудачно:
+
+.. code-block:: text
+
+    sha512sum -c sha512sum.txt | grep -v 'OK'
+
+Для удобства :ref:`перенаправим вывод <bash-pipelines>` в файл **failed_results.txt** ибо он может быть очень большим и не поместиться на экране:
+
+.. code-block:: text
+
+    sha512sum -c sha512sum.txt | grep -v 'OK' > failed_results.txt
