@@ -1032,7 +1032,7 @@ Cгенерируем файл с контрольными суммами SHA2 (
 
 Для удобства :ref:`перенаправим вывод <bash-pipelines>` в файл **check_results.txt** ибо он может быть очень большим и не поместиться на экране.
 
-.. index:: hash, bash, check, verification, files, sha512sum, sha2, sha512
+.. index:: hash, bash, check, verification, files, sha512sum, sha2, sha512, grep
 .. _dir-hash-missmatch:
 
 Как вывести список не совпадающих с сохранёнными контрольными суммами файлов?
