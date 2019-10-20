@@ -840,7 +840,7 @@ Zip-архивы, созданные штатными средствами ОС 
 
 .. code-block:: text
 
-    find ~/.mozilla/firefox -name *.sqlite -exec sqlite3 {} VACUUM \;
+    find ~/.mozilla/firefox -name "*.sqlite" -exec sqlite3 {} VACUUM \;
 
 Это действие абсолютно безопасно, т.к. физически удаляет лишь те данные, которые в них были помечены в качестве удалённых.
 
