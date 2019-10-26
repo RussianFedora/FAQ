@@ -45,6 +45,22 @@ PPTP
 
 См. `здесь <https://www.easycoding.org/2016/07/31/reshaem-problemu-s-ssh-klyuchami-v-fedora-24.html>`__.
 
+.. index:: pptp, connection, error
+.. _pptp-connection-error:
+
+При установке VPN-соединения по протоколу PPTP появляется ошибка установки соединения. Как исправить?
+==========================================================================================================
+
+Необходимо включить поддержку `протокола GRE<https://ru.wikipedia.org/wiki/GRE_(протокол)>`__.
+Для этого выполним следующее:
+
+.. code-block:: text
+
+    sudo firewall-cmd --permanent --add-protocol=gre
+    sudo firewall-cmd --reload
+
+Изменения вступят в силу мгновенно.
+
 .. index:: firewalld, port forwarding, firewall
 .. _firewalld-port-forwarding:
 
