@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Системное администрирование &#8212; Документация Неофициальный FAQ по Fedora 2019.09.30</title>
+    <meta charset="utf-8" />
+    <title>Системное администрирование &#8212; документация Неофициальный FAQ по Fedora 2019.09.30</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -338,9 +336,9 @@ foo.bar2=X2
 <p>При загрузке ядро проверяет следующие каталоги в поисках <strong>.conf</strong> файлов:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><code class="docutils literal notranslate"><span class="pre">/usr/lib/sysctl.d</span></code> - предустановленные конфиги системы и определённых пакетов;</li>
-<li><code class="docutils literal notranslate"><span class="pre">/run/sysctl.d</span></code> - различные конфиги, сгенерированные в рантайме;</li>
-<li><code class="docutils literal notranslate"><span class="pre">/etc/sysctl.d</span></code> - пользовательские конфиги.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/usr/lib/sysctl.d</span></code> - предустановленные конфиги системы и определённых пакетов;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/run/sysctl.d</span></code> - различные конфиги, сгенерированные в рантайме;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/etc/sysctl.d</span></code> - пользовательские конфиги.</p></li>
 </ol>
 </div></blockquote>
 <p>Порядок выполнения - в алфавитном порядке, поэтому для его изменения многие конфиги содержат цифры и буквы. Например конфиг <code class="docutils literal notranslate"><span class="pre">00-foobar.conf</span></code> выполнится раньше, чем <code class="docutils literal notranslate"><span class="pre">zz-foobar.conf</span></code>.</p>
@@ -456,11 +454,11 @@ foo.bar2=X2
 <p>Для того, чтобы завершить работу процесса, необходимо отправить ему сигнал <strong>SIGTERM</strong>. После получения данного сигнала процесс должен немедленно начать завершение своей работы:</p>
 <blockquote>
 <div><ul class="simple">
-<li>остановить активные потоки;</li>
-<li>сообщить порождённым им процессам (потомкам) о том, что он завершает свою работу;</li>
-<li>закрыть все открытые процессом дескрипторы;</li>
-<li>освободить все занятые процессом ресурсы;</li>
-<li>вернуть управление операционной системе.</li>
+<li><p>остановить активные потоки;</p></li>
+<li><p>сообщить порождённым им процессам (потомкам) о том, что он завершает свою работу;</p></li>
+<li><p>закрыть все открытые процессом дескрипторы;</p></li>
+<li><p>освободить все занятые процессом ресурсы;</p></li>
+<li><p>вернуть управление операционной системе.</p></li>
 </ul>
 </div></blockquote>
 <p>Чтобы отправить сигнал SIGTERM процессу с определённым <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>, воспользуемся утилитой <strong>kill</strong>:</p>
@@ -694,19 +692,19 @@ Host bar
 <p>Некоторые примеры подобных реализаций:</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="using-system.html#fedora-exfat"><span class="std std-ref">exFAT</span></a>;</li>
-<li><a class="reference internal" href="using-applications.html#fuse-mtp"><span class="std std-ref">MTP</span></a>;</li>
-<li>NTFS;</li>
-<li>ZFS;</li>
-<li>SSHFS;</li>
-<li>WebDAV.</li>
+<li><p><a class="reference internal" href="using-system.html#fedora-exfat"><span class="std std-ref">exFAT</span></a>;</p></li>
+<li><p><a class="reference internal" href="using-applications.html#fuse-mtp"><span class="std std-ref">MTP</span></a>;</p></li>
+<li><p>NTFS;</p></li>
+<li><p>ZFS;</p></li>
+<li><p>SSHFS;</p></li>
+<li><p>WebDAV.</p></li>
 </ul>
 </div></blockquote>
 <p>Из-за работы в пользовательском режиме возникает ряд проблем:</p>
 <blockquote>
 <div><ul class="simple">
-<li>очень медленная работа за счёт постоянных переключений контекста;</li>
-<li>в зависимости от параметров монтирования может быть не видна для работающих системных сервисов.</li>
+<li><p>очень медленная работа за счёт постоянных переключений контекста;</p></li>
+<li><p>в зависимости от параметров монтирования может быть не видна для работающих системных сервисов.</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -936,13 +934,11 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none" role="search">
-  <h3>Быстрый поиск</h3>
+  <h3 id="searchlabel">Быстрый поиск</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Искать" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

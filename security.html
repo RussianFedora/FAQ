@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Безопасность &#8212; Документация Неофициальный FAQ по Fedora 2019.09.30</title>
+    <meta charset="utf-8" />
+    <title>Безопасность &#8212; документация Неофициальный FAQ по Fedora 2019.09.30</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -69,9 +67,9 @@
 <p>Изменить значение директивы <code class="docutils literal notranslate"><span class="pre">SELINUX</span></code> на одно из допустимых значений:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">enforcing</span></code> — включён и блокирует всё, что явно не разрешено;</li>
-<li><code class="docutils literal notranslate"><span class="pre">permissive</span></code> — включён, но ничего не блокирует, а лишь записывает события в <a class="reference internal" href="administration.html#journal-current"><span class="std std-ref">системный журнал</span></a>;</li>
-<li><code class="docutils literal notranslate"><span class="pre">disabled</span></code> — полностью отключён.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enforcing</span></code> — включён и блокирует всё, что явно не разрешено;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">permissive</span></code> — включён, но ничего не блокирует, а лишь записывает события в <a class="reference internal" href="administration.html#journal-current"><span class="std std-ref">системный журнал</span></a>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">disabled</span></code> — полностью отключён.</p></li>
 </ul>
 </div></blockquote>
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
@@ -155,9 +153,9 @@ sudo semodule -i httpd_wr.pp
 <p>Больше полезной информации о модулях:</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference external" href="https://habr.com/ru/company/pt/blog/142423/">создание модулей SELinux</a>;</li>
-<li><a class="reference external" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/4/html/SELinux_Guide/rhlcommon-section-0049.html">создание разрешений для классов</a>;</li>
-<li><a class="reference external" href="https://dwalsh.fedorapeople.org/SELinux/httpd_selinux.html">информация о контекстах и настройках для веб-сервера</a>.</li>
+<li><p><a class="reference external" href="https://habr.com/ru/company/pt/blog/142423/">создание модулей SELinux</a>;</p></li>
+<li><p><a class="reference external" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/4/html/SELinux_Guide/rhlcommon-section-0049.html">создание разрешений для классов</a>;</p></li>
+<li><p><a class="reference external" href="https://dwalsh.fedorapeople.org/SELinux/httpd_selinux.html">информация о контекстах и настройках для веб-сервера</a>.</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -579,8 +577,8 @@ Match Group sftp
 <p>Network Manager поддерживает два сценария рандомизации MAC адресов:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>генерирование уникального псевдослучайного MAC адреса для каждого соединения при загрузке системы (параметр <code class="docutils literal notranslate"><span class="pre">stable</span></code>). Это избавит от проблем с переподключением к публичным хот-спотам и небходимости повторно проходить аутентификацию в captive-порталах;</li>
-<li>генерирование уникального псевдослучайного MAC адреса для каждого соединения при каждом переподключении (параметр <code class="docutils literal notranslate"><span class="pre">random</span></code>). Наиболее безопасно, но может вызывать описанные выше проблемы.</li>
+<li><p>генерирование уникального псевдослучайного MAC адреса для каждого соединения при загрузке системы (параметр <code class="docutils literal notranslate"><span class="pre">stable</span></code>). Это избавит от проблем с переподключением к публичным хот-спотам и небходимости повторно проходить аутентификацию в captive-порталах;</p></li>
+<li><p>генерирование уникального псевдослучайного MAC адреса для каждого соединения при каждом переподключении (параметр <code class="docutils literal notranslate"><span class="pre">random</span></code>). Наиболее безопасно, но может вызывать описанные выше проблемы.</p></li>
 </ol>
 </div></blockquote>
 <p>Профиль <strong>stable</strong>. Файл <code class="docutils literal notranslate"><span class="pre">00-macrandomize-stable.conf</span></code>:</p>
@@ -984,8 +982,8 @@ sudo rmdir /media/data
 <p>Заданные пользователем нестандартные контексты, а также переопределения хранятся внутри каталога <code class="docutils literal notranslate"><span class="pre">/etc/selinux/targeted/contexts/files</span></code> в следующих файлах:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">file_contexts.local</span></code> - текстовый формат;</li>
-<li><code class="docutils literal notranslate"><span class="pre">file_contexts.local.bin</span></code> - скомпилированный бинарный формат.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file_contexts.local</span></code> - текстовый формат;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file_contexts.local.bin</span></code> - скомпилированный бинарный формат.</p></li>
 </ul>
 </div></blockquote>
 <p>Не следует их править в текстовых, либо шестнадцатиричных редакторах, т.к. это может привести к сбою в политиках SELinux и сбросу настроек по умолчанию. Вместо этого необходимо использовать <a class="reference internal" href="#selinux-local-remove"><span class="std std-ref">инструмент semanage</span></a>.</p>
@@ -1085,13 +1083,11 @@ sudo rmdir /media/data
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none" role="search">
-  <h3>Быстрый поиск</h3>
+  <h3 id="searchlabel">Быстрый поиск</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Искать" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>

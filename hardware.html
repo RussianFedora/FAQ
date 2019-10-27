@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Оборудование &#8212; Документация Неофициальный FAQ по Fedora 2019.09.30</title>
+    <meta charset="utf-8" />
+    <title>Оборудование &#8212; документация Неофициальный FAQ по Fedora 2019.09.30</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -49,13 +47,14 @@
 <p>Существует несколько вариантов проприетарных драйверов NVIDIA:</p>
 <blockquote>
 <div><ul class="simple">
-<li>стандартный драйвер (десктопы, серии GeForce, Quadro, Titan):<ul>
-<li><a class="reference internal" href="#nvidia-standard"><span class="std std-ref">современные поколения видеокарт (900, 1000, 1600 и 2000)</span></a>;</li>
-<li><a class="reference internal" href="#nvidia-legacy-390"><span class="std std-ref">более старые поколения видеокарт (300, 400, 500, 600 и 700)</span></a>;</li>
-<li><a class="reference internal" href="#nvidia-legacy-340"><span class="std std-ref">устаревшие поколения видеокарт (серии 6000, 7000, 8000, 9000 и 200)</span></a>;</li>
+<li><p>стандартный драйвер (десктопы, серии GeForce, Quadro, Titan):</p>
+<ul>
+<li><p><a class="reference internal" href="#nvidia-standard"><span class="std std-ref">современные поколения видеокарт (900, 1000, 1600 и 2000)</span></a>;</p></li>
+<li><p><a class="reference internal" href="#nvidia-legacy-390"><span class="std std-ref">более старые поколения видеокарт (300, 400, 500, 600 и 700)</span></a>;</p></li>
+<li><p><a class="reference internal" href="#nvidia-legacy-340"><span class="std std-ref">устаревшие поколения видеокарт (серии 6000, 7000, 8000, 9000 и 200)</span></a>;</p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#nvidia-optimus"><span class="std std-ref">NVIDIA Optimus драйвер (ноутбуки с гибридной графикой)</span></a>.</li>
+<li><p><a class="reference internal" href="#nvidia-optimus"><span class="std std-ref">NVIDIA Optimus драйвер (ноутбуки с гибридной графикой)</span></a>.</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -204,10 +203,10 @@ sudo systemctl mask nvidia-fallback.service
 <span id="index-11"></span><span id="id8"></span><h2>На что в первую очередь следует обратить внимание при выборе ноутбука для Linux?<a class="headerlink" href="#linux-hardware" title="Ссылка на этот заголовок">¶</a></h2>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Следует обратить внимание на производителя <a class="reference internal" href="#wifi-chip"><span class="std std-ref">установленного Wi-Fi модуля</span></a>.</li>
-<li>Не рекомендуется приобретать устройства с гибридной графикой ибо технология NVIDIA Optimus в настоящее время не поддерживается под GNU/Linux официально и работает исключительно посредством Bumblebee от сторонних разработчиков, который часто работает нестабильно.</li>
-<li>Ни при каком условии не приобретать ноутбук с видеокартой <a class="reference internal" href="#nvidia-gtx1050"><span class="std std-ref">NVIDIA GeForce GTX 1050</span></a>.</li>
-<li>Перед покупкой рекомендуется исследовать работу <a class="reference internal" href="generic-info.html#download"><span class="std std-ref">свежего Fedora Live USB</span></a> непосредственно на данном устройстве, а также проверить <a class="reference internal" href="administration.html#journal-current"><span class="std std-ref">вывод dmesg</span></a> на наличие ошибок ACPI.</li>
+<li><p>Следует обратить внимание на производителя <a class="reference internal" href="#wifi-chip"><span class="std std-ref">установленного Wi-Fi модуля</span></a>.</p></li>
+<li><p>Не рекомендуется приобретать устройства с гибридной графикой ибо технология NVIDIA Optimus в настоящее время не поддерживается под GNU/Linux официально и работает исключительно посредством Bumblebee от сторонних разработчиков, который часто работает нестабильно.</p></li>
+<li><p>Ни при каком условии не приобретать ноутбук с видеокартой <a class="reference internal" href="#nvidia-gtx1050"><span class="std std-ref">NVIDIA GeForce GTX 1050</span></a>.</p></li>
+<li><p>Перед покупкой рекомендуется исследовать работу <a class="reference internal" href="generic-info.html#download"><span class="std std-ref">свежего Fedora Live USB</span></a> непосредственно на данном устройстве, а также проверить <a class="reference internal" href="administration.html#journal-current"><span class="std std-ref">вывод dmesg</span></a> на наличие ошибок ACPI.</p></li>
 </ol>
 </div></blockquote>
 </div>
@@ -244,21 +243,21 @@ sudo systemctl mask nvidia-fallback.service
 <p>Без проблем работают Wi-Fi модули следующих производителей:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Qualcomm Atheros (однако ath10k требуют загрузки прошивок из комплекта поставки ядра);</li>
-<li>Intel Wireless (требуют загрузки индивидуальных прошивок iwl из поставки ядра).</li>
+<li><p>Qualcomm Atheros (однако ath10k требуют загрузки прошивок из комплекта поставки ядра);</p></li>
+<li><p>Intel Wireless (требуют загрузки индивидуальных прошивок iwl из поставки ядра).</p></li>
 </ul>
 </div></blockquote>
 <p>Работают 50/50:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Realtek (широко известны проблемы с чипами серий rtl8192cu и rtl8812au);</li>
-<li>MediaTek (ранее назывался Ralink).</li>
+<li><p>Realtek (широко известны проблемы с чипами серий rtl8192cu и rtl8812au);</p></li>
+<li><p>MediaTek (ранее назывался Ralink).</p></li>
 </ul>
 </div></blockquote>
 <p>Не работают:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Broadcom (для их работы необходима установка <a class="reference internal" href="#broadcom-drivers"><span class="std std-ref">проприетарных драйверов</span></a>, которые часто ведут себя непредсказуемо и могут вызывать сбои в работе ядра системы).</li>
+<li><p>Broadcom (для их работы необходима установка <a class="reference internal" href="#broadcom-drivers"><span class="std std-ref">проприетарных драйверов</span></a>, которые часто ведут себя непредсказуемо и могут вызывать сбои в работе ядра системы).</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -268,9 +267,9 @@ sudo systemctl mask nvidia-fallback.service
 <p>В качестве решения необходимо установить проприетарные драйверы по такому алгоритму:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>произвести чистую установку систему со <a class="reference internal" href="generic-info.html#download"><span class="std std-ref">свежего Fedora Live USB</span></a> (respin);</li>
-<li>войти в систему, установить все обновления и, <strong>не перезагружаясь</strong>, выполнить установку <a class="reference internal" href="#nvidia-optimus"><span class="std std-ref">проприетарных драйверов Optimus</span></a>;</li>
-<li>выполнить перезагрузку системы.</li>
+<li><p>произвести чистую установку систему со <a class="reference internal" href="generic-info.html#download"><span class="std std-ref">свежего Fedora Live USB</span></a> (respin);</p></li>
+<li><p>войти в систему, установить все обновления и, <strong>не перезагружаясь</strong>, выполнить установку <a class="reference internal" href="#nvidia-optimus"><span class="std std-ref">проприетарных драйверов Optimus</span></a>;</p></li>
+<li><p>выполнить перезагрузку системы.</p></li>
 </ol>
 </div></blockquote>
 <p>Если всё сделано верно, то система начнёт функционировать в штатном режиме. В противном случае следует повторить с самого начала.</p>
@@ -339,10 +338,10 @@ sudo systemctl mask nvidia-fallback.service
 <p>Для работы с COM портами (RS-232) можно применять следующие утилиты:</p>
 <blockquote>
 <div><ul class="simple">
-<li>screen;</li>
-<li>putty;</li>
-<li>picocom;</li>
-<li>minicom.</li>
+<li><p>screen;</p></li>
+<li><p>putty;</p></li>
+<li><p>picocom;</p></li>
+<li><p>minicom.</p></li>
 </ul>
 </div></blockquote>
 <p>Воспользуемся утилитой <strong>screen</strong> для подключения к последовательному порту:</p>
@@ -359,8 +358,8 @@ sudo systemctl mask nvidia-fallback.service
 <p>Большинство «переходников» из цифры в аналог (DVI-D -&gt; D-SUB, HDMI -&gt; D-SUB и т.д.) не передают данные с монитора о поддерживаемых им разрешениях экрана системе посредством протокола <a class="reference external" href="https://ru.wikipedia.org/wiki/Display_Data_Channel">Display Data Channel (DDC)</a>, поэтому существует два решения:</p>
 <blockquote>
 <div><ul class="simple">
-<li>не использовать подобные устройства (к тому же они значительно ухудшают качество изображения);</li>
-<li><a class="reference internal" href="#x11-resulutions"><span class="std std-ref">прописать поддерживаемые разрешения</span></a> самостоятельно в конфиге X11.</li>
+<li><p>не использовать подобные устройства (к тому же они значительно ухудшают качество изображения);</p></li>
+<li><p><a class="reference internal" href="#x11-resulutions"><span class="std std-ref">прописать поддерживаемые разрешения</span></a> самостоятельно в конфиге X11.</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -471,8 +470,8 @@ chmod +x Unigine_Superposition-1.1.run
 <p>Дисплеи с разным значением DPI (PPI) не поддерживаются в X11 (но будут в будущем полноценно поддерживаться в Wayland), поэтому для вывода изображения на таких конфигурациях применяется одна из двух конфигураций:</p>
 <blockquote>
 <div><ul class="simple">
-<li>upscale (базовым выставляется наиболее низкое значение DPI);</li>
-<li>downscale (базовым выставляется наиболее высокое значение DPI).</li>
+<li><p>upscale (базовым выставляется наиболее низкое значение DPI);</p></li>
+<li><p>downscale (базовым выставляется наиболее высокое значение DPI).</p></li>
 </ul>
 </div></blockquote>
 <p>Оба этих метода далеки от совершенства, что сильно портит качество изображения. Таким образом, при выборе нескольких мониторов следует убедиться в том, чтобы их DPI были одинаковыми.</p>
@@ -690,11 +689,11 @@ connect AA:BB:CC:DD:EE:FF
 <p>Для проверки выполним следующее:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>осуществим загрузку с DVD/USB <em>в Legacy режиме</em>;</li>
-<li>в меню выберем вариант <strong>Memory test</strong>;</li>
-<li>выберем однопоточный, либо многопоточный режим (на многих процессорах многопоточный приводит к зависаниям системы, поэтому лучше выбирать однопоточный);</li>
-<li>запустим тест и подождём несколько часов (рекомендуется выполнять тестирование в течение как минимум 8-12 часов для выявления всех возможных дефектов памяти);</li>
-<li>по окончании нажмём <strong>Esc</strong> для выхода и перезагрузки компьютера.</li>
+<li><p>осуществим загрузку с DVD/USB <em>в Legacy режиме</em>;</p></li>
+<li><p>в меню выберем вариант <strong>Memory test</strong>;</p></li>
+<li><p>выберем однопоточный, либо многопоточный режим (на многих процессорах многопоточный приводит к зависаниям системы, поэтому лучше выбирать однопоточный);</p></li>
+<li><p>запустим тест и подождём несколько часов (рекомендуется выполнять тестирование в течение как минимум 8-12 часов для выявления всех возможных дефектов памяти);</p></li>
+<li><p>по окончании нажмём <strong>Esc</strong> для выхода и перезагрузки компьютера.</p></li>
 </ol>
 </div></blockquote>
 </div>
@@ -782,13 +781,11 @@ sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none" role="search">
-  <h3>Быстрый поиск</h3>
+  <h3 id="searchlabel">Быстрый поиск</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Искать" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
