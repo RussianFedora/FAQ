@@ -435,7 +435,7 @@ SWF файл - это исполняемый файл формата Adobe Flash
 
     sudo systemctl daemon-reload
 
-Запустим сервис fstrim вручную (при необходимости):
+Запустим сервис :ref:`fstrim <ssd-tuning>` вручную (при необходимости):
 
 .. code-block:: text
 
