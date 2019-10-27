@@ -405,3 +405,40 @@ SWF файл - это исполняемый файл формата Adobe Flash
 Если приложение требует webkitgtk, то лучше всего воздержаться от его использования, однако если это по какой-либо причине невозможно, то проще всего будет применить загрузку библиотеки через :ref:`переопределение LD_LIBRARY_PATH <library-path>`.
 
 Настоятельно не рекомендуется устанавливать данную библиотеку глобально в систему!
+
+.. index:: trim, fstrim, systemd, override
+.. _fstrim-override:
+
+Перестал работать TRIM для /home. Как исправить?
+=====================================================
+
+Это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=1762640>`__ пакета utils-linux.
+
+Для её решения создадим override для systemd-юнита ``fstrim.service``:
+
+.. code-block:: text
+
+    sudo systemctl edit fstrim.service
+
+В появившемся текстовом редакторе пропишем следующие строки:
+
+.. code-block:: ini
+
+    [Service]
+    ProtectHome=read-only
+
+Сохраним изменения и выйдем из редактора.
+
+Обновим конфигурацию юнитов systemd:
+
+.. code-block:: text
+
+    sudo systemctl daemon-reload
+
+Запустим сервис fstrim вручную (при необходимости):
+
+.. code-block:: text
+
+    sudo systemctl start fstrim.service
+
+С этого момента функция TRIM для домашнего раздела будет работать исправно.
