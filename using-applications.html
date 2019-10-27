@@ -565,7 +565,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </pre></div>
 </div>
 <p>Убедимся, что Firefox <strong>не запущен</strong>, затем выполним команду vaccuum для всех sqlite файлов внутри локальных профилей браузера:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find ~/.mozilla/firefox -name *.sqlite -exec sqlite3 {} VACUUM \;
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find ~/.mozilla/firefox -name &quot;*.sqlite&quot; -exec sqlite3 {} VACUUM \;
 </pre></div>
 </div>
 <p>Это действие абсолютно безопасно, т.к. физически удаляет лишь те данные, которые в них были помечены в качестве удалённых.</p>
