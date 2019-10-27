@@ -289,7 +289,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 </div>
 <div class="section" id="trim-home">
 <span id="fstrim-override"></span><span id="index-18"></span><h2>Перестал работать TRIM для /home. Как исправить?<a class="headerlink" href="#trim-home" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1762640">известная проблема</a> пакета utils-linux.</p>
+<p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1762640">известная проблема</a> в пакете utils-linux.</p>
 <p>Для её решения создадим override для <a class="reference internal" href="administration.html#systemd-info"><span class="std std-ref">systemd-юнита</span></a> <code class="docutils literal notranslate"><span class="pre">fstrim.service</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl edit fstrim.service
 </pre></div>
