@@ -406,13 +406,13 @@ SWF файл - это исполняемый файл формата Adobe Flash
 
 Настоятельно не рекомендуется устанавливать данную библиотеку глобально в систему!
 
-.. index:: trim, fstrim, systemd, override, service, workaround
+.. index:: trim, fstrim, systemd, override, service, workaround, ssd
 .. _fstrim-override:
 
 Перестал работать TRIM для /home. Как исправить?
 =====================================================
 
-Это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=1762640>`__ пакета utils-linux.
+Это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=1762640>`__ в пакете utils-linux.
 
 Для её решения создадим override для :ref:`systemd-юнита <systemd-info>` ``fstrim.service``:
 
