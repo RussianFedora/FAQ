@@ -432,11 +432,23 @@ SWF файл - это исполняемый файл формата Adobe Flash
 
 **Важно:** Перед использованием репозитория Remi, неоходимо подключить репозиторий :ref:`RPM Fusion <rpmfusion>`. 
 
+Для того, чтобы получать обновления PHP во время прцоедуры обновления всей системы, установим репозиторий включенным по-умолчанию:
+
+.. code-block:: text
+    
+    sudo dnf config-manager --set-enabled remi
+
+В случае необходимости, включим репозиторий с PHP версии 7.4:
+
+.. code-block:: text
+
+    sudo dnf config-manager --set-enabled remi-php74
+
 Установим PHP-интерпретатор версии 7.3:
 
 .. code-block:: text
 
-    sudo dnf install php73-php --repo remi
+    sudo dnf install php73-php
 
 Для корректного использования PHP с веб-сервером Apache в режиме FastCGI, необходимо указать путь к 
 исполняемому файлу PHP в файле конфигурации веб-сервера.
@@ -445,7 +457,7 @@ SWF файл - это исполняемый файл формата Adobe Flash
 
 .. code-block:: text
 
-    sudo dnf install php73-php-fpm --repo remi
+    sudo dnf install php73-php-fpm
 
 Обратите внимание, что все пакеты в репозитории Remi`s RPM, относящиеся к PHP, имеют в своем названии префикс вида:
 
