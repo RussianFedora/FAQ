@@ -45,7 +45,7 @@ PPTP
 
 См. `здесь <https://www.easycoding.org/2016/07/31/reshaem-problemu-s-ssh-klyuchami-v-fedora-24.html>`__.
 
-.. index:: pptp, connection, error
+.. index:: pptp, connection, error, vpn, gre, firewalld, firewall
 .. _pptp-connection-error:
 
 При установке VPN-соединения по протоколу PPTP появляется ошибка. Как исправить?
