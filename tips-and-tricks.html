@@ -287,8 +287,50 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 <p>Если приложение требует webkitgtk, то лучше всего воздержаться от его использования, однако если это по какой-либо причине невозможно, то проще всего будет применить загрузку библиотеки через <a class="reference internal" href="development.html#library-path"><span class="std std-ref">переопределение LD_LIBRARY_PATH</span></a>.</p>
 <p>Настоятельно не рекомендуется устанавливать данную библиотеку глобально в систему!</p>
 </div>
+<div class="section" id="php">
+<span id="php-remi-install"></span><span id="index-18"></span><h2>Можно ли установить несколько версий PHP одновременно?<a class="headerlink" href="#php" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, это возможно при использовании репозитория Remi’s RPM.</p>
+<p>В то же время дновременная установка и использование одной и той же <em>мажорной версии PHP</em> невозможна, т.е. нельзя одновременно установить и использовать версии <strong>7.3.1</strong> и <strong>7.3.2</strong>, однако <strong>7.2.9</strong> и <strong>7.3.2</strong> уже можно.</p>
+<p><a class="reference external" href="https://rpms.remirepo.net/">Remi’s RPM</a> – это сторонний репозиторий, созданный и поддерживаемый Remi Collect - активным участником сообщества и мейнтейнером всего PHP стека в Fedora.</p>
+<p>Основная цель данного репозитория – предоставление различных версий стека PHP с возможностью одновременного использования, а также некоторых других программ для пользователей Fedora и Enterprise Linux (RHEL, CentOS, Oracle, Scientific Linux и т.д.).</p>
+<p><strong>Важно:</strong> Remi’s RPM - это сторонний репозиторий, поэтому в случае, если вы используете бета-версии Fedora или Fedora Rawhide, репозиторий может работать некорректно.</p>
+<p>Для подключения выполним сдедующую команду:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install https://rpms.remirepo.net/fedora/remi-release-$(rpm -E %fedora).rpm
+</pre></div>
+</div>
+<p><strong>Важно:</strong> Перед использованием репозитория Remi, необходимо подключить <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
+<p>Для того, чтобы получать обновления PHP, активируем данный репозиторий:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-enabled remi
+</pre></div>
+</div>
+<p>При необходимости можно включить экспериментальные репозитории с бета-версиями PHP (на примере версии 7.4):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-enabled remi-php74
+</pre></div>
+</div>
+<p>Установим PHP-интерпретатор версии 7.3:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install php73-php
+</pre></div>
+</div>
+<p>Для корректного использования PHP с веб-сервером Apache в режиме FastCGI, необходимо вручную указать путь к исполняемому файлу PHP в файле конфигурации веб-сервера.</p>
+<p>В случае использования nginx, установим менеджер процессов PHP-FPM для PHP версии 7.3:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install php73-php-fpm
+</pre></div>
+</div>
+<p>Стоит обратить внимание на то, что все пакеты в репозитории Remi’s RPM, относящиеся к PHP, имеют в своем названии префикс вида <code class="docutils literal notranslate"><span class="pre">php&lt;php_version&gt;</span></code>, где <code class="docutils literal notranslate"><span class="pre">&lt;php_version&gt;</span></code> – первые две цифры версии PHP, которую необходимо использовать.</p>
+<p>Запустим PHP-FPM и включим его автоматический старт при включения системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable --now php73-php-fpm.servie
+</pre></div>
+</div>
+<p>Указанный выше префикс необходимо использовать и при взаимодействии с юнитами <a class="reference internal" href="administration.html#systemd-info"><span class="std std-ref">systemd</span></a>.</p>
+<p>Для выполнения PHP сценатрия в терминале, вызовем интерпретатор и передадим путь к файлу в качестве параметра:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/usr/bin/php73 /path/to/file.php
+</pre></div>
+</div>
+<p>Здесь <code class="docutils literal notranslate"><span class="pre">/usr/bin/php73</span></code> является символической ссылкой для быстрого вызова исполняемого файла интерпретатора PHP указанной версии, например <code class="docutils literal notranslate"><span class="pre">/opt/remi/php73/root/usr/bin/php</span></code>.</p>
+<p>Файлы конфигурации <code class="docutils literal notranslate"><span class="pre">php.ini</span></code> и <code class="docutils literal notranslate"><span class="pre">php-fpm.conf</span></code> располагаются в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/opt/remi/php73</span></code>. Префикс используется в качестве имени каталога.</p>
+</div>
 <div class="section" id="trim-home">
-<span id="fstrim-override"></span><span id="index-18"></span><h2>Перестал работать TRIM для /home. Как исправить?<a class="headerlink" href="#trim-home" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fstrim-override"></span><span id="index-19"></span><h2>Перестал работать TRIM для /home. Как исправить?<a class="headerlink" href="#trim-home" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1762640">известная проблема</a> в пакете utils-linux.</p>
 <p>Для её решения создадим override для <a class="reference internal" href="administration.html#systemd-info"><span class="std std-ref">systemd-юнита</span></a> <code class="docutils literal notranslate"><span class="pre">fstrim.service</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl edit fstrim.service
@@ -360,6 +402,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 <li class="toctree-l2"><a class="reference internal" href="#rfremix-upgrade">Как правильно обновиться с RFRemix до Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#windows-dual-boot">Как оптимизировать Windows для корректной работы в dual-boot?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#webkitgtk">Приложение требует webkitgtk. Что делать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#php">Можно ли установить несколько версий PHP одновременно?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#trim-home">Перестал работать TRIM для /home. Как исправить?</a></li>
 </ul>
 </li>

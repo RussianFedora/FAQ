@@ -61,24 +61,35 @@
 <span id="ssh-keys-error"></span><span id="index-1"></span><h2>При использовании SSH появляется ошибка доступа к ключам. Как исправить?<a class="headerlink" href="#ssh" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2016/07/31/reshaem-problemu-s-ssh-klyuchami-v-fedora-24.html">здесь</a>.</p>
 </div>
+<div class="section" id="vpn-pptp">
+<span id="pptp-connection-error"></span><span id="index-2"></span><h2>При установке VPN-соединения по протоколу PPTP появляется ошибка. Как исправить?<a class="headerlink" href="#vpn-pptp" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если продключение к VPN по протоколу <a class="reference internal" href="#vpn-selection"><span class="std std-ref">PPTP</span></a> не проходит из-за ошибки, включим поддержку <a class="reference external" href="https://ru.wikipedia.org/wiki/GRE_(%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%BB)">GRE</a> в настройках <a class="reference internal" href="security.html#firewalld-about"><span class="std std-ref">межсетевого экрана</span></a>.</p>
+<p>Для этого выполним следующее:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --permanent --add-protocol=gre
+sudo firewall-cmd --reload
+</pre></div>
+</div>
+<p>Изменения вступят в силу немедленно.</p>
+<p><strong>Важно:</strong> Некоторые интернет-провайдеры и большая часть операторов сотовой связи ограничивают передачу данных по протоколу GRE. В случае, если вы уверены, что поставщик услуг связи здесь не при чем, обратите внимание на маршрутизатор: некоторые модели бюджетных устройств также могут ограничивать трафик.</p>
+</div>
 <div class="section" id="firewalld-port-forwarding">
-<span id="index-2"></span><span id="id2"></span><h2>Как пробросить локальный порт на удалённый хост?<a class="headerlink" href="#firewalld-port-forwarding" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-3"></span><span id="id2"></span><h2>Как пробросить локальный порт на удалённый хост?<a class="headerlink" href="#firewalld-port-forwarding" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2017/05/23/probrasyvaem-lokalnyj-port-na-udalyonnyj-xost.html">здесь</a>.</p>
 </div>
 <div class="section" id="openvpn-fedora">
-<span id="using-openvpn"></span><span id="index-3"></span><h2>Как поднять OpenVPN сервер в Fedora?<a class="headerlink" href="#openvpn-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="using-openvpn"></span><span id="index-4"></span><h2>Как поднять OpenVPN сервер в Fedora?<a class="headerlink" href="#openvpn-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2017/07/24/podnimaem-ovn-server-na-fedora.html">здесь</a>. В данной статье вместо <strong>ovn</strong> следует использовать <strong>openvpn</strong> во всех путях и именах юнитов.</p>
 </div>
 <div class="section" id="wireguard-fedora">
-<span id="using-wireguard"></span><span id="index-4"></span><h2>Как поднять WireGuard сервер в Fedora?<a class="headerlink" href="#wireguard-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="using-wireguard"></span><span id="index-5"></span><h2>Как поднять WireGuard сервер в Fedora?<a class="headerlink" href="#wireguard-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2019/02/28/podnimaem-wireguard-server-na-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="matrix-fedora">
-<span id="matrix-server"></span><span id="index-5"></span><h2>Как поднять свой сервер Matrix в Fedora?<a class="headerlink" href="#matrix-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="matrix-server"></span><span id="index-6"></span><h2>Как поднять свой сервер Matrix в Fedora?<a class="headerlink" href="#matrix-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2018/04/15/podnimaem-sobstvennyj-matrix-server-v-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="fedora">
-<span id="simple-web-server"></span><span id="index-6"></span><h2>Как запустить простейший веб-сервер в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="simple-web-server"></span><span id="index-7"></span><h2>Как запустить простейший веб-сервер в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для запуска простейшего веб-сервера можно использовать Python и модуль, входящий в состав базового пакета:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python3 -m http.server 8080
 </pre></div>
@@ -86,15 +97,15 @@
 <p>Веб-сервер будет запущен на порту <strong>8080</strong>. В качестве webroot будет использоваться текущий рабочий каталог.</p>
 </div>
 <div class="section" id="network-configuration">
-<span id="index-7"></span><span id="id3"></span><h2>Как лучше настраивать сетевые подключения?<a class="headerlink" href="#network-configuration" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-8"></span><span id="id3"></span><h2>Как лучше настраивать сетевые подключения?<a class="headerlink" href="#network-configuration" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В Fedora для настройки сети используется Network Manager. Для работы с ним доступны как графические менеджеры (встроены в каждую DE), так и консольный <strong>nm-cli</strong>.</p>
 </div>
 <div class="section" id="dlna">
-<span id="dlna-server"></span><span id="index-8"></span><h2>Как поднять DLNA сервер в локальной сети?<a class="headerlink" href="#dlna" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="dlna-server"></span><span id="index-9"></span><h2>Как поднять DLNA сервер в локальной сети?<a class="headerlink" href="#dlna" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2018/09/08/podnimaem-dlna-server-v-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="fedora-iperf">
-<span id="index-9"></span><span id="id4"></span><h2>Как сделать замеры скорости локальной или беспроводной сети?<a class="headerlink" href="#fedora-iperf" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-10"></span><span id="id4"></span><h2>Как сделать замеры скорости локальной или беспроводной сети?<a class="headerlink" href="#fedora-iperf" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для точных замеров производительности сети нам потребуется как минимум два компьютера (либо компьютер и мобильное устройство), а также утилита iperf, присутствующая в репозиториях Fedora. Установим её:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install iperf2
 </pre></div>
@@ -120,7 +131,7 @@
 <p><strong>192.168.1.2</strong> - это внутренний IP-адрес устройства в ЛВС, на котором запущен сервер. Номер порта указывать не требуется.</p>
 </div>
 <div class="section" id="rsync-remote">
-<span id="index-10"></span><span id="id5"></span><h2>Как передать содержимое каталога на удалённый сервер?<a class="headerlink" href="#rsync-remote" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-11"></span><span id="id5"></span><h2>Как передать содержимое каталога на удалённый сервер?<a class="headerlink" href="#rsync-remote" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Передача содержимого локального каталога на удалённый сервер посредством rsync:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rsync -chavzP --stats /path/to/local user@example.org:/path/to/remote
 </pre></div>
@@ -128,7 +139,7 @@
 <p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.</p>
 </div>
 <div class="section" id="rsync-local">
-<span id="index-11"></span><span id="id6"></span><h2>Как получить содержимое каталога с удалённого сервера?<a class="headerlink" href="#rsync-local" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-12"></span><span id="id6"></span><h2>Как получить содержимое каталога с удалённого сервера?<a class="headerlink" href="#rsync-local" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Получение содержимого каталога с удалённого сервера посредством rsync:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rsync -chavzP --stats user@example.org:/path/to/remote /path/to/local
 </pre></div>
@@ -136,16 +147,16 @@
 <p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.</p>
 </div>
 <div class="section" id="dns-fedora">
-<span id="change-dns"></span><span id="index-12"></span><h2>Как правильно указать DNS серверы в Fedora?<a class="headerlink" href="#dns-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="change-dns"></span><span id="index-13"></span><h2>Как правильно указать DNS серверы в Fedora?<a class="headerlink" href="#dns-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы указать другие DNS серверы, необходимо использовать Network Manager (графический или консольный): <strong>свойства соединения</strong> -&gt; страница <strong>IPv4</strong> -&gt; <strong>другие DNS серверы</strong>.</p>
 </div>
 <div class="section" id="etc-resolv-conf-fedora">
-<span id="dns-resolv"></span><span id="index-13"></span><h2>Можно ли править файл /etc/resolv.conf в Fedora?<a class="headerlink" href="#etc-resolv-conf-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="dns-resolv"></span><span id="index-14"></span><h2>Можно ли править файл /etc/resolv.conf в Fedora?<a class="headerlink" href="#etc-resolv-conf-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Нет, т.к. этот файл целиком управляется Network Manager и перезаписывается при каждом изменении статуса подключения (активация-деактивация соединений, перезапуск сервиса и т.д.).</p>
 <p>Если необходимо указать другие DNS серверы, это следует производить через <a class="reference internal" href="#change-dns"><span class="std std-ref">свойства</span></a> соответствующего соединения.</p>
 </div>
 <div class="section" id="firewalld-icmp">
-<span id="disable-icmp"></span><span id="index-14"></span><h2>Как можно средствами Firewalld запретить ICMP?<a class="headerlink" href="#firewalld-icmp" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="disable-icmp"></span><span id="index-15"></span><h2>Как можно средствами Firewalld запретить ICMP?<a class="headerlink" href="#firewalld-icmp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию ICMP трафик разрешён для большей части зон, поэтому запретить его можно вручную:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone=public --remove-icmp-block={echo-request,echo-reply,timestamp-reply,timestamp-request} --permanent
 </pre></div>
@@ -157,7 +168,7 @@
 <p>В данном примере для зоны <strong>public</strong> блокируются как входящие, так и исходящие ICMP ECHO и ICMP TIMESTAMP.</p>
 </div>
 <div class="section" id="firewalld-openvpn-ip">
-<span id="openvpn-allowed-ips"></span><span id="index-15"></span><h2>Как средствами Firewalld разрешить подключение к OpenVPN серверу только с разрешённых IP адресов?<a class="headerlink" href="#firewalld-openvpn-ip" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="openvpn-allowed-ips"></span><span id="index-16"></span><h2>Как средствами Firewalld разрешить подключение к OpenVPN серверу только с разрешённых IP адресов?<a class="headerlink" href="#firewalld-openvpn-ip" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сначала отключим правило по умолчанию для <a class="reference internal" href="#using-openvpn"><span class="std std-ref">OpenVPN</span></a>, разрешающее доступ к серверу с любых IP адресов:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone=public --remove-service openvpn --permanent
 </pre></div>
@@ -174,7 +185,7 @@ sudo firewall-cmd --zone=public --add-rich-rule=&#39;rule family=ipv4 source add
 <p>Здесь <strong>public</strong> - имя зоны для публичного интерфейса, <strong>1.2.3.4</strong> - IP-адрес, а <strong>5.6.7.0/24</strong> - подсеть, доступ для адресов из которой следует разрешить.</p>
 </div>
 <div class="section" id="firewalld-wireguard-ip">
-<span id="wireguard-allowed-ips"></span><span id="index-16"></span><h2>Как средствами Firewalld разрешить подключение к WireGuard серверу только с разрешённых IP адресов?<a class="headerlink" href="#firewalld-wireguard-ip" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="wireguard-allowed-ips"></span><span id="index-17"></span><h2>Как средствами Firewalld разрешить подключение к WireGuard серверу только с разрешённых IP адресов?<a class="headerlink" href="#firewalld-wireguard-ip" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сначала отключим правило по умолчанию для <a class="reference internal" href="#using-wireguard"><span class="std std-ref">WireGuard</span></a>, разрешающее доступ к серверу с любых IP адресов:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone=public --remove-port=27015/udp --permanent
 </pre></div>
@@ -191,14 +202,14 @@ sudo firewall-cmd --zone=public --add-rich-rule=&#39;rule family=ipv4 source add
 <p>Здесь <strong>27015</strong> - порт сервера WireGuard, <strong>public</strong> - имя зоны для публичного интерфейса, <strong>1.2.3.4</strong> - IP-адрес, а <strong>5.6.7.0/24</strong> - подсеть, доступ для адресов из которой следует разрешить.</p>
 </div>
 <div class="section" id="ip-nat">
-<span id="get-external-ip"></span><span id="index-17"></span><h2>Как узнать внешний IP адрес за NAT провайдера?<a class="headerlink" href="#ip-nat" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="get-external-ip"></span><span id="index-18"></span><h2>Как узнать внешний IP адрес за NAT провайдера?<a class="headerlink" href="#ip-nat" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этой цели можно использовать внешний сервис, возвращающий только внешний IP и утилиту <strong>curl</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>curl https://ifconfig.me
 </pre></div>
 </div>
 </div>
 <div class="section" id="firewalld-ip-cloudflare">
-<span id="firewalld-cloudflare"></span><span id="index-18"></span><h2>Как средствами Firewalld разрешить подключение к веб-серверу только с IP адресов CloudFlare?<a class="headerlink" href="#firewalld-ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="firewalld-cloudflare"></span><span id="index-19"></span><h2>Как средствами Firewalld разрешить подключение к веб-серверу только с IP адресов CloudFlare?<a class="headerlink" href="#firewalld-ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При использовании CloudFlare в качестве системы защиты от DDoS атак, а также WAF, возникает необходимость разрешать входящие подключения исключительно с IP адресов данного сервиса.</p>
 <p>Сначала отключим правило по умолчанию для веб-сервера, разрешающее доступ с любых IP адресов:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --zone=public --remove-service http --permanent
@@ -237,11 +248,11 @@ fw_add <span class="m">6</span>
 <p>Здесь <strong>public</strong> - имя зоны для публичного сетевого интерфейса.</p>
 </div>
 <div class="section" id="ip-cloudflare">
-<span id="cloudflare-forwarding"></span><span id="index-19"></span><h2>Как пробросить IP адреса клиентов за CloudFlare?<a class="headerlink" href="#ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="cloudflare-forwarding"></span><span id="index-20"></span><h2>Как пробросить IP адреса клиентов за CloudFlare?<a class="headerlink" href="#ip-cloudflare" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2013/08/12/nastraivaem-probros-ip-klientov-za-cloudflare.html">здесь</a>.</p>
 </div>
 <div class="section" id="using-mtr">
-<span id="index-20"></span><span id="id7"></span><h2>Как проверить наличие или отсутствие потерь пакетов до узла?<a class="headerlink" href="#using-mtr" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-21"></span><span id="id7"></span><h2>Как проверить наличие или отсутствие потерь пакетов до узла?<a class="headerlink" href="#using-mtr" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для проверки работоспособности сети и наличия, либо отсутствия потерь пакетов между узлами маршрута, широко используется утилита <strong>mtr</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install mtr
 </pre></div>
@@ -253,14 +264,14 @@ fw_add <span class="m">6</span>
 <p>Приостановить работу можно нажатием клавиши <strong>P</strong>, для возобновить - <strong>пробел</strong>, а для выхода - <strong>Q</strong>.</p>
 </div>
 <div class="section" id="ss-established">
-<span id="index-21"></span><span id="id8"></span><h2>Как получить список установленных сетевых соединений?<a class="headerlink" href="#ss-established" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-22"></span><span id="id8"></span><h2>Как получить список установленных сетевых соединений?<a class="headerlink" href="#ss-established" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Воспользуемся утилитой <strong>ss</strong> для вывода списка установленных сетевых соединений:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ss -tupn
 </pre></div>
 </div>
 </div>
 <div class="section" id="ss-listening">
-<span id="index-22"></span><span id="id9"></span><h2>Как получить список открытых портов?<a class="headerlink" href="#ss-listening" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-23"></span><span id="id9"></span><h2>Как получить список открытых портов?<a class="headerlink" href="#ss-listening" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Воспользуемся утилитой <strong>ss</strong> для вывода открытых портов, ожидающих входящих соединений:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ss -tulpn
 </pre></div>
@@ -268,16 +279,16 @@ fw_add <span class="m">6</span>
 <p>Статус <strong>LISTEN</strong> означает, что TCP-порт открыт и ожидает входящих соединений. В то же время для UDP-портов будет отображаться статус <strong>UNCONN</strong>, т.к. этот протокол не подразумевает предварительное открытие подключений.</p>
 </div>
 <div class="section" id="transient-hostname">
-<span id="index-23"></span><span id="id10"></span><h2>Почему при подключении к сети имя хоста машины изменяется?<a class="headerlink" href="#transient-hostname" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-24"></span><span id="id10"></span><h2>Почему при подключении к сети имя хоста машины изменяется?<a class="headerlink" href="#transient-hostname" title="Ссылка на этот заголовок">¶</a></h2>
 <p>DHCP сервер провайдера способен выдавать помимо IP-адресов и DNS-серверов ещё и нестандартное имя хоста. Полученное таким способом значение называется <em>transient hostname</em>. Оно будет применимо с компьютеру с момента установки соединения и до отключения от соответствующей сети.</p>
 <p>Если на компьютере имеется несколько сетевых подключений, каждое из которых предоставляет свой hostname, основным будет считаться то, чьё соединение было установлено последним.</p>
 </div>
 <div class="section" id="transient-disable">
-<span id="index-24"></span><span id="id11"></span><h2>Как запретить использование полученного от провайдера имени хоста?<a class="headerlink" href="#transient-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-25"></span><span id="id11"></span><h2>Как запретить использование полученного от провайдера имени хоста?<a class="headerlink" href="#transient-disable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы запретить использование полученного от DHCP сервера <a class="reference internal" href="#transient-hostname"><span class="std std-ref">transient hostname</span></a>, установим <a class="reference internal" href="administration.html#change-hostname"><span class="std std-ref">статическое имя хоста</span></a>.</p>
 </div>
 <div class="section" id="network-manager-systemd-resolved">
-<span id="resolved-nm"></span><span id="index-25"></span><h2>Как переключить Network Manager на использование systemd-resolved?<a class="headerlink" href="#network-manager-systemd-resolved" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="resolved-nm"></span><span id="index-26"></span><h2>Как переключить Network Manager на использование systemd-resolved?<a class="headerlink" href="#network-manager-systemd-resolved" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Начиная с Fedora 30, в комплект базовой системы входит systemd-resolved, который занимается преобразованием имён DNS в IP-адреса, имеет встроенный DNS-кэш и активирован по умолчанию.</p>
 <p>В то же время, Network Manager с настройками по умолчанию использует собственный виртуальный файл конфигурации <a class="reference internal" href="#dns-resolv"><span class="std std-ref">resolv.conf</span></a>, игнорирующий присутствие systemd-resolved.</p>
 <p>Для исправления этой ситуации, убедимся, что systemd-neworkd запущен и функционирует:</p>
@@ -310,7 +321,7 @@ sudo systemctl restart systemd-resolved.service
 <p>Если в выводе присутствует строка <code class="docutils literal notranslate"><span class="pre">nameserver</span> <span class="pre">127.0.0.53</span></code>, значит всё настроено верно.</p>
 </div>
 <div class="section" id="systemd-resolved">
-<span id="resolved-status"></span><span id="index-26"></span><h2>Как проверить статус работы systemd-resolved?<a class="headerlink" href="#systemd-resolved" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="resolved-status"></span><span id="index-27"></span><h2>Как проверить статус работы systemd-resolved?<a class="headerlink" href="#systemd-resolved" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Выведем статус systemd-resolved, включающий список используемых DNS серверов и общие параметры конфигурации:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>resolvectl status
 </pre></div>
@@ -321,7 +332,7 @@ sudo systemctl restart systemd-resolved.service
 </div>
 </div>
 <div class="section" id="resolved-default">
-<span id="index-27"></span><span id="id12"></span><h2>Как сделать systemd-resolved основным резолвером?<a class="headerlink" href="#resolved-default" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-28"></span><span id="id12"></span><h2>Как сделать systemd-resolved основным резолвером?<a class="headerlink" href="#resolved-default" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Удалим существующую символическую ссылку, указывающую на Network Manager:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rm -f /etc/resolv.conf
 </pre></div>
@@ -333,7 +344,7 @@ sudo systemctl restart systemd-resolved.service
 <p>Изменения вступят в силу немедленно.</p>
 </div>
 <div class="section" id="dns-tls">
-<span id="dns-crypt"></span><span id="index-28"></span><h2>Можно ли зашифровать DNS при помощи TLS?<a class="headerlink" href="#dns-tls" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="dns-crypt"></span><span id="index-29"></span><h2>Можно ли зашифровать DNS при помощи TLS?<a class="headerlink" href="#dns-tls" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, systemd-resolved, входящий в поставку системы начиная с Fedora 30, полностью поддерживает технологию <a class="reference external" href="https://ru.wikipedia.org/wiki/DNS_%D0%BF%D0%BE%D0%B2%D0%B5%D1%80%D1%85_TLS">DNS-over-TLS</a>, позволяющую зашифровать весь DNS трафик устройства.</p>
 <p>Настроим систему на использование systemd-resolved либо <a class="reference internal" href="#resolved-nm"><span class="std std-ref">совместно с Network Manager</span></a>, либо в <a class="reference internal" href="#resolved-default"><span class="std std-ref">монопольном режиме</span></a>, затем откроем файл конфигурации <code class="docutils literal notranslate"><span class="pre">/etc/systemd/resolved.conf</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/systemd/resolved.conf
@@ -361,19 +372,19 @@ sudo systemctl restart systemd-resolved.service
 <p>Теперь в <a class="reference internal" href="#resolved-status"><span class="std std-ref">информации об используемых DNS</span></a> должна отображаться информация об использовании этой технологии.</p>
 </div>
 <div class="section" id="resolved-flush">
-<span id="index-29"></span><span id="id13"></span><h2>Как очистить кэши systemd-resolved?<a class="headerlink" href="#resolved-flush" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-30"></span><span id="id13"></span><h2>Как очистить кэши systemd-resolved?<a class="headerlink" href="#resolved-flush" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Очистим кэш systemd-resolved:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>resolvectl flush-caches
 </pre></div>
 </div>
 </div>
 <div class="section" id="firewalld">
-<span id="firewalld-services"></span><span id="index-30"></span><h2>Где расположены файлы конфигурации доступных сервисов Firewalld?<a class="headerlink" href="#firewalld" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="firewalld-services"></span><span id="index-31"></span><h2>Где расположены файлы конфигурации доступных сервисов Firewalld?<a class="headerlink" href="#firewalld" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Предустановленные файлы конфигурации служб Firewalld находятся в каталоге <code class="docutils literal notranslate"><span class="pre">/usr/lib/firewalld/services</span></code>.</p>
 <p>Настоятельно не рекомендуется что-либо изменять в нём ибо при следующем обновлении пакета все изменения будут потеряны. Вместо этого следует создать <a class="reference internal" href="#firewalld-override"><span class="std std-ref">пользовательское переопределение</span></a>.</p>
 </div>
 <div class="section" id="firewalld-override">
-<span id="index-31"></span><span id="id14"></span><h2>Как переопределить предустановленный сервис в Firewalld?<a class="headerlink" href="#firewalld-override" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-32"></span><span id="id14"></span><h2>Как переопределить предустановленный сервис в Firewalld?<a class="headerlink" href="#firewalld-override" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Пользовательские переопределения должны храниться в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/firewalld/services</span></code>.</p>
 <p>В качестве примера создадим оверрайд для сервиса SSH на базе настроек по умолчанию:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cp /usr/lib/firewalld/services/ssh.xml /etc/firewalld/services/ssh.xml
@@ -425,6 +436,7 @@ sudo systemctl restart systemd-resolved.service
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Сетевое администрирование</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#vpn">Хочу обезопасить свой Интернет-трафик. Какую реализацию VPN выбрать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ssh">При использовании SSH появляется ошибка доступа к ключам. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vpn-pptp">При установке VPN-соединения по протоколу PPTP появляется ошибка. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firewalld-port-forwarding">Как пробросить локальный порт на удалённый хост?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#openvpn-fedora">Как поднять OpenVPN сервер в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#wireguard-fedora">Как поднять WireGuard сервер в Fedora?</a></li>
