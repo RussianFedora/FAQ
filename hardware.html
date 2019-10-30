@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>Оборудование &#8212; документация Неофициальный FAQ по Fedora 2019.09.30</title>
+    <title>Оборудование &#8212; документация Неофициальный FAQ по Fedora 2019.10.30</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -140,7 +140,7 @@
 </div>
 <div class="section" id="nvidia-optimus">
 <span id="index-5"></span><span id="id5"></span><h2>Как установить драйвер видеокарт NVIDIA для ноутбуков?<a class="headerlink" href="#nvidia-optimus" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Начиная с Fedora 31 и версии проприетарного драйвера 435.xx, технология NVIDIA Optimus поддерживается в полной мере «из коробки».</p>
+<p>Начиная с Fedora 31 и версии проприетарного драйвера 435.xx, технология NVIDIA Optimus поддерживается в полной мере «из коробки». Старые поколения видеокарт (ниже серии 700) работать не будут.</p>
 <p>Подключим репозитории <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установим <a class="reference internal" href="#nvidia-standard"><span class="std std-ref">стандартный драйвер NVIDIA</span></a>.</p>
 <p>Для запуска приложения на дискретном видеоадаптере передадим ему следующие <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменные окружения</span></a> <code class="docutils literal notranslate"><span class="pre">__NV_PRIME_RENDER_OFFLOAD=1</span> <span class="pre">__GLX_VENDOR_LIBRARY_NAME=nvidia</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia /path/to/game/launcher
@@ -151,7 +151,8 @@
 </div>
 <div class="section" id="nvidia-legacy-optimus">
 <span id="index-6"></span><span id="id6"></span><h2>Как установить драйвер видеокарт NVIDIA для ноутбуков (устаревший способ)?<a class="headerlink" href="#nvidia-legacy-optimus" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Если в ноутбуке установлена видеокарта, отличная от <a class="reference internal" href="#nvidia-gtx1050"><span class="std std-ref">NVIDIA GeForce GTX 1050</span></a>, то процесс пройдёт в штатном режиме. Старые поколения (ниже серии 700 не поддерживаются).</p>
+<p><strong>Важно:</strong> данный способ следут применять только на устаревших версиях Fedora (30 и ниже). В современных настоятельно рекомендуется <a class="reference internal" href="#nvidia-optimus"><span class="std std-ref">перейти на актуальный</span></a>, поддерживаемой самой NVIDIA.</p>
+<p>Если в ноутбуке установлена видеокарта, отличная от <a class="reference internal" href="#nvidia-gtx1050"><span class="std std-ref">NVIDIA GeForce GTX 1050</span></a>, то процесс пройдёт в штатном режиме. Старые поколения (ниже серии 700) не поддерживаются.</p>
 <p>Загрузим все обновления системы:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
 </pre></div>
