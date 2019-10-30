@@ -251,7 +251,7 @@
 
     sudo dnf remove \*nvidia\*
 
-Удалим :ref:`драйверы Optimus <nvidia-optimus>`:
+Удалим :ref:`драйверы Bumblebee <nvidia-legacy-optimus>`:
 
 .. code-block:: text
 
