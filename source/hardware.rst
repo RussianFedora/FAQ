@@ -174,7 +174,9 @@
 
     __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia /path/to/game/launcher
 
-Здесь вместо **/path/to/game/launcher** укажем путь к бинарнику приложения, который требуется запустить.
+Здесь вместо **/path/to/game/launcher** укажем путь к бинарнику, который требуется запустить.
+
+Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
 
 .. index:: video, gpu, repository, nvidia, drivers, third-party, bumblebee, primus, optimus
 .. _nvidia-legacy-optimus:
