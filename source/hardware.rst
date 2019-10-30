@@ -155,11 +155,29 @@
 
 Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
 
-.. index:: video, gpu, repository, nvidia, drivers, third-party, bumblebee, primus, optimus
+.. index:: video, gpu, repository, nvidia, drivers, third-party, optimus
 .. _nvidia-optimus:
 
 Как установить драйвер видеокарт NVIDIA для ноутбуков?
 =========================================================
+
+Начиная с Fedora 31 и версии проприетарного драйвера 435.xx, технология NVIDIA Optimus поддерживается в полной мере "из коробки".
+
+Подключим репозитории :ref:`RPM Fusion <rpmfusion>` и установим :ref:`стандартный драйвер NVIDIA <nvidia-standard>`.
+
+Для запуска приложения на дискретном видеоадаптере передадим ему следующие :ref:`переменные окружения <env-set>` ``__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia``:
+
+.. code-block:: text
+
+    __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia /path/to/game/launcher
+
+Здесь вместо **/path/to/game/launcher** укажем путь к бинарнику приложения, который требуется запустить.
+
+.. index:: video, gpu, repository, nvidia, drivers, third-party, bumblebee, primus, optimus
+.. _nvidia-legacy-optimus:
+
+Как установить драйвер видеокарт NVIDIA для ноутбуков (устаревший способ)?
+=============================================================================
 
 Если в ноутбуке установлена видеокарта, отличная от :ref:`NVIDIA GeForce GTX 1050 <nvidia-gtx1050>`, то процесс пройдёт в штатном режиме. Старые поколения (ниже серии 700 не поддерживаются).
 
@@ -854,7 +872,15 @@ ICC профиль можно получить либо на сайте прои
 
 Актуальные версии клиента Steam `поддерживают <https://support.steampowered.com/kb_article.php?ref=6316-GJKC-7437>`__ технологию NVIDIA Optimus "из коробки" если установлен :ref:`проприетарный драйвер Bumblebee <nvidia-optimus>`.
 
-Чтобы запустить игру на дискретной видеокарте, нажмём **правой кнопкой мыши** по нужной игре в Библиотеке, выберем пункт контекстного меню **Свойства**, нажмём кнопку **Установить параметры запуска** и в открывшемся окне введём следующее:
+Чтобы запустить игру на дискретной видеокарте, нажмём **правой кнопкой мыши** по нужной игре в Библиотеке, выберем пункт контекстного меню **Свойства**, нажмём кнопку **Установить параметры запуска** и в открывшемся окне введём команду.
+
+Для :ref:`современных драйверов Optimus <nvidia-optimus>`:
+
+.. code-block:: text
+
+    __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia %command%
+
+Для :ref:`устаревших драйверов Bumblebee <nvidia-legacy-optimus>`:
 
 .. code-block:: text
 
