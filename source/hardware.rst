@@ -33,7 +33,10 @@
     * :ref:`более старые поколения видеокарт (300, 400, 500, 600 и 700) <nvidia-legacy-390>`;
     * :ref:`устаревшие поколения видеокарт (серии 6000, 7000, 8000, 9000 и 200) <nvidia-legacy-340>`;
 
-  * :ref:`NVIDIA Optimus драйвер (ноутбуки с гибридной графикой) <nvidia-optimus>`.
+  * ноутбуки с гибридной графикой:
+
+    * :ref:`NVIDIA Optimus драйвер (рекомендуемый способ) <nvidia-optimus>`;
+    * :ref:`Bumblebee драйвер (устаревший способ) <nvidia-legacy-optimus>`.
 
 .. index:: video, gpu, repository, nvidia, drivers, third-party
 .. _nvidia-standard:
