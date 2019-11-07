@@ -1706,3 +1706,11 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
 ===============================================================
 
 См. `здесь <https://www.easycoding.org/2019/09/24/avtomaticheski-razblokiruem-luks-diski-pri-pomoshhi-tpm.html>`__.
+
+.. index:: selinux, samba, smb
+.. _selinux-samba:
+
+Как настроить работу Samba с SELinux?
+========================================
+
+См. `здесь <https://fedoraproject.org/wiki/SELinux/samba>`__.
