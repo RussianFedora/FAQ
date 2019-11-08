@@ -43,7 +43,9 @@
   * `@krepver <https://github.com/krepver>`__;
   * `@jsonguard <https://github.com/jsonguard>`__;
   * `@xshram <https://github.com/xshram>`__;
-  * `@bookwar <https://github.com/bookwar>`__.
+  * `@bookwar <https://github.com/bookwar>`__;
+  * `@ElXreno <https://github.com/ElXreno>`__;
+  * `@crayxt <https://github.com/crayxt>`__.
 
 Полный список авторов и вклад каждого можно увидеть на странице `Contributors <https://github.com/RussianFedora/FAQ/graphs/contributors>`__.
 
