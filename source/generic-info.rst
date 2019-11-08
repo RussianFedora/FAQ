@@ -14,7 +14,7 @@
 .. index:: fedora, information
 .. _what-is:
 
-Что есть Fedora?
+Что такое Fedora?
 ====================
 
 Fedora - это один из дистрибутивов GNU/Linux, разрабатываемый сообществом и спонсируемый :ref:`компанией Red Hat <rh-contribution>`.
@@ -27,7 +27,7 @@ Fedora - это один из дистрибутивов GNU/Linux, разраб
 
 Red Hat является основным спонсором дистрибутива: предоставляет ресурсы и оборудование для сборки дистрибутива.
 
-И хотя многие крупные изменения вносятся сотрудниками данной компании на окладе, все они на общих основаниях проходят контроль :ref:`независимого сообщества <fesco>`. Инициативы, не соответствующие принципам Fedora, отклоняются.
+И, хотя многие крупные изменения вносятся сотрудниками данной компании на окладе, все они на общих основаниях проходят контроль :ref:`независимого сообщества <fesco>`. Инициативы, не соответствующие принципам Fedora, отклоняются.
 
 То же касается и процесса :ref:`package review <becoming-maintainer>` для всех пакетов в основных репозиториях.
 
@@ -70,7 +70,7 @@ FESCo - `Fedora Engineering Steering Committee <https://docs.fedoraproject.org/e
 .. index:: releases, fedora
 .. _supported:
 
-Сколько релизов поддерживаются?
+Сколько релизов поддерживается?
 ==================================
 
 Два: текущий стабильный и предыдущий.
@@ -81,7 +81,7 @@ FESCo - `Fedora Engineering Steering Committee <https://docs.fedoraproject.org/e
 В чём отличие от других дистрибутивов?
 ==========================================
 
-Fedora - это `bleeding edge <https://en.wikipedia.org/wiki/Bleeding_edge_technology>`__ дистрибутив. Он всегда находится на острие прогресса. Сначала новые разработки появляются здесь и лишь спустя определённое время в остальных дистрибутивах. Из-за этого некоторые называют федору «тестовым полигоном», но это в корне не верно ибо :ref:`релизы <supported>` достаточно стабильны.
+Fedora - это `bleeding edge <https://en.wikipedia.org/wiki/Bleeding_edge_technology>`__ дистрибутив. Он всегда находится на острие прогресса. Сначала новые разработки появляются здесь и лишь спустя определённое время в остальных дистрибутивах. Из-за этого некоторые называют федору «тестовым полигоном», но это в корне неверно, ибо :ref:`релизы <supported>` достаточно стабильны.
 
 .. index:: fedora, download, iso, respins
 .. _download:
@@ -95,7 +95,7 @@ Fedora - это `bleeding edge <https://en.wikipedia.org/wiki/Bleeding_edge_tech
   * `Fedora с другими DE <https://spins.fedoraproject.org/>`__;
   * `официальные торренты <https://torrents.fedoraproject.org/>`__.
 
-Также существуют еженедельные `автоматически сборки <https://dl.fedoraproject.org/pub/alt/live-respins/>`__ («respins»), содержащие все выпущенные на данный момент обновления.
+Также существуют еженедельные `автоматические сборки <https://dl.fedoraproject.org/pub/alt/live-respins/>`__ («respins»), содержащие все выпущенные на данный момент обновления.
 
 .. index:: de, desktop, environment
 .. _de-supported:
@@ -103,7 +103,7 @@ Fedora - это `bleeding edge <https://en.wikipedia.org/wiki/Bleeding_edge_tech
 Какие DE поддерживаются?
 ===========================
 
-Gnome 3 (версия Workstation), KDE Plasma 5, XFCE, LXDE, LXQt, Cinnamon, Mate.
+Gnome 3 (версия Workstation), KDE Plasma 5, Xfce, LXDE, LXQt, Cinnamon, Mate.
 
 .. index:: releases, rolling, fedora, rawhide
 .. _rolling-model:
@@ -119,7 +119,7 @@ Gnome 3 (версия Workstation), KDE Plasma 5, XFCE, LXDE, LXQt, Cinnamon, Ma
 Возможно ли использовать Rawhide на постоянной основе?
 =========================================================
 
-Вполне ибо его качество уже давно на уровне альфа-версий других дистрибутивов.
+Вполне, ибо его качество уже давно на уровне альфа-версий других дистрибутивов.
 
 .. index:: boot, grub, loader, boot
 .. _grub-loader:
@@ -189,7 +189,7 @@ Fedora COPR - это бесплатный хостинг для размещен
 
 RFRemix - это ремикс оргинального дистрибутива Fedora с использованием репозиториев :ref:`RPM Fusion <rpmfusion>` и :ref:`Russian Fedora <russian-fedora>`, адаптированный для российских пользователей. На данный момент все релизы устарели и более не поддерживаются.
 
-Выпуск RFRemix прекращён поскольку проект выполнил свою задачу на 100%: все его наработки были приняты в официальные репозитории Fedora, а также RPM Fusion. Мейнтейнеры Russian Fedora теперь являются мейнтейнерами Fedora и RPM Fusion.
+Выпуск RFRemix прекращён, поскольку проект выполнил свою задачу на 100%: все его наработки были приняты в официальные репозитории Fedora, а также RPM Fusion. Мейнтейнеры Russian Fedora теперь являются мейнтейнерами Fedora и RPM Fusion.
 
 Подробности можно узнать `здесь <https://ru.fedoracommunity.org/posts/rfremix-retired/>`__.
 
@@ -222,7 +222,7 @@ RFRemix - это ремикс оргинального дистрибутива 
   * `#russianfedora:matrix.org <https://matrix.to/#/#russianfedora:matrix.org>`__ - основной чат на русском языке;
   * `#fedora-rpm-ru:matrix.org <https://matrix.to/#/#fedora-rpm-ru:matrix.org>`__ - технические вопросы по :ref:`созданию RPM пакетов <create-package>`;
   * `#rust-rpm-ru:matrix.org <https://matrix.to/#/#rust-rpm-ru:matrix.org>`__ - чат по особенностям пакетирования приложений, написанных на языке программирования Rust;
-  * `#linux-ru-gaming:matrix.org <https://matrix.to/#/#linux-ru-gaming:matrix.org>`__ - обсуждения запуска и работы различных игр, а также :ref:`клиента Steam <steam>`.
+  * `#linux-ru-gaming:matrix.org <https://matrix.to/#/#linux-ru-gaming:matrix.org>`__ - обсуждение запуска и работы различных игр, а также :ref:`клиента Steam <steam>`.
 
 Чаты в IRC:
 
