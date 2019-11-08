@@ -55,8 +55,8 @@ gfx.webrender.all = true
 <span id="index-1"></span><span id="id2"></span><h2>Как активировать аппаратное ускорение декодирования мультимедиа в браузерах?<a class="headerlink" href="#browser-hwaccel" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В настоящее время аппаратное ускорение декодирования мультимедиа «из коробки» в GNU/Linux не поддерживается ни в одном браузере.</p>
 <p>В Mozilla Firefox оно вообще не реализовано: <a class="reference external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=563206">MZBZ#563206</a> и <a class="reference external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=1210727">MZBZ#1210727</a>.</p>
-<p>В Google Chrome и Chromium частично реализовано, но отключено на этапе компиляции и без особых VA-API патчей недоступно. Репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> предоставляет такую сборку Chromium. Для её установки необходимо подключить его и установить пакет <strong>chromium-vaapi</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install chromium-vaapi
+<p>В Google Chrome и Chromium частично реализовано, но отключено на этапе компиляции и без особых VA-API патчей недоступно. Репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> предоставляет такую сборку Chromium. Для её установки необходимо подключить его и установить пакет <strong>chromium-freeworld</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install chromium-freeworld
 </pre></div>
 </div>
 <p>Далее необходимо запустить его, зайти в <code class="docutils literal notranslate"><span class="pre">chrome://flags</span></code> и установить пункт <strong>Hardware decoding</strong> в значение <strong>Enabled</strong>, после чего перезапустить браузер.</p>
