@@ -165,23 +165,13 @@ Gnome 3 (версия Workstation), KDE Plasma 5, XFCE, LXDE, LXQt, Cinnamon, Ma
 Что такое Russian Fedora?
 ============================
 
-Популярный сторонний репозиторий. Содержит большое количество ПО, включая правильно собранные Chromium (с поддержкой всех доступных мультимедийных кодеков), PyCharm Community Edition, Double Commander, а также множество популярного проприетарного ПО: Opera, Viber, Sublime Text 3, Adobe Flash Player, RAR и т.д.
+Ранее популярный сторонний репозиторий. Содержал большое количество ПО, включая правильно собранные Chromium (с поддержкой всех доступных мультимедийных кодеков), PyCharm Community Edition, Double Commander, а также множество популярного проприетарного ПО: Opera, Viber, Sublime Text 3, Adobe Flash Player, RAR и т.д.
 
-Большая часть представленных здесь пакетов зависит от :ref:`RPM Fusion <rpmfusion>`, поэтому необходимо подключить сначала его.
+В данный момент репозиторий отключён, поскольку проект выполнил свою задачу на 100%: все его наработки были приняты в официальные репозитории Fedora, а также RPM Fusion. Мейнтейнеры Russian Fedora теперь являются мейнтейнерами Fedora и RPM Fusion.
 
-Подключение репозитория:
+Подробности можно узнать `здесь <https://ru.fedoracommunity.org/posts/rfremix-retired/>`__.
 
-.. code-block:: text
-
-    sudo dnf install --nogpgcheck https://mirror.yandex.ru/fedora/russianfedora/russianfedora/free/fedora/russianfedora-free-release-stable.noarch.rpm https://mirror.yandex.ru/fedora/russianfedora/russianfedora/nonfree/fedora/russianfedora-nonfree-release-stable.noarch.rpm
-
-Отключение репозитория:
-
-.. code-block:: text
-
-    sudo dnf remove russianfedora-free-release russianfedora-nonfree-release
-
-С апреля 2019 года репозиторий находится в отпуске на 1 релиз Fedora. Подключать данный репозиторий в настоящее время не следует.
+Russian Fedora остаётся полноценной частью сообщества Fedora. Поддержка пользователей продолжается в материнском проекте Fedora.
 
 .. index:: repository, copr, overlay, third-party
 .. _copr:
@@ -197,9 +187,11 @@ Fedora COPR - это бесплатный хостинг для размещен
 Что такое RFRemix?
 ======================
 
-RFRemix - это ремикс оргинального дистрибутива Fedora с использованием репозиториев :ref:`RPM Fusion <rpmfusion>` и :ref:`Russian Fedora <russian-fedora>`, адаптированный для российских пользователей. Больше информации можно найти `здесь <https://ru.fedoracommunity.org/stories/rfremix/>`__.
+RFRemix - это ремикс оргинального дистрибутива Fedora с использованием репозиториев :ref:`RPM Fusion <rpmfusion>` и :ref:`Russian Fedora <russian-fedora>`, адаптированный для российских пользователей. На данный момент все релизы устарели и более не поддерживаются.
 
-Из-за отпуска команды :ref:`Russian Fedora <russian-fedora>`, выпуск RFRemix временно приостановлен.
+Выпуск RFRemix прекращён поскольку проект выполнил свою задачу на 100%: все его наработки были приняты в официальные репозитории Fedora, а также RPM Fusion. Мейнтейнеры Russian Fedora теперь являются мейнтейнерами Fedora и RPM Fusion.
+
+Подробности можно узнать `здесь <https://ru.fedoracommunity.org/posts/rfremix-retired/>`__.
 
 .. index:: bug report, report, bug
 .. _bug-report:
