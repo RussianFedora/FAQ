@@ -168,9 +168,10 @@ Gnome 3 (версия Workstation), KDE Plasma 5, XFCE, LXDE, LXQt, Cinnamon, Ma
 Ранее популярный сторонний репозиторий. Содержал большое количество ПО, включая правильно собранные Chromium (с поддержкой всех доступных мультимедийных кодеков), PyCharm Community Edition, Double Commander, а также множество популярного проприетарного ПО: Opera, Viber, Sublime Text 3, Adobe Flash Player, RAR и т.д.
 
 В данный момент репозиторий отключён, поскольку проект выполнил свою задачу на 100%: все его наработки были приняты в официальные репозитории Fedora, а также RPM Fusion. Мейнтейнеры Russian Fedora теперь являются мейнтейнерами Fedora и RPM Fusion.
+
 Подробности можно узнать `здесь <https://ru.fedoracommunity.org/posts/rfremix-retired/>`__.
 
-Russian Fedora остаётся полноценной частью сообщества Fedora. 
+Russian Fedora остаётся полноценной частью сообщества Fedora. Поддержка пользователей продолжается в материнском проекте Fedora.
 
 .. index:: repository, copr, overlay, third-party
 .. _copr:
@@ -189,6 +190,7 @@ Fedora COPR - это бесплатный хостинг для размещен
 RFRemix - это ремикс оргинального дистрибутива Fedora с использованием репозиториев :ref:`RPM Fusion <rpmfusion>` и :ref:`Russian Fedora <russian-fedora>`, адаптированный для российских пользователей. На данный момент все релизы устарели и более не поддерживаются.
 
 Выпуск RFRemix прекращён поскольку проект выполнил свою задачу на 100%: все его наработки были приняты в официальные репозитории Fedora, а также RPM Fusion. Мейнтейнеры Russian Fedora теперь являются мейнтейнерами Fedora и RPM Fusion.
+
 Подробности можно узнать `здесь <https://ru.fedoracommunity.org/posts/rfremix-retired/>`__.
 
 .. index:: bug report, report, bug
