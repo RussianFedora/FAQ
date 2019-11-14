@@ -269,7 +269,7 @@ OpenVPN не может получить доступ к сертификата�
 
 Теперь в нём можно размещать сертификаты и приватные ключи.
 
-.. index:: kpti, hardware, vulnerability, disable, mitigation
+.. index:: cpu, kpti, hardware, vulnerability, disable, mitigation
 .. _kpti:
 
 Можно ли отключить KPTI?
@@ -283,7 +283,7 @@ KPTI - это новый механизм ядра, направленный н�
 
 Параметр ``pti=off`` также поддерживается в полной мере.
 
-.. index:: spectre, hardware, vulnerability, disable, mitigation
+.. index:: cpu, spectre, hardware, vulnerability, disable, mitigation
 .. _spectrev1:
 
 Можно ли отключить защиту от Spectre v1?
@@ -295,7 +295,7 @@ KPTI - это новый механизм ядра, направленный н�
 
     nospectre_v1
 
-.. index:: spectre, hardware, vulnerability, disable, mitigation
+.. index:: cpu, spectre, hardware, vulnerability, disable, mitigation
 .. _spectrev2:
 
 Можно ли отключить защиту от Spectre v2?
@@ -307,7 +307,7 @@ KPTI - это новый механизм ядра, направленный н�
 
     nospectre_v2
 
-.. index:: spectre, hardware, vulnerability, disable, mitigation
+.. index:: cpu, spectre, hardware, vulnerability, disable, mitigation
 .. _spectrev4:
 
 Можно ли отключить защиту от Spectre v4?
@@ -319,7 +319,7 @@ KPTI - это новый механизм ядра, направленный н�
 
     nospec_store_bypass_disable
 
-.. index:: l1tf, hardware, vulnerability, disable, mitigation
+.. index:: cpu, l1tf, hardware, vulnerability, disable, mitigation
 .. _l1tf:
 
 Можно ли отключить защиту от L1TF?
@@ -331,7 +331,7 @@ KPTI - это новый механизм ядра, направленный н�
 
     l1tf=off
 
-.. index:: mds, hardware, vulnerability, disable, mitigation
+.. index:: cpu, mds, hardware, vulnerability, disable, mitigation
 .. _mds:
 
 Можно ли отключить защиту от MDS?
@@ -343,7 +343,7 @@ KPTI - это новый механизм ядра, направленный н�
 
     mds=off
 
-.. index:: itlb, hardware, vulnerability, disable, mitigation
+.. index:: cpu, itlb, hardware, vulnerability, disable, mitigation
 .. _itlb:
 
 Можно ли отключить защиту от iTLB?
@@ -355,7 +355,7 @@ KPTI - это новый механизм ядра, направленный н�
 
     nx_huge_pages=off
 
-.. index:: tsx, hardware, vulnerability, disable, mitigation
+.. index:: cpu, tsx, hardware, vulnerability, disable, mitigation
 .. _tsx:
 
 Можно ли отключить защиту от TSX?
@@ -369,7 +369,7 @@ KPTI - это новый механизм ядра, направленный н�
 
 Для полной деактивации должен использоваться совместно с :ref:`TAA <taa>`.
 
-.. index:: taa, hardware, vulnerability, disable, mitigation
+.. index:: cpu, taa, hardware, vulnerability, disable, mitigation
 .. _taa:
 
 Можно ли отключить защиту от TAA?
@@ -381,7 +381,7 @@ KPTI - это новый механизм ядра, направленный н�
 
     tsx_async_abort=off
 
-.. index:: kpti, hardware, vulnerability, disable, mitigation, l1tf, spectre, mds
+.. index:: cpu, kpti, hardware, vulnerability, disable, mitigation, l1tf, spectre, mds, itlb, tsx, taa
 .. _mitigations-off:
 
 Можно ли отключить все виды защит от уязвимостей в процессорах?
