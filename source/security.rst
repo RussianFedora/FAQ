@@ -355,6 +355,18 @@ KPTI - это новый механизм ядра, направленный н�
 
     nx_huge_pages=off
 
+.. index:: taa, hardware, vulnerability, disable, mitigation
+.. _taa:
+
+Можно ли отключить защиту от TAA?
+====================================
+
+Да, при помощи :ref:`параметра ядра <kernelpm-perm>`:
+
+.. code-block:: text
+
+    tsx_async_abort=off
+
 .. index:: kpti, hardware, vulnerability, disable, mitigation, l1tf, spectre, mds
 .. _mitigations-off:
 
