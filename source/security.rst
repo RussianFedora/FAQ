@@ -343,6 +343,18 @@ KPTI - это новый механизм ядра, направленный н�
 
     mds=off
 
+.. index:: itlb, hardware, vulnerability, disable, mitigation
+.. _itlb:
+
+Можно ли отключить защиту от iTLB?
+=====================================
+
+Да, при помощи :ref:`параметра ядра <kernelpm-perm>`:
+
+.. code-block:: text
+
+    nx_huge_pages=off
+
 .. index:: kpti, hardware, vulnerability, disable, mitigation, l1tf, spectre, mds
 .. _mitigations-off:
 
