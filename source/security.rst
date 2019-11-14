@@ -355,6 +355,18 @@ KPTI - это новый механизм ядра, направленный н�
 
     nx_huge_pages=off
 
+.. index:: tsx, hardware, vulnerability, disable, mitigation
+.. _tsx:
+
+Можно ли отключить защиту от TSX?
+====================================
+
+Да, при помощи :ref:`параметра ядра <kernelpm-perm>`:
+
+.. code-block:: text
+
+    tsx=on
+
 .. index:: taa, hardware, vulnerability, disable, mitigation
 .. _taa:
 
