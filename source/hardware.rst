@@ -1203,3 +1203,15 @@ ICC профиль можно получить либо на сайте прои
 .. code-block:: text
 
     sudo dmidecode -t memory
+
+.. index:: hardware acceleration, vaapi, vdpau, intel
+.. _vaapi-intel:
+
+Как активировать VA-API на видеокартах Intel?
+================================================
+
+Для полноценной работы модуля аппаратного декодирования мультимедиа подключим репозитории :ref:`RPM Fusion <rpmfusion>` и установим драйвер **libva-intel-driver**:
+
+.. code-block:: text
+
+    sudo dnf install libva-intel-driver
