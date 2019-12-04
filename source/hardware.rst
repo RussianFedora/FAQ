@@ -1204,7 +1204,7 @@ ICC профиль можно получить либо на сайте прои
 
     sudo dmidecode -t memory
 
-.. index:: hardware acceleration, vaapi, vdpau, intel
+.. index:: hardware acceleration, vaapi, intel
 .. _vaapi-intel:
 
 Как активировать VA-API на видеокартах Intel?
@@ -1215,3 +1215,15 @@ ICC профиль можно получить либо на сайте прои
 .. code-block:: text
 
     sudo dnf install libva-intel-driver
+
+.. index:: hardware acceleration, vaapi, vdpau, nvidia
+.. _vaapi-nvidia:
+
+Как активировать VA-API на видеокартах NVIDIA?
+=================================================
+
+Т.к. NVIDIA использует VDPAU для аппаратного декодирования мультимедиа, для активации VA-API, установим особый драйвер-конвертер **libva-vdpau-driver**:
+
+.. code-block:: text
+
+    sudo dnf install libva-vdpau-driver
