@@ -793,6 +793,31 @@ sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
 <p>Здесь <strong>v5.5.2_34066.20190614</strong> - версия установленного в системе модуля rtl8821ce.</p>
 <p>Загрузим и установим новую версию по <a class="reference internal" href="#rtl8821ce-install"><span class="std std-ref">стандартной инструкции</span></a>.</p>
 </div>
+<div class="section" id="ram-info">
+<span id="index-57"></span><span id="id35"></span><h2>Как получить информацию об установленной оперативной памяти?<a class="headerlink" href="#ram-info" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим утилиту <strong>dmidecode</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install dmidecode
+</pre></div>
+</div>
+<p>Выведем информацию об установленной оперативной памяти:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dmidecode -t memory
+</pre></div>
+</div>
+</div>
+<div class="section" id="va-api-intel">
+<span id="vaapi-intel"></span><span id="index-58"></span><h2>Как активировать VA-API на видеокартах Intel?<a class="headerlink" href="#va-api-intel" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для полноценной работы модуля <a class="reference internal" href="using-applications.html#video-hwaccel"><span class="std std-ref">аппаратного декодирования</span></a> мультимедиа подключим репозитории <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установим драйвер <strong>libva-intel-driver</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install libva-intel-driver
+</pre></div>
+</div>
+</div>
+<div class="section" id="va-api-nvidia">
+<span id="vaapi-nvidia"></span><span id="index-59"></span><h2>Как активировать VA-API на видеокартах NVIDIA?<a class="headerlink" href="#va-api-nvidia" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Т.к. NVIDIA использует VDPAU для <a class="reference internal" href="using-applications.html#video-hwaccel"><span class="std std-ref">аппаратного декодирования</span></a> мультимедиа, для активации VA-API, установим особый драйвер-конвертер <strong>libva-vdpau-driver</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install libva-vdpau-driver
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -880,6 +905,9 @@ sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
 <li class="toctree-l2"><a class="reference internal" href="#thinkpad">Можно ли исправить проблему с троттлингом ноутбуков ThinkPad?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rtl8821ce">Как установить драйвер сетевой карты на чипе rtl8821ce?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rtl8821ce-update">Как обновить или удалить драйвер сетевой карты на чипе rtl8821ce?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ram-info">Как получить информацию об установленной оперативной памяти?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#va-api-intel">Как активировать VA-API на видеокартах Intel?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#va-api-nvidia">Как активировать VA-API на видеокартах NVIDIA?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Разработка и сборка пакетов</a></li>
