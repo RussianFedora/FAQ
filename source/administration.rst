@@ -33,6 +33,20 @@
 
 Здесь вместо **foo=bar** укажем необходимый параметр ядра. Изменения вступят в силу при следующей загрузке системы.
 
+.. index:: kernel, boot, kernel options, grub, grubby
+.. _kernelpm-remove:
+
+Как убрать ненужный более параметр ядра?
+===========================================
+
+Для современных конфигураций с :ref:`BLS <grub-bls-info>` воспользуемся утилитой **grubby**:
+
+.. code-block:: text
+
+    sudo grubby --update-kernel=ALL --remove-args="foo=bar"
+
+Здесь вместо **foo=bar** укажем необходимый параметр ядра. Изменения вступят в силу при следующей загрузке системы.
+
 .. index:: kernel, boot, kernel options
 .. _kernelpm-list:
 
