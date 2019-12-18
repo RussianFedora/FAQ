@@ -1067,3 +1067,15 @@ Cгенерируем файл с контрольными суммами SHA2 (
 .. code-block:: text
 
     sha512sum -c sha512sum.txt | grep -v 'OK' > failed_results.txt
+
+.. index:: qt, theme, override
+.. _qt-theme-override:
+
+Как переопределить тему в Qt приложениях?
+============================================
+
+Воспользуемся :ref:`переменными окружения <env-set>` для переопределения темы Qt:
+
+.. code-block:: text
+
+    QT_STYLE_OVERRIDE=adwaita QT_QPA_PLATFORMTHEME=qgnomeplatform /usr/bin/foo-bar
