@@ -704,6 +704,13 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </pre></div>
 </div>
 </div>
+<div class="section" id="qt">
+<span id="qt-theme-override"></span><span id="index-57"></span><h2>Как переопределить тему в Qt приложениях?<a class="headerlink" href="#qt" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Воспользуемся <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменными окружения</span></a> для переопределения темы Qt:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>QT_STYLE_OVERRIDE=adwaita QT_QPA_PLATFORMTHEME=qgnomeplatform /usr/bin/foo-bar
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -790,6 +797,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#dir-hash-save">Как сохранить контрольные суммы файлов в каталоге рекурсивно?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dir-hash-verify">Как проверить контрольные суммы файлов в каталоге?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dir-hash-missmatch">Как вывести список не совпадающих с сохранёнными контрольными суммами файлов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qt">Как переопределить тему в Qt приложениях?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
