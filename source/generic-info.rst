@@ -215,7 +215,7 @@ RFRemix - это ремикс оргинального дистрибутива 
 
   * `Russian Fedora <https://t.me/russianfedora>`__ - основной чат на русском языке;
   * `Fedora <https://t.me/fedora>`__ - основной чат на английском языке;
-  * `Russian Fedora Flood <https://t.me/russianfedora_flood>`__ - специальный чат для флуда и оффтопика.
+  * `Russian Fedora Flood <https://t.me/russianfedora_offtopic>`__ - специальный чат для оффтопика.
 
 Чаты в Matrix:
 
