@@ -948,6 +948,17 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 </div>
 <p>Теперь приложение сможет занять любой доступный порт, включая находящиеся в диапазоне 1-1023.</p>
 </div>
+<div class="section" id="user-group-remove">
+<span id="index-79"></span><span id="id58"></span><h2>Как удалить пользователя из группы?<a class="headerlink" href="#user-group-remove" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим пользователя с именем <strong>foo</strong> из группы <strong>bar</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo gpasswd -d foo bar
+</pre></div>
+</div>
+<p>Удалим текущего пользователя из группы <strong>bar</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo gpasswd -d $(whoami) bar
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -1051,6 +1062,7 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <li class="toctree-l2"><a class="reference internal" href="#systemd-boot">Как настроить загрузку системы при помощи systemd-boot?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#port-bind-priv">Почему моё приложение не может использовать порт ниже 1024?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#port-bind-systemd">Как запустить приложение на порту ниже 1024 при помощи systemd?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user-group-remove">Как удалить пользователя из группы?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>
