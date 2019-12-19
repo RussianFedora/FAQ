@@ -248,3 +248,11 @@
     vboxmanage import /path/to/vmname.ova --options importtovdi
 
 Через некоторое время новая виртуальная машина появится в списке и будет готова к работе.
+
+.. index:: virtualization, kvm, vm, windows
+.. _kvm-windows:
+
+Как правильно установить в KVM Windows?
+===========================================
+
+См. `здесь <https://www.easycoding.org/2019/12/19/zapuskaem-windows-v-kvm-na-fedora.html>`__.
