@@ -409,6 +409,15 @@ sudo systemctl restart systemd-resolved.service
 </pre></div>
 </div>
 </div>
+<div class="section" id="ovpn">
+<span id="ovpn-import"></span><span id="index-33"></span><h2>Как правильно импортировать подключение из OVPN файла?<a class="headerlink" href="#ovpn" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Воспользуемся консольной утилитой <strong>nmcli</strong> для быстрого импортирования подключения из OVPN файла:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nmcli connection import file /path/to/foo-bar.ovpn type openvpn
+</pre></div>
+</div>
+<p>Здесь <strong>/path/to/foo-bar.ovpn</strong> - путь к OVPN файлу на диске.</p>
+<p>Встроенные сертификаты и ключи будут автоматически импортированы и сохранены в каталоге <code class="docutils literal notranslate"><span class="pre">~/.cert/nm-openvpn</span></code>, что не вызовет <a class="reference internal" href="security.html#openvpn-selinux"><span class="std std-ref">проблем с SELinux</span></a>.</p>
+</div>
 </div>
 
 
@@ -467,6 +476,7 @@ sudo systemctl restart systemd-resolved.service
 <li class="toctree-l2"><a class="reference internal" href="#resolved-flush">Как очистить кэши systemd-resolved?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firewalld">Где расположены файлы конфигурации доступных сервисов Firewalld?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firewalld-override">Как переопределить предустановленный сервис в Firewalld?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ovpn">Как правильно импортировать подключение из OVPN файла?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="virtualization.html">Виртуализация</a></li>
