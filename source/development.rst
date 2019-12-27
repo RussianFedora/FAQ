@@ -212,6 +212,31 @@
 
     env FOO=BAR /usr/bin/foo-bar
 
+.. index:: environment, options, env
+.. _env-unset:
+
+Как удалить переменную окружения?
+====================================
+
+Вариант 1. Удаление экспортированной :ref:`переменной окружения <env-set>` при помощи команды оболочки **unset**:
+
+.. code-block:: text
+
+    unset FOO
+
+Вариант 2. Удаление экспортированной переменной окружения в запущенном терминале и дальнейший запуск приложения:
+
+.. code-block:: text
+
+    unset FOO
+    /usr/bin/foo-bar
+
+Вариант 3. Модификация директивы **Exec=** в ярлыке запуска приложения:
+
+.. code-block:: text
+
+    Exec=env -u FOO /usr/bin/foo-bar
+
 .. index:: git, vcs, configuration
 .. _git-configuration:
 
