@@ -206,11 +206,11 @@
     export FOO=BAR
     /usr/bin/foo-bar
 
-Вариант 3. Модификация директивы **Exec=** в ярлыке запуска приложения:
+Вариант 3. Модификация директивы ``Exec=`` в ярлыке запуска приложения:
 
 .. code-block:: text
 
-    env FOO=BAR /usr/bin/foo-bar
+    Exec=env FOO=BAR /usr/bin/foo-bar
 
 .. index:: environment, options, env
 .. _env-unset:
@@ -231,7 +231,7 @@
     unset FOO
     /usr/bin/foo-bar
 
-Вариант 3. Модификация директивы **Exec=** в ярлыке запуска приложения:
+Вариант 3. Модификация директивы ``Exec=`` в ярлыке запуска приложения:
 
 .. code-block:: text
 
