@@ -36,7 +36,8 @@
   * ноутбуки с гибридной графикой:
 
     * :ref:`NVIDIA Optimus драйвер (рекомендуемый способ) <nvidia-optimus>`;
-    * :ref:`Bumblebee драйвер (устаревший способ) <nvidia-legacy-optimus>`.
+    * :ref:`Bumblebee драйвер (устаревший способ) <nvidia-legacy-optimus>`;
+    * :ref:`Bumblebee драйвер для старых ноутбуков <nvidia-legacy-unmanaged>`.
 
 .. index:: video, gpu, repository, nvidia, drivers, third-party
 .. _nvidia-standard:
