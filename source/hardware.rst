@@ -178,7 +178,7 @@
 
 Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
 
-.. index:: video, gpu, repository, nvidia, drivers, third-party, bumblebee, primus, optimus
+.. index:: video, gpu, repository, nvidia, drivers, third-party, bumblebee, primus, optimus, legacy
 .. _nvidia-legacy-optimus:
 
 Как установить драйвер видеокарт NVIDIA для ноутбуков (устаревший способ)?
@@ -204,7 +204,7 @@
 
 .. code-block:: text
 
-    sudo dnf install gcc kernel-headers kernel-devel bumblebee-nvidia bbswitch-dkms primus
+    sudo dnf install gcc kernel-headers kernel-devel bumblebee-nvidia bbswitch-dkms primus VirtualGL
 
 Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:
 
@@ -226,6 +226,76 @@
     sudo systemctl mask nvidia-fallback.service
 
 Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
+
+.. index:: video, gpu, repository, nvidia, drivers, third-party, bumblebee, primus, optimus, legacy, unmanaged
+.. _nvidia-legacy-unmanaged:
+
+Как установить драйвер видеокарт NVIDIA для устаревших ноутбуков?
+=====================================================================
+
+**Важно:** данный способ следут применять только на старых моделях ноутбуков, которые не работают с :ref:`современным драйвером <nvidia-optimus>`, поддерживаемым самой NVIDIA.
+
+Загрузим все обновления системы:
+
+.. code-block:: text
+
+    sudo dnf upgrade --refresh
+
+Подключим репозиторий с Bumblebee:
+
+.. code-block:: text
+
+    sudo dnf --nogpgcheck install https://linux.itecs.ncsu.edu/redhat/public/bumblebee/fedora$(rpm -E %fedora)/noarch/bumblebee-release-1.3-1.noarch.rpm
+
+Подключим репозиторий с unmanaged-версией драйвера:
+
+.. code-block:: text
+
+    sudo dnf --nogpgcheck install sudo dnf --nogpgcheck install https://linux.itecs.ncsu.edu/redhat/public/bumblebee-nonfree-unmanaged/$(rpm -E %fedora)/noarch/bumblebee-nonfree-unmanaged-release-1.5-1.noarch.rpm
+
+Установим проприетарные драйверы с поддержкой NVIDIA Optimus:
+
+.. code-block:: text
+
+    sudo dnf install gcc kernel-headers kernel-devel bumblebee-nvidia bbswitch-dkms primus VirtualGL
+
+Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:
+
+.. code-block:: text
+
+    sudo dnf install VirtualGL.i686 primus.i686
+
+Скачаем нужную версию legacy драйвера с `официального сайта NVIDIA <https://www.nvidia.com/en-us/drivers/unix/>`__. В качестве примера рассмотрим 340.xx:
+
+.. code-block:: text
+
+    wget https://us.download.nvidia.com/XFree86/Linux-x86_64/340.108/NVIDIA-Linux-x86_64-340.108.run
+
+Переместим загруженный RUN-файл в каталог ``/etc/sysconfig/nvidia`` и установим для него корректные права доступа:
+
+.. code-block:: text
+
+    sudo mv ./NVIDIA-Linux-*.run /etc/sysconfig/nvidia/
+    sudo chown root:bumblebee /etc/sysconfig/nvidia/NVIDIA-Linux-*.run
+
+Добавим аккаунт пользователя в группу **bumblebee**:
+
+.. code-block:: text
+
+    sudo usermod -a -G bumblebee $(whoami)
+
+Произведём настройку сервисов:
+
+.. code-block:: text
+
+    sudo systemctl enable bumblebeed.service
+    sudo systemctl mask nvidia-fallback.service
+
+Выполним перезагрузку:
+
+.. code-block:: text
+
+    sudo systemctl reboot
 
 .. index:: video, gpu, repository, nvidia, drivers, third-party, bumblebee, primus, optimus
 .. _nvidia-troubleshooting:
