@@ -252,7 +252,7 @@
 
 .. code-block:: text
 
-    sudo dnf --nogpgcheck install sudo dnf --nogpgcheck install https://linux.itecs.ncsu.edu/redhat/public/bumblebee-nonfree-unmanaged/$(rpm -E %fedora)/noarch/bumblebee-nonfree-unmanaged-release-1.5-1.noarch.rpm
+    sudo dnf --nogpgcheck install https://linux.itecs.ncsu.edu/redhat/public/bumblebee-nonfree-unmanaged/$(rpm -E %fedora)/noarch/bumblebee-nonfree-unmanaged-release-1.5-1.noarch.rpm
 
 Установим проприетарные драйверы с поддержкой NVIDIA Optimus:
 
