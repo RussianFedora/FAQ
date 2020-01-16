@@ -888,7 +888,7 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <span class="na">KeepFree</span><span class="o">=</span>
 </pre></div>
 </div>
-<p>В данном примере мы задаём максимальный размер одного дампа в 1 ГБ (<strong>ProcessSizeMax</strong> и <strong>ProcessSizeMax</strong>) с ограничением хранения не более 5 (<strong>MaxUse</strong>).</p>
+<p>В данном примере мы задаём максимальный размер одного дампа в 1 ГБ (<strong>ProcessSizeMax</strong> и <strong>ExternalSizeMax</strong>) с ограничением хранения не более 5 (<strong>MaxUse</strong>).</p>
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
 </div>
 <div class="section" id="codedump-disable">
@@ -958,6 +958,37 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo gpasswd -d $(whoami) bar
 </pre></div>
 </div>
+</div>
+<div class="section" id="fs-data-journal">
+<span id="index-80"></span><span id="id59"></span><h2>Как включить полное журналирование данных на диске?<a class="headerlink" href="#fs-data-journal" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Полное журналирование данных поддерживается файловой системой <strong>ext4</strong> и может быть активировано при помощи специального параметра монтирования.</p>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
+</pre></div>
+</div>
+<p>Добавим после параметра монтирования по умолчанию <code class="docutils literal notranslate"><span class="pre">defaults</span></code> через запятую <code class="docutils literal notranslate"><span class="pre">data=journal</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>UUID=XXXXXXX /home ext4 defaults,data=journal 1 2
+</pre></div>
+</div>
+<p>Сохраним изменения в файле и выполним перезагрузку системы.</p>
+</div>
+<div class="section" id="fs-journal-adv">
+<span id="index-81"></span><span id="id60"></span><h2>Какие преимущества и недостатки у полного журналирования данных?<a class="headerlink" href="#fs-journal-adv" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Преимущества:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>более высокая надёжность в случае внезапного пропадания подачи электропитания;</p></li>
+<li><p>гарантия сохранности не только структуры файловой системы, но и самих данных.</p></li>
+</ul>
+</div></blockquote>
+<p>Недостатки:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>двойная запись на диск: сначала данные помещаются в журнал и лишь после этого происходит реальное изменение данных на диске в виде атомарной операции;</p></li>
+<li><p>за счёт двойной записи снижается производительность всех файловых операций записи;</p></li>
+<li><p>для файлового журнала будет зарезервировано 10% от свободного места на диске.</p></li>
+</ul>
+</div></blockquote>
 </div>
 </div>
 
@@ -1063,6 +1094,8 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <li class="toctree-l2"><a class="reference internal" href="#port-bind-priv">Почему моё приложение не может использовать порт ниже 1024?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#port-bind-systemd">Как запустить приложение на порту ниже 1024 при помощи systemd?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#user-group-remove">Как удалить пользователя из группы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fs-data-journal">Как включить полное журналирование данных на диске?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fs-journal-adv">Какие преимущества и недостатки у полного журналирования данных?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>

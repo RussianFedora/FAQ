@@ -165,18 +165,26 @@
 </div>
 <div class="section" id="fonts-console">
 <span id="index-20"></span><span id="id15"></span><h2>В консолях фреймбуфера отображаются кракозябры. Как это починить?<a class="headerlink" href="#fonts-console" title="Ссылка на этот заголовок">¶</a></h2>
-<p><em>Способ 1</em>. Зададим следующий параметр ядра:</p>
+<p><strong>Способ 1:</strong></p>
+<p>Зададим <a class="reference internal" href="administration.html#kernelpm-perm"><span class="std std-ref">параметр ядра</span></a> <code class="docutils literal notranslate"><span class="pre">vconsole.font</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>vconsole.font=latarcyrheb-sun16
 </pre></div>
 </div>
-<p><em>Способ 2</em>. Установим пакет шрифтов Terminus:</p>
+<p><a class="reference internal" href="using-system.html#grub-rebuild"><span class="std std-ref">Пересоберём</span></a> конфиг Grub2.</p>
+<p><strong>Способ 2:</strong></p>
+<p>Установим пакет шрифтов Terminus:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install terminus-fonts-console
 </pre></div>
 </div>
-<p>Теперь откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/vconsole.conf</span></code> в текстовом редакторе и активируем их использование:</p>
+<p>Теперь откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/vconsole.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/vconsole.conf
+</pre></div>
+</div>
+<p>Укажем правильное имя шрифта внутри директивы <code class="docutils literal notranslate"><span class="pre">FONT</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FONT=ter-v16n
 </pre></div>
 </div>
+<p>Сохраним изменения в файле.</p>
 </div>
 <div class="section" id="fs-selection">
 <span id="index-21"></span><span id="id16"></span><h2>Какую файловую систему рекомендуется использовать на Fedora?<a class="headerlink" href="#fs-selection" title="Ссылка на этот заголовок">¶</a></h2>
