@@ -228,7 +228,7 @@
 
 Для вступления изменений в силу необходимо повторно войти в систему либо перезагрузить компьютер.
 
-.. index:: console, framebuffer, fonts
+.. index:: console, framebuffer, fonts, cyrillic
 .. _fonts-console:
 
 В консолях фреймбуфера отображаются кракозябры. Как это починить?
@@ -236,7 +236,7 @@
 
 **Способ 1:**
 
-Зададим следующий :ref:`параметр ядра <kernelpm-perm>`:
+Зададим :ref:`параметр ядра <kernelpm-perm>` ``vconsole.font``:
 
 .. code-block:: text
 
@@ -252,11 +252,19 @@
 
     sudo dnf install terminus-fonts-console
 
-Теперь откроем файл ``/etc/vconsole.conf`` в текстовом редакторе и заменим ``FONT`` на правильное значение для активации шрифта:
+Теперь откроем файл ``/etc/vconsole.conf`` в текстовом редакторе:
+
+.. code-block:: text
+
+    sudoedit /etc/vconsole.conf
+
+Укажем правильное имя шрифта внутри директивы ``FONT``:
 
 .. code-block:: text
 
     FONT=ter-v16n
+
+Сохраним изменения в файле.
 
 .. index:: file system, selection, fs, ext4, xfs
 .. _fs-selection:
