@@ -22,10 +22,9 @@
 .. code-block:: text
 
     layers.acceleration.force-enabled = true
-    layers.offmainthreadcomposition.enabled = true
     webgl.force-enabled = true
-    gfx.xrender.enabled = true
     gfx.webrender.all = true
+    dom.webgpu.enabled = true
 
 Изменения вступят в силу при следующем запуске браузера.
 
