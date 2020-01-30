@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>Сторонние приложения &#8212; документация Неофициальный FAQ по Fedora 2019.12.30</title>
+    <title>Сторонние приложения &#8212; документация Неофициальный FAQ по Fedora 2020.01.30</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -42,10 +42,9 @@
 <span id="firefox-hwaccel"></span><span id="index-0"></span><h2>Как активировать аппаратное ускорение в браузере Firefox?<a class="headerlink" href="#firefox" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для активации аппаратного ускорения рендеринга страниц в Mozilla Firefox на поддерживаемых драйверах необходимо открыть модуль конфигурации <code class="docutils literal notranslate"><span class="pre">about:config</span></code> и исправить значения следующих переменных (при отсутствии создать):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>layers.acceleration.force-enabled = true
-layers.offmainthreadcomposition.enabled = true
 webgl.force-enabled = true
-gfx.xrender.enabled = true
 gfx.webrender.all = true
+dom.webgpu.enabled = true
 </pre></div>
 </div>
 <p>Изменения вступят в силу при следующем запуске браузера.</p>
@@ -99,8 +98,8 @@ gfx.webrender.all = true
 </div>
 <div class="section" id="chromium">
 <span id="chromium-codecs"></span><span id="index-6"></span><h2>Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?<a class="headerlink" href="#chromium" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Из-за патентных ограничений браузер Chromium в репозиториях Fedora сильно кастрирован. Для восстановления полной функциональности необходимо подключить <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установить пакет с кодеками для данного браузера:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install chromium-libs-media-freeworld
+<p>Из-за патентных ограничений браузер Chromium в репозиториях Fedora сильно кастрирован. Для восстановления полной функциональности необходимо подключить <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установить пакет с полной версией:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install chromium-freeworld
 </pre></div>
 </div>
 </div>
