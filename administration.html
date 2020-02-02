@@ -992,6 +992,22 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 </ul>
 </div></blockquote>
 </div>
+<div class="section" id="fs-reserve-info">
+<span id="index-82"></span><span id="id61"></span><h2>Для каких целей резервируется 5% от свободного места на диске?<a class="headerlink" href="#fs-reserve-info" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По умолчанию на каждом разделе с файловой системой ext4 резервируется 5% для нужд суперпользователя.</p>
+</div>
+<div class="section" id="fs-reserve-disable">
+<span id="index-83"></span><span id="id62"></span><h2>Как отключить резервирование свободного места на диске?<a class="headerlink" href="#fs-reserve-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<p><a class="reference internal" href="#fs-reserve-info"><span class="std std-ref">Резервирование свободного места</span></a> для нужд суперпользователя может быть отключено при создании файловой системы при помощи опционального параметра <code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">0</span></code>. Например:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkfs -t ext4 -m 0 -L Data /dev/sdX1
+</pre></div>
+</div>
+<p>Для уже существующей файловой системы воспользуемся утилитой <strong>tune2fs</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo tune2fs -m 0 /dev/sdX1
+</pre></div>
+</div>
+<p>Здесь <strong>0</strong> – процентное соотношение зарезервированных блоков к обычным (отсутствуют), а <strong>/dev/sdX1</strong> – раздел диска, на котором будут произведены изменения.</p>
+</div>
 </div>
 
 
@@ -1098,6 +1114,8 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <li class="toctree-l2"><a class="reference internal" href="#user-group-remove">Как удалить пользователя из группы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fs-data-journal">Как включить полное журналирование данных на диске?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fs-journal-adv">Какие преимущества и недостатки у полного журналирования данных?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fs-reserve-info">Для каких целей резервируется 5% от свободного места на диске?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fs-reserve-disable">Как отключить резервирование свободного места на диске?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>
