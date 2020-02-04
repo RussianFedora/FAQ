@@ -1078,3 +1078,17 @@ Cгенерируем файл с контрольными суммами SHA2 (
 .. code-block:: text
 
     QT_STYLE_OVERRIDE=adwaita QT_QPA_PLATFORMTHEME=qgnomeplatform /usr/bin/foo-bar
+
+.. index:: wine
+.. _fedora-wine:
+
+Как правильно установить Wine в Fedora?
+===========================================
+
+В основном репозитории Fedora всегда находится самый свежий и правильно опакеченный выпуск Wine, поэтому подключать какие-либо сторонние репозитории, в т.ч. официальный от WineHQ, категорически не рекомендуется.
+
+Установим Wine из репозитория Fedora:
+
+.. code-block:: text
+
+    sudo dnf install wine wine.i686
