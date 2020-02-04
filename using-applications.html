@@ -710,6 +710,26 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </pre></div>
 </div>
 </div>
+<div class="section" id="wine-fedora">
+<span id="fedora-wine"></span><span id="index-58"></span><h2>Как правильно установить Wine в Fedora?<a class="headerlink" href="#wine-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В основном репозитории Fedora всегда находится самый свежий и правильно опакеченный выпуск Wine, поэтому подключать какие-либо сторонние репозитории, в т.ч. официальный от WineHQ, категорически не рекомендуется.</p>
+<p>Установим Wine из репозитория Fedora:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install wine wine.i686
+</pre></div>
+</div>
+</div>
+<div class="section" id="dxvk-wine">
+<span id="id34"></span><h2>Как правильно установить dxvk для Wine из репозиториев?<a class="headerlink" href="#dxvk-wine" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Наряду с <span class="xref std std-ref">правильно опакеченным Wine</span>, в основном репозитории Fedora доступен и dxvk.</p>
+<p>Установим dxvk с поддержкой DirectX 10, 11:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install wine-dxvk wine-dxvk.i686
+</pre></div>
+</div>
+<p>Установим dxvk с поддержкой DirectX 9:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install wine-dxvk-d3d9 wine-dxvk-d3d9.i686
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -797,6 +817,8 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#dir-hash-verify">Как проверить контрольные суммы файлов в каталоге?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dir-hash-missmatch">Как вывести список не совпадающих с сохранёнными контрольными суммами файлов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qt">Как переопределить тему в Qt приложениях?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wine-fedora">Как правильно установить Wine в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dxvk-wine">Как правильно установить dxvk для Wine из репозиториев?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
