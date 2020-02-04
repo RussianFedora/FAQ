@@ -1080,7 +1080,7 @@ Cгенерируем файл с контрольными суммами SHA2 (
     QT_STYLE_OVERRIDE=adwaita QT_QPA_PLATFORMTHEME=qgnomeplatform /usr/bin/foo-bar
 
 .. index:: wine, windows
-.. _fedora-wine:
+.. _wine-fedora:
 
 Как правильно установить Wine в Fedora?
 ===========================================
@@ -1094,12 +1094,12 @@ Cгенерируем файл с контрольными суммами SHA2 (
     sudo dnf install wine wine.i686
 
 .. index:: wine, dxvk, windows, directx, direct3d
-.. _fedora-wine:
+.. _wine-dxvk:
 
 Как правильно установить dxvk для Wine из репозиториев?
 ==========================================================
 
-Наряду с :ref:`правильно опакеченным Wine <fedora-wine>`, в основном репозитории Fedora доступен и dxvk.
+Наряду с :ref:`правильно опакеченным Wine <wine-fedora>`, в основном репозитории Fedora доступен и dxvk.
 
 Установим dxvk с поддержкой DirectX 10, 11:
 
