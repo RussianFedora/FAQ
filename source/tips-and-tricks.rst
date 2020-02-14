@@ -534,3 +534,23 @@ SWF файл - это исполняемый файл формата Adobe Flash
     Exec=env QT_QPA_PLATFORM=xcb /usr/bin/foo-bar
 
 Здесь **/usr/bin/foo-bar** - путь запуска проблемного приложения.
+
+.. index:: kde, dbus, print screen, spectacle, screenshot
+.. _qt-wayland-issue:
+
+В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?
+========================================================================================
+
+Это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=1754395>`__ пакета **Lmod**, приводящая к тому, что при вызове через D-Bus не полностью передаются :ref:`переменные окружения <env-set>`.
+
+Удалим Lmod:
+
+.. code-block:: text
+
+    sudo dnf remove Lmod
+
+Произведём перезагрузку системы:
+
+.. code-block:: text
+
+    sudo systemctl reboot
