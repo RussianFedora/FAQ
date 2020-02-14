@@ -536,7 +536,7 @@ SWF файл - это исполняемый файл формата Adobe Flash
 Здесь **/usr/bin/foo-bar** - путь запуска проблемного приложения.
 
 .. index:: kde, dbus, print screen, spectacle, screenshot
-.. _qt-wayland-issue:
+.. _spectacle-dbus:
 
 В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?
 ========================================================================================
