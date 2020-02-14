@@ -365,6 +365,18 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 </div>
 <p>Здесь <strong>/usr/bin/foo-bar</strong> - путь запуска проблемного приложения.</p>
 </div>
+<div class="section" id="spectacle-print-screen">
+<span id="id8"></span><h2>В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?<a class="headerlink" href="#spectacle-print-screen" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1754395">известная проблема</a> пакета <strong>Lmod</strong>, приводящая к тому, что при вызове через D-Bus не полностью передаются <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменные окружения</span></a>.</p>
+<p>Удалим Lmod:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove Lmod
+</pre></div>
+</div>
+<p>Произведём перезагрузку системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -418,6 +430,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 <li class="toctree-l2"><a class="reference internal" href="#php">Можно ли установить несколько версий PHP одновременно?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#trim-home">Перестал работать TRIM для /home. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qt-wayland">С некоторыми Qt приложениями в Wayland наблюдаются проблемы. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spectacle-print-screen">В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
