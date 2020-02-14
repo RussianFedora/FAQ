@@ -366,7 +366,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 <p>Здесь <strong>/usr/bin/foo-bar</strong> - путь запуска проблемного приложения.</p>
 </div>
 <div class="section" id="spectacle-print-screen">
-<span id="id8"></span><h2>В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?<a class="headerlink" href="#spectacle-print-screen" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="spectacle-dbus"></span><span id="index-21"></span><h2>В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?<a class="headerlink" href="#spectacle-print-screen" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1754395">известная проблема</a> пакета <strong>Lmod</strong>, приводящая к тому, что при вызове через D-Bus не полностью передаются <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменные окружения</span></a>.</p>
 <p>Удалим Lmod:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove Lmod
