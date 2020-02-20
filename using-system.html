@@ -336,7 +336,7 @@ export QT_SCALE_FACTOR=2
 </div>
 <div class="section" id="l2tp">
 <span id="nm-l2tp"></span><span id="index-29"></span><h2>Мой провайдер использует L2TP. Как мне добавить его поддержку?<a class="headerlink" href="#l2tp" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Плагин L2TP для Network Manager должен присутствовать в Workstation и всех spin live образах по умолчанию, но если его по какой-то причине нет (например была выборана минимальная установка netinstall), то добавить его можно самостоятельно.</p>
+<p>Плагин L2TP для Network Manager должен присутствовать в Workstation и всех spin live образах по умолчанию, но если его по какой-то причине нет (например, была выборана минимальная установка netinstall), то добавить его можно самостоятельно.</p>
 <p>Для Gnome/XFCE и других, основанных на GTK:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install NetworkManager-l2tp-gnome
 </pre></div>
@@ -502,7 +502,7 @@ export SUDO_EDITOR=vim
 </div>
 <div class="section" id="kde-link-mime">
 <span id="index-43"></span><span id="id25"></span><h2>При нажатии по любой гиперссылке она открывается не в браузере, а соответствующем приложении. Как исправить?<a class="headerlink" href="#kde-link-mime" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Согласно настроек по умолчанию, при нажатии на любую ссылку вне браузера (например в мессенджере) компонент KDE KIO попытается определить mime-тип файла, загружаемого по ней, и открыть её в ассоциированном с приложении. Например если это изображение JPEG, то оно будет загружено в Gwenview.</p>
+<p>Согласно настроек по умолчанию, при нажатии на любую ссылку вне браузера (например, в мессенджере) компонент KDE KIO попытается определить mime-тип файла, загружаемого по ней, и открыть её в ассоциированном с приложении. Например, если это изображение JPEG, то оно будет загружено в Gwenview.</p>
 <p>Отключить данную функцию можно в <strong>Параметры системы</strong> - <strong>Предпочтения пользователя</strong> - <strong>Приложения</strong> - <strong>Приложения по умолчанию</strong> - раздел <strong>Браузер</strong> - пункт <strong>Открывать адреса http и https</strong> - <strong>В следующем приложении</strong> - <strong>Firefox</strong>.</p>
 </div>
 <div class="section" id="file-types">
@@ -580,7 +580,7 @@ export SUDO_EDITOR=vim
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>plymouth-set-default-theme
 </pre></div>
 </div>
-<p>Установим например <strong>charge</strong>:</p>
+<p>Установим, например, <strong>charge</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo plymouth-set-default-theme charge -R
 </pre></div>
 </div>
@@ -589,7 +589,7 @@ export SUDO_EDITOR=vim
 <div class="section" id="plymouth-nologo">
 <span id="index-52"></span><span id="id33"></span><h2>Как отключить вывод логотипа производителя устройства при загрузке системы?<a class="headerlink" href="#plymouth-nologo" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Начиная с Fedora 30, для Plymouth по умолчанию устанавливается тема <strong>bgrt</strong>, поддерживающая вывод логотипа производителя устройства, если система загружается в <a class="reference internal" href="installation.html#uefi-boot"><span class="std std-ref">UEFI режиме</span></a>.</p>
-<p>Чтобы убрать его, <a class="reference internal" href="#plymouth-themes"><span class="std std-ref">сменим тему</span></a> загрузочного экрана например на <strong>charge</strong>:</p>
+<p>Чтобы убрать его, <a class="reference internal" href="#plymouth-themes"><span class="std std-ref">сменим тему</span></a> загрузочного экрана, например на <strong>charge</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo plymouth-set-default-theme charge -R
 </pre></div>
 </div>
