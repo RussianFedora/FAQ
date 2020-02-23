@@ -132,6 +132,31 @@ Flatpak - это современный прогрессивный формат 
 
 Здесь **foo-bar** - название venv контейнера. Допускается создавать неограниченное их количество.
 
+.. index:: remove, pip, venv
+.. _python-venv-remove:
+
+Как удалить установленные пакеты из Python Virtual Environment?
+===================================================================
+
+Запустим :ref:`Python Virtual Environment <python-venv>`:
+
+.. code-block:: text
+
+    source foo-bar/bin/activate
+
+Создадим и экспортируем в файл ``foo-bar-installed.txt`` список установленных пакетов из PIP:
+
+.. code-block:: text
+
+    pip3 freeze > foo-bar-installed.txt
+
+Удалим данные пакеты:
+
+.. code-block:: text
+
+    pip3 uninstall -y -r foo-bar-installed.txt
+    rm -f foo-bar-installed.txt
+
 .. index:: fedora, update, dnf
 .. _dnf-update:
 
