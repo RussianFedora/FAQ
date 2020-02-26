@@ -1592,6 +1592,16 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
 
 Если всё сделано верно, то при следующей загрузке зашифрованный VeraCrypt том будет смонтирован автоматически.
 
+.. index:: encryption, cryptsetup, bitlocker
+.. _bitlocker-fedora:
+
+Как работать с BitLocker контейнерами в Fedora?
+===================================================
+
+Начиная с версии 2.3.0 утилита **cryptsetup** поддерживает работу с зашифрованными BitLocker томами.
+
+Cryptsetup поддерживает их монтирование, базовые операции с ними, но не создание новых.
+
 .. index:: selinux, context, storage
 .. _selinux-local-storage:
 
