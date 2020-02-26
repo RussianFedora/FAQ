@@ -1602,6 +1602,40 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
 
 Cryptsetup поддерживает их монтирование, базовые операции с ними, но не создание новых.
 
+.. index:: encryption, cryptsetup, bitlocker, mount
+.. _bitlocker-mount:
+
+Как смонтировать BitLocker контейнер в Fedora?
+==================================================
+
+Откроем устройство, зашифрованное BitLocker, средствами cryptsetup:
+
+.. code-block:: text
+
+    sudo cryptsetup --type bitlk open /dev/sdX1 foo-bar
+
+Смонтируем файловую систему:
+
+.. code-block:: text
+
+    sudo mkdir /media/data
+    sudo mount -t auto /dev/mapper/foo-bar /media/data
+
+По окончании работы произведём размонтирование:
+
+.. code-block:: text
+
+    sudo umount /media/data
+    sudo rmdir /media/data
+
+Закроем файл контейнера:
+
+.. code-block:: text
+
+    sudo cryptsetup --type bitlk close /dev/mapper/foo-bar
+
+Здесь **/dev/sdX1** - зашифрованное BitLocker устройство, а **foo-bar** - внутреннее имя для dev-mapper.
+
 .. index:: selinux, context, storage
 .. _selinux-local-storage:
 
