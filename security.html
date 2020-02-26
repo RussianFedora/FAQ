@@ -999,8 +999,57 @@ sudo rmdir /media/data
 <p>Здесь <strong>foo-bar</strong> - внутреннее имя, указанное ранее в crypttab, а <strong>/media/data</strong> - точка монтирования.</p>
 <p>Если всё сделано верно, то при следующей загрузке зашифрованный VeraCrypt том будет смонтирован автоматически.</p>
 </div>
+<div class="section" id="bitlocker-fedora">
+<span id="index-86"></span><span id="id65"></span><h2>Как работать с BitLocker контейнерами в Fedora?<a class="headerlink" href="#bitlocker-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Начиная с версии 2.3.0 утилита <strong>cryptsetup</strong> поддерживает работу с зашифрованными BitLocker томами.</p>
+<p>Cryptsetup поддерживает их монтирование, базовые операции с ними, но не создание новых.</p>
+</div>
+<div class="section" id="bitlocker-mount">
+<span id="index-87"></span><span id="id66"></span><h2>Как смонтировать BitLocker контейнер в Fedora?<a class="headerlink" href="#bitlocker-mount" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем устройство, зашифрованное BitLocker, средствами cryptsetup:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --type bitlk open /dev/sdX1 foo-bar
+</pre></div>
+</div>
+<p>Смонтируем файловую систему:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/data
+sudo mount -t auto /dev/mapper/foo-bar /media/data
+</pre></div>
+</div>
+<p>По окончании работы произведём размонтирование:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /media/data
+sudo rmdir /media/data
+</pre></div>
+</div>
+<p>Закроем файл контейнера:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --type bitlk close /dev/mapper/foo-bar
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sdX1</strong> - зашифрованное BitLocker устройство, а <strong>foo-bar</strong> - внутреннее имя для dev-mapper.</p>
+</div>
+<div class="section" id="bitlocker">
+<span id="bitlocker-auto"></span><span id="index-88"></span><h2>Как настроить автоматическое монтирование BitLocker томов при загрузке?<a class="headerlink" href="#bitlocker" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code> в <a class="reference internal" href="using-system.html#editor-selection"><span class="std std-ref">редакторе по умолчанию</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/crypttab
+</pre></div>
+</div>
+<p>Добавим в конец файла строку вида:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar UUID=XXXXXX /etc/keys/foo-bar.key bitlk
+</pre></div>
+</div>
+<p>Здесь <strong>foo-bar</strong> - внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> - <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, <strong>/etc/keys/foo-bar.key</strong> - полный путь к ключевому файлу, либо файлу с паролем (разрыв строки в конце файла не ставится).</p>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
+</pre></div>
+</div>
+<p>Добавим в конец строку вида:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/dev/mapper/foo-bar /media/data auto defaults,x-systemd.automount 0 0
+</pre></div>
+</div>
+<p>Здесь <strong>foo-bar</strong> - внутреннее имя, указанное ранее в crypttab, а <strong>/media/data</strong> - точка монтирования.</p>
+<p>Если всё сделано верно, то при следующей загрузке зашифрованный BitLocker том будет смонтирован автоматически.</p>
+</div>
 <div class="section" id="selinux-local-storage">
-<span id="index-86"></span><span id="id65"></span><h2>Где хранятся установленные пользователем контексты SELinux?<a class="headerlink" href="#selinux-local-storage" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-89"></span><span id="id67"></span><h2>Где хранятся установленные пользователем контексты SELinux?<a class="headerlink" href="#selinux-local-storage" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Заданные пользователем нестандартные контексты, а также переопределения хранятся внутри каталога <code class="docutils literal notranslate"><span class="pre">/etc/selinux/targeted/contexts/files</span></code> в следующих файлах:</p>
 <blockquote>
 <div><ul class="simple">
@@ -1011,14 +1060,14 @@ sudo rmdir /media/data
 <p>Не следует их править в текстовых, либо шестнадцатиричных редакторах, т.к. это может привести к сбою в политиках SELinux и сбросу настроек по умолчанию. Вместо этого необходимо использовать <a class="reference internal" href="#selinux-local-remove"><span class="std std-ref">инструмент semanage</span></a>.</p>
 </div>
 <div class="section" id="selinux-local-list">
-<span id="index-87"></span><span id="id66"></span><h2>Как получить список установленных пользователем контекстов SELinux?<a class="headerlink" href="#selinux-local-list" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-90"></span><span id="id68"></span><h2>Как получить список установленных пользователем контекстов SELinux?<a class="headerlink" href="#selinux-local-list" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Выведем полный список нестандартных контекстов, а также переопределений политик SELinux:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext --list -C
 </pre></div>
 </div>
 </div>
 <div class="section" id="selinux-local-remove">
-<span id="index-88"></span><span id="id67"></span><h2>Как удалить пользовательские контексты SELinux?<a class="headerlink" href="#selinux-local-remove" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-91"></span><span id="id69"></span><h2>Как удалить пользовательские контексты SELinux?<a class="headerlink" href="#selinux-local-remove" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Удалим конкретный нестандартный контекст, либо переопределение политик SELinux:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -d &quot;/foo/bar(/.*)?&quot;
 </pre></div>
@@ -1030,7 +1079,7 @@ sudo rmdir /media/data
 <p>Для полного вступления изменений в силу рекомендуется <a class="reference internal" href="#selinux-boot-error"><span class="std std-ref">сбросить контекст</span></a> SELinux.</p>
 </div>
 <div class="section" id="luks-container-create">
-<span id="index-89"></span><span id="id68"></span><h2>Как создать зашифрованный контейнер на диске?<a class="headerlink" href="#luks-container-create" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-92"></span><span id="id70"></span><h2>Как создать зашифрованный контейнер на диске?<a class="headerlink" href="#luks-container-create" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При помощи утилиты <strong>dd</strong> создадим пустой файл для хранения криптоконтейнера размером в 1 ГБ:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/zero bs=1M count=1024 of=/media/data/foo-bar.dat
 </pre></div>
@@ -1055,7 +1104,7 @@ sudo rmdir /media/data
 </div>
 </div>
 <div class="section" id="luks-container-mount">
-<span id="index-90"></span><span id="id69"></span><h2>Как смонтировать зашифрованный файловый контейнер?<a class="headerlink" href="#luks-container-mount" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-93"></span><span id="id71"></span><h2>Как смонтировать зашифрованный файловый контейнер?<a class="headerlink" href="#luks-container-mount" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Загрузим <a class="reference internal" href="#luks-container-create"><span class="std std-ref">криптоконтейнер</span></a> и расшифруем содержимое:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksOpen /media/data/foo-bar.dat foo-bar
 </pre></div>
@@ -1082,7 +1131,7 @@ sudo rmdir /media/data
 </div>
 </div>
 <div class="section" id="luks-erase">
-<span id="index-91"></span><span id="id70"></span><h2>Как быстро уничтожить содержимое LUKS контейнера?<a class="headerlink" href="#luks-erase" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-94"></span><span id="id72"></span><h2>Как быстро уничтожить содержимое LUKS контейнера?<a class="headerlink" href="#luks-erase" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Быстро и безопасно уничтожим ключи шифрования заголовка LUKS-контейнера:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksErase /dev/sdX1
 </pre></div>
@@ -1092,11 +1141,11 @@ sudo rmdir /media/data
 <p>Внимание! Это действие не затирает содержимое физически, поэтому после его использования рекомендуется <a class="reference internal" href="#destroy-disk"><span class="std std-ref">осуществить эту процедуру</span></a> самостоятельно.</p>
 </div>
 <div class="section" id="tpm-luks">
-<span id="luks-tpm"></span><span id="index-92"></span><h2>Можно ли использовать TPM для разблокировки LUKS контейнера?<a class="headerlink" href="#tpm-luks" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="luks-tpm"></span><span id="index-95"></span><h2>Можно ли использовать TPM для разблокировки LUKS контейнера?<a class="headerlink" href="#tpm-luks" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2019/09/24/avtomaticheski-razblokiruem-luks-diski-pri-pomoshhi-tpm.html">здесь</a>.</p>
 </div>
 <div class="section" id="samba-selinux">
-<span id="selinux-samba"></span><span id="index-93"></span><h2>Как настроить работу Samba с SELinux?<a class="headerlink" href="#samba-selinux" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="selinux-samba"></span><span id="index-96"></span><h2>Как настроить работу Samba с SELinux?<a class="headerlink" href="#samba-selinux" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://fedoraproject.org/wiki/SELinux/samba">здесь</a>.</p>
 </div>
 </div>
@@ -1212,6 +1261,9 @@ sudo rmdir /media/data
 <li class="toctree-l2"><a class="reference internal" href="#truecrypt-mount">Как смонтировать TrueCrypt контейнер в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#veracrypt-fedora">Как смонтировать VeraCrypt контейнер в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#veracrypt">Как настроить автоматическое монтирование VeraCrypt томов при загрузке?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bitlocker-fedora">Как работать с BitLocker контейнерами в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bitlocker-mount">Как смонтировать BitLocker контейнер в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bitlocker">Как настроить автоматическое монтирование BitLocker томов при загрузке?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#selinux-local-storage">Где хранятся установленные пользователем контексты SELinux?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#selinux-local-list">Как получить список установленных пользователем контекстов SELinux?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#selinux-local-remove">Как удалить пользовательские контексты SELinux?</a></li>

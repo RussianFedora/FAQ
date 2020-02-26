@@ -377,6 +377,18 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 </pre></div>
 </div>
 </div>
+<div class="section" id="amd">
+<span id="amdgpu-black-screen"></span><span id="index-22"></span><h2>Как решить проблему с чёрным экраном после обновления ядра на видеокартах AMD?<a class="headerlink" href="#amd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Иногда чёрный экран на видеокартах AMD может появляться по причинам отсутствия нужной прошивки в initramfs образе.</p>
+<p>Для решения данной проблемы <a class="reference internal" href="using-system.html#initrd-rebuild"><span class="std std-ref">пересоберём образ initrd</span></a> с принудительным добавлением прошивок, используемых драйвером amdgpu:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut --regenerate-all --force --install &quot;/usr/lib/firmware/amdgpu/*&quot;
+</pre></div>
+</div>
+<p>Произведём перезагрузку системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -431,6 +443,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 <li class="toctree-l2"><a class="reference internal" href="#trim-home">Перестал работать TRIM для /home. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qt-wayland">С некоторыми Qt приложениями в Wayland наблюдаются проблемы. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#spectacle-print-screen">В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#amd">Как решить проблему с чёрным экраном после обновления ядра на видеокартах AMD?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
