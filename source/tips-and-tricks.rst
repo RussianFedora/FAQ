@@ -555,6 +555,9 @@ SWF файл - это исполняемый файл формата Adobe Flash
 
     sudo systemctl reboot
 
+.. index:: amd, radeon, amdgpu
+.. _amdgpu-black-screen:
+
 Черный экран после обновления ядра на AMD видеокартах
 ========================================================
 
@@ -563,6 +566,3 @@ SWF файл - это исполняемый файл формата Adobe Flash
 .. code-block:: text
 
     sudo dracut --regenerate-all --force --install "/usr/lib/firmware/amdgpu/*"
-
-.. index:: amd, radeon, amdgpu
-.. _amdgpu-black-screen:
