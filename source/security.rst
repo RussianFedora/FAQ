@@ -1600,7 +1600,7 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
 
 Начиная с версии 2.3.0 утилита **cryptsetup** поддерживает работу с зашифрованными BitLocker томами.
 
-Cryptsetup поддерживает их монтирование, базовые операции с ними, но не создание новых.
+Допускается :ref:`монтирование <bitlocker-mount>`, базовые операции с ними, но не создание новых.
 
 .. index:: encryption, cryptsetup, bitlocker, mount
 .. _bitlocker-mount:
