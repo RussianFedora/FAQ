@@ -335,10 +335,13 @@ export RANLIB=%{_bindir}/gcc-ranlib
 export NM=%{_bindir}/gcc-nm
 </pre></div>
 </div>
-<p>Если используется система сборки cmake, то помимо этого придётся патчить манифест <strong>CMakeLists.txt</strong>, т.к. он в настоящее время не поддерживает загрузку переопределённых значений:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>set(CMAKE_AR &quot;/usr/bin/gcc-ar&quot;)
-set(CMAKE_RANLIB &quot;/usr/bin/gcc-ranlib&quot;)
-set(CMAKE_NM &quot;/usr/bin/gcc-nm&quot;)
+<p>Если используется система сборки cmake, рекомендуется использовать штатную функцию переопределения встроенных параметров:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%cmake -G Ninja \
+    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+    -DCMAKE_AR=%{_bindir}/gcc-ar \
+    -DCMAKE_RANLIB=%{_bindir}/gcc-ranlib \
+    -DCMAKE_NM=%{_bindir}/gcc-nm \
+    ..
 </pre></div>
 </div>
 <p>В противном случае появится ошибка <em>plugin needed to handle lto object</em>.</p>
@@ -851,6 +854,41 @@ fedpkg scratch-build --arches x86_64 aarch64
 </div>
 <p>Здесь <strong>/usr/bin/foo-bar</strong> - путь к отлаживаемому приложению, <strong>/path/to/coredump</strong> - coredump падения (версия приложения и дампа, снятого с него, должны обязательно совпадать), а <strong>~/backtrace.log</strong> - файл, в котором будет сохранён трейс падения.</p>
 </div>
+<div class="section" id="clang-fedora">
+<span id="index-55"></span><span id="id37"></span><h2>Как собрать пакет с использованием компилятора Clang в Fedora?<a class="headerlink" href="#clang-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Самый простой способ сделать это - переопределение значений стандартных <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> <strong>CC</strong> и <strong>CXX</strong> внутри секции <code class="docutils literal notranslate"><span class="pre">%build</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export CC=%{_bindir}/clang
+export CXX=%{_bindir}/clang++
+</pre></div>
+</div>
+<p>Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то потребуется задать также ряд иных переменных:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export AR=%{_bindir}/llvm-ar
+export RANLIB=%{_bindir}/llvm-ranlib
+export LINKER=%{_bindir}/llvm-ld
+export OBJDUMP=%{_bindir}/llvm-objdump
+export NM=%{_bindir}/llvm-nm
+</pre></div>
+</div>
+<p>Если используется система сборки cmake, рекомендуется использовать штатную функцию переопределения встроенных параметров:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%cmake -G Ninja \
+    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+    -DCMAKE_C_COMPILER=clang \
+    -DCMAKE_CXX_COMPILER=clang++ \
+    -DCMAKE_AR=%{_bindir}/llvm-ar \
+    -DCMAKE_RANLIB=%{_bindir}/llvm-ranlib \
+    -DCMAKE_LINKER=%{_bindir}/llvm-ld \
+    -DCMAKE_OBJDUMP=%{_bindir}/llvm-objdump \
+    -DCMAKE_NM=%{_bindir}/llvm-nm \
+    ..
+</pre></div>
+</div>
+<p>Следует <a class="reference internal" href="#qt-clang-lto"><span class="std std-ref">быть осторожным</span></a> при сборке Qt-приложений данным компилятором при использовании <a class="reference internal" href="#enable-lto"><span class="std std-ref">LTO-оптимизаций</span></a>.</p>
+</div>
+<div class="section" id="qt-clang-lto">
+<span id="index-56"></span><span id="id38"></span><h2>Qt-приложение, собранное Clang с LTO не запускается. Что делать?<a class="headerlink" href="#qt-clang-lto" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Невозможность запуска Qt-приложений, собранных компилятором Clang с включёнными <a class="reference internal" href="#enable-lto"><span class="std std-ref">LTO-оптимизациями</span></a> – это <a class="reference external" href="https://bugreports.qt.io/browse/QTBUG-61710">известная проблема</a>, которая в настоящее время не решена.</p>
+<p>Для её решения необходимо либо отказаться от использования компилятора Clang и вернуться на GCC, либо отключить LTO-оптимизации.</p>
+</div>
 </div>
 
 
@@ -937,6 +975,8 @@ fedpkg scratch-build --arches x86_64 aarch64
 <li class="toctree-l2"><a class="reference internal" href="#rpmbuild">Можно ли перенести стандартный каталог сборки rpmbuild?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#license-check">Как определить какие лицензии используются в проекте?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gdb-coredump">Как загрузить в gdb отладчик coredump падения?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clang-fedora">Как собрать пакет с использованием компилятора Clang в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qt-clang-lto">Qt-приложение, собранное Clang с LTO не запускается. Что делать?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>
