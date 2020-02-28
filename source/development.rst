@@ -465,13 +465,16 @@
     export RANLIB=%{_bindir}/gcc-ranlib
     export NM=%{_bindir}/gcc-nm
 
-Если используется система сборки cmake, то помимо этого придётся патчить манифест **CMakeLists.txt**, т.к. он в настоящее время не поддерживает загрузку переопределённых значений:
+Если используется система сборки cmake, рекомендуется использовать штатную функцию переопределения встроенных параметров:
 
 .. code-block:: text
 
-    set(CMAKE_AR "/usr/bin/gcc-ar")
-    set(CMAKE_RANLIB "/usr/bin/gcc-ranlib")
-    set(CMAKE_NM "/usr/bin/gcc-nm")
+    %cmake -G Ninja \
+        -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+        -DCMAKE_AR=%{_bindir}/gcc-ar \
+        -DCMAKE_RANLIB=%{_bindir}/gcc-ranlib \
+        -DCMAKE_NM=%{_bindir}/gcc-nm \
+        ..
 
 В противном случае появится ошибка *plugin needed to handle lto object*.
 
