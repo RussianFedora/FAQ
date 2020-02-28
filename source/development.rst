@@ -1264,3 +1264,43 @@ GDB позволяет не только отлаживать приложени
     gdb /usr/bin/foo-bar /path/to/coredump 2>&1 | tee ~/backtrace.log
 
 Здесь **/usr/bin/foo-bar** - путь к отлаживаемому приложению, **/path/to/coredump** - coredump падения (версия приложения и дампа, снятого с него, должны обязательно совпадать), а **~/backtrace.log** - файл, в котором будет сохранён трейс падения.
+
+.. index:: rpmbuild, cmake, clang, cpp, compilation
+.. _clang-fedora:
+
+Как собрать пакет с использованием компилятора Clang в Fedora?
+===================================================================
+
+Самый простой способ сделать это - переопределение значений стандартных :ref:`переменных окружения <env-set>` **CC** и **CXX** внутри секции ``%build``:
+
+.. code-block:: text
+
+    export CC=%{_bindir}/clang
+    export CXX=%{_bindir}/clang++
+
+Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то потребуется задать также ряд иных переменных:
+
+.. code-block:: text
+
+    export AR=%{_bindir}/llvm-ar
+    export RANLIB=%{_bindir}/llvm-ranlib
+    export LINKER=%{_bindir}/llvm-ld
+    export OBJDUMP=%{_bindir}/llvm-objdump
+    export NM=%{_bindir}/llvm-nm
+
+Если используется система сборки cmake, рекомендуется использовать штатную функцию переопределения встроенных параметров:
+
+.. code-block:: text
+
+    %cmake -G Ninja \
+        -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+        -DCMAKE_C_COMPILER=clang \
+        -DCMAKE_CXX_COMPILER=clang++ \
+        -DCMAKE_AR=%{_bindir}/llvm-ar \
+        -DCMAKE_RANLIB=%{_bindir}/llvm-ranlib \
+        -DCMAKE_LINKER=%{_bindir}/llvm-ld \
+        -DCMAKE_OBJDUMP=%{_bindir}/llvm-objdump \
+        -DCMAKE_NM=%{_bindir}/llvm-nm \
+        ..
+
+Следует быть осторожным при сборке Qt-приложений данным компилятором при использовании LTO-оптимизаций.
