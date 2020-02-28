@@ -1294,8 +1294,8 @@ GDB позволяет не только отлаживать приложени
 
     %cmake -G Ninja \
         -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-        -DCMAKE_C_COMPILER=clang \
-        -DCMAKE_CXX_COMPILER=clang++ \
+        -DCMAKE_C_COMPILER=%{_bindir}/clang \
+        -DCMAKE_CXX_COMPILER=%{_bindir}/clang++ \
         -DCMAKE_AR=%{_bindir}/llvm-ar \
         -DCMAKE_RANLIB=%{_bindir}/llvm-ranlib \
         -DCMAKE_LINKER=%{_bindir}/llvm-ld \
