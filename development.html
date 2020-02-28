@@ -872,8 +872,8 @@ export NM=%{_bindir}/llvm-nm
 <p>Если используется система сборки cmake, рекомендуется использовать штатную функцию переопределения встроенных параметров:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%cmake -G Ninja \
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-    -DCMAKE_C_COMPILER=clang \
-    -DCMAKE_CXX_COMPILER=clang++ \
+    -DCMAKE_C_COMPILER=%{_bindir}/clang \
+    -DCMAKE_CXX_COMPILER=%{_bindir}/clang++ \
     -DCMAKE_AR=%{_bindir}/llvm-ar \
     -DCMAKE_RANLIB=%{_bindir}/llvm-ranlib \
     -DCMAKE_LINKER=%{_bindir}/llvm-ld \
