@@ -1344,7 +1344,7 @@ Qt-приложение, собранное Clang с LTO не запускает
     git push --delete origin v1.0.0
 
 .. index:: git, remove, remote, branch
-.. _git-remove-tag:
+.. _git-remove-branch:
 
 Как удалить ветку во внешнем Git репозитории?
 =================================================
@@ -1354,3 +1354,21 @@ Qt-приложение, собранное Clang с LTO не запускает
 .. code-block:: text
 
     git push --delete origin foo-bar
+
+.. index:: git, remove, tag, remote
+.. _git-remove-all-tags:
+
+Как удалить все теги (локальные и удалённые) в Git репозитории?
+===================================================================
+
+Удалим все теги из внешнего Git репозитория:
+
+.. code-block:: text
+
+    git push origin --delete $(git tag -l)
+
+Удалим все оставшиеся локальные теги:
+
+.. code-block:: text
+
+    git tag -d $(git tag -l)
