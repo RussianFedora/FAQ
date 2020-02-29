@@ -102,6 +102,9 @@ html_theme_options = {
     'logo_name': False
 }
 
+# Override default HTML title for HTML and HTML Help pages.
+html_title = '{} (версия {})'.format(project, version)
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
