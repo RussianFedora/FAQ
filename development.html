@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>Разработка и сборка пакетов &#8212; документация Неофициальный FAQ по Fedora 2020.02.29</title>
+    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2020.02.29)</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -894,6 +894,35 @@ export NM=%{_bindir}/llvm-nm
 <p>Нет, т.к. утилита <a class="reference internal" href="#linux-ldd"><span class="std std-ref">ldd</span></a> лишь изменяет ряд <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a>, а затем запускает бинарник, чтобы определить все динамически загружаемые библиотеки, от которых он зависит.</p>
 <p>Внедоносный код сможет легко перехватить управление и начать выполнять свои задачи в пределах имеющихся полномочий.</p>
 </div>
+<div class="section" id="git-remove-tag">
+<span id="index-58"></span><span id="id39"></span><h2>Как удалить тег во внешнем Git репозитории?<a class="headerlink" href="#git-remove-tag" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим локальный тег <strong>1.0.0</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git tag -d v1.0.0
+</pre></div>
+</div>
+<p>Удалим удалённый тег <strong>1.0.0</strong> из удалённого Git репозитория:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git push --delete origin v1.0.0
+</pre></div>
+</div>
+</div>
+<div class="section" id="git-remove-branch">
+<span id="index-59"></span><span id="id40"></span><h2>Как удалить ветку во внешнем Git репозитории?<a class="headerlink" href="#git-remove-branch" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим удалённую ветку <strong>foo-bar</strong> из удалённого Git репозитория:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git push --delete origin foo-bar
+</pre></div>
+</div>
+</div>
+<div class="section" id="git-remove-all-tags">
+<span id="index-60"></span><span id="id41"></span><h2>Как удалить все теги (локальные и удалённые) в Git репозитории?<a class="headerlink" href="#git-remove-all-tags" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим все теги из внешнего Git репозитория:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git push origin --delete $(git tag -l)
+</pre></div>
+</div>
+<p>Удалим все оставшиеся локальные теги:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git tag -d $(git tag -l)
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -983,6 +1012,9 @@ export NM=%{_bindir}/llvm-nm
 <li class="toctree-l2"><a class="reference internal" href="#clang-fedora">Как собрать пакет с использованием компилятора Clang в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qt-clang-lto">Qt-приложение, собранное Clang с LTO не запускается. Что делать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ldd">Безопасно ли использовать LDD для проверки зависимостей бинарника?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-remove-tag">Как удалить тег во внешнем Git репозитории?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-remove-branch">Как удалить ветку во внешнем Git репозитории?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-remove-all-tags">Как удалить все теги (локальные и удалённые) в Git репозитории?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>
