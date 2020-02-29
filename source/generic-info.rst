@@ -129,6 +129,14 @@ Gnome 3 (версия Workstation), KDE Plasma 5, Xfce, LXDE, LXQt, Cinnamon, Ma
 
 Вполне, ибо его качество уже давно на уровне альфа-версий других дистрибутивов.
 
+.. index:: rawhide, rolling, fedora, downgrade
+.. _downgrade-rawhide:
+
+Возможно ли откатиться с Rawhide назад на обычный релиз?
+============================================================
+
+Нет.
+
 .. index:: boot, grub, loader, boot
 .. _grub-loader:
 
