@@ -66,7 +66,7 @@
 .. code-block:: text
 
     cd foo-bar
-    fedpkg switch-branch f29
+    fedpkg switch-branch f32
 
 Внесём свои правки, сделаем коммит в репозиторий:
 
@@ -109,17 +109,17 @@
 Как переопределить пакет в Koji репозитория RPM Fusion?
 ===========================================================
 
-Создание build override для репозитория f29-free:
+Создание build override для репозитория f32-free:
 
 .. code-block:: text
 
-    koji-rpmfusion tag f29-free-override foo-bar-1.0-1.fc29
+    koji-rpmfusion tag f32-free-override foo-bar-1.0-1.fc32
 
-Удаление build override для репозитория f29-free:
+Удаление build override для репозитория f32-free:
 
 .. code-block:: text
 
-    koji-rpmfusion untag f29-free-override foo-bar-1.0-1.fc29
+    koji-rpmfusion untag f32-free-override foo-bar-1.0-1.fc32
 
 .. index:: git, gmail, mail
 .. _git-gmail:
@@ -1055,7 +1055,7 @@
 .. code-block:: text
 
     fedpkg switch-branch master
-    fedpkg import /путь/к/foo-bar-1.0-1.fc30.src.rpm
+    fedpkg import /путь/к/foo-bar-1.0-1.fc32.src.rpm
 
 Проверим внесённые изменения и если всё верно, жмём **Q** для выхода. Зафиксируем наши изменения:
 
@@ -1067,7 +1067,7 @@
 
 .. code-block:: text
 
-    fedpkg switch-branch f30
+    fedpkg switch-branch f32
     git merge master
 
 Отправим изменения на сервер:
@@ -1094,7 +1094,7 @@
 
 .. code-block:: text
 
-    fedpkg switch-branch f30
+    fedpkg switch-branch f32
     fedpkg build
 
 .. index:: fedora, package, build, fedpkg, scratch
@@ -1314,3 +1314,13 @@ Qt-приложение, собранное Clang с LTO не запускает
 Невозможность запуска Qt-приложений, собранных компилятором Clang с включёнными :ref:`LTO-оптимизациями <enable-lto>` -- это `известная проблема <https://bugreports.qt.io/browse/QTBUG-61710>`__, которая в настоящее время не решена.
 
 Для её решения необходимо либо отказаться от использования компилятора Clang и вернуться на GCC, либо отключить LTO-оптимизации.
+
+.. index:: linker, dependencies, ldd, library
+.. _using-ldd:
+
+Безопасно ли использовать LDD для проверки зависимостей бинарника?
+=====================================================================
+
+Нет, т.к. утилита :ref:`ldd <linux-ldd>` лишь изменяет ряд :ref:`переменных окружения <env-set>`, а затем запускает бинарник, чтобы определить все динамически загружаемые библиотеки, от которых он зависит.
+
+Внедоносный код сможет легко перехватить управление и начать выполнять свои задачи в пределах имеющихся полномочий.
