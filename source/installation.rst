@@ -64,13 +64,13 @@
  * `Fedora <https://pagure.io/fedora-kickstarts>`__;
  * `RFRemix <https://github.com/RussianFedora/rfremix-kickstarts>`__.
 
-.. index:: installation, arm
+.. index:: installation, arm, armhfp, armv7hl, aarch64, arm64
 .. _fedora-arm:
 
 Можно ли установить Fedora на устройство с ARM?
 ==========================================================
 
-Да. Загрузки доступны `здесь <https://arm.fedoraproject.org/>`__.
+Да. Загрузки доступны для `armhfp <https://arm.fedoraproject.org/>`__, а также `aarch64 <https://alt.fedoraproject.org/alt/>`__.
 
 .. index:: boot, secure boot
 .. _secure-boot:
