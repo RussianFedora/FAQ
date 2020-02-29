@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>Разработка и сборка пакетов &#8212; документация Неофициальный FAQ по Fedora 2020.01.30</title>
+    <title>Разработка и сборка пакетов &#8212; документация Неофициальный FAQ по Fedora 2020.02.29</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -66,7 +66,7 @@
 </div>
 <p>Перейдём в каталог с загруженными исходниками и переключимся на ветку для конкретной версии Fedora (если нужна версия из Rawhide - следует использовать <strong>master</strong>):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
-fedpkg switch-branch f29
+fedpkg switch-branch f32
 </pre></div>
 </div>
 <p>Внесём свои правки, сделаем коммит в репозиторий:</p>
@@ -94,12 +94,12 @@ git commit -m &quot;Description of our changes.&quot;
 </div>
 <div class="section" id="koji-rpm-fusion">
 <span id="rpmfusion-override"></span><span id="index-6"></span><h2>Как переопределить пакет в Koji репозитория RPM Fusion?<a class="headerlink" href="#koji-rpm-fusion" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Создание build override для репозитория f29-free:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion tag f29-free-override foo-bar-1.0-1.fc29
+<p>Создание build override для репозитория f32-free:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion tag f32-free-override foo-bar-1.0-1.fc32
 </pre></div>
 </div>
-<p>Удаление build override для репозитория f29-free:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion untag f29-free-override foo-bar-1.0-1.fc29
+<p>Удаление build override для репозитория f32-free:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion untag f32-free-override foo-bar-1.0-1.fc32
 </pre></div>
 </div>
 </div>
@@ -724,7 +724,7 @@ cd foo-bar
 </div>
 <p>Самым простым способом загрузки является импорт готового SRPM файла, поэтому выполним именно эту процедуру:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch master
-fedpkg import /путь/к/foo-bar-1.0-1.fc30.src.rpm
+fedpkg import /путь/к/foo-bar-1.0-1.fc32.src.rpm
 </pre></div>
 </div>
 <p>Проверим внесённые изменения и если всё верно, жмём <strong>Q</strong> для выхода. Зафиксируем наши изменения:</p>
@@ -732,7 +732,7 @@ fedpkg import /путь/к/foo-bar-1.0-1.fc30.src.rpm
 </pre></div>
 </div>
 <p>При необходимости внесём изменения и в ветки поддерживаемых релизов Fedora:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch f30
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch f32
 git merge master
 </pre></div>
 </div>
@@ -750,7 +750,7 @@ fedpkg build
 </pre></div>
 </div>
 <p>При необходимости соберём и для других поддерживаемых релизов Fedora:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch f30
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch f32
 fedpkg build
 </pre></div>
 </div>
@@ -889,6 +889,11 @@ export NM=%{_bindir}/llvm-nm
 <p>Невозможность запуска Qt-приложений, собранных компилятором Clang с включёнными <a class="reference internal" href="#enable-lto"><span class="std std-ref">LTO-оптимизациями</span></a> – это <a class="reference external" href="https://bugreports.qt.io/browse/QTBUG-61710">известная проблема</a>, которая в настоящее время не решена.</p>
 <p>Для её решения необходимо либо отказаться от использования компилятора Clang и вернуться на GCC, либо отключить LTO-оптимизации.</p>
 </div>
+<div class="section" id="ldd">
+<span id="using-ldd"></span><span id="index-57"></span><h2>Безопасно ли использовать LDD для проверки зависимостей бинарника?<a class="headerlink" href="#ldd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Нет, т.к. утилита <a class="reference internal" href="#linux-ldd"><span class="std std-ref">ldd</span></a> лишь изменяет ряд <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a>, а затем запускает бинарник, чтобы определить все динамически загружаемые библиотеки, от которых он зависит.</p>
+<p>Внедоносный код сможет легко перехватить управление и начать выполнять свои задачи в пределах имеющихся полномочий.</p>
+</div>
 </div>
 
 
@@ -977,6 +982,7 @@ export NM=%{_bindir}/llvm-nm
 <li class="toctree-l2"><a class="reference internal" href="#gdb-coredump">Как загрузить в gdb отладчик coredump падения?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#clang-fedora">Как собрать пакет с использованием компилятора Clang в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qt-clang-lto">Qt-приложение, собранное Clang с LTO не запускается. Что делать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ldd">Безопасно ли использовать LDD для проверки зависимостей бинарника?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>

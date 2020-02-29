@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>Установка системы &#8212; документация Неофициальный FAQ по Fedora 2020.01.30</title>
+    <title>Установка системы &#8212; документация Неофициальный FAQ по Fedora 2020.02.29</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -71,11 +71,11 @@
 </div>
 <div class="section" id="fedora-arm">
 <span id="index-6"></span><span id="id6"></span><h2>Можно ли установить Fedora на устройство с ARM?<a class="headerlink" href="#fedora-arm" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Да. Загрузки доступны <a class="reference external" href="https://arm.fedoraproject.org/">здесь</a>.</p>
+<p>Да. Загрузки доступны для <a class="reference external" href="https://arm.fedoraproject.org/">armhfp</a>, а также <a class="reference external" href="https://alt.fedoraproject.org/alt/">aarch64</a>.</p>
 </div>
 <div class="section" id="secure-boot">
 <span id="index-7"></span><span id="id7"></span><h2>Поддерживается ли технология Secure Boot?<a class="headerlink" href="#secure-boot" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Да, полностью. В качестве предварительного загрузчика используется shim, подписанный цифровой подписью Microsoft.</p>
+<p>Да, полностью. В качестве предварительного загрузчика используется <strong>shim</strong>, подписанный цифровой подписью Microsoft.</p>
 </div>
 <div class="section" id="fedora">
 <span id="moving-system"></span><span id="index-8"></span><h2>Могу я переместить Fedora на другой диск?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
@@ -348,9 +348,9 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <div class="section" id="fedora-dual-boot">
 <span id="dual-boot"></span><span id="index-32"></span><h2>Как установить Fedora в dual-boot вместе с другой ОС?<a class="headerlink" href="#fedora-dual-boot" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Существует два способа: автоматический и ручной.</p>
-<p><em>Автоматический способ.</em></p>
+<p><strong>Автоматический способ:</strong></p>
 <p>Загрузим систему с <a class="reference internal" href="#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>, выберем автоматической способ разбиения. Все действия будут выполнены автоматически с настройками по умолчанию.</p>
-<p><em>Ручной способ.</em></p>
+<p><strong>Ручной способ:</strong></p>
 <p>Выполним следующие шаги в строго указанном порядке:</p>
 <blockquote>
 <div><ol class="arabic simple">
