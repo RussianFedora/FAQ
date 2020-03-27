@@ -639,8 +639,16 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </pre></div>
 </div>
 </div>
+<div class="section" id="directory-size-top">
+<span id="index-50"></span><span id="id27"></span><h2>Как из консоли вывести список десяти самых крупных каталогов?<a class="headerlink" href="#directory-size-top" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Вывыдем список десяти самых крупных каталогов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>du -hs /path/to/directory/* 2&gt;/dev/null | sort -rh | head -10
+</pre></div>
+</div>
+<p>Здесь <strong>/path/to/directory</strong> – начальный каталог.</p>
+</div>
 <div class="section" id="directory-size-gui">
-<span id="index-50"></span><span id="id27"></span><h2>Как вывести содержимое каталога в графическом виде?<a class="headerlink" href="#directory-size-gui" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-51"></span><span id="id28"></span><h2>Как вывести содержимое каталога в графическом виде?<a class="headerlink" href="#directory-size-gui" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В графическом режиме для визуализации содержимого каталога могут применяться такие утилиты, как <strong>Baobab</strong> (Gnome, GTK), либо <strong>Filelight</strong> (KDE, Qt).</p>
 <p>Установим <strong>Baobab</strong> (для пользователей Gnome или других DE, основанных на GTK):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install baobab
@@ -652,14 +660,14 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 </div>
 <div class="section" id="plasma-restart">
-<span id="index-51"></span><span id="id28"></span><h2>Как перезапустить зависшую оболочку KDE Plasma 5?<a class="headerlink" href="#plasma-restart" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-52"></span><span id="id29"></span><h2>Как перезапустить зависшую оболочку KDE Plasma 5?<a class="headerlink" href="#plasma-restart" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Перезапустим KDE Plasma 5:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kquitapp5 plasmashell &amp;&amp; kstart plasmashell
 </pre></div>
 </div>
 </div>
 <div class="section" id="kwin-restart">
-<span id="index-52"></span><span id="id29"></span><h2>Как перезапустить оконный менеджер KDE Plasma 5?<a class="headerlink" href="#kwin-restart" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-53"></span><span id="id30"></span><h2>Как перезапустить оконный менеджер KDE Plasma 5?<a class="headerlink" href="#kwin-restart" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Перезапустим оконный менеджер KWin, работающий поверх X11:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kwin_x11 --replace &amp;&gt;/dev/null &amp;
 </pre></div>
@@ -670,14 +678,14 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 </div>
 <div class="section" id="gnome-shell-restart">
-<span id="index-53"></span><span id="id30"></span><h2>Как перезапустить зависшую оболочку Gnome Shell?<a class="headerlink" href="#gnome-shell-restart" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-54"></span><span id="id31"></span><h2>Как перезапустить зависшую оболочку Gnome Shell?<a class="headerlink" href="#gnome-shell-restart" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Перезапустим Gnome Shell:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gnome-shell --replace
 </pre></div>
 </div>
 </div>
 <div class="section" id="dir-hash-save">
-<span id="index-54"></span><span id="id31"></span><h2>Как сохранить контрольные суммы файлов в каталоге рекурсивно?<a class="headerlink" href="#dir-hash-save" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-55"></span><span id="id32"></span><h2>Как сохранить контрольные суммы файлов в каталоге рекурсивно?<a class="headerlink" href="#dir-hash-save" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Cгенерируем файл с контрольными суммами SHA2 (SHA-512) содержимого текущего каталога при помощи утилит <strong>find</strong> и <strong>sha512sum</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find -type f \( -not -name &#39;sha512sum.txt&#39; \) -exec sha512sum &#39;{}&#39; \; &gt; sha512sum.txt
 </pre></div>
@@ -685,7 +693,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Результат будет сохранён в файле с именем <strong>sha512sum.txt</strong>.</p>
 </div>
 <div class="section" id="dir-hash-verify">
-<span id="index-55"></span><span id="id32"></span><h2>Как проверить контрольные суммы файлов в каталоге?<a class="headerlink" href="#dir-hash-verify" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-56"></span><span id="id33"></span><h2>Как проверить контрольные суммы файлов в каталоге?<a class="headerlink" href="#dir-hash-verify" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проверим контрольные суммы SHA2 (SHA-512), <a class="reference internal" href="#dir-hash-save"><span class="std std-ref">сохранённые</span></a> в <strong>sha512sum.txt</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sha512sum -c sha512sum.txt &gt; check_results.txt
 </pre></div>
@@ -693,7 +701,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Для удобства <a class="reference internal" href="administration.html#bash-pipelines"><span class="std std-ref">перенаправим вывод</span></a> в файл <strong>check_results.txt</strong> ибо он может быть очень большим и не поместиться на экране.</p>
 </div>
 <div class="section" id="dir-hash-missmatch">
-<span id="index-56"></span><span id="id33"></span><h2>Как вывести список не совпадающих с сохранёнными контрольными суммами файлов?<a class="headerlink" href="#dir-hash-missmatch" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-57"></span><span id="id34"></span><h2>Как вывести список не совпадающих с сохранёнными контрольными суммами файлов?<a class="headerlink" href="#dir-hash-missmatch" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проверим контрольные суммы SHA2 (SHA-512), <a class="reference internal" href="#dir-hash-save"><span class="std std-ref">сохранённые</span></a> в <strong>sha512sum.txt</strong> и выведем лишь те, проверка которых завершилась неудачно:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sha512sum -c sha512sum.txt | grep -v &#39;OK&#39;
 </pre></div>
@@ -704,14 +712,14 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 </div>
 <div class="section" id="qt">
-<span id="qt-theme-override"></span><span id="index-57"></span><h2>Как переопределить тему в Qt приложениях?<a class="headerlink" href="#qt" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="qt-theme-override"></span><span id="index-58"></span><h2>Как переопределить тему в Qt приложениях?<a class="headerlink" href="#qt" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Воспользуемся <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменными окружения</span></a> для переопределения темы Qt:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>QT_STYLE_OVERRIDE=adwaita QT_QPA_PLATFORMTHEME=qgnomeplatform /usr/bin/foo-bar
 </pre></div>
 </div>
 </div>
 <div class="section" id="wine-fedora">
-<span id="index-58"></span><span id="id34"></span><h2>Как правильно установить Wine в Fedora?<a class="headerlink" href="#wine-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-59"></span><span id="id35"></span><h2>Как правильно установить Wine в Fedora?<a class="headerlink" href="#wine-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В основном репозитории Fedora всегда находится самый свежий и правильно опакеченный выпуск Wine, поэтому подключать какие-либо сторонние репозитории, в т.ч. официальный от WineHQ, категорически не рекомендуется.</p>
 <p>Установим Wine из репозитория Fedora:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install wine wine.i686
@@ -719,7 +727,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 </div>
 <div class="section" id="dxvk-wine">
-<span id="wine-dxvk"></span><span id="index-59"></span><h2>Как правильно установить dxvk для Wine из репозиториев?<a class="headerlink" href="#dxvk-wine" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="wine-dxvk"></span><span id="index-60"></span><h2>Как правильно установить dxvk для Wine из репозиториев?<a class="headerlink" href="#dxvk-wine" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Наряду с <a class="reference internal" href="#wine-fedora"><span class="std std-ref">правильно опакеченным Wine</span></a>, в основном репозитории Fedora доступен и dxvk.</p>
 <p>Установим dxvk с поддержкой DirectX 10, 11:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install wine-dxvk wine-dxvk.i686
@@ -809,6 +817,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#f3chk-deep">Как выполнить глубокую проверку объёма накопителя?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#markdown-pdf">Как из документа в формате Markdown создать PDF?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#directory-size-console">Как из консоли получить размер каталога вместе со всем его содержимым?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#directory-size-top">Как из консоли вывести список десяти самых крупных каталогов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#directory-size-gui">Как вывести содержимое каталога в графическом виде?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#plasma-restart">Как перезапустить зависшую оболочку KDE Plasma 5?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kwin-restart">Как перезапустить оконный менеджер KDE Plasma 5?</a></li>
