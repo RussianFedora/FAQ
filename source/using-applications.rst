@@ -959,6 +959,20 @@ Zip-архивы, созданные штатными средствами ОС 
 
     du -sh ~/foo-bar
 
+.. index:: du, disk usage, coreutils, directory size, console
+.. _directory-size-top:
+
+Как из консоли вывести список десяти самых крупных каталогов?
+=================================================================
+
+Вывыдем список десяти самых крупных каталогов:
+
+.. code-block:: text
+
+    du -hs /path/to/directory/* 2>/dev/null | sort -rh | head -10
+
+Здесь **/path/to/directory** -- начальный каталог.
+
 .. index:: disk usage, directory size, filelight, baobab
 .. _directory-size-gui:
 
