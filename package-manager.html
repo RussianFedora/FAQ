@@ -48,7 +48,7 @@
 </div>
 <div class="section" id="flatpak">
 <span id="flatpak-info"></span><span id="index-2"></span><h2>Что такое Flatpak пакеты?<a class="headerlink" href="#flatpak" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Flatpak - это современный прогрессивный формат самодостаточных пакетов для GNU/Linux. Он поддерживает рантаймы, изоляцию внутри песочниц, установку без наличия прав суперпользователя и многое другое.</p>
+<p>Flatpak – это современный прогрессивный формат самодостаточных пакетов для GNU/Linux. Он поддерживает рантаймы, изоляцию внутри песочниц, установку без наличия прав суперпользователя и многое другое.</p>
 </div>
 <div class="section" id="flatpak-advantages">
 <span id="index-3"></span><span id="id4"></span><h2>Какие преимущества и недостатки у Flatpak пакетов?<a class="headerlink" href="#flatpak-advantages" title="Ссылка на этот заголовок">¶</a></h2>
@@ -126,7 +126,7 @@
 </pre></div>
 </div>
 <p>Теперь внутри него допускается использовать любые механизмы установки пакетов Python: pip, install.py и т.д.</p>
-<p>Здесь <strong>foo-bar</strong> - название venv контейнера. Допускается создавать неограниченное их количество.</p>
+<p>Здесь <strong>foo-bar</strong> – название venv контейнера. Допускается создавать неограниченное их количество.</p>
 </div>
 <div class="section" id="python-venv-remove">
 <span id="index-8"></span><span id="id6"></span><h2>Как удалить установленные пакеты из Python Virtual Environment?<a class="headerlink" href="#python-venv-remove" title="Ссылка на этот заголовок">¶</a></h2>
@@ -254,7 +254,7 @@ sudo dnf system-upgrade reboot
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>installonly_limit=2
 </pre></div>
 </div>
-<p>Минимально допустимое значение - <strong>2</strong> (будут сохраняться два ядра: текущее и предыдущее).</p>
+<p>Минимально допустимое значение – <strong>2</strong> (будут сохраняться два ядра: текущее и предыдущее).</p>
 </div>
 <div class="section" id="dnf-proxy">
 <span id="index-22"></span><span id="id15"></span><h2>Как настроить работу dnf через прокси?<a class="headerlink" href="#dnf-proxy" title="Ссылка на этот заголовок">¶</a></h2>
@@ -272,7 +272,7 @@ sudo dnf system-upgrade reboot
 proxy_password=PASSWORD
 </pre></div>
 </div>
-<p>Здесь <strong>LOGIN</strong> - логин пользователя на прокси-сервере, а <strong>PASSWORD</strong> - его пароль.</p>
+<p>Здесь <strong>LOGIN</strong> – логин пользователя на прокси-сервере, а <strong>PASSWORD</strong> – его пароль.</p>
 </div>
 <div class="section" id="dnf-weakdeps">
 <span id="index-23"></span><span id="id16"></span><h2>Как отключить установку слабых зависимостей?<a class="headerlink" href="#dnf-weakdeps" title="Ссылка на этот заголовок">¶</a></h2>
@@ -319,7 +319,7 @@ proxy_password=PASSWORD
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove kernel-4.10.14* kernel-core-4.10.14* kernel-modules-4.10.14* kernel-devel-4.10.14*
 </pre></div>
 </div>
-<p>Здесь <strong>4.10.14</strong> - это версия удаляемого ядра.</p>
+<p>Здесь <strong>4.10.14</strong> – это версия удаляемого ядра.</p>
 </div>
 <div class="section" id="rd-repositories">
 <span id="index-28"></span><span id="id20"></span><h2>Какие сторонние репозитории лучше всего подключать?<a class="headerlink" href="#rd-repositories" title="Ссылка на этот заголовок">¶</a></h2>
@@ -487,7 +487,7 @@ sudo dnf config-manager --set-enabled updates-modular
 <p>Для установки обновлений посредством dnf рекомендуется два варианта:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>переключение в консоль фреймбуфера посредством нажатия комбинации <strong>Ctrl+Alt+F3</strong> (для возврата в графический режим - <strong>Ctrl+Alt+F1</strong>), выполнение в ней нового входа в систему и запуск процесса обновления;</p></li>
+<li><p>переключение в консоль фреймбуфера посредством нажатия комбинации <strong>Ctrl+Alt+F3</strong> (для возврата в графический режим – <strong>Ctrl+Alt+F1</strong>), выполнение в ней нового входа в систему и запуск процесса обновления;</p></li>
 <li><p>использование screen сессии. Тогда, в случае падения эмулятора терминала, процесс не будет прерван.</p></li>
 </ul>
 </div></blockquote>
@@ -508,7 +508,7 @@ sudo dnf config-manager --set-enabled updates-modular
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh --enablerepo=updates-testing --advisory=FEDORA-2018-XXXXXXXXX
 </pre></div>
 </div>
-<p>Здесь <strong>FEDORA-2018-XXXXXXXXX</strong> - уникальный идентификатор обновления из Bodhi.</p>
+<p>Здесь <strong>FEDORA-2018-XXXXXXXXX</strong> – уникальный идентификатор обновления из Bodhi.</p>
 </div>
 <div class="section" id="koji">
 <span id="koji-download"></span><span id="index-49"></span><h2>Как скачать определённую сборку пакета из Koji?<a class="headerlink" href="#koji" title="Ссылка на этот заголовок">¶</a></h2>
@@ -565,7 +565,7 @@ sudo dnf config-manager --set-enabled updates-modular
 </div>
 <div class="section" id="rfremix-fedora">
 <span id="rfremix-to-fedora"></span><span id="index-56"></span><h2>Как превратить RFRemix в Fedora и наоборот?<a class="headerlink" href="#rfremix-fedora" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для превращения Fedora в <a class="reference internal" href="generic-info.html#rfremix"><span class="std std-ref">RFRemix</span></a> необходимо и достаточно подключить репозиторий <a class="reference internal" href="generic-info.html#russian-fedora"><span class="std std-ref">russianfedora-branding</span></a>, а чтобы вернуть всё назад - отключить его.</p>
+<p>Для превращения Fedora в <a class="reference internal" href="generic-info.html#rfremix"><span class="std std-ref">RFRemix</span></a> необходимо и достаточно подключить репозиторий <a class="reference internal" href="generic-info.html#russian-fedora"><span class="std std-ref">russianfedora-branding</span></a>, а чтобы вернуть всё назад – отключить его.</p>
 <p>После подключения/отключения необходимо выполнить синхронизацию:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf swap rfremix-release fedora-release --allowerasing
 sudo dnf distro-sync --allowerasing
@@ -583,7 +583,7 @@ sudo dnf distro-sync --allowerasing
 </div>
 <div class="section" id="dnf-groups">
 <span id="index-59"></span><span id="id46"></span><h2>Безопасно ли устанавливать и удалять пакеты группами?<a class="headerlink" href="#dnf-groups" title="Ссылка на этот заголовок">¶</a></h2>
-<p><a class="reference internal" href="#dnf-group-install"><span class="std std-ref">Устанавливать</span></a> пакеты группами абсолютно безопасно, однако <a class="reference internal" href="#dnf-group-remove"><span class="std std-ref">удалять</span></a> - нет, т.к. это приведёт к удалению всех её членов, что может привести к полной неработоспособности системы из-за удаления важных компонентов, таких как графическое окружение, менеджер входа в систему и т.д.</p>
+<p><a class="reference internal" href="#dnf-group-install"><span class="std std-ref">Устанавливать</span></a> пакеты группами абсолютно безопасно, однако <a class="reference internal" href="#dnf-group-remove"><span class="std std-ref">удалять</span></a> – нет, т.к. это приведёт к удалению всех её членов, что может привести к полной неработоспособности системы из-за удаления важных компонентов, таких как графическое окружение, менеджер входа в систему и т.д.</p>
 <p>Вывод списка доступных групп:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf grouplist
 </pre></div>
@@ -689,7 +689,7 @@ sudo dnf distro-sync --allowerasing
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rpm -qa --dbpath /path/to/other/var/lib/rpm
 </pre></div>
 </div>
-<p>Здесь <strong>/path/to/other/var/lib/rpm</strong> - полный путь к базе RPM.</p>
+<p>Здесь <strong>/path/to/other/var/lib/rpm</strong> – полный путь к базе RPM.</p>
 </div>
 <div class="section" id="rpm-reinstall-package">
 <span id="index-73"></span><span id="id60"></span><h2>Как мне переустановить пакет?<a class="headerlink" href="#rpm-reinstall-package" title="Ссылка на этот заголовок">¶</a></h2>

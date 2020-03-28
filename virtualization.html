@@ -136,7 +136,7 @@ sudo usermod -a -G vboxsf $(whoami)
 <div class="section" id="kvm-move-directory">
 <span id="index-12"></span><span id="id8"></span><h2>Можно ли перенести каталог с образами виртуальных машин KVM?<a class="headerlink" href="#kvm-move-directory" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию образы создаваемых виртуальных машин создаются в каталоге <code class="docutils literal notranslate"><span class="pre">/var/lib/libvirt/images</span></code>, что многих не устраивает.</p>
-<p>Переместим образы виртуальных машин на отдельный накопитель, смонтированный как <code class="docutils literal notranslate"><span class="pre">/media/foo-bar</span></code>. ISO будем размещать в каталоге <code class="docutils literal notranslate"><span class="pre">iso</span></code>, а дисковые образы виртуальных машин - <code class="docutils literal notranslate"><span class="pre">images</span></code>.</p>
+<p>Переместим образы виртуальных машин на отдельный накопитель, смонтированный как <code class="docutils literal notranslate"><span class="pre">/media/foo-bar</span></code>. ISO будем размещать в каталоге <code class="docutils literal notranslate"><span class="pre">iso</span></code>, а дисковые образы виртуальных машин – <code class="docutils literal notranslate"><span class="pre">images</span></code>.</p>
 <p>Создаём собственные политики SELinux для указанных каталогов:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -a -t virt_image_t &quot;/media/foo-bar/iso(/.*)?&quot;
 sudo semanage fcontext -a -t virt_image_t &quot;/media/foo-bar/images(/.*)?&quot;
@@ -156,7 +156,7 @@ sudo restorecon -Rv /media/foo-bar/images
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>virsh dumpxml vmname &gt; vmname.xml
 </pre></div>
 </div>
-<p>Здесь <strong>vmname</strong> - название машины KVM, а <strong>vmname.xml</strong> - имя файла, в котором будут сохранены настройки.</p>
+<p>Здесь <strong>vmname</strong> – название машины KVM, а <strong>vmname.xml</strong> – имя файла, в котором будут сохранены настройки.</p>
 <p>Импортируем ранее сохранённую конфигурацию:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>virsh define /path/to/vmname.xml
 </pre></div>
@@ -173,7 +173,7 @@ sudo restorecon -Rv /media/foo-bar/images
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>vboxmanage export vmname -o vmname.ova --ovf20
 </pre></div>
 </div>
-<p>Здесь <strong>vmname</strong> - название виртуальной машины VirtualBox, а <strong>vmname.ova</strong> - имя файла экспорта.</p>
+<p>Здесь <strong>vmname</strong> – название виртуальной машины VirtualBox, а <strong>vmname.ova</strong> – имя файла экспорта.</p>
 <p>Переместим полученный файл на новый хост <a class="reference internal" href="administration.html#copying-data"><span class="std std-ref">любым удобным способом</span></a>, затем осуществим его импорт:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>vboxmanage import /path/to/vmname.ova --options importtovdi
 </pre></div>

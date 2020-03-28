@@ -40,7 +40,7 @@
 <span id="id1"></span><h1>Безопасность<a class="headerlink" href="#security" title="Ссылка на этот заголовок">¶</a></h1>
 <div class="section" id="selinux">
 <span id="index-0"></span><span id="id2"></span><h2>Что такое SELinux?<a class="headerlink" href="#selinux" title="Ссылка на этот заголовок">¶</a></h2>
-<p>SELinux - это мандатная система контроля доступа, ограничивающая доступ ряду сервисов к файлам и каталогам.</p>
+<p>SELinux – это мандатная система контроля доступа, ограничивающая доступ ряду сервисов к файлам и каталогам.</p>
 <p>Более подробная информация может быть получена <a class="reference external" href="https://ru.wikipedia.org/wiki/SELinux">здесь</a>.</p>
 </div>
 <div class="section" id="selinux-temp">
@@ -193,7 +193,7 @@ sudo semodule -i httpd_network.pp
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>semanage port -d -t ephemeral_port_t -p tcp 80-88
 </pre></div>
 </div>
-<p>Здесь <strong>ephemeral_port_t</strong> - название диапазона, <strong>tcp</strong> - используемый протокол, а <strong>80-88</strong> - диапазон разрешаемых портов.</p>
+<p>Здесь <strong>ephemeral_port_t</strong> – название диапазона, <strong>tcp</strong> – используемый протокол, а <strong>80-88</strong> – диапазон разрешаемых портов.</p>
 </div>
 <div class="section" id="nsl-second">
 <span id="id10"></span><h3>Второй вариант (быстрый, но менее безопасный)<a class="headerlink" href="#nsl-second" title="Ссылка на этот заголовок">¶</a></h3>
@@ -215,7 +215,7 @@ restorecon -Rv ~/.cert
 </div>
 <div class="section" id="kpti">
 <span id="index-8"></span><span id="id12"></span><h2>Можно ли отключить KPTI?<a class="headerlink" href="#kpti" title="Ссылка на этот заголовок">¶</a></h2>
-<p>KPTI - это новый механизм ядра, направленный на защиту системы от уязвимости <a class="reference external" href="https://ru.wikipedia.org/wiki/Meltdown_(%D1%83%D1%8F%D0%B7%D0%B2%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C)">Meltdown</a> в процессорах Intel. Настоятельно не рекомендуется его отключать, хотя это и возможно. Для этого необходимо и достаточно передать <a class="reference internal" href="administration.html#kernelpm-perm"><span class="std std-ref">параметр ядра</span></a>:</p>
+<p>KPTI – это новый механизм ядра, направленный на защиту системы от уязвимости <a class="reference external" href="https://ru.wikipedia.org/wiki/Meltdown_(%D1%83%D1%8F%D0%B7%D0%B2%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C)">Meltdown</a> в процессорах Intel. Настоятельно не рекомендуется его отключать, хотя это и возможно. Для этого необходимо и достаточно передать <a class="reference internal" href="administration.html#kernelpm-perm"><span class="std std-ref">параметр ядра</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nopti
 </pre></div>
 </div>
@@ -322,7 +322,7 @@ sudo systemctl reboot
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksChangeKey /dev/sda1 -S 0
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sda1</strong> - зашифрованный раздел диска, а <strong>0</strong> - порядковый номер LUKS слота для пароля.</p>
+<p>Здесь <strong>/dev/sda1</strong> – зашифрованный раздел диска, а <strong>0</strong> – порядковый номер LUKS слота для пароля.</p>
 <p>Для успешной смены пароля раздел не должен быть смонтирован, поэтому если это корневой или домашний, то придётся выполнять загрузку с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">LiveUSB</span></a>.</p>
 </div>
 <div class="section" id="luks-info">
@@ -331,7 +331,7 @@ sudo systemctl reboot
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksDump /dev/sda1
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sda1</strong> - зашифрованный раздел диска.</p>
+<p>Здесь <strong>/dev/sda1</strong> – зашифрованный раздел диска.</p>
 </div>
 <div class="section" id="luks-benchmark">
 <span id="index-24"></span><span id="id23"></span><h2>Насколько сильно шифрование LUKS снижает производительность дисковой подсистемы?<a class="headerlink" href="#luks-benchmark" title="Ссылка на этот заголовок">¶</a></h2>
@@ -350,7 +350,7 @@ sudo systemctl reboot
 </div>
 <div class="section" id="firewalld">
 <span id="firewalld-about"></span><span id="index-26"></span><h2>Что такое Firewalld?<a class="headerlink" href="#firewalld" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Firewalld - это современный динамически управляемый брандмауэр с поддержкой зон для интерфейсов.</p>
+<p>Firewalld – это современный динамически управляемый брандмауэр с поддержкой зон для интерфейсов.</p>
 </div>
 <div class="section" id="firewalld-configure">
 <span id="index-27"></span><span id="id24"></span><h2>Как можно настраивать Firewalld?<a class="headerlink" href="#firewalld-configure" title="Ссылка на этот заголовок">¶</a></h2>
@@ -406,7 +406,7 @@ sudo systemctl reboot
 </div>
 <div class="section" id="sudo-su">
 <span id="sudo-password"></span><span id="index-35"></span><h2>Какие пароли запрашивают sudo и su?<a class="headerlink" href="#sudo-su" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Утилита sudo запрашивает текущий пароль пользователя, а su - рутовый.</p>
+<p>Утилита sudo запрашивает текущий пароль пользователя, а su – рутовый.</p>
 </div>
 <div class="section" id="root-password">
 <span id="index-36"></span><span id="id30"></span><h2>Как мне сменить пароль суперпользователя?<a class="headerlink" href="#root-password" title="Ссылка на этот заголовок">¶</a></h2>
@@ -493,7 +493,7 @@ PermitEmptyPasswords no
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ssh-copy-id user@example.org
 </pre></div>
 </div>
-<p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.</p>
+<p>Здесь <strong>user&#64;example.org</strong> – данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.</p>
 </div>
 <div class="section" id="ssh-port-forwarding">
 <span id="index-48"></span><span id="id39"></span><h2>Как пробросить порт с удалённой машины на локальную через SSH?<a class="headerlink" href="#ssh-port-forwarding" title="Ссылка на этот заголовок">¶</a></h2>
@@ -501,14 +501,14 @@ PermitEmptyPasswords no
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ssh user@example.org -L 3306:127.0.0.1:3306 -N -f
 </pre></div>
 </div>
-<p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост, а <strong>3306</strong> - порт. Параметры <code class="docutils literal notranslate"><span class="pre">-N</span> <span class="pre">-f</span></code> заставляют SSH клиент сразу вернуть управление, уйти в фоновый режим и продолжать поддерживать соединение до своего завершения.</p>
+<p>Здесь <strong>user&#64;example.org</strong> – данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост, а <strong>3306</strong> – порт. Параметры <code class="docutils literal notranslate"><span class="pre">-N</span> <span class="pre">-f</span></code> заставляют SSH клиент сразу вернуть управление, уйти в фоновый режим и продолжать поддерживать соединение до своего завершения.</p>
 </div>
 <div class="section" id="socks-ssh">
 <span id="ssh-socks"></span><span id="index-49"></span><h2>Как настроить виртуальный SOCKS туннель через SSH?<a class="headerlink" href="#socks-ssh" title="Ссылка на этот заголовок">¶</a></h2>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ssh user@example.org -D 127.0.0.1:8080 -N -f
 </pre></div>
 </div>
-<p>Здесь <strong>user&#64;example.org</strong> - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост, а <strong>8080</strong> - локальный порт, на котором будет запущен SSH клиент в режиме эмуляции SOCKS5 сервера. Параметры <code class="docutils literal notranslate"><span class="pre">-N</span> <span class="pre">-f</span></code> заставляют SSH клиент сразу вернуть управление, уйти в фоновый режим и продолжать поддерживать соединение до своего завершения.</p>
+<p>Здесь <strong>user&#64;example.org</strong> – данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост, а <strong>8080</strong> – локальный порт, на котором будет запущен SSH клиент в режиме эмуляции SOCKS5 сервера. Параметры <code class="docutils literal notranslate"><span class="pre">-N</span> <span class="pre">-f</span></code> заставляют SSH клиент сразу вернуть управление, уйти в фоновый режим и продолжать поддерживать соединение до своего завершения.</p>
 <p>После запуска необходимо настроить браузер и другие приложения на работу через данный SOCKS5 прокси.</p>
 </div>
 <div class="section" id="ssh-sftp">
@@ -561,7 +561,7 @@ Match Group sftp
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install hdparm
 </pre></div>
 </div>
-<p>Далее <strong>/dev/sdb</strong> - это устройство SSD накопителя, который мы планируем очистить. Очищать устройство, на котором установлена система, можно только после загрузки с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>.</p>
+<p>Далее <strong>/dev/sdb</strong> – это устройство SSD накопителя, который мы планируем очистить. Очищать устройство, на котором установлена система, можно только после загрузки с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>.</p>
 <p>Убедимся, что UEFI BIOS не блокирует функцию самоуничтожения диска:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo hdparm -I /dev/sdb
 </pre></div>
@@ -586,9 +586,9 @@ Match Group sftp
 </div>
 <div class="section" id="newfile-permissions">
 <span id="index-55"></span><span id="id43"></span><h2>Как рассчитываются права доступа для новых файлов и каталогов?<a class="headerlink" href="#newfile-permissions" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Права доступа (chmod) в GNU/Linux рассчитываются в по формуле <code class="docutils literal notranslate"><span class="pre">$default-chmod</span> <span class="pre">-</span> <span class="pre">$current-umask</span></code>. <code class="docutils literal notranslate"><span class="pre">$default-chmod</span></code> для файлов равен <code class="docutils literal notranslate"><span class="pre">0666</span></code>, а для каталогов - <code class="docutils literal notranslate"><span class="pre">0777</span></code>.</p>
+<p>Права доступа (chmod) в GNU/Linux рассчитываются в по формуле <code class="docutils literal notranslate"><span class="pre">$default-chmod</span> <span class="pre">-</span> <span class="pre">$current-umask</span></code>. <code class="docutils literal notranslate"><span class="pre">$default-chmod</span></code> для файлов равен <code class="docutils literal notranslate"><span class="pre">0666</span></code>, а для каталогов – <code class="docutils literal notranslate"><span class="pre">0777</span></code>.</p>
 <p>В Fedora umask по умолчанию для пользоватьских учётных записей равен <code class="docutils literal notranslate"><span class="pre">0002</span></code> (ведущий нуль в chmod означает использование восьмеричной системы счисления).</p>
-<p>Таким образом, chmod для новых файлов <code class="docutils literal notranslate"><span class="pre">0666</span> <span class="pre">-</span> <span class="pre">0002</span> <span class="pre">=</span> <span class="pre">0664</span></code> (<code class="docutils literal notranslate"><span class="pre">-rw-rw--r--</span></code>), а для каталогов - <code class="docutils literal notranslate"><span class="pre">0777</span> <span class="pre">-</span> <span class="pre">0002</span> <span class="pre">=</span> <span class="pre">0775</span></code> (<code class="docutils literal notranslate"><span class="pre">drwxrwxr-x</span></code>).</p>
+<p>Таким образом, chmod для новых файлов <code class="docutils literal notranslate"><span class="pre">0666</span> <span class="pre">-</span> <span class="pre">0002</span> <span class="pre">=</span> <span class="pre">0664</span></code> (<code class="docutils literal notranslate"><span class="pre">-rw-rw--r--</span></code>), а для каталогов – <code class="docutils literal notranslate"><span class="pre">0777</span> <span class="pre">-</span> <span class="pre">0002</span> <span class="pre">=</span> <span class="pre">0775</span></code> (<code class="docutils literal notranslate"><span class="pre">drwxrwxr-x</span></code>).</p>
 </div>
 <div class="section" id="fedora">
 <span id="fedora-gost"></span><span id="index-56"></span><h2>Можно ли включить поддержку российской криптографии в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
@@ -650,7 +650,7 @@ Match Group sftp
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>openssl rsa -in foo-bar.key -out foo-bar-nopass.key
 </pre></div>
 </div>
-<p>Здесь <strong>foo-bar.key</strong> - имя файла с закрытым RSA ключом, который необходимо расшифровать. После ввода верного пароля, результат появится в файле <strong>foo-bar-nopass.key</strong>.</p>
+<p>Здесь <strong>foo-bar.key</strong> – имя файла с закрытым RSA ключом, который необходимо расшифровать. После ввода верного пароля, результат появится в файле <strong>foo-bar-nopass.key</strong>.</p>
 </div>
 <div class="section" id="openssl-encrypt-key">
 <span id="index-61"></span><span id="id46"></span><h2>Как установить или изменить пароль шифрования закрытого RSA ключа средствами OpenSSL?<a class="headerlink" href="#openssl-encrypt-key" title="Ссылка на этот заголовок">¶</a></h2>
@@ -658,7 +658,7 @@ Match Group sftp
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>openssl rsa -aes256 -in foo-bar-nopass.key -out foo-bar.key
 </pre></div>
 </div>
-<p>Здесь <strong>-aes256</strong> - используемый алгоритм шифрования (AES-256), <strong>foo-bar-nokey.key</strong> - имя файла с закрытым RSA ключом, пароль которого нужно задать или изменить. Результат будет сохранён в файле <strong>foo-bar.key</strong>.</p>
+<p>Здесь <strong>-aes256</strong> – используемый алгоритм шифрования (AES-256), <strong>foo-bar-nokey.key</strong> – имя файла с закрытым RSA ключом, пароль которого нужно задать или изменить. Результат будет сохранён в файле <strong>foo-bar.key</strong>.</p>
 </div>
 <div class="section" id="sudo-multi">
 <span id="index-62"></span><span id="id47"></span><h2>Как посредством sudo запустить сразу несколько команд?<a class="headerlink" href="#sudo-multi" title="Ссылка на этот заголовок">¶</a></h2>
@@ -781,7 +781,7 @@ Match Group sftp
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gpg2 --edit-key XXXXXXXXX
 </pre></div>
 </div>
-<p>Здесь <strong>XXXXXXXXX</strong> - ID нашего ключа.</p>
+<p>Здесь <strong>XXXXXXXXX</strong> – ID нашего ключа.</p>
 <p>Добавим новый подключ:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>addkey
 </pre></div>
@@ -796,7 +796,7 @@ keytocard
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gpg2 --export-ssh-key XXXXXXXXX --output ~/.ssh/id_rsa.pub
 </pre></div>
 </div>
-<p>Здесь <strong>XXXXXXXXX</strong> - ID нашего ключа.</p>
+<p>Здесь <strong>XXXXXXXXX</strong> – ID нашего ключа.</p>
 <p>Активируем поддержку SSH агента в GnuPG агенте, добавив в конец файла <code class="docutils literal notranslate"><span class="pre">~/.gnupg/gpg-agent.conf</span></code> следующую строку:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>enable-ssh-support
 </pre></div>
@@ -824,7 +824,7 @@ gpgconf --launch gpg-agent
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gpg2 --edit-key XXXXXXXXX
 </pre></div>
 </div>
-<p>Здесь <strong>XXXXXXXXX</strong> - ID нашего ключа.</p>
+<p>Здесь <strong>XXXXXXXXX</strong> – ID нашего ключа.</p>
 <p>Выберем каждый подключ и переместим его на токен:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>key 1
 keytocard
@@ -835,7 +835,7 @@ keytocard
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gpg2 --delete-secret-key XXXXXXXXX
 </pre></div>
 </div>
-<p>Здесь <strong>XXXXXXXXX</strong> - ID нашего ключа.</p>
+<p>Здесь <strong>XXXXXXXXX</strong> – ID нашего ключа.</p>
 </div>
 <div class="section" id="nmap-scan">
 <span id="index-76"></span><span id="id57"></span><h2>Как просканировать хост на наличие работающих сервисов?<a class="headerlink" href="#nmap-scan" title="Ссылка на этот заголовок">¶</a></h2>
@@ -877,7 +877,7 @@ sudo chmod 0400 /etc/keys/foo-bar.key
 </pre></div>
 </div>
 <p>Утилита cryptsetup запросит ввод мастер-пароля.</p>
-<p>Здесь <strong>/dev/sda2</strong> - устройство зашифрованного LUKS тома, для которого требуется добавить ключевой файл.</p>
+<p>Здесь <strong>/dev/sda2</strong> – устройство зашифрованного LUKS тома, для которого требуется добавить ключевой файл.</p>
 </div>
 <div class="section" id="luks-removekey">
 <span id="index-78"></span><span id="id59"></span><h2>Как удалить ключевой файл разблокировки зашифрованного LUKS раздела?<a class="headerlink" href="#luks-removekey" title="Ссылка на этот заголовок">¶</a></h2>
@@ -890,7 +890,7 @@ sudo chmod 0400 /etc/keys/foo-bar.key
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo shred -u -v /etc/keys/foo-bar.key
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sda2</strong> - устройство зашифрованного LUKS тома, у которого требуется удалить слот с ключевым файлом.</p>
+<p>Здесь <strong>/dev/sda2</strong> – устройство зашифрованного LUKS тома, у которого требуется удалить слот с ключевым файлом.</p>
 </div>
 <div class="section" id="luks-auto">
 <span id="index-79"></span><span id="id60"></span><h2>Как настроить автоматическую расшифровку LUKS разделов при загрузке?<a class="headerlink" href="#luks-auto" title="Ссылка на этот заголовок">¶</a></h2>
@@ -902,7 +902,7 @@ sudo chmod 0400 /etc/keys/foo-bar.key
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar UUID=XXXXXX /etc/keys/foo-bar.key luks
 </pre></div>
 </div>
-<p>Здесь <strong>foo-bar</strong> - внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> - <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, <strong>/etc/keys/foo-bar.key</strong> - полный путь к <a class="reference internal" href="#luks-addkey"><span class="std std-ref">ключевому файлу</span></a>. При шифровании <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">SSD накопителя</span></a> вместо параметра <strong>luks</strong> следует использовать <strong>discard</strong>.</p>
+<p>Здесь <strong>foo-bar</strong> – внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> – <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, <strong>/etc/keys/foo-bar.key</strong> – полный путь к <a class="reference internal" href="#luks-addkey"><span class="std std-ref">ключевому файлу</span></a>. При шифровании <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">SSD накопителя</span></a> вместо параметра <strong>luks</strong> следует использовать <strong>discard</strong>.</p>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
 </pre></div>
@@ -911,7 +911,7 @@ sudo chmod 0400 /etc/keys/foo-bar.key
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/dev/mapper/foo-bar /media/data ext4 defaults 1 2
 </pre></div>
 </div>
-<p>Здесь <strong>foo-bar</strong> - внутреннее имя, указанное ранее в crypttab, <strong>/media/data</strong> - точка монтирования, а <strong>ext4</strong> - используемая файловая система.</p>
+<p>Здесь <strong>foo-bar</strong> – внутреннее имя, указанное ранее в crypttab, <strong>/media/data</strong> – точка монтирования, а <strong>ext4</strong> – используемая файловая система.</p>
 <p>Если всё сделано верно, то при следующей загрузке раздел будет смонтирован автоматически без запроса пароля.</p>
 </div>
 <div class="section" id="root-reset">
@@ -925,13 +925,13 @@ sudo chmod 0400 /etc/keys/foo-bar.key
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar UUID=XXXXXX /etc/keys/foo-bar.key noauto
 </pre></div>
 </div>
-<p>Здесь <strong>foo-bar</strong> - внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> - <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, <strong>/etc/keys/foo-bar.key</strong> - полный путь к <a class="reference internal" href="#luks-addkey"><span class="std std-ref">ключевому файлу</span></a>. Параметр <strong>noauto</strong> должен применяться только совместно с ключом.</p>
+<p>Здесь <strong>foo-bar</strong> – внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> – <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, <strong>/etc/keys/foo-bar.key</strong> – полный путь к <a class="reference internal" href="#luks-addkey"><span class="std std-ref">ключевому файлу</span></a>. Параметр <strong>noauto</strong> должен применяться только совместно с ключом.</p>
 <p>Данное зашифрованное устройство будет смонтировано и автоматически расшифровано при первой попытке доступа к нему.</p>
 </div>
 <div class="section" id="truecrypt-fedora">
 <span id="index-82"></span><span id="id63"></span><h2>Как работать с TrueCrypt контейнерами в Fedora?<a class="headerlink" href="#truecrypt-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Из-за <a class="reference internal" href="development.html#fedora-licenses"><span class="std std-ref">несвободной лицензии</span></a> TrueCrypt и все его форки (в т.ч. VeraCrypt) не могут быть добавлены в репозитории Fedora, однако в настоящее время утилита <strong>cryptsetup</strong> полностью поддерживает работу с созданными ими контейнерами.</p>
-<p>Cryptsetup поддерживает монтирование как <a class="reference internal" href="#truecrypt-mount"><span class="std std-ref">TrueCrypt</span></a>, так и <a class="reference internal" href="#veracrypt-mount"><span class="std std-ref">VeraCrypt</span></a> томов (файлы и устройства), а также умеет их администрировать (управлять ключами, паролями). Ограничение лишь одно - нельзя создавать новые зашифрованные данными механизмами контейнеры.</p>
+<p>Cryptsetup поддерживает монтирование как <a class="reference internal" href="#truecrypt-mount"><span class="std std-ref">TrueCrypt</span></a>, так и <a class="reference internal" href="#veracrypt-mount"><span class="std std-ref">VeraCrypt</span></a> томов (файлы и устройства), а также умеет их администрировать (управлять ключами, паролями). Ограничение лишь одно – нельзя создавать новые зашифрованные данными механизмами контейнеры.</p>
 </div>
 <div class="section" id="truecrypt-mount">
 <span id="index-83"></span><span id="id64"></span><h2>Как смонтировать TrueCrypt контейнер в Fedora?<a class="headerlink" href="#truecrypt-mount" title="Ссылка на этот заголовок">¶</a></h2>
@@ -953,7 +953,7 @@ sudo rmdir /media/data
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --type tcrypt close /dev/mapper/foo-bar
 </pre></div>
 </div>
-<p>Здесь <strong>/path/to/container.tc</strong> полный путь к файлу контейнера на диске (либо зашифрованному устройству), а <strong>foo-bar</strong> - внутреннее имя для dev-mapper.</p>
+<p>Здесь <strong>/path/to/container.tc</strong> полный путь к файлу контейнера на диске (либо зашифрованному устройству), а <strong>foo-bar</strong> – внутреннее имя для dev-mapper.</p>
 </div>
 <div class="section" id="veracrypt-fedora">
 <span id="veracrypt-mount"></span><span id="index-84"></span><h2>Как смонтировать VeraCrypt контейнер в Fedora?<a class="headerlink" href="#veracrypt-fedora" title="Ссылка на этот заголовок">¶</a></h2>
@@ -975,7 +975,7 @@ sudo rmdir /media/data
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --veracrypt --type tcrypt close /dev/mapper/foo-bar
 </pre></div>
 </div>
-<p>Здесь <strong>/path/to/container.hc</strong> полный путь к файлу контейнера на диске (либо зашифрованному устройству), а <strong>foo-bar</strong> - внутреннее имя для dev-mapper.</p>
+<p>Здесь <strong>/path/to/container.hc</strong> полный путь к файлу контейнера на диске (либо зашифрованному устройству), а <strong>foo-bar</strong> – внутреннее имя для dev-mapper.</p>
 </div>
 <div class="section" id="veracrypt">
 <span id="veracrypt-auto"></span><span id="index-85"></span><h2>Как настроить автоматическое монтирование VeraCrypt томов при загрузке?<a class="headerlink" href="#veracrypt" title="Ссылка на этот заголовок">¶</a></h2>
@@ -987,7 +987,7 @@ sudo rmdir /media/data
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar UUID=XXXXXX /etc/keys/foo-bar.key tcrypt-veracrypt
 </pre></div>
 </div>
-<p>Здесь <strong>foo-bar</strong> - внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> - <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, либо полный путь к файлу контейнера, <strong>/etc/keys/foo-bar.key</strong> - полный путь к ключевому файлу, либо файлу с паролем (разрыв строки в конце файла не ставится).</p>
+<p>Здесь <strong>foo-bar</strong> – внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> – <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, либо полный путь к файлу контейнера, <strong>/etc/keys/foo-bar.key</strong> – полный путь к ключевому файлу, либо файлу с паролем (разрыв строки в конце файла не ставится).</p>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
 </pre></div>
@@ -996,7 +996,7 @@ sudo rmdir /media/data
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/dev/mapper/foo-bar /media/data auto defaults,x-systemd.automount 0 0
 </pre></div>
 </div>
-<p>Здесь <strong>foo-bar</strong> - внутреннее имя, указанное ранее в crypttab, а <strong>/media/data</strong> - точка монтирования.</p>
+<p>Здесь <strong>foo-bar</strong> – внутреннее имя, указанное ранее в crypttab, а <strong>/media/data</strong> – точка монтирования.</p>
 <p>Если всё сделано верно, то при следующей загрузке зашифрованный VeraCrypt том будет смонтирован автоматически.</p>
 </div>
 <div class="section" id="bitlocker-fedora">
@@ -1024,7 +1024,7 @@ sudo rmdir /media/data
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --type bitlk close /dev/mapper/foo-bar
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sdX1</strong> - зашифрованное BitLocker устройство, а <strong>foo-bar</strong> - внутреннее имя для dev-mapper.</p>
+<p>Здесь <strong>/dev/sdX1</strong> – зашифрованное BitLocker устройство, а <strong>foo-bar</strong> – внутреннее имя для dev-mapper.</p>
 </div>
 <div class="section" id="bitlocker">
 <span id="bitlocker-auto"></span><span id="index-88"></span><h2>Как настроить автоматическое монтирование BitLocker томов при загрузке?<a class="headerlink" href="#bitlocker" title="Ссылка на этот заголовок">¶</a></h2>
@@ -1036,7 +1036,7 @@ sudo rmdir /media/data
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar UUID=XXXXXX /etc/keys/foo-bar.key bitlk
 </pre></div>
 </div>
-<p>Здесь <strong>foo-bar</strong> - внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> - <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, <strong>/etc/keys/foo-bar.key</strong> - полный путь к ключевому файлу, либо файлу с паролем (разрыв строки в конце файла не ставится).</p>
+<p>Здесь <strong>foo-bar</strong> – внутреннее имя, которое будет использоваться dev-mapper, <strong>XXXXXX</strong> – <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID диска</span></a>, <strong>/etc/keys/foo-bar.key</strong> – полный путь к ключевому файлу, либо файлу с паролем (разрыв строки в конце файла не ставится).</p>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
 </pre></div>
@@ -1045,7 +1045,7 @@ sudo rmdir /media/data
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/dev/mapper/foo-bar /media/data auto defaults,x-systemd.automount 0 0
 </pre></div>
 </div>
-<p>Здесь <strong>foo-bar</strong> - внутреннее имя, указанное ранее в crypttab, а <strong>/media/data</strong> - точка монтирования.</p>
+<p>Здесь <strong>foo-bar</strong> – внутреннее имя, указанное ранее в crypttab, а <strong>/media/data</strong> – точка монтирования.</p>
 <p>Если всё сделано верно, то при следующей загрузке зашифрованный BitLocker том будет смонтирован автоматически.</p>
 </div>
 <div class="section" id="selinux-local-storage">
@@ -1053,8 +1053,8 @@ sudo rmdir /media/data
 <p>Заданные пользователем нестандартные контексты, а также переопределения хранятся внутри каталога <code class="docutils literal notranslate"><span class="pre">/etc/selinux/targeted/contexts/files</span></code> в следующих файлах:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">file_contexts.local</span></code> - текстовый формат;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">file_contexts.local.bin</span></code> - скомпилированный бинарный формат.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file_contexts.local</span></code> – текстовый формат;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file_contexts.local.bin</span></code> – скомпилированный бинарный формат.</p></li>
 </ul>
 </div></blockquote>
 <p>Не следует их править в текстовых, либо шестнадцатиричных редакторах, т.к. это может привести к сбою в политиках SELinux и сбросу настроек по умолчанию. Вместо этого необходимо использовать <a class="reference internal" href="#selinux-local-remove"><span class="std std-ref">инструмент semanage</span></a>.</p>
@@ -1084,7 +1084,7 @@ sudo rmdir /media/data
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/zero bs=1M count=1024 of=/media/data/foo-bar.dat
 </pre></div>
 </div>
-<p>Здесь <strong>/media/data/foo-bar.dat</strong> - полный путь к файлу на диске.</p>
+<p>Здесь <strong>/media/data/foo-bar.dat</strong> – полный путь к файлу на диске.</p>
 <p>Создадим зашифрованный LUKS контейнер:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --verify-passphrase luksFormat /media/data/foo-bar.dat -c aes-xts-plain64 -s 256 -h sha512
 </pre></div>
@@ -1136,7 +1136,7 @@ sudo rmdir /media/data
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksErase /dev/sdX1
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sdX1</strong> - зашифрованный раздел диска, данные с которого требуется уничтожить. Он не должен быть смонтирован. Ввод пароля не требуется.</p>
+<p>Здесь <strong>/dev/sdX1</strong> – зашифрованный раздел диска, данные с которого требуется уничтожить. Он не должен быть смонтирован. Ввод пароля не требуется.</p>
 <p>После выполнения данного действия все ключевые слоты LUKS-контейнера будут заполнены нулями и доступ к данным, хранящимся на данном разделе, станет невозможен даже при знании верного пароля или наличии ключа.</p>
 <p>Внимание! Это действие не затирает содержимое физически, поэтому после его использования рекомендуется <a class="reference internal" href="#destroy-disk"><span class="std std-ref">осуществить эту процедуру</span></a> самостоятельно.</p>
 </div>

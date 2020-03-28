@@ -90,7 +90,7 @@
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>modinfo foo-bar
 </pre></div>
 </div>
-<p>Здесь <strong>foo-bar</strong> - имя модуля, информацию о котором требуется вывести.</p>
+<p>Здесь <strong>foo-bar</strong> – имя модуля, информацию о котором требуется вывести.</p>
 </div>
 <div class="section" id="uefi-boot-fedora">
 <span id="uefi-list"></span><span id="index-7"></span><h2>Как определить список загружаемых ОС в меню UEFI Boot из Fedora?<a class="headerlink" href="#uefi-boot-fedora" title="Ссылка на этот заголовок">¶</a></h2>
@@ -106,7 +106,7 @@
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo efibootmgr -o 0000,0002,0003,0001
 </pre></div>
 </div>
-<p>Здесь <strong>0000</strong> и прочие - результат предыдущего вывода утилиты. Ведущие нули указывать не обязательно.</p>
+<p>Здесь <strong>0000</strong> и прочие – результат предыдущего вывода утилиты. Ведущие нули указывать не обязательно.</p>
 <p>Изменения вступают в силу немедленно.</p>
 </div>
 <div class="section" id="uefi-remove">
@@ -163,7 +163,7 @@
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mount -t ext4 /dev/sda3 /media/fedora
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sda3</strong> - раздел, на котором установлена ОС, а <strong>ext4</strong> - его файловая система. Внесём соответствующие правки если это не так.</p>
+<p>Здесь <strong>/dev/sda3</strong> – раздел, на котором установлена ОС, а <strong>ext4</strong> – его файловая система. Внесём соответствующие правки если это не так.</p>
 <p>Переходим в каталог с корневой ФС и монтируем ряд необходимых для работы окружения виртуальных ФС:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd /media/fedora
 sudo mount -t proc /proc proc
@@ -224,8 +224,8 @@ sudo mount -t vfat /dev/sda1 boot/efi
 </div>
 <div class="section" id="utc-localtime">
 <span id="system-time-utc"></span><span id="index-19"></span><h2>Как перевести системные часы в UTC или localtime и наоборот?<a class="headerlink" href="#utc-localtime" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Localtime - это хранение в UEFI BIOS компьютера времени с учётом установленного в системе часового пояса. При определённых условиях это может вызывать проблемы с синхронизацией времени, а также работой нескольких операционных систем на одном компьютере.</p>
-<p>UTC - это хранение в UEFI BIOS компьютера всемирного координированного времени по Гринвичу без учёта часовых поясов. Часовыми поясами управляет операционная система, что позволяет каждому пользователю в системе, а также приложениям использовать <a class="reference internal" href="using-system.html#application-timezone"><span class="std std-ref">индивидуальные настройки</span></a>.</p>
+<p>Localtime – это хранение в UEFI BIOS компьютера времени с учётом установленного в системе часового пояса. При определённых условиях это может вызывать проблемы с синхронизацией времени, а также работой нескольких операционных систем на одном компьютере.</p>
+<p>UTC – это хранение в UEFI BIOS компьютера всемирного координированного времени по Гринвичу без учёта часовых поясов. Часовыми поясами управляет операционная система, что позволяет каждому пользователю в системе, а также приложениям использовать <a class="reference internal" href="using-system.html#application-timezone"><span class="std std-ref">индивидуальные настройки</span></a>.</p>
 <p>Переключение аппаратных часов компьютера в UTC из localtime:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo timedatectl set-local-rtc no
 </pre></div>
@@ -340,7 +340,7 @@ sudo systemctl disable zram-swap
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w foo.bar=X
 </pre></div>
 </div>
-<p>Здесь <strong>foo.bar</strong> имя параметра, а <strong>X</strong> - его значение. Изменения вступят в силу немедленно и сохранятся до перезагрузки системы.</p>
+<p>Здесь <strong>foo.bar</strong> имя параметра, а <strong>X</strong> – его значение. Изменения вступят в силу немедленно и сохранятся до перезагрузки системы.</p>
 </div>
 <div class="section" id="sysctl-permanent">
 <span id="index-31"></span><span id="id21"></span><h2>Как задать и сохранить параметр ядра при помощи sysctl?<a class="headerlink" href="#sysctl-permanent" title="Ссылка на этот заголовок">¶</a></h2>
@@ -349,7 +349,7 @@ sudo systemctl disable zram-swap
 foo.bar2=X2
 </pre></div>
 </div>
-<p>Каждый параметр должен быть указан с новой строки. Здесь <strong>foo.bar</strong> имя параметра, а <strong>X</strong> - его значение.</p>
+<p>Каждый параметр должен быть указан с новой строки. Здесь <strong>foo.bar</strong> имя параметра, а <strong>X</strong> – его значение.</p>
 <p>Для вступления изменений в силу требуется перезагрузка:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
 </pre></div>
@@ -360,12 +360,12 @@ foo.bar2=X2
 <p>При загрузке ядро проверяет следующие каталоги в поисках <strong>.conf</strong> файлов:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">/usr/lib/sysctl.d</span></code> - предустановленные конфиги системы и определённых пакетов;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/run/sysctl.d</span></code> - различные конфиги, сгенерированные в рантайме;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/etc/sysctl.d</span></code> - пользовательские конфиги.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/usr/lib/sysctl.d</span></code> – предустановленные конфиги системы и определённых пакетов;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/run/sysctl.d</span></code> – различные конфиги, сгенерированные в рантайме;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/etc/sysctl.d</span></code> – пользовательские конфиги.</p></li>
 </ol>
 </div></blockquote>
-<p>Порядок выполнения - в алфавитном порядке, поэтому для его изменения многие конфиги содержат цифры и буквы. Например конфиг <code class="docutils literal notranslate"><span class="pre">00-foobar.conf</span></code> выполнится раньше, чем <code class="docutils literal notranslate"><span class="pre">zz-foobar.conf</span></code>.</p>
+<p>Порядок выполнения – в алфавитном порядке, поэтому для его изменения многие конфиги содержат цифры и буквы. Например конфиг <code class="docutils literal notranslate"><span class="pre">00-foobar.conf</span></code> выполнится раньше, чем <code class="docutils literal notranslate"><span class="pre">zz-foobar.conf</span></code>.</p>
 </div>
 <div class="section" id="configure-runlevel">
 <span id="index-33"></span><span id="id23"></span><h2>Как переключить запуск системы в текстовый режим и обратно?<a class="headerlink" href="#configure-runlevel" title="Ссылка на этот заголовок">¶</a></h2>
@@ -439,7 +439,7 @@ foo.bar2=X2
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo xfs_admin -L &quot;NewLabel&quot; /dev/sda1
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sda1</strong> - раздел, на котором требуется изменить метку.</p>
+<p>Здесь <strong>/dev/sda1</strong> – раздел, на котором требуется изменить метку.</p>
 </div>
 <div class="section" id="uuid">
 <span id="get-uuid"></span><span id="index-37"></span><h2>Как получить UUID всех смонтированных разделов?<a class="headerlink" href="#uuid" title="Ссылка на этот заголовок">¶</a></h2>
@@ -451,7 +451,7 @@ foo.bar2=X2
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo blkid /dev/sda1
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sda1</strong> - раздел, для которого требуется вывести UUID.</p>
+<p>Здесь <strong>/dev/sda1</strong> – раздел, для которого требуется вывести UUID.</p>
 </div>
 <div class="section" id="change-uuid">
 <span id="index-38"></span><span id="id26"></span><h2>Как изменить UUID раздела?<a class="headerlink" href="#change-uuid" title="Ссылка на этот заголовок">¶</a></h2>
@@ -463,7 +463,7 @@ foo.bar2=X2
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo xfs_admin -U generate /dev/sda1
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sda1</strong> - раздел, на котором требуется изменить UUID.</p>
+<p>Здесь <strong>/dev/sda1</strong> – раздел, на котором требуется изменить UUID.</p>
 </div>
 <div class="section" id="pid">
 <span id="get-pid"></span><span id="index-39"></span><h2>Как получить PID запущенного процесса?<a class="headerlink" href="#pid" title="Ссылка на этот заголовок">¶</a></h2>
@@ -489,7 +489,7 @@ foo.bar2=X2
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kill -15 XXXX
 </pre></div>
 </div>
-<p>Здесь <strong>XXXX</strong> - PID нужного процесса.</p>
+<p>Здесь <strong>XXXX</strong> – PID нужного процесса.</p>
 <p>Вместо явного указания PID процесса существует возможность завершить работу процесса с указанным именем посредством <strong>killall</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>killall -15 foo-bar
 </pre></div>
@@ -504,7 +504,7 @@ foo.bar2=X2
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kill -9 XXXX
 </pre></div>
 </div>
-<p>Здесь <strong>XXXX</strong> - PID нужного процесса.</p>
+<p>Здесь <strong>XXXX</strong> – PID нужного процесса.</p>
 <p>Вместо явного указания PID процесса существует возможность завершить работу процесса с указанным именем посредством <strong>killall</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>killall -9 foo-bar
 </pre></div>
@@ -561,7 +561,7 @@ foo.bar2=X2
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo bash -c &quot;echo X &gt; /proc/irq/Y/smp_affinity&quot;
 </pre></div>
 </div>
-<p>Здесь <strong>X</strong> - маска процессора (CPU affinity), который будет обрабатывать данное прерывание, а <strong>Y</strong> - номер прерывания (указан в левом столбце таблицы прерываний).</p>
+<p>Здесь <strong>X</strong> – маска процессора (CPU affinity), который будет обрабатывать данное прерывание, а <strong>Y</strong> – номер прерывания (указан в левом столбце таблицы прерываний).</p>
 <p>Чтобы вычислить маску следует возвести число 2 в степень, равную порядкому номеру процессора, и результат перевести в шестнадцатиричную систему счисления.</p>
 </div>
 <div class="section" id="too-many-open-files">
@@ -632,7 +632,7 @@ foo-bar       hard    nofile          8192
 <div class="section" id="effective-uid-real-uid">
 <span id="euid-vs-ruid"></span><span id="index-55"></span><h2>Чем отличается Effective UID процесса от Real UID?<a class="headerlink" href="#effective-uid-real-uid" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В мире UNIX считается нормальным, когда один процесс запускается от одного пользователя, но при этом получает права совсем другого (чаще всего это суперпользователь root).</p>
-<p>В качестве простого примера рассмтрим ситуацию, когда пользователь <strong>user1</strong> запускает бинарник с установленным suid-битом <strong>/usr/bin/foo-bar</strong>. Таким образом, у процесса <strong>foo-bar</strong> в качестве <em>Real user ID</em> будет установлен <strong>user1</strong>, а <em>Effective user ID</em> - <strong>root</strong>. Это сделано для того, чтобы приложение могло самостоятельно отказаться от повышенных прав, либо переключаться между ними при помощи соответствующего системного вызова.</p>
+<p>В качестве простого примера рассмтрим ситуацию, когда пользователь <strong>user1</strong> запускает бинарник с установленным suid-битом <strong>/usr/bin/foo-bar</strong>. Таким образом, у процесса <strong>foo-bar</strong> в качестве <em>Real user ID</em> будет установлен <strong>user1</strong>, а <em>Effective user ID</em> – <strong>root</strong>. Это сделано для того, чтобы приложение могло самостоятельно отказаться от повышенных прав, либо переключаться между ними при помощи соответствующего системного вызова.</p>
 </div>
 <div class="section" id="copying-data">
 <span id="index-56"></span><span id="id41"></span><h2>Как скопировать данные с одного раздела на другой?<a class="headerlink" href="#copying-data" title="Ссылка на этот заголовок">¶</a></h2>
@@ -700,7 +700,7 @@ Host bar
     IdentityFile ~/.ssh/id_rsa2
 </pre></div>
 </div>
-<p>Здесь <code class="docutils literal notranslate"><span class="pre">foo</span></code> и <code class="docutils literal notranslate"><span class="pre">bar</span></code> - имена сокращений (алиасов), которые будут использоваться для подключения. Для каждого могут быть указаны индивидуальные настройки, включая <a class="reference internal" href="security.html#ssh-keys"><span class="std std-ref">различные SSH ключи</span></a> при помощи директивы <code class="docutils literal notranslate"><span class="pre">IdentityFile</span></code>.</p>
+<p>Здесь <code class="docutils literal notranslate"><span class="pre">foo</span></code> и <code class="docutils literal notranslate"><span class="pre">bar</span></code> – имена сокращений (алиасов), которые будут использоваться для подключения. Для каждого могут быть указаны индивидуальные настройки, включая <a class="reference internal" href="security.html#ssh-keys"><span class="std std-ref">различные SSH ключи</span></a> при помощи директивы <code class="docutils literal notranslate"><span class="pre">IdentityFile</span></code>.</p>
 <p>Подключимся к первому серверу:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ssh foo
 </pre></div>
@@ -712,7 +712,7 @@ Host bar
 </div>
 <div class="section" id="fuse">
 <span id="fuse-info"></span><span id="index-61"></span><h2>Что такое FUSE?<a class="headerlink" href="#fuse" title="Ссылка на этот заголовок">¶</a></h2>
-<p>FUSE (file system in userspace) - это модуль ядра и набор утилит для работы с ним, предназначенные для запуска различных файловых систем в пользовательском пространстве.</p>
+<p>FUSE (file system in userspace) – это модуль ядра и набор утилит для работы с ним, предназначенные для запуска различных файловых систем в пользовательском пространстве.</p>
 <p>Благодаря FUSE в Fedora могут использоваться файловые системы, которые по какой-либо причине не могут войти напрямую в состав ядра Linux из-за лицензионных проблем, либо патентов.</p>
 <p>Некоторые примеры подобных реализаций:</p>
 <blockquote>
@@ -743,7 +743,7 @@ Host bar
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit foo-bar@FEDORAPROJECT.ORG
 </pre></div>
 </div>
-<p>Здесь <strong>foo-bar</strong> - логин на удалённой системе, а <strong>FEDORAPROJECT.ORG</strong> - имя домена (должно быть указано строго в верхнем регистре).</p>
+<p>Здесь <strong>foo-bar</strong> – логин на удалённой системе, а <strong>FEDORAPROJECT.ORG</strong> – имя домена (должно быть указано строго в верхнем регистре).</p>
 <p>В случае ввода верных авторизационных данных процесс должен пройти в штатном режиме.</p>
 </div>
 <div class="section" id="kerberos-renew">
@@ -757,7 +757,7 @@ Host bar
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit -R foo-bar@FEDORAPROJECT.ORG
 </pre></div>
 </div>
-<p>Здесь <strong>foo-bar</strong> - логин на удалённой системе, а <strong>FEDORAPROJECT.ORG</strong> - имя домена (должно быть указано строго в верхнем регистре).</p>
+<p>Здесь <strong>foo-bar</strong> – логин на удалённой системе, а <strong>FEDORAPROJECT.ORG</strong> – имя домена (должно быть указано строго в верхнем регистре).</p>
 </div>
 <div class="section" id="delete-inode">
 <span id="index-64"></span><span id="id46"></span><h2>В каталоге появился файл с некорректным именем, который не удаётся удалить. Что делать?<a class="headerlink" href="#delete-inode" title="Ссылка на этот заголовок">¶</a></h2>
@@ -775,7 +775,7 @@ Host bar
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find . -maxdepth 1 -type f -inum XXXXXXX -delete
 </pre></div>
 </div>
-<p>Здесь <strong>XXXXXXX</strong> - номер I-узла некорректного файла.</p>
+<p>Здесь <strong>XXXXXXX</strong> – номер I-узла некорректного файла.</p>
 </div>
 <div class="section" id="ext4">
 <span id="defrag-info"></span><span id="index-65"></span><h2>Нужно ли выполнять дефрагментацию для разделов с ФС ext4?<a class="headerlink" href="#ext4" title="Ссылка на этот заголовок">¶</a></h2>
@@ -803,7 +803,7 @@ Host bar
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fsck -t ext4 -fn /dev/sda2
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sda2</strong> - раздел, на котором следует провести процесс дефрагментации. Операция займёт достаточно много времени (в зависимости от размера диска). Прерывать её не следует, т.к. это может привести к полной потере данных.</p>
+<p>Здесь <strong>/dev/sda2</strong> – раздел, на котором следует провести процесс дефрагментации. Операция займёт достаточно много времени (в зависимости от размера диска). Прерывать её не следует, т.к. это может привести к полной потере данных.</p>
 </div>
 <div class="section" id="cpu-cores">
 <span id="index-68"></span><span id="id49"></span><h2>Как определить количество доступных процессоров или ядер?<a class="headerlink" href="#cpu-cores" title="Ссылка на этот заголовок">¶</a></h2>
@@ -868,7 +868,7 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 </div>
 <div class="section" id="coredump-systemd">
 <span id="codedump-info"></span><span id="index-71"></span><h2>Что такое coredump и почему systemd сохраняет их?<a class="headerlink" href="#coredump-systemd" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Coredump - это дамп закрытой памяти процесса, создаваемый в момент возникновения в нём внештатной ситуации, приводящей к аварийному завершению. Эти дампы используются всевозможными системами анализа и необходимы для создания правильных <a class="reference internal" href="generic-info.html#bug-report"><span class="std std-ref">баг-репортов</span></a>.</p>
+<p>Coredump – это дамп закрытой памяти процесса, создаваемый в момент возникновения в нём внештатной ситуации, приводящей к аварийному завершению. Эти дампы используются всевозможными системами анализа и необходимы для создания правильных <a class="reference internal" href="generic-info.html#bug-report"><span class="std std-ref">баг-репортов</span></a>.</p>
 <p>По умолчанию systemd при падениях любых процессов (как системных, так и пользовательских), сохраняет дампы их закрытой памяти в каталоге <strong>/var/lib/systemd/coredump</strong>, поэтому он может занимать десятки гигабайт.</p>
 <p>Возможно их <a class="reference internal" href="#codedump-limit"><span class="std std-ref">ограничить</span></a>, либо полностью <a class="reference internal" href="#codedump-disable"><span class="std std-ref">отключить</span></a>.</p>
 </div>
@@ -924,7 +924,7 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <span id="index-77"></span><span id="id56"></span><h2>Почему моё приложение не может использовать порт ниже 1024?<a class="headerlink" href="#port-bind-priv" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Диапазон портов 1-1023 зарезервирован для суперпользователя, а также приложений, наделённых его правами.</p>
 <p>Стандартная схема использования: сервис запускается с правами root, начинает прослушивать необходимый ему порт, а затем <a class="reference internal" href="#euid-vs-ruid"><span class="std std-ref">сбрасывает</span></a> повышенные права. Так поступают большинство популярных серверных приложений (apache, nginx и т.д.).</p>
-<p>Существует и альтернативный вариант - запуск при помощи <a class="reference internal" href="#port-bind-systemd"><span class="std std-ref">особого юнита systemd</span></a>.</p>
+<p>Существует и альтернативный вариант – запуск при помощи <a class="reference internal" href="#port-bind-systemd"><span class="std std-ref">особого юнита systemd</span></a>.</p>
 </div>
 <div class="section" id="port-bind-systemd">
 <span id="index-78"></span><span id="id57"></span><h2>Как запустить приложение на порту ниже 1024 при помощи systemd?<a class="headerlink" href="#port-bind-systemd" title="Ссылка на этот заголовок">¶</a></h2>

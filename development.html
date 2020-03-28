@@ -52,7 +52,7 @@
 </div>
 <div class="section" id="koji">
 <span id="koji-about"></span><span id="index-3"></span><h2>Что такое Koji?<a class="headerlink" href="#koji" title="Ссылка на этот заголовок">¶</a></h2>
-<p><a class="reference external" href="https://koji.fedoraproject.org/koji/">Fedora Koji</a> - это автоматизированная среда для сборки пакетов для Fedora.</p>
+<p><a class="reference external" href="https://koji.fedoraproject.org/koji/">Fedora Koji</a> – это автоматизированная среда для сборки пакетов для Fedora.</p>
 </div>
 <div class="section" id="fedpkg-rebuild">
 <span id="index-4"></span><span id="id3"></span><h2>Хочу внести свои правки в пакет и пересобрать его для личных нужд. Как проще это сделать?<a class="headerlink" href="#fedpkg-rebuild" title="Ссылка на этот заголовок">¶</a></h2>
@@ -64,7 +64,7 @@
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg clone -a foo-bar
 </pre></div>
 </div>
-<p>Перейдём в каталог с загруженными исходниками и переключимся на ветку для конкретной версии Fedora (если нужна версия из Rawhide - следует использовать <strong>master</strong>):</p>
+<p>Перейдём в каталог с загруженными исходниками и переключимся на ветку для конкретной версии Fedora (если нужна версия из Rawhide – следует использовать <strong>master</strong>):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
 fedpkg switch-branch f32
 </pre></div>
@@ -90,7 +90,7 @@ git commit -m &quot;Description of our changes.&quot;
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git archive --format=tar --prefix=foo-bar-1.0.0/ HEAD | gzip &gt; ~/rpmbuild/SOURCES/foo-bar-1.0.0.tar.gz
 </pre></div>
 </div>
-<p>Здесь <strong>HEAD</strong> - указатель на актуальный коммит (вместо этого можно использовать SHA1 хеш любого коммита, а также имя тега или ветки), <strong>foo-bar</strong> - название проекта, а <strong>1.0.0</strong> - его версия.</p>
+<p>Здесь <strong>HEAD</strong> – указатель на актуальный коммит (вместо этого можно использовать SHA1 хеш любого коммита, а также имя тега или ветки), <strong>foo-bar</strong> – название проекта, а <strong>1.0.0</strong> – его версия.</p>
 </div>
 <div class="section" id="koji-rpm-fusion">
 <span id="rpmfusion-override"></span><span id="index-6"></span><h2>Как переопределить пакет в Koji репозитория RPM Fusion?<a class="headerlink" href="#koji-rpm-fusion" title="Ссылка на этот заголовок">¶</a></h2>
@@ -152,7 +152,7 @@ git commit -m &quot;Description of our changes.&quot;
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/$PID/environ
 </pre></div>
 </div>
-<p>Здесь <strong>$PID</strong> - <a class="reference internal" href="administration.html#get-pid"><span class="std std-ref">PID</span></a> процесса, информацию о котором необходимо получить.</p>
+<p>Здесь <strong>$PID</strong> – <a class="reference internal" href="administration.html#get-pid"><span class="std std-ref">PID</span></a> процесса, информацию о котором необходимо получить.</p>
 </div>
 <div class="section" id="env-set">
 <span id="index-11"></span><span id="id7"></span><h2>Как задать переменную окружения?<a class="headerlink" href="#env-set" title="Ссылка на этот заголовок">¶</a></h2>
@@ -260,7 +260,7 @@ git rebase master
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>g++ $(rpm -E %{optflags}) -fPIC helloworld.cpp -o helloworld $(rpm -E %{build_ldflags}) -lstdc++
 </pre></div>
 </div>
-<p>Здесь <strong>g++</strong> - запускающий файл файл компилятора, <strong>helloworld.cpp</strong> - файл с исходным кодом (если их несколько, то разделяются пробелом), <strong>helloworld</strong> - имя результирующего бинарника, <strong>-lstdc++</strong> - указание компоновщику на необходимость линковки со стандартной библиотекой C++.</p>
+<p>Здесь <strong>g++</strong> – запускающий файл файл компилятора, <strong>helloworld.cpp</strong> – файл с исходным кодом (если их несколько, то разделяются пробелом), <strong>helloworld</strong> – имя результирующего бинарника, <strong>-lstdc++</strong> – указание компоновщику на необходимость линковки со стандартной библиотекой C++.</p>
 <p>Корректные флаги компиляции и компоновки вставляются автоматически из соответствующих макросов RPM.</p>
 <p>Запустим результат сборки:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>./helloworld
@@ -324,7 +324,7 @@ user1
 <div class="section" id="lto">
 <span id="enable-lto"></span><span id="index-18"></span><h2>Как можно активировать LTO оптимизации при сборке пакета?<a class="headerlink" href="#lto" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для активации <a class="reference external" href="https://gcc.gnu.org/wiki/LinkTimeOptimization">LTO оптимизаций</a> необходимо и достаточно передать параметр <code class="docutils literal notranslate"><span class="pre">-flto</span></code> как для компилятора (<strong>CFLAGS</strong> и/или <strong>CXXFLAGS</strong>), так и для компоновщика.</p>
-<p>Самый простой способ сделать это - переопределение значений стандартных макросов внутри SPEC файла:</p>
+<p>Самый простой способ сделать это – переопределение значений стандартных макросов внутри SPEC файла:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global optflags %{optflags} -flto
 %global build_ldflags %{build_ldflags} -flto
 </pre></div>
@@ -422,8 +422,8 @@ export NM=%{_bindir}/gcc-nm
 <p>Если приложение было собрано со старой версией библиотеки <strong>foo-bar</strong>, которой уже нет в репозиториях и его требуется запустить, существует два способа:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><p><a class="reference internal" href="#ldpreload-safety"><span class="std std-ref">LD_PRELOAD</span></a> - небезопасный - библиотека (или библиотеки) напрямую инъектируется в процесс средствами интерпретатора динамических библиотек LD до его непосредственного запуска;</p></li>
-<li><p>LD_LIBRARY_PATH - более безопасный - список каталогов, в которых интерпретатор динамических библиотек LD ищет соответствующие so, расширяется на указанные пользователем значения.</p></li>
+<li><p><a class="reference internal" href="#ldpreload-safety"><span class="std std-ref">LD_PRELOAD</span></a> – небезопасный – библиотека (или библиотеки) напрямую инъектируется в процесс средствами интерпретатора динамических библиотек LD до его непосредственного запуска;</p></li>
+<li><p>LD_LIBRARY_PATH – более безопасный – список каталогов, в которых интерпретатор динамических библиотек LD ищет соответствующие so, расширяется на указанные пользователем значения.</p></li>
 </ol>
 </div></blockquote>
 <p>Рассмотрим второй способ с переопределением <a class="reference internal" href="#env-set"><span class="std std-ref">переменной окружения</span></a> <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code>.</p>
@@ -434,7 +434,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 /path/to/binary/foo
 </pre></div>
 </div>
-<p>Здесь <strong>foo</strong> - имя бинарника, который требуется запустить, а <strong>/path/to/binary</strong> - каталог, в котором он находится. В качестве разделителя путей <strong>LD_LIBRARY_PATH</strong> применяется двоеточие. Закрывающий слэш не ставится.</p>
+<p>Здесь <strong>foo</strong> – имя бинарника, который требуется запустить, а <strong>/path/to/binary</strong> – каталог, в котором он находится. В качестве разделителя путей <strong>LD_LIBRARY_PATH</strong> применяется двоеточие. Закрывающий слэш не ставится.</p>
 <p>Установим скрипту разрешение не запуск и запустим его:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>chmod +x run-foo.sh
 ./run-foo.sh
@@ -468,7 +468,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 </div>
 <div class="section" id="qt-creator">
 <span id="qtcreator-docs"></span><span id="index-26"></span><h2>В Qt Creator отсутствует документация. Как исправить?<a class="headerlink" href="#qt-creator" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Если Qt Creator при попытке загрузить документацию выдаёт ошибку <em>Error loading: qthelp://org.qt-project.qtcreator.472/doc/index.html</em>, выберем пункт меню <strong>Tools</strong> - <strong>Options</strong> - <strong>Help</strong> - <strong>Documentation</strong> - <strong>Add</strong>, затем вручную добавим следующие файлы:</p>
+<p>Если Qt Creator при попытке загрузить документацию выдаёт ошибку <em>Error loading: qthelp://org.qt-project.qtcreator.472/doc/index.html</em>, выберем пункт меню <strong>Tools</strong> – <strong>Options</strong> – <strong>Help</strong> – <strong>Documentation</strong> – <strong>Add</strong>, затем вручную добавим следующие файлы:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/usr/share/doc/qt5/qmake.qch
 /usr/share/doc/qt5/qtconcurrent.qch
 /usr/share/doc/qt5/qtcore.qch
@@ -493,7 +493,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 <div class="section" id="qtcreator-kits">
 <span id="index-27"></span><span id="id16"></span><h2>В Qt Creator отсутствуют компиляторы. Как исправить?<a class="headerlink" href="#qtcreator-kits" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если Qt Creator не смог самостоятельно обнаружить установленный в системе фреймворк Qt, а также компилятор, то необходимо добавить их самостоятельно.</p>
-<p>Для этого войдём в настройки IDE, затем сначала добавим компилятор GCC <code class="docutils literal notranslate"><span class="pre">/usr/bin/gcc</span></code>, а затем тулчейн Qt - <code class="docutils literal notranslate"><span class="pre">/usr/bin/qmake-qt5</span></code>. После этого на вкладке <strong>Kits</strong> создадим новый набор из данных компонентов.</p>
+<p>Для этого войдём в настройки IDE, затем сначала добавим компилятор GCC <code class="docutils literal notranslate"><span class="pre">/usr/bin/gcc</span></code>, а затем тулчейн Qt – <code class="docutils literal notranslate"><span class="pre">/usr/bin/qmake-qt5</span></code>. После этого на вкладке <strong>Kits</strong> создадим новый набор из данных компонентов.</p>
 <p>Сохраним изменения в настройках и добавим созданный Kit к своему проекту.</p>
 </div>
 <div class="section" id="python-ide">
@@ -599,7 +599,7 @@ sudo restorecon -Rv /media/foo-bar/mock/cache
 sudo restorecon -Rv /media/foo-bar/mock/lib
 </pre></div>
 </div>
-<p>Здесь <strong>/media/foo-bar</strong> - точка монтирования нового накопителя, на котором будут располагаться кэши mock.</p>
+<p>Здесь <strong>/media/foo-bar</strong> – точка монтирования нового накопителя, на котором будут располагаться кэши mock.</p>
 <p>Внимание! Раздел назначения должен использовать флаги монтирования по умолчанию <code class="docutils literal notranslate"><span class="pre">defaults</span></code>. В противном случае не будут выполнены скриптлеты и сборка не завершится успешно.</p>
 </div>
 <div class="section" id="git-bash">
@@ -666,7 +666,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git diff CCC &gt; result.patch
 </pre></div>
 </div>
-<p>Здесь <strong>AAA</strong>, <strong>BBB</strong> и <strong>CCC</strong> - хеши коммитов в Git репозитории.</p>
+<p>Здесь <strong>AAA</strong>, <strong>BBB</strong> и <strong>CCC</strong> – хеши коммитов в Git репозитории.</p>
 </div>
 <div class="section" id="patch-git-export">
 <span id="index-41"></span><span id="id26"></span><h2>Как экспортировать Git коммит для отправки по электронной почте?<a class="headerlink" href="#patch-git-export" title="Ссылка на этот заголовок">¶</a></h2>
@@ -686,7 +686,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit foo-bar@FEDORAPROJECT.ORG
 </pre></div>
 </div>
-<p>Здесь <strong>foo-bar</strong> - логин в FAS. Имя домена должно быть указано строго в верхнем регистре.</p>
+<p>Здесь <strong>foo-bar</strong> – логин в FAS. Имя домена должно быть указано строго в верхнем регистре.</p>
 <p>Также для некоторых операций необходимо загрузить <a class="reference internal" href="security.html#ssh-keygen"><span class="std std-ref">публичный ключ</span></a> SSH в <a class="reference external" href="https://admin.fedoraproject.org/accounts">FAS аккаунт</a>.</p>
 </div>
 <div class="section" id="package-request">
@@ -696,7 +696,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install fedpkg
 </pre></div>
 </div>
-<p>Получим <a class="reference external" href="https://pagure.io/settings">новый токен</a> в Pagure, который будет использоваться утилитой fedpkg для создания заявки. Для этого перейдём в раздел <strong>Settings</strong> - <strong>API Keys</strong> - <strong>Create new key</strong>, затем в списке доступных разрешений (<strong>ACLs</strong>) установим флажок только около опции <strong>Create a new ticket</strong> и нажмём кнопку <strong>Add</strong>.</p>
+<p>Получим <a class="reference external" href="https://pagure.io/settings">новый токен</a> в Pagure, который будет использоваться утилитой fedpkg для создания заявки. Для этого перейдём в раздел <strong>Settings</strong> – <strong>API Keys</strong> – <strong>Create new key</strong>, затем в списке доступных разрешений (<strong>ACLs</strong>) установим флажок только около опции <strong>Create a new ticket</strong> и нажмём кнопку <strong>Add</strong>.</p>
 <p>Создадим файл конфигурации fedpkg:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/.config/rpkg
 touch ~/.config/rpkg/fedpkg.conf
@@ -707,13 +707,13 @@ touch ~/.config/rpkg/fedpkg.conf
 <span class="na">token</span> <span class="o">=</span> <span class="s">XXXXXXXXXX</span>
 </pre></div>
 </div>
-<p>Здесь <strong>XXXXXXXXXX</strong> - полученный от Pagure токен.</p>
+<p>Здесь <strong>XXXXXXXXXX</strong> – полученный от Pagure токен.</p>
 <p>Запросим создание нового пакета в репозитории, а также веток для всех поддерживаемых релизов Fedora:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg request-repo --namespace rpms --monitor monitoring foo-bar YYYYYY
 fedpkg request-branch --namespace rpms --repo foo-bar --all-releases
 </pre></div>
 </div>
-<p>Здесь <strong>foo-bar</strong> - имя пакета, а <strong>YYYYYY</strong> - номер заявки в Red Hat BugZilla с успешно завершённым package review.</p>
+<p>Здесь <strong>foo-bar</strong> – имя пакета, а <strong>YYYYYY</strong> – номер заявки в Red Hat BugZilla с успешно завершённым package review.</p>
 </div>
 <div class="section" id="fedpkg-upload">
 <span id="index-44"></span><span id="id29"></span><h2>Как загрузить файлы с исходными кодами пакета в систему сборки?<a class="headerlink" href="#fedpkg-upload" title="Ссылка на этот заголовок">¶</a></h2>
@@ -822,7 +822,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%_topdir /media/foo-bar/rpmbuild
 </pre></div>
 </div>
-<p>Здесь <strong>/media/foo-bar</strong> - новый каталог размещения базовой иерархии rpmbuild.</p>
+<p>Здесь <strong>/media/foo-bar</strong> – новый каталог размещения базовой иерархии rpmbuild.</p>
 <p>Сохраним изменения, которые вступят в силу немеденно.</p>
 </div>
 <div class="section" id="license-check">
@@ -835,7 +835,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>licensecheck --recursive --merge-licenses --no-verbose /path/to/foo-bar &gt; ~/results.txt
 </pre></div>
 </div>
-<p>Здесь <strong>/path/to/foo-bar</strong> - путь к распакованным исходникам проекта, а <strong>~/results.txt</strong> - имя файла, в котором будут сохранены результаты проверки.</p>
+<p>Здесь <strong>/path/to/foo-bar</strong> – путь к распакованным исходникам проекта, а <strong>~/results.txt</strong> – имя файла, в котором будут сохранены результаты проверки.</p>
 </div>
 <div class="section" id="gdb-coredump">
 <span id="index-54"></span><span id="id36"></span><h2>Как загрузить в gdb отладчик coredump падения?<a class="headerlink" href="#gdb-coredump" title="Ссылка на этот заголовок">¶</a></h2>
@@ -852,11 +852,11 @@ fedpkg scratch-build --arches x86_64 aarch64
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gdb /usr/bin/foo-bar /path/to/coredump 2&gt;&amp;1 | tee ~/backtrace.log
 </pre></div>
 </div>
-<p>Здесь <strong>/usr/bin/foo-bar</strong> - путь к отлаживаемому приложению, <strong>/path/to/coredump</strong> - coredump падения (версия приложения и дампа, снятого с него, должны обязательно совпадать), а <strong>~/backtrace.log</strong> - файл, в котором будет сохранён трейс падения.</p>
+<p>Здесь <strong>/usr/bin/foo-bar</strong> – путь к отлаживаемому приложению, <strong>/path/to/coredump</strong> – coredump падения (версия приложения и дампа, снятого с него, должны обязательно совпадать), а <strong>~/backtrace.log</strong> – файл, в котором будет сохранён трейс падения.</p>
 </div>
 <div class="section" id="clang-fedora">
 <span id="index-55"></span><span id="id37"></span><h2>Как собрать пакет с использованием компилятора Clang в Fedora?<a class="headerlink" href="#clang-fedora" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Самый простой способ сделать это - переопределение значений стандартных <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> <strong>CC</strong> и <strong>CXX</strong> внутри секции <code class="docutils literal notranslate"><span class="pre">%build</span></code>:</p>
+<p>Самый простой способ сделать это – переопределение значений стандартных <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> <strong>CC</strong> и <strong>CXX</strong> внутри секции <code class="docutils literal notranslate"><span class="pre">%build</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export CC=%{_bindir}/clang
 export CXX=%{_bindir}/clang++
 </pre></div>

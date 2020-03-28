@@ -327,7 +327,7 @@ sudo systemctl mask nvidia-fallback.service
 </div>
 <div class="section" id="nvidia-geforce-gtx-1050">
 <span id="nvidia-gtx1050"></span><span id="index-16"></span><h2>В моём ноутбуке установлена видеокарта NVIDIA GeForce GTX 1050 и после запуска система зависает. Что делать?<a class="headerlink" href="#nvidia-geforce-gtx-1050" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Случайные зависания системы, неработоспособность тачпада и других USB устройств - это следствие сбоев при работе свободного драйвера nouveau на данной видеокарте.</p>
+<p>Случайные зависания системы, неработоспособность тачпада и других USB устройств – это следствие сбоев при работе свободного драйвера nouveau на данной видеокарте.</p>
 <p>В качестве решения необходимо установить проприетарные драйверы по такому алгоритму:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -412,7 +412,7 @@ sudo systemctl mask nvidia-fallback.service
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>screen /dev/ttyS0 115200
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/ttyS0</strong> - путь к первому COM порту в системе, а <strong>115200</strong> - скорость работы в бодах.</p>
+<p>Здесь <strong>/dev/ttyS0</strong> – путь к первому COM порту в системе, а <strong>115200</strong> – скорость работы в бодах.</p>
 <p>Если при подключении вместо текста отображается различный мусор, значит скорость указана не правильно и её следует либо подбирать экспериментально, либо получить из руководства.</p>
 <p>Для завершения сессии следует нажать <strong>Ctrl + A</strong> и <strong>k</strong>.</p>
 <p>Если при попытке подключения появляется сообщение об ошибке <em>access denied</em>, необходимо добавить аккаунт в <a class="reference internal" href="security.html#com-dialout"><span class="std std-ref">группу dialout</span></a>.</p>
@@ -434,7 +434,7 @@ sudo systemctl mask nvidia-fallback.service
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cvt 1920 1080 60
 </pre></div>
 </div>
-<p>Здесь <strong>1920</strong> - разрешение по горизонтали, <strong>1080</strong> - по вертикали, а <strong>60</strong> - частота регенерации.</p>
+<p>Здесь <strong>1920</strong> – разрешение по горизонтали, <strong>1080</strong> – по вертикали, а <strong>60</strong> – частота регенерации.</p>
 <p>Теперь создадим конфиг следующего содержания:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Section &quot;Monitor&quot;
     Identifier &quot;VGA1&quot;
@@ -511,7 +511,7 @@ chmod +x Unigine_Superposition-1.1.run
 </div>
 <div class="section" id="firmware">
 <span id="linux-firmware"></span><span id="index-27"></span><h2>Что такое firmware и для чего она необходима?<a class="headerlink" href="#firmware" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Firmware - это бинарный проприетарный блоб, содержащий образ прошивки, который загружается и используется определённым устройством.</p>
+<p>Firmware – это бинарный проприетарный блоб, содержащий образ прошивки, который загружается и используется определённым устройством.</p>
 <p>В большинстве случаев, соответствующее устройство не будет функционировать без наличия данной прошивки в каталоге прошивок ядра Linux.</p>
 </div>
 <div class="section" id="firmware-install">
@@ -580,7 +580,7 @@ chmod +x Unigine_Superposition-1.1.run
 </div>
 <div class="section" id="icc-install">
 <span id="index-37"></span><span id="id23"></span><h2>Я нашёл цветовой профиль для дисплея. Как мне его установить в систему?<a class="headerlink" href="#icc-install" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Пользователям KDE необходимо открыть <strong>Параметры системы</strong> - <strong>Оборудование</strong> - <strong>Цветовая коррекция</strong>, перейти на вкладку <strong>Профили</strong>, нажать кнопку <strong>Добавить профиль</strong>, указать ICC-файл на диске, после чего подвердить установку. Теперь на вкладке <strong>Устройства</strong> можно заменить стандартный цветовой профиль на только что установленный. Также его можно назначить по умолчанию для всех пользователей системы (потребуется <a class="reference internal" href="security.html#sudo-password"><span class="std std-ref">доступ к sudo</span></a>).</p>
+<p>Пользователям KDE необходимо открыть <strong>Параметры системы</strong> – <strong>Оборудование</strong> – <strong>Цветовая коррекция</strong>, перейти на вкладку <strong>Профили</strong>, нажать кнопку <strong>Добавить профиль</strong>, указать ICC-файл на диске, после чего подвердить установку. Теперь на вкладке <strong>Устройства</strong> можно заменить стандартный цветовой профиль на только что установленный. Также его можно назначить по умолчанию для всех пользователей системы (потребуется <a class="reference internal" href="security.html#sudo-password"><span class="std std-ref">доступ к sudo</span></a>).</p>
 <p>Пользователи Gnome должны установить утилиту Gnome Color Manager, после чего импортировать и применить загруженный ICC-файл.</p>
 <p>Изменения вступают в силу немедленно.</p>
 </div>
@@ -735,7 +735,7 @@ connect AA:BB:CC:DD:EE:FF
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo hdparam -y /dev/sda
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sda</strong> - устройство диска, который требуется остановить. Перед выполнением команды необходимо размонтировать все разделы, расположенные на нём.</p>
+<p>Здесь <strong>/dev/sda</strong> – устройство диска, который требуется остановить. Перед выполнением команды необходимо размонтировать все разделы, расположенные на нём.</p>
 <p>Внимание! Внезапная остановка HDD может привести к выходу его из строя. Следует использовать её на свой страх и риск.</p>
 </div>
 <div class="section" id="hdd-timeout">
@@ -744,7 +744,7 @@ connect AA:BB:CC:DD:EE:FF
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo hdparam -S 300 /dev/sda
 </pre></div>
 </div>
-<p>Здесь <strong>300</strong> - интервал неактивности в секундах, а <strong>/dev/sda</strong> - устройство диска, который будет остановлен.</p>
+<p>Здесь <strong>300</strong> – интервал неактивности в секундах, а <strong>/dev/sda</strong> – устройство диска, который будет остановлен.</p>
 </div>
 <div class="section" id="ips-ghosting">
 <span id="index-51"></span><span id="id33"></span><h2>На мониторе отображаются артефакты уже закрытых окон. Как исправить?<a class="headerlink" href="#ips-ghosting" title="Ссылка на этот заголовок">¶</a></h2>
@@ -819,7 +819,7 @@ sudo dkms build -m rtl8821ce -v v5.5.2_34066.20190614
 sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
 </pre></div>
 </div>
-<p>Здесь <strong>v5.5.2_34066.20190614</strong> - версия модуля rtl8821ce, которая может быть получена из файла <code class="docutils literal notranslate"><span class="pre">rtl8821ce/include/rtw_version.h</span></code> (без учёта суффикса <strong>BTCOEXVERSION</strong>).</p>
+<p>Здесь <strong>v5.5.2_34066.20190614</strong> – версия модуля rtl8821ce, которая может быть получена из файла <code class="docutils literal notranslate"><span class="pre">rtl8821ce/include/rtw_version.h</span></code> (без учёта суффикса <strong>BTCOEXVERSION</strong>).</p>
 <p>Перезагрузим систему для вступления изменений в силу:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
 </pre></div>
@@ -837,7 +837,7 @@ sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rm -rf /usr/src/rtl8821ce-v5.5.2_34066.20190614
 </pre></div>
 </div>
-<p>Здесь <strong>v5.5.2_34066.20190614</strong> - версия установленного в системе модуля rtl8821ce.</p>
+<p>Здесь <strong>v5.5.2_34066.20190614</strong> – версия установленного в системе модуля rtl8821ce.</p>
 <p>Загрузим и установим новую версию по <a class="reference internal" href="#rtl8821ce-install"><span class="std std-ref">стандартной инструкции</span></a>.</p>
 </div>
 <div class="section" id="ram-info">

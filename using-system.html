@@ -69,7 +69,7 @@
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo xz -9 -T$(nproc) /path/to/image.raw
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sda1</strong> - раздел диска, резервную копию которого требуется создать, а <strong>/path/to/image.raw</strong> - полный путь к файлу образа (должен находиться на другом разделе диска).</p>
+<p>Здесь <strong>/dev/sda1</strong> – раздел диска, резервную копию которого требуется создать, а <strong>/path/to/image.raw</strong> – полный путь к файлу образа (должен находиться на другом разделе диска).</p>
 </div>
 <div class="section" id="initrd">
 <span id="initrd-rebuild"></span><span id="index-5"></span><h2>Как мне пересобрать образ initrd?<a class="headerlink" href="#initrd" title="Ссылка на этот заголовок">¶</a></h2>
@@ -100,7 +100,7 @@
 </div>
 <div class="section" id="bls">
 <span id="grub-bls-info"></span><span id="index-8"></span><h2>Что такое BLS и почему он используется по умолчанию?<a class="headerlink" href="#bls" title="Ссылка на этот заголовок">¶</a></h2>
-<p><a class="reference external" href="https://systemd.io/BOOT_LOADER_SPECIFICATION">BLS</a> - это универсальный формат параметров загрузки, который будет поддерживаться большинством современных загрузчиков.</p>
+<p><a class="reference external" href="https://systemd.io/BOOT_LOADER_SPECIFICATION">BLS</a> – это универсальный формат параметров загрузки, который будет поддерживаться большинством современных загрузчиков.</p>
 <p>Все параметры генерируются на этапе компиляции ядра и сохраняются в специальном conf-файле, который устанавливается в каталог <code class="docutils literal notranslate"><span class="pre">/boot/loader/entries</span></code>.</p>
 <p>Т.к. это статические файлы, <a class="reference internal" href="administration.html#kernelpm-perm"><span class="std std-ref">нестандартные параметры ядра</span></a> теперь устанавливаются при помощи <code class="docutils literal notranslate"><span class="pre">grubenv</span></code>.</p>
 </div>
@@ -141,7 +141,7 @@
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find ~/foo-bar -maxdepth 1 -type f -mtime +2 -delete
 </pre></div>
 </div>
-<p>Здесь <strong>~/foo-bar</strong> - начальный каталог, в котором производится удаление.</p>
+<p>Здесь <strong>~/foo-bar</strong> – начальный каталог, в котором производится удаление.</p>
 </div>
 <div class="section" id="kde-gtk">
 <span id="double-click-speed"></span><span id="index-13"></span><h2>Я использую KDE. Как мне настроить скорость двойного клика в GTK приложениях?<a class="headerlink" href="#kde-gtk" title="Ссылка на этот заголовок">¶</a></h2>
@@ -210,11 +210,11 @@ export QT_SCALE_FACTOR=2
 <p>Переменная <code class="docutils literal notranslate"><span class="pre">QT_SCALE_FACTOR</span></code> задаёт коэффициент масштабирования:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><strong>1.5</strong> - 150%;</p></li>
-<li><p><strong>1.75</strong> - 175%;</p></li>
-<li><p><strong>2</strong> - 200%;</p></li>
-<li><p><strong>2.5</strong> - 250%;</p></li>
-<li><p><strong>3</strong> - 300%.</p></li>
+<li><p><strong>1.5</strong> – 150%;</p></li>
+<li><p><strong>1.75</strong> – 175%;</p></li>
+<li><p><strong>2</strong> – 200%;</p></li>
+<li><p><strong>2.5</strong> – 250%;</p></li>
+<li><p><strong>3</strong> – 300%.</p></li>
 </ul>
 </div></blockquote>
 <p>Более подробную информацию можно найти в <a class="reference external" href="https://doc.qt.io/qt-5/highdpi.html">документации Qt</a>.</p>
@@ -257,7 +257,7 @@ export QT_SCALE_FACTOR=2
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install pam-kwallet
 </pre></div>
 </div>
-<p>Запустим менеджер KWallet (<strong>Параметры системы</strong> - группа <strong>Предпочтения пользователя</strong> - <strong>Учётная запись</strong> - страница <strong>Бумажник</strong> - кнопка <strong>Запустить управление бумажниками</strong>), нажмём кнопку <strong>Сменить пароль</strong> и укажем тот же самый пароль, который используется для текущей учётной записи.</p>
+<p>Запустим менеджер KWallet (<strong>Параметры системы</strong> – группа <strong>Предпочтения пользователя</strong> – <strong>Учётная запись</strong> – страница <strong>Бумажник</strong> – кнопка <strong>Запустить управление бумажниками</strong>), нажмём кнопку <strong>Сменить пароль</strong> и укажем тот же самый пароль, который используется для текущей учётной записи.</p>
 <p>Сохраняем изменения и повторно входим в систему.</p>
 </div>
 <div class="section" id="xdg-reallocate">
@@ -365,7 +365,7 @@ export QT_SCALE_FACTOR=2
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nmcli device wifi connect MY_NETWORK password XXXXXXXXXX
 </pre></div>
 </div>
-<p>Здесь <strong>MY_NETWORK</strong> - название SSID точки доступа, к которой мы планируем подключиться, а <strong>XXXXXXXXXX</strong> - её пароль.</p>
+<p>Здесь <strong>MY_NETWORK</strong> – название SSID точки доступа, к которой мы планируем подключиться, а <strong>XXXXXXXXXX</strong> – её пароль.</p>
 </div>
 <div class="section" id="editor-selection">
 <span id="index-32"></span><span id="id18"></span><h2>Как выбрать предпочитаемый текстовый редактор в консольном режиме?<a class="headerlink" href="#editor-selection" title="Ссылка на этот заголовок">¶</a></h2>
@@ -375,7 +375,7 @@ export EDITOR=vim
 export SUDO_EDITOR=vim
 </pre></div>
 </div>
-<p><strong>VISUAL</strong> - предпочитаемый текстовый редактор с графическим интерфейсом пользователя, <strong>EDITOR</strong> - текстовый, а <strong>SUDO_EDITOR</strong> используется в <a class="reference internal" href="security.html#sudo-edit-config"><span class="std std-ref">sudoedit</span></a>.</p>
+<p><strong>VISUAL</strong> – предпочитаемый текстовый редактор с графическим интерфейсом пользователя, <strong>EDITOR</strong> – текстовый, а <strong>SUDO_EDITOR</strong> используется в <a class="reference internal" href="security.html#sudo-edit-config"><span class="std std-ref">sudoedit</span></a>.</p>
 </div>
 <div class="section" id="git">
 <span id="editor-git"></span><span id="index-33"></span><h2>Как выбрать предпочитаемый текстовый редактор для Git?<a class="headerlink" href="#git" title="Ссылка на этот заголовок">¶</a></h2>
@@ -405,7 +405,7 @@ export SUDO_EDITOR=vim
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/sr0 of=/path/to/image.iso bs=4M status=progress
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sr0</strong> имя устройства привода для чтения оптических дисков, а <strong>/path/to/image.iso</strong> - файл образа, в котором будет сохранён результат.</p>
+<p>Здесь <strong>/dev/sr0</strong> имя устройства привода для чтения оптических дисков, а <strong>/path/to/image.iso</strong> – файл образа, в котором будет сохранён результат.</p>
 </div>
 <div class="section" id="dd-mount">
 <span id="index-36"></span><span id="id19"></span><h2>Как смонтировать посекторный образ раздела?<a class="headerlink" href="#dd-mount" title="Ссылка на этот заголовок">¶</a></h2>
@@ -417,7 +417,7 @@ export SUDO_EDITOR=vim
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /mnt/dd-image
 </pre></div>
 </div>
-<p>Здесь <strong>/path/to/image.iso</strong> - файл образа на диске.</p>
+<p>Здесь <strong>/path/to/image.iso</strong> – файл образа на диске.</p>
 </div>
 <div class="section" id="dd-fullraw">
 <span id="index-37"></span><span id="id20"></span><h2>Как смонтировать посекторный образ диска целиком?<a class="headerlink" href="#dd-fullraw" title="Ссылка на этот заголовок">¶</a></h2>
@@ -436,7 +436,7 @@ export SUDO_EDITOR=vim
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /mnt/dd-image
 </pre></div>
 </div>
-<p>Здесь <strong>/path/to/image.iso</strong> - файл образа на диске.</p>
+<p>Здесь <strong>/path/to/image.iso</strong> – файл образа на диске.</p>
 </div>
 <div class="section" id="set-timezone">
 <span id="index-38"></span><span id="id21"></span><h2>Как изменить часовой пояс?<a class="headerlink" href="#set-timezone" title="Ссылка на этот заголовок">¶</a></h2>
@@ -477,8 +477,8 @@ export SUDO_EDITOR=vim
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install breeze-gtk
 </pre></div>
 </div>
-<p>Зайдём в <strong>Параметры системы</strong> - <strong>Внешний вид</strong> - <strong>Оформление приложений</strong> - <strong>Стиль программ GNOME (GTK+)</strong>.</p>
-<p>Выберем <strong>Breeze</strong> (при использовании тёмной темы в KDE - <strong>Breeze Dark</strong>) в качестве темы GTK2 и GTK3, а также укажем шрифт, который будет использовать при отображении диалоговых окон.</p>
+<p>Зайдём в <strong>Параметры системы</strong> – <strong>Внешний вид</strong> – <strong>Оформление приложений</strong> – <strong>Стиль программ GNOME (GTK+)</strong>.</p>
+<p>Выберем <strong>Breeze</strong> (при использовании тёмной темы в KDE – <strong>Breeze Dark</strong>) в качестве темы GTK2 и GTK3, а также укажем шрифт, который будет использовать при отображении диалоговых окон.</p>
 <p>Также установим <strong>Breeze</strong> для курсоров мыши и темы значков. Применим изменения и перезапустим все GTK приложения.</p>
 </div>
 <div class="section" id="bash-hotkeys">
@@ -486,24 +486,24 @@ export SUDO_EDITOR=vim
 <p>Существуют следующие комбинации:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><strong>Ctrl + A</strong> - перемещает текстовый курсор на начало строки (аналогична <strong>Home</strong>);</p></li>
-<li><p><strong>Ctrl + E</strong> - перемещает текстовый курсор в конец строки (аналогична <strong>End</strong>);</p></li>
-<li><p><strong>Ctrl + B</strong> - перемещает текстовый курсор на один символ влево (аналогична стрелке влево);</p></li>
-<li><p><strong>Ctrl + F</strong> - перемещает текстовый курсор на один символ вправо (аналогична стрелке вправо);</p></li>
-<li><p><strong>Alt + B</strong> - перемещает текстовый курсор на одно слово влево;</p></li>
-<li><p><strong>Alt + F</strong> - перемещает текстовый курсор на одно слово вправо;</p></li>
-<li><p><strong>Ctrl + W</strong> - удаляет последнее слово в строке;</p></li>
-<li><p><strong>Ctrl + U</strong> - удаляет всё из строки ввода;</p></li>
-<li><p><strong>Ctrl + K</strong> - удаляет всё, что находится правее текущей позиции текстового курсора;</p></li>
-<li><p><strong>Ctrl + Y</strong> - отменяет последнюю операцию удаления;</p></li>
-<li><p><strong>Ctrl + _</strong> - отменяет любую последнюю операцию.</p></li>
+<li><p><strong>Ctrl + A</strong> – перемещает текстовый курсор на начало строки (аналогична <strong>Home</strong>);</p></li>
+<li><p><strong>Ctrl + E</strong> – перемещает текстовый курсор в конец строки (аналогична <strong>End</strong>);</p></li>
+<li><p><strong>Ctrl + B</strong> – перемещает текстовый курсор на один символ влево (аналогична стрелке влево);</p></li>
+<li><p><strong>Ctrl + F</strong> – перемещает текстовый курсор на один символ вправо (аналогична стрелке вправо);</p></li>
+<li><p><strong>Alt + B</strong> – перемещает текстовый курсор на одно слово влево;</p></li>
+<li><p><strong>Alt + F</strong> – перемещает текстовый курсор на одно слово вправо;</p></li>
+<li><p><strong>Ctrl + W</strong> – удаляет последнее слово в строке;</p></li>
+<li><p><strong>Ctrl + U</strong> – удаляет всё из строки ввода;</p></li>
+<li><p><strong>Ctrl + K</strong> – удаляет всё, что находится правее текущей позиции текстового курсора;</p></li>
+<li><p><strong>Ctrl + Y</strong> – отменяет последнюю операцию удаления;</p></li>
+<li><p><strong>Ctrl + _</strong> – отменяет любую последнюю операцию.</p></li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="kde-link-mime">
 <span id="index-43"></span><span id="id25"></span><h2>При нажатии по любой гиперссылке она открывается не в браузере, а соответствующем приложении. Как исправить?<a class="headerlink" href="#kde-link-mime" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Согласно настроек по умолчанию, при нажатии на любую ссылку вне браузера (например, в мессенджере) компонент KDE KIO попытается определить mime-тип файла, загружаемого по ней, и открыть её в ассоциированном с приложении. Например, если это изображение JPEG, то оно будет загружено в Gwenview.</p>
-<p>Отключить данную функцию можно в <strong>Параметры системы</strong> - <strong>Предпочтения пользователя</strong> - <strong>Приложения</strong> - <strong>Приложения по умолчанию</strong> - раздел <strong>Браузер</strong> - пункт <strong>Открывать адреса http и https</strong> - <strong>В следующем приложении</strong> - <strong>Firefox</strong>.</p>
+<p>Отключить данную функцию можно в <strong>Параметры системы</strong> – <strong>Предпочтения пользователя</strong> – <strong>Приложения</strong> – <strong>Приложения по умолчанию</strong> – раздел <strong>Браузер</strong> – пункт <strong>Открывать адреса http и https</strong> – <strong>В следующем приложении</strong> – <strong>Firefox</strong>.</p>
 </div>
 <div class="section" id="file-types">
 <span id="index-44"></span><span id="id26"></span><h2>Как файловые менеджеры определяют типы файлов?<a class="headerlink" href="#file-types" title="Ссылка на этот заголовок">¶</a></h2>
@@ -597,7 +597,7 @@ export SUDO_EDITOR=vim
 </div>
 <div class="section" id="ntfs">
 <span id="ntfs-readonly"></span><span id="index-53"></span><h2>Все NTFS тома монтируются в режиме только для чтения. Как исправить?<a class="headerlink" href="#ntfs" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Некорректное размонтирование разделов - это особенность работы режима гибридного завершения работы (<a class="reference external" href="https://docs.microsoft.com/en-us/windows-hardware/drivers/kernel/distinguishing-fast-startup-from-wake-from-hibernation">hybrid shutdown</a>) в ОС Microsoft Windows, при котором система не завершает свою работу, а вместо этого всегда переходит в режим глубокого сна.</p>
+<p>Некорректное размонтирование разделов – это особенность работы режима гибридного завершения работы (<a class="reference external" href="https://docs.microsoft.com/en-us/windows-hardware/drivers/kernel/distinguishing-fast-startup-from-wake-from-hibernation">hybrid shutdown</a>) в ОС Microsoft Windows, при котором система не завершает свою работу, а вместо этого всегда переходит в режим глубокого сна.</p>
 <p>Данный режим несовместим с другими операционными системами, в т.ч. GNU/Linux, поэтому должен быть отключён в обязательном порядке при использовании <a class="reference internal" href="installation.html#dual-boot"><span class="std std-ref">dual-boot</span></a>.</p>
 <blockquote>
 <div><ol class="arabic simple">

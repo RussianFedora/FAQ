@@ -163,7 +163,7 @@ dom.webgpu.enabled = true
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>iconv -f cp1251 -t utf8 test.txt &gt; result.txt
 </pre></div>
 </div>
-<p>Здесь <strong>test.txt</strong> - исходный файл с неправильной кодировкой, а <strong>result.txt</strong> используется для записи результата преобразования.</p>
+<p>Здесь <strong>test.txt</strong> – исходный файл с неправильной кодировкой, а <strong>result.txt</strong> используется для записи результата преобразования.</p>
 </div>
 <div class="section" id="android-mtp">
 <span id="fuse-mtp"></span><span id="index-13"></span><h2>Как подключить смартфон на Android посредством протокола MTP?<a class="headerlink" href="#android-mtp" title="Ссылка на этот заголовок">¶</a></h2>
@@ -195,7 +195,7 @@ dom.webgpu.enabled = true
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp">Google Play</a>;</p></li>
-<li><p><a class="reference external" href="https://f-droid.org/packages/org.kde.kdeconnect_tp/">F-Droid</a>;</p></li>
+<li><p><a class="reference external" href="https://f-droid.org/packages/org.kde.kdeconnect_tp/">F-Droid</a>.</p></li>
 </ul>
 </div></blockquote>
 <p>Запустим плазмоид KDE Connect и выполним сопряжение.</p>
@@ -236,7 +236,7 @@ dom.webgpu.enabled = true
 <span class="na">URL[$e]</span><span class="o">=</span><span class="s">file:$HOME/Templates/xml-document.xml</span>
 </pre></div>
 </div>
-<p>Здесь <strong>Icon</strong> - значок для новой строки, <strong>Name</strong> - название новой строки с поддержкой локализации, а <strong>URL</strong> - полный путь к файлу шаблона.</p>
+<p>Здесь <strong>Icon</strong> – значок для новой строки, <strong>Name</strong> – название новой строки с поддержкой локализации, а <strong>URL</strong> – полный путь к файлу шаблона.</p>
 <p>Изменения вступят в силу немедленно и через несколько секунд в меню <em>Создать</em> файлового менеджера Dolphin появится новый пункт.</p>
 </div>
 <div class="section" id="nautilus">
@@ -262,7 +262,7 @@ dom.webgpu.enabled = true
 </div>
 <div class="section" id="kde-plasma-5">
 <span id="window-borders"></span><span id="index-19"></span><h2>Как убрать рамки внутри окон в KDE Plasma 5?<a class="headerlink" href="#kde-plasma-5" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для этого следует открыть <strong>Меню KDE</strong> - <strong>Компьютер</strong> - <strong>Параметры системы</strong> - <strong>Оформление приложений</strong> - страница <strong>Стиль интерфейса</strong> - кнопка <strong>Настроить</strong> - вкладка <strong>Рамки</strong>, <strong>убрать все флажки</strong> из чекбоксов на данной странице и нажать кнопку <strong>OK</strong>.</p>
+<p>Для этого следует открыть <strong>Меню KDE</strong> – <strong>Компьютер</strong> – <strong>Параметры системы</strong> – <strong>Оформление приложений</strong> – страница <strong>Стиль интерфейса</strong> – кнопка <strong>Настроить</strong> – вкладка <strong>Рамки</strong>, <strong>убрать все флажки</strong> из чекбоксов на данной странице и нажать кнопку <strong>OK</strong>.</p>
 </div>
 <div class="section" id="kde-icons-refresh">
 <span id="index-20"></span><span id="id9"></span><h2>Как обновить кэш значков приложений в главном меню KDE Plasma 5?<a class="headerlink" href="#kde-icons-refresh" title="Ссылка на этот заголовок">¶</a></h2>
@@ -333,12 +333,12 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 <div class="section" id="zip">
 <span id="zip-encoding"></span><span id="index-25"></span><h2>При распаковке Zip архива появляются кракозябры вместо имён файлов. Как исправить?<a class="headerlink" href="#zip" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Zip-архивы, созданные штатными средствами ОС Windows, сохраняют имена файлов внутри архива исключительно в однобайтовой кодировке системы по умолчанию (в русской версии это Windows-1251 (cp1251), в английской - Windows-1252 (cp1252)), поэтому при распаковке таких архивов вместо русских букв будут отображаться кракозябры.</p>
+<p>Zip-архивы, созданные штатными средствами ОС Windows, сохраняют имена файлов внутри архива исключительно в однобайтовой кодировке системы по умолчанию (в русской версии это Windows-1251 (cp1251), в английской – Windows-1252 (cp1252)), поэтому при распаковке таких архивов вместо русских букв будут отображаться кракозябры.</p>
 <p>Утилита unzip поддерживает явное указание кодировки, поэтому воспользуемся данной функцией:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>unzip -O cp1251 foo-bar.zip -d /path/to/destination
 </pre></div>
 </div>
-<p>Здесь <strong>cp1251</strong> - кодировка имён файлов, <strong>foo-bar.zip</strong> - имя архива, а <strong>/path/to/destination</strong> - каталог, в который он будет распакован.</p>
+<p>Здесь <strong>cp1251</strong> – кодировка имён файлов, <strong>foo-bar.zip</strong> – имя архива, а <strong>/path/to/destination</strong> – каталог, в который он будет распакован.</p>
 </div>
 <div class="section" id="tmpfs">
 <span id="browser-tmpfs"></span><span id="index-26"></span><h2>Стоит ли переносить кэши браузеров в tmpfs?<a class="headerlink" href="#tmpfs" title="Ссылка на этот заголовок">¶</a></h2>
@@ -388,8 +388,8 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Запустим веб-браузер и экспортируем список закладок в файл, совместимый с форматом <em>Netscape Bookmarks</em>. В Firefox это можно сделать так:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><p><strong>Закладки</strong> - <strong>Показать все закладки</strong>;</p></li>
-<li><p><strong>Импорт и резервные копии</strong> - <strong>Экспорт закладок в HTML файл</strong>;</p></li>
+<li><p><strong>Закладки</strong> – <strong>Показать все закладки</strong>;</p></li>
+<li><p><strong>Импорт и резервные копии</strong> – <strong>Экспорт закладок в HTML файл</strong>;</p></li>
 <li><p>сохраняем файл <strong>bookmarks.html</strong> в любом каталоге.</p></li>
 </ol>
 </div></blockquote>
@@ -445,10 +445,10 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Начиная с Gnome 3.26, из области уведомлений оболочки была удалена поддержка классического системного лотка, поэтому многие приложения при закрытии или сворачивании могут не завершать свою работу, а продолжать работать в фоне без отображения видимого окна.</p>
 <p>Восстановить трей можно посредством установки одного из <a class="reference internal" href="#gnome-shell-extensions"><span class="std std-ref">расширений Gnome Shell</span></a>:</p>
 <blockquote>
-<div><ol class="arabic simple">
+<div><ul class="simple">
 <li><p><a class="reference external" href="https://extensions.gnome.org/extension/1031/topicons/">TopIcons Plus</a> (также доступно в виде пакета <code class="docutils literal notranslate"><span class="pre">gnome-shell-extension-topicons-plus</span></code> в репозиториях);</p></li>
 <li><p><a class="reference external" href="https://extensions.gnome.org/extension/615/appindicator-support/">AppIndicator Support</a> (также доступно в виде пакета <code class="docutils literal notranslate"><span class="pre">gnome-shell-extension-appindicator</span></code> в репозиториях).</p></li>
-</ol>
+</ul>
 </div></blockquote>
 </div>
 <div class="section" id="gnome-shell-desktop">
@@ -491,7 +491,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --add-service=transmission-client --permanent
 </pre></div>
 </div>
-<p>Запустим «тонкий клиент», подключимся к серверу <strong>127.0.0.1:9091</strong>, перейдём в <strong>Опции</strong> - <strong>Настройки сервера</strong> и внесём свои правки, указав например каталог для загрузок.</p>
+<p>Запустим «тонкий клиент», подключимся к серверу <strong>127.0.0.1:9091</strong>, перейдём в <strong>Опции</strong> – <strong>Настройки сервера</strong> и внесём свои правки, указав например каталог для загрузок.</p>
 <p>Изменения вступают в силу немедленно. Сервер будет запускаться автоматически при каждой загрузке системы и сразу же осуществлять загрузку, либо раздачу торрентов.</p>
 </div>
 <div class="section" id="gnome-shell-reset">
@@ -509,7 +509,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>tree /path/to/directory &gt; ~/foo-bar.txt
 </pre></div>
 </div>
-<p>Здесь <strong>/path/to/directory</strong> - путь к каталогу, дерево которого нужно построить, а <strong>~/foo-bar.txt</strong> - файл, в котором будет сохранён результат.</p>
+<p>Здесь <strong>/path/to/directory</strong> – путь к каталогу, дерево которого нужно построить, а <strong>~/foo-bar.txt</strong> – файл, в котором будет сохранён результат.</p>
 </div>
 <div class="section" id="trash-terminal">
 <span id="index-42"></span><span id="id22"></span><h2>Как из терминала удалить файл в корзину?<a class="headerlink" href="#trash-terminal" title="Ссылка на этот заголовок">¶</a></h2>
@@ -538,9 +538,9 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Зайдём в расширенные настройки сети freenode, укажем в качестве основного сервера <code class="docutils literal notranslate"><span class="pre">irc.freenode.net/6697</span></code> (остальные лучше вообще удалить), затем установим следующие параметры:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>флажок <strong>соединяться только с выделенным сервером</strong> - включено;</p></li>
-<li><p>флажок <strong>использовать SSL для всех серверов в этой сети</strong> - включено;</p></li>
-<li><p><strong>метод авторизации</strong> - SASL external (cert).</p></li>
+<li><p>флажок <strong>соединяться только с выделенным сервером</strong> – включено;</p></li>
+<li><p>флажок <strong>использовать SSL для всех серверов в этой сети</strong> – включено;</p></li>
+<li><p><strong>метод авторизации</strong> – SASL external (cert).</p></li>
 </ul>
 </div></blockquote>
 <p>Получим SHA1 отпечаток созданного сертификата:</p>
@@ -555,7 +555,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/ns cert add XXXXXXXXXX
 </pre></div>
 </div>
-<p>Здесь <strong>PASSWORD</strong> - текущий пароль пользователя, а <strong>XXXXXXXXXX</strong> - отпечаток сертификата.</p>
+<p>Здесь <strong>PASSWORD</strong> – текущий пароль пользователя, а <strong>XXXXXXXXXX</strong> – отпечаток сертификата.</p>
 <p>Теперь можно отключиться и подключиться заново. Вход будет выполнен уже безопасным способом без использования паролей.</p>
 </div>
 <div class="section" id="kde">
@@ -599,7 +599,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find /media/foo-bar -name *.h2w -delete \;
 </pre></div>
 </div>
-<p>Здесь <strong>/media/foo-bar</strong> - точка монтирования накопителя, объём которого требуется проверить.</p>
+<p>Здесь <strong>/media/foo-bar</strong> – точка монтирования накопителя, объём которого требуется проверить.</p>
 </div>
 <div class="section" id="f3chk-deep">
 <span id="index-47"></span><span id="id24"></span><h2>Как выполнить глубокую проверку объёма накопителя?<a class="headerlink" href="#f3chk-deep" title="Ссылка на этот заголовок">¶</a></h2>
@@ -613,7 +613,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo f3probe --destructive --time-ops /dev/sdb
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sdb</strong> - устройство, объём которого требуется проверить.</p>
+<p>Здесь <strong>/dev/sdb</strong> – устройство, объём которого требуется проверить.</p>
 <p>После завершения процесса потребуется заново создать раздел и файловую систему на проверяемом устройстве при помощи таких утилит, как GParted, Gnome Disks, KDE Disk Manager и т.д.</p>
 </div>
 <div class="section" id="markdown-pdf">

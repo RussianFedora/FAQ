@@ -63,7 +63,7 @@
 </div>
 <div class="section" id="kde">
 <span id="kde-reduce-ram-usage"></span><span id="index-1"></span><h2>Как уменьшить потребление оперативной памяти средой рабочего стола KDE?<a class="headerlink" href="#kde" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Отключим службу индексации файлов. Для этого зайдём в <strong>Параметры системы</strong> - <strong>Поиск</strong>, снимем флажок из чекбокса <strong>Включить службы поиска файлов</strong> и нажмём <strong>Применить</strong>. Теперь удалим Akonadi:</p>
+<p>Отключим службу индексации файлов. Для этого зайдём в <strong>Параметры системы</strong> – <strong>Поиск</strong>, снимем флажок из чекбокса <strong>Включить службы поиска файлов</strong> и нажмём <strong>Применить</strong>. Теперь удалим Akonadi:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove akonadi
 </pre></div>
 </div>
@@ -104,7 +104,7 @@
 </div>
 <div class="section" id="bfq-hdd">
 <span id="bfq-scheduler"></span><span id="index-4"></span><h2>Как задействовать планировщик ввода/вывода BFQ для HDD?<a class="headerlink" href="#bfq-hdd" title="Ссылка на этот заголовок">¶</a></h2>
-<p>BFQ - это планировщик ввода-вывода (I/O), предназначенный для повышения отзывчивости пользовательского окружения при значительных нагрузках на дисковую подсистему.</p>
+<p>BFQ – это планировщик ввода-вывода (I/O), предназначенный для повышения отзывчивости пользовательского окружения при значительных нагрузках на дисковую подсистему.</p>
 <p>Для его активации произведём редактирование файла шаблонов GRUB:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/default/grub
 </pre></div>
@@ -125,7 +125,7 @@
 </div>
 <div class="section" id="swf-flash">
 <span id="swf-player"></span><span id="index-5"></span><h2>Чем можно запустить SWF файл без установки Flash плагина в браузер?<a class="headerlink" href="#swf-flash" title="Ссылка на этот заголовок">¶</a></h2>
-<p>SWF файл - это исполняемый файл формата Adobe Flash. Для того, чтобы проиграть его без установки соответствующего плагина в браузер, можно загрузить специальную версию Flash Projector (ранее назывался Standalone).</p>
+<p>SWF файл – это исполняемый файл формата Adobe Flash. Для того, чтобы проиграть его без установки соответствующего плагина в браузер, можно загрузить специальную версию Flash Projector (ранее назывался Standalone).</p>
 <p>Скачаем Projector:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>wget https://fpdownload.macromedia.com/pub/flashplayer/updaters/32/flash_player_sa_linux.x86_64.tar.gz -O fpsa.tar.gz
 </pre></div>
@@ -139,7 +139,7 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>~/foo-bar/flashplayer
 </pre></div>
 </div>
-<p>В открывшемся окне нажмём <strong>Файл</strong> - <strong>Открыть</strong> (или комбинацию <strong>Ctrl + O</strong>) и найдём SWF файл на диске.</p>
+<p>В открывшемся окне нажмём <strong>Файл</strong> – <strong>Открыть</strong> (или комбинацию <strong>Ctrl + O</strong>) и найдём SWF файл на диске.</p>
 <p>По окончании использования удалим каталог с программой:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rm -rf ~/foo-bar
 </pre></div>
@@ -167,7 +167,7 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>UUID=XXXXXXXXXX /home ext4 defaults,noexec,nodev,nosuid 1 2
 </pre></div>
 </div>
-<p>Здесь <strong>XXXXXXXXXX</strong> - <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID раздела</span></a>, а <strong>ext4</strong> - используемая <a class="reference internal" href="installation.html#fs-selection"><span class="std std-ref">файловая система</span></a>.</p>
+<p>Здесь <strong>XXXXXXXXXX</strong> – <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID раздела</span></a>, а <strong>ext4</strong> – используемая <a class="reference internal" href="installation.html#fs-selection"><span class="std std-ref">файловая система</span></a>.</p>
 <p>Следует помнить, что это действие не повлияет на запуск различных скриптов интерпретаторами, т.е. запуск <code class="docutils literal notranslate"><span class="pre">./foo-bar</span></code> с установленным битом исполнения будет запрещён, но в то же время <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">foo-bar</span></code> выполнится в штатном режиме.</p>
 </div>
 <div class="section" id="microsoft-fedora">
@@ -190,7 +190,7 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo grub2-install /dev/sda
 </pre></div>
 </div>
-<p>Здесь <strong>/dev/sda</strong> - дисковое устройство, на котором установлена Fedora.</p>
+<p>Здесь <strong>/dev/sda</strong> – дисковое устройство, на котором установлена Fedora.</p>
 </div>
 <div class="section" id="zchunk-checksum-error">
 <span id="zchunk-checksum"></span><span id="index-10"></span><h2>При попытке обновления появляется ошибка zchunk checksum error. Как исправить?<a class="headerlink" href="#zchunk-checksum-error" title="Ссылка на этот заголовок">¶</a></h2>
@@ -241,7 +241,7 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FACTOR=2
 </pre></div>
 </div>
-<p>Формула расчёта: <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">FACTOR</span></code>. Значение <strong>2</strong> - выделение под пул 50% (выбор по умолчанию) от оперативной памяти, <strong>4</strong> - 25%, <strong>1</strong> - 100% соответственно (не рекомендуется).</p>
+<p>Формула расчёта: <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">FACTOR</span></code>. Значение <strong>2</strong> – выделение под пул 50% (выбор по умолчанию) от оперативной памяти, <strong>4</strong> – 25%, <strong>1</strong> – 100% соответственно (не рекомендуется).</p>
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
 </div>
 <div class="section" id="rfremix-fedora">
@@ -291,9 +291,9 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 <span id="php-remi-install"></span><span id="index-18"></span><h2>Можно ли установить несколько версий PHP одновременно?<a class="headerlink" href="#php" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, это возможно при использовании репозитория Remi’s RPM.</p>
 <p>В то же время одновременная установка и использование одной и той же <em>мажорной версии PHP</em> невозможна, т.е. нельзя одновременно установить и использовать версии <strong>7.3.1</strong> и <strong>7.3.2</strong>, однако <strong>7.2.9</strong> и <strong>7.3.2</strong> уже можно.</p>
-<p><a class="reference external" href="https://rpms.remirepo.net/">Remi’s RPM</a> – это сторонний репозиторий, созданный и поддерживаемый Remi Collect - активным участником сообщества и мейнтейнером всего PHP стека в Fedora.</p>
+<p><a class="reference external" href="https://rpms.remirepo.net/">Remi’s RPM</a> – это сторонний репозиторий, созданный и поддерживаемый Remi Collect – активным участником сообщества и мейнтейнером всего PHP стека в Fedora.</p>
 <p>Основная цель данного репозитория – предоставление различных версий стека PHP с возможностью одновременного использования, а также некоторых других программ для пользователей Fedora и Enterprise Linux (RHEL, CentOS, Oracle, Scientific Linux и т.д.).</p>
-<p><strong>Важно:</strong> Remi’s RPM - это сторонний репозиторий, поэтому в случае, если вы используете бета-версии Fedora или Fedora Rawhide, репозиторий может работать некорректно.</p>
+<p><strong>Важно:</strong> Remi’s RPM – это сторонний репозиторий, поэтому в случае, если вы используете бета-версии Fedora или Fedora Rawhide, репозиторий может работать некорректно.</p>
 <p>Для подключения выполним сдедующую команду:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install https://rpms.remirepo.net/fedora/remi-release-$(rpm -E %fedora).rpm
 </pre></div>
@@ -363,7 +363,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Exec=env QT_QPA_PLATFORM=xcb /usr/bin/foo-bar
 </pre></div>
 </div>
-<p>Здесь <strong>/usr/bin/foo-bar</strong> - путь запуска проблемного приложения.</p>
+<p>Здесь <strong>/usr/bin/foo-bar</strong> – путь запуска проблемного приложения.</p>
 </div>
 <div class="section" id="spectacle-print-screen">
 <span id="spectacle-dbus"></span><span id="index-21"></span><h2>В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?<a class="headerlink" href="#spectacle-print-screen" title="Ссылка на этот заголовок">¶</a></h2>
