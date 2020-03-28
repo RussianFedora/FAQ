@@ -178,7 +178,7 @@ PPTP
 
 .. code-block:: text
 
-    rsync -chavzP --stats /path/to/local user@example.org:/path/to/remote
+    rsync -chavzP --delete --stats /path/to/local user@example.org:/path/to/remote
 
 Здесь **user@example.org** - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.
 
@@ -192,7 +192,7 @@ PPTP
 
 .. code-block:: text
 
-    rsync -chavzP --stats user@example.org:/path/to/remote /path/to/local
+    rsync -chavzP --delete --stats user@example.org:/path/to/remote /path/to/local
 
 Здесь **user@example.org** - данные для подключения к серверу, т.е. имя пользователя на удалённом сервере и хост.
 
