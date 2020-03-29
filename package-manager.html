@@ -527,7 +527,7 @@ sudo dnf config-manager --set-enabled updates-modular
 </div>
 <div class="section" id="package-version">
 <span id="index-50"></span><span id="id39"></span><h2>Почему некоторые пакеты в Fedora не обновляют до новейших версий?<a class="headerlink" href="#package-version" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Согласно <a class="reference external" href="https://docs.fedoraproject.org/en-US/fesco/Updates_Policy/#stable-releases">Fedora updates policy</a>, запрещается обновлять пакеты в пределах стабильного выпуска Fedora до новых мажорных версий кроме тех, для которых было выдано <a class="reference internal" href="#upgrades-allowed"><span class="std std-ref">специальное разрешение</span></a> от FESCo.</p>
+<p>Согласно <a class="reference external" href="https://docs.fedoraproject.org/en-US/fesco/Updates_Policy/#stable-releases">Fedora updates policy</a>, запрещается обновлять пакеты в пределах стабильного выпуска Fedora до новых мажорных версий кроме тех, для которых было выдано <a class="reference internal" href="#upgrades-allowed"><span class="std std-ref">специальное разрешение</span></a> от <a class="reference internal" href="generic-info.html#fesco"><span class="std std-ref">FESCo</span></a>.</p>
 </div>
 <div class="section" id="upgrades-allowed">
 <span id="index-51"></span><span id="id40"></span><h2>Какие пакеты разрешено обновлять до новых версий в пределах стабильного выпуска?<a class="headerlink" href="#upgrades-allowed" title="Ссылка на этот заголовок">¶</a></h2>
@@ -580,6 +580,7 @@ sudo dnf distro-sync --allowerasing
 <div class="section" id="fedora-snap">
 <span id="index-58"></span><span id="id45"></span><h2>Можно ли использовать в Fedora Snap пакеты?<a class="headerlink" href="#fedora-snap" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Технически возможно, однако мы настоятельно не рекомендуем этого делать, ибо качество большинства Snap пакетов очень низкое, к тому же в некоторых из них <a class="reference external" href="https://xakep.ru/2018/05/14/snap-store-miner/">были обнаружены</a> вредоносные майнеры.</p>
+<p>К тому же вне Ubuntu Snap-пакеты выполняются без какой-либо изоляции. Более подробно о них в <a class="reference internal" href="#flatpak-vs-snap"><span class="std std-ref">сравнении самодостаточных пакетов</span></a>.</p>
 </div>
 <div class="section" id="dnf-groups">
 <span id="index-59"></span><span id="id46"></span><h2>Безопасно ли устанавливать и удалять пакеты группами?<a class="headerlink" href="#dnf-groups" title="Ссылка на этот заголовок">¶</a></h2>

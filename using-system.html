@@ -606,6 +606,21 @@ export SUDO_EDITOR=vim
 </ol>
 </div></blockquote>
 </div>
+<div class="section" id="icon-override">
+<span id="index-54"></span><span id="id34"></span><h2>Как изменить ярлык приложения из главного меню?<a class="headerlink" href="#icon-override" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Значки приложений главного меню расположены в каталоге <code class="docutils literal notranslate"><span class="pre">/usr/share/applications</span></code>, однако редактировать их там не следует ибо при следующем <a class="reference internal" href="package-manager.html#dnf-update"><span class="std std-ref">обновлении</span></a> все изменения будут потеряны.</p>
+<p>Вместо этого создадим локальное переопределение – скопируем desktop-файл в <code class="docutils literal notranslate"><span class="pre">~/.local/share/applications</span></code> и внесём необходимые правки.</p>
+<p>Создадим каталог назначения если он отсутствует:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/.local/share/applications
+</pre></div>
+</div>
+<p>Скопируем ярлык <strong>foo-bar.desktop</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cp /usr/share/applications/foo-bar.desktop ~/.local/share/applications/
+</pre></div>
+</div>
+<p>Внесём свои правки.</p>
+<p>Кэш <a class="reference internal" href="using-applications.html#kde-icons-refresh"><span class="std std-ref">значков главного меню</span></a> обновится автоматически, т.к. все популярные среды рабочего стола отслеживают изменения в данном каталоге.</p>
+</div>
 </div>
 
 
@@ -688,6 +703,7 @@ export SUDO_EDITOR=vim
 <li class="toctree-l2"><a class="reference internal" href="#plymouth-themes">Как изменить тему экрана, отображающегося при загрузке системы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#plymouth-nologo">Как отключить вывод логотипа производителя устройства при загрузке системы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ntfs">Все NTFS тома монтируются в режиме только для чтения. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#icon-override">Как изменить ярлык приложения из главного меню?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-applications.html">Сторонние приложения</a></li>
