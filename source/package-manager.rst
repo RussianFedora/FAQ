@@ -806,7 +806,7 @@ Java 12 (preview):
 Почему некоторые пакеты в Fedora не обновляют до новейших версий?
 =====================================================================
 
-Согласно `Fedora updates policy <https://docs.fedoraproject.org/en-US/fesco/Updates_Policy/#stable-releases>`__, запрещается обновлять пакеты в пределах стабильного выпуска Fedora до новых мажорных версий кроме тех, для которых было выдано :ref:`специальное разрешение <upgrades-allowed>` от FESCo.
+Согласно `Fedora updates policy <https://docs.fedoraproject.org/en-US/fesco/Updates_Policy/#stable-releases>`__, запрещается обновлять пакеты в пределах стабильного выпуска Fedora до новых мажорных версий кроме тех, для которых было выдано :ref:`специальное разрешение <upgrades-allowed>` от :ref:`FESCo <fesco>`.
 
 .. index:: package, version, update, fesco
 .. _upgrades-allowed:
