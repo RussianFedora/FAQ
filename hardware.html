@@ -49,9 +49,9 @@
 <div><ul class="simple">
 <li><p>стандартный драйвер (десктопы, серии GeForce, Quadro, Titan):</p>
 <ul>
-<li><p><a class="reference internal" href="#nvidia-standard"><span class="std std-ref">современные поколения видеокарт (900, 1000, 1600 и 2000)</span></a>;</p></li>
-<li><p><a class="reference internal" href="#nvidia-legacy-390"><span class="std std-ref">более старые поколения видеокарт (300, 400, 500, 600 и 700)</span></a>;</p></li>
-<li><p><a class="reference internal" href="#nvidia-legacy-340"><span class="std std-ref">устаревшие поколения видеокарт (серии 6000, 7000, 8000, 9000 и 200)</span></a>;</p></li>
+<li><p><a class="reference internal" href="#nvidia-standard"><span class="std std-ref">современные поколения видеокарт (700, 800, 900, 1000, 1600 и 2000)</span></a>;</p></li>
+<li><p><a class="reference internal" href="#nvidia-legacy-390"><span class="std std-ref">более старые поколения видеокарт (400, 500, 600)</span></a>;</p></li>
+<li><p><a class="reference internal" href="#nvidia-legacy-340"><span class="std std-ref">устаревшие поколения видеокарт (6000, 7000, 8000, 9000, 200 и 300)</span></a>;</p></li>
 </ul>
 </li>
 <li><p>ноутбуки с гибридной графикой:</p>
@@ -116,6 +116,7 @@
 </div>
 <div class="section" id="nvidia-legacy-340">
 <span id="index-4"></span><span id="id4"></span><h2>Как установить стандартный драйвер видеокарт NVIDIA для устаревших видеокарт?<a class="headerlink" href="#nvidia-legacy-340" title="Ссылка на этот заголовок">¶</a></h2>
+<p><strong>Важно:</strong> поддержка ветки 340 официально <a class="reference external" href="https://www.phoronix.com/scan.php?page=news_item&amp;px=NVIDIA-Retires-G8x-GT2xx">прекращена самой NVIDIA</a>, поэтому данный драйвер может прекратить функционировать в любой момент при выходе новых версий ядра Linux и системы Xorg. В этом случае мы рекомендуем переключиться на использование свободного драйвера nouveau, либо заменить видеокарту на более современную.</p>
 <p>Подключим репозитории <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
 <p>Загрузим все обновления системы:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
