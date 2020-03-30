@@ -704,6 +704,23 @@ sudo dnf distro-sync --allowerasing
 </pre></div>
 </div>
 </div>
+<div class="section" id="rpm-check-file">
+<span id="index-74"></span><span id="id61"></span><h2>Как определить какому пакету принадлежит файл?<a class="headerlink" href="#rpm-check-file" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Воспрользуемся прямым вызовом <strong>rpm</strong> для получения информации о принадлежности файла какому-либо <em>установленному</em> пакету (для не установленных существует <a class="reference internal" href="#dnf-find-file"><span class="std std-ref">иной способ</span></a>):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rpm -qf /path/to/file
+</pre></div>
+</div>
+<p>Здесь <strong>/path/to/file</strong> – абсолютный путь к файлу, который необходимо проверить.</p>
+<p>Если принадлежность установлена, будет выдано полное имя пакета. В противном случае – сообщение об ошибке.</p>
+</div>
+<div class="section" id="rpm-check-system">
+<span id="index-75"></span><span id="id62"></span><h2>Как проверить какие файлы в системе были изменены?<a class="headerlink" href="#rpm-check-system" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Воспрользуемся прямым вызовом <strong>rpm</strong> для выполнения полной проверки и вывода информации о результатах:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rpm -qVa --nomtime
+</pre></div>
+</div>
+<p>Далеко не всё является ошибкой. Например сообщение об изменённых файлах конфигурации является абсолютно нормальным явлением.</p>
+</div>
 </div>
 
 
@@ -801,6 +818,8 @@ sudo dnf distro-sync --allowerasing
 <li class="toctree-l2"><a class="reference internal" href="#flatpak-vs-snap">Какой вид самодостаточных пакетов является лучшим?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpm-packages-other">Как вывести список пакетов из другой установки?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpm-reinstall-package">Как мне переустановить пакет?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpm-check-file">Как определить какому пакету принадлежит файл?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpm-check-system">Как проверить какие файлы в системе были изменены?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Системное администрирование</a></li>
