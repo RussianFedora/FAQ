@@ -16,7 +16,7 @@ from os import getenv
 from time import strftime
 
 # Configuring version and Git snapshots.
-rel_version = '2020.02.29'
+rel_version = '2020.03.30'
 rel_snapshot = getenv('CI_HASH')
 
 # -- General configuration ------------------------------------------------
