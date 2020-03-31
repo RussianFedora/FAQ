@@ -576,3 +576,41 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 .. code-block:: text
 
     sudo systemctl reboot
+
+.. index:: nvidia, vga, error, workaround, x11
+.. _nvidia-vga0-error:
+
+Как исправить ошибку, связанную с VGA-0, на видеокартах NVIDIA?
+===================================================================
+
+Если в системном журнале появляется сообщение вида *WARNING: GPU:0: Unable to read EDID for display device VGA-0*, отключим соответствующий видеовыход.
+
+Создадим файл ``80-vgaoff.conf``:
+
+.. code-block:: text
+
+    sudo touch /etc/X11/xorg.conf.d/80-vgaoff.conf
+    sudo chown root:root /etc/X11/xorg.conf.d/80-vgaoff.conf
+    sudo chmod 0644 /etc/X11/xorg.conf.d/80-vgaoff.conf
+
+Откроем его в :ref:`текстовом редакторе <editor-selection>`:
+
+.. code-block:: text
+
+    sudoedit /etc/X11/xorg.conf.d/80-vgaoff.conf
+
+Добавим следующее содержание:
+
+.. code-block:: text
+
+    Section "Monitor"
+        Identifier "VGA-0"
+        Option "Ignore" "true"
+        Option "Enable" "false"
+    EndSection
+
+Произведём перезагрузку системы:
+
+.. code-block:: text
+
+    sudo systemctl reboot
