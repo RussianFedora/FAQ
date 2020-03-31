@@ -1374,3 +1374,48 @@ Qt-приложение, собранное Clang с LTO не запускает
 .. code-block:: text
 
     git tag -d $(git tag -l)
+
+.. index:: gcc, regression, bug report, report, bug, koji, uue, uuencode, uudecode
+.. _koji-extract-data:
+
+Как извлечь из Koji какие-либо данные для отправки баг-репорта?
+===================================================================
+
+Т.к. :ref:`Koji <koji-about>` автоматически очищает каталог сборки по её завершении с любым статусом, единственная возможность извлечь полезные данные -- это закодировать их в формате `Uuencode <https://ru.wikipedia.org/wiki/UUE>`__ и вывести в общий журнал сборки.
+
+Добавим в :ref:`SPEC-файл пакета <create-package>` зависимость от **sharutils**:
+
+.. code-block:: text
+
+    BuildRequires: sharutils
+
+Немного доработаем команду сборки (например ``%make_build``), включив в неё упаковку всех необработанных preprocessed sources в архив с кодированием в UUE, при возникновении возникновении ошибки:
+
+.. code-block:: text
+
+    %make_build || (tar cf - /tmp/cc*.out | bzip2 -9 | uuencode cc.tar.bz2)
+
+Найдём в журнале ``build.log`` блок вида:
+
+.. code-block:: text
+
+    begin 644 cc.tar.bz2
+    ...
+    ...
+    end
+
+Извлечём и сохраним его в файл ``foo-bar.uue``.
+
+Установим утилиту **uudecode**:
+
+.. code-block:: text
+
+    sudo dnf install sharutils
+
+Декодируем полезную нагрузку:
+
+.. code-block:: text
+
+    uudecode foo-bar.uue
+
+Загрузим полученный архив в :ref:`баг-репорт <bug-report>`.
