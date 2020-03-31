@@ -923,6 +923,35 @@ export NM=%{_bindir}/llvm-nm
 </pre></div>
 </div>
 </div>
+<div class="section" id="koji-extract-data">
+<span id="index-61"></span><span id="id42"></span><h2>Как извлечь из Koji какие-либо данные для отправки баг-репорта?<a class="headerlink" href="#koji-extract-data" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Т.к. <a class="reference internal" href="#koji-about"><span class="std std-ref">Koji</span></a> автоматически очищает каталог сборки по её завершении с любым статусом, единственная возможность извлечь полезные данные – это закодировать их в формате <a class="reference external" href="https://ru.wikipedia.org/wiki/UUE">Uuencode</a> и вывести в общий журнал сборки.</p>
+<p>Добавим в <a class="reference internal" href="#create-package"><span class="std std-ref">SPEC-файл пакета</span></a> зависимость от <strong>sharutils</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>BuildRequires: sharutils
+</pre></div>
+</div>
+<p>Немного доработаем команду сборки (например <code class="docutils literal notranslate"><span class="pre">%make_build</span></code>), включив в неё упаковку всех необработанных preprocessed sources в архив с кодированием в UUE, при возникновении возникновении ошибки:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%make_build || (tar cf - /tmp/cc*.out | bzip2 -9 | uuencode cc.tar.bz2)
+</pre></div>
+</div>
+<p>Найдём в журнале <code class="docutils literal notranslate"><span class="pre">build.log</span></code> блок вида:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>begin 644 cc.tar.bz2
+...
+...
+end
+</pre></div>
+</div>
+<p>Извлечём и сохраним его в файл <code class="docutils literal notranslate"><span class="pre">foo-bar.uue</span></code>.</p>
+<p>Установим утилиту <strong>uudecode</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install sharutils
+</pre></div>
+</div>
+<p>Декодируем полезную нагрузку:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>uudecode foo-bar.uue
+</pre></div>
+</div>
+<p>Загрузим полученный архив в <a class="reference internal" href="generic-info.html#bug-report"><span class="std std-ref">баг-репорт</span></a>.</p>
+</div>
 </div>
 
 
@@ -1015,6 +1044,7 @@ export NM=%{_bindir}/llvm-nm
 <li class="toctree-l2"><a class="reference internal" href="#git-remove-tag">Как удалить тег во внешнем Git репозитории?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-remove-branch">Как удалить ветку во внешнем Git репозитории?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-remove-all-tags">Как удалить все теги (локальные и удалённые) в Git репозитории?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#koji-extract-data">Как извлечь из Koji какие-либо данные для отправки баг-репорта?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>
