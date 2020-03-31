@@ -930,7 +930,7 @@ export NM=%{_bindir}/llvm-nm
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>BuildRequires: sharutils
 </pre></div>
 </div>
-<p>Немного доработаем команду сборки (например <code class="docutils literal notranslate"><span class="pre">%make_build</span></code>), включив в неё упаковку всех необработанных preprocessed sources в архив с кодированием в UUE, при возникновении возникновении ошибки:</p>
+<p>Немного доработаем команду сборки (например <code class="docutils literal notranslate"><span class="pre">%make_build</span></code>), включив в неё упаковку всех необработанных preprocessed sources в архив с кодированием в UUE, при возникновении ошибки:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%make_build || (tar cf - /tmp/cc*.out | bzip2 -9 | uuencode cc.tar.bz2)
 </pre></div>
 </div>

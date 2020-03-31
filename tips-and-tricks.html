@@ -389,6 +389,32 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 </pre></div>
 </div>
 </div>
+<div class="section" id="vga-0-nvidia">
+<span id="nvidia-vga0-error"></span><span id="index-23"></span><h2>Как исправить ошибку, связанную с VGA-0, на видеокартах NVIDIA?<a class="headerlink" href="#vga-0-nvidia" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если в системном журнале появляется сообщение вида <em>WARNING: GPU:0: Unable to read EDID for display device VGA-0</em>, отключим соответствующий видеовыход.</p>
+<p>Создадим файл <code class="docutils literal notranslate"><span class="pre">80-vgaoff.conf</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo touch /etc/X11/xorg.conf.d/80-vgaoff.conf
+sudo chown root:root /etc/X11/xorg.conf.d/80-vgaoff.conf
+sudo chmod 0644 /etc/X11/xorg.conf.d/80-vgaoff.conf
+</pre></div>
+</div>
+<p>Откроем его в <a class="reference internal" href="using-system.html#editor-selection"><span class="std std-ref">текстовом редакторе</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/X11/xorg.conf.d/80-vgaoff.conf
+</pre></div>
+</div>
+<p>Добавим следующее содержание:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Section &quot;Monitor&quot;
+    Identifier &quot;VGA-0&quot;
+    Option &quot;Ignore&quot; &quot;true&quot;
+    Option &quot;Enable&quot; &quot;false&quot;
+EndSection
+</pre></div>
+</div>
+<p>Произведём перезагрузку системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -444,6 +470,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 <li class="toctree-l2"><a class="reference internal" href="#qt-wayland">С некоторыми Qt приложениями в Wayland наблюдаются проблемы. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#spectacle-print-screen">В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#amd">Как решить проблему с чёрным экраном после обновления ядра на видеокартах AMD?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vga-0-nvidia">Как исправить ошибку, связанную с VGA-0, на видеокартах NVIDIA?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
