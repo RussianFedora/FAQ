@@ -266,7 +266,7 @@
 
     FONT=ter-v16n
 
-Сохраним изменения в файле.
+Сохраним изменения в файле и :ref:`пересоберём <initrd-rebuild>` initrd.
 
 .. index:: file system, selection, fs, ext4, xfs
 .. _fs-selection:
