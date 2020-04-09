@@ -41,6 +41,17 @@
     * :ref:`Bumblebee драйвер (устаревший способ) <nvidia-legacy-optimus>`;
     * :ref:`Bumblebee драйвер для старых ноутбуков <nvidia-legacy-unmanaged>`.
 
+.. index:: video, gpu, repository, nvidia, drivers, third-party, cuda
+.. _nvidia-cuda:
+
+Как правильно установить драйвер CUDA для видеокарт NVIDIA?
+===============================================================
+
+Драйверы CUDA входят в комплект :ref:`основных проприетарных драйверов <nvidia-drivers>`, хотя и не устанавливаются по умолчанию:
+
+  * :ref:`современные поколения видеокарт (700, 800, 900, 1000, 1600 и 2000) <nvidia-cuda-generic>`;
+  * :ref:`более старые поколения видеокарт (400, 500, 600) <nvidia-cuda-legacy-390>`.
+
 .. index:: video, gpu, repository, nvidia, drivers, third-party
 .. _nvidia-standard:
 
@@ -301,6 +312,44 @@
 .. code-block:: text
 
     sudo systemctl reboot
+
+.. index:: video, gpu, repository, nvidia, drivers, third-party, cuda
+.. _nvidia-cuda-generic:
+
+Как установить драйвер CUDA для современных видеокарт NVIDIA?
+=================================================================
+
+Установим проприетарные драйверы NVIDIA для :ref:`современных поколений видеокарт <nvidia-standard>`.
+
+Установим пакеты с набором библиотек CUDA:
+
+.. code-block:: text
+
+    sudo dnf install xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
+
+Если используется 64-битная ОС, но требуется запускать ещё и 32-битные версии ПО, использующие CUDA для работы, установим также 32-битный драйвер:
+
+.. code-block:: text
+
+    sudo dnf install xorg-x11-drv-nvidia-cuda-libs.i686
+
+.. index:: video, gpu, repository, nvidia, drivers, third-party, cuda
+.. _nvidia-cuda-legacy-390:
+
+Как установить драйвер CUDA для устаревших видеокарт NVIDIA?
+================================================================
+
+Установим проприетарные драйверы NVIDIA для :ref:`устаревших поколений видеокарт <nvidia-legacy-390>`.
+
+.. code-block:: text
+
+    sudo dnf install xorg-x11-drv-nvidia-390xx-cuda xorg-x11-drv-nvidia-390xx-cuda-libs
+
+Если используется 64-битная ОС, но требуется запускать ещё и 32-битные версии ПО, использующие CUDA для работы, установим также 32-битный драйвер:
+
+.. code-block:: text
+
+    sudo dnf install xorg-x11-drv-nvidia-390xx-cuda-libs.i686
 
 .. index:: video, gpu, repository, nvidia, drivers, third-party, bumblebee, primus, optimus
 .. _nvidia-troubleshooting:
