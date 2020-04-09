@@ -403,18 +403,6 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Вместо OpenCL для кодирования и декодирования мультимедиа можно использовать VA-API, который работает "из коробки".
 
-.. index:: video, gpu, nvidia, cuda, drivers
-.. _nvidia-cuda:
-
-Как установить поддержку CUDA на видеокартах NVIDIA?
-=======================================================
-
-Поддержка `CUDA <https://ru.wikipedia.org/wiki/CUDA>`__ доступна исключительно в :ref:`проприетарных драйверах <nvidia-drivers>` NVIDIA. Установим необходимые пакеты:
-
-.. code-block:: text
-
-    sudo dnf install xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
-
 .. index:: hardware, selection
 .. _linux-hardware:
 
