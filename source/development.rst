@@ -815,7 +815,7 @@
     cd /media/foo-bar
     sudo mkdir mock
     sudo chown root:mock mock
-    sudo chmod 775 mock
+    sudo chmod 4775 mock
 
 Переместим содержимое текущих рабочих каталогов mock:
 
