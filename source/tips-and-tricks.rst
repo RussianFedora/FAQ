@@ -478,43 +478,6 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
 Файлы конфигурации ``php.ini`` и ``php-fpm.conf`` располагаются в каталоге ``/etc/opt/remi/php73``. Префикс используется в качестве имени каталога.
 
-.. index:: trim, fstrim, systemd, override, service, workaround, ssd
-.. _fstrim-override:
-
-Перестал работать TRIM для /home. Как исправить?
-=====================================================
-
-Это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=1762640>`__ в пакете utils-linux.
-
-Для её решения создадим override для :ref:`systemd-юнита <systemd-info>` ``fstrim.service``:
-
-.. code-block:: text
-
-    sudo systemctl edit fstrim.service
-
-В появившемся текстовом редакторе пропишем следующие строки:
-
-.. code-block:: ini
-
-    [Service]
-    ProtectHome=read-only
-
-Сохраним изменения и выйдем из редактора.
-
-Обновим конфигурацию юнитов systemd:
-
-.. code-block:: text
-
-    sudo systemctl daemon-reload
-
-Запустим сервис :ref:`fstrim <ssd-tuning>` вручную (при необходимости):
-
-.. code-block:: text
-
-    sudo systemctl start fstrim.service
-
-С этого момента функция TRIM для домашнего раздела будет работать исправно.
-
 .. index:: qt, wayland, xcb, workaround
 .. _qt-wayland-issue:
 
