@@ -574,7 +574,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd /media/foo-bar
 sudo mkdir mock
 sudo chown root:mock mock
-sudo chmod 42775 mock
+sudo chmod 4775 mock
 </pre></div>
 </div>
 <p>Переместим содержимое текущих рабочих каталогов mock:</p>
@@ -583,8 +583,8 @@ sudo mv /var/lib/mock /media/foo-bar/mock/lib
 </pre></div>
 </div>
 <p>Создадим символические ссылки на старом месте:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo ln -s /media/foo-bar/mock/cache/mock /var/cache/mock
-sudo ln -s /media/foo-bar/mock/lib/mock /var/lib/mock
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo ln -s /media/foo-bar/mock/cache /var/cache/mock
+sudo ln -s /media/foo-bar/mock/lib /var/lib/mock
 </pre></div>
 </div>
 <p>Зададим контекст <a class="reference internal" href="security.html#selinux"><span class="std std-ref">SELinux</span></a> по умолчанию для нового хранилища:</p>

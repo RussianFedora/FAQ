@@ -738,6 +738,12 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </pre></div>
 </div>
 </div>
+<div class="section" id="chromium-kde">
+<span id="kde-chromium-default"></span><span id="index-61"></span><h2>Как сделать Chromium браузером по умолчанию в KDE?<a class="headerlink" href="#chromium-kde" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для того, чтобы назначить Chromium браузером по умолчанию, выполним <strong>Параметры системы</strong> – <strong>Приложения</strong> – <strong>Приложения по умолчанию</strong> – <strong>Браузер</strong> – установим точку около <strong>в следующем приложении</strong>, затем в выпадающем списке выберем <strong>Chromium</strong> и нажмём кнопку <strong>Применить</strong>.</p>
+<p>Однако, даже если указанное действие сделано верно, Chromium всё равно будет предалагать установить его браузером по умолчанию при каждом запуске, т.к. он проверяет привязку не только к протоколам, но и к конкретным <a class="reference internal" href="using-system.html#file-types"><span class="std std-ref">mime-типам</span></a> для HTML-файлов.</p>
+<p>Чтобы избавиться от данного сообщения, повторно откроем <strong>Параметры системы</strong> – <strong>Приложения</strong> – <strong>Привязки файлов</strong>, в строке поиска введём <code class="docutils literal notranslate"><span class="pre">html</span></code> и переместим Chromium в самый верх списка приоритетов для <strong>xhtml+xml</strong> и <strong>html</strong>. Нажмём <strong>Применить</strong>.</p>
+</div>
 </div>
 
 
@@ -828,6 +834,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#qt">Как переопределить тему в Qt приложениях?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#wine-fedora">Как правильно установить Wine в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dxvk-wine">Как правильно установить dxvk для Wine из репозиториев?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#chromium-kde">Как сделать Chromium браузером по умолчанию в KDE?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>

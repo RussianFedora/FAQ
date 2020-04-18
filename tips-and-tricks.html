@@ -329,31 +329,8 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 <p>Здесь <code class="docutils literal notranslate"><span class="pre">/usr/bin/php73</span></code> является символической ссылкой для быстрого вызова исполняемого файла интерпретатора PHP указанной версии, например <code class="docutils literal notranslate"><span class="pre">/opt/remi/php73/root/usr/bin/php</span></code>.</p>
 <p>Файлы конфигурации <code class="docutils literal notranslate"><span class="pre">php.ini</span></code> и <code class="docutils literal notranslate"><span class="pre">php-fpm.conf</span></code> располагаются в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/opt/remi/php73</span></code>. Префикс используется в качестве имени каталога.</p>
 </div>
-<div class="section" id="trim-home">
-<span id="fstrim-override"></span><span id="index-19"></span><h2>Перестал работать TRIM для /home. Как исправить?<a class="headerlink" href="#trim-home" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1762640">известная проблема</a> в пакете utils-linux.</p>
-<p>Для её решения создадим override для <a class="reference internal" href="administration.html#systemd-info"><span class="std std-ref">systemd-юнита</span></a> <code class="docutils literal notranslate"><span class="pre">fstrim.service</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl edit fstrim.service
-</pre></div>
-</div>
-<p>В появившемся текстовом редакторе пропишем следующие строки:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Service]</span>
-<span class="na">ProtectHome</span><span class="o">=</span><span class="s">read-only</span>
-</pre></div>
-</div>
-<p>Сохраним изменения и выйдем из редактора.</p>
-<p>Обновим конфигурацию юнитов systemd:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl daemon-reload
-</pre></div>
-</div>
-<p>Запустим сервис <a class="reference internal" href="installation.html#ssd-tuning"><span class="std std-ref">fstrim</span></a> вручную (при необходимости):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl start fstrim.service
-</pre></div>
-</div>
-<p>С этого момента функция TRIM для домашнего раздела будет работать исправно.</p>
-</div>
 <div class="section" id="qt-wayland">
-<span id="qt-wayland-issue"></span><span id="index-20"></span><h2>С некоторыми Qt приложениями в Wayland наблюдаются проблемы. Как исправить?<a class="headerlink" href="#qt-wayland" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="qt-wayland-issue"></span><span id="index-19"></span><h2>С некоторыми Qt приложениями в Wayland наблюдаются проблемы. Как исправить?<a class="headerlink" href="#qt-wayland" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Некоторые приложения, использующие фреймворк Qt, могут некорректно работать в Wayland, поэтому активируем для них принудительное использование системы X11:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>QT_QPA_PLATFORM=xcb /usr/bin/foo-bar
 </pre></div>
@@ -366,7 +343,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 <p>Здесь <strong>/usr/bin/foo-bar</strong> – путь запуска проблемного приложения.</p>
 </div>
 <div class="section" id="spectacle-print-screen">
-<span id="spectacle-dbus"></span><span id="index-21"></span><h2>В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?<a class="headerlink" href="#spectacle-print-screen" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="spectacle-dbus"></span><span id="index-20"></span><h2>В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?<a class="headerlink" href="#spectacle-print-screen" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1754395">известная проблема</a> пакета <strong>Lmod</strong>, приводящая к тому, что при вызове через D-Bus не полностью передаются <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменные окружения</span></a>.</p>
 <p>Удалим Lmod:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove Lmod
@@ -378,7 +355,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 </div>
 </div>
 <div class="section" id="amd">
-<span id="amdgpu-black-screen"></span><span id="index-22"></span><h2>Как решить проблему с чёрным экраном после обновления ядра на видеокартах AMD?<a class="headerlink" href="#amd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="amdgpu-black-screen"></span><span id="index-21"></span><h2>Как решить проблему с чёрным экраном после обновления ядра на видеокартах AMD?<a class="headerlink" href="#amd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Иногда чёрный экран на видеокартах AMD может появляться по причинам отсутствия нужной прошивки в initramfs образе.</p>
 <p>Для решения данной проблемы <a class="reference internal" href="using-system.html#initrd-rebuild"><span class="std std-ref">пересоберём образ initrd</span></a> с принудительным добавлением прошивок, используемых драйвером amdgpu:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut --regenerate-all --force --install &quot;/usr/lib/firmware/amdgpu/*&quot;
@@ -390,7 +367,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 </div>
 </div>
 <div class="section" id="vga-0-nvidia">
-<span id="nvidia-vga0-error"></span><span id="index-23"></span><h2>Как исправить ошибку, связанную с VGA-0, на видеокартах NVIDIA?<a class="headerlink" href="#vga-0-nvidia" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="nvidia-vga0-error"></span><span id="index-22"></span><h2>Как исправить ошибку, связанную с VGA-0, на видеокартах NVIDIA?<a class="headerlink" href="#vga-0-nvidia" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если в системном журнале появляется сообщение вида <em>WARNING: GPU:0: Unable to read EDID for display device VGA-0</em>, отключим соответствующий видеовыход.</p>
 <p>Создадим файл <code class="docutils literal notranslate"><span class="pre">80-vgaoff.conf</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo touch /etc/X11/xorg.conf.d/80-vgaoff.conf
@@ -466,7 +443,6 @@ EndSection
 <li class="toctree-l2"><a class="reference internal" href="#windows-dual-boot">Как оптимизировать Windows для корректной работы в dual-boot?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#webkitgtk">Приложение требует webkitgtk. Что делать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#php">Можно ли установить несколько версий PHP одновременно?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#trim-home">Перестал работать TRIM для /home. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qt-wayland">С некоторыми Qt приложениями в Wayland наблюдаются проблемы. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#spectacle-print-screen">В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#amd">Как решить проблему с чёрным экраном после обновления ядра на видеокартах AMD?</a></li>
