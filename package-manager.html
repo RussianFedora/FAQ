@@ -173,17 +173,9 @@ rm -f foo-bar-installed.txt
 <div class="section" id="fedora">
 <span id="dist-upgrade"></span><span id="index-12"></span><h2>Как мне обновить Fedora до новой версии?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Процесс обновления стандартен и максимально безопасен:</p>
-<p>Fedora 28 и более ранние версии:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
 sudo dnf install dnf-plugin-system-upgrade
 sudo dnf system-upgrade download --releasever=$(($(rpm -E %fedora) + 1))
-sudo dnf system-upgrade reboot
-</pre></div>
-</div>
-<p>Fedora 29 и новее:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
-sudo dnf install dnf-plugin-system-upgrade
-sudo dnf system-upgrade download --releasever=$(($(rpm -E %fedora) + 1)) --setopt=module_platform_id=platform:f$(($(rpm -E %fedora) + 1))
 sudo dnf system-upgrade reboot
 </pre></div>
 </div>
