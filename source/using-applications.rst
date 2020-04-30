@@ -40,7 +40,7 @@
 
 В настоящее время аппаратное ускорение декодирования мультимедиа "из коробки" в GNU/Linux не поддерживается ни в одном браузере.
 
-В Mozilla Firefox оно вообще не реализовано: `MZBZ#563206 <https://bugzilla.mozilla.org/show_bug.cgi?id=563206>`__ и `MZBZ#1210727 <https://bugzilla.mozilla.org/show_bug.cgi?id=1210727>`__.
+В Mozilla Firefox оно реализовано только для Wayland-сеанса (в X11 не работает: `MZBZ#563206 <https://bugzilla.mozilla.org/show_bug.cgi?id=563206>`__ и `MZBZ#1210727 <https://bugzilla.mozilla.org/show_bug.cgi?id=1210727>`__).
 
 В Google Chrome и Chromium частично реализовано, но отключено на этапе компиляции и без особых VA-API патчей недоступно. Репозиторий :ref:`RPM Fusion <rpmfusion>` предоставляет такую сборку Chromium. Для её установки необходимо подключить его и установить пакет **chromium-freeworld**:
 
