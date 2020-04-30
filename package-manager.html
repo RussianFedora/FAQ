@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>Пакетный менеджер и установка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2020.03.30)</title>
+    <title>Пакетный менеджер и установка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2020.04.30)</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -571,8 +571,19 @@ sudo dnf distro-sync --allowerasing
 </div>
 <div class="section" id="fedora-snap">
 <span id="index-58"></span><span id="id45"></span><h2>Можно ли использовать в Fedora Snap пакеты?<a class="headerlink" href="#fedora-snap" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Технически возможно, однако мы настоятельно не рекомендуем этого делать, ибо качество большинства Snap пакетов очень низкое, к тому же в некоторых из них <a class="reference external" href="https://xakep.ru/2018/05/14/snap-store-miner/">были обнаружены</a> вредоносные майнеры.</p>
-<p>К тому же вне Ubuntu Snap-пакеты выполняются без какой-либо изоляции. Более подробно о них в <a class="reference internal" href="#flatpak-vs-snap"><span class="std std-ref">сравнении самодостаточных пакетов</span></a>.</p>
+<p>Установим пакет <strong>snapd</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install snapd
+</pre></div>
+</div>
+<p>Для работы некоторых приложений требуется наличие символической ссылки <code class="docutils literal notranslate"><span class="pre">/snap</span></code>, поэтому создадим её:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo ln -s /var/lib/snapd/snap /snap
+</pre></div>
+</div>
+<p>Установим приложение <strong>foo-bar</strong> из <a class="reference external" href="https://snapcraft.io/store">Snap Store</a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo snap install foo-bar
+</pre></div>
+</div>
+<p>Внимание! Вне Ubuntu все Snap-пакеты выполняются без какой-либо изоляции из-за отсутствия поддержки AppArmor. Более подробно об этом можно прочитать в <a class="reference internal" href="#flatpak-vs-snap"><span class="std std-ref">сравнении самодостаточных пакетов</span></a>.</p>
 </div>
 <div class="section" id="dnf-groups">
 <span id="index-59"></span><span id="id46"></span><h2>Безопасно ли устанавливать и удалять пакеты группами?<a class="headerlink" href="#dnf-groups" title="Ссылка на этот заголовок">¶</a></h2>
@@ -713,6 +724,19 @@ sudo dnf distro-sync --allowerasing
 </div>
 <p>Далеко не всё является ошибкой. Например сообщение об изменённых файлах конфигурации является абсолютно нормальным явлением.</p>
 </div>
+<div class="section" id="fedora-cisco-openh264">
+<span id="cisco-openh264"></span><span id="index-76"></span><h2>Что такое fedora-cisco-openh264?<a class="headerlink" href="#fedora-cisco-openh264" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Репозиторий <strong>fedora-cisco-openh264</strong> представляет специальную бинарную сборку библиотеки openh264, которая применяется в браузере Mozilla Firefox для аудио/видео вызовов, для США и Австралии (т.е. стран, где действуют патенты на алгоритмы).</p>
+<p>Пользователям из всех остальных стран мы рекомендуем использовать <a class="reference internal" href="using-applications.html#firefox-codecs"><span class="std std-ref">ffmpeg-libs</span></a> из репозитория <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>, который предоставляет все доступные кодеки мультимедиа без каких-либо ограничений.</p>
+<p>Отключим данный репозиторий:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-disabled fedora-cisco-openh264
+</pre></div>
+</div>
+<p>Удалим установленные из него пакеты:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove openh264 mozilla-openh264 gstreamer1-plugin-openh264
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -812,6 +836,7 @@ sudo dnf distro-sync --allowerasing
 <li class="toctree-l2"><a class="reference internal" href="#rpm-reinstall-package">Как мне переустановить пакет?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpm-check-file">Как определить какому пакету принадлежит файл?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpm-check-system">Как проверить какие файлы в системе были изменены?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora-cisco-openh264">Что такое fedora-cisco-openh264?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Системное администрирование</a></li>
