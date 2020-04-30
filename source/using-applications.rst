@@ -1170,3 +1170,25 @@ Cгенерируем файл с контрольными суммами SHA2 (
 .. code-block:: text
 
     sudo systemctl disable earlyoom.service
+
+.. index:: oom, kernel, earlyoom, config
+.. _earlyoom-configure:
+
+Как мне настроить earlyoom?
+================================
+
+Параметры earlyoom хранятся в файле ``/etc/default/earlyoom``.
+
+Откроем его в текстовом редакторе:
+
+.. code-block:: text
+
+    sudoedit /etc/default/earlyoom
+
+Внесём правки, сохраним изменения, а затем перезапустим сервис:
+
+.. code-block:: text
+
+    sudo systemctl restart earlyoom.service
+
+Подробную документацию о всех поддерживаемых опциях можно найти в ``man earlyoom``.
