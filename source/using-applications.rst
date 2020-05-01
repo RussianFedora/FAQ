@@ -1183,7 +1183,7 @@ Cгенерируем файл с контрольными суммами SHA2 (
 
     sudo systemctl disable earlyoom.service
 
-Внимание! Если удалить пакет **earlyoom** в Fedora Workstation, он может быть :ref:`установлен заново <earlyoom-info>` из-за :ref:`слабых зависимостей <dnf-weakdeps>`.
+Внимание! Если удалить пакет **earlyoom** в Fedora Workstation, он может быть :ref:`установлен заново <earlyoom-info>` из-за включённых по умолчанию :ref:`слабых зависимостей <dnf-weakdeps>`.
 
 .. index:: oom, kernel, earlyoom, config
 .. _earlyoom-configure:
