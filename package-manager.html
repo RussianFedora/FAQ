@@ -737,6 +737,17 @@ sudo dnf distro-sync --allowerasing
 </pre></div>
 </div>
 </div>
+<div class="section" id="dnf-no-color">
+<span id="index-77"></span><span id="id63"></span><h2>Как запретить цвета в выводе dnf?<a class="headerlink" href="#dnf-no-color" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">color</span></code> (при отсутствии создадим):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>color=never
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -837,6 +848,7 @@ sudo dnf distro-sync --allowerasing
 <li class="toctree-l2"><a class="reference internal" href="#rpm-check-file">Как определить какому пакету принадлежит файл?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpm-check-system">Как проверить какие файлы в системе были изменены?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora-cisco-openh264">Что такое fedora-cisco-openh264?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-no-color">Как запретить цвета в выводе dnf?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Системное администрирование</a></li>
