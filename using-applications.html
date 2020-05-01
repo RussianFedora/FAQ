@@ -746,24 +746,32 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 <div class="section" id="earlyoom">
 <span id="earlyoom-info"></span><span id="index-62"></span><h2>Что такое earlyoom и почему он установлен по умолчанию?<a class="headerlink" href="#earlyoom" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Начиная с Fedora 32, в дистрибутиве <a class="reference external" href="https://pagure.io/fedora-workstation/issue/119">предустановлен</a> пакет <strong>earlyoom</strong>, который представляет собой систему раннего предотвращения нехватки памяти из пользовательского режима (user-space OOM Killer).</p>
+<p>Начиная с Fedora 32, в Workstation <a class="reference external" href="https://pagure.io/fedora-workstation/issue/119">предустановлен</a> пакет <strong>earlyoom</strong>, который представляет собой систему раннего предотвращения нехватки памяти из пользовательского режима (user-space OOM Killer).</p>
 <p>В случаях, когда объём доступной оперативной памяти опустится ниже 4% или 400 МБ (в зависимости от того, что меньше), earlyoom принудительно завершит работу процесса, наиболее активно потребляющего память (имеющего самое высокое значение oom_score), не доводя систему до очистки системных буферов и вызова ядерного OOM Killer.</p>
 <p>Наиболее приоритетными кандидатами на завершение являются процессы <em>Web Content</em> браузера Mozilla Firefox. В то же время, снижен приоритет для различных системных сервисов, критичных для работы системы.</p>
 </div>
 <div class="section" id="earlyoom-enable">
-<span id="index-63"></span><span id="id36"></span><h2>Как мне активировать или отключить earlyoom?<a class="headerlink" href="#earlyoom-enable" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-63"></span><span id="id36"></span><h2>Как активировать earlyoom?<a class="headerlink" href="#earlyoom-enable" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим пакет <strong>earlyoom</strong> (для версий, <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">отличных от Workstation</span></a>):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install earlyoom
+</pre></div>
+</div>
 <p>Активируем earlyoom (будет запускаться вместе с системой):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable --now earlyoom.service
 </pre></div>
 </div>
+</div>
+<div class="section" id="earlyoom-disable">
+<span id="index-64"></span><span id="id37"></span><h2>Как отключить earlyoom?<a class="headerlink" href="#earlyoom-disable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Отключим earlyoom (не будет запускаться вместе с системой):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable earlyoom.service
 </pre></div>
 </div>
+<p>Внимание! Если удалить пакет <strong>earlyoom</strong>, в Fedora Workstation он может быть <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">установлен заново</span></a> из-за <a class="reference internal" href="package-manager.html#dnf-weakdeps"><span class="std std-ref">слабых зависимостей</span></a>.</p>
 </div>
 <div class="section" id="earlyoom-configure">
-<span id="index-64"></span><span id="id37"></span><h2>Как мне настроить earlyoom?<a class="headerlink" href="#earlyoom-configure" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Параметры earlyoom хранятся в файле <code class="docutils literal notranslate"><span class="pre">/etc/default/earlyoom</span></code>.</p>
+<span id="index-65"></span><span id="id38"></span><h2>Как настроить earlyoom?<a class="headerlink" href="#earlyoom-configure" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Параметры <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">earlyoom</span></a> хранятся в файле <code class="docutils literal notranslate"><span class="pre">/etc/default/earlyoom</span></code>.</p>
 <p>Откроем его в текстовом редакторе:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/default/earlyoom
 </pre></div>
@@ -866,8 +874,9 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#dxvk-wine">Как правильно установить dxvk для Wine из репозиториев?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#chromium-kde">Как сделать Chromium браузером по умолчанию в KDE?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#earlyoom">Что такое earlyoom и почему он установлен по умолчанию?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#earlyoom-enable">Как мне активировать или отключить earlyoom?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#earlyoom-configure">Как мне настроить earlyoom?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#earlyoom-enable">Как активировать earlyoom?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#earlyoom-disable">Как отключить earlyoom?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#earlyoom-configure">Как настроить earlyoom?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
