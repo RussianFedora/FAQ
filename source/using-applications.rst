@@ -1147,7 +1147,7 @@ Cгенерируем файл с контрольными суммами SHA2 (
 Что такое earlyoom и почему он установлен по умолчанию?
 ============================================================
 
-Начиная с Fedora 32, в дистрибутиве `предустановлен <https://pagure.io/fedora-workstation/issue/119>`__ пакет **earlyoom**, который представляет собой систему раннего предотвращения нехватки памяти из пользовательского режима (user-space OOM Killer).
+Начиная с Fedora 32, в Workstation `предустановлен <https://pagure.io/fedora-workstation/issue/119>`__ пакет **earlyoom**, который представляет собой систему раннего предотвращения нехватки памяти из пользовательского режима (user-space OOM Killer).
 
 В случаях, когда объём доступной оперативной памяти опустится ниже 4% или 400 МБ (в зависимости от того, что меньше), earlyoom принудительно завершит работу процесса, наиболее активно потребляющего память (имеющего самое высокое значение oom_score), не доводя систему до очистки системных буферов и вызова ядерного OOM Killer.
 
@@ -1156,8 +1156,14 @@ Cгенерируем файл с контрольными суммами SHA2 (
 .. index:: oom, kernel, earlyoom, systemd
 .. _earlyoom-enable:
 
-Как мне активировать или отключить earlyoom?
-================================================
+Как активировать earlyoom?
+===============================
+
+Установим пакет **earlyoom** (для версий, :ref:`отличных от Workstation <earlyoom-info>`):
+
+.. code-block:: text
+
+    sudo dnf install earlyoom
 
 Активируем earlyoom (будет запускаться вместе с системой):
 
@@ -1165,19 +1171,27 @@ Cгенерируем файл с контрольными суммами SHA2 (
 
     sudo systemctl enable --now earlyoom.service
 
+.. index:: oom, kernel, earlyoom, systemd
+.. _earlyoom-disable:
+
+Как отключить earlyoom?
+============================
+
 Отключим earlyoom (не будет запускаться вместе с системой):
 
 .. code-block:: text
 
     sudo systemctl disable earlyoom.service
 
+Внимание! Если удалить пакет **earlyoom**, в Fedora Workstation он может быть :ref:`установлен заново <earlyoom-info>` из-за :ref:`слабых зависимостей <dnf-weakdeps>`.
+
 .. index:: oom, kernel, earlyoom, config
 .. _earlyoom-configure:
 
-Как мне настроить earlyoom?
-================================
+Как настроить earlyoom?
+============================
 
-Параметры earlyoom хранятся в файле ``/etc/default/earlyoom``.
+Параметры :ref:`earlyoom <earlyoom-info>` хранятся в файле ``/etc/default/earlyoom``.
 
 Откроем его в текстовом редакторе:
 
