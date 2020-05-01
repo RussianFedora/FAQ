@@ -746,7 +746,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 <div class="section" id="earlyoom">
 <span id="earlyoom-info"></span><span id="index-62"></span><h2>Что такое earlyoom и почему он установлен по умолчанию?<a class="headerlink" href="#earlyoom" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Начиная с Fedora 32, в Workstation <a class="reference external" href="https://pagure.io/fedora-workstation/issue/119">предустановлен</a> пакет <strong>earlyoom</strong>, который представляет собой систему раннего предотвращения нехватки памяти из пользовательского режима (user-space OOM Killer).</p>
+<p>Начиная с Fedora 32, в редакции Workstation <a class="reference external" href="https://pagure.io/fedora-workstation/issue/119">предустановлен</a> пакет <strong>earlyoom</strong>, который представляет собой систему раннего предотвращения нехватки памяти из пользовательского режима (user-space OOM Killer).</p>
 <p>В случаях, когда объём доступной оперативной памяти опустится ниже 4% или 400 МБ (в зависимости от того, что меньше), earlyoom принудительно завершит работу процесса, наиболее активно потребляющего память (имеющего самое высокое значение oom_score), не доводя систему до очистки системных буферов и вызова ядерного OOM Killer.</p>
 <p>Наиболее приоритетными кандидатами на завершение являются процессы <em>Web Content</em> браузера Mozilla Firefox. В то же время, снижен приоритет для различных системных сервисов, критичных для работы системы.</p>
 </div>
@@ -756,7 +756,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install earlyoom
 </pre></div>
 </div>
-<p>Активируем earlyoom (будет запускаться вместе с системой):</p>
+<p>Активируем его сервис (будет запускаться вместе с системой):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable --now earlyoom.service
 </pre></div>
 </div>
@@ -767,7 +767,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable earlyoom.service
 </pre></div>
 </div>
-<p>Внимание! Если удалить пакет <strong>earlyoom</strong>, в Fedora Workstation он может быть <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">установлен заново</span></a> из-за <a class="reference internal" href="package-manager.html#dnf-weakdeps"><span class="std std-ref">слабых зависимостей</span></a>.</p>
+<p>Внимание! Если удалить пакет <strong>earlyoom</strong> в Fedora Workstation, он может быть <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">установлен заново</span></a> из-за <a class="reference internal" href="package-manager.html#dnf-weakdeps"><span class="std std-ref">слабых зависимостей</span></a>.</p>
 </div>
 <div class="section" id="earlyoom-configure">
 <span id="index-65"></span><span id="id38"></span><h2>Как настроить earlyoom?<a class="headerlink" href="#earlyoom-configure" title="Ссылка на этот заголовок">¶</a></h2>
