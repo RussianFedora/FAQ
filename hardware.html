@@ -497,6 +497,18 @@ EndSection
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install stress-ng
 </pre></div>
 </div>
+<p>Запустим тест CPU из состава sysbench:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sysbench --test=cpu --cpu-max-prime=20000 --num-threads=$(nproc) run
+</pre></div>
+</div>
+<p>Запустим тест CPU из состава stress-ng:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>stress-ng --cpu $(nproc) --cpu-method matrixprod --metrics --timeout 60
+</pre></div>
+</div>
+<p>Запустим тест CPU из состава openssl:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>openssl speed -multi $(nproc)
+</pre></div>
+</div>
 </div>
 <div class="section" id="benchmark-gpu">
 <span id="index-28"></span><span id="id18"></span><h2>Какой бенчмарк можно использовать для оценки производительности видеокарты?<a class="headerlink" href="#benchmark-gpu" title="Ссылка на этот заголовок">¶</a></h2>
