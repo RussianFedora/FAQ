@@ -578,7 +578,7 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
     sudo systemctl reboot
 
-.. index:: grub, selinux, error, efi
+.. index:: grub, selinux, error, efi, upgrade, dnf
 .. _grub-selinux-error:
 
 При обновлении возникает ошибка, связанная с Grub и SELinux. Что делать?
