@@ -692,6 +692,24 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
     sudo dnf install stress-ng
 
+Запустим тест CPU из состава sysbench:
+
+.. code-block:: text
+
+    sysbench --test=cpu --cpu-max-prime=20000 --num-threads=$(nproc) run
+
+Запустим тест CPU из состава stress-ng:
+
+.. code-block:: text
+
+    stress-ng --cpu $(nproc) --cpu-method matrixprod --metrics --timeout 60
+
+Запустим тест CPU из состава openssl:
+
+.. code-block:: text
+
+    openssl speed -multi $(nproc)
+
 .. index:: benchmark, video card, gpu, glxgears, glmark2, unigine
 .. _benchmark-gpu:
 
