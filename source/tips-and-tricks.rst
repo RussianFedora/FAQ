@@ -577,3 +577,13 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 .. code-block:: text
 
     sudo systemctl reboot
+
+.. index:: grub, selinux, error, efi
+.. _grub-selinux-error:
+
+При обновлении возникает ошибка, связанная с Grub и SELinux. Что делать?
+=============================================================================
+
+Если при обновлении системы возникает ошибка *lsetfilecon: (/boot/efi/EFI/fedora, system_u:object_r:boot_t:s0) Operation not supported*, то это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=1722766>`__, связанная невозможностью установки контекста :ref:`SELinux <selinux>` для содержимого ESP раздела.
+
+Данная ошибка совершенно безвредна и не создаёт каких-либо проблем для работы системы, поэтому её необходимо просто игнорировать. `Исправление <https://github.com/rpm-software-management/rpm/pull/976>`__, будет выпущено в ближайшее время.
