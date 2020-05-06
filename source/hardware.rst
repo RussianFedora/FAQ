@@ -1043,13 +1043,6 @@ ICC профиль можно получить либо на сайте прои
 Как правильно установить драйверы Wi-Fi модулей Broadcom?
 =============================================================
 
-Установим пропатченную версию **wpa_supplicant** из :ref:`COPR <copr>`, т.к. с обычной драйверы Broadcom `не работают <https://bugzilla.redhat.com/show_bug.cgi?id=1703745>`__:
-
-.. code-block:: text
-
-    sudo dnf copr enable dcaratti/wpa_supplicant
-    sudo dnf upgrade --refresh wpa_supplicant
-
 Подключим репозитории :ref:`RPM Fusion <rpmfusion>`, затем произведём установку драйвера:
 
 .. code-block:: text
