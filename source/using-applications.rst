@@ -284,7 +284,7 @@ KDE Connect не видит мой смартфон. Как исправить?
 
 .. code-block:: text
 
-    sudo firewall-cmd --add-service=kde-connect --permanent
+    sudo firewall-cmd --add-service=kdeconnect --permanent
 
 Применим новые правила:
 
