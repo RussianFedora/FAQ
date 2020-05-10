@@ -648,8 +648,8 @@ Zip-архивы, созданные штатными средствами ОС 
 
 Восстановить трей можно посредством установки одного из :ref:`расширений Gnome Shell <gnome-shell-extensions>`:
 
-  * `TopIcons Plus <https://extensions.gnome.org/extension/1031/topicons/>`__ (также доступно в виде пакета ``gnome-shell-extension-topicons-plus`` в репозиториях);
-  * `AppIndicator Support <https://extensions.gnome.org/extension/615/appindicator-support/>`__ (также доступно в виде пакета ``gnome-shell-extension-appindicator`` в репозиториях).
+  * `AppIndicator Support <https://extensions.gnome.org/extension/615/appindicator-support/>`__ (также доступно в виде пакета ``gnome-shell-extension-appindicator`` в репозиториях);
+  * `TopIcons Plus <https://extensions.gnome.org/extension/1031/topicons/>`__ (также доступно в виде пакета ``gnome-shell-extension-topicons-plus`` в репозиториях).
 
 .. index:: gnome, shell, desktop, icon
 .. _gnome-shell-desktop:
