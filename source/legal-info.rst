@@ -47,7 +47,8 @@
   * `@xshram <https://github.com/xshram>`__;
   * `@bookwar <https://github.com/bookwar>`__;
   * `@ElXreno <https://github.com/ElXreno>`__;
-  * `@crayxt <https://github.com/crayxt>`__.
+  * `@crayxt <https://github.com/crayxt>`__;
+  * `@and-semakin <https://github.com/and-semakin>`__.
 
 Полный список авторов и вклад каждого можно увидеть на странице `Contributors <https://github.com/RussianFedora/FAQ/graphs/contributors>`__.
 
