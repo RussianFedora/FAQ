@@ -79,6 +79,17 @@ todo_include_todos = False
 
 # -- Options for HTML output ----------------------------------------------
 
+# Load CSS files for the custom search engine.
+html_css_files = [
+    'https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css'
+]
+
+# Load JavaScript files for the custom search engine.
+html_js_files = [
+    ('https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js', {'defer': 'defer'}),
+    ('search.js', {'defer': 'defer'})
+]
+
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
