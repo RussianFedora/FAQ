@@ -1,9 +1,14 @@
 div.sphinxsidebar #searchbox input[type="submit"]
 {
     visibility: hidden;
+    float: none;
 }
 
 div.sphinxsidebar #searchbox input[type="text"] 
 {
     width: 100%;
+}
+div.sphinxsidebar #searchbox form.search
+{
+    overflow: visible;
 }
