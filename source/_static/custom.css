@@ -8,10 +8,12 @@ div.sphinxsidebar #searchbox input[type="text"]
 {
     width: 100%;
 }
+
 div.sphinxsidebar #searchbox form.search
 {
     overflow: visible;
 }
+
 @media screen and (max-width: 875px) {
     body {
         margin: 0; padding: 0;
