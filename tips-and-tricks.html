@@ -400,6 +400,34 @@ EndSection
 <p>Если при обновлении системы возникает ошибка <em>lsetfilecon: (/boot/efi/EFI/fedora, system_u:object_r:boot_t:s0) Operation not supported</em>, то это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1722766">известная проблема</a>, связанная невозможностью установки контекста <a class="reference internal" href="security.html#selinux"><span class="std std-ref">SELinux</span></a> для содержимого ESP раздела.</p>
 <p>Данная ошибка совершенно безвредна и не создаёт каких-либо проблем для работы системы, поэтому её необходимо просто игнорировать. <a class="reference external" href="https://github.com/rpm-software-management/rpm/pull/976">Исправление</a> будет выпущено в ближайшее время.</p>
 </div>
+<div class="section" id="modesetting-intel">
+<span id="intel-modesetting"></span><span id="index-24"></span><h2>Как активировать драйвер modesetting на видеокартах Intel?<a class="headerlink" href="#modesetting-intel" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Создадим новый файл конфигурации X11 – <code class="docutils literal notranslate"><span class="pre">10-modesetting.conf</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo touch /etc/X11/xorg.conf.d/10-modesetting.conf
+sudo chmod 0644 /etc/X11/xorg.conf.d/10-modesetting.conf
+</pre></div>
+</div>
+<p>Откроем его в <a class="reference internal" href="using-system.html#editor-selection"><span class="std std-ref">текстовом редакторе</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/X11/xorg.conf.d/10-modesetting.conf
+</pre></div>
+</div>
+<p>Вставим следующее содержание:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Section &quot;Device&quot;
+    Identifier  &quot;Intel Graphics&quot;
+    Driver      &quot;modesetting&quot;
+EndSection
+</pre></div>
+</div>
+<p>Сохраним изменения в файле.</p>
+<p>Удалим компоненты стандартного драйвера Intel:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove xorg-x11-drv-intel
+</pre></div>
+</div>
+<p>Перезагрузим систему и выберем сеанс X11 (<strong>Gnome on X11</strong> для пользователей Fedora Workstation):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -456,6 +484,7 @@ EndSection
 <li class="toctree-l2"><a class="reference internal" href="#amd">Как решить проблему с чёрным экраном после обновления ядра на видеокартах AMD?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#vga-0-nvidia">Как исправить ошибку, связанную с VGA-0, на видеокартах NVIDIA?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#grub-selinux">При обновлении возникает ошибка, связанная с Grub и SELinux. Что делать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modesetting-intel">Как активировать драйвер modesetting на видеокартах Intel?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
