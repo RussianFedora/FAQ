@@ -1151,6 +1151,35 @@ sudo rmdir /media/data
 <span id="selinux-samba"></span><span id="index-96"></span><h2>Как настроить работу Samba с SELinux?<a class="headerlink" href="#samba-selinux" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://fedoraproject.org/wiki/SELinux/samba">здесь</a>.</p>
 </div>
+<div class="section" id="ssh-mitm">
+<span id="ssh-mitm-protection"></span><span id="index-97"></span><h2>Как защитить SSH от возможных MITM-атак?<a class="headerlink" href="#ssh-mitm" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для защиты от MITM-атак в протоколе SSH применяется проверка отпечатков публичного ключа сервера в момент установки рукопожатия с эталоном, сохранённым на клиенте.</p>
+<p>При первом подключении пользователю предлагается проверить отпечаток сервера и разрешить, либо отклонить соединение.</p>
+<p>В случае одобрения, они вместе с IP-адресом сохраняются в файле <code class="docutils literal notranslate"><span class="pre">~/.ssh/known_hosts</span></code> и при следующих подключениях проверяется их действительность. В случае изменения, например из-за проведения злоумышленником атаки «человек посередине», соединение не устанавливается, а пользователю выводится соответствующее сообщение об ошибке.</p>
+<p>К сожалению, ручная проверка отпечатка мало кем производится, поэтому был придуман новый, более надёжный способ – размещение публичных ключей в виде особых <strong>SSHFP</strong> записей DNS.</p>
+<p>В случае применения данного метода, при подключении будет проверяться соответствие ключей, полученных от сервера, записям из SSHFP для конкретного домена. При этом конечно же необходимо использовать надёжные DNS-резолверы с поддержкой шифрования <a class="reference internal" href="networking.html#dns-crypt"><span class="std std-ref">DNS-over-TLS</span></a>, а также рекомендуется подписать DNS-зону <a class="reference external" href="https://ru.wikipedia.org/wiki/DNSSEC">DNSSEC</a>.</p>
+<p>С помощью утилиты <strong>ssh-keygen</strong>, сгенерируем DNS-записи для домена <strong>example.org</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ssh-keygen -r example.org
+</pre></div>
+</div>
+<p>Добавим их в настройки DNS через панель управления регистратора домена или хостера и подождём несколько часов до полной синхронизации между серверами.</p>
+<p>Проверим корректность SSHFP-записей:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dig +nocmd +noquestion +nostats +noheader SSHFP example.org
+</pre></div>
+</div>
+<p>Если всё верно, активируем работу функции на каждом SSH-клиенте, добавив в файл <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code> следующие строки:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Host example
+    HostName example.org
+    Port 22
+    User user
+    VerifyHostKeyDNS yes
+</pre></div>
+</div>
+<p>Подключимся к серверу <strong>по доменному имени</strong> (в случае использования прямого IP-адреса, будет выполняться классическая проверка по файлу <strong>known_hosts</strong>):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ssh example
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -1275,6 +1304,7 @@ sudo rmdir /media/data
 <li class="toctree-l2"><a class="reference internal" href="#luks-erase">Как быстро уничтожить содержимое LUKS контейнера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tpm-luks">Можно ли использовать TPM для разблокировки LUKS контейнера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#samba-selinux">Как настроить работу Samba с SELinux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ssh-mitm">Как защитить SSH от возможных MITM-атак?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Работа в системе</a></li>
