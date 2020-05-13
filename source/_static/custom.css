@@ -8,7 +8,50 @@ div.sphinxsidebar #searchbox input[type="text"]
 {
     width: 100%;
 }
+
 div.sphinxsidebar #searchbox form.search
 {
     overflow: visible;
+}
+
+@media screen and (max-width: 875px) {
+    body {
+        margin: 0; padding: 0;
+    }
+
+    div.document {
+        width: 100%;
+        overflow: hidden;
+        padding-top: 72px;
+    }
+
+    div.documentwrapper {
+        float: left;
+        position: relative; left: 100%;
+        margin: 0 -100%;
+        background: #fff;
+    }
+    div.documentwrapper .bodywrapper
+    {
+        padding: 20px 30px;
+    }
+
+    div.sphinxsidebar {
+        width: 100%; height: 65px;
+        float: left;
+        position: relative; left: 100%;
+        margin: -72px -100% 0; padding: 0;
+        background: #333;
+        color: #fff;
+    }
+
+    div.sphinxsidebar .relations,
+    div.sphinxsidebar h3, .sphinxsidebar ul,
+    div.sphinxsidebar #searchbox input[type="submit"]{ display: none }
+
+    div.sphinxsidebar .sphinxsidebarwrapper {
+        padding: 10px 20px;
+    }
+
+    div.sphinxsidebar .algolia-autocomplete { display: block !important; }
 }
