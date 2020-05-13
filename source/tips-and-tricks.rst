@@ -587,3 +587,45 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 Если при обновлении системы возникает ошибка *lsetfilecon: (/boot/efi/EFI/fedora, system_u:object_r:boot_t:s0) Operation not supported*, то это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=1722766>`__, связанная невозможностью установки контекста :ref:`SELinux <selinux>` для содержимого ESP раздела.
 
 Данная ошибка совершенно безвредна и не создаёт каких-либо проблем для работы системы, поэтому её необходимо просто игнорировать. `Исправление <https://github.com/rpm-software-management/rpm/pull/976>`__ будет выпущено в ближайшее время.
+
+.. index:: intel, video, gpu, modesetting, x11
+.. _intel-modesetting:
+
+Как активировать драйвер modesetting на видеокартах Intel?
+===============================================================
+
+Создадим новый файл конфигурации X11 -- ``10-modesetting.conf``:
+
+.. code-block:: text
+
+    sudo touch /etc/X11/xorg.conf.d/10-modesetting.conf
+    sudo chmod 0644 /etc/X11/xorg.conf.d/10-modesetting.conf
+
+Откроем его в :ref:`текстовом редакторе <editor-selection>`:
+
+.. code-block:: text
+
+    sudoedit /etc/X11/xorg.conf.d/10-modesetting.conf
+
+Вставим следующее содержание:
+
+.. code-block:: text
+
+    Section "Device"
+        Identifier  "Intel Graphics"
+        Driver      "modesetting"
+    EndSection
+
+Сохраним изменения в файле.
+
+Удалим компоненты стандартного драйвера Intel:
+
+.. code-block:: text
+
+    sudo dnf remove xorg-x11-drv-intel
+
+Перезагрузим систему и выберем сеанс X11 (**Gnome on X11** для пользователей Fedora Workstation):
+
+.. code-block:: text
+
+    sudo systemctl reboot
