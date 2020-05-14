@@ -1350,3 +1350,17 @@ ICC профиль можно получить либо на сайте прои
 .. code-block:: text
 
     sudo dnf install libva-vdpau-driver
+
+.. index:: battery, laptop, notebook
+.. _battery-status:
+
+Как вывести информацию о состоянии батареи ноутбука?
+========================================================
+
+Для вывода информации об используемых аккумуляторных батареях, воспользуемся утилитой **upower**:
+
+.. code-block:: text
+
+    upower -i /org/freedesktop/UPower/devices/battery_BAT0
+
+Если в устройстве их более одной, вместо **BAT0** укажем следующую по порядку.
