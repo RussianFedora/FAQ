@@ -902,6 +902,14 @@ sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
 </pre></div>
 </div>
 </div>
+<div class="section" id="battery-status">
+<span id="index-63"></span><span id="id39"></span><h2>Как вывести информацию о состоянии батареи ноутбука?<a class="headerlink" href="#battery-status" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для вывода информации об используемых аккумуляторных батареях, воспользуемся утилитой <strong>upower</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>upower -i /org/freedesktop/UPower/devices/battery_BAT0
+</pre></div>
+</div>
+<p>Если в устройстве их более одной, вместо <strong>BAT0</strong> укажем следующую по порядку.</p>
+</div>
 </div>
 
 
@@ -995,6 +1003,7 @@ sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
 <li class="toctree-l2"><a class="reference internal" href="#ram-info">Как получить информацию об установленной оперативной памяти?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#va-api-intel">Как активировать VA-API на видеокартах Intel?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#va-api-nvidia">Как активировать VA-API на видеокартах NVIDIA?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#battery-status">Как вывести информацию о состоянии батареи ноутбука?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Разработка и сборка пакетов</a></li>
