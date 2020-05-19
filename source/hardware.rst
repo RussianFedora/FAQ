@@ -1366,30 +1366,37 @@ ICC профиль можно получить либо на сайте прои
 Если в устройстве их более одной, вместо **BAT0** укажем следующую по порядку.
 
 .. index:: bluetooth, mpris, multimedia, remote control
-.. _enable-mpris:
+.. _mpris-proxy:
 
-Как включить управление воспроизведением с bluetooth наушников?
+Как включить управление воспроизведением с Bluetooth-наушников?
 ===================================================================
 
-За управление воспроизведением отвечает `MPRIS <https://ru.wikipedia.org/wiki/MPRIS>`__
+За управление воспроизведением при помощи D-Bus событий отвечает служба `MPRIS <https://ru.wikipedia.org/wiki/MPRIS>`__.
 
-В первую очередь вам нужно убедиться, что ваше приложение его поддерживает. Например в QMMP необходимо включить модуль MPRIS в настройках. А в VLC он уже поддерживается из коробки.
+В первую очередь убедимся, что используемый медиа-проигрыватель его поддерживает. В большинстве случаев необходимо и достаточно просто включить модуль MPRIS в настройках. В VLC например включён "из коробки".
 
-Далее вам нужен mpris-proxy из пакета bluez.
+Установим утилиту **mpris-proxy** из пакета **bluez**.
 
 .. code-block:: text
 
     sudo dnf install bluez
 
-Для отладки mpris-proxy можно запустить вручную
+В случае необходимости провести отладку подключения, запустим **mpris-proxy** вручную:
 
 .. code-block:: text
 
     mpris-proxy
 
-Чтобы эта утилита была запущена в виде сервиса, создаем юнит ~/.config/systemd/user/mpris-proxy.service:
+Для того, чтобы сервис запускался автоматически при старте системы, создадим :ref:`systemd-юнит <systemd-info>`:
 
 .. code-block:: text
+
+    mkdir -p ~/.config/systemd/user
+    touch ~/.config/systemd/user/mpris-proxy.service
+
+Откроем файл ``~/.config/systemd/user/mpris-proxy.service`` в любом :ref:`текстовом редакторе <editor-selection>` и добавим следующее содержимое:
+
+.. code-block:: ini
 
     [Unit]
     Description=Forward bluetooth midi controls via mpris2 so they are picked up by supporting media players
@@ -1401,13 +1408,23 @@ ICC профиль можно получить либо на сайте прои
     [Install]
     WantedBy=default.target
 
-и включаем его:
+Установим правильный контекст безопасности :ref:`SELinux <selinux>`:
+
+.. code-block:: text
+
+    restorecon -Rv ~/.config/systemd/user
+
+Обновим список доступных пользовательских юнитов systemd:
 
 .. code-block:: text
 
     systemctl --user daemon-reload
-    systemctl --user enable --now mpris-proxy.service
 
+Активируем сервис mpris-proxy и настроим его автоматический запуск:
+
+.. code-block:: text
+
+    systemctl --user enable --now mpris-proxy.service
 
 .. index:: bluetooth, hd-audio, aac, aptx, ldac, sbc
 .. _enable-hd-audio:
