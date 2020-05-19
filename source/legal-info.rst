@@ -49,7 +49,8 @@
   * `@ElXreno <https://github.com/ElXreno>`__;
   * `@crayxt <https://github.com/crayxt>`__;
   * `@and-semakin <https://github.com/and-semakin>`__;
-  * `@fabius-bile <https://github.com/fabius-bile>`__.
+  * `@fabius-bile <https://github.com/fabius-bile>`__;
+  * `@rafaelrs <https://github.com/rafaelrs>`__.
 
 Полный список авторов и вклад каждого можно увидеть на странице `Contributors <https://github.com/RussianFedora/FAQ/graphs/contributors>`__.
 
