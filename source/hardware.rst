@@ -1426,23 +1426,15 @@ ICC профиль можно получить либо на сайте прои
 
     systemctl --user enable --now mpris-proxy.service
 
-.. index:: bluetooth, hd-audio, aac, aptx, ldac, sbc
-.. _enable-hd-audio:
+.. index:: bluetooth, hd audio, aac, aptx, ldac, sbc, audio, multimedia, codecs
+.. _bluetooth-codecs:
 
-Как включить кодеки bluetooth выского качества (AAC, aptX, LDAC)?
-=====================================================================
+Как включить поддержку Bluetooth-кодеков высокого качества?
+===============================================================
 
-В родных репозиториях нет данной поддержки ввиду патентных ограничений. Однако `существует форк <https://github.com/EHfive/pulseaudio-modules-bt>`__ pulseaudio-module-bluetooth, где добавлены эти кодеки, а так же расширены возможности по настройке кодека SBC.
+В репозиториях Fedora модули работы с Bluetooth собраны без поддержки AAC, aptX, aptX HD и LDAC ввиду патентных ограничений.
 
-Подключим репозиторий RPM Fusion и просто делаем:
-
-.. code-block:: text
-
-    sudo dnf swap pulseaudio-module-bluetooth pulseaudio-module-bluetooth-freeworld
-    pulseaudio -k
-    pulseaudio -D
-
-Далее уже в настройках KDE/GNOME/.... после подключения наушников выбираете тот кодек, который вам нужен. Кодек так же должен поддерживаться наушниками. На данный момент модуль поддерживает:
+Однако `существует форк <https://github.com/EHfive/pulseaudio-modules-bt>`__, в котором добавлена полная поддержка данных кодеков, а также расширены возможности по настройке SBC:
 
 .. code-block:: text
 
@@ -1452,3 +1444,20 @@ ICC профиль можно получить либо на сайте прои
     a2dp_sink_aptx_hd: High Fidelity Playback (A2DP Sink: aptX HD)
     a2dp_sink_ldac: High Fidelity Playback (A2DP Sink: LDAC)
     headset_head_unit: Headset Head Unit (HSP/HFP)
+
+Подключим репозиторий :ref:`RPM Fusion <rpmfusion>` и заменим обычный пакет **pulseaudio-module-bluetooth** на версию с суффиксом **-freeworld**:
+
+.. code-block:: text
+
+    sudo dnf swap pulseaudio-module-bluetooth pulseaudio-module-bluetooth-freeworld --allowerasing
+
+Перезапустим сервер PulseAudio:
+
+.. code-block:: text
+
+    pulseaudio -k
+    pulseaudio -D
+
+Теперь в настройках используемой графической среды, после подключения наушников, выберем необходимый кодек.
+
+Внимание! Выбранный кодек должен поддерживаться наушниками аппаратно.
