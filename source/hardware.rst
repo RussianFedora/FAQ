@@ -1364,3 +1364,74 @@ ICC профиль можно получить либо на сайте прои
     upower -i /org/freedesktop/UPower/devices/battery_BAT0
 
 Если в устройстве их более одной, вместо **BAT0** укажем следующую по порядку.
+
+.. index:: bluetooth, mpris, multimedia, remote control
+.. _enable-mpris:
+
+Как включить управление воспроизведением с bluetooth наушников?
+===================================================================
+
+За управление воспроизведением отвечает `MPRIS <https://ru.wikipedia.org/wiki/MPRIS>`__
+
+В первую очередь вам нужно убедиться, что ваше приложение его поддерживает. Например в QMMP необходимо включить модуль MPRIS в настройках. А в VLC он уже поддерживается из коробки.
+
+Далее вам нужен mpris-proxy из пакета bluez.
+
+.. code-block:: text
+
+    sudo dnf install bluez
+
+Для отладки mpris-proxy можно запустить вручную
+
+.. code-block:: text
+
+    mpris-proxy
+
+Чтобы эта утилита была запущена в виде сервиса, создаем юнит ~/.config/systemd/user/mpris-proxy.service:
+
+.. code-block:: text
+
+    [Unit]
+    Description=Forward bluetooth midi controls via mpris2 so they are picked up by supporting media players
+
+    [Service]
+    Type=simple
+    ExecStart=/usr/bin/mpris-proxy
+
+    [Install]
+    WantedBy=default.target
+
+и включаем его:
+
+.. code-block:: text
+
+    systemctl --user daemon-reload
+    systemctl --user enable --now mpris-proxy.service
+
+
+.. index:: bluetooth, hd-audio, aac, aptx, ldac, sbc
+.. _enable-hd-audio:
+
+Как включить кодеки bluetooth выского качества (AAC, aptX, LDAC)?
+=====================================================================
+
+В родных репозиториях нет данной поддержки ввиду патентных ограничений. Однако `существует форк <https://github.com/EHfive/pulseaudio-modules-bt>`__ pulseaudio-module-bluetooth, где добавлены эти кодеки, а так же расширены возможности по настройке кодека SBC.
+
+Подключим репозиторий RPM Fusion и просто делаем:
+
+.. code-block:: text
+
+    sudo dnf swap pulseaudio-module-bluetooth pulseaudio-module-bluetooth-freeworld
+    pulseaudio -k
+    pulseaudio -D
+
+Далее уже в настройках KDE/GNOME/.... после подключения наушников выбираете тот кодек, который вам нужен. Кодек так же должен поддерживаться наушниками. На данный момент модуль поддерживает:
+
+.. code-block:: text
+
+    a2dp_sink_sbc: High Fidelity Playback (A2DP Sink: SBC)
+    a2dp_sink_aac: High Fidelity Playback (A2DP Sink: AAC)
+    a2dp_sink_aptx: High Fidelity Playback (A2DP Sink: aptX)
+    a2dp_sink_aptx_hd: High Fidelity Playback (A2DP Sink: aptX HD)
+    a2dp_sink_ldac: High Fidelity Playback (A2DP Sink: LDAC)
+    headset_head_unit: Headset Head Unit (HSP/HFP)
