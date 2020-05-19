@@ -910,6 +910,72 @@ sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
 </div>
 <p>Если в устройстве их более одной, вместо <strong>BAT0</strong> укажем следующую по порядку.</p>
 </div>
+<div class="section" id="mpris-proxy">
+<span id="index-64"></span><span id="id40"></span><h2>Как включить управление воспроизведением с Bluetooth-наушников?<a class="headerlink" href="#mpris-proxy" title="Ссылка на этот заголовок">¶</a></h2>
+<p>За управление воспроизведением при помощи D-Bus событий отвечает служба <a class="reference external" href="https://ru.wikipedia.org/wiki/MPRIS">MPRIS</a>.</p>
+<p>В первую очередь убедимся, что используемый медиа-проигрыватель его поддерживает. В большинстве случаев необходимо и достаточно просто включить модуль MPRIS в настройках. В VLC например включён «из коробки».</p>
+<p>Установим утилиту <strong>mpris-proxy</strong> из пакета <strong>bluez</strong>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install bluez
+</pre></div>
+</div>
+<p>В случае необходимости провести отладку подключения, запустим <strong>mpris-proxy</strong> вручную:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mpris-proxy
+</pre></div>
+</div>
+<p>Для того, чтобы сервис запускался автоматически при старте системы, создадим <a class="reference internal" href="administration.html#systemd-info"><span class="std std-ref">systemd-юнит</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/.config/systemd/user
+touch ~/.config/systemd/user/mpris-proxy.service
+</pre></div>
+</div>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">~/.config/systemd/user/mpris-proxy.service</span></code> в любом <a class="reference internal" href="using-system.html#editor-selection"><span class="std std-ref">текстовом редакторе</span></a> и добавим следующее содержимое:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Forward bluetooth midi controls via mpris2 so they are picked up by supporting media players</span>
+
+<span class="k">[Service]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/mpris-proxy</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">default.target</span>
+</pre></div>
+</div>
+<p>Установим правильный контекст безопасности <a class="reference internal" href="security.html#selinux"><span class="std std-ref">SELinux</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>restorecon -Rv ~/.config/systemd/user
+</pre></div>
+</div>
+<p>Обновим список доступных пользовательских юнитов systemd:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl --user daemon-reload
+</pre></div>
+</div>
+<p>Активируем сервис mpris-proxy и настроим его автоматический запуск:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl --user enable --now mpris-proxy.service
+</pre></div>
+</div>
+</div>
+<div class="section" id="bluetooth-codecs">
+<span id="index-65"></span><span id="id41"></span><h2>Как включить поддержку Bluetooth-кодеков высокого качества?<a class="headerlink" href="#bluetooth-codecs" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В репозиториях Fedora модули работы с Bluetooth собраны без поддержки AAC, aptX, aptX HD и LDAC ввиду патентных ограничений.</p>
+<p>Однако <a class="reference external" href="https://github.com/EHfive/pulseaudio-modules-bt">существует форк</a>, в котором добавлена полная поддержка данных кодеков, а также расширены возможности по настройке SBC:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>a2dp_sink_sbc: High Fidelity Playback (A2DP Sink: SBC)
+a2dp_sink_aac: High Fidelity Playback (A2DP Sink: AAC)
+a2dp_sink_aptx: High Fidelity Playback (A2DP Sink: aptX)
+a2dp_sink_aptx_hd: High Fidelity Playback (A2DP Sink: aptX HD)
+a2dp_sink_ldac: High Fidelity Playback (A2DP Sink: LDAC)
+headset_head_unit: Headset Head Unit (HSP/HFP)
+</pre></div>
+</div>
+<p>Подключим репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и заменим обычный пакет <strong>pulseaudio-module-bluetooth</strong> на версию с суффиксом <strong>-freeworld</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf swap pulseaudio-module-bluetooth pulseaudio-module-bluetooth-freeworld --allowerasing
+</pre></div>
+</div>
+<p>Перезапустим сервер PulseAudio:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pulseaudio -k
+pulseaudio -D
+</pre></div>
+</div>
+<p>Теперь в настройках используемой графической среды, после подключения наушников, выберем необходимый кодек.</p>
+<p>Внимание! Выбранный кодек должен поддерживаться наушниками аппаратно.</p>
+</div>
 </div>
 
 
@@ -1004,6 +1070,8 @@ sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
 <li class="toctree-l2"><a class="reference internal" href="#va-api-intel">Как активировать VA-API на видеокартах Intel?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#va-api-nvidia">Как активировать VA-API на видеокартах NVIDIA?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#battery-status">Как вывести информацию о состоянии батареи ноутбука?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mpris-proxy">Как включить управление воспроизведением с Bluetooth-наушников?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bluetooth-codecs">Как включить поддержку Bluetooth-кодеков высокого качества?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Разработка и сборка пакетов</a></li>
