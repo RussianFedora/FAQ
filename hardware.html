@@ -936,7 +936,7 @@ touch ~/.config/systemd/user/mpris-proxy.service
 <span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/mpris-proxy</span>
 
 <span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">default.target</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
 </pre></div>
 </div>
 <p>Установим правильный контекст безопасности <a class="reference internal" href="security.html#selinux"><span class="std std-ref">SELinux</span></a>:</p>
