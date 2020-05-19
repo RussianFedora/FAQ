@@ -1406,7 +1406,7 @@ ICC профиль можно получить либо на сайте прои
     ExecStart=/usr/bin/mpris-proxy
 
     [Install]
-    WantedBy=default.target
+    WantedBy=multi-user.target
 
 Установим правильный контекст безопасности :ref:`SELinux <selinux>`:
 
