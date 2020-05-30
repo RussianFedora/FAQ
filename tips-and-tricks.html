@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>Оптимизация и тонкая настройка &#8212; Неофициальный FAQ по Fedora (версия 2020.04.30)</title>
+    <title>Оптимизация и тонкая настройка &#8212; Неофициальный FAQ по Fedora (версия 2020.05.30)</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -395,13 +395,8 @@ EndSection
 </pre></div>
 </div>
 </div>
-<div class="section" id="grub-selinux">
-<span id="grub-selinux-error"></span><span id="index-23"></span><h2>При обновлении возникает ошибка, связанная с Grub и SELinux. Что делать?<a class="headerlink" href="#grub-selinux" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Если при обновлении системы возникает ошибка <em>lsetfilecon: (/boot/efi/EFI/fedora, system_u:object_r:boot_t:s0) Operation not supported</em>, то это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1722766">известная проблема</a>, связанная невозможностью установки контекста <a class="reference internal" href="security.html#selinux"><span class="std std-ref">SELinux</span></a> для содержимого ESP раздела.</p>
-<p>Данная ошибка совершенно безвредна и не создаёт каких-либо проблем для работы системы, поэтому её необходимо просто игнорировать. <a class="reference external" href="https://github.com/rpm-software-management/rpm/pull/976">Исправление</a> будет выпущено в ближайшее время.</p>
-</div>
 <div class="section" id="modesetting-intel">
-<span id="intel-modesetting"></span><span id="index-24"></span><h2>Как активировать драйвер modesetting на видеокартах Intel?<a class="headerlink" href="#modesetting-intel" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="intel-modesetting"></span><span id="index-23"></span><h2>Как активировать драйвер modesetting на видеокартах Intel?<a class="headerlink" href="#modesetting-intel" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Создадим новый файл конфигурации X11 – <code class="docutils literal notranslate"><span class="pre">10-modesetting.conf</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo touch /etc/X11/xorg.conf.d/10-modesetting.conf
 sudo chmod 0644 /etc/X11/xorg.conf.d/10-modesetting.conf
@@ -483,7 +478,6 @@ EndSection
 <li class="toctree-l2"><a class="reference internal" href="#spectacle-print-screen">В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#amd">Как решить проблему с чёрным экраном после обновления ядра на видеокартах AMD?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#vga-0-nvidia">Как исправить ошибку, связанную с VGA-0, на видеокартах NVIDIA?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#grub-selinux">При обновлении возникает ошибка, связанная с Grub и SELinux. Что делать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#modesetting-intel">Как активировать драйвер modesetting на видеокартах Intel?</a></li>
 </ul>
 </li>

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>Системное администрирование &#8212; Неофициальный FAQ по Fedora (версия 2020.04.30)</title>
+    <title>Системное администрирование &#8212; Неофициальный FAQ по Fedora (версия 2020.05.30)</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -1011,6 +1011,22 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 </div>
 <p>Здесь <strong>0</strong> – процентное соотношение зарезервированных блоков к обычным (отсутствуют), а <strong>/dev/sdX1</strong> – раздел диска, на котором будут произведены изменения.</p>
 </div>
+<div class="section" id="zswap-fedora">
+<span id="zswap"></span><span id="index-84"></span><h2>Как включить поддержку zswap в Fedora?<a class="headerlink" href="#zswap-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим пакет <strong>zswap-cli</strong> для работы с модулем ядра <em>zswap</em>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install zswap-cli
+</pre></div>
+</div>
+<p>При необходимости внесём правки в файл конфигурации:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/zswap-cli.conf
+</pre></div>
+</div>
+<p>Активируем сервис zswap-cli:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable --now zswap-cli.service
+</pre></div>
+</div>
+<p>Изменения вступят в силу немедленно.</p>
+</div>
 </div>
 
 
@@ -1119,6 +1135,7 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <li class="toctree-l2"><a class="reference internal" href="#fs-journal-adv">Какие преимущества и недостатки у полного журналирования данных?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fs-reserve-info">Для каких целей резервируется 5% от свободного места на диске?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fs-reserve-disable">Как отключить резервирование свободного места на диске?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zswap-fedora">Как включить поддержку zswap в Fedora?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>

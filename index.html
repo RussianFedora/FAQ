@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>Неофициальный FAQ по Fedora &#8212; Неофициальный FAQ по Fedora (версия 2020.04.30)</title>
+    <title>Неофициальный FAQ по Fedora &#8212; Неофициальный FAQ по Fedora (версия 2020.05.30)</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -270,6 +270,7 @@
 <li class="toctree-l2"><a class="reference internal" href="administration.html#fs-journal-adv">Какие преимущества и недостатки у полного журналирования данных?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="administration.html#fs-reserve-info">Для каких целей резервируется 5% от свободного места на диске?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="administration.html#fs-reserve-disable">Как отключить резервирование свободного места на диске?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="administration.html#zswap-fedora">Как включить поддержку zswap в Fedora?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a><ul>
@@ -562,10 +563,7 @@
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#cuda-nvidia">Как правильно установить драйвер CUDA для видеокарт NVIDIA?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#nvidia-standard">Как установить стандартный драйвер видеокарт NVIDIA?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#nvidia-legacy-390">Как установить стандартный драйвер видеокарт NVIDIA для старых видеокарт?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hardware.html#nvidia-legacy-340">Как установить стандартный драйвер видеокарт NVIDIA для устаревших видеокарт?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#nvidia-optimus">Как установить драйвер видеокарт NVIDIA для ноутбуков?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hardware.html#nvidia-legacy-optimus">Как установить драйвер видеокарт NVIDIA для ноутбуков (устаревший способ)?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hardware.html#nvidia-legacy-unmanaged">Как установить драйвер видеокарт NVIDIA для устаревших ноутбуков?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#nvidia-cuda-generic">Как установить драйвер CUDA для современных видеокарт NVIDIA?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#nvidia-cuda-legacy-390">Как установить драйвер CUDA для устаревших видеокарт NVIDIA?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#nvidia-troubleshooting">После установки драйверов NVIDIA возникает чёрный экран. Что делать?</a></li>
@@ -714,7 +712,6 @@
 <li class="toctree-l2"><a class="reference internal" href="tips-and-tricks.html#spectacle-print-screen">В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tips-and-tricks.html#amd">Как решить проблему с чёрным экраном после обновления ядра на видеокартах AMD?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tips-and-tricks.html#vga-0-nvidia">Как исправить ошибку, связанную с VGA-0, на видеокартах NVIDIA?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tips-and-tricks.html#grub-selinux">При обновлении возникает ошибка, связанная с Grub и SELinux. Что делать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tips-and-tricks.html#modesetting-intel">Как активировать драйвер modesetting на видеокартах Intel?</a></li>
 </ul>
 </li>
