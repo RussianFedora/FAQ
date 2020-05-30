@@ -32,8 +32,7 @@
   * стандартный драйвер (десктопы, серии GeForce, Quadro, Titan):
 
     * :ref:`современные поколения видеокарт (700, 800, 900, 1000, 1600 и 2000) <nvidia-standard>`;
-    * :ref:`более старые поколения видеокарт (400, 500, 600) <nvidia-legacy-390>`;
-    * :ref:`устаревшие поколения видеокарт (6000, 7000, 8000, 9000, 200 и 300) <nvidia-legacy-340>`;
+    * :ref:`более старые поколения видеокарт (400, 500, 600) <nvidia-legacy-390>`.
 
   * ноутбуки с гибридной графикой:
 
@@ -117,48 +116,6 @@
 .. code-block:: text
 
     sudo dnf install xorg-x11-drv-nvidia-390xx-libs.i686
-
-Подождём 3-5 минут и убедимся, что модули были успешно собраны:
-
-.. code-block:: text
-
-    sudo akmods --force
-
-Пересоберём :ref:`образ initrd <initrd-rebuild>`:
-
-.. code-block:: text
-
-    sudo dracut --force
-
-Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
-
-.. index:: video, gpu, repository, nvidia, drivers, third-party
-.. _nvidia-legacy-340:
-
-Как установить стандартный драйвер видеокарт NVIDIA для устаревших видеокарт?
-================================================================================
-
-**Важно:** поддержка ветки 340 официально `прекращена самой NVIDIA <https://www.phoronix.com/scan.php?page=news_item&px=NVIDIA-Retires-G8x-GT2xx>`__, поэтому данный драйвер может прекратить функционировать в любой момент при выходе новых версий ядра Linux и системы Xorg. В этом случае мы рекомендуем переключиться на использование свободного драйвера nouveau, либо заменить видеокарту на более современную.
-
-Подключим репозитории :ref:`RPM Fusion <rpmfusion>`.
-
-Загрузим все обновления системы:
-
-.. code-block:: text
-
-    sudo dnf upgrade --refresh
-
-Установим стандартные драйверы из LTS ветки 340.xx для устаревших видеокарт:
-
-.. code-block:: text
-
-    sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia-340xx xorg-x11-drv-nvidia-340xx xorg-x11-drv-nvidia-340xx-libs
-
-Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:
-
-.. code-block:: text
-
-    sudo dnf install xorg-x11-drv-nvidia-340xx-libs.i686
 
 Подождём 3-5 минут и убедимся, что модули были успешно собраны:
 
