@@ -1585,3 +1585,29 @@ Coredump -- это дамп закрытой памяти процесса, со
     sudo tune2fs -m 0 /dev/sdX1
 
 Здесь **0** -- процентное соотношение зарезервированных блоков к обычным (отсутствуют), а **/dev/sdX1** -- раздел диска, на котором будут произведены изменения.
+
+.. index:: zswap, memory, compression, swap
+.. _zswap:
+
+Как включить поддержку zswap в Fedora?
+===========================================
+
+Установим пакет **zswap-cli** для работы с модулем ядра *zswap*:
+
+.. code-block:: text
+
+    sudo dnf install zswap-cli
+
+При необходимости внесём правки в файл конфигурации:
+
+.. code-block:: text
+
+    sudoedit /etc/zswap-cli.conf
+
+Активируем сервис zswap-cli:
+
+.. code-block:: text
+
+    sudo systemctl enable --now zswap-cli.service
+
+Изменения вступят в силу немедленно.
