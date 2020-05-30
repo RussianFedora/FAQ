@@ -37,7 +37,6 @@
   * ноутбуки с гибридной графикой:
 
     * :ref:`NVIDIA Optimus драйвер (рекомендуемый способ) <nvidia-optimus>`;
-    * :ref:`Bumblebee драйвер (устаревший способ) <nvidia-legacy-optimus>`;
     * :ref:`Bumblebee драйвер для старых ноутбуков <nvidia-legacy-unmanaged>`.
 
 .. index:: video, gpu, repository, nvidia, drivers, third-party, cuda
@@ -148,55 +147,6 @@
     __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia /path/to/game/launcher
 
 Здесь вместо **/path/to/game/launcher** укажем путь к бинарнику, который требуется запустить.
-
-Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
-
-.. index:: video, gpu, repository, nvidia, drivers, third-party, bumblebee, primus, optimus, legacy
-.. _nvidia-legacy-optimus:
-
-Как установить драйвер видеокарт NVIDIA для ноутбуков (устаревший способ)?
-=============================================================================
-
-**Важно:** данный способ следут применять только на устаревших версиях Fedora (30 и ниже). В современных настоятельно рекомендуется :ref:`перейти на актуальный <nvidia-optimus>`, поддерживаемой самой NVIDIA.
-
-Если в ноутбуке установлена видеокарта, отличная от :ref:`NVIDIA GeForce GTX 1050 <nvidia-gtx1050>`, то процесс пройдёт в штатном режиме. Старые поколения (ниже серии 700) не поддерживаются.
-
-Загрузим все обновления системы:
-
-.. code-block:: text
-
-    sudo dnf upgrade --refresh
-
-Подключим репозиторий с Bumblebee:
-
-.. code-block:: text
-
-    sudo dnf --nogpgcheck install https://linux.itecs.ncsu.edu/redhat/public/bumblebee/fedora$(rpm -E %fedora)/noarch/bumblebee-release-1.3-1.noarch.rpm https://linux.itecs.ncsu.edu/redhat/public/bumblebee-nonfree/fedora$(rpm -E %fedora)/noarch/bumblebee-nonfree-release-1.3-1.noarch.rpm
-
-Установим проприетарные драйверы с поддержкой NVIDIA Optimus:
-
-.. code-block:: text
-
-    sudo dnf install gcc kernel-headers kernel-devel bumblebee-nvidia bbswitch-dkms primus VirtualGL
-
-Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:
-
-.. code-block:: text
-
-    sudo dnf install VirtualGL.i686 primus.i686
-
-Добавим аккаунт пользователя в группу **bumblebee**:
-
-.. code-block:: text
-
-    sudo usermod -a -G bumblebee $(whoami)
-
-Произведём настройку сервисов:
-
-.. code-block:: text
-
-    sudo systemctl enable bumblebeed.service
-    sudo systemctl mask nvidia-fallback.service
 
 Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
 
