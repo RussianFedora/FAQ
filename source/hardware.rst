@@ -213,12 +213,6 @@
 
     sudo dnf remove \*nvidia\*
 
-Удалим :ref:`драйверы Bumblebee <nvidia-legacy-optimus>`:
-
-.. code-block:: text
-
-    sudo dnf remove bumblebee\* bbswitch\* primus\* VirtualGL\*
-
 Пересоберём :ref:`образ initrd <initrd-rebuild>`, а также :ref:`конфиг Grub 2 <grub-rebuild>`.
 
 .. index:: video, gpu, amd, ati, drivers
@@ -852,12 +846,6 @@ ICC профиль можно получить либо на сайте прои
 .. code-block:: text
 
     __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia %command%
-
-Для :ref:`устаревших драйверов Bumblebee <nvidia-legacy-optimus>`:
-
-.. code-block:: text
-
-    primusrun %command%
 
 Сохраним изменения, нажав **OK** и **Закрыть**.
 
