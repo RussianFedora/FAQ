@@ -77,7 +77,7 @@
 
 .. code-block:: text
 
-    sudo dnf remove kdepim-runtime-libs
+    sudo dnf remove kdepim-runtime-libs kdepim-apps-libs
 
 Удалим :ref:`KDE Connect <kde-connect>` (если не планируется управлять смартфоном с компьютера и наоборот):
 
