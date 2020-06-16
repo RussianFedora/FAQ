@@ -241,6 +241,10 @@ RFRemix -- это ремикс оргинального дистрибутива
   * `#fedora-devel <https://webchat.freenode.net/?channels=#fedora-devel>`__ -- чат для разработчиков на английском языке;
   * `#rpmfusion <https://webchat.freenode.net/?channels=#rpmfusion>`__ -- чат поддержки репозитория :ref:`RPM Fusion <rpmfusion>` на английском языке.
 
+Чаты в XMPP:
+
+  * `fedora@conference.a3.pm <xmpp:fedora@conference.a3.pm?join>`__ -- основной чат на русском языке.
+
 Форумы:
 
   * `Fedora Ask на русском языке <https://ask.fedoraproject.org/ru/questions/>`__;
