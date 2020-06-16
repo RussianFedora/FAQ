@@ -242,6 +242,7 @@ RFRemix -- это ремикс оргинального дистрибутива
   * `Russian Fedora Offtopic <https://t.me/russianfedora_offtopic>`__ -- специальный чат для оффтопика.
   
 Чаты в XMPP:
+
   * fedora@conference.a3.pm – основной чат на русском языке.
 
 Форумы:
