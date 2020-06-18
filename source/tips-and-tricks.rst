@@ -233,30 +233,6 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
 См. `здесь <https://www.easycoding.org/2011/08/14/ustanovka-microsoft-core-fonts-v-fedora.html>`__.
 
-.. index:: bug, grub, boot, loader, error
-.. _grub-legacy-error:
-
-После обновления дистрибутива с 29 версии до 30 не могу загрузить систему. Как исправить?
-=============================================================================================
-
-Некоторые пользователи, до сих пор использующие Legacy загрузку (BIOS), после :ref:`обновления <dist-upgrade>` с Fedora 29 до 30 не могут запустить систему из-за ошибок, связанных с загрузчиком Grub 2.
-
-Это `известная проблема <https://fedoraproject.org/wiki/Common_F30_bugs#GRUB_boot_menu_is_not_populated_after_an_upgrade>`__. Для её решения осуществим следующую последовательность:
-
-1. после появления ошибки Grub 2 и перехода в emergency режим, выполним команду:
-
-.. code-block:: text
-
-    configfile /grub2/grub.cfg.rpmsave
-
-2. после успешной загрузки, произведём переустановку Grub 2 в MBR диска:
-
-.. code-block:: text
-
-    sudo grub2-install /dev/sda
-
-Здесь **/dev/sda** -- дисковое устройство, на котором установлена Fedora.
-
 .. index:: dnf, zchunk, bug, error, update
 .. _zchunk-checksum:
 
