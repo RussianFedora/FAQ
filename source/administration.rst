@@ -139,6 +139,20 @@
 
 Изменения вступают в силу немедленно.
 
+.. index:: boot, add entry, uefi
+.. _uefi-add:
+
+Как добавить новый пункт меню UEFI Boot из Fedora?
+=======================================================
+
+В качестве примера добавим строку запуска Fedora (если она по какой-либо причине стала отсутствовать):
+
+.. code-block:: text
+
+    sudo efibootmgr -c -L "Fedora" -l "\EFI\fedora\shimx64.efi"
+
+Изменения вступают в силу немедленно.
+
 .. index:: boot, remove entry, uefi
 .. _uefi-remove:
 
