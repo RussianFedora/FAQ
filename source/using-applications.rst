@@ -387,25 +387,6 @@ KDE Connect не видит мой смартфон. Как исправить?
 
     kbuildsycoca5 --noincremental
 
-.. index:: chromium, chrome, browser, command line, web
-.. _chromium-commandline:
-
-Как постоянно запускать браузер Chromium с определёнными параметрами?
-=========================================================================
-
-Для того, чтобы постоянно запускать браузер Chromium с определёнными `параметрами запуска <https://peter.sh/experiments/chromium-command-line-switches/>`__, необходимо создать файл ``~/.config/chromium-flags.conf`` и прописать их в нём.
-
-В качестве разделителя применяется пробел, либо символ разрыва строки. Строки, которые начинаются с символа решётки (**#**) считаются комментариями и игнорируются.
-
-Пример:
-
-.. code-block:: text
-
-    # Переопределим каталог хранения дискового кэша.
-    --disk-cache-dir /tmp/chromium
-    # Установим предельный размер дискового кэша.
-    --disk-cache-size 268435456
-
 .. index:: thunderbird, mail client, email, extension, translation, lightning, langpack
 .. _thunderbird-symlinks:
 
