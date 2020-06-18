@@ -79,7 +79,7 @@
 </pre></div>
 </div>
 <p>Удалим runtime библиотеки для экономии ОЗУ (при этом по зависимостям будут удалены некоторые приложения, например KMail и KOrganizer):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove kdepim-runtime-libs
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove kdepim-runtime-libs kdepim-apps-libs
 </pre></div>
 </div>
 <p>Удалим <a class="reference internal" href="using-applications.html#kde-connect"><span class="std std-ref">KDE Connect</span></a> (если не планируется управлять смартфоном с компьютера и наоборот):</p>
@@ -177,39 +177,8 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <span id="msttcorefonts"></span><span id="index-8"></span><h2>Как установить шрифты Microsoft в Fedora?<a class="headerlink" href="#microsoft-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2011/08/14/ustanovka-microsoft-core-fonts-v-fedora.html">здесь</a>.</p>
 </div>
-<div class="section" id="grub-legacy-error">
-<span id="index-9"></span><span id="id4"></span><h2>После обновления дистрибутива с 29 версии до 30 не могу загрузить систему. Как исправить?<a class="headerlink" href="#grub-legacy-error" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Некоторые пользователи, до сих пор использующие Legacy загрузку (BIOS), после <a class="reference internal" href="package-manager.html#dist-upgrade"><span class="std std-ref">обновления</span></a> с Fedora 29 до 30 не могут запустить систему из-за ошибок, связанных с загрузчиком Grub 2.</p>
-<p>Это <a class="reference external" href="https://fedoraproject.org/wiki/Common_F30_bugs#GRUB_boot_menu_is_not_populated_after_an_upgrade">известная проблема</a>. Для её решения осуществим следующую последовательность:</p>
-<ol class="arabic simple">
-<li><p>после появления ошибки Grub 2 и перехода в emergency режим, выполним команду:</p></li>
-</ol>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>configfile /grub2/grub.cfg.rpmsave
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>после успешной загрузки, произведём переустановку Grub 2 в MBR диска:</p></li>
-</ol>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo grub2-install /dev/sda
-</pre></div>
-</div>
-<p>Здесь <strong>/dev/sda</strong> – дисковое устройство, на котором установлена Fedora.</p>
-</div>
-<div class="section" id="zchunk-checksum-error">
-<span id="zchunk-checksum"></span><span id="index-10"></span><h2>При попытке обновления появляется ошибка zchunk checksum error. Как исправить?<a class="headerlink" href="#zchunk-checksum-error" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1706321">известная проблема</a>. В качестве временного решения запретим использование zchunk в dnf.</p>
-<p>Откроем главный конфигурационный файл dnf:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
-</pre></div>
-</div>
-<p>Добавим в самый конец следующую строку:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>zchunk=False
-</pre></div>
-</div>
-<p>Сохраним изменения в файле и повторим попытку обновления. На этот раз она должна пройти без ошибок.</p>
-</div>
 <div class="section" id="root-account-is-locked">
-<span id="eshell-error"></span><span id="index-11"></span><h2>При загрузке режима восстановления появляется ошибка root account is locked. Как исправить?<a class="headerlink" href="#root-account-is-locked" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="eshell-error"></span><span id="index-9"></span><h2>При загрузке режима восстановления появляется ошибка root account is locked. Как исправить?<a class="headerlink" href="#root-account-is-locked" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Ошибка <em>Cannot open access to console, the root account is locked</em> появляется при запуске системы в режиме восстановления в том случае если при установке Fedora был создан <a class="reference internal" href="security.html#admin-vs-user"><span class="std std-ref">пользователь-администратор</span></a> и не был задан пароль для учётной записи суперпользователя.</p>
 <p>Таким образом, при недоступности раздела /home, войти в систему в emergency режиме не представляется возможным, т.к. отсутствуют пользователи с доступными профилями (суперпользователь заблокирован, а обычные пользовательские учётные записи отключены из-за отсутствия доступа к их домашним каталогам).</p>
 <p>Решим данную проблему посредством загрузки с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>, выполнением <a class="reference internal" href="administration.html#chroot"><span class="std std-ref">chroot</span></a> в установленную систему и <a class="reference internal" href="security.html#root-password"><span class="std std-ref">установкой пароля для root</span></a>:</p>
@@ -222,18 +191,8 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 </div>
 <p>При следующей загрузке работа режима восстановления будет полностью восстановлена.</p>
 </div>
-<div class="section" id="red-hat-subscription-managment">
-<span id="rhelsm-error"></span><span id="index-12"></span><h2>При попытке обновления появляется ошибка, связанная с Red Hat Subscription Managment. Как исправить?<a class="headerlink" href="#red-hat-subscription-managment" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Пользователи, установшие систему со <a class="reference internal" href="generic-info.html#download"><span class="std std-ref">свежих образов</span></a> Fedora 30, при попытке <a class="reference internal" href="package-manager.html#dnf-update"><span class="std std-ref">установки обновлений</span></a> стали замечать ошибку с текстом <em>This system is not registered to Red Hat Subscription Managment. You can use subscription-manager to register</em>.</p>
-<p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1718622">известная проблема</a>, из-за которой пакет <strong>subscription-manager</strong>, предназначенный для Red Hat Enterprise Linux, ошибочно включался в состав ISO образов Fedora.</p>
-<p>Режим данную проблему посредством удаления данного пакета:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove subscription-manager
-</pre></div>
-</div>
-<p>Теперь ошибки при работе пакетного менеджера будут полностью устранены.</p>
-</div>
 <div class="section" id="zram-pool-size">
-<span id="index-13"></span><span id="id5"></span><h2>Как изменить размер пула сжатия памяти?<a class="headerlink" href="#zram-pool-size" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-10"></span><span id="id4"></span><h2>Как изменить размер пула сжатия памяти?<a class="headerlink" href="#zram-pool-size" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию модуль <a class="reference internal" href="administration.html#memory-compression"><span class="std std-ref">сжатия памяти zram</span></a> создаёт пул, равный половине объёма имеющейся оперативной памяти.</p>
 <p>Увеличивать размер пула выше стандартного значения категорически не рекомендуется, т.к. это может приводить к зависаниям системы.</p>
 <p>Если всё-таки хочется внести поправки, откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/zram.conf</span></code> в текстовом редакторе:</p>
@@ -248,7 +207,7 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
 </div>
 <div class="section" id="rfremix-fedora">
-<span id="index-14"></span><span id="id6"></span><h2>Как правильно преобразовать RFRemix в Fedora?<a class="headerlink" href="#rfremix-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-11"></span><span id="id5"></span><h2>Как правильно преобразовать RFRemix в Fedora?<a class="headerlink" href="#rfremix-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Заменим пакеты с брендированием:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf swap rfremix-release fedora-release --allowerasing
 sudo dnf swap rfremix-logos fedora-logos --allowerasing
@@ -264,7 +223,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 </div>
 </div>
 <div class="section" id="rfremix-upgrade">
-<span id="index-15"></span><span id="id7"></span><h2>Как правильно обновиться с RFRemix до Fedora?<a class="headerlink" href="#rfremix-upgrade" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-12"></span><span id="id6"></span><h2>Как правильно обновиться с RFRemix до Fedora?<a class="headerlink" href="#rfremix-upgrade" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В связи с прекращением поддержки RFRemix, выполним следующие действия:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -274,7 +233,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 </div></blockquote>
 </div>
 <div class="section" id="windows-dual-boot">
-<span id="dual-boot-optimizations"></span><span id="index-16"></span><h2>Как оптимизировать Windows для корректной работы в dual-boot?<a class="headerlink" href="#windows-dual-boot" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="dual-boot-optimizations"></span><span id="index-13"></span><h2>Как оптимизировать Windows для корректной работы в dual-boot?<a class="headerlink" href="#windows-dual-boot" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если необходимо использовать Fedora вместе с Microsoft Windows в режиме <a class="reference internal" href="installation.html#dual-boot"><span class="std std-ref">двойной загрузки</span></a>, то необходимо применить ряд оптимизаций, специфичных для данной ОС:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -285,13 +244,13 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 <p>После выполнения указанных действий, обе ОС смогут сосуществовать на одном устройстве.</p>
 </div>
 <div class="section" id="webkitgtk">
-<span id="webkitgtk-legacy"></span><span id="index-17"></span><h2>Приложение требует webkitgtk. Что делать?<a class="headerlink" href="#webkitgtk" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="webkitgtk-legacy"></span><span id="index-14"></span><h2>Приложение требует webkitgtk. Что делать?<a class="headerlink" href="#webkitgtk" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Библиотека webkitgtk более не поддерживается апстримом, имеет сотни незакрытых критических уязвимостей (в т.ч. допускающих удалённое исполнение кода), и по этой причине она была удалена из репозиториев Fedora начиная с версии 25.</p>
 <p>Если приложение требует webkitgtk, то лучше всего воздержаться от его использования, однако если это по какой-либо причине невозможно, то проще всего будет применить загрузку библиотеки через <a class="reference internal" href="development.html#library-path"><span class="std std-ref">переопределение LD_LIBRARY_PATH</span></a>.</p>
 <p>Настоятельно не рекомендуется устанавливать данную библиотеку глобально в систему!</p>
 </div>
 <div class="section" id="php">
-<span id="php-remi-install"></span><span id="index-18"></span><h2>Можно ли установить несколько версий PHP одновременно?<a class="headerlink" href="#php" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="php-remi-install"></span><span id="index-15"></span><h2>Можно ли установить несколько версий PHP одновременно?<a class="headerlink" href="#php" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, это возможно при использовании репозитория Remi’s RPM.</p>
 <p>В то же время одновременная установка и использование одной и той же <em>мажорной версии PHP</em> невозможна, т.е. нельзя одновременно установить и использовать версии <strong>7.3.1</strong> и <strong>7.3.2</strong>, однако <strong>7.2.9</strong> и <strong>7.3.2</strong> уже можно.</p>
 <p><a class="reference external" href="https://rpms.remirepo.net/">Remi’s RPM</a> – это сторонний репозиторий, созданный и поддерживаемый Remi Collect – активным участником сообщества и мейнтейнером всего PHP стека в Fedora.</p>
@@ -333,7 +292,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 <p>Файлы конфигурации <code class="docutils literal notranslate"><span class="pre">php.ini</span></code> и <code class="docutils literal notranslate"><span class="pre">php-fpm.conf</span></code> располагаются в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/opt/remi/php73</span></code>. Префикс используется в качестве имени каталога.</p>
 </div>
 <div class="section" id="qt-wayland">
-<span id="qt-wayland-issue"></span><span id="index-19"></span><h2>С некоторыми Qt приложениями в Wayland наблюдаются проблемы. Как исправить?<a class="headerlink" href="#qt-wayland" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="qt-wayland-issue"></span><span id="index-16"></span><h2>С некоторыми Qt приложениями в Wayland наблюдаются проблемы. Как исправить?<a class="headerlink" href="#qt-wayland" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Некоторые приложения, использующие фреймворк Qt, могут некорректно работать в Wayland, поэтому активируем для них принудительное использование системы X11:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>QT_QPA_PLATFORM=xcb /usr/bin/foo-bar
 </pre></div>
@@ -346,7 +305,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 <p>Здесь <strong>/usr/bin/foo-bar</strong> – путь запуска проблемного приложения.</p>
 </div>
 <div class="section" id="spectacle-print-screen">
-<span id="spectacle-dbus"></span><span id="index-20"></span><h2>В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?<a class="headerlink" href="#spectacle-print-screen" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="spectacle-dbus"></span><span id="index-17"></span><h2>В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?<a class="headerlink" href="#spectacle-print-screen" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1754395">известная проблема</a> пакета <strong>Lmod</strong>, приводящая к тому, что при вызове через D-Bus не полностью передаются <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменные окружения</span></a>.</p>
 <p>Удалим Lmod:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove Lmod
@@ -358,7 +317,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 </div>
 </div>
 <div class="section" id="amd">
-<span id="amdgpu-black-screen"></span><span id="index-21"></span><h2>Как решить проблему с чёрным экраном после обновления ядра на видеокартах AMD?<a class="headerlink" href="#amd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="amdgpu-black-screen"></span><span id="index-18"></span><h2>Как решить проблему с чёрным экраном после обновления ядра на видеокартах AMD?<a class="headerlink" href="#amd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Иногда чёрный экран на видеокартах AMD может появляться по причинам отсутствия нужной прошивки в initramfs образе.</p>
 <p>Для решения данной проблемы <a class="reference internal" href="using-system.html#initrd-rebuild"><span class="std std-ref">пересоберём образ initrd</span></a> с принудительным добавлением прошивок, используемых драйвером amdgpu:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut --regenerate-all --force --install &quot;/usr/lib/firmware/amdgpu/*&quot;
@@ -370,7 +329,7 @@ sudo dnf swap rfremix-logos fedora-logos --allowerasing
 </div>
 </div>
 <div class="section" id="vga-0-nvidia">
-<span id="nvidia-vga0-error"></span><span id="index-22"></span><h2>Как исправить ошибку, связанную с VGA-0, на видеокартах NVIDIA?<a class="headerlink" href="#vga-0-nvidia" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="nvidia-vga0-error"></span><span id="index-19"></span><h2>Как исправить ошибку, связанную с VGA-0, на видеокартах NVIDIA?<a class="headerlink" href="#vga-0-nvidia" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если в системном журнале появляется сообщение вида <em>WARNING: GPU:0: Unable to read EDID for display device VGA-0</em>, отключим соответствующий видеовыход.</p>
 <p>Создадим файл <code class="docutils literal notranslate"><span class="pre">80-vgaoff.conf</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo touch /etc/X11/xorg.conf.d/80-vgaoff.conf
@@ -396,7 +355,7 @@ EndSection
 </div>
 </div>
 <div class="section" id="modesetting-intel">
-<span id="intel-modesetting"></span><span id="index-23"></span><h2>Как активировать драйвер modesetting на видеокартах Intel?<a class="headerlink" href="#modesetting-intel" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="intel-modesetting"></span><span id="index-20"></span><h2>Как активировать драйвер modesetting на видеокартах Intel?<a class="headerlink" href="#modesetting-intel" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Создадим новый файл конфигурации X11 – <code class="docutils literal notranslate"><span class="pre">10-modesetting.conf</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo touch /etc/X11/xorg.conf.d/10-modesetting.conf
 sudo chmod 0644 /etc/X11/xorg.conf.d/10-modesetting.conf
@@ -464,10 +423,7 @@ EndSection
 <li class="toctree-l2"><a class="reference internal" href="#python-2">Можно ли удалить Python 2 из системы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fs-noexec">Как запретить возможность исполнения любых файлов из домашнего каталога?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#microsoft-fedora">Как установить шрифты Microsoft в Fedora?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#grub-legacy-error">После обновления дистрибутива с 29 версии до 30 не могу загрузить систему. Как исправить?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#zchunk-checksum-error">При попытке обновления появляется ошибка zchunk checksum error. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#root-account-is-locked">При загрузке режима восстановления появляется ошибка root account is locked. Как исправить?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#red-hat-subscription-managment">При попытке обновления появляется ошибка, связанная с Red Hat Subscription Managment. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#zram-pool-size">Как изменить размер пула сжатия памяти?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rfremix-fedora">Как правильно преобразовать RFRemix в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rfremix-upgrade">Как правильно обновиться с RFRemix до Fedora?</a></li>

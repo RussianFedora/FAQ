@@ -274,20 +274,8 @@ dom.webgpu.enabled = true
 </pre></div>
 </div>
 </div>
-<div class="section" id="chromium-commandline">
-<span id="index-21"></span><span id="id10"></span><h2>Как постоянно запускать браузер Chromium с определёнными параметрами?<a class="headerlink" href="#chromium-commandline" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для того, чтобы постоянно запускать браузер Chromium с определёнными <a class="reference external" href="https://peter.sh/experiments/chromium-command-line-switches/">параметрами запуска</a>, необходимо создать файл <code class="docutils literal notranslate"><span class="pre">~/.config/chromium-flags.conf</span></code> и прописать их в нём.</p>
-<p>В качестве разделителя применяется пробел, либо символ разрыва строки. Строки, которые начинаются с символа решётки (<strong>#</strong>) считаются комментариями и игнорируются.</p>
-<p>Пример:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Переопределим каталог хранения дискового кэша.
---disk-cache-dir /tmp/chromium
-# Установим предельный размер дискового кэша.
---disk-cache-size 268435456
-</pre></div>
-</div>
-</div>
 <div class="section" id="thunderbird-lightning">
-<span id="thunderbird-symlinks"></span><span id="index-22"></span><h2>В установленном Thunderbird не обновляется расширение Lightning и языковые пакеты. Как исправить?<a class="headerlink" href="#thunderbird-lightning" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="thunderbird-symlinks"></span><span id="index-21"></span><h2>В установленном Thunderbird не обновляется расширение Lightning и языковые пакеты. Как исправить?<a class="headerlink" href="#thunderbird-lightning" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проблема заключается в том, что системные расширения и пакеты с переводами должны копироваться в профиль пользователя при каждом обновлении клиента, но RPM пакетам <a class="reference external" href="https://docs.fedoraproject.org/en-US/packaging-guidelines/">запрещено</a> вносить любые изменения в домашние каталоги пользователей, поэтому они автоматически не обновляются.</p>
 <p>Чтобы исправить проблему необходимо и достаточно создать символические ссылки на XPI файлы, обновляемые пакетом.</p>
 <p>Удалим старые файлы из профилей Thunderbird:</p>
@@ -305,7 +293,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Перезапустим Thunderbird для того, чтобы изменения вступили в силу.</p>
 </div>
 <div class="section" id="qr">
-<span id="qr-code"></span><span id="index-23"></span><h2>Как распознать QR-код или штрих-код из консоли?<a class="headerlink" href="#qr" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="qr-code"></span><span id="index-22"></span><h2>Как распознать QR-код или штрих-код из консоли?<a class="headerlink" href="#qr" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для распознавания бар-кода на изображении и получения его содержимого воспользуемся пакетом <strong>zbar</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install zbar
 </pre></div>
@@ -317,7 +305,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Результат (или результаты (по одному на каждый обнаруженный бар-код)) будут выведены в консоль.</p>
 </div>
 <div class="section" id="ocr-app">
-<span id="index-24"></span><span id="id11"></span><h2>Как можно распознать текст с изображения или сканера?<a class="headerlink" href="#ocr-app" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-23"></span><span id="id10"></span><h2>Как можно распознать текст с изображения или сканера?<a class="headerlink" href="#ocr-app" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для получения текста из файлов изображений, либо PDF, можно воспользоваться системой оптического распознавания символов Tesseract, а также графической утилитой gImageReader.</p>
 <p>Установим Tesseract и набор файлов для русского языка:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install tesseract tesseract-langpack-rus
@@ -335,7 +323,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Результат может быть сохранён в файл с панели результатов распознавания.</p>
 </div>
 <div class="section" id="zip">
-<span id="zip-encoding"></span><span id="index-25"></span><h2>При распаковке Zip архива появляются кракозябры вместо имён файлов. Как исправить?<a class="headerlink" href="#zip" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="zip-encoding"></span><span id="index-24"></span><h2>При распаковке Zip архива появляются кракозябры вместо имён файлов. Как исправить?<a class="headerlink" href="#zip" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Zip-архивы, созданные штатными средствами ОС Windows, сохраняют имена файлов внутри архива исключительно в однобайтовой кодировке системы по умолчанию (в русской версии это Windows-1251 (cp1251), в английской – Windows-1252 (cp1252)), поэтому при распаковке таких архивов вместо русских букв будут отображаться кракозябры.</p>
 <p>Утилита unzip поддерживает явное указание кодировки, поэтому воспользуемся данной функцией:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>unzip -O cp1251 foo-bar.zip -d /path/to/destination
@@ -344,7 +332,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Здесь <strong>cp1251</strong> – кодировка имён файлов, <strong>foo-bar.zip</strong> – имя архива, а <strong>/path/to/destination</strong> – каталог, в который он будет распакован.</p>
 </div>
 <div class="section" id="tmpfs">
-<span id="browser-tmpfs"></span><span id="index-26"></span><h2>Стоит ли переносить кэши браузеров в tmpfs?<a class="headerlink" href="#tmpfs" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="browser-tmpfs"></span><span id="index-25"></span><h2>Стоит ли переносить кэши браузеров в tmpfs?<a class="headerlink" href="#tmpfs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, т.к. это даёт следующие преимущества:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -354,7 +342,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div></blockquote>
 </div>
 <div class="section" id="firefox-tmpfs">
-<span id="firefox-cache"></span><span id="index-27"></span><h2>Как перенести кэш браузера Firefox в tmpfs?<a class="headerlink" href="#firefox-tmpfs" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="firefox-cache"></span><span id="index-26"></span><h2>Как перенести кэш браузера Firefox в tmpfs?<a class="headerlink" href="#firefox-tmpfs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В Fedora каталог <strong>/tmp</strong> по умолчанию монтируется в tmpfs, поэтому осуществим перенос кэшей данного браузера именно в него:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -366,7 +354,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div></blockquote>
 </div>
 <div class="section" id="wget-crawler">
-<span id="index-28"></span><span id="id12"></span><h2>Как скачать веб-страницу рекурсивно?<a class="headerlink" href="#wget-crawler" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-27"></span><span id="id11"></span><h2>Как скачать веб-страницу рекурсивно?<a class="headerlink" href="#wget-crawler" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для рекурсивного скачивания статических веб-страниц можно использовать wget в специальном режиме.</p>
 <p>Запустим скачивание ресурса <strong>example.org</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>wget --random-wait -r -p -e robots=off -U &quot;Mozilla/5.0 (X11; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0&quot; https://example.org
@@ -375,7 +363,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Рекурсивное скачивание может занять много времени и места на диске. Настоятельно не рекомендуется использовать этот режим на ресурсах с динамическим контентом.</p>
 </div>
 <div class="section" id="exif">
-<span id="exif-data"></span><span id="index-29"></span><h2>Как извлечь метаданные EXIF из файла изображения?<a class="headerlink" href="#exif" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="exif-data"></span><span id="index-28"></span><h2>Как извлечь метаданные EXIF из файла изображения?<a class="headerlink" href="#exif" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет ImageMagick:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install ImageMagick
 </pre></div>
@@ -386,7 +374,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 </div>
 <div class="section" id="wget-spider">
-<span id="index-30"></span><span id="id13"></span><h2>Как проверить действительность ссылок в закладках без сторонних расширений?<a class="headerlink" href="#wget-spider" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-29"></span><span id="id12"></span><h2>Как проверить действительность ссылок в закладках без сторонних расширений?<a class="headerlink" href="#wget-spider" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проверить действительность любых ссылок, указанных в файле, можно средствами <strong>wget</strong> в режиме <em>spider</em>.</p>
 <p>Запустим веб-браузер и экспортируем список закладок в файл, совместимый с форматом <em>Netscape Bookmarks</em>. В Firefox это можно сделать так:</p>
 <blockquote>
@@ -403,7 +391,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>В зависимости от размера файла процесс проверки может занять очень много времени.</p>
 </div>
 <div class="section" id="steam-fedora">
-<span id="steam"></span><span id="index-31"></span><h2>Как установить Steam в Fedora?<a class="headerlink" href="#steam-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="steam"></span><span id="index-30"></span><h2>Как установить Steam в Fedora?<a class="headerlink" href="#steam-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Подключим репозитории <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> (как free, так и nonfree), после чего установим его:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install steam
 </pre></div>
@@ -411,12 +399,12 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Ярлык запуска клиента Steam появится в главном меню используемой графической среды.</p>
 </div>
 <div class="section" id="gnome-shell">
-<span id="gnome-shell-extensions"></span><span id="index-32"></span><h2>Откуда правильно устанавливать расширения для Gnome Shell?<a class="headerlink" href="#gnome-shell" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="gnome-shell-extensions"></span><span id="index-31"></span><h2>Откуда правильно устанавливать расширения для Gnome Shell?<a class="headerlink" href="#gnome-shell" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Расширения для Gnome Shell можно устанавливать как в виде пакета из репозиториев, так и напрямую из <a class="reference external" href="https://extensions.gnome.org/">Магазина расширений Gnome</a>. Разница лишь в том, что расширения, установленные пакетом, будут доступны сразу для всех пользователей системы.</p>
 <p>Рекомендуется устанавливать расширения из Магазина, т.к. многие пакеты очень редко получают обновления.</p>
 </div>
 <div class="section" id="gnome-shell-browser">
-<span id="index-33"></span><span id="id14"></span><h2>Как разрешить установку расширений Gnome Shell из веб-браузера?<a class="headerlink" href="#gnome-shell-browser" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-32"></span><span id="id13"></span><h2>Как разрешить установку расширений Gnome Shell из веб-браузера?<a class="headerlink" href="#gnome-shell-browser" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы разрешить установку <a class="reference internal" href="#gnome-shell-extensions"><span class="std std-ref">расширений Gnome Shell</span></a> из браузеров, необходимо установить соответствующий пакет:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gnome-shell-browser
 </pre></div>
@@ -430,7 +418,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div></blockquote>
 </div>
 <div class="section" id="kde-plasma">
-<span id="plasma-browser"></span><span id="index-34"></span><h2>Как разрешить установку расширений KDE Plasma из веб-браузера?<a class="headerlink" href="#kde-plasma" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="plasma-browser"></span><span id="index-33"></span><h2>Как разрешить установку расширений KDE Plasma из веб-браузера?<a class="headerlink" href="#kde-plasma" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы разрешить установку расширений оболочки KDE Plasma из браузеров, необходимо установить соответствующий пакет:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install plasma-browser-integration
 </pre></div>
@@ -444,7 +432,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div></blockquote>
 </div>
 <div class="section" id="gnome-shell-tray">
-<span id="index-35"></span><span id="id15"></span><h2>Как вернуть классический системный лоток (трей) в Gnome Shell?<a class="headerlink" href="#gnome-shell-tray" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-34"></span><span id="id14"></span><h2>Как вернуть классический системный лоток (трей) в Gnome Shell?<a class="headerlink" href="#gnome-shell-tray" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Начиная с Gnome 3.26, из области уведомлений оболочки была удалена поддержка классического системного лотка, поэтому многие приложения при закрытии или сворачивании могут не завершать свою работу, а продолжать работать в фоне без отображения видимого окна.</p>
 <p>Восстановить трей можно посредством установки одного из <a class="reference internal" href="#gnome-shell-extensions"><span class="std std-ref">расширений Gnome Shell</span></a>:</p>
 <blockquote>
@@ -455,12 +443,12 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div></blockquote>
 </div>
 <div class="section" id="gnome-shell-desktop">
-<span id="index-36"></span><span id="id16"></span><h2>Как вернуть классический рабочий стол в Gnome Shell?<a class="headerlink" href="#gnome-shell-desktop" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-35"></span><span id="id15"></span><h2>Как вернуть классический рабочий стол в Gnome Shell?<a class="headerlink" href="#gnome-shell-desktop" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Начиная с Gnome 3.28, поддержка рабочего стола с возможностью размещения на нём файлов, либо ярлыков приложений, была удалена.</p>
 <p>Восстановить классический рабочий стол можно при помощи установки <a class="reference internal" href="#gnome-shell-extensions"><span class="std std-ref">расширения Gnome Shell</span></a> <a class="reference external" href="https://extensions.gnome.org/extension/1465/desktop-icons/">Desktop Icons</a> (также доступно в виде пакета <code class="docutils literal notranslate"><span class="pre">gnome-shell-extension-desktop-icons</span></code> в репозиториях).</p>
 </div>
 <div class="section" id="zip-split">
-<span id="index-37"></span><span id="id17"></span><h2>Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?<a class="headerlink" href="#zip-split" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-36"></span><span id="id16"></span><h2>Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?<a class="headerlink" href="#zip-split" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет <strong>p7zip</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install p7zip
 </pre></div>
@@ -471,13 +459,13 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 </div>
 <div class="section" id="kerberos-gnome">
-<span id="index-38"></span><span id="id18"></span><h2>Как настроить автоматическое обновление Kerberos-тикетов в Gnome?<a class="headerlink" href="#kerberos-gnome" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-37"></span><span id="id17"></span><h2>Как настроить автоматическое обновление Kerberos-тикетов в Gnome?<a class="headerlink" href="#kerberos-gnome" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Актуальные версии среды Gnome поддерживают автоматическое <a class="reference internal" href="administration.html#kerberos-renew"><span class="std std-ref">обновление</span></a> <a class="reference internal" href="administration.html#kerberos-auth"><span class="std std-ref">Kerberos-тикетов</span></a> «из коробки».</p>
 <p>Откроем <strong>настройки Gnome</strong>, выберем пункт <strong>Онлайн учётные записи</strong>, нажмём кнопку с символом <strong>+</strong> для добавления нового, в конце списка выберем вариант <strong>Другие</strong>, а затем <strong>Enterprise login (Kerberos)</strong>.</p>
 <p>В появившемся окне введём авторизационные данные и подтвердим добавление аккаунта.</p>
 </div>
 <div class="section" id="transmission-server">
-<span id="index-39"></span><span id="id19"></span><h2>Как запустить фоновый клиент для загрузки торрентов?<a class="headerlink" href="#transmission-server" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-38"></span><span id="id18"></span><h2>Как запустить фоновый клиент для загрузки торрентов?<a class="headerlink" href="#transmission-server" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим Transsmission в виде сервиса:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install transmission-daemon
 </pre></div>
@@ -498,7 +486,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Изменения вступают в силу немедленно. Сервер будет запускаться автоматически при каждой загрузке системы и сразу же осуществлять загрузку, либо раздачу торрентов.</p>
 </div>
 <div class="section" id="gnome-shell-reset">
-<span id="index-40"></span><span id="id20"></span><h2>Как сбросить все настройки Gnome Shell?<a class="headerlink" href="#gnome-shell-reset" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-39"></span><span id="id19"></span><h2>Как сбросить все настройки Gnome Shell?<a class="headerlink" href="#gnome-shell-reset" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы сбросить все настройки Gnome и Gnome Shell, выполним:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dconf reset -f /
 </pre></div>
@@ -507,7 +495,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>При следующем входе будут восстановлены значения по умолчанию.</p>
 </div>
 <div class="section" id="directory-tree">
-<span id="index-41"></span><span id="id21"></span><h2>Как построить дерево каталогов и сохранить его в файл?<a class="headerlink" href="#directory-tree" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-40"></span><span id="id20"></span><h2>Как построить дерево каталогов и сохранить его в файл?<a class="headerlink" href="#directory-tree" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для построения дерева каталогов воспользуемся утилитой <strong>tree</strong>, затем перенаправим вывод в файл:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>tree /path/to/directory &gt; ~/foo-bar.txt
 </pre></div>
@@ -515,14 +503,14 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Здесь <strong>/path/to/directory</strong> – путь к каталогу, дерево которого нужно построить, а <strong>~/foo-bar.txt</strong> – файл, в котором будет сохранён результат.</p>
 </div>
 <div class="section" id="trash-terminal">
-<span id="index-42"></span><span id="id22"></span><h2>Как из терминала удалить файл в корзину?<a class="headerlink" href="#trash-terminal" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-41"></span><span id="id21"></span><h2>Как из терминала удалить файл в корзину?<a class="headerlink" href="#trash-terminal" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для удаления в корзину из оболочки воспользуемся утилитой <strong>gio</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gio trash /path/to/file.txt
 </pre></div>
 </div>
 </div>
 <div class="section" id="irc-freenode">
-<span id="irc-nopass"></span><span id="index-43"></span><h2>Можно ли входить в IRC сеть FreeNode без ввода пароля?<a class="headerlink" href="#irc-freenode" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="irc-nopass"></span><span id="index-42"></span><h2>Можно ли входить в IRC сеть FreeNode без ввода пароля?<a class="headerlink" href="#irc-freenode" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, сеть FreeNode с недавних пор поддерживает вход по ключам.</p>
 <p>Создадим каталог для хранения ключей HexChat:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/.config/hexchat/certs
@@ -562,7 +550,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Теперь можно отключиться и подключиться заново. Вход будет выполнен уже безопасным способом без использования паролей.</p>
 </div>
 <div class="section" id="kde">
-<span id="kickoff-reset"></span><span id="index-44"></span><h2>В меню KDE перестали отображаться значки приложений и документов. Как исправить?<a class="headerlink" href="#kde" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="kickoff-reset"></span><span id="index-43"></span><h2>В меню KDE перестали отображаться значки приложений и документов. Как исправить?<a class="headerlink" href="#kde" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Исчезновение значков приложений, либо документов в меню KDE Plasma 5 часто происходит при повреждении баз данных компонента KDE activity manager.</p>
 <p>Произведём удаление старых баз (при необходимости можно сделать резервную копию):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rm -rf ~/.local/share/kactivitymanagerd
@@ -571,7 +559,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>При следующем входе в систему все настройки Kickoff будут сброшены, включая страницу <em>Избранное</em> и при этом должна восстановиться его правильная работа.</p>
 </div>
 <div class="section" id="sqlite-firefox">
-<span id="firefox-vacuum"></span><span id="index-45"></span><h2>Как сжать базы данных sqlite браузера Firefox?<a class="headerlink" href="#sqlite-firefox" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="firefox-vacuum"></span><span id="index-44"></span><h2>Как сжать базы данных sqlite браузера Firefox?<a class="headerlink" href="#sqlite-firefox" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Браузер Mozilla Firefox сохраняет данные внутри стандартных баз sqlite3, поэтому даже после очистки истории, cookies, кэшей и т.д. их размер на диске не уменьшается, т.к. данные в них лишь помечаются удалёнными, а непосредственная очистка (vacuum) производится по таймеру во время простоя несколько раз в месяц.</p>
 <p>Сжать все базы данных можно и вручную. Для этого установим пакет sqlite:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install sqlite
@@ -584,7 +572,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Это действие абсолютно безопасно, т.к. физически удаляет лишь те данные, которые в них были помечены в качестве удалённых.</p>
 </div>
 <div class="section" id="f3chk-safe">
-<span id="index-46"></span><span id="id23"></span><h2>Как безопасно проверить объём накопителя?<a class="headerlink" href="#f3chk-safe" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-45"></span><span id="id22"></span><h2>Как безопасно проверить объём накопителя?<a class="headerlink" href="#f3chk-safe" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет <strong>f3</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install f3
 </pre></div>
@@ -605,7 +593,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Здесь <strong>/media/foo-bar</strong> – точка монтирования накопителя, объём которого требуется проверить.</p>
 </div>
 <div class="section" id="f3chk-deep">
-<span id="index-47"></span><span id="id24"></span><h2>Как выполнить глубокую проверку объёма накопителя?<a class="headerlink" href="#f3chk-deep" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-46"></span><span id="id23"></span><h2>Как выполнить глубокую проверку объёма накопителя?<a class="headerlink" href="#f3chk-deep" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет <strong>f3</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install f3
 </pre></div>
@@ -620,7 +608,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>После завершения процесса потребуется заново создать раздел и файловую систему на проверяемом устройстве при помощи таких утилит, как GParted, Gnome Disks, KDE Disk Manager и т.д.</p>
 </div>
 <div class="section" id="markdown-pdf">
-<span id="index-48"></span><span id="id25"></span><h2>Как из документа в формате Markdown создать PDF?<a class="headerlink" href="#markdown-pdf" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-47"></span><span id="id24"></span><h2>Как из документа в формате Markdown создать PDF?<a class="headerlink" href="#markdown-pdf" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим универсальный конвертер документов pandoc:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install pandoc
 </pre></div>
@@ -636,14 +624,14 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Допускается указать любые установленные в системе OpenType шрифты.</p>
 </div>
 <div class="section" id="directory-size-console">
-<span id="index-49"></span><span id="id26"></span><h2>Как из консоли получить размер каталога вместе со всем его содержимым?<a class="headerlink" href="#directory-size-console" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-48"></span><span id="id25"></span><h2>Как из консоли получить размер каталога вместе со всем его содержимым?<a class="headerlink" href="#directory-size-console" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Выведем общий размер каталога в человеко-читаемом формате, включая вложенные объекты:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>du -sh ~/foo-bar
 </pre></div>
 </div>
 </div>
 <div class="section" id="directory-size-top">
-<span id="index-50"></span><span id="id27"></span><h2>Как из консоли вывести список десяти самых крупных каталогов?<a class="headerlink" href="#directory-size-top" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-49"></span><span id="id26"></span><h2>Как из консоли вывести список десяти самых крупных каталогов?<a class="headerlink" href="#directory-size-top" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Вывыдем список десяти самых крупных каталогов:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>du -hs /path/to/directory/* 2&gt;/dev/null | sort -rh | head -10
 </pre></div>
@@ -651,7 +639,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Здесь <strong>/path/to/directory</strong> – начальный каталог.</p>
 </div>
 <div class="section" id="directory-size-gui">
-<span id="index-51"></span><span id="id28"></span><h2>Как вывести содержимое каталога в графическом виде?<a class="headerlink" href="#directory-size-gui" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-50"></span><span id="id27"></span><h2>Как вывести содержимое каталога в графическом виде?<a class="headerlink" href="#directory-size-gui" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В графическом режиме для визуализации содержимого каталога могут применяться такие утилиты, как <strong>Baobab</strong> (Gnome, GTK), либо <strong>Filelight</strong> (KDE, Qt).</p>
 <p>Установим <strong>Baobab</strong> (для пользователей Gnome или других DE, основанных на GTK):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install baobab
@@ -663,14 +651,14 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 </div>
 <div class="section" id="plasma-restart">
-<span id="index-52"></span><span id="id29"></span><h2>Как перезапустить зависшую оболочку KDE Plasma 5?<a class="headerlink" href="#plasma-restart" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-51"></span><span id="id28"></span><h2>Как перезапустить зависшую оболочку KDE Plasma 5?<a class="headerlink" href="#plasma-restart" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Перезапустим KDE Plasma 5:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kquitapp5 plasmashell &amp;&amp; kstart plasmashell
 </pre></div>
 </div>
 </div>
 <div class="section" id="kwin-restart">
-<span id="index-53"></span><span id="id30"></span><h2>Как перезапустить оконный менеджер KDE Plasma 5?<a class="headerlink" href="#kwin-restart" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-52"></span><span id="id29"></span><h2>Как перезапустить оконный менеджер KDE Plasma 5?<a class="headerlink" href="#kwin-restart" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Перезапустим оконный менеджер KWin, работающий поверх X11:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kwin_x11 --replace &amp;&gt;/dev/null &amp;
 </pre></div>
@@ -681,14 +669,14 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 </div>
 <div class="section" id="gnome-shell-restart">
-<span id="index-54"></span><span id="id31"></span><h2>Как перезапустить зависшую оболочку Gnome Shell?<a class="headerlink" href="#gnome-shell-restart" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-53"></span><span id="id30"></span><h2>Как перезапустить зависшую оболочку Gnome Shell?<a class="headerlink" href="#gnome-shell-restart" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Перезапустим Gnome Shell:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gnome-shell --replace
 </pre></div>
 </div>
 </div>
 <div class="section" id="dir-hash-save">
-<span id="index-55"></span><span id="id32"></span><h2>Как сохранить контрольные суммы файлов в каталоге рекурсивно?<a class="headerlink" href="#dir-hash-save" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-54"></span><span id="id31"></span><h2>Как сохранить контрольные суммы файлов в каталоге рекурсивно?<a class="headerlink" href="#dir-hash-save" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Cгенерируем файл с контрольными суммами SHA2 (SHA-512) содержимого текущего каталога при помощи утилит <strong>find</strong> и <strong>sha512sum</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find -type f \( -not -name &#39;sha512sum.txt&#39; \) -exec sha512sum &#39;{}&#39; \; &gt; sha512sum.txt
 </pre></div>
@@ -696,7 +684,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Результат будет сохранён в файле с именем <strong>sha512sum.txt</strong>.</p>
 </div>
 <div class="section" id="dir-hash-verify">
-<span id="index-56"></span><span id="id33"></span><h2>Как проверить контрольные суммы файлов в каталоге?<a class="headerlink" href="#dir-hash-verify" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-55"></span><span id="id32"></span><h2>Как проверить контрольные суммы файлов в каталоге?<a class="headerlink" href="#dir-hash-verify" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проверим контрольные суммы SHA2 (SHA-512), <a class="reference internal" href="#dir-hash-save"><span class="std std-ref">сохранённые</span></a> в <strong>sha512sum.txt</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sha512sum -c sha512sum.txt &gt; check_results.txt
 </pre></div>
@@ -704,7 +692,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Для удобства <a class="reference internal" href="administration.html#bash-pipelines"><span class="std std-ref">перенаправим вывод</span></a> в файл <strong>check_results.txt</strong> ибо он может быть очень большим и не поместиться на экране.</p>
 </div>
 <div class="section" id="dir-hash-missmatch">
-<span id="index-57"></span><span id="id34"></span><h2>Как вывести список не совпадающих с сохранёнными контрольными суммами файлов?<a class="headerlink" href="#dir-hash-missmatch" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-56"></span><span id="id33"></span><h2>Как вывести список не совпадающих с сохранёнными контрольными суммами файлов?<a class="headerlink" href="#dir-hash-missmatch" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проверим контрольные суммы SHA2 (SHA-512), <a class="reference internal" href="#dir-hash-save"><span class="std std-ref">сохранённые</span></a> в <strong>sha512sum.txt</strong> и выведем лишь те, проверка которых завершилась неудачно:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sha512sum -c sha512sum.txt | grep -v &#39;OK&#39;
 </pre></div>
@@ -715,14 +703,14 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 </div>
 <div class="section" id="qt">
-<span id="qt-theme-override"></span><span id="index-58"></span><h2>Как переопределить тему в Qt приложениях?<a class="headerlink" href="#qt" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="qt-theme-override"></span><span id="index-57"></span><h2>Как переопределить тему в Qt приложениях?<a class="headerlink" href="#qt" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Воспользуемся <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменными окружения</span></a> для переопределения темы Qt:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>QT_STYLE_OVERRIDE=adwaita QT_QPA_PLATFORMTHEME=qgnomeplatform /usr/bin/foo-bar
 </pre></div>
 </div>
 </div>
 <div class="section" id="wine-fedora">
-<span id="index-59"></span><span id="id35"></span><h2>Как правильно установить Wine в Fedora?<a class="headerlink" href="#wine-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-58"></span><span id="id34"></span><h2>Как правильно установить Wine в Fedora?<a class="headerlink" href="#wine-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В основном репозитории Fedora всегда находится самый свежий и правильно опакеченный выпуск Wine, поэтому подключать какие-либо сторонние репозитории, в т.ч. официальный от WineHQ, категорически не рекомендуется.</p>
 <p>Установим Wine из репозитория Fedora:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install wine wine.i686
@@ -730,7 +718,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 </div>
 <div class="section" id="dxvk-wine">
-<span id="wine-dxvk"></span><span id="index-60"></span><h2>Как правильно установить dxvk для Wine из репозиториев?<a class="headerlink" href="#dxvk-wine" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="wine-dxvk"></span><span id="index-59"></span><h2>Как правильно установить dxvk для Wine из репозиториев?<a class="headerlink" href="#dxvk-wine" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Наряду с <a class="reference internal" href="#wine-fedora"><span class="std std-ref">правильно опакеченным Wine</span></a>, в основном репозитории Fedora доступен и dxvk.</p>
 <p>Установим dxvk с поддержкой DirectX 10, 11:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install wine-dxvk wine-dxvk.i686
@@ -742,19 +730,19 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 </div>
 <div class="section" id="chromium-kde">
-<span id="kde-chromium-default"></span><span id="index-61"></span><h2>Как сделать Chromium браузером по умолчанию в KDE?<a class="headerlink" href="#chromium-kde" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="kde-chromium-default"></span><span id="index-60"></span><h2>Как сделать Chromium браузером по умолчанию в KDE?<a class="headerlink" href="#chromium-kde" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы назначить Chromium браузером по умолчанию, выполним <strong>Параметры системы</strong> – <strong>Приложения</strong> – <strong>Приложения по умолчанию</strong> – <strong>Браузер</strong> – установим точку около <strong>в следующем приложении</strong>, затем в выпадающем списке выберем <strong>Chromium</strong> и нажмём кнопку <strong>Применить</strong>.</p>
 <p>Однако, даже если указанное действие сделано верно, Chromium всё равно будет предлагать установить его браузером по умолчанию при каждом запуске, т.к. он проверяет привязку не только к протоколам, но и к конкретным <a class="reference internal" href="using-system.html#file-types"><span class="std std-ref">mime-типам</span></a> для HTML-файлов.</p>
 <p>Чтобы избавиться от данного сообщения, повторно откроем <strong>Параметры системы</strong> – <strong>Приложения</strong> – <strong>Привязки файлов</strong>, в строке поиска введём <code class="docutils literal notranslate"><span class="pre">html</span></code> и переместим Chromium в самый верх списка приоритетов для <strong>xhtml+xml</strong> и <strong>html</strong>. Нажмём <strong>Применить</strong>.</p>
 </div>
 <div class="section" id="earlyoom">
-<span id="earlyoom-info"></span><span id="index-62"></span><h2>Что такое earlyoom и почему он установлен по умолчанию?<a class="headerlink" href="#earlyoom" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="earlyoom-info"></span><span id="index-61"></span><h2>Что такое earlyoom и почему он установлен по умолчанию?<a class="headerlink" href="#earlyoom" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Начиная с Fedora 32, в редакции Workstation <a class="reference external" href="https://pagure.io/fedora-workstation/issue/119">предустановлен</a> пакет <strong>earlyoom</strong>, который представляет собой систему раннего предотвращения нехватки памяти из пользовательского режима (user-space OOM Killer).</p>
 <p>В случаях, когда объём доступной оперативной памяти опустится ниже 4% или 400 МБ (в зависимости от того, что меньше), earlyoom принудительно завершит работу процесса, наиболее активно потребляющего память (имеющего самое высокое значение oom_score), не доводя систему до очистки системных буферов и вызова ядерного OOM Killer.</p>
 <p>Наиболее приоритетными кандидатами на завершение являются процессы <em>Web Content</em> браузера Mozilla Firefox. В то же время, снижен приоритет для различных системных сервисов, критичных для работы системы.</p>
 </div>
 <div class="section" id="earlyoom-enable">
-<span id="index-63"></span><span id="id36"></span><h2>Как активировать earlyoom?<a class="headerlink" href="#earlyoom-enable" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-62"></span><span id="id35"></span><h2>Как активировать earlyoom?<a class="headerlink" href="#earlyoom-enable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет <strong>earlyoom</strong> (для версий, <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">отличных от Workstation</span></a>):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install earlyoom
 </pre></div>
@@ -765,7 +753,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 </div>
 </div>
 <div class="section" id="earlyoom-disable">
-<span id="index-64"></span><span id="id37"></span><h2>Как отключить earlyoom?<a class="headerlink" href="#earlyoom-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-63"></span><span id="id36"></span><h2>Как отключить earlyoom?<a class="headerlink" href="#earlyoom-disable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Отключим earlyoom (не будет запускаться вместе с системой):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable earlyoom.service
 </pre></div>
@@ -773,7 +761,7 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <p>Внимание! Если удалить пакет <strong>earlyoom</strong> в Fedora Workstation, он может быть <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">установлен заново</span></a> из-за включённых по умолчанию <a class="reference internal" href="package-manager.html#dnf-weakdeps"><span class="std std-ref">слабых зависимостей</span></a>.</p>
 </div>
 <div class="section" id="earlyoom-configure">
-<span id="index-65"></span><span id="id38"></span><h2>Как настроить earlyoom?<a class="headerlink" href="#earlyoom-configure" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-64"></span><span id="id37"></span><h2>Как настроить earlyoom?<a class="headerlink" href="#earlyoom-configure" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Параметры <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">earlyoom</span></a> хранятся в файле <code class="docutils literal notranslate"><span class="pre">/etc/default/earlyoom</span></code>.</p>
 <p>Откроем его в текстовом редакторе:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/default/earlyoom
@@ -835,7 +823,6 @@ ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.m
 <li class="toctree-l2"><a class="reference internal" href="#mp3">Как конвертировать множество файлов в mp3 из текущего каталога?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde-plasma-5">Как убрать рамки внутри окон в KDE Plasma 5?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde-icons-refresh">Как обновить кэш значков приложений в главном меню KDE Plasma 5?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#chromium-commandline">Как постоянно запускать браузер Chromium с определёнными параметрами?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#thunderbird-lightning">В установленном Thunderbird не обновляется расширение Lightning и языковые пакеты. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qr">Как распознать QR-код или штрих-код из консоли?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ocr-app">Как можно распознать текст с изображения или сканера?</a></li>
