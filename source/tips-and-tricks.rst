@@ -233,28 +233,6 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
 См. `здесь <https://www.easycoding.org/2011/08/14/ustanovka-microsoft-core-fonts-v-fedora.html>`__.
 
-.. index:: dnf, zchunk, bug, error, update
-.. _zchunk-checksum:
-
-При попытке обновления появляется ошибка zchunk checksum error. Как исправить?
-==================================================================================
-
-Это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=1706321>`__. В качестве временного решения запретим использование zchunk в dnf.
-
-Откроем главный конфигурационный файл dnf:
-
-.. code-block:: text
-
-    sudoedit /etc/dnf/dnf.conf
-
-Добавим в самый конец следующую строку:
-
-.. code-block:: text
-
-    zchunk=False
-
-Сохраним изменения в файле и повторим попытку обновления. На этот раз она должна пройти без ошибок.
-
 .. index:: boot, emergency, shell, root
 .. _eshell-error:
 
