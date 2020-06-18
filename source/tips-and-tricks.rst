@@ -279,24 +279,6 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
 При следующей загрузке работа режима восстановления будет полностью восстановлена.
 
-.. index:: rhel, error, subscription manager, bug, dnf, update
-.. _rhelsm-error:
-
-При попытке обновления появляется ошибка, связанная с Red Hat Subscription Managment. Как исправить?
-=======================================================================================================
-
-Пользователи, установшие систему со :ref:`свежих образов <download>` Fedora 30, при попытке :ref:`установки обновлений <dnf-update>` стали замечать ошибку с текстом *This system is not registered to Red Hat Subscription Managment. You can use subscription-manager to register*.
-
-Это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=1718622>`__, из-за которой пакет **subscription-manager**, предназначенный для Red Hat Enterprise Linux, ошибочно включался в состав ISO образов Fedora.
-
-Режим данную проблему посредством удаления данного пакета:
-
-.. code-block:: text
-
-    sudo dnf remove subscription-manager
-
-Теперь ошибки при работе пакетного менеджера будут полностью устранены.
-
 .. index:: zram, memory compression, ram, memory
 .. _zram-pool-size:
 
