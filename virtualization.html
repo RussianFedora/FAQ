@@ -230,7 +230,7 @@ sudo restorecon -Rv /media/foo-bar/images
 <p>Недостатки:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>занимают очень много места на диске, хотя если файловая система поддерживает разреженные файлы, эта функция будет использоваться в полном объёме.</p></li>
+<li><p>занимают очень много места на диске, хотя если файловая система поддерживает <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%A0%D0%B0%D0%B7%D1%80%D0%B5%D0%B6%D1%91%D0%BD%D0%BD%D1%8B%D0%B9_%D1%84%D0%B0%D0%B9%D0%BB">разреженные (sparse) файлы</a>, эта функция будет использоваться в полном объёме.</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -244,7 +244,7 @@ sudo restorecon -Rv /media/foo-bar/images
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img resize --preallocation=full /path/to/image.qcow2 +10G
 </pre></div>
 </div>
-<p>Здесь вместо <strong>+10G</strong> укажем на сколько следует расширить образ. Все операции должны выполняться при остановленной виртуальной машине, в которой он смонтирован.</p>
+<p>Здесь вместо <strong>+10G</strong> укажем насколько следует расширить образ. Все операции должны выполняться при остановленной виртуальной машине, в которой он смонтирован.</p>
 <p>По окончании, внутри гостевой ОС расширим используемую файловую систему до новых границ образа при помощи fdisk, GParted или любого другого редактора разделов диска.</p>
 </div>
 <div class="section" id="qcow2-shrink">
