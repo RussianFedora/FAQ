@@ -192,12 +192,55 @@ sudo restorecon -Rv /media/foo-bar/images
 <p>См. <a class="reference external" href="https://www.easycoding.org/2019/12/19/zapuskaem-windows-v-kvm-na-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="qcow2">
-<span id="qcow2-resize"></span><span id="index-16"></span><h2>Как увеличить размер дискового образа QCOW2?<a class="headerlink" href="#qcow2" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="qcow2-type"></span><span id="index-16"></span><h2>Какой тип QCOW2 образов выбрать?<a class="headerlink" href="#qcow2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Существует два типа образов:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#qcow2-dynamic"><span class="std std-ref">динамически расширяющийся</span></a>;</p></li>
+<li><p><a class="reference internal" href="#qcow2-fixed"><span class="std std-ref">фиксированного размера</span></a>.</p></li>
+</ul>
+</div></blockquote>
+<p>У каждого есть как достоинства, так и недостатки.</p>
+</div>
+<div class="section" id="qcow2-dynamic">
+<span id="index-17"></span><span id="id12"></span><h2>Что нужно знать о динамически расширяющихся образах?<a class="headerlink" href="#qcow2-dynamic" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Достоинства:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>занимают меньше места на диске, постепенно расширяясь до заданного предела.</p></li>
+</ul>
+</div></blockquote>
+<p>Недостатки:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>очень сильно фрагментируются;</p></li>
+<li><p>производительность значительно уступает <a class="reference internal" href="#qcow2-fixed"><span class="std std-ref">образам фиксированного размера</span></a>.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="qcow2-fixed">
+<span id="index-18"></span><span id="id13"></span><h2>Что нужно знать об образах фиксированного размера?<a class="headerlink" href="#qcow2-fixed" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Достоинства:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>практически не фрагментируются, т.к. все блоки для них заранее зарезервированы на диске;</p></li>
+<li><p>имеют более высокую производительность по сравнению с <a class="reference internal" href="#qcow2-dynamic"><span class="std std-ref">динамически расширяющимися образами</span></a>.</p></li>
+</ul>
+</div></blockquote>
+<p>Недостатки:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>занимают очень много места на диске, хотя если файловая система поддерживает разреженные файлы, эта функция будет использоваться в полном объёме.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="qcow2-resize">
+<span id="index-19"></span><span id="id14"></span><h2>Как увеличить размер дискового образа QCOW2?<a class="headerlink" href="#qcow2-resize" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Воспользуемся утилитой <strong>qemu-img</strong> для увеличения дискового образа:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img resize --preallocation=full /path/to/image.qcow2 +10G
 </pre></div>
 </div>
-<p>При использовании образов фиксированного размера, добавим параметр <code class="docutils literal notranslate"><span class="pre">--preallocation=full</span></code>:</p>
+<p>При использовании <a class="reference internal" href="#qcow2-fixed"><span class="std std-ref">образов фиксированного размера</span></a>, добавим параметр <code class="docutils literal notranslate"><span class="pre">--preallocation=full</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img resize --preallocation=full /path/to/image.qcow2 +10G
 </pre></div>
 </div>
@@ -205,20 +248,20 @@ sudo restorecon -Rv /media/foo-bar/images
 <p>По окончании, внутри гостевой ОС расширим используемую файловую систему до новых границ образа при помощи fdisk, GParted или любого другого редактора разделов диска.</p>
 </div>
 <div class="section" id="qcow2-shrink">
-<span id="index-17"></span><span id="id12"></span><h2>Как уменьшить размер дискового образа QCOW2?<a class="headerlink" href="#qcow2-shrink" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-20"></span><span id="id15"></span><h2>Как уменьшить размер дискового образа QCOW2?<a class="headerlink" href="#qcow2-shrink" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Уменьшение размера дискового образа QCOW2 <a class="reference internal" href="#qcow2-resize"><span class="std std-ref">при помощи qemu-img</span></a> – это достаточно небезопасная операция, которая может привести к его повреждению, поэтому вместо отрицательных значений для <em>resize</em> сначала уменьшим размер дисковых разделов внутри самой гостевой ОС при помощи fdisk, Gparted или любого другого редактора разделов диска так, чтобы справа осталось лишь неразмеченное пространство.</p>
 <p>Далее воспользуемся утилитой <strong>qemu-img</strong> и сделаем копию образа, которая уже не будет включать неразмеченное дисковое пространство:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f qcow2 -O qcow2 /path/to/image.qcow2 /path/to/new_image.qcow2
 </pre></div>
 </div>
-<p>В случае необходимости создания образа фиксированного размера, добавим параметр <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">preallocation=full</span></code>:</p>
+<p>В случае необходимости создания <a class="reference internal" href="#qcow2-fixed"><span class="std std-ref">образа фиксированного размера</span></a>, добавим параметр <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">preallocation=full</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f qcow2 -O qcow2 /path/to/image.qcow2 /path/to/new_image.qcow2 -o preallocation=full
 </pre></div>
 </div>
 <p>Подключим новый образ к виртуальной машине вместо старого и проверим работу. Если всё верно, старый можно удалить.</p>
 </div>
 <div class="section" id="kvm-ssd">
-<span id="index-18"></span><span id="id13"></span><h2>Как оптимизировать KVM для работы с SSD-накопителей?<a class="headerlink" href="#kvm-ssd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-21"></span><span id="id16"></span><h2>Как оптимизировать KVM для работы с SSD-накопителей?<a class="headerlink" href="#kvm-ssd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Каких-то особых оптимизаций производить не требуется. Достаточно лишь использовать дисковые образы гостевых ОС в формате QCOW2, а также при их подключении указать тип контроллера <strong>VirtIO</strong> и установить следующие опции:</p>
 <blockquote>
 <div><ul class="simple">
@@ -270,7 +313,10 @@ sudo restorecon -Rv /media/foo-bar/images
 <li class="toctree-l2"><a class="reference internal" href="#kvm-transfer">Как переместить виртуальную машину KVM на другой ПК?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#virtualbox-transfer">Как переместить виртуальную машину VirtualBox на другой ПК?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kvm-windows">Как правильно установить в KVM Windows?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#qcow2">Как увеличить размер дискового образа QCOW2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qcow2">Какой тип QCOW2 образов выбрать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qcow2-dynamic">Что нужно знать о динамически расширяющихся образах?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qcow2-fixed">Что нужно знать об образах фиксированного размера?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qcow2-resize">Как увеличить размер дискового образа QCOW2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qcow2-shrink">Как уменьшить размер дискового образа QCOW2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kvm-ssd">Как оптимизировать KVM для работы с SSD-накопителей?</a></li>
 </ul>
