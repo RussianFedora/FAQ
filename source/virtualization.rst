@@ -265,6 +265,19 @@
 
 См. `здесь <https://www.easycoding.org/2019/12/19/zapuskaem-windows-v-kvm-na-fedora.html>`__.
 
+.. index:: virtualization, kvm, qemu, qcow2
+.. _qcow2-type:
+
+Какой тип QCOW2 образов выбрать?
+====================================
+
+Существует два типа образов:
+
+  * динамически расширяющийся;
+  * фиксированного размера.
+
+У каждого есть как достоинства, так и недостатки.
+
 .. index:: virtualization, kvm, qemu, qcow2, resize
 .. _qcow2-resize:
 
