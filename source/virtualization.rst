@@ -95,6 +95,12 @@
 
     qemu-img convert -f vdi -O qcow2 /path/to/image.vdi /path/to/image.qcow2
 
+В случае необходимости создания образа фиксированного размера, добавим параметр ``-o preallocation=full``:
+
+.. code-block:: text
+
+    qemu-img convert -f vdi -O qcow2 /path/to/image.vdi /path/to/image.qcow2 -o preallocation=full
+
 .. index:: vmware, drive image, disk image, kvm, qemu, qcow2, vmx, vmdk
 .. _vmdk-to-qcow2:
 
