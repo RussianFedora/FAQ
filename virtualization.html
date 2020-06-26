@@ -89,6 +89,10 @@ sudo usermod -a -G vboxsf $(whoami)
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f vdi -O qcow2 /path/to/image.vdi /path/to/image.qcow2
 </pre></div>
 </div>
+<p>В случае необходимости создания образа фиксированного размера, добавим параметр <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">preallocation=full</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f vdi -O qcow2 /path/to/image.vdi /path/to/image.qcow2 -o preallocation=full
+</pre></div>
+</div>
 </div>
 <div class="section" id="vmware-kvm">
 <span id="vmdk-to-qcow2"></span><span id="index-6"></span><h2>Как преобразовать образ виртуальной машины VMWare в формат, совместимый с KVM?<a class="headerlink" href="#vmware-kvm" title="Ссылка на этот заголовок">¶</a></h2>
@@ -187,6 +191,43 @@ sudo restorecon -Rv /media/foo-bar/images
 <span id="index-15"></span><span id="id11"></span><h2>Как правильно установить в KVM Windows?<a class="headerlink" href="#kvm-windows" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2019/12/19/zapuskaem-windows-v-kvm-na-fedora.html">здесь</a>.</p>
 </div>
+<div class="section" id="qcow2">
+<span id="qcow2-resize"></span><span id="index-16"></span><h2>Как увеличить размер дискового образа QCOW2?<a class="headerlink" href="#qcow2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Воспользуемся утилитой <strong>qemu-img</strong> для увеличения дискового образа:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img resize --preallocation=full /path/to/image.qcow2 +10G
+</pre></div>
+</div>
+<p>При использовании образов фиксированного размера, добавим параметр <code class="docutils literal notranslate"><span class="pre">--preallocation=full</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img resize --preallocation=full /path/to/image.qcow2 +10G
+</pre></div>
+</div>
+<p>Здесь вместо <strong>+10G</strong> укажем на сколько следует расширить образ. Все операции должны выполняться при остановленной виртуальной машине, в которой он смонтирован.</p>
+<p>По окончании, внутри гостевой ОС расширим используемую файловую систему до новых границ образа при помощи fdisk, GParted или любого другого редактора разделов диска.</p>
+</div>
+<div class="section" id="qcow2-shrink">
+<span id="index-17"></span><span id="id12"></span><h2>Как уменьшить размер дискового образа QCOW2?<a class="headerlink" href="#qcow2-shrink" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Уменьшение размера дискового образа QCOW2 <a class="reference internal" href="#qcow2-resize"><span class="std std-ref">при помощи qemu-img</span></a> – это достаточно небезопасная операция, которая может привести к его повреждению, поэтому вместо отрицательных значений для <em>resize</em> сначала уменьшим размер дисковых разделов внутри самой гостевой ОС при помощи fdisk, Gparted или любого другого редактора разделов диска так, чтобы справа осталось лишь неразмеченное пространство.</p>
+<p>Далее воспользуемся утилитой <strong>qemu-img</strong> и сделаем копию образа, которая уже не будет включать неразмеченное дисковое пространство:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f qcow2 -O qcow2 /path/to/image.qcow2 /path/to/new_image.qcow2
+</pre></div>
+</div>
+<p>В случае необходимости создания образа фиксированного размера, добавим параметр <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">preallocation=full</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f qcow2 -O qcow2 /path/to/image.qcow2 /path/to/new_image.qcow2 -o preallocation=full
+</pre></div>
+</div>
+<p>Подключим новый образ к виртуальной машине вместо старого и проверим работу. Если всё верно, старый можно удалить.</p>
+</div>
+<div class="section" id="kvm-ssd">
+<span id="index-18"></span><span id="id13"></span><h2>Как оптимизировать KVM для работы с SSD-накопителей?<a class="headerlink" href="#kvm-ssd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Каких-то особых оптимизаций производить не требуется. Достаточно лишь использовать дисковые образы гостевых ОС в формате QCOW2, а также при их подключении указать тип контроллера <strong>VirtIO</strong> и установить следующие опции:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>discard mode: unmap;</p></li>
+<li><p>detect zeroes: unmap.</p></li>
+</ul>
+</div></blockquote>
+<p>Конечно же как в хостовой, так и в гостевой ОС, должна быть <a class="reference internal" href="installation.html#ssd-tuning"><span class="std std-ref">включена поддержка TRIM</span></a>.</p>
+</div>
 </div>
 
 
@@ -229,6 +270,9 @@ sudo restorecon -Rv /media/foo-bar/images
 <li class="toctree-l2"><a class="reference internal" href="#kvm-transfer">Как переместить виртуальную машину KVM на другой ПК?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#virtualbox-transfer">Как переместить виртуальную машину VirtualBox на другой ПК?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kvm-windows">Как правильно установить в KVM Windows?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qcow2">Как увеличить размер дискового образа QCOW2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qcow2-shrink">Как уменьшить размер дискового образа QCOW2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kvm-ssd">Как оптимизировать KVM для работы с SSD-накопителей?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Безопасность</a></li>
