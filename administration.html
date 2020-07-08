@@ -1035,6 +1035,13 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 </div>
 <p>Изменения вступят в силу немедленно.</p>
 </div>
+<div class="section" id="memory-defrag">
+<span id="index-86"></span><span id="id64"></span><h2>Как произвести дефраментацию оперативной памяти?<a class="headerlink" href="#memory-defrag" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Чтобы произвести дефраментацию оперативной памяти, выполним:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo bash -c &quot;echo 1 &gt; /proc/sys/vm/compact_memory&quot;
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -1145,6 +1152,7 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <li class="toctree-l2"><a class="reference internal" href="#fs-reserve-info">Для каких целей резервируется 5% от свободного места на диске?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fs-reserve-disable">Как отключить резервирование свободного места на диске?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#zswap-fedora">Как включить поддержку zswap в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#memory-defrag">Как произвести дефраментацию оперативной памяти?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>
