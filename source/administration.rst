@@ -1625,3 +1625,15 @@ Coredump -- это дамп закрытой памяти процесса, со
     sudo systemctl enable --now zswap-cli.service
 
 Изменения вступят в силу немедленно.
+
+.. index:: kernel, memory, linux, defragmentation, ram
+.. _memory-defrag:
+
+Как произвести дефраментацию оперативной памяти?
+=====================================================
+
+Чтобы произвести дефраментацию оперативной памяти, выполним:
+
+.. code-block:: text
+
+    sudo bash -c "echo 1 > /proc/sys/vm/compact_memory"
