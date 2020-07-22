@@ -271,6 +271,26 @@ sudo restorecon -Rv /media/foo-bar/images
 </div></blockquote>
 <p>Конечно же как в хостовой, так и в гостевой ОС, должна быть <a class="reference internal" href="installation.html#ssd-tuning"><span class="std std-ref">включена поддержка TRIM</span></a>.</p>
 </div>
+<div class="section" id="kvm-desktop-entry">
+<span id="index-22"></span><span id="id17"></span><h2>Как создать ярлык запуска виртуальной машины KVM?<a class="headerlink" href="#kvm-desktop-entry" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для создания ярлыка в главном меню рабочей среды, создадим файл <code class="docutils literal notranslate"><span class="pre">fedora-rawhide.desktop</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">~/.local/share/applications</span></code> следующего содержания:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Desktop Entry]</span>
+<span class="na">Name</span><span class="o">=</span><span class="s">Fedora Rawhide</span>
+<span class="na">Name[ru_RU]</span><span class="o">=</span><span class="s">Fedora Rawhide</span>
+<span class="na">GenericName</span><span class="o">=</span><span class="s">Start Fedora Rawhide</span>
+<span class="na">GenericName[ru_RU]</span><span class="o">=</span><span class="s">Запуск Fedora Rawhide</span>
+<span class="na">Comment</span><span class="o">=</span><span class="s">Start Fedora Rawhide</span>
+<span class="na">Comment[ru_RU]</span><span class="o">=</span><span class="s">Запуск Fedora Rawhide</span>
+<span class="na">Exec</span><span class="o">=</span><span class="s">/usr/bin/virt-manager --connect &quot;qemu:///session&quot; --show-domain-console &quot;Fedora-Rawhide&quot;</span>
+<span class="na">Icon</span><span class="o">=</span><span class="s">virtualbox</span>
+<span class="na">Categories</span><span class="o">=</span><span class="s">Development;</span>
+<span class="na">StartupNotify</span><span class="o">=</span><span class="s">false</span>
+<span class="na">Terminal</span><span class="o">=</span><span class="s">false</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Application</span>
+</pre></div>
+</div>
+<p>Здесь вместо <strong>Fedora-Rawhide</strong> укажем реальное имя виртуальной машины KVM, а вместо <strong>qemu:///session</strong> – сеанс, в котором она создана (<strong>session</strong> – пользовательский; <strong>system</strong> – системный).</p>
+</div>
 </div>
 
 
@@ -319,6 +339,7 @@ sudo restorecon -Rv /media/foo-bar/images
 <li class="toctree-l2"><a class="reference internal" href="#qcow2-resize">Как увеличить размер дискового образа QCOW2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qcow2-shrink">Как уменьшить размер дискового образа QCOW2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kvm-ssd">Как оптимизировать KVM для работы с SSD-накопителей?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kvm-desktop-entry">Как создать ярлык запуска виртуальной машины KVM?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Безопасность</a></li>
