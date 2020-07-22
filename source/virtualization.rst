@@ -364,3 +364,29 @@
   * detect zeroes: unmap.
 
 Конечно же как в хостовой, так и в гостевой ОС, должна быть :ref:`включена поддержка TRIM <ssd-tuning>`.
+
+.. index:: virtualization, virt manager, kvm, qemu, desktop, shortcut
+.. _kvm-desktop-entry:
+
+Как создать ярлык запуска виртуальной машины KVM?
+=====================================================
+
+Для создания ярлыка в главном меню рабочей среды, создадим файл ``fedora-rawhide.desktop`` в каталоге ``~/.local/share/applications`` следующего содержания:
+
+.. code-block:: ini
+
+    [Desktop Entry]
+    Name=Fedora Rawhide
+    Name[ru_RU]=Fedora Rawhide
+    GenericName=Start Fedora Rawhide
+    GenericName[ru_RU]=Запуск Fedora Rawhide
+    Comment=Start Fedora Rawhide
+    Comment[ru_RU]=Запуск Fedora Rawhide
+    Exec=/usr/bin/virt-manager --connect "qemu:///session" --show-domain-console "Fedora-Rawhide"
+    Icon=virtualbox
+    Categories=Development;
+    StartupNotify=false
+    Terminal=false
+    Type=Application
+
+Здесь вместо **Fedora-Rawhide** укажем реальное имя виртуальной машины KVM, а вместо **qemu:///session** -- сеанс, в котором она создана (**session** -- пользовательский; **system** -- системный).
