@@ -1637,3 +1637,23 @@ Coredump -- это дамп закрытой памяти процесса, со
 .. code-block:: text
 
     sudo bash -c "echo 1 > /proc/sys/vm/compact_memory"
+
+.. index:: kernel, zram, memory compression, ram, memory
+.. _zram-default-disable:
+
+Как отключить использование сжатия памяти по умолчанию?
+===========================================================
+
+Начиная с Fedora 33, по умолчанию включено :ref:`сжатие памяти <memory-compression>` при помощи модуля ядра zram с пулом 50% от объёма RAM.
+
+Если в этом нет необходимости, отключим данную функцию простым удалением предоставляющих её пакетов:
+
+.. code-block:: text
+
+    sudo dnf remove zram-generator zram-generator-defaults
+
+Перезагрузим систему для вступления изменений в силу:
+
+.. code-block:: text
+
+    sudo systemctl reboot
