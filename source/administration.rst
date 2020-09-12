@@ -1335,7 +1335,7 @@ FUSE (file system in userspace) -- это модуль ядра и набор у
 
 .. code-block:: text
 
-    /usr/bin/foo > ~/foo-bar.txt 2>$1
+    /usr/bin/foo > ~/foo-bar.txt 2>&1
 
 Комбинирование ввода из одного файла с выводом в другой с подавлением возникших ошибок:
 
