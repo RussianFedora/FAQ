@@ -843,7 +843,7 @@ Host bar
 </pre></div>
 </div>
 <p>Перенаправление потока стандартного вывода и потока ошибок в файл:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/usr/bin/foo &gt; ~/foo-bar.txt 2&gt;$1
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/usr/bin/foo &gt; ~/foo-bar.txt 2&gt;&amp;1
 </pre></div>
 </div>
 <p>Комбинирование ввода из одного файла с выводом в другой с подавлением возникших ошибок:</p>
@@ -904,7 +904,7 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
 </div>
 <div class="section" id="codedump-disable">
-<span id="index-74"></span><span id="id54"></span><h2>Как полностью отключение сохранение дампов памяти?<a class="headerlink" href="#codedump-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-74"></span><span id="id54"></span><h2>Как полностью отключить сохранение дампов памяти?<a class="headerlink" href="#codedump-disable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Откроем файл конфигурации <a class="reference internal" href="#codedump-info"><span class="std std-ref">systemd-coredump</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/systemd/coredump.conf
 </pre></div>
@@ -1152,7 +1152,7 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <li class="toctree-l2"><a class="reference internal" href="#mount-nopass">Как разрешить монтирование любых дисков без ввода пароля?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#coredump-systemd">Что такое coredump и почему systemd сохраняет их?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#codedump-limit">Как ограничить размер сохраняемых дампов памяти?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#codedump-disable">Как полностью отключение сохранение дампов памяти?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#codedump-disable">Как полностью отключить сохранение дампов памяти?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kernel-postinstall">Как настроить автоматическое выполнение скрипта после установки нового ядра?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#modprobe">При загрузке модуля ядра через modprobe я получаю ошибку. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#systemd-boot">Как настроить загрузку системы при помощи systemd-boot?</a></li>
