@@ -918,8 +918,8 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 </div>
 <div class="section" id="kernel-postinstall">
 <span id="index-75"></span><span id="id55"></span><h2>Как настроить автоматическое выполнение скрипта после установки нового ядра?<a class="headerlink" href="#kernel-postinstall" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для того, чтобы выполнять какой-либо shell-скрипт сразу после окончания установки ядра Linux, поместим его в каталог <code class="docutils literal notranslate"><span class="pre">/etc/kernel/postinst.d</span></code> с chmod <strong>0755</strong>.</p>
-<p>Скрипты из него всегда выполняются в алфавитном порядке, т.е. <strong>00-foo.sh</strong> запустится раньше, чем <strong>zz-bar.sh</strong>, поэтому данную особенность можно использовать для изменения порядка их запуска.</p>
+<p>Для того, чтобы выполнять какой-либо shell-скрипт сразу после окончания установки ядра Linux, поместим его в каталог <code class="docutils literal notranslate"><span class="pre">/etc/kernel/install.d</span></code> с chmod <strong>0755</strong> и расширением <strong>.install</strong>.</p>
+<p>Скрипты из него всегда выполняются в алфавитном порядке, т.е. <strong>00-foo.install</strong> запустится раньше, чем <strong>zz-bar.install</strong>, поэтому данную особенность можно использовать для изменения порядка их запуска.</p>
 <p>Каждому скрипту в качестве параметра передаётся версия установленного ядра, которую можно получить через <code class="docutils literal notranslate"><span class="pre">${1}</span></code>.</p>
 </div>
 <div class="section" id="modprobe">
