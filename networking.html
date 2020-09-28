@@ -336,6 +336,7 @@ sudo systemctl restart systemd-resolved.service
 </div>
 <div class="section" id="resolved-default">
 <span id="index-28"></span><span id="id12"></span><h2>Как сделать systemd-resolved основным резолвером?<a class="headerlink" href="#resolved-default" title="Ссылка на этот заголовок">¶</a></h2>
+<p><strong>Важно:</strong> Начиная с Fedora 33, systemd-resolved уже используется в качестве основного системного DNS-резолвера.</p>
 <p>Удалим существующую символическую ссылку, указывающую на Network Manager:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rm -f /etc/resolv.conf
 </pre></div>
@@ -346,8 +347,25 @@ sudo systemctl restart systemd-resolved.service
 </div>
 <p>Изменения вступят в силу немедленно.</p>
 </div>
+<div class="section" id="resolved-disable">
+<span id="index-29"></span><span id="id13"></span><h2>Как отключить systemd-resolved и вернуться к прежней реализации?<a class="headerlink" href="#resolved-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим существующую символическую ссылку, указывающую на <a class="reference internal" href="#resolved-default"><span class="std std-ref">systemd-resolved</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rm -f /etc/resolv.conf
+</pre></div>
+</div>
+<p>Установим Network Manager основным <a class="reference internal" href="#dns-resolv"><span class="std std-ref">генератором</span></a> файла <code class="docutils literal notranslate"><span class="pre">/etc/resolv.conf</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo ln -sf /run/NetworkManager/resolv.conf /etc/resolv.conf
+</pre></div>
+</div>
+<p>Остановим и заблокируем сервис:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable --now systemd-resolved.service
+sudo systemctl mask systemd-resolved.service
+</pre></div>
+</div>
+<p>Изменения вступят в силу немедленно.</p>
+</div>
 <div class="section" id="dns-tls">
-<span id="dns-crypt"></span><span id="index-29"></span><h2>Можно ли зашифровать DNS при помощи TLS?<a class="headerlink" href="#dns-tls" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="dns-crypt"></span><span id="index-30"></span><h2>Можно ли зашифровать DNS при помощи TLS?<a class="headerlink" href="#dns-tls" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, systemd-resolved, входящий в поставку системы начиная с Fedora 30, полностью поддерживает технологию <a class="reference external" href="https://ru.wikipedia.org/wiki/DNS_%D0%BF%D0%BE%D0%B2%D0%B5%D1%80%D1%85_TLS">DNS-over-TLS</a>, позволяющую зашифровать весь DNS трафик устройства.</p>
 <p>Настроим систему на использование systemd-resolved либо <a class="reference internal" href="#resolved-nm"><span class="std std-ref">совместно с Network Manager</span></a>, либо в <a class="reference internal" href="#resolved-default"><span class="std std-ref">монопольном режиме</span></a>, затем откроем файл конфигурации <code class="docutils literal notranslate"><span class="pre">/etc/systemd/resolved.conf</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/systemd/resolved.conf
@@ -375,19 +393,19 @@ sudo systemctl restart systemd-resolved.service
 <p>Теперь в <a class="reference internal" href="#resolved-status"><span class="std std-ref">информации об используемых DNS</span></a> должна отображаться информация об использовании этой технологии.</p>
 </div>
 <div class="section" id="resolved-flush">
-<span id="index-30"></span><span id="id13"></span><h2>Как очистить кэши systemd-resolved?<a class="headerlink" href="#resolved-flush" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-31"></span><span id="id14"></span><h2>Как очистить кэши systemd-resolved?<a class="headerlink" href="#resolved-flush" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Очистим кэш systemd-resolved:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>resolvectl flush-caches
 </pre></div>
 </div>
 </div>
 <div class="section" id="firewalld">
-<span id="firewalld-services"></span><span id="index-31"></span><h2>Где расположены файлы конфигурации доступных сервисов Firewalld?<a class="headerlink" href="#firewalld" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="firewalld-services"></span><span id="index-32"></span><h2>Где расположены файлы конфигурации доступных сервисов Firewalld?<a class="headerlink" href="#firewalld" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Предустановленные файлы конфигурации служб Firewalld находятся в каталоге <code class="docutils literal notranslate"><span class="pre">/usr/lib/firewalld/services</span></code>.</p>
 <p>Настоятельно не рекомендуется что-либо изменять в нём ибо при следующем обновлении пакета все изменения будут потеряны. Вместо этого следует создать <a class="reference internal" href="#firewalld-override"><span class="std std-ref">пользовательское переопределение</span></a>.</p>
 </div>
 <div class="section" id="firewalld-override">
-<span id="index-32"></span><span id="id14"></span><h2>Как переопределить предустановленный сервис в Firewalld?<a class="headerlink" href="#firewalld-override" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-33"></span><span id="id15"></span><h2>Как переопределить предустановленный сервис в Firewalld?<a class="headerlink" href="#firewalld-override" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Пользовательские переопределения должны храниться в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/firewalld/services</span></code>.</p>
 <p>В качестве примера создадим оверрайд для сервиса SSH на базе настроек по умолчанию:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cp /usr/lib/firewalld/services/ssh.xml /etc/firewalld/services/ssh.xml
@@ -413,7 +431,7 @@ sudo systemctl restart systemd-resolved.service
 </div>
 </div>
 <div class="section" id="ovpn">
-<span id="ovpn-import"></span><span id="index-33"></span><h2>Как правильно импортировать подключение из OVPN файла?<a class="headerlink" href="#ovpn" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="ovpn-import"></span><span id="index-34"></span><h2>Как правильно импортировать подключение из OVPN файла?<a class="headerlink" href="#ovpn" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Воспользуемся консольной утилитой <strong>nmcli</strong> для быстрого импортирования подключения из OVPN файла:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nmcli connection import file /path/to/foo-bar.ovpn type openvpn
 </pre></div>
@@ -475,6 +493,7 @@ sudo systemctl restart systemd-resolved.service
 <li class="toctree-l2"><a class="reference internal" href="#network-manager-systemd-resolved">Как переключить Network Manager на использование systemd-resolved?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#systemd-resolved">Как проверить статус работы systemd-resolved?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#resolved-default">Как сделать systemd-resolved основным резолвером?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resolved-disable">Как отключить systemd-resolved и вернуться к прежней реализации?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dns-tls">Можно ли зашифровать DNS при помощи TLS?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#resolved-flush">Как очистить кэши systemd-resolved?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firewalld">Где расположены файлы конфигурации доступных сервисов Firewalld?</a></li>
