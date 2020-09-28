@@ -1054,6 +1054,19 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 </pre></div>
 </div>
 </div>
+<div class="section" id="io-scheduler">
+<span id="index-88"></span><span id="id66"></span><h2>Как определить какой планировщик ввода-вывода используется?<a class="headerlink" href="#io-scheduler" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Выведем информацию обо всех установленных в системе дисковых накопителях:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>grep . /sys/block/*/queue/scheduler
+</pre></div>
+</div>
+<p>Название активного планировщика на каждом конкретном устройстве указано в квадратных скобках.</p>
+<p>Пример:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/sys/block/sda/queue/scheduler:mq-deadline kyber [bfq] none
+</pre></div>
+</div>
+<p>Данный вывод означает, что в системе для устройства <code class="docutils literal notranslate"><span class="pre">/dev/sda</span></code> применяется <a class="reference internal" href="tips-and-tricks.html#bfq-scheduler"><span class="std std-ref">BFQ</span></a>.</p>
+</div>
 </div>
 
 
@@ -1166,6 +1179,7 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <li class="toctree-l2"><a class="reference internal" href="#zswap-fedora">Как включить поддержку zswap в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#memory-defrag">Как произвести дефраментацию оперативной памяти?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#zram-default-disable">Как отключить использование сжатия памяти по умолчанию?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#io-scheduler">Как определить какой планировщик ввода-вывода используется?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>

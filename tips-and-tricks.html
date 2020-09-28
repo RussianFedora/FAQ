@@ -108,7 +108,7 @@
 <div class="section" id="bfq-hdd">
 <span id="bfq-scheduler"></span><span id="index-4"></span><h2>Как задействовать планировщик ввода/вывода BFQ для HDD?<a class="headerlink" href="#bfq-hdd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>BFQ – это планировщик ввода-вывода (I/O), предназначенный для повышения отзывчивости пользовательского окружения при значительных нагрузках на дисковую подсистему.</p>
-<p>Для его активации произведём редактирование файла шаблонов GRUB:</p>
+<p>Проверим, какой из планировщиков <a class="reference internal" href="administration.html#io-scheduler"><span class="std std-ref">используется в данный момент</span></a>. Если это не BFQ, произведём редактирование файла шаблонов GRUB:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/default/grub
 </pre></div>
 </div>
