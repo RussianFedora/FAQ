@@ -1657,3 +1657,25 @@ Coredump -- это дамп закрытой памяти процесса, со
 .. code-block:: text
 
     sudo systemctl reboot
+
+.. index:: bfq, hdd, optimizations, scheduler, kernel
+.. _io-scheduler:
+
+Как определить какой планировщик ввода-вывода используется?
+==============================================================
+
+Выведем информацию обо всех установленных в системе дисковых накопителях:
+
+.. code-block:: text
+
+    grep . /sys/block/*/queue/scheduler
+
+Название активного планировщика на каждом конкретном устройстве указано в квадратных скобках.
+
+Пример:
+
+.. code-block:: text
+
+    /sys/block/sda/queue/scheduler:mq-deadline kyber [bfq] none
+
+Данный вывод означает, что в системе для устройства ``/dev/sda`` применяется :ref:`BFQ <bfq-scheduler>`.
