@@ -517,6 +517,33 @@ DHCP сервер провайдера способен выдавать пом�
 
 Изменения вступят в силу немедленно.
 
+.. index:: network, dns, resolv.conf, resolver, systemd, resolved
+.. _resolved-disable:
+
+Как отключить systemd-resolved и вернуться к прежней реализации?
+====================================================================
+
+Удалим существующую символическую ссылку, указывающую на systemd-resolved:
+
+.. code-block:: text
+
+    sudo rm -f /etc/resolv.conf
+
+Установим Network Manager основным генератором файла ``/etc/resolv.conf``:
+
+.. code-block:: text
+
+    sudo ln -sf /run/NetworkManager/resolv.conf /etc/resolv.conf
+
+Остановим и заблокируем systemd-resolved:
+
+.. code-block:: text
+
+    sudo systemctl disable --now systemd-resolved.service
+    sudo systemctl mask systemd-resolved.service
+
+Изменения вступят в силу немедленно.
+
 .. index:: network, dns, resolv.conf, resolver, resolved
 .. _dns-crypt:
 
