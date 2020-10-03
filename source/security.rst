@@ -1731,6 +1731,8 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
 
     sudo dd if=/dev/zero bs=1M count=1024 of=/media/data/foo-bar.dat
 
+Минимальный размер создаваемого образа должен быть не меньше 32 МБ, т.к. противном случае возникнет ошибка *Requested offset is beyond real size of device*.
+
 Здесь **/media/data/foo-bar.dat** -- полный путь к файлу на диске.
 
 Создадим зашифрованный LUKS контейнер:
