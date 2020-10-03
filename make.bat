@@ -1,6 +1,6 @@
 @ECHO OFF
 
-rem Fedora-Faq-Ru (c) 2018 - 2019, EasyCoding Team and contributors
+rem Fedora-Faq-Ru (c) 2018 - 2020, EasyCoding Team and contributors
 rem
 rem Fedora-Faq-Ru is licensed under a
 rem Creative Commons Attribution-ShareAlike 4.0 International License.

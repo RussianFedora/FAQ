@@ -1,10 +1,12 @@
-.. Fedora-Faq-Ru (c) 2018 - 2019, EasyCoding Team and contributors
-.. 
-.. Fedora-Faq-Ru is licensed under a
-.. Creative Commons Attribution-ShareAlike 4.0 International License.
-.. 
-.. You should have received a copy of the license along with this
-.. work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
+..
+    Fedora-Faq-Ru (c) 2018 - 2020, EasyCoding Team and contributors
+
+    Fedora-Faq-Ru is licensed under a
+    Creative Commons Attribution-ShareAlike 4.0 International License.
+
+    You should have received a copy of the license along with this
+    work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
+
 .. _legal-info:
 
 *****************************************
@@ -43,7 +45,12 @@
   * `@krepver <https://github.com/krepver>`__;
   * `@jsonguard <https://github.com/jsonguard>`__;
   * `@xshram <https://github.com/xshram>`__;
-  * `@bookwar <https://github.com/bookwar>`__.
+  * `@bookwar <https://github.com/bookwar>`__;
+  * `@ElXreno <https://github.com/ElXreno>`__;
+  * `@crayxt <https://github.com/crayxt>`__;
+  * `@and-semakin <https://github.com/and-semakin>`__;
+  * `@fabius-bile <https://github.com/fabius-bile>`__;
+  * `@rafaelrs <https://github.com/rafaelrs>`__.
 
 Полный список авторов и вклад каждого можно увидеть на странице `Contributors <https://github.com/RussianFedora/FAQ/graphs/contributors>`__.
 

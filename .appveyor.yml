@@ -10,7 +10,7 @@ install:
 - cmd: >-
     set PATH=C:\Python37-x64;C:\Python37-x64\Scripts;%PATH%
 
-    pip3 install "sphinx==1.8.2"
+    pip3 install sphinx
 build_script:
 - cmd: >-
     set PATH=C:\Python37-x64;C:\Python37-x64\Scripts;%PATH%

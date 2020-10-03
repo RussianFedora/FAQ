@@ -1,10 +1,12 @@
-.. Fedora-Faq-Ru (c) 2018 - 2019, EasyCoding Team and contributors
-.. 
-.. Fedora-Faq-Ru is licensed under a
-.. Creative Commons Attribution-ShareAlike 4.0 International License.
-.. 
-.. You should have received a copy of the license along with this
-.. work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
+..
+    Fedora-Faq-Ru (c) 2018 - 2020, EasyCoding Team and contributors
+
+    Fedora-Faq-Ru is licensed under a
+    Creative Commons Attribution-ShareAlike 4.0 International License.
+
+    You should have received a copy of the license along with this
+    work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
+
 .. _hardware:
 
 ************
@@ -29,17 +31,29 @@
 
   * стандартный драйвер (десктопы, серии GeForce, Quadro, Titan):
 
-    * :ref:`современные поколения видеокарт (900, 1000, 1600 и 2000) <nvidia-standard>`;
-    * :ref:`более старые поколения видеокарт (300, 400, 500, 600 и 700) <nvidia-legacy-390>`;
-    * :ref:`устаревшие поколения видеокарт (серии 6000, 7000, 8000, 9000 и 200) <nvidia-legacy-340>`;
+    * :ref:`современные поколения видеокарт (700, 800, 900, 1000, 1600 и 2000) <nvidia-standard>`;
+    * :ref:`более старые поколения видеокарт (400, 500, 600) <nvidia-legacy-390>`.
 
-  * :ref:`NVIDIA Optimus драйвер (ноутбуки с гибридной графикой) <nvidia-optimus>`.
+  * ноутбуки с гибридной графикой:
+
+    * :ref:`NVIDIA Optimus драйвер (рекомендуемый способ) <nvidia-optimus>`.
+
+.. index:: video, gpu, repository, nvidia, drivers, third-party, cuda
+.. _nvidia-cuda:
+
+Как правильно установить драйвер CUDA для видеокарт NVIDIA?
+===============================================================
+
+Драйверы `CUDA <https://ru.wikipedia.org/wiki/CUDA>`__ входят в комплект :ref:`основных проприетарных драйверов <nvidia-drivers>`, хотя и не устанавливаются по умолчанию:
+
+  * :ref:`современные поколения видеокарт (700, 800, 900, 1000, 1600 и 2000) <nvidia-cuda-generic>`;
+  * :ref:`более старые поколения видеокарт (400, 500, 600) <nvidia-cuda-legacy-390>`.
 
 .. index:: video, gpu, repository, nvidia, drivers, third-party
 .. _nvidia-standard:
 
-Как установить стандартный драйвер (десктопы) видеокарт NVIDIA?
-==================================================================
+Как установить стандартный драйвер видеокарт NVIDIA?
+========================================================
 
 Подключим репозитории :ref:`RPM Fusion <rpmfusion>`.
 
@@ -115,92 +129,63 @@
 
 Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
 
-.. index:: video, gpu, repository, nvidia, drivers, third-party
-.. _nvidia-legacy-340:
-
-Как установить стандартный драйвер видеокарт NVIDIA для устаревших видеокарт?
-================================================================================
-
-Подключим репозитории :ref:`RPM Fusion <rpmfusion>`.
-
-Загрузим все обновления системы:
-
-.. code-block:: text
-
-    sudo dnf upgrade --refresh
-
-Установим стандартные драйверы из LTS ветки 340.xx для устаревших видеокарт:
-
-.. code-block:: text
-
-    sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia-340xx xorg-x11-drv-nvidia-340xx xorg-x11-drv-nvidia-340xx-libs
-
-Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:
-
-.. code-block:: text
-
-    sudo dnf install xorg-x11-drv-nvidia-340xx-libs.i686
-
-Подождём 3-5 минут и убедимся, что модули были успешно собраны:
-
-.. code-block:: text
-
-    sudo akmods --force
-
-Пересоберём :ref:`образ initrd <initrd-rebuild>`:
-
-.. code-block:: text
-
-    sudo dracut --force
-
-Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
-
-.. index:: video, gpu, repository, nvidia, drivers, third-party, bumblebee, primus, optimus
+.. index:: video, gpu, repository, nvidia, drivers, third-party, optimus
 .. _nvidia-optimus:
 
 Как установить драйвер видеокарт NVIDIA для ноутбуков?
 =========================================================
 
-Если в ноутбуке установлена видеокарта, отличная от :ref:`NVIDIA GeForce GTX 1050 <nvidia-gtx1050>`, то процесс пройдёт в штатном режиме. Старые поколения (ниже серии 700 не поддерживаются).
+Начиная с Fedora 31 и версии проприетарного драйвера 435.xx, технология NVIDIA Optimus поддерживается в полной мере "из коробки". Старые поколения видеокарт (ниже серии 700) работать не будут.
 
-Загрузим все обновления системы:
+Подключим репозитории :ref:`RPM Fusion <rpmfusion>` и установим :ref:`стандартный драйвер NVIDIA <nvidia-standard>`.
 
-.. code-block:: text
-
-    sudo dnf upgrade --refresh
-
-Подключим репозиторий с Bumblebee:
+Для запуска приложения на дискретном видеоадаптере передадим ему следующие :ref:`переменные окружения <env-set>` ``__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia``:
 
 .. code-block:: text
 
-    sudo dnf --nogpgcheck install https://linux.itecs.ncsu.edu/redhat/public/bumblebee/fedora$(rpm -E %fedora)/noarch/bumblebee-release-1.3-1.noarch.rpm https://linux.itecs.ncsu.edu/redhat/public/bumblebee-nonfree/fedora$(rpm -E %fedora)/noarch/bumblebee-nonfree-release-1.3-1.noarch.rpm
+    __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia /path/to/game/launcher
 
-Установим проприетарные драйверы с поддержкой NVIDIA Optimus:
-
-.. code-block:: text
-
-    sudo dnf install gcc kernel-headers kernel-devel bumblebee-nvidia bbswitch-dkms primus
-
-Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:
-
-.. code-block:: text
-
-    sudo dnf install VirtualGL.i686 primus.i686
-
-Добавим аккаунт пользователя в группу **bumblebee**:
-
-.. code-block:: text
-
-    sudo usermod -a -G bumblebee $(whoami)
-
-Произведём настройку сервисов:
-
-.. code-block:: text
-
-    sudo systemctl enable bumblebeed.service
-    sudo systemctl mask nvidia-fallback.service
+Здесь вместо **/path/to/game/launcher** укажем путь к бинарнику, который требуется запустить.
 
 Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
+
+.. index:: video, gpu, repository, nvidia, drivers, third-party, cuda
+.. _nvidia-cuda-generic:
+
+Как установить драйвер CUDA для современных видеокарт NVIDIA?
+=================================================================
+
+Установим проприетарные драйверы NVIDIA для :ref:`современных поколений видеокарт <nvidia-standard>`.
+
+Установим пакеты с набором библиотек CUDA:
+
+.. code-block:: text
+
+    sudo dnf install xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
+
+Если используется 64-битная ОС, но требуется запускать ещё и 32-битные версии ПО, использующие CUDA для работы, установим также 32-битный драйвер:
+
+.. code-block:: text
+
+    sudo dnf install xorg-x11-drv-nvidia-cuda-libs.i686
+
+.. index:: video, gpu, repository, nvidia, drivers, third-party, cuda
+.. _nvidia-cuda-legacy-390:
+
+Как установить драйвер CUDA для устаревших видеокарт NVIDIA?
+================================================================
+
+Установим проприетарные драйверы NVIDIA для :ref:`устаревших поколений видеокарт <nvidia-legacy-390>`.
+
+.. code-block:: text
+
+    sudo dnf install xorg-x11-drv-nvidia-390xx-cuda xorg-x11-drv-nvidia-390xx-cuda-libs
+
+Если используется 64-битная ОС, но требуется запускать ещё и 32-битные версии ПО, использующие CUDA для работы, установим также 32-битный драйвер:
+
+.. code-block:: text
+
+    sudo dnf install xorg-x11-drv-nvidia-390xx-cuda-libs.i686
 
 .. index:: video, gpu, repository, nvidia, drivers, third-party, bumblebee, primus, optimus
 .. _nvidia-troubleshooting:
@@ -228,12 +213,6 @@
 
     sudo dnf remove \*nvidia\*
 
-Удалим :ref:`драйверы Optimus <nvidia-optimus>`:
-
-.. code-block:: text
-
-    sudo dnf remove bumblebee\* bbswitch\* primus\* VirtualGL\*
-
 Пересоберём :ref:`образ initrd <initrd-rebuild>`, а также :ref:`конфиг Grub 2 <grub-rebuild>`.
 
 .. index:: video, gpu, amd, ati, drivers
@@ -254,28 +233,16 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Вместо OpenCL для кодирования и декодирования мультимедиа можно использовать VA-API, который работает "из коробки".
 
-.. index:: video, gpu, nvidia, cuda, drivers
-.. _nvidia-cuda:
-
-Как установить поддержку CUDA на видеокартах NVIDIA?
-=======================================================
-
-Поддержка `CUDA <https://ru.wikipedia.org/wiki/CUDA>`__ доступна исключительно в :ref:`проприетарных драйверах <nvidia-drivers>` NVIDIA. Установим необходимые пакеты:
-
-.. code-block:: text
-
-    sudo dnf install xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
-
 .. index:: hardware, selection
 .. _linux-hardware:
 
 На что в первую очередь следует обратить внимание при выборе ноутбука для Linux?
 ====================================================================================
 
- 1. Следует обратить внимание на производителя :ref:`установленного Wi-Fi модуля <wifi-chip>`.
- 2. Не рекомендуется приобретать устройства с гибридной графикой ибо технология NVIDIA Optimus в настоящее время не поддерживается под GNU/Linux официально и работает исключительно посредством Bumblebee от сторонних разработчиков, который часто работает нестабильно.
- 3. Ни при каком условии не приобретать ноутбук с видеокартой :ref:`NVIDIA GeForce GTX 1050 <nvidia-gtx1050>`.
- 4. Перед покупкой рекомендуется исследовать работу :ref:`свежего Fedora Live USB <download>` непосредственно на данном устройстве, а также проверить :ref:`вывод dmesg <journal-current>` на наличие ошибок ACPI.
+  1. Следует обратить внимание на производителя :ref:`установленного Wi-Fi модуля <wifi-chip>`.
+  2. Не рекомендуется приобретать устройства с гибридной графикой ибо технология NVIDIA Optimus в настоящее время не поддерживается под GNU/Linux официально и работает исключительно посредством Bumblebee от сторонних разработчиков, который часто работает нестабильно.
+  3. Ни при каком условии не приобретать ноутбук с видеокартой :ref:`NVIDIA GeForce GTX 1050 <nvidia-gtx1050>`.
+  4. Перед покупкой рекомендуется исследовать работу :ref:`свежего Fedora Live USB <download>` непосредственно на данном устройстве, а также проверить :ref:`вывод dmesg <journal-current>` на наличие ошибок ACPI.
 
 .. index:: hardware, firmware, update
 .. _fedora-fwupd:
@@ -329,17 +296,17 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Без проблем работают Wi-Fi модули следующих производителей:
 
- * Qualcomm Atheros (однако ath10k требуют загрузки прошивок из комплекта поставки ядра);
- * Intel Wireless (требуют загрузки индивидуальных прошивок iwl из поставки ядра).
+  * Qualcomm Atheros (однако ath10k требуют загрузки прошивок из комплекта поставки ядра);
+  * Intel Wireless (требуют загрузки индивидуальных прошивок iwl из поставки ядра).
 
 Работают 50/50:
 
- * Realtek (широко известны проблемы с чипами серий rtl8192cu и rtl8812au);
- * MediaTek (ранее назывался Ralink).
+  * Realtek (широко известны проблемы с чипами серий rtl8192cu и rtl8812au);
+  * MediaTek (ранее назывался Ralink).
 
 Не работают:
 
- * Broadcom (для их работы необходима установка :ref:`проприетарных драйверов <broadcom-drivers>`, которые часто ведут себя непредсказуемо и могут вызывать сбои в работе ядра системы).
+  * Broadcom (для их работы необходима установка :ref:`проприетарных драйверов <broadcom-drivers>`, которые часто ведут себя непредсказуемо и могут вызывать сбои в работе ядра системы).
 
 .. index:: nvidia, gtx1050, video card
 .. _nvidia-gtx1050:
@@ -347,13 +314,13 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 В моём ноутбуке установлена видеокарта NVIDIA GeForce GTX 1050 и после запуска система зависает. Что делать?
 ================================================================================================================
 
-Случайные зависания системы, неработоспособность тачпада и других USB устройств - это следствие сбоев при работе свободного драйвера nouveau на данной видеокарте.
+Случайные зависания системы, неработоспособность тачпада и других USB устройств -- это следствие сбоев при работе свободного драйвера nouveau на данной видеокарте.
 
 В качестве решения необходимо установить проприетарные драйверы по такому алгоритму:
 
- 1. произвести чистую установку систему со :ref:`свежего Fedora Live USB <download>` (respin);
- 2. войти в систему, установить все обновления и, **не перезагружаясь**, выполнить установку :ref:`проприетарных драйверов Optimus <nvidia-optimus>`;
- 3. выполнить перезагрузку системы.
+  1. произвести чистую установку систему со :ref:`свежего Fedora Live USB <download>` (respin);
+  2. войти в систему, установить все обновления и, **не перезагружаясь**, выполнить установку :ref:`проприетарных драйверов Optimus <nvidia-optimus>`;
+  3. выполнить перезагрузку системы.
 
 Если всё сделано верно, то система начнёт функционировать в штатном режиме. В противном случае следует повторить с самого начала.
 
@@ -463,10 +430,10 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Для работы с COM портами (RS-232) можно применять следующие утилиты:
 
- * screen;
- * putty;
- * picocom;
- * minicom.
+  * screen;
+  * putty;
+  * picocom;
+  * minicom.
 
 Воспользуемся утилитой **screen** для подключения к последовательному порту:
 
@@ -474,7 +441,7 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
     screen /dev/ttyS0 115200
 
-Здесь **/dev/ttyS0** - путь к первому COM порту в системе, а **115200** - скорость работы в бодах.
+Здесь **/dev/ttyS0** -- путь к первому COM порту в системе, а **115200** -- скорость работы в бодах.
 
 Если при подключении вместо текста отображается различный мусор, значит скорость указана не правильно и её следует либо подбирать экспериментально, либо получить из руководства.
 
@@ -490,8 +457,8 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Большинство "переходников" из цифры в аналог (DVI-D -> D-SUB, HDMI -> D-SUB и т.д.) не передают данные с монитора о поддерживаемых им разрешениях экрана системе посредством протокола `Display Data Channel (DDC) <https://ru.wikipedia.org/wiki/Display_Data_Channel>`__, поэтому существует два решения:
 
- * не использовать подобные устройства (к тому же они значительно ухудшают качество изображения);
- * :ref:`прописать поддерживаемые разрешения <x11-resulutions>` самостоятельно в конфиге X11.
+  * не использовать подобные устройства (к тому же они значительно ухудшают качество изображения);
+  * :ref:`прописать поддерживаемые разрешения <x11-resulutions>` самостоятельно в конфиге X11.
 
 .. index:: monitor, resolution, xorg, x11
 .. _x11-resulutions:
@@ -507,7 +474,7 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
     cvt 1920 1080 60
 
-Здесь **1920** - разрешение по горизонтали, **1080** - по вертикали, а **60** - частота регенерации.
+Здесь **1920** -- разрешение по горизонтали, **1080** -- по вертикали, а **60** -- частота регенерации.
 
 Теперь создадим конфиг следующего содержания:
 
@@ -554,6 +521,24 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 .. code-block:: text
 
     sudo dnf install stress-ng
+
+Запустим тест CPU из состава sysbench:
+
+.. code-block:: text
+
+    sysbench --test=cpu --cpu-max-prime=20000 --num-threads=$(nproc) run
+
+Запустим тест CPU из состава stress-ng:
+
+.. code-block:: text
+
+    stress-ng --cpu $(nproc) --cpu-method matrixprod --metrics --timeout 60
+
+Запустим тест CPU из состава openssl:
+
+.. code-block:: text
+
+    openssl speed -multi $(nproc)
 
 .. index:: benchmark, video card, gpu, glxgears, glmark2, unigine
 .. _benchmark-gpu:
@@ -616,7 +601,7 @@ Unigine Benchmark
 Что такое firmware и для чего она необходима?
 ================================================
 
-Firmware - это бинарный проприетарный блоб, содержащий образ прошивки, который загружается и используется определённым устройством.
+Firmware -- это бинарный проприетарный блоб, содержащий образ прошивки, который загружается и используется определённым устройством.
 
 В большинстве случаев, соответствующее устройство не будет функционировать без наличия данной прошивки в каталоге прошивок ядра Linux.
 
@@ -656,8 +641,8 @@ Firmware - это бинарный проприетарный блоб, соде
 
 Дисплеи с разным значением DPI (PPI) не поддерживаются в X11 (но будут в будущем полноценно поддерживаться в Wayland), поэтому для вывода изображения на таких конфигурациях применяется одна из двух конфигураций:
 
- * upscale (базовым выставляется наиболее низкое значение DPI);
- * downscale (базовым выставляется наиболее высокое значение DPI).
+  * upscale (базовым выставляется наиболее низкое значение DPI);
+  * downscale (базовым выставляется наиболее высокое значение DPI).
 
 Оба этих метода далеки от совершенства, что сильно портит качество изображения. Таким образом, при выборе нескольких мониторов следует убедиться в том, чтобы их DPI были одинаковыми.
 
@@ -735,7 +720,7 @@ ICC профиль можно получить либо на сайте прои
 Я нашёл цветовой профиль для дисплея. Как мне его установить в систему?
 ==========================================================================
 
-Пользователям KDE необходимо открыть **Параметры системы** - **Оборудование** - **Цветовая коррекция**, перейти на вкладку **Профили**, нажать кнопку **Добавить профиль**, указать ICC-файл на диске, после чего подвердить установку. Теперь на вкладке **Устройства** можно заменить стандартный цветовой профиль на только что установленный. Также его можно назначить по умолчанию для всех пользователей системы (потребуется :ref:`доступ к sudo <sudo-password>`).
+Пользователям KDE необходимо открыть **Параметры системы** -- **Оборудование** -- **Цветовая коррекция**, перейти на вкладку **Профили**, нажать кнопку **Добавить профиль**, указать ICC-файл на диске, после чего подвердить установку. Теперь на вкладке **Устройства** можно заменить стандартный цветовой профиль на только что установленный. Также его можно назначить по умолчанию для всех пользователей системы (потребуется :ref:`доступ к sudo <sudo-password>`).
 
 Пользователи Gnome должны установить утилиту Gnome Color Manager, после чего импортировать и применить загруженный ICC-файл.
 
@@ -854,11 +839,13 @@ ICC профиль можно получить либо на сайте прои
 
 Актуальные версии клиента Steam `поддерживают <https://support.steampowered.com/kb_article.php?ref=6316-GJKC-7437>`__ технологию NVIDIA Optimus "из коробки" если установлен :ref:`проприетарный драйвер Bumblebee <nvidia-optimus>`.
 
-Чтобы запустить игру на дискретной видеокарте, нажмём **правой кнопкой мыши** по нужной игре в Библиотеке, выберем пункт контекстного меню **Свойства**, нажмём кнопку **Установить параметры запуска** и в открывшемся окне введём следующее:
+Чтобы запустить игру на дискретной видеокарте, нажмём **правой кнопкой мыши** по нужной игре в Библиотеке, выберем пункт контекстного меню **Свойства**, нажмём кнопку **Установить параметры запуска** и в открывшемся окне введём команду.
+
+Для :ref:`современных драйверов Optimus <nvidia-optimus>`:
 
 .. code-block:: text
 
-    primusrun %command%
+    __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia %command%
 
 Сохраним изменения, нажав **OK** и **Закрыть**.
 
@@ -879,13 +866,6 @@ ICC профиль можно получить либо на сайте прои
 
 Как правильно установить драйверы Wi-Fi модулей Broadcom?
 =============================================================
-
-Установим пропатченную версию **wpa_supplicant** из :ref:`COPR <copr>`, т.к. с обычной драйверы Broadcom `не работают <https://bugzilla.redhat.com/show_bug.cgi?id=1703745>`__:
-
-.. code-block:: text
-
-    sudo dnf copr enable dcaratti/wpa_supplicant
-    sudo dnf upgrade --refresh wpa_supplicant
 
 Подключим репозитории :ref:`RPM Fusion <rpmfusion>`, затем произведём установку драйвера:
 
@@ -983,7 +963,7 @@ ICC профиль можно получить либо на сайте прои
 
     sudo hdparam -y /dev/sda
 
-Здесь **/dev/sda** - устройство диска, который требуется остановить. Перед выполнением команды необходимо размонтировать все разделы, расположенные на нём.
+Здесь **/dev/sda** -- устройство диска, который требуется остановить. Перед выполнением команды необходимо размонтировать все разделы, расположенные на нём.
 
 Внимание! Внезапная остановка HDD может привести к выходу его из строя. Следует использовать её на свой страх и риск.
 
@@ -999,7 +979,7 @@ ICC профиль можно получить либо на сайте прои
 
     sudo hdparam -S 300 /dev/sda
 
-Здесь **300** - интервал неактивности в секундах, а **/dev/sda** - устройство диска, который будет остановлен.
+Здесь **300** -- интервал неактивности в секундах, а **/dev/sda** -- устройство диска, который будет остановлен.
 
 .. index:: monitor, laptop, ghosting, ips
 .. _ips-ghosting:
@@ -1119,7 +1099,7 @@ ICC профиль можно получить либо на сайте прои
     sudo dkms build -m rtl8821ce -v v5.5.2_34066.20190614
     sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
 
-Здесь **v5.5.2_34066.20190614** - версия модуля rtl8821ce, которая может быть получена из файла ``rtl8821ce/include/rtw_version.h`` (без учёта суффикса **BTCOEXVERSION**).
+Здесь **v5.5.2_34066.20190614** -- версия модуля rtl8821ce, которая может быть получена из файла ``rtl8821ce/include/rtw_version.h`` (без учёта суффикса **BTCOEXVERSION**).
 
 Перезагрузим систему для вступления изменений в силу:
 
@@ -1149,6 +1129,159 @@ ICC профиль можно получить либо на сайте прои
 
     sudo rm -rf /usr/src/rtl8821ce-v5.5.2_34066.20190614
 
-Здесь **v5.5.2_34066.20190614** - версия установленного в системе модуля rtl8821ce.
+Здесь **v5.5.2_34066.20190614** -- версия установленного в системе модуля rtl8821ce.
 
 Загрузим и установим новую версию по :ref:`стандартной инструкции <rtl8821ce-install>`.
+
+.. index:: ram, memory, dmidecode, dmi
+.. _ram-info:
+
+Как получить информацию об установленной оперативной памяти?
+================================================================
+
+Установим утилиту **dmidecode**:
+
+.. code-block:: text
+
+    sudo dnf install dmidecode
+
+Выведем информацию об установленной оперативной памяти:
+
+.. code-block:: text
+
+    sudo dmidecode -t memory
+
+.. index:: hardware acceleration, vaapi, intel
+.. _vaapi-intel:
+
+Как активировать VA-API на видеокартах Intel?
+================================================
+
+Для полноценной работы модуля :ref:`аппаратного декодирования <video-hwaccel>` мультимедиа подключим репозитории :ref:`RPM Fusion <rpmfusion>` и установим драйвер **libva-intel-driver**:
+
+.. code-block:: text
+
+    sudo dnf install libva-intel-driver
+
+.. index:: hardware acceleration, vaapi, vdpau, nvidia
+.. _vaapi-nvidia:
+
+Как активировать VA-API на видеокартах NVIDIA?
+=================================================
+
+Т.к. NVIDIA использует VDPAU для :ref:`аппаратного декодирования <video-hwaccel>` мультимедиа, для активации VA-API, установим особый драйвер-конвертер **libva-vdpau-driver**:
+
+.. code-block:: text
+
+    sudo dnf install libva-vdpau-driver
+
+.. index:: battery, laptop, notebook
+.. _battery-status:
+
+Как вывести информацию о состоянии батареи ноутбука?
+========================================================
+
+Для вывода информации об используемых аккумуляторных батареях, воспользуемся утилитой **upower**:
+
+.. code-block:: text
+
+    upower -i /org/freedesktop/UPower/devices/battery_BAT0
+
+Если в устройстве их более одной, вместо **BAT0** укажем следующую по порядку.
+
+.. index:: bluetooth, mpris, multimedia, remote control
+.. _mpris-proxy:
+
+Как включить управление воспроизведением с Bluetooth-наушников?
+===================================================================
+
+За управление воспроизведением при помощи D-Bus событий отвечает служба `MPRIS <https://ru.wikipedia.org/wiki/MPRIS>`__.
+
+В первую очередь убедимся, что используемый медиа-проигрыватель его поддерживает. В большинстве случаев необходимо и достаточно просто включить модуль MPRIS в настройках. В VLC например включён "из коробки".
+
+Установим утилиту **mpris-proxy** из пакета **bluez**.
+
+.. code-block:: text
+
+    sudo dnf install bluez
+
+В случае необходимости провести отладку подключения, запустим **mpris-proxy** вручную:
+
+.. code-block:: text
+
+    mpris-proxy
+
+Для того, чтобы сервис запускался автоматически при старте системы, создадим :ref:`systemd-юнит <systemd-info>`:
+
+.. code-block:: text
+
+    mkdir -p ~/.config/systemd/user
+    touch ~/.config/systemd/user/mpris-proxy.service
+
+Откроем файл ``~/.config/systemd/user/mpris-proxy.service`` в любом :ref:`текстовом редакторе <editor-selection>` и добавим следующее содержимое:
+
+.. code-block:: ini
+
+    [Unit]
+    Description=Forward bluetooth midi controls via mpris2 so they are picked up by supporting media players
+
+    [Service]
+    Type=simple
+    ExecStart=/usr/bin/mpris-proxy
+
+    [Install]
+    WantedBy=multi-user.target
+
+Установим правильный контекст безопасности :ref:`SELinux <selinux>`:
+
+.. code-block:: text
+
+    restorecon -Rv ~/.config/systemd/user
+
+Обновим список доступных пользовательских юнитов systemd:
+
+.. code-block:: text
+
+    systemctl --user daemon-reload
+
+Активируем сервис mpris-proxy и настроим его автоматический запуск:
+
+.. code-block:: text
+
+    systemctl --user enable --now mpris-proxy.service
+
+.. index:: bluetooth, hd audio, aac, aptx, ldac, sbc, audio, multimedia, codecs
+.. _bluetooth-codecs:
+
+Как включить поддержку Bluetooth-кодеков высокого качества?
+===============================================================
+
+В репозиториях Fedora модули работы с Bluetooth собраны без поддержки AAC, aptX, aptX HD и LDAC ввиду патентных ограничений.
+
+Однако `существует форк <https://github.com/EHfive/pulseaudio-modules-bt>`__, в котором добавлена полная поддержка данных кодеков, а также расширены возможности по настройке SBC:
+
+.. code-block:: text
+
+    a2dp_sink_sbc: High Fidelity Playback (A2DP Sink: SBC)
+    a2dp_sink_aac: High Fidelity Playback (A2DP Sink: AAC)
+    a2dp_sink_aptx: High Fidelity Playback (A2DP Sink: aptX)
+    a2dp_sink_aptx_hd: High Fidelity Playback (A2DP Sink: aptX HD)
+    a2dp_sink_ldac: High Fidelity Playback (A2DP Sink: LDAC)
+    headset_head_unit: Headset Head Unit (HSP/HFP)
+
+Подключим репозиторий :ref:`RPM Fusion <rpmfusion>` и заменим обычный пакет **pulseaudio-module-bluetooth** на версию с суффиксом **-freeworld**:
+
+.. code-block:: text
+
+    sudo dnf swap pulseaudio-module-bluetooth pulseaudio-module-bluetooth-freeworld --allowerasing
+
+Перезапустим сервер PulseAudio:
+
+.. code-block:: text
+
+    pulseaudio -k
+    pulseaudio -D
+
+Теперь в настройках используемой графической среды, после подключения наушников, выберем необходимый кодек.
+
+Внимание! Выбранный кодек должен поддерживаться наушниками аппаратно.

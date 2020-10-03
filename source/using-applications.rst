@@ -1,10 +1,12 @@
-.. Fedora-Faq-Ru (c) 2018 - 2019, EasyCoding Team and contributors
-.. 
-.. Fedora-Faq-Ru is licensed under a
-.. Creative Commons Attribution-ShareAlike 4.0 International License.
-.. 
-.. You should have received a copy of the license along with this
-.. work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
+..
+    Fedora-Faq-Ru (c) 2018 - 2020, EasyCoding Team and contributors
+
+    Fedora-Faq-Ru is licensed under a
+    Creative Commons Attribution-ShareAlike 4.0 International License.
+
+    You should have received a copy of the license along with this
+    work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
+
 .. _using-applications:
 
 ********************
@@ -22,10 +24,9 @@
 .. code-block:: text
 
     layers.acceleration.force-enabled = true
-    layers.offmainthreadcomposition.enabled = true
     webgl.force-enabled = true
-    gfx.xrender.enabled = true
     gfx.webrender.all = true
+    dom.webgpu.enabled = true
 
 Изменения вступят в силу при следующем запуске браузера.
 
@@ -39,13 +40,13 @@
 
 В настоящее время аппаратное ускорение декодирования мультимедиа "из коробки" в GNU/Linux не поддерживается ни в одном браузере.
 
-В Mozilla Firefox оно вообще не реализовано: `MZBZ#563206 <https://bugzilla.mozilla.org/show_bug.cgi?id=563206>`__ и `MZBZ#1210727 <https://bugzilla.mozilla.org/show_bug.cgi?id=1210727>`__.
+В Mozilla Firefox оно реализовано только для Wayland-сеанса (в X11 не работает: `MZBZ#563206 <https://bugzilla.mozilla.org/show_bug.cgi?id=563206>`__ и `MZBZ#1210727 <https://bugzilla.mozilla.org/show_bug.cgi?id=1210727>`__).
 
-В Google Chrome и Chromium частично реализовано, но отключено на этапе компиляции и без особых VA-API патчей недоступно. Репозиторий :ref:`RPM Fusion <rpmfusion>` предоставляет такую сборку Chromium. Для её установки необходимо подключить его и установить пакет **chromium-vaapi**:
+В Google Chrome и Chromium частично реализовано, но отключено на этапе компиляции и без особых VA-API патчей недоступно. Репозиторий :ref:`RPM Fusion <rpmfusion>` предоставляет такую сборку Chromium. Для её установки необходимо подключить его и установить пакет **chromium-freeworld**:
 
 .. code-block:: text
 
-    sudo dnf install chromium-vaapi
+    sudo dnf install chromium-freeworld
 
 Далее необходимо запустить его, зайти в ``chrome://flags`` и установить пункт **Hardware decoding** в значение **Enabled**, после чего перезапустить браузер.
 
@@ -55,9 +56,27 @@
 В каких проигрывателях реализовано аппаратное ускорение декодирования мультимедиа?
 =====================================================================================
 
-Полная поддержка аппаратного декодирования мультимедиа средствами VA-API (Intel, AMD) или VPDAU (NVIDIA) реализована в проигрывателях VLC и mpv.
+Полная поддержка аппаратного декодирования мультимедиа средствами :ref:`VA-API <vaapi-info>` (:ref:`Intel <vaapi-intel>`, :ref:`NVIDIA <vaapi-nvidia>`, AMD) или VPDAU (NVIDIA) реализована в проигрывателях VLC и mpv.
 
 Для активации данной функции необходимо в качестве графического бэкэнда вывода изображения указать **vaapi** или **vdpau**, после чего перезапустить плеер.
+
+.. index:: hardware acceleration, vaapi, intel, nvidia, amd
+.. _vaapi-info:
+
+Как получить информацию о поддерживаемых VA-API форматах видео?
+==================================================================
+
+Установим утилиту **vainfo**:
+
+.. code-block:: text
+
+    sudo dnf install libva-utils
+
+Выведем информацию о поддерживаемых форматах и профилях:
+
+.. code-block:: text
+
+    vainfo
 
 .. index:: telegram, im
 .. _telegram-fedora:
@@ -83,8 +102,8 @@
 
 Официальная версия с сайта создаёт ярлыки запуска и копирует ряд загруженных бинарных файлов в пользовательский домашний каталог. Избавимся от этого:
 
- 1. удалим старый бинарник и модуль обновления официального клиента, а также их копии из ``~/.local/share/TelegramDesktop`` и ``~/.local/share/TelegramDesktop/tdata``;
- 2. удалим ярлыки из ``~/.local/share/applications``.
+  1. удалим старый бинарник и модуль обновления официального клиента, а также их копии из ``~/.local/share/TelegramDesktop`` и ``~/.local/share/TelegramDesktop/tdata``;
+  2. удалим ярлыки из ``~/.local/share/applications``.
 
 Теперь можно установить :ref:`версию <telegram-fedora>` из :ref:`RPM Fusion <rpmfusion>`.
 
@@ -94,11 +113,11 @@
 Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?
 ==============================================================================================================================
 
-Из-за патентных ограничений браузер Chromium в репозиториях Fedora сильно кастрирован. Для восстановления полной функциональности необходимо подключить :ref:`RPM Fusion <rpmfusion>` и установить пакет с кодеками для данного браузера:
+Из-за патентных ограничений браузер Chromium в репозиториях Fedora сильно кастрирован. Для восстановления полной функциональности необходимо подключить :ref:`RPM Fusion <rpmfusion>` и установить пакет с полной версией:
 
 .. code-block:: text
 
-    sudo dnf install chromium-libs-media-freeworld
+    sudo dnf install chromium-freeworld
 
 .. index:: repository, codecs, multimedia, third-party, ffmpeg
 .. _firefox-codecs:
@@ -202,7 +221,7 @@
 
     iconv -f cp1251 -t utf8 test.txt > result.txt
 
-Здесь **test.txt** - исходный файл с неправильной кодировкой, а **result.txt** используется для записи результата преобразования.
+Здесь **test.txt** -- исходный файл с неправильной кодировкой, а **result.txt** используется для записи результата преобразования.
 
 .. index:: fuse, file system, mtp, android, phone
 .. _fuse-mtp:
@@ -250,8 +269,8 @@
 
 Сначала установим клиент KDE Connect на смартфон:
 
- * `Google Play <https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp>`__;
- * `F-Droid <https://f-droid.org/packages/org.kde.kdeconnect_tp/>`__;
+  * `Google Play <https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp>`__;
+  * `F-Droid <https://f-droid.org/packages/org.kde.kdeconnect_tp/>`__.
 
 Запустим плазмоид KDE Connect и выполним сопряжение.
 
@@ -265,7 +284,7 @@ KDE Connect не видит мой смартфон. Как исправить?
 
 .. code-block:: text
 
-    sudo firewall-cmd --add-service=kde-connect --permanent
+    sudo firewall-cmd --add-service=kdeconnect --permanent
 
 Применим новые правила:
 
@@ -310,7 +329,7 @@ KDE Connect не видит мой смартфон. Как исправить?
     Type=Link
     URL[$e]=file:$HOME/Templates/xml-document.xml
 
-Здесь **Icon** - значок для новой строки, **Name** - название новой строки с поддержкой локализации, а **URL** - полный путь к файлу шаблона.
+Здесь **Icon** -- значок для новой строки, **Name** -- название новой строки с поддержкой локализации, а **URL** -- полный путь к файлу шаблона.
 
 Изменения вступят в силу немедленно и через несколько секунд в меню *Создать* файлового менеджера Dolphin появится новый пункт.
 
@@ -354,7 +373,7 @@ KDE Connect не видит мой смартфон. Как исправить?
 Как убрать рамки внутри окон в KDE Plasma 5?
 ===============================================
 
-Для этого следует открыть **Меню KDE** - **Компьютер** - **Параметры системы** - **Оформление приложений** - страница **Стиль интерфейса** - кнопка **Настроить** - вкладка **Рамки**, **убрать все флажки** из чекбоксов на данной странице и нажать кнопку **OK**.
+Для этого следует открыть **Меню KDE** -- **Компьютер** -- **Параметры системы** -- **Оформление приложений** -- страница **Стиль интерфейса** -- кнопка **Настроить** -- вкладка **Рамки**, **убрать все флажки** из чекбоксов на данной странице и нажать кнопку **OK**.
 
 .. index:: icons, cache, kde, plasma
 .. _kde-icons-refresh:
@@ -367,25 +386,6 @@ KDE Connect не видит мой смартфон. Как исправить?
 .. code-block:: text
 
     kbuildsycoca5 --noincremental
-
-.. index:: chromium, chrome, browser, command line, web
-.. _chromium-commandline:
-
-Как постоянно запускать браузер Chromium с определёнными параметрами?
-=========================================================================
-
-Для того, чтобы постоянно запускать браузер Chromium с определёнными `параметрами запуска <https://peter.sh/experiments/chromium-command-line-switches/>`__, необходимо создать файл ``~/.config/chromium-flags.conf`` и прописать их в нём.
-
-В качестве разделителя применяется пробел, либо символ разрыва строки. Строки, которые начинаются с символа решётки (**#**) считаются комментариями и игнорируются.
-
-Пример:
-
-.. code-block:: text
-
-    # Переопределим каталог хранения дискового кэша.
-    --disk-cache-dir /tmp/chromium
-    # Установим предельный размер дискового кэша.
-    --disk-cache-size 268435456
 
 .. index:: thunderbird, mail client, email, extension, translation, lightning, langpack
 .. _thunderbird-symlinks:
@@ -471,7 +471,7 @@ KDE Connect не видит мой смартфон. Как исправить?
 При распаковке Zip архива появляются кракозябры вместо имён файлов. Как исправить?
 =====================================================================================
 
-Zip-архивы, созданные штатными средствами ОС Windows, сохраняют имена файлов внутри архива исключительно в однобайтовой кодировке системы по умолчанию (в русской версии это Windows-1251 (cp1251), в английской - Windows-1252 (cp1252)), поэтому при распаковке таких архивов вместо русских букв будут отображаться кракозябры.
+Zip-архивы, созданные штатными средствами ОС Windows, сохраняют имена файлов внутри архива исключительно в однобайтовой кодировке системы по умолчанию (в русской версии это Windows-1251 (cp1251), в английской -- Windows-1252 (cp1252)), поэтому при распаковке таких архивов вместо русских букв будут отображаться кракозябры.
 
 Утилита unzip поддерживает явное указание кодировки, поэтому воспользуемся данной функцией:
 
@@ -479,7 +479,7 @@ Zip-архивы, созданные штатными средствами ОС 
 
     unzip -O cp1251 foo-bar.zip -d /path/to/destination
 
-Здесь **cp1251** - кодировка имён файлов, **foo-bar.zip** - имя архива, а **/path/to/destination** - каталог, в который он будет распакован.
+Здесь **cp1251** -- кодировка имён файлов, **foo-bar.zip** -- имя архива, а **/path/to/destination** -- каталог, в который он будет распакован.
 
 .. index:: cache, browser, tmpfs
 .. _browser-tmpfs:
@@ -549,8 +549,8 @@ Zip-архивы, созданные штатными средствами ОС 
 
 Запустим веб-браузер и экспортируем список закладок в файл, совместимый с форматом *Netscape Bookmarks*. В Firefox это можно сделать так:
 
-  1. **Закладки** - **Показать все закладки**;
-  2. **Импорт и резервные копии** - **Экспорт закладок в HTML файл**;
+  1. **Закладки** -- **Показать все закладки**;
+  2. **Импорт и резервные копии** -- **Экспорт закладок в HTML файл**;
   3. сохраняем файл **bookmarks.html** в любом каталоге.
 
 Перейдём в каталог, в котором находится файл **bookmarks.html** и запустим проверку:
@@ -599,8 +599,8 @@ Zip-архивы, созданные штатными средствами ОС 
 
 Также данное дополнение можно установить и вручную:
 
- * `Firefox <https://addons.mozilla.org/ru/firefox/addon/gnome-shell-integration/>`__;
- * `Chrome/Chromium <https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=ru>`__.
+  * `Firefox <https://addons.mozilla.org/ru/firefox/addon/gnome-shell-integration/>`__;
+  * `Chrome/Chromium <https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=ru>`__.
 
 .. index:: kde, plasma, extension, firefox, chromium
 .. _plasma-browser:
@@ -616,8 +616,8 @@ Zip-архивы, созданные штатными средствами ОС 
 
 Также данное дополнение можно установить и вручную:
 
- * `Firefox <https://addons.mozilla.org/ru/firefox/addon/plasma-integration/>`__;
- * `Chrome/Chromium <https://chrome.google.com/webstore/detail/plasma-integration/cimiefiiaegbelhefglklhhakcgmhkai?hl=ru>`__.
+  * `Firefox <https://addons.mozilla.org/ru/firefox/addon/plasma-integration/>`__;
+  * `Chrome/Chromium <https://chrome.google.com/webstore/detail/plasma-integration/cimiefiiaegbelhefglklhhakcgmhkai?hl=ru>`__.
 
 .. index:: gnome, shell, tray, system tray, icon
 .. _gnome-shell-tray:
@@ -629,8 +629,8 @@ Zip-архивы, созданные штатными средствами ОС 
 
 Восстановить трей можно посредством установки одного из :ref:`расширений Gnome Shell <gnome-shell-extensions>`:
 
-  1. `TopIcons Plus <https://extensions.gnome.org/extension/1031/topicons/>`__ (также доступно в виде пакета ``gnome-shell-extension-topicons-plus`` в репозиториях);
-  2. `AppIndicator Support <https://extensions.gnome.org/extension/615/appindicator-support/>`__ (также доступно в виде пакета ``gnome-shell-extension-appindicator`` в репозиториях).
+  * `AppIndicator Support <https://extensions.gnome.org/extension/615/appindicator-support/>`__ (также доступно в виде пакета ``gnome-shell-extension-appindicator`` в репозиториях);
+  * `TopIcons Plus <https://extensions.gnome.org/extension/1031/topicons/>`__ (также доступно в виде пакета ``gnome-shell-extension-topicons-plus`` в репозиториях).
 
 .. index:: gnome, shell, desktop, icon
 .. _gnome-shell-desktop:
@@ -702,7 +702,7 @@ Zip-архивы, созданные штатными средствами ОС 
 
     sudo firewall-cmd --add-service=transmission-client --permanent
 
-Запустим "тонкий клиент", подключимся к серверу **127.0.0.1:9091**, перейдём в **Опции** - **Настройки сервера** и внесём свои правки, указав например каталог для загрузок.
+Запустим "тонкий клиент", подключимся к серверу **127.0.0.1:9091**, перейдём в **Опции** -- **Настройки сервера** и внесём свои правки, указав например каталог для загрузок.
 
 Изменения вступают в силу немедленно. Сервер будет запускаться автоматически при каждой загрузке системы и сразу же осуществлять загрузку, либо раздачу торрентов.
 
@@ -734,7 +734,7 @@ Zip-архивы, созданные штатными средствами ОС 
 
     tree /path/to/directory > ~/foo-bar.txt
 
-Здесь **/path/to/directory** - путь к каталогу, дерево которого нужно построить, а **~/foo-bar.txt** - файл, в котором будет сохранён результат.
+Здесь **/path/to/directory** -- путь к каталогу, дерево которого нужно построить, а **~/foo-bar.txt** -- файл, в котором будет сохранён результат.
 
 .. index:: recycle bin, delete file, trash, terminal
 .. _trash-terminal:
@@ -780,9 +780,9 @@ Zip-архивы, созданные штатными средствами ОС 
 
 Зайдём в расширенные настройки сети freenode, укажем в качестве основного сервера ``irc.freenode.net/6697`` (остальные лучше вообще удалить), затем установим следующие параметры:
 
-  * флажок **соединяться только с выделенным сервером** - включено;
-  * флажок **использовать SSL для всех серверов в этой сети** - включено;
-  * **метод авторизации** - SASL external (cert).
+  * флажок **соединяться только с выделенным сервером** -- включено;
+  * флажок **использовать SSL для всех серверов в этой сети** -- включено;
+  * **метод авторизации** -- SASL external (cert).
 
 Получим SHA1 отпечаток созданного сертификата:
 
@@ -802,7 +802,7 @@ Zip-архивы, созданные штатными средствами ОС 
 
     /ns cert add XXXXXXXXXX
 
-Здесь **PASSWORD** - текущий пароль пользователя, а **XXXXXXXXXX** - отпечаток сертификата.
+Здесь **PASSWORD** -- текущий пароль пользователя, а **XXXXXXXXXX** -- отпечаток сертификата.
 
 Теперь можно отключиться и подключиться заново. Вход будет выполнен уже безопасным способом без использования паролей.
 
@@ -876,7 +876,7 @@ Zip-архивы, созданные штатными средствами ОС 
 
     find /media/foo-bar -name *.h2w -delete \;
 
-Здесь **/media/foo-bar** - точка монтирования накопителя, объём которого требуется проверить.
+Здесь **/media/foo-bar** -- точка монтирования накопителя, объём которого требуется проверить.
 
 .. index:: flash, usb, check, f3
 .. _f3chk-deep:
@@ -900,7 +900,7 @@ Zip-архивы, созданные штатными средствами ОС 
 
     sudo f3probe --destructive --time-ops /dev/sdb
 
-Здесь **/dev/sdb** - устройство, объём которого требуется проверить.
+Здесь **/dev/sdb** -- устройство, объём которого требуется проверить.
 
 После завершения процесса потребуется заново создать раздел и файловую систему на проверяемом устройстве при помощи таких утилит, как GParted, Gnome Disks, KDE Disk Manager и т.д.
 
@@ -941,6 +941,20 @@ Zip-архивы, созданные штатными средствами ОС 
 .. code-block:: text
 
     du -sh ~/foo-bar
+
+.. index:: du, disk usage, coreutils, directory size, console
+.. _directory-size-top:
+
+Как из консоли вывести список десяти самых крупных каталогов?
+=================================================================
+
+Вывыдем список десяти самых крупных каталогов:
+
+.. code-block:: text
+
+    du -hs /path/to/directory/* 2>/dev/null | sort -rh | head -10
+
+Здесь **/path/to/directory** -- начальный каталог.
 
 .. index:: disk usage, directory size, filelight, baobab
 .. _directory-size-gui:
@@ -1049,3 +1063,137 @@ Cгенерируем файл с контрольными суммами SHA2 (
 .. code-block:: text
 
     sha512sum -c sha512sum.txt | grep -v 'OK' > failed_results.txt
+
+.. index:: qt, theme, override
+.. _qt-theme-override:
+
+Как переопределить тему в Qt приложениях?
+============================================
+
+Воспользуемся :ref:`переменными окружения <env-set>` для переопределения темы Qt:
+
+.. code-block:: text
+
+    QT_STYLE_OVERRIDE=adwaita QT_QPA_PLATFORMTHEME=qgnomeplatform /usr/bin/foo-bar
+
+.. index:: wine, windows
+.. _wine-fedora:
+
+Как правильно установить Wine в Fedora?
+===========================================
+
+В основном репозитории Fedora всегда находится самый свежий и правильно опакеченный выпуск Wine, поэтому подключать какие-либо сторонние репозитории, в т.ч. официальный от WineHQ, категорически не рекомендуется.
+
+Установим Wine из репозитория Fedora:
+
+.. code-block:: text
+
+    sudo dnf install wine wine.i686
+
+.. index:: wine, dxvk, windows, directx, direct3d
+.. _wine-dxvk:
+
+Как правильно установить dxvk для Wine из репозиториев?
+==========================================================
+
+Наряду с :ref:`правильно опакеченным Wine <wine-fedora>`, в основном репозитории Fedora доступен и dxvk.
+
+Установим dxvk с поддержкой DirectX 10, 11:
+
+.. code-block:: text
+
+    sudo dnf install wine-dxvk wine-dxvk.i686
+
+Установим dxvk с поддержкой DirectX 9:
+
+.. code-block:: text
+
+    sudo dnf install wine-dxvk-d3d9 wine-dxvk-d3d9.i686
+
+.. index:: kde, chromium, chrome, default, plasma, browser
+.. _kde-chromium-default:
+
+Как сделать Chromium браузером по умолчанию в KDE?
+======================================================
+
+Для того, чтобы назначить Chromium браузером по умолчанию, выполним **Параметры системы** -- **Приложения** -- **Приложения по умолчанию** -- **Браузер** -- установим точку около **в следующем приложении**, затем в выпадающем списке выберем **Chromium** и нажмём кнопку **Применить**.
+
+Однако, даже если указанное действие сделано верно, Chromium всё равно будет предлагать установить его браузером по умолчанию при каждом запуске, т.к. он проверяет привязку не только к протоколам, но и к конкретным :ref:`mime-типам <file-types>` для HTML-файлов.
+
+Чтобы избавиться от данного сообщения, повторно откроем **Параметры системы** -- **Приложения** -- **Привязки файлов**, в строке поиска введём ``html`` и переместим Chromium в самый верх списка приоритетов для **xhtml+xml** и **html**. Нажмём **Применить**.
+
+.. index:: oom, kernel, earlyoom
+.. _earlyoom-info:
+
+Что такое earlyoom и почему он установлен по умолчанию?
+============================================================
+
+Начиная с Fedora 32, в редакции Workstation `предустановлен <https://pagure.io/fedora-workstation/issue/119>`__ пакет **earlyoom**, который представляет собой систему раннего предотвращения нехватки памяти из пользовательского режима (user-space OOM Killer).
+
+В случаях, когда объём доступной оперативной памяти опустится ниже 4% или 400 МБ (в зависимости от того, что меньше), earlyoom принудительно завершит работу процесса, наиболее активно потребляющего память (имеющего самое высокое значение oom_score), не доводя систему до очистки системных буферов и вызова ядерного OOM Killer.
+
+Наиболее приоритетными кандидатами на завершение являются процессы *Web Content* браузера Mozilla Firefox. В то же время, снижен приоритет для различных системных сервисов, критичных для работы системы.
+
+.. index:: oom, kernel, earlyoom, systemd
+.. _earlyoom-enable:
+
+Как активировать earlyoom?
+===============================
+
+Установим пакет **earlyoom** (для версий, :ref:`отличных от Workstation <earlyoom-info>`):
+
+.. code-block:: text
+
+    sudo dnf install earlyoom
+
+Активируем его сервис (будет запускаться вместе с системой):
+
+.. code-block:: text
+
+    sudo systemctl enable --now earlyoom.service
+
+.. index:: oom, kernel, earlyoom, systemd
+.. _earlyoom-disable:
+
+Как отключить earlyoom?
+============================
+
+Отключим earlyoom (не будет запускаться вместе с системой):
+
+.. code-block:: text
+
+    sudo systemctl disable earlyoom.service
+
+Внимание! Если удалить пакет **earlyoom** в Fedora Workstation, он может быть :ref:`установлен заново <earlyoom-info>` из-за включённых по умолчанию :ref:`слабых зависимостей <dnf-weakdeps>`.
+
+.. index:: oom, kernel, earlyoom, config
+.. _earlyoom-configure:
+
+Как настроить earlyoom?
+============================
+
+Параметры :ref:`earlyoom <earlyoom-info>` хранятся в файле ``/etc/default/earlyoom``.
+
+Откроем его в текстовом редакторе:
+
+.. code-block:: text
+
+    sudoedit /etc/default/earlyoom
+
+Внесём правки, сохраним изменения, а затем перезапустим сервис:
+
+.. code-block:: text
+
+    sudo systemctl restart earlyoom.service
+
+Подробную документацию о всех поддерживаемых опциях можно найти в ``man earlyoom``.
+
+.. index:: kde, iso, dolphin, ark, udf, plasma, dolphin
+.. _kde-iso:
+
+Как открыть ISO образ в KDE?
+===================================
+
+Файлы образов ISO могут быть открыты архиватором Ark (``sudo dnf install ark``), если они не используют `файловую систему UDF <https://ru.wikipedia.org/wiki/Universal_Disk_Format>`__.
+
+В качестве альтернативного варианта можно установить утилиту Gnome Disks (``sudo dnf install gnome-disk-utility``), после чего пункт монтирования ISO-файла появится в контекстном меню по щелчку правой кнопки мыши в Dolphin. Таким способом можно быстро смонтировать образ с любой ФС.

@@ -1,10 +1,12 @@
-.. Fedora-Faq-Ru (c) 2018 - 2019, EasyCoding Team and contributors
-.. 
-.. Fedora-Faq-Ru is licensed under a
-.. Creative Commons Attribution-ShareAlike 4.0 International License.
-.. 
-.. You should have received a copy of the license along with this
-.. work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
+..
+    Fedora-Faq-Ru (c) 2018 - 2020, EasyCoding Team and contributors
+
+    Fedora-Faq-Ru is licensed under a
+    Creative Commons Attribution-ShareAlike 4.0 International License.
+
+    You should have received a copy of the license along with this
+    work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
+
 .. _virtualization:
 
 *************
@@ -93,6 +95,12 @@
 
     qemu-img convert -f vdi -O qcow2 /path/to/image.vdi /path/to/image.qcow2
 
+В случае необходимости создания образа фиксированного размера, добавим параметр ``-o preallocation=full``:
+
+.. code-block:: text
+
+    qemu-img convert -f vdi -O qcow2 /path/to/image.vdi /path/to/image.qcow2 -o preallocation=full
+
 .. index:: vmware, drive image, disk image, kvm, qemu, qcow2, vmx, vmdk
 .. _vmdk-to-qcow2:
 
@@ -169,7 +177,7 @@
 
 Нет. KVM требует наличие активной :ref:`аппаратной виртуализации <cpu-virt>` и при её осутствии работать не будет.
 
-В то же время, без наличия этой функции со стороны CPU, могут работать VirtualBox и VMWare, хотя и с очень низкой производительностью.
+В то же время, без наличия этой функции со стороны CPU, могут работать VirtualBox до версии 6.1.0 и VMWare, хотя и с очень низкой производительностью.
 
 .. index:: kvm, libvirt, selinux, semanage, restorecon
 .. _kvm-move-directory:
@@ -179,7 +187,7 @@
 
 По умолчанию образы создаваемых виртуальных машин создаются в каталоге ``/var/lib/libvirt/images``, что многих не устраивает.
 
-Переместим образы виртуальных машин на отдельный накопитель, смонтированный как ``/media/foo-bar``. ISO будем размещать в каталоге ``iso``, а дисковые образы виртуальных машин - ``images``.
+Переместим образы виртуальных машин на отдельный накопитель, смонтированный как ``/media/foo-bar``. ISO будем размещать в каталоге ``iso``, а дисковые образы виртуальных машин -- ``images``.
 
 Создаём собственные политики SELinux для указанных каталогов:
 
@@ -211,7 +219,7 @@
 
     virsh dumpxml vmname > vmname.xml
 
-Здесь **vmname** - название машины KVM, а **vmname.xml** - имя файла, в котором будут сохранены настройки.
+Здесь **vmname** -- название машины KVM, а **vmname.xml** -- имя файла, в котором будут сохранены настройки.
 
 Импортируем ранее сохранённую конфигурацию:
 
@@ -239,7 +247,7 @@
 
     vboxmanage export vmname -o vmname.ova --ovf20
 
-Здесь **vmname** - название виртуальной машины VirtualBox, а **vmname.ova** - имя файла экспорта.
+Здесь **vmname** -- название виртуальной машины VirtualBox, а **vmname.ova** -- имя файла экспорта.
 
 Переместим полученный файл на новый хост :ref:`любым удобным способом <copying-data>`, затем осуществим его импорт:
 
@@ -248,3 +256,137 @@
     vboxmanage import /path/to/vmname.ova --options importtovdi
 
 Через некоторое время новая виртуальная машина появится в списке и будет готова к работе.
+
+.. index:: virtualization, kvm, vm, windows
+.. _kvm-windows:
+
+Как правильно установить в KVM Windows?
+===========================================
+
+См. `здесь <https://www.easycoding.org/2019/12/19/zapuskaem-windows-v-kvm-na-fedora.html>`__.
+
+.. index:: virtualization, kvm, qemu, qcow2
+.. _qcow2-type:
+
+Какой тип QCOW2 образов выбрать?
+====================================
+
+Существует два типа образов:
+
+  * :ref:`динамически расширяющийся <qcow2-dynamic>`;
+  * :ref:`фиксированного размера <qcow2-fixed>`.
+
+У каждого есть как достоинства, так и недостатки.
+
+.. index:: virtualization, kvm, qemu, qcow2
+.. _qcow2-dynamic:
+
+Что нужно знать о динамически расширяющихся образах?
+========================================================
+
+Достоинства:
+
+  * занимают меньше места на диске, постепенно расширяясь до заданного предела.
+
+Недостатки:
+
+  * очень сильно фрагментируются;
+  * производительность значительно уступает :ref:`образам фиксированного размера <qcow2-fixed>`.
+
+.. index:: virtualization, kvm, qemu, qcow2
+.. _qcow2-fixed:
+
+Что нужно знать об образах фиксированного размера?
+========================================================
+
+Достоинства:
+
+  * практически не фрагментируются, т.к. все блоки для них заранее зарезервированы на диске;
+  * имеют более высокую производительность по сравнению с :ref:`динамически расширяющимися образами <qcow2-dynamic>`.
+
+Недостатки:
+
+  * занимают очень много места на диске, хотя если файловая система поддерживает `разреженные (sparse) файлы <https://ru.wikipedia.org/wiki/%D0%A0%D0%B0%D0%B7%D1%80%D0%B5%D0%B6%D1%91%D0%BD%D0%BD%D1%8B%D0%B9_%D1%84%D0%B0%D0%B9%D0%BB>`__, эта функция будет использоваться в полном объёме.
+
+.. index:: virtualization, kvm, qemu, qcow2, resize
+.. _qcow2-resize:
+
+Как увеличить размер дискового образа QCOW2?
+================================================
+
+Воспользуемся утилитой **qemu-img** для увеличения дискового образа:
+
+.. code-block:: text
+
+    qemu-img resize --preallocation=full /path/to/image.qcow2 +10G
+
+При использовании :ref:`образов фиксированного размера <qcow2-fixed>`, добавим параметр ``--preallocation=full``:
+
+.. code-block:: text
+
+    qemu-img resize --preallocation=full /path/to/image.qcow2 +10G
+
+Здесь вместо **+10G** укажем насколько следует расширить образ. Все операции должны выполняться при остановленной виртуальной машине, в которой он смонтирован.
+
+По окончании, внутри гостевой ОС расширим используемую файловую систему до новых границ образа при помощи fdisk, GParted или любого другого редактора разделов диска.
+
+.. index:: virtualization, kvm, qemu, qcow2, resize, shrink
+.. _qcow2-shrink:
+
+Как уменьшить размер дискового образа QCOW2?
+================================================
+
+Уменьшение размера дискового образа QCOW2 :ref:`при помощи qemu-img <qcow2-resize>` -- это достаточно небезопасная операция, которая может привести к его повреждению, поэтому вместо отрицательных значений для *resize* сначала уменьшим размер дисковых разделов внутри самой гостевой ОС при помощи fdisk, Gparted или любого другого редактора разделов диска так, чтобы справа осталось лишь неразмеченное пространство.
+
+Далее воспользуемся утилитой **qemu-img** и сделаем копию образа, которая уже не будет включать неразмеченное дисковое пространство:
+
+.. code-block:: text
+
+    qemu-img convert -f qcow2 -O qcow2 /path/to/image.qcow2 /path/to/new_image.qcow2
+
+В случае необходимости создания :ref:`образа фиксированного размера <qcow2-fixed>`, добавим параметр ``-o preallocation=full``:
+
+.. code-block:: text
+
+    qemu-img convert -f qcow2 -O qcow2 /path/to/image.qcow2 /path/to/new_image.qcow2 -o preallocation=full
+
+Подключим новый образ к виртуальной машине вместо старого и проверим работу. Если всё верно, старый можно удалить.
+
+.. index:: virtualization, kvm, qemu, qcow2, ssd, trim
+.. _kvm-ssd:
+
+Как оптимизировать KVM для работы с SSD-накопителей?
+========================================================
+
+Каких-то особых оптимизаций производить не требуется. Достаточно лишь использовать дисковые образы гостевых ОС в формате QCOW2, а также при их подключении указать тип контроллера **VirtIO** и установить следующие опции:
+
+  * discard mode: unmap;
+  * detect zeroes: unmap.
+
+Конечно же как в хостовой, так и в гостевой ОС, должна быть :ref:`включена поддержка TRIM <ssd-tuning>`.
+
+.. index:: virtualization, virt manager, kvm, qemu, desktop, shortcut
+.. _kvm-desktop-entry:
+
+Как создать ярлык запуска виртуальной машины KVM?
+=====================================================
+
+Для создания ярлыка в главном меню рабочей среды, создадим файл ``fedora-rawhide.desktop`` в каталоге ``~/.local/share/applications`` следующего содержания:
+
+.. code-block:: ini
+
+    [Desktop Entry]
+    Name=Fedora Rawhide
+    Name[ru_RU]=Fedora Rawhide
+    GenericName=Start Fedora Rawhide
+    GenericName[ru_RU]=Запуск Fedora Rawhide
+    Comment=Start Fedora Rawhide
+    Comment[ru_RU]=Запуск Fedora Rawhide
+    Exec=/usr/bin/virt-manager --connect "qemu:///session" --show-domain-console "Fedora-Rawhide"
+    Icon=virtualbox
+    Categories=Development;
+    StartupNotify=false
+    Terminal=false
+    Type=Application
+
+Здесь вместо **Fedora-Rawhide** укажем реальное имя виртуальной машины KVM, а **qemu:///session** -- сеанс, в котором она создана (**session** -- пользовательский; **system** -- системный).

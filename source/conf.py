@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# Fedora-Faq-Ru (c) 2018 - 2019, EasyCoding Team and contributors
-# 
+# Fedora-Faq-Ru (c) 2018 - 2020, EasyCoding Team and contributors
+#
 # Fedora-Faq-Ru is licensed under a
 # Creative Commons Attribution-ShareAlike 4.0 International License.
-# 
+#
 # You should have received a copy of the license along with this
 # work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
 
@@ -16,7 +16,7 @@ from os import getenv
 from time import strftime
 
 # Configuring version and Git snapshots.
-rel_version = '2019.09.30'
+rel_version = '2020.07.30'
 rel_snapshot = getenv('CI_HASH')
 
 # -- General configuration ------------------------------------------------
@@ -79,6 +79,17 @@ todo_include_todos = False
 
 # -- Options for HTML output ----------------------------------------------
 
+# Load CSS files for the custom search engine.
+html_css_files = [
+    'https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css'
+]
+
+# Load JavaScript files for the custom search engine.
+html_js_files = [
+    ('https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js', {'defer': 'defer'}),
+    ('search.js', {'defer': 'defer'})
+]
+
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
@@ -101,6 +112,9 @@ html_theme_options = {
     'touch_icon': 'faq-icon.png',
     'logo_name': False
 }
+
+# Override default HTML title for HTML and HTML Help pages.
+html_title = '{} (версия {})'.format(project, version)
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
