@@ -955,6 +955,26 @@ end
 </div>
 <p>Загрузим полученный архив в <a class="reference internal" href="generic-info.html#bug-report"><span class="std std-ref">баг-репорт</span></a>.</p>
 </div>
+<div class="section" id="compare-versions">
+<span id="index-62"></span><span id="id43"></span><h2>Как определить, какая из двух версий больше?<a class="headerlink" href="#compare-versions" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для проверки версий воспользуемся утилитой <strong>rpmdev-vercmp</strong>, входящей в состав пакета <strong>rpmdevtools</strong>.</p>
+<p>Установим его:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install rpmdevtools
+</pre></div>
+</div>
+<p>Произведём проверку между <strong>X</strong> и <strong>Y</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rpmdev-vercmp X Y
+</pre></div>
+</div>
+<p>Данную утилиту также можно использовать в различных скриптах, исходя из возвращаемых ею кодов завершения:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>0</strong> – версии равны;</p></li>
+<li><p><strong>11</strong> – версия <strong>X</strong> больше, чем <strong>Y</strong>;</p></li>
+<li><p><strong>12</strong> – версия <strong>X</strong> меньше, чем <strong>Y</strong>.</p></li>
+</ul>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -1048,6 +1068,7 @@ end
 <li class="toctree-l2"><a class="reference internal" href="#git-remove-branch">Как удалить ветку во внешнем Git репозитории?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-remove-all-tags">Как удалить все теги (локальные и удалённые) в Git репозитории?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#koji-extract-data">Как извлечь из Koji какие-либо данные для отправки баг-репорта?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compare-versions">Как определить, какая из двух версий больше?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>

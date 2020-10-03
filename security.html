@@ -1087,6 +1087,7 @@ sudo rmdir /media/data
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/zero bs=1M count=1024 of=/media/data/foo-bar.dat
 </pre></div>
 </div>
+<p>Минимальный размер создаваемого образа должен быть не меньше 32 МБ, т.к. противном случае возникнет ошибка <em>Requested offset is beyond real size of device</em>.</p>
 <p>Здесь <strong>/media/data/foo-bar.dat</strong> – полный путь к файлу на диске.</p>
 <p>Создадим зашифрованный LUKS контейнер:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --verify-passphrase luksFormat /media/data/foo-bar.dat -c aes-xts-plain64 -s 256 -h sha512

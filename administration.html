@@ -1067,6 +1067,13 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 </div>
 <p>Данный вывод означает, что в системе для устройства <code class="docutils literal notranslate"><span class="pre">/dev/sda</span></code> применяется <a class="reference internal" href="tips-and-tricks.html#bfq-scheduler"><span class="std std-ref">BFQ</span></a>.</p>
 </div>
+<div class="section" id="return-code-get">
+<span id="index-89"></span><span id="id67"></span><h2>Как получить код завершения последней выполненной команды?<a class="headerlink" href="#return-code-get" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Выведем на экран код завершения последней выполненной команды в терминале:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>echo $?
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -1180,6 +1187,7 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <li class="toctree-l2"><a class="reference internal" href="#memory-defrag">Как произвести дефраментацию оперативной памяти?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#zram-default-disable">Как отключить использование сжатия памяти по умолчанию?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#io-scheduler">Как определить какой планировщик ввода-вывода используется?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#return-code-get">Как получить код завершения последней выполненной команды?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>
