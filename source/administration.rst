@@ -83,17 +83,23 @@
 
     cat /proc/cmdline
 
-.. index:: kernel, kernel modules
+.. index:: kernel, kernel modules, lsmod, lspci
 .. _kernel-modules-list:
 
 Как определить какие модули ядра в настоящее время загружены?
 =================================================================
 
-Для получения информации о загруженных модулях ядра следует применять **lsmod**:
+Воспользуемся **lsmod** для отображения всех загруженных в данный момент модулей ядра:
 
 .. code-block:: text
 
     lsmod
+
+При помощи **lspci** выведем список используемых модулей конкретными устройствами:
+
+.. code-block:: text
+
+    lspci -nnk
 
 .. index:: kernel, kernel modules
 .. _kernel-modules-help:
