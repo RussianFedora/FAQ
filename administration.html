@@ -82,8 +82,12 @@
 </div>
 <div class="section" id="kernel-modules-list">
 <span id="index-5"></span><span id="id7"></span><h2>Как определить какие модули ядра в настоящее время загружены?<a class="headerlink" href="#kernel-modules-list" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для получения информации о загруженных модулях ядра следует применять <strong>lsmod</strong>:</p>
+<p>Воспользуемся <strong>lsmod</strong> для отображения всех загруженных в данный момент модулей ядра:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>lsmod
+</pre></div>
+</div>
+<p>При помощи <strong>lspci</strong> выведем список используемых модулей конкретными устройствами:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>lspci -nnk
 </pre></div>
 </div>
 </div>
