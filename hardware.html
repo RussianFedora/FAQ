@@ -787,8 +787,8 @@ sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
 </div>
 <div class="section" id="va-api-intel">
 <span id="vaapi-intel"></span><span id="index-59"></span><h2>Как активировать VA-API на видеокартах Intel?<a class="headerlink" href="#va-api-intel" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для полноценной работы модуля <a class="reference internal" href="using-applications.html#video-hwaccel"><span class="std std-ref">аппаратного декодирования</span></a> мультимедиа подключим репозитории <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установим драйвер <strong>libva-intel-driver</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install libva-intel-driver
+<p>Для полноценной работы модуля <a class="reference internal" href="using-applications.html#video-hwaccel"><span class="std std-ref">аппаратного декодирования</span></a> мультимедиа подключим репозитории <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установим драйверы <strong>libva-intel-driver</strong> (i915) и <strong>intel-media-driver</strong> (iHD):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install libva-intel-driver intel-media-driver
 </pre></div>
 </div>
 </div>
