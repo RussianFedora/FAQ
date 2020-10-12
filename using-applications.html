@@ -56,6 +56,7 @@ dom.webgpu.enabled = true
 </div>
 <div class="section" id="browser-hwaccel">
 <span id="index-1"></span><span id="id2"></span><h2>Как активировать аппаратное ускорение декодирования мультимедиа в браузерах?<a class="headerlink" href="#browser-hwaccel" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Поддерживаемые веб-браузеры:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference internal" href="#hwaccel-firefox"><span class="std std-ref">Mozilla Firefox</span></a>;</p></li>
@@ -302,14 +303,10 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <p>Чтобы исправить проблему необходимо и достаточно создать символические ссылки на XPI файлы, обновляемые пакетом.</p>
 <p>Удалим старые файлы из профилей Thunderbird:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rm -f ~/.thunderbird/*/extensions/langpack-ru@thunderbird.mozilla.org.xpi
-rm -f ~/.thunderbird/*/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi
-rm -f ~/.thunderbird/*/extensions/langpack-cal-ru@lightning.mozilla.org.xpi
 </pre></div>
 </div>
 <p>Создадим символические ссылки на месте удалённых XPI файлов:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-ru@thunderbird.mozilla.org.xpi ~/.thunderbird/*/extensions/langpack-ru@thunderbird.mozilla.org.xpi
-ln -s /usr/lib64/thunderbird/distribution/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi ~/.thunderbird/*/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi
-ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.mozilla.org.xpi ~/.thunderbird/*/extensions/langpack-cal-ru@lightning.mozilla.org.xpi
 </pre></div>
 </div>
 <p>Перезапустим Thunderbird для того, чтобы изменения вступили в силу.</p>
