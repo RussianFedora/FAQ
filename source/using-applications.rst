@@ -25,6 +25,7 @@
 
     layers.acceleration.force-enabled = true
     webgl.force-enabled = true
+    gfx.webrender.enabled = true
     gfx.webrender.all = true
     dom.webgpu.enabled = true
 
@@ -38,17 +39,45 @@
 Как активировать аппаратное ускорение декодирования мультимедиа в браузерах?
 ===============================================================================
 
-В настоящее время аппаратное ускорение декодирования мультимедиа "из коробки" в GNU/Linux не поддерживается ни в одном браузере.
+  * :ref:`Mozilla Firefox <hwaccel-firefox>`;
+  * :ref:`Chromium <hwaccel-chromium>`.
 
-В Mozilla Firefox оно реализовано только для Wayland-сеанса (в X11 не работает: `MZBZ#563206 <https://bugzilla.mozilla.org/show_bug.cgi?id=563206>`__ и `MZBZ#1210727 <https://bugzilla.mozilla.org/show_bug.cgi?id=1210727>`__).
+.. index:: firefox, chromium, chrome, hardware acceleration, vaapi
+.. _hwaccel-firefox:
 
-В Google Chrome и Chromium частично реализовано, но отключено на этапе компиляции и без особых VA-API патчей недоступно. Репозиторий :ref:`RPM Fusion <rpmfusion>` предоставляет такую сборку Chromium. Для её установки необходимо подключить его и установить пакет **chromium-freeworld**:
+Как активировать аппаратное ускорение декодирования мультимедиа в Firefox?
+===============================================================================
+
+Начиная с версии `Firefox 77.0 <https://mastransky.wordpress.com/2020/06/03/firefox-on-fedora-finally-gets-va-api-on-wayland/>`__, аппаратное ускорение декодирования мультимедиа доступно для сеанса Wayland, а с `Firefox 81.0 <https://mastransky.wordpress.com/2020/09/29/firefox-81-on-fedora-with-va-api-webrtc-and-x11/>`__ и для X11.
+
+Установим полный :ref:`набор кодеков <firefox-codecs>`, а также :ref:`VA-API драйверы <hwaccel-drivers>` из репозитория :ref:`RPM Fusion <rpmfusion>`.
+
+Откроем модуль конфигурации ``about:config`` и изменим значения следующих переменных (при отсутствии создадим):
+
+.. code-block:: text
+
+    widget.wayland-dmabuf-vaapi.enabled = true
+    media.ffmpeg.vaapi.enabled = true
+    media.ffmpeg.low-latency.enabled = true
+    media.navigator.mediadatadecoder_vpx_enabled = true
+
+Перезапустим браузер для вступления изменений в силу.
+
+.. index:: chromium, chrome, hardware acceleration, vaapi
+.. _hwaccel-chromium:
+
+Как активировать аппаратное ускорение декодирования мультимедиа в Chromium?
+===============================================================================
+
+В Google Chrome и Chromium аппаратное ускорение декодирования мультимедиа реализовано, но отключено в официальных сборках на этапе компиляции для GNU/Linux платформы.
+
+Репозиторий :ref:`RPM Fusion <rpmfusion>` предоставляет сборку Chromium с включённой поддержкой :ref:`VA-API <video-hwaccel>`. Для её установки активируем его, установим :ref:`VA-API драйверы <hwaccel-drivers>`, а также пакет **chromium-freeworld**:
 
 .. code-block:: text
 
     sudo dnf install chromium-freeworld
 
-Далее необходимо запустить его, зайти в ``chrome://flags`` и установить пункт **Hardware decoding** в значение **Enabled**, после чего перезапустить браузер.
+Далее в Chromium Freeworld зайдём в ``chrome://flags`` и установим для пункта **Hardware decoding** значение **Enabled**, после чего перезапустим браузер для вступления изменений в силу.
 
 .. index:: mpv, video player, hardware acceleration, vaapi, vdpau
 .. _video-hwaccel:
