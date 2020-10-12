@@ -1169,11 +1169,11 @@ ICC профиль можно получить либо на сайте прои
 Как активировать VA-API на видеокартах Intel?
 ================================================
 
-Для полноценной работы модуля :ref:`аппаратного декодирования <video-hwaccel>` мультимедиа подключим репозитории :ref:`RPM Fusion <rpmfusion>` и установим драйвер **libva-intel-driver**:
+Для полноценной работы модуля :ref:`аппаратного декодирования <video-hwaccel>` мультимедиа подключим репозитории :ref:`RPM Fusion <rpmfusion>` и установим драйверы **libva-intel-driver** (i915) и **intel-media-driver** (iHD):
 
 .. code-block:: text
 
-    sudo dnf install libva-intel-driver
+    sudo dnf install libva-intel-driver intel-media-driver
 
 .. index:: hardware acceleration, vaapi, vdpau, nvidia
 .. _vaapi-nvidia:
