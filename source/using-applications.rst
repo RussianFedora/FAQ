@@ -48,7 +48,7 @@
 Как активировать аппаратное ускорение декодирования мультимедиа в Firefox?
 ===============================================================================
 
-Начиная с версии `Firefox 77.0 <https://mastransky.wordpress.com/2020/06/03/firefox-on-fedora-finally-gets-va-api-on-wayland/>`__, аппаратное ускорение декодирования мультимедиа доступно для сеанса Wayland, а с `Firefox 81.0 <https://mastransky.wordpress.com/2020/09/29/firefox-81-on-fedora-with-va-api-webrtc-and-x11/>`__ и для X11.
+Начиная с версии `Firefox 77.0 <https://mastransky.wordpress.com/2020/06/03/firefox-on-fedora-finally-gets-va-api-on-wayland/>`__, аппаратное ускорение декодирования мультимедиа доступно для :ref:`сеанса Wayland <session-type>`, а с `Firefox 81.0 <https://mastransky.wordpress.com/2020/09/29/firefox-81-on-fedora-with-va-api-webrtc-and-x11/>`__ и для X11.
 
 Установим полный :ref:`набор кодеков <firefox-codecs>`, а также :ref:`VA-API драйверы <hwaccel-drivers>` из репозитория :ref:`RPM Fusion <rpmfusion>`.
 
