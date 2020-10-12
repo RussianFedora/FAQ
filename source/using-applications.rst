@@ -39,6 +39,8 @@
 Как активировать аппаратное ускорение декодирования мультимедиа в браузерах?
 ===============================================================================
 
+Поддерживаемые веб-браузеры:
+
   * :ref:`Mozilla Firefox <hwaccel-firefox>`;
   * :ref:`Chromium <hwaccel-chromium>`.
 
@@ -431,16 +433,12 @@ KDE Connect не видит мой смартфон. Как исправить?
 .. code-block:: text
 
     rm -f ~/.thunderbird/*/extensions/langpack-ru@thunderbird.mozilla.org.xpi
-    rm -f ~/.thunderbird/*/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi
-    rm -f ~/.thunderbird/*/extensions/langpack-cal-ru@lightning.mozilla.org.xpi
 
 Создадим символические ссылки на месте удалённых XPI файлов:
 
 .. code-block:: text
 
     ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-ru@thunderbird.mozilla.org.xpi ~/.thunderbird/*/extensions/langpack-ru@thunderbird.mozilla.org.xpi
-    ln -s /usr/lib64/thunderbird/distribution/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi ~/.thunderbird/*/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi
-    ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.mozilla.org.xpi ~/.thunderbird/*/extensions/langpack-cal-ru@lightning.mozilla.org.xpi
 
 Перезапустим Thunderbird для того, чтобы изменения вступили в силу.
 
