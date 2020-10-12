@@ -774,22 +774,33 @@ sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
 </pre></div>
 </div>
 </div>
+<div class="section" id="hwaccel-drivers">
+<span id="index-58"></span><span id="id36"></span><h2>Какие драйверы необходимы для работы аппаратного ускорения декодирования мультимедиа?<a class="headerlink" href="#hwaccel-drivers" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Реализация аппаратного ускорения декодирования мультимедиа доступна на следующих видеокартах:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#vaapi-intel"><span class="std std-ref">Intel</span></a>;</p></li>
+<li><p><a class="reference internal" href="#vaapi-nvidia"><span class="std std-ref">NVIDIA</span></a>;</p></li>
+<li><p>AMD (включено в mesa).</p></li>
+</ul>
+</div></blockquote>
+</div>
 <div class="section" id="va-api-intel">
-<span id="vaapi-intel"></span><span id="index-58"></span><h2>Как активировать VA-API на видеокартах Intel?<a class="headerlink" href="#va-api-intel" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="vaapi-intel"></span><span id="index-59"></span><h2>Как активировать VA-API на видеокартах Intel?<a class="headerlink" href="#va-api-intel" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для полноценной работы модуля <a class="reference internal" href="using-applications.html#video-hwaccel"><span class="std std-ref">аппаратного декодирования</span></a> мультимедиа подключим репозитории <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установим драйвер <strong>libva-intel-driver</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install libva-intel-driver
 </pre></div>
 </div>
 </div>
 <div class="section" id="va-api-nvidia">
-<span id="vaapi-nvidia"></span><span id="index-59"></span><h2>Как активировать VA-API на видеокартах NVIDIA?<a class="headerlink" href="#va-api-nvidia" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="vaapi-nvidia"></span><span id="index-60"></span><h2>Как активировать VA-API на видеокартах NVIDIA?<a class="headerlink" href="#va-api-nvidia" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Т.к. NVIDIA использует VDPAU для <a class="reference internal" href="using-applications.html#video-hwaccel"><span class="std std-ref">аппаратного декодирования</span></a> мультимедиа, для активации VA-API, установим особый драйвер-конвертер <strong>libva-vdpau-driver</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install libva-vdpau-driver
 </pre></div>
 </div>
 </div>
 <div class="section" id="battery-status">
-<span id="index-60"></span><span id="id36"></span><h2>Как вывести информацию о состоянии батареи ноутбука?<a class="headerlink" href="#battery-status" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-61"></span><span id="id37"></span><h2>Как вывести информацию о состоянии батареи ноутбука?<a class="headerlink" href="#battery-status" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для вывода информации об используемых аккумуляторных батареях, воспользуемся утилитой <strong>upower</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>upower -i /org/freedesktop/UPower/devices/battery_BAT0
 </pre></div>
@@ -797,7 +808,7 @@ sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
 <p>Если в устройстве их более одной, вместо <strong>BAT0</strong> укажем следующую по порядку.</p>
 </div>
 <div class="section" id="mpris-proxy">
-<span id="index-61"></span><span id="id37"></span><h2>Как включить управление воспроизведением с Bluetooth-наушников?<a class="headerlink" href="#mpris-proxy" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-62"></span><span id="id38"></span><h2>Как включить управление воспроизведением с Bluetooth-наушников?<a class="headerlink" href="#mpris-proxy" title="Ссылка на этот заголовок">¶</a></h2>
 <p>За управление воспроизведением при помощи D-Bus событий отвечает служба <a class="reference external" href="https://ru.wikipedia.org/wiki/MPRIS">MPRIS</a>.</p>
 <p>В первую очередь убедимся, что используемый медиа-проигрыватель его поддерживает. В большинстве случаев необходимо и достаточно просто включить модуль MPRIS в настройках. В VLC например включён «из коробки».</p>
 <p>Установим утилиту <strong>mpris-proxy</strong> из пакета <strong>bluez</strong>.</p>
@@ -839,7 +850,7 @@ touch ~/.config/systemd/user/mpris-proxy.service
 </div>
 </div>
 <div class="section" id="bluetooth-codecs">
-<span id="index-62"></span><span id="id38"></span><h2>Как включить поддержку Bluetooth-кодеков высокого качества?<a class="headerlink" href="#bluetooth-codecs" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-63"></span><span id="id39"></span><h2>Как включить поддержку Bluetooth-кодеков высокого качества?<a class="headerlink" href="#bluetooth-codecs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В репозиториях Fedora модули работы с Bluetooth собраны без поддержки AAC, aptX, aptX HD и LDAC ввиду патентных ограничений.</p>
 <p>Однако <a class="reference external" href="https://github.com/EHfive/pulseaudio-modules-bt">существует форк</a>, в котором добавлена полная поддержка данных кодеков, а также расширены возможности по настройке SBC:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>a2dp_sink_sbc: High Fidelity Playback (A2DP Sink: SBC)
@@ -861,17 +872,6 @@ pulseaudio -D
 </div>
 <p>Теперь в настройках используемой графической среды, после подключения наушников, выберем необходимый кодек.</p>
 <p>Внимание! Выбранный кодек должен поддерживаться наушниками аппаратно.</p>
-</div>
-<div class="section" id="hwaccel-drivers">
-<span id="index-63"></span><span id="id39"></span><h2>Какие драйверы необходимы для работы аппаратного ускорения декодирования мультимедиа?<a class="headerlink" href="#hwaccel-drivers" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Реализация аппаратного ускорения декодирования мультимедиа доступна на следующих видеокартах:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><a class="reference internal" href="#vaapi-intel"><span class="std std-ref">Intel</span></a>;</p></li>
-<li><p><a class="reference internal" href="#vaapi-nvidia"><span class="std std-ref">NVIDIA</span></a>;</p></li>
-<li><p>AMD (включено в mesa).</p></li>
-</ul>
-</div></blockquote>
 </div>
 </div>
 
@@ -961,12 +961,12 @@ pulseaudio -D
 <li class="toctree-l2"><a class="reference internal" href="#rtl8821ce">Как установить драйвер сетевой карты на чипе rtl8821ce?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rtl8821ce-update">Как обновить или удалить драйвер сетевой карты на чипе rtl8821ce?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ram-info">Как получить информацию об установленной оперативной памяти?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hwaccel-drivers">Какие драйверы необходимы для работы аппаратного ускорения декодирования мультимедиа?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#va-api-intel">Как активировать VA-API на видеокартах Intel?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#va-api-nvidia">Как активировать VA-API на видеокартах NVIDIA?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#battery-status">Как вывести информацию о состоянии батареи ноутбука?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mpris-proxy">Как включить управление воспроизведением с Bluetooth-наушников?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bluetooth-codecs">Как включить поддержку Bluetooth-кодеков высокого качества?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#hwaccel-drivers">Какие драйверы необходимы для работы аппаратного ускорения декодирования мультимедиа?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Разработка и сборка пакетов</a></li>
