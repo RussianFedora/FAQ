@@ -1697,3 +1697,21 @@ Coredump -- это дамп закрытой памяти процесса, со
 .. code-block:: text
 
     echo $?
+
+.. index:: uefi, secure boot, mokutil, status
+.. _secure-boot-status:
+
+Как определить текущее состояние UEFI Secure Boot?
+======================================================
+
+Установим пакет **mokutil**:
+
+.. code-block:: text
+
+    sudo dnf install mokutil
+
+Выведем информацию о текущем состоянии :ref:`UEFI Secure Boot <secure-boot>`:
+
+.. code-block:: text
+
+    sudo mokutil --sb-state
