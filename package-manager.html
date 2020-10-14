@@ -777,6 +777,13 @@ sudo dnf distro-sync --allowerasing
 </div>
 <p>Сохраним изменения в файле.</p>
 </div>
+<div class="section" id="check-build-deps">
+<span id="index-80"></span><span id="id65"></span><h2>Как вывести список пакетов, использующих при сборке определённый?<a class="headerlink" href="#check-build-deps" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Однократно подключим репозитории с исходниками и при помощи dnf выведем список пакетов, для сборки которых необходим <strong>foo-bar-devel</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf repoquery -q  --releasever=rawhide --disablerepo=&quot;*&quot; --qf=&quot;%{name}&quot; --enablerepo=fedora-source --enablerepo=updates-source --enablerepo=updates-testing-source --archlist=src --whatrequires=&quot;foo-bar-devel&quot;
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -880,6 +887,7 @@ sudo dnf distro-sync --allowerasing
 <li class="toctree-l2"><a class="reference internal" href="#dnf-no-color">Как запретить цвета в выводе dnf?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#zchunk-dnf">Как отключить использование zchunk в dnf?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-disable-telemetry">Как отключить телеметрию в dnf?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#check-build-deps">Как вывести список пакетов, использующих при сборке определённый?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Системное администрирование</a></li>
