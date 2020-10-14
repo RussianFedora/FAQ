@@ -1078,6 +1078,17 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 </pre></div>
 </div>
 </div>
+<div class="section" id="uefi-secure-boot">
+<span id="secure-boot-status"></span><span id="index-90"></span><h2>Как определить текущее состояние UEFI Secure Boot?<a class="headerlink" href="#uefi-secure-boot" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим пакет <strong>mokutil</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install mokutil
+</pre></div>
+</div>
+<p>Выведем информацию о текущем состоянии <a class="reference internal" href="installation.html#secure-boot"><span class="std std-ref">UEFI Secure Boot</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mokutil --sb-state
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -1192,6 +1203,7 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <li class="toctree-l2"><a class="reference internal" href="#zram-default-disable">Как отключить использование сжатия памяти по умолчанию?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#io-scheduler">Как определить какой планировщик ввода-вывода используется?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#return-code-get">Как получить код завершения последней выполненной команды?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uefi-secure-boot">Как определить текущее состояние UEFI Secure Boot?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>
