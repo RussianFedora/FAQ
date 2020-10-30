@@ -1191,6 +1191,12 @@ Cгенерируем файл с контрольными суммами SHA2 (
 
     sudo systemctl disable earlyoom.service
 
+Удалим пакет **earlyoom**:
+
+.. code-block:: text
+
+    sudo dnf remove earlyoom
+
 Внимание! Если удалить пакет **earlyoom** в Fedora Workstation, он может быть :ref:`установлен заново <earlyoom-info>` из-за включённых по умолчанию :ref:`слабых зависимостей <dnf-weakdeps>`.
 
 .. index:: oom, kernel, earlyoom, config
@@ -1254,3 +1260,23 @@ Cгенерируем файл с контрольными суммами SHA2 (
 .. code-block:: text
 
     sudo systemctl enable --now uresourced.service
+
+.. index:: kernel, memory, uresourced, gui, ram, systemd
+.. _uresourced-disable:
+
+Как отключить uresourced?
+============================
+
+Отключим uresourced (не будет запускаться вместе с системой):
+
+.. code-block:: text
+
+    sudo systemctl disable uresourced.service
+
+Удалим пакет **uresourced**:
+
+.. code-block:: text
+
+    sudo dnf remove uresourced
+
+Внимание! Если удалить пакет **uresourced** в Fedora Workstation, он может быть :ref:`установлен заново <earlyoom-info>` из-за включённых по умолчанию :ref:`слабых зависимостей <dnf-weakdeps>`.
