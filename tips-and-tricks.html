@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>Оптимизация и тонкая настройка &#8212; Неофициальный FAQ по Fedora (версия 2020.07.30)</title>
+    <title>Оптимизация и тонкая настройка &#8212; Неофициальный FAQ по Fedora (версия 2020.10.30)</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -195,15 +195,25 @@ tar -xzf fpsa.tar.gz -C ~/foo-bar
 <span id="index-10"></span><span id="id4"></span><h2>Как изменить размер пула сжатия памяти?<a class="headerlink" href="#zram-pool-size" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию модуль <a class="reference internal" href="administration.html#memory-compression"><span class="std std-ref">сжатия памяти zram</span></a> создаёт пул, равный половине объёма имеющейся оперативной памяти.</p>
 <p>Увеличивать размер пула выше стандартного значения категорически не рекомендуется, т.к. это может приводить к зависаниям системы.</p>
-<p>Если всё-таки хочется внести поправки, откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/zram.conf</span></code> в текстовом редакторе:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/zram.conf
+<p>Если всё-таки хочется внести поправки, откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/systemd/zram-generator.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/systemd/zram-generator.conf
 </pre></div>
 </div>
-<p>Внесём изменения в переменную <code class="docutils literal notranslate"><span class="pre">FACTOR</span></code>, явно указав нужное значение:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FACTOR=2
+<p>Внесём изменения в переменные <code class="docutils literal notranslate"><span class="pre">zram-fraction</span></code> и <code class="docutils literal notranslate"><span class="pre">max-zram-size</span></code>, явно указав необходимые значения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>zram-fraction = 0.5
+max-zram-size = 4096
 </pre></div>
 </div>
-<p>Формула расчёта: <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">FACTOR</span></code>. Значение <strong>2</strong> – выделение под пул 50% (выбор по умолчанию) от оперативной памяти, <strong>4</strong> – 25%, <strong>1</strong> – 100% соответственно (не рекомендуется).</p>
+<p>Допустимые значения <strong>zram-fraction</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>0.5</strong> – выделение под пул 50% (выбор по умолчанию) от оперативной памяти;</p></li>
+<li><p><strong>0.25</strong> – 25%;</p></li>
+<li><p><strong>0.1</strong> – 10%;</p></li>
+<li><p><strong>1.0</strong> – 100% соответственно (не рекомендуется).</p></li>
+</ul>
+</div></blockquote>
+<p>В <strong>max-zram-size</strong> указывается максимально допустимый объём для пула в мегабайтах.</p>
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
 </div>
 <div class="section" id="rfremix-fedora">

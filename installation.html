@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>Установка системы &#8212; Неофициальный FAQ по Fedora (версия 2020.07.30)</title>
+    <title>Установка системы &#8212; Неофициальный FAQ по Fedora (версия 2020.10.30)</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -191,12 +191,35 @@
 </div>
 <div class="section" id="fs-selection">
 <span id="index-21"></span><span id="id16"></span><h2>Какую файловую систему рекомендуется использовать на Fedora?<a class="headerlink" href="#fs-selection" title="Ссылка на этот заголовок">¶</a></h2>
-<p>По умолчанию применяется <a class="reference external" href="https://ru.wikipedia.org/wiki/Ext4">ext4</a>. На наш взгляд, это самая стабильная и популярная файловая система в настоящее время.</p>
+<p>Начиная с Fedora 33, в редакции Workstation, для установки по умолчанию предлагается <a class="reference internal" href="#fs-btrfs"><span class="std std-ref">BTRFS</span></a>.</p>
+<p>Несмотря на это, мы рекомендуем применять <a class="reference external" href="https://ru.wikipedia.org/wiki/Ext4">ext4</a>. На наш взгляд, это самая стабильная и популярная файловая система в настоящее время.</p>
 <p>Для хранения больших объёмов данных можно использовать <a class="reference external" href="https://ru.wikipedia.org/wiki/XFS">XFS</a>. Это также стабильная и быстрая ФС, но следует помнить, что при сбоях электропитания вместо файлов, в которые в этот момент шла запись, могут оказаться нули. Таким образом, XFS лучше применять только если есть источник бесперебойного питания (UPS) либо на ноутбуках.</p>
 </div>
 <div class="section" id="btrfs">
 <span id="fs-btrfs"></span><span id="index-22"></span><h2>Что вы скажете об установке системы на BTRFS?<a class="headerlink" href="#btrfs" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Мы настоятельно не рекомендуем её использовать. Данная ФС очень нестабильна и часто приводит к полной потере всех данных на устройстве без возможности восстановления даже в идеальных условиях (было множество случаев у пользователей нашего канала).</p>
+<p>Достоинства:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>поддержка <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5_%D0%BF%D1%80%D0%B8_%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B8">копирования при записи (COW)</a>;</p></li>
+<li><p>поддержка проверки целостности данных посредством контрольных сумм;</p></li>
+<li><p>поддержка <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%D0%BE%D0%B9_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B">моментальных снимков системы (snapshot)</a>;</p></li>
+<li><p>отсутствие ограничения на максимальное количество файлов;</p></li>
+<li><p>поддержка прозрачного сжатия данных с использованием нескольких алгоритмов;</p></li>
+<li><p>поддержка подтомов (subvolume);</p></li>
+<li><p>встроенная поддержка клонирования, что полезно при создании резервных копий;</p></li>
+<li><p><a class="reference internal" href="administration.html#deduplication-disk"><span class="std std-ref">оффлайновая дедупликация</span></a> записываемых данных.</p></li>
+</ul>
+</div></blockquote>
+<p>Недостатки:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ранее <a class="reference external" href="https://ru.fedoracommunity.org/posts/budushchee-btrfs/">была слишком нестабильной</a> и при определённых условиях приводила к потере всех данных на накопителе;</p></li>
+<li><p>не имеет встроенного полнодискового шифрования;</p></li>
+<li><p>известны случаи несовместимости с системой внешнего полнодискового шифрования LUKS;</p></li>
+<li><p>из-за COW очень сильно фрагментируется, поэтому не рекомендуется к использованию на жёстких магнитных дисках (HDD);</p></li>
+<li><p>без использования флага <code class="docutils literal notranslate"><span class="pre">nodatacow</span></code> проседает производительность баз данных (СУБД), а также виртуальных машин.</p></li>
+</ul>
+</div></blockquote>
 </div>
 <div class="section" id="fs-convert">
 <span id="index-23"></span><span id="id17"></span><h2>Можно ли без потерь данных преобразовать одну файловую систему в другую?<a class="headerlink" href="#fs-convert" title="Ссылка на этот заголовок">¶</a></h2>
@@ -368,6 +391,24 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 </div></blockquote>
 <p>Загрузчик <a class="reference internal" href="generic-info.html#grub-loader"><span class="std std-ref">Grub 2</span></a> автоматически обнаружит другие операционные системы на устройстве и добавит их в список загрузки.</p>
 </div>
+<div class="section" id="minimal-installation">
+<span id="index-33"></span><span id="id23"></span><h2>Как произвести минимальную установку системы?<a class="headerlink" href="#minimal-installation" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если требуется выполнить минимальную установку системы без дополнительного программного обеспечения, но с графической средой Gnome или KDE, выполним следующие шаги в строго указанном порядке:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>осуществим загрузку с <a class="reference internal" href="generic-info.html#download"><span class="std std-ref">netinstall-образа</span></a>;</p></li>
+<li><p>в списке доступных компонентов выберем «Минимальная система»;</p></li>
+<li><p>завершим установку в штатном режиме;</p></li>
+<li><p>загрузимся в установленную систему;</p></li>
+<li><p>отключим установку <a class="reference internal" href="package-manager.html#dnf-weakdeps"><span class="std std-ref">слабых зависимостей</span></a>;</p></li>
+<li><p>установим графичекую среду: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">gdm</span> <span class="pre">gnome-shell</span></code> (для Gnome 3), либо <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">sddm</span> <span class="pre">plasma-workspace</span></code> (KDE Plasma);</p></li>
+<li><p>активируем менеджер графического входа в систему: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">enable</span> <span class="pre">gdm.service</span></code> (для Gnome 3), либо <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">enable</span> <span class="pre">sddm.service</span></code> (KDE Plasma);</p></li>
+<li><p>сделаем <a class="reference internal" href="administration.html#configure-runlevel"><span class="std std-ref">графический вход</span></a> в систему основным: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">set-default</span> <span class="pre">graphical.target</span></code>;</p></li>
+<li><p>осуществим перезагрузку системы: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">reboot</span></code>.</p></li>
+</ol>
+</div></blockquote>
+<p>Минимально возможная установка успешно завершена.</p>
+</div>
 </div>
 
 
@@ -423,6 +464,7 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <li class="toctree-l2"><a class="reference internal" href="#installation-date">Как определить точную дату установки ОС?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation-mode">Как определить в каком режиме была произведена установка системы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora-dual-boot">Как установить Fedora в dual-boot вместе с другой ОС?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#minimal-installation">Как произвести минимальную установку системы?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="package-manager.html">Пакетный менеджер и установка пакетов</a></li>

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>Системное администрирование &#8212; Неофициальный FAQ по Fedora (версия 2020.07.30)</title>
+    <title>Системное администрирование &#8212; Неофициальный FAQ по Fedora (версия 2020.10.30)</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -337,17 +337,15 @@ sudo fsck -t ext4 /dev/sda3
 <div class="section" id="memory-compression">
 <span id="index-30"></span><span id="id21"></span><h2>Можно ли включить сжатие оперативной памяти?<a class="headerlink" href="#memory-compression" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, в ядро Linux, начиная с версии 3.14, по умолчанию входит модуль zram, который позволяет увеличить производительность системы посредством использования вместо дисковой подкачки виртуального устройства в оперативной памяти с активным сжатием.</p>
-<p>Включение zram в Fedora:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable --now zram-swap
+<p>Начиная с Fedora 33, по умолчанию включено сжатие памяти с пулом 50% от объёма RAM. Допускается <a class="reference internal" href="tips-and-tricks.html#zram-pool-size"><span class="std std-ref">изменять его размер</span></a> в широких пределах.</p>
+<p>Активируем zram в Fedora:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install zram-generator zram-generator-defaults
 </pre></div>
 </div>
-<p>Отключение zram в Fedora:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl stop zram-swap
-sudo systemctl disable zram-swap
+<p>Перезагрузим систему для вступления изменений в силу:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
 </pre></div>
 </div>
-<p>Допускается <a class="reference internal" href="tips-and-tricks.html#zram-pool-size"><span class="std std-ref">изменить размера пула</span></a> сжатия памяти.</p>
-<p>После использования вышеуказанных команд рекомендуется выполнить перезагрузку системы.</p>
 </div>
 <div class="section" id="sysctl">
 <span id="sysctl-temporary"></span><span id="index-31"></span><h2>Как временно изменить параметр ядра при помощи sysctl?<a class="headerlink" href="#sysctl" title="Ссылка на этот заголовок">¶</a></h2>
@@ -1048,8 +1046,7 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 </div>
 <div class="section" id="zram-default-disable">
 <span id="index-87"></span><span id="id65"></span><h2>Как отключить использование сжатия памяти по умолчанию?<a class="headerlink" href="#zram-default-disable" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Начиная с Fedora 33, по умолчанию включено <a class="reference internal" href="#memory-compression"><span class="std std-ref">сжатие памяти</span></a> при помощи модуля ядра zram с пулом 50% от объёма RAM.</p>
-<p>Если в этом нет необходимости, отключим данную функцию простым удалением предоставляющих её пакетов:</p>
+<p>Если в сжатии памяти нет необходимости, отключим данную функцию простым удалением предоставляющих её пакетов:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove zram-generator zram-generator-defaults
 </pre></div>
 </div>

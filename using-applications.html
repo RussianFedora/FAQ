@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>Сторонние приложения &#8212; Неофициальный FAQ по Fedora (версия 2020.07.30)</title>
+    <title>Сторонние приложения &#8212; Неофициальный FAQ по Fedora (версия 2020.10.30)</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -777,6 +777,10 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable earlyoom.service
 </pre></div>
 </div>
+<p>Удалим пакет <strong>earlyoom</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove earlyoom
+</pre></div>
+</div>
 <p>Внимание! Если удалить пакет <strong>earlyoom</strong> в Fedora Workstation, он может быть <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">установлен заново</span></a> из-за включённых по умолчанию <a class="reference internal" href="package-manager.html#dnf-weakdeps"><span class="std std-ref">слабых зависимостей</span></a>.</p>
 </div>
 <div class="section" id="earlyoom-configure">
@@ -796,6 +800,35 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <span id="kde-iso"></span><span id="index-67"></span><h2>Как открыть ISO образ в KDE?<a class="headerlink" href="#iso-kde" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Файлы образов ISO могут быть открыты архиватором Ark (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">ark</span></code>), если они не используют <a class="reference external" href="https://ru.wikipedia.org/wiki/Universal_Disk_Format">файловую систему UDF</a>.</p>
 <p>В качестве альтернативного варианта можно установить утилиту Gnome Disks (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">gnome-disk-utility</span></code>), после чего пункт монтирования ISO-файла появится в контекстном меню по щелчку правой кнопки мыши в Dolphin. Таким способом можно быстро смонтировать образ с любой ФС.</p>
+</div>
+<div class="section" id="uresourced">
+<span id="uresourced-info"></span><span id="index-68"></span><h2>Что такое uresourced и почему он установлен по умолчанию?<a class="headerlink" href="#uresourced" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Начиная с Fedora 33, в редакции Workstation <a class="reference external" href="https://pagure.io/fedora-workstation/issue/154">предустановлен</a> пакет <strong>uresourced</strong>, который представляет собой систему повышения отзывчивости графической оболочки.</p>
+<p>По умолчанию данный сервис резервирует 250 МБ или 10% от общего объёма оперативной памяти (в зависимости от того, что меньше) при помощи cgroupsv2.</p>
+<p>В результате снижается вероятность возникновения ошибок страниц за счёт исключения возможности вытеснения страниц памяти, занимаемых графической оболочкой, что в итоге и приводит к повышению отзывчивости.</p>
+</div>
+<div class="section" id="uresourced-enable">
+<span id="index-69"></span><span id="id40"></span><h2>Как активировать uresourced?<a class="headerlink" href="#uresourced-enable" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим пакет <strong>uresourced</strong> (для версий, <a class="reference internal" href="#uresourced-info"><span class="std std-ref">отличных от Workstation</span></a>):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install uresourced
+</pre></div>
+</div>
+<p>Активируем его сервис (будет запускаться вместе с системой):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable --now uresourced.service
+</pre></div>
+</div>
+</div>
+<div class="section" id="uresourced-disable">
+<span id="index-70"></span><span id="id41"></span><h2>Как отключить uresourced?<a class="headerlink" href="#uresourced-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Отключим uresourced (не будет запускаться вместе с системой):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable uresourced.service
+</pre></div>
+</div>
+<p>Удалим пакет <strong>uresourced</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove uresourced
+</pre></div>
+</div>
+<p>Внимание! Если удалить пакет <strong>uresourced</strong> в Fedora Workstation, он может быть <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">установлен заново</span></a> из-за включённых по умолчанию <a class="reference internal" href="package-manager.html#dnf-weakdeps"><span class="std std-ref">слабых зависимостей</span></a>.</p>
 </div>
 </div>
 
@@ -894,6 +927,9 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <li class="toctree-l2"><a class="reference internal" href="#earlyoom-disable">Как отключить earlyoom?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#earlyoom-configure">Как настроить earlyoom?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#iso-kde">Как открыть ISO образ в KDE?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uresourced">Что такое uresourced и почему он установлен по умолчанию?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uresourced-enable">Как активировать uresourced?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uresourced-disable">Как отключить uresourced?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
