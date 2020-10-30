@@ -83,7 +83,7 @@ FESCo -- `Fedora Engineering Steering Committee <https://docs.fedoraproject.org/
 Когда выходит следующий релиз?
 ===================================
 
-`Fedora 32 Schedule <https://fedorapeople.org/groups/schedule/f-32/f-32-key-tasks.html>`__.
+`Fedora 34 Schedule <https://fedorapeople.org/groups/schedule/f-34/f-34-key-tasks.html>`__.
 
 .. index:: difference, fedora, bleeding edge, distribution
 .. _differences:
