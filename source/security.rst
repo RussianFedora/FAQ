@@ -716,7 +716,7 @@ Sudoedit безопаснее прямого запуска текстового
     PasswordAuthentication no
     PermitEmptyPasswords no
 
-Сохраним изменения и перезапустим sshd для применения изменений:
+Сохраним изменения и перезапустим sshd:
 
 .. code-block:: text
 
@@ -818,7 +818,20 @@ Sudoedit безопаснее прямого запуска текстового
 
     sudo groupadd sftp
 
-Откроем конфиг ``/etc/ssh/sshd_config`` в текстовом редакторе и в самом конце добавим:
+Создадим собственный файл конфигурации, в который будем вносить изменения:
+
+.. code-block:: text
+
+    sudo touch /etc/ssh/sshd_config.d/01-sftp.conf
+    sudo chmod 0600 /etc/ssh/sshd_config.d/01-sftp.conf
+
+Откроем конфиг ``/etc/ssh/sshd_config.d/01-sftp.conf`` в текстовом редакторе:
+
+.. code-block:: text
+
+    sudoedit /etc/ssh/sshd_config.d/01-sftp.conf
+
+Добавим следующие строки:
 
 .. code-block:: text
 
@@ -828,7 +841,7 @@ Sudoedit безопаснее прямого запуска текстового
         AllowTCPForwarding no
         ForceCommand internal-sftp
 
-Перезапустим sshd для применения изменений:
+Сохраним изменения и перезапустим sshd:
 
 .. code-block:: text
 
