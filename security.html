@@ -470,7 +470,7 @@ sudo chmod 0600 /etc/ssh/sshd_config.d/00-foobar.conf
 PermitEmptyPasswords no
 </pre></div>
 </div>
-<p>Сохраним изменения и перезапустим sshd для применения изменений:</p>
+<p>Сохраним изменения и перезапустим sshd:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl restart sshd.service
 </pre></div>
 </div>
@@ -527,7 +527,16 @@ PermitEmptyPasswords no
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo groupadd sftp
 </pre></div>
 </div>
-<p>Откроем конфиг <code class="docutils literal notranslate"><span class="pre">/etc/ssh/sshd_config</span></code> в текстовом редакторе и в самом конце добавим:</p>
+<p>Создадим собственный файл конфигурации, в который будем вносить изменения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo touch /etc/ssh/sshd_config.d/01-sftp.conf
+sudo chmod 0600 /etc/ssh/sshd_config.d/01-sftp.conf
+</pre></div>
+</div>
+<p>Откроем конфиг <code class="docutils literal notranslate"><span class="pre">/etc/ssh/sshd_config.d/01-sftp.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/ssh/sshd_config.d/01-sftp.conf
+</pre></div>
+</div>
+<p>Добавим следующие строки:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Subsystem sftp internal-sftp
 Match Group sftp
     ChrootDirectory %h
@@ -535,7 +544,7 @@ Match Group sftp
     ForceCommand internal-sftp
 </pre></div>
 </div>
-<p>Перезапустим sshd для применения изменений:</p>
+<p>Сохраним изменения и перезапустим sshd:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl restart sshd.service
 </pre></div>
 </div>
