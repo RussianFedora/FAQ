@@ -681,32 +681,42 @@ Sudoedit безопаснее прямого запуска текстового
 Как включить и безопасно настроить сервер SSH?
 ==================================================
 
-Сначала необходимо активировать sshd:
+Сначала установим и активируем sshd:
 
 .. code-block:: text
 
-    sudo systemctl enable sshd.service
+    sudo dnf install openssh-server
+    sudo systemctl enable --now sshd.service
 
-Теперь следует открыть конфиг ``/etc/ssh/sshd_config`` в любом текстовом редакторе и внести правки:
+Создадим собственный файл конфигурации, в который будем вносить изменения:
 
 .. code-block:: text
 
-    sudoedit /etc/ssh/sshd_config
+    sudo touch /etc/ssh/sshd_config.d/00-foobar.conf
+    sudo chmod 0600 /etc/ssh/sshd_config.d/00-foobar.conf
 
-Отключение входа суперпользователем:
+Имя файла начинается с **00**, т.к., согласно документации OpenSSH, приоритет среди всех файлов конфигурации имеет та директива, которая была указана раньше.
+
+Отредактируем созданный файл для внесения своих изменений:
+
+.. code-block:: text
+
+    sudoedit /etc/ssh/sshd_config.d/00-foobar.conf
+
+Отключим вход суперпользователем:
 
 .. code-block:: text
 
     PermitRootLogin no
 
-Запрет входа по паролям (будет доступна лишь аутентификация по ключам):
+Запретим вход по паролям (будет доступна лишь аутентификация по ключам):
 
 .. code-block:: text
 
     PasswordAuthentication no
     PermitEmptyPasswords no
 
-Перезапуск sshd для применения изменений:
+Сохраним изменения и перезапустим sshd для применения изменений:
 
 .. code-block:: text
 
