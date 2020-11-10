@@ -446,24 +446,31 @@ sudo systemctl reboot
 </div>
 <div class="section" id="ssh">
 <span id="ssh-install"></span><span id="index-42"></span><h2>Как включить и безопасно настроить сервер SSH?<a class="headerlink" href="#ssh" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Сначала необходимо активировать sshd:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable sshd.service
+<p>Сначала установим и активируем sshd:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install openssh-server
+sudo systemctl enable --now sshd.service
 </pre></div>
 </div>
-<p>Теперь следует открыть конфиг <code class="docutils literal notranslate"><span class="pre">/etc/ssh/sshd_config</span></code> в любом текстовом редакторе и внести правки:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/ssh/sshd_config
+<p>Создадим собственный файл конфигурации, в который будем вносить изменения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo touch /etc/ssh/sshd_config.d/00-foobar.conf
+sudo chmod 0600 /etc/ssh/sshd_config.d/00-foobar.conf
 </pre></div>
 </div>
-<p>Отключение входа суперпользователем:</p>
+<p>Имя файла начинается с <strong>00</strong>, т.к., согласно документации OpenSSH, приоритет среди всех файлов конфигурации имеет та директива, которая была указана раньше.</p>
+<p>Отредактируем созданный файл для внесения своих изменений:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/ssh/sshd_config.d/00-foobar.conf
+</pre></div>
+</div>
+<p>Отключим вход суперпользователем:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>PermitRootLogin no
 </pre></div>
 </div>
-<p>Запрет входа по паролям (будет доступна лишь аутентификация по ключам):</p>
+<p>Запретим вход по паролям (будет доступна лишь аутентификация по ключам):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>PasswordAuthentication no
 PermitEmptyPasswords no
 </pre></div>
 </div>
-<p>Перезапуск sshd для применения изменений:</p>
+<p>Сохраним изменения и перезапустим sshd для применения изменений:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl restart sshd.service
 </pre></div>
 </div>
