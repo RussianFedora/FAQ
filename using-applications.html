@@ -1,21 +1,22 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<html lang="ru">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Сторонние приложения &#8212; Неофициальный FAQ по Fedora (версия 2020.10.30)</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script defer="defer" type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-    <script defer="defer" type="text/javascript" src="_static/search.js"></script>
-    <script type="text/javascript" src="_static/translations.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script defer="defer" src="_static/search.js"></script>
+    <script src="_static/translations.js"></script>
     <link rel="shortcut icon" href="_static/faq-icon.ico"/>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
@@ -830,6 +831,16 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </div>
 <p>Внимание! Если удалить пакет <strong>uresourced</strong> в Fedora Workstation, он может быть <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">установлен заново</span></a> из-за включённых по умолчанию <a class="reference internal" href="package-manager.html#dnf-weakdeps"><span class="std std-ref">слабых зависимостей</span></a>.</p>
 </div>
+<div class="section" id="firefox-kde">
+<span id="firefox-kde-dialog"></span><span id="index-71"></span><h2>Как в Firefox включить диалог загрузки и сохранения файлов от KDE?<a class="headerlink" href="#firefox-kde" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По умолчанию Firefox использует диалоги открытия и сохранения файлов из GTK, однако существует возможность активации родных от используемой рабочей среды, например KDE.</p>
+<p>Установим соответствующий пакет с порталом:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install xdg-desktop-portal-kde
+</pre></div>
+</div>
+<p>Откроем <code class="docutils literal notranslate"><span class="pre">about:config</span></code> и установим переменной <code class="docutils literal notranslate"><span class="pre">widget.use-xdg-desktop-portal</span></code> значение <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<p>Изменения вступят в силу немедленно.</p>
+</div>
 </div>
 
 
@@ -848,7 +859,7 @@ media.navigator.mediadatadecoder_vpx_enabled = true
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script><h3>Навигация</h3>
+<script>$('#searchbox').show(0);</script><h3>Навигация</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Установка системы</a></li>
@@ -930,6 +941,7 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <li class="toctree-l2"><a class="reference internal" href="#uresourced">Что такое uresourced и почему он установлен по умолчанию?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uresourced-enable">Как активировать uresourced?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uresourced-disable">Как отключить uresourced?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firefox-kde">Как в Firefox включить диалог загрузки и сохранения файлов от KDE?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
