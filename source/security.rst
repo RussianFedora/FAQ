@@ -1914,6 +1914,14 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
 
 Версия LUKS всегда указана в разделе **Version** :ref:`информации о шифровании <luks-info>`.
 
+.. index:: luks, encryption, cryptsetup
+.. _luks-upgrade:
+
+Можно ли изменить используемую криптоконтейнером версию LUKS?
+================================================================
+
+Нет. Для изменения :ref:`версии <luks-version>` LUKS1 на LUKS2 требуется пересоздать криптоконтейнер.
+
 .. index:: luks, encryption, trim, cryptsetup
 .. _luks-trim-open:
 
