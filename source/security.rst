@@ -1906,6 +1906,14 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
 
     ssh example
 
+.. index:: luks, encryption, cryptsetup
+.. _luks-version:
+
+Как определить версию LUKS конкретного криптоконтейнера?
+============================================================
+
+Версия LUKS всегда указана в разделе **Version** :ref:`информации о шифровании <luks-info>`.
+
 .. index:: luks, encryption, trim, cryptsetup
 .. _luks-trim-open:
 
