@@ -1935,3 +1935,19 @@ LUKS версии 2 поддерживает возможность принуд
     sudo cryptsetup --allow-discards --persistent open /path/to/container foo-bar
 
 Убедимся, что в :ref:`информации о шифровании <luks-info>` появился **allow-discards** в разделе **Flags**.
+
+.. index:: luks, encryption, trim, cryptsetup
+.. _luks-trim-execute:
+
+Как выполнить TRIM для открытых вручную LUKS-контейнеров?
+==============================================================
+
+Функция автоматической очистки неиспользуемые данных TRIM выполняется либо в :ref:`реальном времени <ssd-trim>`, либо :ref:`по таймеру <ssd-timer>`, но только для автоматически смонтированных и указанных в файле ``/etc/crypttab`` разделов.
+
+Для зашифрованных :ref:`LUKS-контейнеров <luks-container-create>`, открытых вручную при помощи ``cryptsetup open``, её необходимо сначала :ref:`активировать <luks-trim-open>`, а затем периодически запускать утилиту ``fstrim``:
+
+.. code-block:: text
+
+    sudo fstrim -v /media/foo-bar
+
+Здесь **/media/foo-bar** -- это точка монтирования.
