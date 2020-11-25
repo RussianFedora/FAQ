@@ -1905,3 +1905,33 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
 .. code-block:: text
 
     ssh example
+
+.. index:: luks, encryption, trim, cryptsetup
+.. _luks-trim-open:
+
+Как активировать TRIM для открытых вручную LUKS-контейнеров?
+================================================================
+
+Зашифрованные :ref:`LUKS-контейнеры <luks-container-create>`, открытые вручную при помощи ``cryptsetup open``, по умолчанию не будут поддерживать :ref:`процедуру TRIM <ssd-trim>`, поэтому рассмотрим несколько способов исправить это.
+
+**Способ 1.** Передадим :ref:`параметр ядра <kernelpm-perm>` Linux ``rd.luks.options=discard``.
+
+Теперь все контейнеры, открытые утилитой, будут поддерживать TRIM. Однако действие не распространяется на те, что указаны в файле ``/etc/crypttab``, т.к. он имеет более высокий приоритет.
+
+**Способ 2.** Воспользуемся параметром командной строки ``--allow-discards``.
+
+LUKS версии 2 поддерживает возможность принудительно задать использование процедуры TRIM внутри контейнера при любых монтированиях. В LUKS1 это не реализовано и работать не будет.
+
+Для LUKS1 (вводится при каждом открытии тома):
+
+.. code-block:: text
+
+    sudo cryptsetup --allow-discards open /path/to/container foo-bar
+
+Для LUKS2 (вводится только один раз):
+
+.. code-block:: text
+
+    sudo cryptsetup --allow-discards --persistent open /path/to/container foo-bar
+
+Убедимся, что в :ref:`информации о шифровании <luks-info>` появился **allow-discards** в разделе **Flags**.
