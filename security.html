@@ -1204,15 +1204,15 @@ sudo rmdir /media/data
 </div>
 <div class="section" id="luks-upgrade">
 <span id="index-99"></span><span id="id74"></span><h2>Можно ли изменить используемую криптоконтейнером версию LUKS?<a class="headerlink" href="#luks-upgrade" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Нет. Для изменения <a class="reference internal" href="#luks-version"><span class="std std-ref">версии</span></a> LUKS1 на LUKS2 требуется пересоздать криптоконтейнер.</p>
+<p>Нет. Для изменения <a class="reference internal" href="#luks-version"><span class="std std-ref">версии</span></a> с LUKS1 на LUKS2 требуется пересоздать криптоконтейнер.</p>
 </div>
 <div class="section" id="trim-luks">
 <span id="luks-trim-open"></span><span id="index-100"></span><h2>Как активировать TRIM для открытых вручную LUKS-контейнеров?<a class="headerlink" href="#trim-luks" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Зашифрованные <a class="reference internal" href="#luks-container-create"><span class="std std-ref">LUKS-контейнеры</span></a>, открытые вручную при помощи <code class="docutils literal notranslate"><span class="pre">cryptsetup</span> <span class="pre">open</span></code>, по умолчанию не будут поддерживать <a class="reference internal" href="installation.html#ssd-trim"><span class="std std-ref">процедуру TRIM</span></a>, поэтому рассмотрим несколько способов исправить это.</p>
 <p><strong>Способ 1.</strong> Передадим <a class="reference internal" href="administration.html#kernelpm-perm"><span class="std std-ref">параметр ядра</span></a> Linux <code class="docutils literal notranslate"><span class="pre">rd.luks.options=discard</span></code>.</p>
-<p>Теперь все контейнеры, открытые утилитой, будут поддерживать TRIM. Однако действие не распространяется на те, что указаны в файле <code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code>, т.к. он имеет более высокий приоритет.</p>
+<p>Теперь все контейнеры, открытые утилитой, будут поддерживать TRIM. Однако действие не распространяется на указанные в файле <code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code>, т.к. он имеет более высокий приоритет.</p>
 <p><strong>Способ 2.</strong> Воспользуемся параметром командной строки <code class="docutils literal notranslate"><span class="pre">--allow-discards</span></code>.</p>
-<p>LUKS <a class="reference internal" href="#luks-version"><span class="std std-ref">версии 2</span></a> поддерживает возможность принудительно задать использование процедуры TRIM внутри контейнера при любых монтированиях. В LUKS1 это не реализовано и работать не будет.</p>
+<p>LUKS <a class="reference internal" href="#luks-version"><span class="std std-ref">версии 2</span></a> поддерживает возможность принудительно задать использование процедуры TRIM внутри контейнера при любых операциях монтирования. В LUKS1 это не реализовано и поэтому работать не будет.</p>
 <p>Для LUKS1 (вводится при каждом открытии тома):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --allow-discards open /path/to/container foo-bar
 </pre></div>
@@ -1221,7 +1221,7 @@ sudo rmdir /media/data
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup --allow-discards --persistent open /path/to/container foo-bar
 </pre></div>
 </div>
-<p>Убедимся, что в <a class="reference internal" href="#luks-info"><span class="std std-ref">информации о шифровании</span></a> появился <strong>allow-discards</strong> в разделе <strong>Flags</strong>.</p>
+<p>Убедимся, что в <a class="reference internal" href="#luks-info"><span class="std std-ref">информации о шифровании</span></a>, в разделе <strong>Flags</strong>, появился <strong>allow-discards</strong>.</p>
 </div>
 <div class="section" id="luks-trim-execute">
 <span id="index-101"></span><span id="id75"></span><h2>Как выполнить TRIM для открытых вручную LUKS-контейнеров?<a class="headerlink" href="#luks-trim-execute" title="Ссылка на этот заголовок">¶</a></h2>
