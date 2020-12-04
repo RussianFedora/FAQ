@@ -625,6 +625,21 @@ export SUDO_EDITOR=vim
 <p>Внесём свои правки.</p>
 <p>Кэш <a class="reference internal" href="using-applications.html#kde-icons-refresh"><span class="std std-ref">значков главного меню</span></a> обновится автоматически, т.к. все популярные среды рабочего стола отслеживают изменения в данном каталоге.</p>
 </div>
+<div class="section" id="usb-flash">
+<span id="usb-flash-tuning"></span><span id="index-55"></span><h2>Как увеличить срок жизни USB Flash?<a class="headerlink" href="#usb-flash" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Использование современных журналируемых <a class="reference internal" href="installation.html#fs-selection"><span class="std std-ref">файловых систем</span></a> Linux на накопителях USB Flash, контроллер которых не способен автоматически балансировать износ ячеек, требует выполнения небольшой оптимизации.</p>
+<p>Изменим режим журнала в <code class="docutils literal notranslate"><span class="pre">writeback</span></code>, а также активируем параметр монтирования <code class="docutils literal notranslate"><span class="pre">lazytime</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo debugfs -w -R &quot;set_super_value mount_opts data=writeback,lazytime&quot; /dev/sdX1
+</pre></div>
+</div>
+<p>Для максимального продления срока службы допускается полностью отключить журнал ФС (только на ext4):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo tune2fs -O ^has_journal /dev/sdX1
+</pre></div>
+</div>
+<p><strong>Внимание!</strong> Отключение журнала может привести к потере всех данных на устройстве при его некорректном извлечении, либо исчезновении питания.</p>
+<p>Здесь <strong>/dev/sdX1</strong> – раздел на устройстве флеш-памяти, который требуется настроить.</p>
+<p>Изменения вступят в силу при следующем монтировании.</p>
+</div>
 </div>
 
 
@@ -708,6 +723,7 @@ export SUDO_EDITOR=vim
 <li class="toctree-l2"><a class="reference internal" href="#plymouth-nologo">Как отключить вывод логотипа производителя устройства при загрузке системы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ntfs">Все NTFS тома монтируются в режиме только для чтения. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#icon-override">Как изменить ярлык приложения из главного меню?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usb-flash">Как увеличить срок жизни USB Flash?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-applications.html">Сторонние приложения</a></li>
