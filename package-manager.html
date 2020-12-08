@@ -453,27 +453,29 @@ proxy_password=PASSWORD
 </div>
 <div class="section" id="dnf-modular">
 <span id="index-43"></span><span id="id34"></span><h2>Что такое модульные репозитории?<a class="headerlink" href="#dnf-modular" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Репозитории Fedora Modular позволяют установить в систему несколько различных версий определённых пакетов. Они включены по умолчанию начиная с Fedora 29.</p>
+<p>Репозитории Fedora Modular позволяют установить в систему несколько различных версий определённых пакетов. Они включены по умолчанию начиная с Fedora 29. Поддержка модулей объявлена устаревшей с Fedora 33.</p>
 <p>Вывод списка доступных модулей:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf module list
 </pre></div>
 </div>
 <p>Установка пакета в виде модуля (на примере <em>nodejs</em>):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf module install nodejs:6/default
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf module install nodejs:6/default
 </pre></div>
 </div>
 <p>Более подробную информацию о модулях можно найти <a class="reference external" href="https://docs.fedoraproject.org/en-US/modularity/using-modules/">здесь</a>.</p>
 </div>
 <div class="section" id="dnf-disable-modules">
 <span id="index-44"></span><span id="id35"></span><h2>Мне не нужна поддержка модулей. Как их можно отключить?<a class="headerlink" href="#dnf-disable-modules" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Отключение репозитория с модулями:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-disabled fedora-modular
-sudo dnf config-manager --set-disabled updates-modular
+<p>Отключим все модули:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf module reset &#39;*&#39;
 </pre></div>
 </div>
-<p>Повторное включение поддержки модулей:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-enabled fedora-modular
-sudo dnf config-manager --set-enabled updates-modular
+<p>Удалим пакет с модульными репозиториями:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove fedora-repos-modular
+</pre></div>
+</div>
+<p>Произведём синхронизацию:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf distro-sync
 </pre></div>
 </div>
 </div>
