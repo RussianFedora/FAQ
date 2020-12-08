@@ -694,7 +694,7 @@ Java 12 (preview):
 
 .. code-block:: text
 
-    dnf module install nodejs:6/default
+    sudo dnf module install nodejs:6/default
 
 Более подробную информацию о модулях можно найти `здесь <https://docs.fedoraproject.org/en-US/modularity/using-modules/>`__.
 
