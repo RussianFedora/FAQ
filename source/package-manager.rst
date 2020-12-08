@@ -704,19 +704,23 @@ Java 12 (preview):
 Мне не нужна поддержка модулей. Как их можно отключить?
 ===========================================================
 
-Отключение репозитория с модулями:
+Отключим все модули:
 
 .. code-block:: text
 
-    sudo dnf config-manager --set-disabled fedora-modular
-    sudo dnf config-manager --set-disabled updates-modular
+    sudo dnf module reset '*'
 
-Повторное включение поддержки модулей:
+Удалим пакет с модульными репозиториями:
 
 .. code-block:: text
 
-    sudo dnf config-manager --set-enabled fedora-modular
-    sudo dnf config-manager --set-enabled updates-modular
+    sudo dnf remove fedora-repos-modular
+
+Произведём синхронизацию:
+
+.. code-block:: text
+
+    sudo dnf distro-sync
 
 .. index:: dnf, updates, gui
 .. _dnf-gui-updates:
