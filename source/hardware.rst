@@ -1133,6 +1133,58 @@ ICC профиль можно получить либо на сайте прои
 
 Загрузим и установим новую версию по :ref:`стандартной инструкции <rtl8821ce-install>`.
 
+.. index:: wi-fi, dkms, kernel module, kernel, rtl8821au, realtek
+.. _rtl8821au-install:
+
+Как установить драйвер сетевой карты на чипе rtl8821au?
+==========================================================
+
+К сожалению, Wi-Fi модули на базе чипа rtl8821au входят :ref:`в число проблемных <wifi-chip>`, поэтому для их корректной работы необходимо установить сторонний драйвер при помощи :ref:`dkms <dkms-akmods>`.
+
+Отключим технологию :ref:`UEFI Secure Boot <secure-boot>`, т.к. она полностью блокирует возможность загрузки неподписанных модулей.
+
+Произведём полное :ref:`обновление системы <dnf-update>` до актуальной версии:
+
+.. code-block:: text
+
+    sudo dnf upgrade --refresh
+
+Установим пакеты git, dkms, компилятор GCC, а также исходники и заголовочные файлы ядра Linux:
+
+.. code-block:: text
+
+    sudo dnf install git gcc dkms kernel-devel kernel-headers
+
+Загрузим `rtl8821au с GitHub <https://github.com/gnab/rtl8812au>`__:
+
+.. code-block:: text
+
+    git clone --depth=1 https://github.com/gnab/rtl8812au.git rtl8821au
+
+Скопируем содержимое ``rtl8821au`` в общий каталог хранения исходников, где они будут доступны для dkms:
+
+.. code-block:: text
+
+    sudo cp -r rtl8821au /usr/src/rtl8821au-v4.2.3
+
+Запустим сборку модуля ядра и установим его:
+
+.. code-block:: text
+
+    sudo dkms add -m rtl8821au -v v4.2.3
+    sudo dkms build -m rtl8821au -v v4.2.3
+    sudo dkms install -m rtl8821au -v v4.2.3
+
+Здесь **v4.2.3** -- версия модуля rtl8821au, которая может быть получена из файла ``rtl8821au/include/rtw_version.h``.
+
+Перезагрузим систему для вступления изменений в силу:
+
+.. code-block:: text
+
+    sudo systemctl reboot
+
+Теперь Wi-Fi адаптер должен появиться в системе и начать корректно функционировать.
+
 .. index:: ram, memory, dmidecode, dmi
 .. _ram-info:
 
