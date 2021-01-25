@@ -235,7 +235,7 @@
 <p>Работают 50/50:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Realtek (широко известны проблемы с чипами серий rtl8192cu и rtl8812au);</p></li>
+<li><p>Realtek (широко известны проблемы с чипами серий rtl8192cu, <span class="xref std std-ref">rtl8812cu</span> и <a class="reference internal" href="#rtl8821au-install"><span class="std std-ref">rtl8812au</span></a>);</p></li>
 <li><p>MediaTek (ранее назывался Ralink).</p></li>
 </ul>
 </div></blockquote>
@@ -715,7 +715,7 @@ connect AA:BB:CC:DD:EE:FF
 </div>
 <div class="section" id="thinkpad">
 <span id="thinkpad-throttling"></span><span id="index-54"></span><h2>Можно ли исправить проблему с троттлингом ноутбуков ThinkPad?<a class="headerlink" href="#thinkpad" title="Ссылка на этот заголовок">¶</a></h2>
-<p>См. <a class="reference external" href="https://www.easycoding.org/2019/07/22/reshaem-problemu-s-throttling-na-noutbukax-thinkpad.html">здесь</a>.</p>
+<p>См. <a class="reference external" href="https://www.easycoding.org/2019/07/22/reshaem-problemu-s-throttling-na-noutbukax-thinkpad.html">здесь</a> и <a class="reference external" href="https://www.easycoding.org/2020/01/06/ustanavlivaem-thermald-na-fedora.html">здесь</a>.</p>
 </div>
 <div class="section" id="rtl8821ce">
 <span id="rtl8821ce-install"></span><span id="index-55"></span><h2>Как установить драйвер сетевой карты на чипе rtl8821ce?<a class="headerlink" href="#rtl8821ce" title="Ссылка на этот заголовок">¶</a></h2>
@@ -734,16 +734,16 @@ connect AA:BB:CC:DD:EE:FF
 </pre></div>
 </div>
 <p>Скопируем содержимое <code class="docutils literal notranslate"><span class="pre">rtl8821ce</span></code> в общий каталог хранения исходников, где они будут доступны для dkms:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cp -r rtl8821ce /usr/src/rtl8821ce-v5.5.2_34066.20190614
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cp -r rtl8821ce /usr/src/rtl8821ce-v5.5.2_34066.20200325
 </pre></div>
 </div>
 <p>Запустим сборку модуля ядра и установим его:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dkms add -m rtl8821ce -v v5.5.2_34066.20190614
-sudo dkms build -m rtl8821ce -v v5.5.2_34066.20190614
-sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dkms add -m rtl8821ce -v v5.5.2_34066.20200325
+sudo dkms build -m rtl8821ce -v v5.5.2_34066.20200325
+sudo dkms install -m rtl8821ce -v v5.5.2_34066.20200325
 </pre></div>
 </div>
-<p>Здесь <strong>v5.5.2_34066.20190614</strong> – версия модуля rtl8821ce, которая может быть получена из файла <code class="docutils literal notranslate"><span class="pre">rtl8821ce/include/rtw_version.h</span></code> (без учёта суффикса <strong>BTCOEXVERSION</strong>).</p>
+<p>Здесь <strong>v5.5.2_34066.20200325</strong> – версия модуля rtl8821ce, которая может быть получена из файла <code class="docutils literal notranslate"><span class="pre">rtl8821ce/include/rtw_version.h</span></code> (без учёта суффикса <strong>BTCOEXVERSION</strong>).</p>
 <p>Перезагрузим систему для вступления изменений в силу:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
 </pre></div>
@@ -752,20 +752,67 @@ sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
 </div>
 <div class="section" id="rtl8821ce-update">
 <span id="index-56"></span><span id="id34"></span><h2>Как обновить или удалить драйвер сетевой карты на чипе rtl8821ce?<a class="headerlink" href="#rtl8821ce-update" title="Ссылка на этот заголовок">¶</a></h2>
-<p>При выходе новой версии драйвера rtl8812au рекомендуется сначала удалить старый, затем с нуля установить новую версию.</p>
+<p>При выходе новой версии драйвера rtl8821ce рекомендуется сначала удалить старый, затем с нуля установить новую версию.</p>
 <p>Удалим старый драйвер при помощи dkms:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dkms remove rtl8821ce/v5.5.2_34066.20190614 --all
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dkms remove rtl8821ce/v5.5.2_34066.20200325 --all
 </pre></div>
 </div>
 <p>Удалим старые исходники:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rm -rf /usr/src/rtl8821ce-v5.5.2_34066.20190614
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rm -rf /usr/src/rtl8821ce-v5.5.2_34066.20200325
 </pre></div>
 </div>
-<p>Здесь <strong>v5.5.2_34066.20190614</strong> – версия установленного в системе модуля rtl8821ce.</p>
+<p>Здесь <strong>v5.5.2_34066.20200325</strong> – версия установленного в системе модуля rtl8821ce.</p>
 <p>Загрузим и установим новую версию по <a class="reference internal" href="#rtl8821ce-install"><span class="std std-ref">стандартной инструкции</span></a>.</p>
 </div>
+<div class="section" id="rtl8821au">
+<span id="rtl8821au-install"></span><span id="index-57"></span><h2>Как установить драйвер сетевой карты на чипе rtl8821au?<a class="headerlink" href="#rtl8821au" title="Ссылка на этот заголовок">¶</a></h2>
+<p>К сожалению, Wi-Fi модули на базе чипа rtl8821au входят <a class="reference internal" href="#wifi-chip"><span class="std std-ref">в число проблемных</span></a>, поэтому для их корректной работы необходимо установить сторонний драйвер при помощи <a class="reference internal" href="package-manager.html#dkms-akmods"><span class="std std-ref">dkms</span></a>.</p>
+<p>Отключим технологию <a class="reference internal" href="installation.html#secure-boot"><span class="std std-ref">UEFI Secure Boot</span></a>, т.к. она полностью блокирует возможность загрузки неподписанных модулей.</p>
+<p>Произведём полное <a class="reference internal" href="package-manager.html#dnf-update"><span class="std std-ref">обновление системы</span></a> до актуальной версии:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
+</pre></div>
+</div>
+<p>Установим пакеты git, dkms, компилятор GCC, а также исходники и заголовочные файлы ядра Linux:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install git gcc dkms kernel-devel kernel-headers
+</pre></div>
+</div>
+<p>Загрузим <a class="reference external" href="https://github.com/gnab/rtl8812au">rtl8821au с GitHub</a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git clone --depth=1 https://github.com/gnab/rtl8812au.git rtl8821au
+</pre></div>
+</div>
+<p>Скопируем содержимое <code class="docutils literal notranslate"><span class="pre">rtl8821au</span></code> в общий каталог хранения исходников, где они будут доступны для dkms:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cp -r rtl8821au /usr/src/rtl8821au-v4.2.3
+</pre></div>
+</div>
+<p>Запустим сборку модуля ядра и установим его:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dkms add -m rtl8821au -v v4.2.3
+sudo dkms build -m rtl8821au -v v4.2.3
+sudo dkms install -m rtl8821au -v v4.2.3
+</pre></div>
+</div>
+<p>Здесь <strong>v4.2.3</strong> – версия модуля rtl8821au, которая может быть получена из файла <code class="docutils literal notranslate"><span class="pre">rtl8821au/include/rtw_version.h</span></code>.</p>
+<p>Перезагрузим систему для вступления изменений в силу:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+<p>Теперь Wi-Fi адаптер должен появиться в системе и начать корректно функционировать.</p>
+</div>
+<div class="section" id="rtl8821au-update">
+<span id="index-58"></span><span id="id35"></span><h2>Как обновить или удалить драйвер сетевой карты на чипе rtl8821au?<a class="headerlink" href="#rtl8821au-update" title="Ссылка на этот заголовок">¶</a></h2>
+<p>При выходе новой версии драйвера rtl8821au рекомендуется сначала удалить старый, затем с нуля установить новую версию.</p>
+<p>Удалим старый драйвер при помощи dkms:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dkms remove rtl8821au/v4.2.3 --all
+</pre></div>
+</div>
+<p>Удалим старые исходники:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rm -rf /usr/src/rtl8821au-v4.2.3
+</pre></div>
+</div>
+<p>Здесь <strong>v4.2.3</strong> – версия установленного в системе модуля rtl8821au.</p>
+<p>Загрузим и установим новую версию по <a class="reference internal" href="#rtl8821au-install"><span class="std std-ref">стандартной инструкции</span></a>.</p>
+</div>
 <div class="section" id="ram-info">
-<span id="index-57"></span><span id="id35"></span><h2>Как получить информацию об установленной оперативной памяти?<a class="headerlink" href="#ram-info" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-59"></span><span id="id36"></span><h2>Как получить информацию об установленной оперативной памяти?<a class="headerlink" href="#ram-info" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим утилиту <strong>dmidecode</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install dmidecode
 </pre></div>
@@ -776,7 +823,7 @@ sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
 </div>
 </div>
 <div class="section" id="hwaccel-drivers">
-<span id="index-58"></span><span id="id36"></span><h2>Какие драйверы необходимы для работы аппаратного ускорения декодирования мультимедиа?<a class="headerlink" href="#hwaccel-drivers" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-60"></span><span id="id37"></span><h2>Какие драйверы необходимы для работы аппаратного ускорения декодирования мультимедиа?<a class="headerlink" href="#hwaccel-drivers" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Реализация аппаратного ускорения декодирования мультимедиа доступна на следующих видеокартах:</p>
 <blockquote>
 <div><ul class="simple">
@@ -787,21 +834,21 @@ sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
 </div></blockquote>
 </div>
 <div class="section" id="va-api-intel">
-<span id="vaapi-intel"></span><span id="index-59"></span><h2>Как активировать VA-API на видеокартах Intel?<a class="headerlink" href="#va-api-intel" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="vaapi-intel"></span><span id="index-61"></span><h2>Как активировать VA-API на видеокартах Intel?<a class="headerlink" href="#va-api-intel" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для полноценной работы модуля <a class="reference internal" href="using-applications.html#video-hwaccel"><span class="std std-ref">аппаратного декодирования</span></a> мультимедиа подключим репозитории <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установим драйверы <strong>libva-intel-driver</strong> (i915) и <strong>intel-media-driver</strong> (iHD):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install libva-intel-driver intel-media-driver
 </pre></div>
 </div>
 </div>
 <div class="section" id="va-api-nvidia">
-<span id="vaapi-nvidia"></span><span id="index-60"></span><h2>Как активировать VA-API на видеокартах NVIDIA?<a class="headerlink" href="#va-api-nvidia" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="vaapi-nvidia"></span><span id="index-62"></span><h2>Как активировать VA-API на видеокартах NVIDIA?<a class="headerlink" href="#va-api-nvidia" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Т.к. NVIDIA использует VDPAU для <a class="reference internal" href="using-applications.html#video-hwaccel"><span class="std std-ref">аппаратного декодирования</span></a> мультимедиа, для активации VA-API, установим особый драйвер-конвертер <strong>libva-vdpau-driver</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install libva-vdpau-driver
 </pre></div>
 </div>
 </div>
 <div class="section" id="battery-status">
-<span id="index-61"></span><span id="id37"></span><h2>Как вывести информацию о состоянии батареи ноутбука?<a class="headerlink" href="#battery-status" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-63"></span><span id="id38"></span><h2>Как вывести информацию о состоянии батареи ноутбука?<a class="headerlink" href="#battery-status" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для вывода информации об используемых аккумуляторных батареях, воспользуемся утилитой <strong>upower</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>upower -i /org/freedesktop/UPower/devices/battery_BAT0
 </pre></div>
@@ -809,7 +856,7 @@ sudo dkms install -m rtl8821ce -v v5.5.2_34066.20190614
 <p>Если в устройстве их более одной, вместо <strong>BAT0</strong> укажем следующую по порядку.</p>
 </div>
 <div class="section" id="mpris-proxy">
-<span id="index-62"></span><span id="id38"></span><h2>Как включить управление воспроизведением с Bluetooth-наушников?<a class="headerlink" href="#mpris-proxy" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-64"></span><span id="id39"></span><h2>Как включить управление воспроизведением с Bluetooth-наушников?<a class="headerlink" href="#mpris-proxy" title="Ссылка на этот заголовок">¶</a></h2>
 <p>За управление воспроизведением при помощи D-Bus событий отвечает служба <a class="reference external" href="https://ru.wikipedia.org/wiki/MPRIS">MPRIS</a>.</p>
 <p>В первую очередь убедимся, что используемый медиа-проигрыватель его поддерживает. В большинстве случаев необходимо и достаточно просто включить модуль MPRIS в настройках. В VLC например включён «из коробки».</p>
 <p>Установим утилиту <strong>mpris-proxy</strong> из пакета <strong>bluez</strong>.</p>
@@ -851,7 +898,7 @@ touch ~/.config/systemd/user/mpris-proxy.service
 </div>
 </div>
 <div class="section" id="bluetooth-codecs">
-<span id="index-63"></span><span id="id39"></span><h2>Как включить поддержку Bluetooth-кодеков высокого качества?<a class="headerlink" href="#bluetooth-codecs" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-65"></span><span id="id40"></span><h2>Как включить поддержку Bluetooth-кодеков высокого качества?<a class="headerlink" href="#bluetooth-codecs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В репозиториях Fedora модули работы с Bluetooth собраны без поддержки AAC, aptX, aptX HD и LDAC ввиду патентных ограничений.</p>
 <p>Однако <a class="reference external" href="https://github.com/EHfive/pulseaudio-modules-bt">существует форк</a>, в котором добавлена полная поддержка данных кодеков, а также расширены возможности по настройке SBC:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>a2dp_sink_sbc: High Fidelity Playback (A2DP Sink: SBC)
@@ -875,7 +922,7 @@ pulseaudio -D
 <p>Внимание! Выбранный кодек должен поддерживаться наушниками аппаратно.</p>
 </div>
 <div class="section" id="audio-analog-multichannel">
-<span id="index-64"></span><span id="id40"></span><h2>Как настроить многоканальный аналоговый аудиовыход?<a class="headerlink" href="#audio-analog-multichannel" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-66"></span><span id="id41"></span><h2>Как настроить многоканальный аналоговый аудиовыход?<a class="headerlink" href="#audio-analog-multichannel" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В простейшем случае просто выберем в настройках звука используемой рабочей среды профиль <strong>Аналоговый объёмный 5.1 выход</strong> (2.1, 4.0, 4.1, 5.0, 7.1).</p>
 <p>Если же доступен только профиль <strong>Cтерео</strong>, то, возможно, некоторые выходы звуковой карты зарезервированы для микрофона и линейного входа.</p>
 <p>В этом случае запустим утилиту <strong>hdajackretask</strong> из пакета <strong>alsa-tools</strong> (при отсутствии установим его – <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">alsa-tools</span></code>), которая позволит нам легко и быстро переназначить выходы звуковой карты в соответствии с текущим подключением устройств вывода звука.</p>
@@ -973,6 +1020,8 @@ pulseaudio -D
 <li class="toctree-l2"><a class="reference internal" href="#thinkpad">Можно ли исправить проблему с троттлингом ноутбуков ThinkPad?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rtl8821ce">Как установить драйвер сетевой карты на чипе rtl8821ce?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rtl8821ce-update">Как обновить или удалить драйвер сетевой карты на чипе rtl8821ce?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rtl8821au">Как установить драйвер сетевой карты на чипе rtl8821au?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rtl8821au-update">Как обновить или удалить драйвер сетевой карты на чипе rtl8821au?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ram-info">Как получить информацию об установленной оперативной памяти?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#hwaccel-drivers">Какие драйверы необходимы для работы аппаратного ускорения декодирования мультимедиа?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#va-api-intel">Как активировать VA-API на видеокартах Intel?</a></li>
@@ -1002,7 +1051,7 @@ pulseaudio -D
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018 - 2020, EasyCoding Team and contributors.
+      &copy;2018 - 2021, EasyCoding Team and contributors.
       
     </div>
 
