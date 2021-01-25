@@ -301,7 +301,7 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Работают 50/50:
 
-  * Realtek (широко известны проблемы с чипами серий rtl8192cu, :ref:`rtl8812ce <rtl8821ce-install>` и :ref:`rtl8812au <rtl8812au-install>`);
+  * Realtek (широко известны проблемы с чипами серий rtl8192cu, :ref:`rtl8821ce <rtl8821ce-install>` и :ref:`rtl8812au <rtl8812au-install>`);
   * MediaTek (ранее назывался Ralink).
 
 Не работают:
