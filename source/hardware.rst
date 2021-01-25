@@ -301,7 +301,7 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
 Работают 50/50:
 
-  * Realtek (широко известны проблемы с чипами серий rtl8192cu, :ref:`rtl8812cu <rtl8821cu-install>` и :ref:`rtl8812au <rtl8821au-install>`);
+  * Realtek (широко известны проблемы с чипами серий rtl8192cu, :ref:`rtl8812ce <rtl8821ce-install>` и :ref:`rtl8812au <rtl8812au-install>`);
   * MediaTek (ранее назывался Ralink).
 
 Не работают:
@@ -1133,13 +1133,13 @@ ICC профиль можно получить либо на сайте прои
 
 Загрузим и установим новую версию по :ref:`стандартной инструкции <rtl8821ce-install>`.
 
-.. index:: wi-fi, dkms, kernel module, kernel, rtl8821au, realtek
-.. _rtl8821au-install:
+.. index:: wi-fi, dkms, kernel module, kernel, rtl8812au, realtek
+.. _rtl8812au-install:
 
-Как установить драйвер сетевой карты на чипе rtl8821au?
+Как установить драйвер сетевой карты на чипе rtl8812au?
 ==========================================================
 
-К сожалению, Wi-Fi модули на базе чипа rtl8821au входят :ref:`в число проблемных <wifi-chip>`, поэтому для их корректной работы необходимо установить сторонний драйвер при помощи :ref:`dkms <dkms-akmods>`.
+К сожалению, Wi-Fi модули на базе чипа rtl8812au входят :ref:`в число проблемных <wifi-chip>`, поэтому для их корректной работы необходимо установить сторонний драйвер при помощи :ref:`dkms <dkms-akmods>`.
 
 Отключим технологию :ref:`UEFI Secure Boot <secure-boot>`, т.к. она полностью блокирует возможность загрузки неподписанных модулей.
 
@@ -1155,27 +1155,27 @@ ICC профиль можно получить либо на сайте прои
 
     sudo dnf install git gcc dkms kernel-devel kernel-headers
 
-Загрузим `rtl8821au с GitHub <https://github.com/gnab/rtl8812au>`__:
+Загрузим `rtl8812au с GitHub <https://github.com/gnab/rtl8812au>`__:
 
 .. code-block:: text
 
-    git clone --depth=1 https://github.com/gnab/rtl8812au.git rtl8821au
+    git clone --depth=1 https://github.com/gnab/rtl8812au.git rtl8812au
 
-Скопируем содержимое ``rtl8821au`` в общий каталог хранения исходников, где они будут доступны для dkms:
+Скопируем содержимое ``rtl8812au`` в общий каталог хранения исходников, где они будут доступны для dkms:
 
 .. code-block:: text
 
-    sudo cp -r rtl8821au /usr/src/rtl8821au-v4.2.3
+    sudo cp -r rtl8812au /usr/src/rtl8812au-v4.2.3
 
 Запустим сборку модуля ядра и установим его:
 
 .. code-block:: text
 
-    sudo dkms add -m rtl8821au -v v4.2.3
-    sudo dkms build -m rtl8821au -v v4.2.3
-    sudo dkms install -m rtl8821au -v v4.2.3
+    sudo dkms add -m rtl8812au -v v4.2.3
+    sudo dkms build -m rtl8812au -v v4.2.3
+    sudo dkms install -m rtl8812au -v v4.2.3
 
-Здесь **v4.2.3** -- версия модуля rtl8821au, которая может быть получена из файла ``rtl8821au/include/rtw_version.h``.
+Здесь **v4.2.3** -- версия модуля rtl8812au, которая может быть получена из файла ``rtl8812au/include/rtw_version.h``.
 
 Перезагрузим систему для вступления изменений в силу:
 
@@ -1185,29 +1185,29 @@ ICC профиль можно получить либо на сайте прои
 
 Теперь Wi-Fi адаптер должен появиться в системе и начать корректно функционировать.
 
-.. index:: wi-fi, dkms, kernel module, kernel, rtl8821au, realtek
-.. _rtl8821au-update:
+.. index:: wi-fi, dkms, kernel module, kernel, rtl8812au, realtek
+.. _rtl8812au-update:
 
-Как обновить или удалить драйвер сетевой карты на чипе rtl8821au?
+Как обновить или удалить драйвер сетевой карты на чипе rtl8812au?
 =====================================================================
 
-При выходе новой версии драйвера rtl8821au рекомендуется сначала удалить старый, затем с нуля установить новую версию.
+При выходе новой версии драйвера rtl8812au рекомендуется сначала удалить старый, затем с нуля установить новую версию.
 
 Удалим старый драйвер при помощи dkms:
 
 .. code-block:: text
 
-    sudo dkms remove rtl8821au/v4.2.3 --all
+    sudo dkms remove rtl8812au/v4.2.3 --all
 
 Удалим старые исходники:
 
 .. code-block:: text
 
-    sudo rm -rf /usr/src/rtl8821au-v4.2.3
+    sudo rm -rf /usr/src/rtl8812au-v4.2.3
 
-Здесь **v4.2.3** -- версия установленного в системе модуля rtl8821au.
+Здесь **v4.2.3** -- версия установленного в системе модуля rtl8812au.
 
-Загрузим и установим новую версию по :ref:`стандартной инструкции <rtl8821au-install>`.
+Загрузим и установим новую версию по :ref:`стандартной инструкции <rtl8812au-install>`.
 
 .. index:: ram, memory, dmidecode, dmi
 .. _ram-info:
