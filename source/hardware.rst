@@ -1055,7 +1055,7 @@ ICC профиль можно получить либо на сайте прои
 Можно ли исправить проблему с троттлингом ноутбуков ThinkPad?
 ==================================================================
 
-См. `здесь <https://www.easycoding.org/2019/07/22/reshaem-problemu-s-throttling-na-noutbukax-thinkpad.html>`__.
+См. `здесь <https://www.easycoding.org/2019/07/22/reshaem-problemu-s-throttling-na-noutbukax-thinkpad.html>`__ и `здесь <https://www.easycoding.org/2020/01/06/ustanavlivaem-thermald-na-fedora.html>`__.
 
 .. index:: wi-fi, dkms, kernel module, kernel, rtl8821ce, realtek
 .. _rtl8821ce-install:
