@@ -235,7 +235,7 @@
 <p>Работают 50/50:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Realtek (широко известны проблемы с чипами серий rtl8192cu, <span class="xref std std-ref">rtl8812cu</span> и <a class="reference internal" href="#rtl8821au-install"><span class="std std-ref">rtl8812au</span></a>);</p></li>
+<li><p>Realtek (широко известны проблемы с чипами серий rtl8192cu, <a class="reference internal" href="#rtl8821ce-install"><span class="std std-ref">rtl8812ce</span></a> и <a class="reference internal" href="#rtl8812au-install"><span class="std std-ref">rtl8812au</span></a>);</p></li>
 <li><p>MediaTek (ранее назывался Ralink).</p></li>
 </ul>
 </div></blockquote>
@@ -764,9 +764,9 @@ sudo dkms install -m rtl8821ce -v v5.5.2_34066.20200325
 <p>Здесь <strong>v5.5.2_34066.20200325</strong> – версия установленного в системе модуля rtl8821ce.</p>
 <p>Загрузим и установим новую версию по <a class="reference internal" href="#rtl8821ce-install"><span class="std std-ref">стандартной инструкции</span></a>.</p>
 </div>
-<div class="section" id="rtl8821au">
-<span id="rtl8821au-install"></span><span id="index-57"></span><h2>Как установить драйвер сетевой карты на чипе rtl8821au?<a class="headerlink" href="#rtl8821au" title="Ссылка на этот заголовок">¶</a></h2>
-<p>К сожалению, Wi-Fi модули на базе чипа rtl8821au входят <a class="reference internal" href="#wifi-chip"><span class="std std-ref">в число проблемных</span></a>, поэтому для их корректной работы необходимо установить сторонний драйвер при помощи <a class="reference internal" href="package-manager.html#dkms-akmods"><span class="std std-ref">dkms</span></a>.</p>
+<div class="section" id="rtl8812au">
+<span id="rtl8812au-install"></span><span id="index-57"></span><h2>Как установить драйвер сетевой карты на чипе rtl8812au?<a class="headerlink" href="#rtl8812au" title="Ссылка на этот заголовок">¶</a></h2>
+<p>К сожалению, Wi-Fi модули на базе чипа rtl8812au входят <a class="reference internal" href="#wifi-chip"><span class="std std-ref">в число проблемных</span></a>, поэтому для их корректной работы необходимо установить сторонний драйвер при помощи <a class="reference internal" href="package-manager.html#dkms-akmods"><span class="std std-ref">dkms</span></a>.</p>
 <p>Отключим технологию <a class="reference internal" href="installation.html#secure-boot"><span class="std std-ref">UEFI Secure Boot</span></a>, т.к. она полностью блокирует возможность загрузки неподписанных модулей.</p>
 <p>Произведём полное <a class="reference internal" href="package-manager.html#dnf-update"><span class="std std-ref">обновление системы</span></a> до актуальной версии:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
@@ -776,40 +776,40 @@ sudo dkms install -m rtl8821ce -v v5.5.2_34066.20200325
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install git gcc dkms kernel-devel kernel-headers
 </pre></div>
 </div>
-<p>Загрузим <a class="reference external" href="https://github.com/gnab/rtl8812au">rtl8821au с GitHub</a>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git clone --depth=1 https://github.com/gnab/rtl8812au.git rtl8821au
+<p>Загрузим <a class="reference external" href="https://github.com/gnab/rtl8812au">rtl8812au с GitHub</a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git clone --depth=1 https://github.com/gnab/rtl8812au.git rtl8812au
 </pre></div>
 </div>
-<p>Скопируем содержимое <code class="docutils literal notranslate"><span class="pre">rtl8821au</span></code> в общий каталог хранения исходников, где они будут доступны для dkms:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cp -r rtl8821au /usr/src/rtl8821au-v4.2.3
+<p>Скопируем содержимое <code class="docutils literal notranslate"><span class="pre">rtl8812au</span></code> в общий каталог хранения исходников, где они будут доступны для dkms:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cp -r rtl8812au /usr/src/rtl8812au-v4.2.3
 </pre></div>
 </div>
 <p>Запустим сборку модуля ядра и установим его:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dkms add -m rtl8821au -v v4.2.3
-sudo dkms build -m rtl8821au -v v4.2.3
-sudo dkms install -m rtl8821au -v v4.2.3
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dkms add -m rtl8812au -v v4.2.3
+sudo dkms build -m rtl8812au -v v4.2.3
+sudo dkms install -m rtl8812au -v v4.2.3
 </pre></div>
 </div>
-<p>Здесь <strong>v4.2.3</strong> – версия модуля rtl8821au, которая может быть получена из файла <code class="docutils literal notranslate"><span class="pre">rtl8821au/include/rtw_version.h</span></code>.</p>
+<p>Здесь <strong>v4.2.3</strong> – версия модуля rtl8812au, которая может быть получена из файла <code class="docutils literal notranslate"><span class="pre">rtl8812au/include/rtw_version.h</span></code>.</p>
 <p>Перезагрузим систему для вступления изменений в силу:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
 </pre></div>
 </div>
 <p>Теперь Wi-Fi адаптер должен появиться в системе и начать корректно функционировать.</p>
 </div>
-<div class="section" id="rtl8821au-update">
-<span id="index-58"></span><span id="id35"></span><h2>Как обновить или удалить драйвер сетевой карты на чипе rtl8821au?<a class="headerlink" href="#rtl8821au-update" title="Ссылка на этот заголовок">¶</a></h2>
-<p>При выходе новой версии драйвера rtl8821au рекомендуется сначала удалить старый, затем с нуля установить новую версию.</p>
+<div class="section" id="rtl8812au-update">
+<span id="index-58"></span><span id="id35"></span><h2>Как обновить или удалить драйвер сетевой карты на чипе rtl8812au?<a class="headerlink" href="#rtl8812au-update" title="Ссылка на этот заголовок">¶</a></h2>
+<p>При выходе новой версии драйвера rtl8812au рекомендуется сначала удалить старый, затем с нуля установить новую версию.</p>
 <p>Удалим старый драйвер при помощи dkms:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dkms remove rtl8821au/v4.2.3 --all
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dkms remove rtl8812au/v4.2.3 --all
 </pre></div>
 </div>
 <p>Удалим старые исходники:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rm -rf /usr/src/rtl8821au-v4.2.3
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rm -rf /usr/src/rtl8812au-v4.2.3
 </pre></div>
 </div>
-<p>Здесь <strong>v4.2.3</strong> – версия установленного в системе модуля rtl8821au.</p>
-<p>Загрузим и установим новую версию по <a class="reference internal" href="#rtl8821au-install"><span class="std std-ref">стандартной инструкции</span></a>.</p>
+<p>Здесь <strong>v4.2.3</strong> – версия установленного в системе модуля rtl8812au.</p>
+<p>Загрузим и установим новую версию по <a class="reference internal" href="#rtl8812au-install"><span class="std std-ref">стандартной инструкции</span></a>.</p>
 </div>
 <div class="section" id="ram-info">
 <span id="index-59"></span><span id="id36"></span><h2>Как получить информацию об установленной оперативной памяти?<a class="headerlink" href="#ram-info" title="Ссылка на этот заголовок">¶</a></h2>
@@ -1020,8 +1020,8 @@ pulseaudio -D
 <li class="toctree-l2"><a class="reference internal" href="#thinkpad">Можно ли исправить проблему с троттлингом ноутбуков ThinkPad?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rtl8821ce">Как установить драйвер сетевой карты на чипе rtl8821ce?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rtl8821ce-update">Как обновить или удалить драйвер сетевой карты на чипе rtl8821ce?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rtl8821au">Как установить драйвер сетевой карты на чипе rtl8821au?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rtl8821au-update">Как обновить или удалить драйвер сетевой карты на чипе rtl8821au?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rtl8812au">Как установить драйвер сетевой карты на чипе rtl8812au?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rtl8812au-update">Как обновить или удалить драйвер сетевой карты на чипе rtl8812au?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ram-info">Как получить информацию об установленной оперативной памяти?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#hwaccel-drivers">Какие драйверы необходимы для работы аппаратного ускорения декодирования мультимедиа?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#va-api-intel">Как активировать VA-API на видеокартах Intel?</a></li>
