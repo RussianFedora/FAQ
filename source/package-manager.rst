@@ -1255,3 +1255,17 @@ Dnf автоматически удаляет зависимости, не ну�
 .. code-block:: text
 
     sudo dnf repository-packages --installed foo-bar remove
+
+.. index:: rpm, dnf, package, remove, debug, debuginfo
+.. _dnf-remove-debuginfo:
+
+Как удалить все пакеты с отладочной информацией?
+====================================================
+
+Удалим все пакеты с отладочной информацией, установленные из основных репозиториев Fedora:
+
+.. code-block:: text
+
+    sudo dnf repository-packages --installed fedora-debuginfo remove
+    sudo dnf repository-packages --installed updates-debuginfo remove
+    sudo dnf repository-packages --installed updates-testing-debuginfo remove
