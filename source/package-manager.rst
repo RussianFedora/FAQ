@@ -1243,3 +1243,15 @@ Dnf автоматически удаляет зависимости, не ну�
 .. code-block:: text
 
     dnf repoquery -q  --releasever=rawhide --disablerepo="*" --qf="%{name}" --enablerepo=fedora-source --enablerepo=updates-source --enablerepo=updates-testing-source --archlist=src --whatrequires="foo-bar-devel"
+
+.. index:: rpm, dnf, package, remove
+.. _dnf-remove-packages-repository:
+
+Как удалить все пакеты из определённого репозитория?
+========================================================
+
+Удалим все пакеты, установленнные из репозитория **foo-bar**
+
+.. code-block:: text
+
+    sudo dnf repository-packages --installed foo-bar remove
