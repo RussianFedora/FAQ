@@ -787,6 +787,22 @@ sudo dnf distro-sync --allowerasing
 </pre></div>
 </div>
 </div>
+<div class="section" id="dnf-remove-packages-repository">
+<span id="index-81"></span><span id="id66"></span><h2>Как удалить все пакеты из определённого репозитория?<a class="headerlink" href="#dnf-remove-packages-repository" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим все пакеты, установленнные из репозитория <strong>foo-bar</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf repository-packages --installed foo-bar remove
+</pre></div>
+</div>
+</div>
+<div class="section" id="dnf-remove-debuginfo">
+<span id="index-82"></span><span id="id67"></span><h2>Как удалить все пакеты с отладочной информацией?<a class="headerlink" href="#dnf-remove-debuginfo" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим все пакеты с отладочной информацией, установленные из основных репозиториев Fedora:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf repository-packages --installed fedora-debuginfo remove
+sudo dnf repository-packages --installed updates-debuginfo remove
+sudo dnf repository-packages --installed updates-testing-debuginfo remove
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -891,6 +907,8 @@ sudo dnf distro-sync --allowerasing
 <li class="toctree-l2"><a class="reference internal" href="#zchunk-dnf">Как отключить использование zchunk в dnf?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-disable-telemetry">Как отключить телеметрию в dnf?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#check-build-deps">Как вывести список пакетов, использующих при сборке определённый?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-remove-packages-repository">Как удалить все пакеты из определённого репозитория?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-remove-debuginfo">Как удалить все пакеты с отладочной информацией?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Системное администрирование</a></li>
