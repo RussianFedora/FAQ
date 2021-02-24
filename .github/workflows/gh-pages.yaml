@@ -8,6 +8,8 @@ jobs:
     strategy:
       matrix:
         python-version: [3.8]
+    env:
+      CI_ACTION: 1
     steps:
       - name: Fetching sources from repository
         uses: actions/checkout@v2
