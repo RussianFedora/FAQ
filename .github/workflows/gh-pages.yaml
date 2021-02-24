@@ -1,0 +1,29 @@
+name: Pages CI
+
+on: [push]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+      - name: Fetching sources from repository
+        uses: actions/checkout@v2
+      - name: Setting up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Installing dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install sphinx
+      - name: Building HTML using Sphinx
+        run: |
+          make html
+      - name: Deploying built HTML to GitHub pages
+        uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          branch: gh-pages
+          folder: build/html
