@@ -1232,6 +1232,15 @@ sudo rmdir /media/data
 </div>
 <p>Здесь <strong>/media/foo-bar</strong> – это точка монтирования.</p>
 </div>
+<div class="section" id="app-disable-network">
+<span id="index-102"></span><span id="id76"></span><h2>Как запретить приложению доступ к сети?<a class="headerlink" href="#app-disable-network" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Иногда возникает необходимость ограничить какому-либо приложению доступ к сети Интернет.</p>
+<p>Установим ограничение пространствами имён ядра (более подробную информацию о них можно получить в <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">namespaces</span></code>) при помощи утилиты <strong>unshare</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>unshare -r -n foo-bar
+</pre></div>
+</div>
+<p>Здесь вместо <strong>foo-bar</strong> укажем приложение, которое требуется запустить.</p>
+</div>
 </div>
 
 
@@ -1361,6 +1370,7 @@ sudo rmdir /media/data
 <li class="toctree-l2"><a class="reference internal" href="#luks-upgrade">Можно ли изменить используемую криптоконтейнером версию LUKS?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#trim-luks">Как активировать TRIM для открытых вручную LUKS-контейнеров?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#luks-trim-execute">Как выполнить TRIM для открытых вручную LUKS-контейнеров?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#app-disable-network">Как запретить приложению доступ к сети?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-system.html">Работа в системе</a></li>
