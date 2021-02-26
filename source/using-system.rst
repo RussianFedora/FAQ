@@ -337,20 +337,6 @@
 
 Изменения вступят в силу при следующей загрузке системы.
 
-.. index:: file system, fs, exfat, fuse
-.. _fedora-exfat:
-
-Почему я не могу использовать файловую систему exFAT в Fedora?
-===================================================================
-
-:ref:`Файловая система <fs-selection>` exFAT защищена множеством патентов Microsoft, поэтому она не может быть включена в ядро Linux и соответственно быть доступной в Fedora по умолчанию.
-
-Для того, чтобы использовать её, необходимо установить пакет **fuse-exfat** из :ref:`репозитория <3rd-repositories>` :ref:`RPM Fusion <rpmfusion>`:
-
-.. code-block:: text
-
-    sudo dnf install fuse fuse-exfat
-
 .. index:: systemd, failed to start modules, kernel, virtualbox
 .. _failed-to-start:
 
