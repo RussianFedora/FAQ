@@ -1154,7 +1154,6 @@ FUSE (file system in userspace) -- это модуль ядра и набор у
 
 Некоторые примеры подобных реализаций:
 
-  * :ref:`exFAT <fedora-exfat>`;
   * :ref:`MTP <fuse-mtp>`;
   * NTFS;
   * ZFS;
