@@ -31,7 +31,7 @@
 
 Изменения вступят в силу при следующем запуске браузера.
 
-Внимание! Это не затрагивает :ref:`аппаратное декодирование мультимедиа <browser-hwaccel>` средствами видеоускорителя.
+Внимание! Это не затрагивает :ref:`аппаратное декодирование мультимедиа <bdfdfrowser-hwdfdfdfaccel>` средствами видеоускорителя.
 
 .. index:: firefox, chromium, chrome, hardware acceleration, vaapi
 .. _browser-hwaccel:
@@ -45,7 +45,7 @@
   * :ref:`Chromium <hwaccel-chromium>`.
 
 .. index:: firefox, chromium, chrome, hardware acceleration, vaapi
-.. _hwaccel-firefox:
+.. _browser-hwaccel:
 
 Как активировать аппаратное ускорение декодирования мультимедиа в Firefox?
 ===============================================================================
