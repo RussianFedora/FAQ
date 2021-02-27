@@ -1,10 +1,10 @@
-name: Pages CI
+name: PR verifier
 
-on: [push]
+on: [pull_request]
 
 jobs:
-  build-and-deploy:
-    name: Build and deploy HTML
+  build-and-verify:
+    name: Build and verify PR
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -25,8 +25,3 @@ jobs:
       - name: Building HTML using Sphinx
         run: |
           make html
-      - name: Deploying built HTML to GitHub pages
-        uses: JamesIves/github-pages-deploy-action@4.0.0
-        with:
-          branch: gh-pages
-          folder: build/html
