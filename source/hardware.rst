@@ -236,10 +236,10 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 .. index:: video, gpu, amd, ati, drivers, opencl, rocm
 .. _rocm:
 
-Как установить ROCm — открытую реализацию OpenCL на видеокартах AMD?
-====================================================================
+Как установить ROCm -- открытую реализацию OpenCL на видеокартах AMD?
+=========================================================================
 
-В данный момент AMD не предоставляет официальную сборку `ROCm <https://github.com/RadeonOpenCompute/ROCm>`__ для дистрибутива Fedora, но существует рабочий способ заставить работать ROCm, открытый стэк `OpenCL <https://ru.wikipedia.org/wiki/OpenCL>`__.
+В данный момент AMD не предоставляет официальных сборок `ROCm <https://github.com/RadeonOpenCompute/ROCm>`__ -- открытой реализации `OpenCL <https://ru.wikipedia.org/wiki/OpenCL>`__ для Fedora, однако существует рабочий способ заставить работать её в данном дистрибутиве.
 
   1. Подключим официальный репозиторий AMD:
 
@@ -257,32 +257,32 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
   2. Установим необходимые пакеты:
 
-    .. code-block:: bash
+    .. code-block:: text
 
       sudo dnf install rocm-device-libs rocm-opencl hsakmt-roct hipify-clang
 
-  3. Установим правильную версию пакета `rocminfo` предварительно проверив её наличие в репозитории `repo.radeon.com`:
+  3. Установим правильную версию пакета **rocminfo**, предварительно проверив её наличие в репозитории **repo.radeon.com**:
 
-    .. code-block:: bash
+    .. code-block:: text
 
       sudo dnf repoquery --location rocminfo
       sudo rpm -Uvh --nodeps https://repo.radeon.com/rocm/centos8/rpm/rocminfo-1.4.0.1.rocm-rel-4.0-23-605b3a5.rpm
 
-  4. Подменим `rocm_agent_enumerator` и адаптариуем его для Fedora:
+  4. Исправим скрипт **rocm_agent_enumerator** и адаптариуем его для Fedora:
 
-    .. code-block:: bash
+    .. code-block:: text
 
       sudo sed -i 's/^#!.*/#!\/usr\/bin\/python/' /opt/rocm-4.0.0/bin/rocm_agent_enumerator
 
-  5. Отредактируем `amdocl64_40000.icd` файл и добавим в него нужный путь к библиотеке:
+  5. Отредактируем файл **amdocl64_40000.icd** и добавим в него корректный путь к библиотеке:
 
-    .. code-block:: bash
+    .. code-block:: text
 
       sudoedit /etc/OpenCL/vendors/amdocl64_40000.icd
 
       /opt/rocm-4.0.0/opencl/lib/libamdocl64.so
 
-  6. Создадим OpenCL профиль и переменные окружения:
+  6. Создадим OpenCL-профиль и переменные окружения:
 
     .. code-block:: bash
 
@@ -293,14 +293,21 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
           ROCM_PATH=/opt/rocm-4.0.0 \
           HIP_PATH=/opt/rocm-4.0.0/hip
 
-После выполнения всех пунктов запустим новый терминал чтобы применились новые переменные окружения и проверим работу OpenCL с помощью `hashcat`:
+После выполнения всех пунктов запустим новый экземпляр терминала для применения изменений в переменных окружения, затем устатановим утилиту **hashcat**, которую мы будем использовать для проверки работоспособности OpenCL-стека:
 
-  .. code-block:: bash
+.. code-block:: text
 
     sudo dnf install hashcat
+
+Запустим hashcat в режиме теста производительности:
+
+.. code-block:: text
+
     hashcat -b
 
-В данный момент ROCm не поддерживает работу с графическими приложениями, как рендер Cycles в Blender, однако `работа <https://github.com/RadeonOpenCompute/ROCm/issues/1106>`__ ведется в этой области. Также работа данного открытого стэка OpenCL не гарантируется на всех моделях видеокарт AMD Radeon.
+На данный момент ROCm не поддерживает работу с графическими приложениями, такими как рендер Cycles в Blender, однако работа в этой области `ведется <https://github.com/RadeonOpenCompute/ROCm/issues/1106>`__.
+
+Работа данного открытого OpenCL-стека не гарантируется на всех моделях видеокарт AMD Radeon.
 
 .. index:: hardware, selection
 .. _linux-hardware:
