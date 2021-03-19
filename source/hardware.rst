@@ -274,19 +274,27 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
       sudo sed -i 's/^#!.*/#!\/usr\/bin\/python/' /opt/rocm-4.0.0/bin/rocm_agent_enumerator
 
-  5. Отредактируем файл **amdocl64_40000.icd** и добавим в него корректный путь к библиотеке:
+  5. Откроем файл **amdocl64_40000.icd** в текстовом редакторе:
 
     .. code-block:: text
 
       sudoedit /etc/OpenCL/vendors/amdocl64_40000.icd
 
+    Добавим в него корректный путь к библиотеке **libamdocl64.so**:
+
+    .. code-block:: text
+
       /opt/rocm-4.0.0/opencl/lib/libamdocl64.so
 
-  6. Создадим OpenCL-профиль и переменные окружения:
+  6. Создадим OpenCL-профиль:
 
-    .. code-block:: bash
+    .. code-block:: text
 
       sudoedit /etc/profile.d/rocm.sh
+
+    Зададим необходимые для работы переменные окружения:
+
+    .. code-block:: bash
 
       export PATH=$PATH:/opt/rocm-4.0.0/opencl/bin
       export PATH=/opt/rocm-4.0.0/bin:$PATH \
