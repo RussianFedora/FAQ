@@ -248,7 +248,7 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
       sudo tee /etc/yum.repos.d/ROCm.repo <<EOF
       [ROCm]
       name=ROCm
-      baseurl=https://repo.radeon.com/rocm/centos8/rpm
+      baseurl=https://repo.radeon.com/rocm/centos8/4.0.1
       enabled=1
       gpgcheck=1
       gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -259,32 +259,32 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
     .. code-block:: text
 
-      sudo dnf install rocm-device-libs rocm-opencl hsakmt-roct hipify-clang
+      sudo dnf install rocm-opencl
 
   3. Установим правильную версию пакета **rocminfo**, предварительно проверив её наличие в репозитории **repo.radeon.com**:
 
     .. code-block:: text
 
       sudo dnf repoquery --location rocminfo
-      sudo rpm -Uvh --nodeps https://repo.radeon.com/rocm/centos8/rpm/rocminfo-1.4.0.1.rocm-rel-4.0-23-605b3a5.rpm
+      sudo rpm -Uvh --nodeps https://repo.radeon.com/rocm/centos8/4.0.1/rocminfo-1.4.0.1.rocm-rel-4.0-26-605b3a5.rpm
 
   4. Исправим скрипт **rocm_agent_enumerator** и адаптариуем его для Fedora:
 
     .. code-block:: text
 
-      sudo sed -i 's/^#!.*/#!\/usr\/bin\/python/' /opt/rocm-4.0.0/bin/rocm_agent_enumerator
+      sudo sed -i 's/^#!.*/#!\/usr\/bin\/python/' /opt/rocm-4.0.1/bin/rocm_agent_enumerator
 
   5. Откроем файл **amdocl64_40000.icd** в текстовом редакторе:
 
     .. code-block:: text
 
-      sudoedit /etc/OpenCL/vendors/amdocl64_40000.icd
+      sudoedit /etc/OpenCL/vendors/amdocl64_40001.icd
 
     Добавим в него корректный путь к библиотеке **libamdocl64.so**:
 
     .. code-block:: text
 
-      /opt/rocm-4.0.0/opencl/lib/libamdocl64.so
+      /opt/rocm-4.0.1/opencl/lib/libamdocl64.so
 
   6. Создадим OpenCL-профиль:
 
@@ -296,10 +296,10 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 
     .. code-block:: bash
 
-      export PATH=$PATH:/opt/rocm-4.0.0/opencl/bin
-      export PATH=/opt/rocm-4.0.0/bin:$PATH \
-          ROCM_PATH=/opt/rocm-4.0.0 \
-          HIP_PATH=/opt/rocm-4.0.0/hip
+      export PATH=$PATH:/opt/rocm-4.0.1/opencl/bin
+      export PATH=/opt/rocm-4.0.1/bin:$PATH \
+          ROCM_PATH=/opt/rocm-4.0.1 \
+          HIP_PATH=/opt/rocm-4.0.1/hip
 
 После выполнения всех пунктов запустим новый экземпляр терминала для применения изменений в :ref:`переменных окружения <env-get-term>`, либо осуществим новый вход в систему.
 
