@@ -1747,4 +1747,4 @@ Coredump -- это дамп закрытой памяти процесса, со
     sudo umount /media/foo-bar
     sudo rmdir /media/foo-bar
 
-Здесь **/dev/sdX2** -- накопитель с ФС BTRFS.
+Здесь **/dev/sdX2** -- накопитель с файловой системой :ref:`BTRFS <fs-btrfs>`.
