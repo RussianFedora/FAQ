@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Сетевое администрирование &#8212; Неофициальный FAQ по Fedora (версия 2021.02.24)</title>
+    <title>Сетевое администрирование &#8212; Неофициальный FAQ по Fedora (версия 2021.03.30)</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -439,6 +439,18 @@ sudo systemctl mask systemd-resolved.service
 <p>Здесь <strong>/path/to/foo-bar.ovpn</strong> – путь к OVPN файлу на диске.</p>
 <p>Встроенные сертификаты и ключи будут автоматически импортированы и сохранены в каталоге <code class="docutils literal notranslate"><span class="pre">~/.cert/nm-openvpn</span></code>, что не вызовет <a class="reference internal" href="security.html#openvpn-selinux"><span class="std std-ref">проблем с SELinux</span></a>.</p>
 </div>
+<div class="section" id="check-port">
+<span id="index-35"></span><span id="id16"></span><h2>Как проверить открыт ли порт на удалённом сервере?<a class="headerlink" href="#check-port" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Воспользуемся утилитой <strong>nc</strong> для непосредственного осуществления проверки без полного сканирования портов.</p>
+<p>Проверим доступность сервиса на IP <strong>1.2.3.4</strong> с номером порта <strong>443/tcp</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nc -z -v 1.2.3.4 443
+</pre></div>
+</div>
+<p>Проверим доступность сервиса на IP <strong>1.2.3.4</strong> с номером порта <strong>27015/udp</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nc -z -v -u 1.2.3.4 27015
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -499,6 +511,7 @@ sudo systemctl mask systemd-resolved.service
 <li class="toctree-l2"><a class="reference internal" href="#firewalld">Где расположены файлы конфигурации доступных сервисов Firewalld?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firewalld-override">Как переопределить предустановленный сервис в Firewalld?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ovpn">Как правильно импортировать подключение из OVPN файла?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#check-port">Как проверить открыт ли порт на удалённом сервере?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="virtualization.html">Виртуализация</a></li>

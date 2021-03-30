@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Системное администрирование &#8212; Неофициальный FAQ по Fedora (версия 2021.02.24)</title>
+    <title>Системное администрирование &#8212; Неофициальный FAQ по Fedora (версия 2021.03.30)</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -730,7 +730,6 @@ Host bar
 <p>Некоторые примеры подобных реализаций:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><a class="reference internal" href="using-system.html#fedora-exfat"><span class="std std-ref">exFAT</span></a>;</p></li>
 <li><p><a class="reference internal" href="using-applications.html#fuse-mtp"><span class="std std-ref">MTP</span></a>;</p></li>
 <li><p>NTFS;</p></li>
 <li><p>ZFS;</p></li>
@@ -1086,6 +1085,30 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 </pre></div>
 </div>
 </div>
+<div class="section" id="process-tree">
+<span id="index-91"></span><span id="id68"></span><h2>Как построить и вывести дерево процессов?<a class="headerlink" href="#process-tree" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Воспользуемся утилитой <strong>ps</strong> для построения и вывода дерева процессов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ps -aef --forest
+</pre></div>
+</div>
+</div>
+<div class="section" id="btrfs-subvolume">
+<span id="index-92"></span><span id="id69"></span><h2>Как однократно смонтировать BTRFS subvolume?<a class="headerlink" href="#btrfs-subvolume" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Создадим каталог для точки монтирования:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/foo-bar
+</pre></div>
+</div>
+<p>Выполним монтирование подтома <strong>foo-bar</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mount -t btrfs /dev/sdX2 -o subvol=foo-bar /media/foo-bar
+</pre></div>
+</div>
+<p>По окончании работы произведём размонтирование и удалим ненужный более каталог:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /media/foo-bar
+sudo rmdir /media/foo-bar
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sdX2</strong> – накопитель с файловой системой <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a>.</p>
+</div>
 </div>
 
 
@@ -1201,6 +1224,8 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <li class="toctree-l2"><a class="reference internal" href="#io-scheduler">Как определить какой планировщик ввода-вывода используется?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#return-code-get">Как получить код завершения последней выполненной команды?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uefi-secure-boot">Как определить текущее состояние UEFI Secure Boot?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#process-tree">Как построить и вывести дерево процессов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#btrfs-subvolume">Как однократно смонтировать BTRFS subvolume?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>

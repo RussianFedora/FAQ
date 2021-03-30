@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Безопасность &#8212; Неофициальный FAQ по Fedora (версия 2021.02.24)</title>
+    <title>Безопасность &#8212; Неофициальный FAQ по Fedora (версия 2021.03.30)</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -48,15 +48,7 @@
 </div>
 <div class="section" id="selinux-temp">
 <span id="index-1"></span><span id="id3"></span><h2>Как мне временно отключить SELinux?<a class="headerlink" href="#selinux-temp" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Мы настоятельно не рекомендуем этого делать, однако если это необходимо, то для временного однократного отключения SELinux, выполним следующую команду:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo setenforce 0
-</pre></div>
-</div>
-<p>Для повторной активации данной системы, выполним:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo setenforce 1
-</pre></div>
-</div>
-<p>Также SELinux можно временно отключить при загрузке системы посредством <a class="reference internal" href="administration.html#kernelpm-once"><span class="std std-ref">передачи специального параметра ядра</span></a>:</p>
+<p>Мы настоятельно не рекомендуем этого делать, однако если это необходимо, то для временного однократного отключения SELinux, передадим ядру Linux специальный <a class="reference internal" href="administration.html#kernelpm-once"><span class="std std-ref">параметра ядра</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>SELINUX=0
 </pre></div>
 </div>

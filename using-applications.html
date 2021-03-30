@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Сторонние приложения &#8212; Неофициальный FAQ по Fedora (версия 2021.02.24)</title>
+    <title>Сторонние приложения &#8212; Неофициальный FAQ по Fedora (версия 2021.03.30)</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -756,7 +756,7 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </div>
 <div class="section" id="earlyoom">
 <span id="earlyoom-info"></span><span id="index-63"></span><h2>Что такое earlyoom и почему он установлен по умолчанию?<a class="headerlink" href="#earlyoom" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Начиная с Fedora 32, в редакции Workstation <a class="reference external" href="https://pagure.io/fedora-workstation/issue/119">предустановлен</a> пакет <strong>earlyoom</strong>, который представляет собой систему раннего предотвращения нехватки памяти из пользовательского режима (user-space OOM Killer).</p>
+<p>В Fedora 32 и 33, в редакции Workstation, <a class="reference external" href="https://pagure.io/fedora-workstation/issue/119">предустановлен</a> пакет <strong>earlyoom</strong>, который представляет собой систему раннего предотвращения нехватки памяти из пользовательского режима (user-space OOM Killer).</p>
 <p>В случаях, когда объём доступной оперативной памяти опустится ниже 4% или 400 МБ (в зависимости от того, что меньше), earlyoom принудительно завершит работу процесса, наиболее активно потребляющего память (имеющего самое высокое значение oom_score), не доводя систему до очистки системных буферов и вызова ядерного OOM Killer.</p>
 <p>Наиболее приоритетными кандидатами на завершение являются процессы <em>Web Content</em> браузера Mozilla Firefox. В то же время, снижен приоритет для различных системных сервисов, критичных для работы системы.</p>
 </div>
@@ -774,14 +774,14 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <div class="section" id="earlyoom-disable">
 <span id="index-65"></span><span id="id38"></span><h2>Как отключить earlyoom?<a class="headerlink" href="#earlyoom-disable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Отключим earlyoom (не будет запускаться вместе с системой):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable earlyoom.service
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable --now earlyoom.service
 </pre></div>
 </div>
 <p>Удалим пакет <strong>earlyoom</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove earlyoom
 </pre></div>
 </div>
-<p>Внимание! Если удалить пакет <strong>earlyoom</strong> в Fedora Workstation, он может быть <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">установлен заново</span></a> из-за включённых по умолчанию <a class="reference internal" href="package-manager.html#dnf-weakdeps"><span class="std std-ref">слабых зависимостей</span></a>.</p>
+<p>Внимание! Если удалить пакет <strong>earlyoom</strong> в Fedora 32 и 33, он может быть <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">установлен заново</span></a> из-за включённых по умолчанию <a class="reference internal" href="package-manager.html#dnf-weakdeps"><span class="std std-ref">слабых зависимостей</span></a>.</p>
 </div>
 <div class="section" id="earlyoom-configure">
 <span id="index-66"></span><span id="id39"></span><h2>Как настроить earlyoom?<a class="headerlink" href="#earlyoom-configure" title="Ссылка на этот заголовок">¶</a></h2>
@@ -796,19 +796,46 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </div>
 <p>Подробную документацию о всех поддерживаемых опциях можно найти в <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">earlyoom</span></code>.</p>
 </div>
+<div class="section" id="systemd-oomd">
+<span id="oomd-info"></span><span id="index-67"></span><h2>Что такое systemd-oomd?<a class="headerlink" href="#systemd-oomd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Начиная с Fedora 34, во всех редакциях <a class="reference external" href="https://fedoraproject.org/wiki/Changes/EnableSystemdOomd">активирован по умолчанию</a> сервис <strong>systemd-oomd</strong>.</p>
+<p>Как и <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">earlyoom</span></a>, он представляет собой систему раннего предотвращения нехватки памяти из пользовательского режима (user-space OOM Killer).</p>
+</div>
+<div class="section" id="oomd-disable">
+<span id="index-68"></span><span id="id40"></span><h2>Как отключить systemd-oomd?<a class="headerlink" href="#oomd-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Отключим сервис <strong>systemd-oomd</strong> (не будет запускаться вместе с системой):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable --now systemd-oomd.service
+</pre></div>
+</div>
+<p>Заблокируем возможность его повторной активации и запуска:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl mask systemd-oomd.service
+</pre></div>
+</div>
+</div>
+<div class="section" id="systemd-oomd-earlyoom">
+<span id="oomd-revert"></span><span id="index-69"></span><h2>Как отключить systemd-oomd и вернуться к earlyoom?<a class="headerlink" href="#systemd-oomd-earlyoom" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Выполним два простых шага:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><a class="reference internal" href="#oomd-disable"><span class="std std-ref">отключим systemd-oomd</span></a>;</p></li>
+<li><p><a class="reference internal" href="#earlyoom-enable"><span class="std std-ref">активируем earlyoom</span></a>.</p></li>
+</ol>
+</div></blockquote>
+<p>Изменения вступят в силу немедленно.</p>
+</div>
 <div class="section" id="iso-kde">
-<span id="kde-iso"></span><span id="index-67"></span><h2>Как открыть ISO образ в KDE?<a class="headerlink" href="#iso-kde" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="kde-iso"></span><span id="index-70"></span><h2>Как открыть ISO образ в KDE?<a class="headerlink" href="#iso-kde" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Файлы образов ISO могут быть открыты архиватором Ark (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">ark</span></code>), если они не используют <a class="reference external" href="https://ru.wikipedia.org/wiki/Universal_Disk_Format">файловую систему UDF</a>.</p>
 <p>В качестве альтернативного варианта можно установить утилиту Gnome Disks (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">gnome-disk-utility</span></code>), после чего пункт монтирования ISO-файла появится в контекстном меню по щелчку правой кнопки мыши в Dolphin. Таким способом можно быстро смонтировать образ с любой ФС.</p>
 </div>
 <div class="section" id="uresourced">
-<span id="uresourced-info"></span><span id="index-68"></span><h2>Что такое uresourced и почему он установлен по умолчанию?<a class="headerlink" href="#uresourced" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="uresourced-info"></span><span id="index-71"></span><h2>Что такое uresourced и почему он установлен по умолчанию?<a class="headerlink" href="#uresourced" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Начиная с Fedora 33, в редакции Workstation <a class="reference external" href="https://pagure.io/fedora-workstation/issue/154">предустановлен</a> пакет <strong>uresourced</strong>, который представляет собой систему повышения отзывчивости графической оболочки.</p>
 <p>По умолчанию данный сервис резервирует 250 МБ или 10% от общего объёма оперативной памяти (в зависимости от того, что меньше) при помощи cgroupsv2.</p>
 <p>В результате снижается вероятность возникновения ошибок страниц за счёт исключения возможности вытеснения страниц памяти, занимаемых графической оболочкой, что в итоге и приводит к повышению отзывчивости.</p>
 </div>
 <div class="section" id="uresourced-enable">
-<span id="index-69"></span><span id="id40"></span><h2>Как активировать uresourced?<a class="headerlink" href="#uresourced-enable" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-72"></span><span id="id41"></span><h2>Как активировать uresourced?<a class="headerlink" href="#uresourced-enable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет <strong>uresourced</strong> (для версий, <a class="reference internal" href="#uresourced-info"><span class="std std-ref">отличных от Workstation</span></a>):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install uresourced
 </pre></div>
@@ -819,7 +846,7 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </div>
 </div>
 <div class="section" id="uresourced-disable">
-<span id="index-70"></span><span id="id41"></span><h2>Как отключить uresourced?<a class="headerlink" href="#uresourced-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-73"></span><span id="id42"></span><h2>Как отключить uresourced?<a class="headerlink" href="#uresourced-disable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Отключим uresourced (не будет запускаться вместе с системой):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable uresourced.service
 </pre></div>
@@ -831,7 +858,7 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <p>Внимание! Если удалить пакет <strong>uresourced</strong> в Fedora Workstation, он может быть <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">установлен заново</span></a> из-за включённых по умолчанию <a class="reference internal" href="package-manager.html#dnf-weakdeps"><span class="std std-ref">слабых зависимостей</span></a>.</p>
 </div>
 <div class="section" id="firefox-kde">
-<span id="firefox-kde-dialog"></span><span id="index-71"></span><h2>Как в Firefox включить диалог загрузки и сохранения файлов от KDE?<a class="headerlink" href="#firefox-kde" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="firefox-kde-dialog"></span><span id="index-74"></span><h2>Как в Firefox включить диалог загрузки и сохранения файлов от KDE?<a class="headerlink" href="#firefox-kde" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию Firefox использует диалоги открытия и сохранения файлов из GTK, однако существует возможность активации родных от используемой рабочей среды, например KDE.</p>
 <p>Установим соответствующий пакет с порталом:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install xdg-desktop-portal-kde
@@ -936,6 +963,9 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <li class="toctree-l2"><a class="reference internal" href="#earlyoom-enable">Как активировать earlyoom?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#earlyoom-disable">Как отключить earlyoom?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#earlyoom-configure">Как настроить earlyoom?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#systemd-oomd">Что такое systemd-oomd?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#oomd-disable">Как отключить systemd-oomd?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#systemd-oomd-earlyoom">Как отключить systemd-oomd и вернуться к earlyoom?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#iso-kde">Как открыть ISO образ в KDE?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uresourced">Что такое uresourced и почему он установлен по умолчанию?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uresourced-enable">Как активировать uresourced?</a></li>

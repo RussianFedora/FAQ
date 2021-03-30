@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Неофициальный FAQ по Fedora &#8212; Неофициальный FAQ по Fedora (версия 2021.02.24)</title>
+    <title>Неофициальный FAQ по Fedora &#8212; Неофициальный FAQ по Fedora (версия 2021.03.30)</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -283,6 +283,8 @@
 <li class="toctree-l2"><a class="reference internal" href="administration.html#io-scheduler">Как определить какой планировщик ввода-вывода используется?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="administration.html#return-code-get">Как получить код завершения последней выполненной команды?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="administration.html#uefi-secure-boot">Как определить текущее состояние UEFI Secure Boot?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="administration.html#process-tree">Как построить и вывести дерево процессов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="administration.html#btrfs-subvolume">Как однократно смонтировать BTRFS subvolume?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a><ul>
@@ -321,6 +323,7 @@
 <li class="toctree-l2"><a class="reference internal" href="networking.html#firewalld">Где расположены файлы конфигурации доступных сервисов Firewalld?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="networking.html#firewalld-override">Как переопределить предустановленный сервис в Firewalld?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="networking.html#ovpn">Как правильно импортировать подключение из OVPN файла?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#check-port">Как проверить открыт ли порт на удалённом сервере?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="virtualization.html">Виртуализация</a><ul>
@@ -477,7 +480,6 @@
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#systemd-analyze">Как узнать какой сервис замедляет загрузку системы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#gnome-qt">У меня в Gnome не работает масштабирование окон Qt приложений. Что делать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#sddm">Как отключить виртуальную клавиатуру в SDDM?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using-system.html#exfat-fedora">Почему я не могу использовать файловую систему exFAT в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#failed-to-start-load-kernel-modules">При загрузке системы появляется ошибка Failed to start Load Kernel Modules. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#kwallet">Как настроить автоматическую разблокировку связки ключей KWallet при входе в систему?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-system.html#xdg-reallocate">Как переместить стандартные каталоги для документов, загрузок и т.д.?</a></li>
@@ -581,6 +583,9 @@
 <li class="toctree-l2"><a class="reference internal" href="using-applications.html#earlyoom-enable">Как активировать earlyoom?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-applications.html#earlyoom-disable">Как отключить earlyoom?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-applications.html#earlyoom-configure">Как настроить earlyoom?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#systemd-oomd">Что такое systemd-oomd?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#oomd-disable">Как отключить systemd-oomd?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-applications.html#systemd-oomd-earlyoom">Как отключить systemd-oomd и вернуться к earlyoom?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-applications.html#iso-kde">Как открыть ISO образ в KDE?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-applications.html#uresourced">Что такое uresourced и почему он установлен по умолчанию?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="using-applications.html#uresourced-enable">Как активировать uresourced?</a></li>
@@ -600,7 +605,8 @@
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#nvidia-troubleshooting">После установки драйверов NVIDIA возникает чёрный экран. Что делать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#nvidia-remove">Как удалить проприетарные драйверы NVIDIA?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#amd">Как правильно установить драйверы для видеокарт AMD?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hardware.html#opencl-amd">Как заставить работать OpenCL на видеокартах AMD?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware.html#opencl-amd-amdgpu-pro">Как активировать OpenCL на видеокартах AMD из состава AMDGPU-Pro драйвера?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware.html#rocm-opencl-amd">Как установить ROCm – открытую реализацию OpenCL на видеокартах AMD?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#linux-hardware">На что в первую очередь следует обратить внимание при выборе ноутбука для Linux?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#uefi-bios-fedora">Как обновить прошивку UEFI BIOS и других устройств непосредственно из Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#wi-fi-linux">Какие модули Wi-Fi корректно работают в Linux?</a></li>
@@ -654,8 +660,11 @@
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#va-api-nvidia">Как активировать VA-API на видеокартах NVIDIA?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#battery-status">Как вывести информацию о состоянии батареи ноутбука?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#mpris-proxy">Как включить управление воспроизведением с Bluetooth-наушников?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hardware.html#bluetooth-codecs">Как включить поддержку Bluetooth-кодеков высокого качества?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware.html#bluetooth-pulseaudio">Как включить поддержку Bluetooth-кодеков высокого качества в PulseAudio?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware.html#bluetooth-pipewire">Как включить поддержку Bluetooth-кодеков высокого качества в PipeWire?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html#audio-analog-multichannel">Как настроить многоканальный аналоговый аудиовыход?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware.html#display-check">Как проверить дисплей на дефектные пиксели?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware.html#pipewire-pulseaudio">Как переключиться с PipeWire на PulseAudio?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Разработка и сборка пакетов</a><ul>
