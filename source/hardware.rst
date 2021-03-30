@@ -1426,8 +1426,8 @@ ICC профиль можно получить либо на сайте прои
 
     systemctl --user enable --now mpris-proxy.service
 
-.. index:: bluetooth, hd audio, aac, aptx, ldac, sbc, audio, multimedia, codecs
-.. _bluetooth-codecs:
+.. index:: bluetooth, hd audio, aac, aptx, ldac, sbc, audio, multimedia, codecs, pulseaudio
+.. _bluetooth-codecs-pulseaudio:
 
 Как включить поддержку Bluetooth-кодеков высокого качества в PulseAudio?
 ============================================================================
@@ -1461,6 +1461,16 @@ ICC профиль можно получить либо на сайте прои
 Теперь в настройках используемой графической среды, после подключения наушников, выберем необходимый кодек.
 
 Внимание! Выбранный кодек должен поддерживаться наушниками аппаратно.
+
+.. index:: bluetooth, hd audio, aac, aptx, ldac, sbc, audio, multimedia, codecs, pipewire
+.. _bluetooth-codecs-pipewire:
+
+Как включить поддержку Bluetooth-кодеков высокого качества в PipeWire?
+==========================================================================
+
+В репозиториях Fedora модули звукового сервера PipeWire для работы с Bluetooth собраны без поддержки AAC, aptX, aptX HD и LDAC ввиду патентных ограничений.
+
+Для активации поддержки кодеков высокого качества необходимо :ref:`переключиться на PulseAudio <pipewire-revert>` и произвести :ref:`установку необходимых пакетов <bluetooth-codecs-pulseaudio>`.
 
 .. index:: alsa, pulseaudio, audio, 5.1, 7.1, channel
 .. _audio-analog-multichannel:
