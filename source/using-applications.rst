@@ -1249,6 +1249,19 @@ Cгенерируем файл с контрольными суммами SHA2 (
 
     sudo systemctl mask systemd-oomd.service
 
+.. index:: oom, kernel, systemd, oomd, earlyoom
+.. _oomd-revert:
+
+Как отключить systemd-oomd и вернуться к earlyoom?
+=====================================================
+
+Выполним два простых шага:
+
+  1. :ref:`отключим systemd-oomd <oomd-disable>`;
+  2. :ref:`активируем earlyoom <earlyoom-enable>`.
+
+Изменения вступят в силу немедленно.
+
 .. index:: kde, iso, dolphin, ark, udf, plasma, dolphin
 .. _kde-iso:
 
