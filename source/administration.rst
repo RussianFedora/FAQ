@@ -1721,3 +1721,30 @@ Coredump -- это дамп закрытой памяти процесса, со
 .. code-block:: text
 
     ps -aef --forest
+
+.. index:: btrfs, subvolume, file system, fs, mount
+.. _btrfs-subvolume:
+
+Как однократно смонтировать BTRFS subvolume?
+=================================================
+
+Создадим каталог для точки монтирования:
+
+.. code-block:: text
+
+    sudo mkdir /media/foo-bar
+
+Выполним монтирование подтома **foo-bar**:
+
+.. code-block:: text
+
+    sudo mount -t btrfs /dev/sdX2 -o subvol=foo-bar /media/foo-bar
+
+По окончании работы произведём размонтирование и удалим ненужный более каталог:
+
+.. code-block:: text
+
+    sudo umount /media/foo-bar
+    sudo rmdir /media/foo-bar
+
+Здесь **/dev/sdX2** -- накопитель с ФС BTRFS.
