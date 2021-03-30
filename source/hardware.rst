@@ -1429,8 +1429,8 @@ ICC профиль можно получить либо на сайте прои
 .. index:: bluetooth, hd audio, aac, aptx, ldac, sbc, audio, multimedia, codecs
 .. _bluetooth-codecs:
 
-Как включить поддержку Bluetooth-кодеков высокого качества?
-===============================================================
+Как включить поддержку Bluetooth-кодеков высокого качества в PulseAudio?
+============================================================================
 
 В репозиториях Fedora модули работы с Bluetooth собраны без поддержки AAC, aptX, aptX HD и LDAC ввиду патентных ограничений.
 
@@ -1509,3 +1509,21 @@ ICC профиль можно получить либо на сайте прои
   * **K** - заливка чёрным цветом.
 
 По окончании проверки нажмём клавишу **Q** для выхода.
+
+.. index:: audio, pipewire, pulseaudio
+.. _pipewire-revert:
+
+Как переключиться с PipeWire на PulseAudio?
+================================================
+
+Удалим пакет **pipewire-pulseaudio** и сразу же установим **pulseaudio**:
+
+.. code-block:: text
+
+    sudo dnf swap pipewire-pulseaudio pulseaudio --allowerasing
+
+Для полного вступления в силу изменений осуществим перезагрузку:
+
+.. code-block:: text
+
+    sudo systemctl reboot
