@@ -1221,6 +1221,16 @@ Cгенерируем файл с контрольными суммами SHA2 (
 
 Подробную документацию о всех поддерживаемых опциях можно найти в ``man earlyoom``.
 
+.. index:: oom, kernel, systemd, oomd
+.. _oomd-info:
+
+Что такое systemd-oomd?
+=============================
+
+Начиная с Fedora 34, во всех редакциях `активирован по умолчанию <https://fedoraproject.org/wiki/Changes/EnableSystemdOomd>`__ сервис **systemd-oomd**.
+
+Как и :ref:`earlyoom <earlyoom-info>`, он представляет собой систему раннего предотвращения нехватки памяти из пользовательского режима (user-space OOM Killer).
+
 .. index:: kde, iso, dolphin, ark, udf, plasma, dolphin
 .. _kde-iso:
 
