@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Установка системы &#8212; Неофициальный FAQ по Fedora (версия 2021.03.30)</title>
+    <title>Установка системы &#8212; Неофициальный FAQ по Fedora (версия 2021.03.31)</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -96,13 +96,14 @@
 </div></blockquote>
 </div>
 <div class="section" id="swap-info">
-<span id="index-9"></span><span id="id8"></span><h2>У меня 8 ГБ памяти. Нужен ли мне раздел подкачки?<a class="headerlink" href="#swap-info" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для большинства сценариев использования на рабочих станциях 8 ГБ оперативной памяти будет вполне достаточно, поэтому раздел подкачки можно не создавать.</p>
-<p>Внимание! При отключении раздела подкачки перестанет работать функция suspend to disk (гибернация).</p>
+<span id="index-9"></span><span id="id8"></span><h2>У меня много оперативной памяти. Нужен ли мне раздел подкачки?<a class="headerlink" href="#swap-info" title="Ссылка на этот заголовок">¶</a></h2>
+<p>За счёт использования <a class="reference internal" href="administration.html#memory-compression"><span class="std std-ref">сжатия памяти zram</span></a>, в современных выпусках Fedora для большинства сценариев использования на рабочих станциях 10+ ГБ оперативной памяти будет вполне достаточно, поэтому раздел подкачки можно не создавать.</p>
+<p>Внимание! При отсутствии раздела подкачки перестанет работать функция suspend to disk (гибернация).</p>
 </div>
 <div class="section" id="mem-outage">
 <span id="index-10"></span><span id="id9"></span><h2>Что будет если при отсутствующем разделе подкачки закончится память?<a class="headerlink" href="#mem-outage" title="Ссылка на этот заголовок">¶</a></h2>
-<p>При критическом недостатке оперативной памяти будет задействован механизм ядра OOM Killer, который начнёт завершать самые ресурсоёмкие процессы. Работа системы при этом не будет нарушена.</p>
+<p>При критическом недостатке оперативной памяти (исчерпании доступных страниц) и при отсутствии подкачки существует риск зависания всей системы.</p>
+<p>Таким образом, для данной конфигурации настоятельно рекомендуется использовать любой OOM killer пользовательского режима: <a class="reference internal" href="using-applications.html#earlyoom-info"><span class="std std-ref">earlyoom</span></a>, <a class="reference internal" href="using-applications.html#oomd-info"><span class="std std-ref">systemd-oomd</span></a> и т.п., чтобы не подвергать систему опасности и не доводить до использования механизма OOM Killer ядра Linux.</p>
 </div>
 <div class="section" id="swap-limits">
 <span id="index-11"></span><span id="id10"></span><h2>Сколько нужно подкачки для работы гибернации?<a class="headerlink" href="#swap-limits" title="Ссылка на этот заголовок">¶</a></h2>
@@ -114,11 +115,13 @@
 </div>
 <div class="section" id="swappiness">
 <span id="index-13"></span><span id="id12"></span><h2>Можно ли сделать так, чтобы подкачка использовалась лишь при исчерпании ОП?<a class="headerlink" href="#swappiness" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Да, это возможно. Необходимо выполнить:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w vm.swappiness=10
+<p>Да, это возможно. Откроем терминал и выполним следующие команды:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w vm.swappiness=0
+sudo sysctl -w vm.watermark_scale_factor=1
 </pre></div>
 </div>
-<p>Изменения вступят в силу немедленно и сохранятся до перезагрузки системы. Если нужно сделать это постоянным, см. <a class="reference internal" href="administration.html#sysctl-permanent"><span class="std std-ref">данное руководство</span></a>.</p>
+<p>Изменения вступят в силу немедленно и сохранятся до перезагрузки системы.</p>
+<p>Для того, чтобы сделать эти изменения постоянными, создадим <a class="reference internal" href="administration.html#sysctl-permanent"><span class="std std-ref">файл конфигурации sysctl</span></a>.</p>
 </div>
 <div class="section" id="speedup-main">
 <span id="index-14"></span><span id="id13"></span><h2>Как ускорить запуск системы?<a class="headerlink" href="#speedup-main" title="Ссылка на этот заголовок">¶</a></h2>
@@ -440,7 +443,7 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <li class="toctree-l2"><a class="reference internal" href="#fedora-arm">Можно ли установить Fedora на устройство с ARM?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#secure-boot">Поддерживается ли технология Secure Boot?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora">Могу я переместить Fedora на другой диск?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#swap-info">У меня 8 ГБ памяти. Нужен ли мне раздел подкачки?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#swap-info">У меня много оперативной памяти. Нужен ли мне раздел подкачки?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mem-outage">Что будет если при отсутствующем разделе подкачки закончится память?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#swap-limits">Сколько нужно подкачки для работы гибернации?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#swap-partitions">Что быстрее: раздел подкачки или файл подкачки?</a></li>
