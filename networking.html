@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
 
-    <title>Сетевое администрирование &#8212; Неофициальный FAQ по Fedora (версия 2021.04.04)</title>
+    <title>Сетевое администрирование &#8212; Неофициальный FAQ по Fedora (версия 2021.04.05)</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -453,32 +453,41 @@ sudo systemctl mask systemd-resolved.service
 </div>
 </section>
 <section id="wireguard-lan">
-<span id="index-36"></span><span id="id17"></span><h2>Как получить доступ к локальной сети через Wireguard?<a class="headerlink" href="#wireguard-lan" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для того, чтобы через VPN была также доступна вся локальная сеть, внесём ряд изменений в конфигурацию сервера WireGuard.</p>
-<p>В файл <code class="docutils literal notranslate"><span class="pre">/etc/wireguard/wg0.conf</span></code> добавим адрес подсети клиента через запятую, например <strong>192.168.1.0/24</strong>:</p>
+<span id="index-36"></span><span id="id17"></span><h2>Как открыть доступ к локальной сети через WireGuard?<a class="headerlink" href="#wireguard-lan" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для того, чтобы через VPN была также доступна локальная сеть, внесём ряд изменений в файлы конфигурации сервера и клиента <a class="reference internal" href="#using-wireguard"><span class="std std-ref">WireGuard</span></a>.</p>
+<p>Отредактируем файл <code class="docutils literal notranslate"><span class="pre">/etc/wireguard/wg0.conf</span></code> сервера:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/wireguard/wg0.conf
+</pre></div>
+</div>
+<p>В директиве <code class="docutils literal notranslate"><span class="pre">AllowedIPs</span></code> через запятую добавим адрес локальной подсети клиента, например <strong>192.168.1.0/24</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[Peer]
 PublicKey = CLIENT_PUBLIC_KEY
 AllowedIPs = 10.9.0.2/32, 192.168.1.0/24
 </pre></div>
 </div>
-<p>И перезапустим сервис:</p>
+<p>Перезапустим сервис WireGuard на сервере:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl restart wg-quick@wg0.service
 </pre></div>
 </div>
-<p>После этого на клиенте с локальной сетью разрешим перенаправление трафика и включим маскарадинг в firewalld:</p>
+<p>На клиенте, к локальной сети которого требуется получить доступ, разрешим перенаправление трафика и включим маскарадинг в <a class="reference internal" href="security.html#firewalld-about"><span class="std std-ref">Firewalld</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w net.ipv4.conf.all.forwarding=1
 sudo sysctl -w net.ipv6.conf.all.forwarding=1
 sudo firewall-cmd --zone=public --add-masquerade
 </pre></div>
 </div>
-<p>На клиенте, с которого требуется доступ, допишем подсеть в <code class="docutils literal notranslate"><span class="pre">AllowedIPs</span></code> через запятую. Если там уже <strong>0.0.0.0/0</strong>, то ничего не требуется.</p>
-<p>Проверим доступность компьютеров из локальной сети со стороны других клиентов wireguard (подставьте реально существующий адрес в вашей локальной сети):</p>
+<p>Отредактируем файл конфигурации данного клиента, дописав в <code class="docutils literal notranslate"><span class="pre">AllowedIPs</span></code> подсеть через запятую (однако если там уже указано <strong>0.0.0.0/0</strong>, то ничего более делать не требуется).</p>
+<p>Проверим доступность компьютеров из локальной сети со стороны других клиентов WireGuard:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ping 192.168.1.2
 </pre></div>
 </div>
-<p>Если всё работает, то сделаем изменения постоянными:</p>
+<p>Здесь вместо <strong>192.168.1.2</strong> укажем реально существующий адрес в локальной сети.</p>
+<p>Если всё работает корректно, сделаем изменения на клиенте с LAN постоянными:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo bash -c &quot;echo -e \&quot;net.ipv4.conf.all.forwarding=1\nnet.ipv6.conf.all.forwarding=1\&quot; &gt; /etc/sysctl.d/99-wireguard.conf&quot;
-sudo firewall-cmd --permanent --zone=public --add-masquerade
+sudo firewall-cmd --zone=public --add-masquerade --permanent
+</pre></div>
+</div>
+<p>Перезагрузим настройки Firewalld:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
 </pre></div>
 </div>
 </section>
@@ -543,7 +552,7 @@ sudo firewall-cmd --permanent --zone=public --add-masquerade
 <li class="toctree-l2"><a class="reference internal" href="#firewalld-override">Как переопределить предустановленный сервис в Firewalld?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ovpn">Как правильно импортировать подключение из OVPN файла?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#check-port">Как проверить открыт ли порт на удалённом сервере?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#wireguard-lan">Как получить доступ к локальной сети через Wireguard?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wireguard-lan">Как открыть доступ к локальной сети через WireGuard?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="virtualization.html">Виртуализация</a></li>
