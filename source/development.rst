@@ -998,6 +998,30 @@
 
 Также для некоторых операций необходимо загрузить :ref:`публичный ключ <ssh-keygen>` SSH в `FAS аккаунт <https://admin.fedoraproject.org/accounts>`__.
 
+.. index:: fedora, infrastructure, authentication, kerberos, kinit, 2fa, otp
+.. _fedora-login-2fa:
+
+Как авторизоваться в инфраструктуре Fedora с поддержкой 2FA?
+================================================================
+
+Для авторизации в инфраструктуре Fedora с поддержкой двухфакторной аутентификации :ref:`стандартный вход <fedora-login>` :ref:`посредством Kerberos <kerberos-auth>` работать не будет из-за возникновения ошибки *kinit: Pre-authentication failed: Invalid argument while getting initial credentials*, поэтому мы должны использовать альтернативный способ.
+
+Сгенерируем актуальный файл Kerberos Credentials Cache:
+
+.. code-block:: text
+
+    kinit -n @FEDORAPROJECT.ORG -c FILE:$HOME/.cache/fedora-armor.ccache
+
+Авторизуемся в домене с указанием KCC-файла:
+
+.. code-block:: text
+
+    kinit -T FILE:$HOME/.cache/fedora-armor.ccache foo-bar@FEDORAPROJECT.ORG
+
+Когда сервер запросит ввод *Enter OTP Token Value:*, введём свой пароль и текущий код из OTP-аутентификатора по схеме **парольКОД** без пробелов и прочих знаков.
+
+Здесь **foo-bar** -- логин в FAS. Имя домена должно быть указано строго в верхнем регистре.
+
 .. index:: fedora, package, request, fedpkg
 .. _package-request:
 
