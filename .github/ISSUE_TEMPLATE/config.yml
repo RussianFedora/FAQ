@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Сайт сообщества Russian Fedora
+    url: https://ru.fedoracommunity.org/
+    about: Официальный сайт сообщества Russian Fedora.
+  - name: Комнаты Russian Fedora в Matrix
+    url: https://ru.fedoracommunity.org/stories/matrix/
+    about: Список комнат сообщества Russian Fedora в Matrix.
