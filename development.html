@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
 
-    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2021.04.05)</title>
+    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2021.04.10)</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -693,8 +693,22 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <p>Здесь <strong>foo-bar</strong> – логин в FAS. Имя домена должно быть указано строго в верхнем регистре.</p>
 <p>Также для некоторых операций необходимо загрузить <a class="reference internal" href="security.html#ssh-keygen"><span class="std std-ref">публичный ключ</span></a> SSH в <a class="reference external" href="https://admin.fedoraproject.org/accounts">FAS аккаунт</a>.</p>
 </section>
+<section id="fedora-2fa">
+<span id="fedora-login-2fa"></span><span id="index-43"></span><h2>Как авторизоваться в инфраструктуре Fedora с поддержкой 2FA?<a class="headerlink" href="#fedora-2fa" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для авторизации в инфраструктуре Fedora с поддержкой двухфакторной аутентификации <a class="reference internal" href="#fedora-login"><span class="std std-ref">стандартный вход</span></a> <a class="reference internal" href="administration.html#kerberos-auth"><span class="std std-ref">посредством Kerberos</span></a> работать не будет из-за возникновения ошибки <em>kinit: Pre-authentication failed: Invalid argument while getting initial credentials</em>, поэтому мы должны использовать альтернативный способ.</p>
+<p>Сгенерируем актуальный файл Kerberos Credentials Cache:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit -n @FEDORAPROJECT.ORG -c FILE:$HOME/.cache/fedora-armor.ccache
+</pre></div>
+</div>
+<p>Авторизуемся в домене с указанием KCC-файла:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit -T FILE:$HOME/.cache/fedora-armor.ccache foo-bar@FEDORAPROJECT.ORG
+</pre></div>
+</div>
+<p>Когда сервер запросит ввод <em>Enter OTP Token Value:</em>, введём свой пароль и текущий код из OTP-аутентификатора по схеме <strong>парольКОД</strong> без пробелов и прочих знаков.</p>
+<p>Здесь <strong>foo-bar</strong> – логин в FAS. Имя домена должно быть указано строго в верхнем регистре.</p>
+</section>
 <section id="package-request">
-<span id="index-43"></span><span id="id28"></span><h2>Как запросить создание пакета в репозитории?<a class="headerlink" href="#package-request" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-44"></span><span id="id28"></span><h2>Как запросить создание пакета в репозитории?<a class="headerlink" href="#package-request" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сразу после завершения <a class="reference internal" href="#becoming-maintainer"><span class="std std-ref">процедуры package review</span></a>, мейнтейнер должен запросить создание пакета в репозиториях Fedora.</p>
 <p>Установим утилиту <strong>fedpkg</strong></p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install fedpkg
@@ -720,7 +734,7 @@ fedpkg request-branch --namespace rpms --repo foo-bar --all-releases
 <p>Здесь <strong>foo-bar</strong> – имя пакета, а <strong>YYYYYY</strong> – номер заявки в Red Hat BugZilla с успешно завершённым package review.</p>
 </section>
 <section id="fedpkg-upload">
-<span id="index-44"></span><span id="id29"></span><h2>Как загрузить файлы с исходными кодами пакета в систему сборки?<a class="headerlink" href="#fedpkg-upload" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-45"></span><span id="id29"></span><h2>Как загрузить файлы с исходными кодами пакета в систему сборки?<a class="headerlink" href="#fedpkg-upload" title="Ссылка на этот заголовок">¶</a></h2>
 <p>После <a class="reference internal" href="#package-request"><span class="std std-ref">создания пакета</span></a> осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora, затем скачаем репозиторий пакета из Fedora SCM, содержащий SPEC файл и набор патчей (при необходимости), а также прочие службные файлы:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg clone foo-bar
 cd foo-bar
@@ -746,7 +760,7 @@ git merge master
 </div>
 </section>
 <section id="fedpkg-build">
-<span id="index-45"></span><span id="id30"></span><h2>Как осуществить сборку пакета для публикации в репозиториях?<a class="headerlink" href="#fedpkg-build" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-46"></span><span id="id30"></span><h2>Как осуществить сборку пакета для публикации в репозиториях?<a class="headerlink" href="#fedpkg-build" title="Ссылка на этот заголовок">¶</a></h2>
 <p>После <a class="reference internal" href="#fedpkg-upload"><span class="std std-ref">загрузки файлов с исходными кодами</span></a> пакета, осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora, а затем приступим к непосредственно сборке в <a class="reference internal" href="#koji-about"><span class="std std-ref">Fedora Koji</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
 fedpkg switch-branch master
@@ -760,7 +774,7 @@ fedpkg build
 </div>
 </section>
 <section id="fedpkg-scratch">
-<span id="index-46"></span><span id="id31"></span><h2>Как осуществить тестовую сборку пакета для определённой архитектуры?<a class="headerlink" href="#fedpkg-scratch" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-47"></span><span id="id31"></span><h2>Как осуществить тестовую сборку пакета для определённой архитектуры?<a class="headerlink" href="#fedpkg-scratch" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora.</p>
 <p>Выполним стандартную scratch-сборку для всех поддерживаемых данным выпуском архитектур:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
@@ -776,22 +790,22 @@ fedpkg scratch-build --arches x86_64 aarch64
 </div>
 </section>
 <section id="fedpkg-publish">
-<span id="index-47"></span><span id="id32"></span><h2>Как выложить собранный пакет в репозитории?<a class="headerlink" href="#fedpkg-publish" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-48"></span><span id="id32"></span><h2>Как выложить собранный пакет в репозитории?<a class="headerlink" href="#fedpkg-publish" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По окончании <a class="reference internal" href="#fedpkg-build"><span class="std std-ref">сборки</span></a> мы можем воспользоваться <a class="reference external" href="https://bodhi.fedoraproject.org/">Fedora Bodhi</a> и <a class="reference external" href="https://bodhi.fedoraproject.org/updates/new">выложить обновление</a> в репозитории.</p>
 <p>Сначала все обновления попадают в тестовые репозитории Fedora (<em>updates-testing</em>) и лишь после получения положительной кармы от других участников сообщества (уровень задаётся мейнтейнером, но не может быть меньше 1), либо по истечении 7 дней, оно может попасть в стабильные (<em>updates</em>) и будет доставлено конечным пользователям.</p>
 <p>Заполним стандартную, хорошо документированную форму, затем нажмём кнопку <strong>Submit</strong>.</p>
 </section>
 <section id="copr">
-<span id="copr-legal"></span><span id="index-48"></span><h2>Что разрешается хранить в COPR репозиториях?<a class="headerlink" href="#copr" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="copr-legal"></span><span id="index-49"></span><h2>Что разрешается хранить в COPR репозиториях?<a class="headerlink" href="#copr" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В <a class="reference internal" href="generic-info.html#copr"><span class="std std-ref">COPR</span></a> разрешается распространять всё то же, что и в <a class="reference internal" href="#fedora-licenses"><span class="std std-ref">основных репозиториях</span></a> Fedora. Сборка и публикация запатентованного и проприетарного программного обеспечения в пользовательских оверлеях не допускается.</p>
 </section>
 <section id="linux-vdso-so-1">
-<span id="linux-vdso"></span><span id="index-49"></span><h2>Что такое linux-vdso.so.1 и почему она загружена в каждый процесс?<a class="headerlink" href="#linux-vdso-so-1" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="linux-vdso"></span><span id="index-50"></span><h2>Что такое linux-vdso.so.1 и почему она загружена в каждый процесс?<a class="headerlink" href="#linux-vdso-so-1" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Библиотека <strong>linux-vdso.so.1</strong> не является обычной динамической библиотекой. Это виртуальный динамически разделяемый объект (VDSO), который отображается на адресное пространство каждого запущенного процесса ядром Linux и представляет собой интерфейс для осуществления быстрых системных вызовов.</p>
 <p>Данный объект можно обнаружить в <a class="reference internal" href="#linux-ldd"><span class="std std-ref">выводе ldd</span></a> для любого бинарного ELF-файла, но без прямого пути, т.к. он не является реальным файлом.</p>
 </section>
 <section id="linux-ldd">
-<span id="index-50"></span><span id="id33"></span><h2>Как определить зависимости конкретного бинарника?<a class="headerlink" href="#linux-ldd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-51"></span><span id="id33"></span><h2>Как определить зависимости конкретного бинарника?<a class="headerlink" href="#linux-ldd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для определения зависимостей любых ELF-файлов, воспользуемся утилитой <strong>ldd</strong>.</p>
 <p>Определим зависимости динамически разделяемой библиотеки:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ldd /path/to/shared/library.so.1
@@ -805,7 +819,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <p>Исключение составляют <a class="reference internal" href="#linux-vdso"><span class="std std-ref">виртуальные объекты</span></a>, для которых будет указан лишь адрес, без пути.</p>
 </section>
 <section id="git-switch-remote">
-<span id="index-51"></span><span id="id34"></span><h2>Как изменить адрес Git репозитория после его переезда?<a class="headerlink" href="#git-switch-remote" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-52"></span><span id="id34"></span><h2>Как изменить адрес Git репозитория после его переезда?<a class="headerlink" href="#git-switch-remote" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Получим список подключённых удалённых ресурсов текущего Git репозитория:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git remote -v
 </pre></div>
@@ -817,7 +831,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <p>После этого команды Git, отвечающие за работу с удалёнными ресурсами, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>, начнут использовать новый апстрим.</p>
 </section>
 <section id="rpmbuild">
-<span id="rpmbuild-move"></span><span id="index-52"></span><h2>Можно ли перенести стандартный каталог сборки rpmbuild?<a class="headerlink" href="#rpmbuild" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="rpmbuild-move"></span><span id="index-53"></span><h2>Можно ли перенести стандартный каталог сборки rpmbuild?<a class="headerlink" href="#rpmbuild" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, это возможно. Откроем файл <code class="docutils literal notranslate"><span class="pre">~/.rpmmacros</span></code> в любом текстовом редаторе, найдём строку:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%_topdir %(echo $HOME)/rpmbuild
 </pre></div>
@@ -830,7 +844,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <p>Сохраним изменения, которые вступят в силу немеденно.</p>
 </section>
 <section id="license-check">
-<span id="index-53"></span><span id="id35"></span><h2>Как определить какие лицензии используются в проекте?<a class="headerlink" href="#license-check" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-54"></span><span id="id35"></span><h2>Как определить какие лицензии используются в проекте?<a class="headerlink" href="#license-check" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим утилиту <strong>licensecheck</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install licensecheck
 </pre></div>
@@ -842,7 +856,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <p>Здесь <strong>/path/to/foo-bar</strong> – путь к распакованным исходникам проекта, а <strong>~/results.txt</strong> – имя файла, в котором будут сохранены результаты проверки.</p>
 </section>
 <section id="gdb-coredump">
-<span id="index-54"></span><span id="id36"></span><h2>Как загрузить в gdb отладчик coredump падения?<a class="headerlink" href="#gdb-coredump" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-55"></span><span id="id36"></span><h2>Как загрузить в gdb отладчик coredump падения?<a class="headerlink" href="#gdb-coredump" title="Ссылка на этот заголовок">¶</a></h2>
 <p>GDB позволяет не только отлаживать приложения напрямую, но и загружать <a class="reference internal" href="administration.html#codedump-info"><span class="std std-ref">coredump падений</span></a>.</p>
 <p>Установим утилиту <strong>lz4</strong> для распаковки сжатых файлов с дампами:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install lz4
@@ -859,7 +873,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <p>Здесь <strong>/usr/bin/foo-bar</strong> – путь к отлаживаемому приложению, <strong>/path/to/coredump</strong> – coredump падения (версия приложения и дампа, снятого с него, должны обязательно совпадать), а <strong>~/backtrace.log</strong> – файл, в котором будет сохранён трейс падения.</p>
 </section>
 <section id="clang-fedora">
-<span id="index-55"></span><span id="id37"></span><h2>Как собрать пакет с использованием компилятора Clang в Fedora?<a class="headerlink" href="#clang-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-56"></span><span id="id37"></span><h2>Как собрать пакет с использованием компилятора Clang в Fedora?<a class="headerlink" href="#clang-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Самый простой способ сделать это – переопределение значений стандартных <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> <strong>CC</strong> и <strong>CXX</strong> внутри секции <code class="docutils literal notranslate"><span class="pre">%build</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export CC=%{_bindir}/clang
 export CXX=%{_bindir}/clang++
@@ -889,17 +903,17 @@ export NM=%{_bindir}/llvm-nm
 <p>Следует <a class="reference internal" href="#qt-clang-lto"><span class="std std-ref">быть осторожным</span></a> при сборке Qt-приложений данным компилятором при использовании <a class="reference internal" href="#enable-lto"><span class="std std-ref">LTO-оптимизаций</span></a>.</p>
 </section>
 <section id="qt-clang-lto">
-<span id="index-56"></span><span id="id38"></span><h2>Qt-приложение, собранное Clang с LTO не запускается. Что делать?<a class="headerlink" href="#qt-clang-lto" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-57"></span><span id="id38"></span><h2>Qt-приложение, собранное Clang с LTO не запускается. Что делать?<a class="headerlink" href="#qt-clang-lto" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Невозможность запуска Qt-приложений, собранных компилятором Clang с включёнными <a class="reference internal" href="#enable-lto"><span class="std std-ref">LTO-оптимизациями</span></a> – это <a class="reference external" href="https://bugreports.qt.io/browse/QTBUG-61710">известная проблема</a>, которая в настоящее время не решена.</p>
 <p>Для её решения необходимо либо отказаться от использования компилятора Clang и вернуться на GCC, либо отключить LTO-оптимизации.</p>
 </section>
 <section id="ldd">
-<span id="using-ldd"></span><span id="index-57"></span><h2>Безопасно ли использовать LDD для проверки зависимостей бинарника?<a class="headerlink" href="#ldd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="using-ldd"></span><span id="index-58"></span><h2>Безопасно ли использовать LDD для проверки зависимостей бинарника?<a class="headerlink" href="#ldd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Нет, т.к. утилита <a class="reference internal" href="#linux-ldd"><span class="std std-ref">ldd</span></a> лишь изменяет ряд <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a>, а затем запускает бинарник, чтобы определить все динамически загружаемые библиотеки, от которых он зависит.</p>
 <p>Внедоносный код сможет легко перехватить управление и начать выполнять свои задачи в пределах имеющихся полномочий.</p>
 </section>
 <section id="git-remove-tag">
-<span id="index-58"></span><span id="id39"></span><h2>Как удалить тег во внешнем Git репозитории?<a class="headerlink" href="#git-remove-tag" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-59"></span><span id="id39"></span><h2>Как удалить тег во внешнем Git репозитории?<a class="headerlink" href="#git-remove-tag" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Удалим локальный тег <strong>1.0.0</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git tag -d v1.0.0
 </pre></div>
@@ -910,14 +924,14 @@ export NM=%{_bindir}/llvm-nm
 </div>
 </section>
 <section id="git-remove-branch">
-<span id="index-59"></span><span id="id40"></span><h2>Как удалить ветку во внешнем Git репозитории?<a class="headerlink" href="#git-remove-branch" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-60"></span><span id="id40"></span><h2>Как удалить ветку во внешнем Git репозитории?<a class="headerlink" href="#git-remove-branch" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Удалим удалённую ветку <strong>foo-bar</strong> из удалённого Git репозитория:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git push --delete origin foo-bar
 </pre></div>
 </div>
 </section>
 <section id="git-remove-all-tags">
-<span id="index-60"></span><span id="id41"></span><h2>Как удалить все теги (локальные и удалённые) в Git репозитории?<a class="headerlink" href="#git-remove-all-tags" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-61"></span><span id="id41"></span><h2>Как удалить все теги (локальные и удалённые) в Git репозитории?<a class="headerlink" href="#git-remove-all-tags" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Удалим все теги из внешнего Git репозитория:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git push origin --delete $(git tag -l)
 </pre></div>
@@ -928,7 +942,7 @@ export NM=%{_bindir}/llvm-nm
 </div>
 </section>
 <section id="koji-extract-data">
-<span id="index-61"></span><span id="id42"></span><h2>Как извлечь из Koji какие-либо данные для отправки баг-репорта?<a class="headerlink" href="#koji-extract-data" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-62"></span><span id="id42"></span><h2>Как извлечь из Koji какие-либо данные для отправки баг-репорта?<a class="headerlink" href="#koji-extract-data" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Т.к. <a class="reference internal" href="#koji-about"><span class="std std-ref">Koji</span></a> автоматически очищает каталог сборки по её завершении с любым статусом, единственная возможность извлечь полезные данные – это закодировать их в формате <a class="reference external" href="https://ru.wikipedia.org/wiki/UUE">Uuencode</a> и вывести в общий журнал сборки.</p>
 <p>Добавим в <a class="reference internal" href="#create-package"><span class="std std-ref">SPEC-файл пакета</span></a> зависимость от <strong>sharutils</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>BuildRequires: sharutils
@@ -957,7 +971,7 @@ end
 <p>Загрузим полученный архив в <a class="reference internal" href="generic-info.html#bug-report"><span class="std std-ref">баг-репорт</span></a>.</p>
 </section>
 <section id="compare-versions">
-<span id="index-62"></span><span id="id43"></span><h2>Как определить, какая из двух версий больше?<a class="headerlink" href="#compare-versions" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-63"></span><span id="id43"></span><h2>Как определить, какая из двух версий больше?<a class="headerlink" href="#compare-versions" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для проверки версий воспользуемся утилитой <strong>rpmdev-vercmp</strong>, входящей в состав пакета <strong>rpmdevtools</strong>.</p>
 <p>Установим его:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install rpmdevtools
@@ -1050,6 +1064,7 @@ end
 <li class="toctree-l2"><a class="reference internal" href="#patch-git-create">Как создать унифицированный патч между двумя коммитами?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#patch-git-export">Как экспортировать Git коммит для отправки по электронной почте?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora-login">Как авторизоваться в инфраструктуре Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora-2fa">Как авторизоваться в инфраструктуре Fedora с поддержкой 2FA?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#package-request">Как запросить создание пакета в репозитории?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedpkg-upload">Как загрузить файлы с исходными кодами пакета в систему сборки?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedpkg-build">Как осуществить сборку пакета для публикации в репозиториях?</a></li>
