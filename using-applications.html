@@ -4,9 +4,8 @@
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
-
-    <title>Сторонние приложения &#8212; Неофициальный FAQ по Fedora (версия 2021.04.10)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Сторонние приложения &#8212; Неофициальный FAQ по Fedora (версия 2021.04.11)</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -40,9 +39,9 @@
 
           <div class="body" role="main">
             
-  <section id="using-applications">
+  <div class="section" id="using-applications">
 <span id="id1"></span><h1>Сторонние приложения<a class="headerlink" href="#using-applications" title="Ссылка на этот заголовок">¶</a></h1>
-<section id="firefox">
+<div class="section" id="firefox">
 <span id="firefox-hwaccel"></span><span id="index-0"></span><h2>Как активировать аппаратное ускорение в браузере Firefox?<a class="headerlink" href="#firefox" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для активации аппаратного ускорения рендеринга страниц в Mozilla Firefox на поддерживаемых драйверах необходимо открыть модуль конфигурации <code class="docutils literal notranslate"><span class="pre">about:config</span></code> и исправить значения следующих переменных (при отсутствии создать):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>layers.acceleration.force-enabled = true
@@ -54,8 +53,8 @@ dom.webgpu.enabled = true
 </div>
 <p>Изменения вступят в силу при следующем запуске браузера.</p>
 <p>Внимание! Это не затрагивает <a class="reference internal" href="#browser-hwaccel"><span class="std std-ref">аппаратное декодирование мультимедиа</span></a> средствами видеоускорителя.</p>
-</section>
-<section id="browser-hwaccel">
+</div>
+<div class="section" id="browser-hwaccel">
 <span id="index-1"></span><span id="id2"></span><h2>Как активировать аппаратное ускорение декодирования мультимедиа в браузерах?<a class="headerlink" href="#browser-hwaccel" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Поддерживаемые веб-браузеры:</p>
 <blockquote>
@@ -64,8 +63,8 @@ dom.webgpu.enabled = true
 <li><p><a class="reference internal" href="#hwaccel-chromium"><span class="std std-ref">Chromium</span></a>.</p></li>
 </ul>
 </div></blockquote>
-</section>
-<section id="hwaccel-firefox">
+</div>
+<div class="section" id="hwaccel-firefox">
 <span id="index-2"></span><span id="id3"></span><h2>Как активировать аппаратное ускорение декодирования мультимедиа в Firefox?<a class="headerlink" href="#hwaccel-firefox" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Начиная с версии <a class="reference external" href="https://mastransky.wordpress.com/2020/06/03/firefox-on-fedora-finally-gets-va-api-on-wayland/">Firefox 77.0</a>, аппаратное ускорение декодирования мультимедиа доступно для <a class="reference internal" href="using-system.html#session-type"><span class="std std-ref">сеанса Wayland</span></a>, а с <a class="reference external" href="https://mastransky.wordpress.com/2020/09/29/firefox-81-on-fedora-with-va-api-webrtc-and-x11/">Firefox 81.0</a> и для X11.</p>
 <p>Установим полный <a class="reference internal" href="#firefox-codecs"><span class="std std-ref">набор кодеков</span></a>, а также <a class="reference internal" href="hardware.html#hwaccel-drivers"><span class="std std-ref">VA-API драйверы</span></a> из репозитория <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
@@ -77,8 +76,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </pre></div>
 </div>
 <p>Перезапустим браузер для вступления изменений в силу.</p>
-</section>
-<section id="chromium">
+</div>
+<div class="section" id="chromium">
 <span id="hwaccel-chromium"></span><span id="index-3"></span><h2>Как активировать аппаратное ускорение декодирования мультимедиа в Chromium?<a class="headerlink" href="#chromium" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В Google Chrome и Chromium аппаратное ускорение декодирования мультимедиа реализовано, но отключено в официальных сборках на этапе компиляции для GNU/Linux платформы.</p>
 <p>Репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> предоставляет сборку Chromium с включённой поддержкой <a class="reference internal" href="#video-hwaccel"><span class="std std-ref">VA-API</span></a>. Для её установки активируем его, установим <a class="reference internal" href="hardware.html#hwaccel-drivers"><span class="std std-ref">VA-API драйверы</span></a>, а также пакет <strong>chromium-freeworld</strong>:</p>
@@ -86,13 +85,13 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </pre></div>
 </div>
 <p>Далее в Chromium Freeworld зайдём в <code class="docutils literal notranslate"><span class="pre">chrome://flags</span></code> и установим для пункта <strong>Hardware decoding</strong> значение <strong>Enabled</strong>, после чего перезапустим браузер для вступления изменений в силу.</p>
-</section>
-<section id="video-hwaccel">
+</div>
+<div class="section" id="video-hwaccel">
 <span id="index-4"></span><span id="id4"></span><h2>В каких проигрывателях реализовано аппаратное ускорение декодирования мультимедиа?<a class="headerlink" href="#video-hwaccel" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Полная поддержка аппаратного декодирования мультимедиа средствами <a class="reference internal" href="#vaapi-info"><span class="std std-ref">VA-API</span></a> (<a class="reference internal" href="hardware.html#vaapi-intel"><span class="std std-ref">Intel</span></a>, <a class="reference internal" href="hardware.html#vaapi-nvidia"><span class="std std-ref">NVIDIA</span></a>, AMD) или VPDAU (NVIDIA) реализована в проигрывателях VLC и mpv.</p>
 <p>Для активации данной функции необходимо в качестве графического бэкэнда вывода изображения указать <strong>vaapi</strong> или <strong>vdpau</strong>, после чего перезапустить плеер.</p>
-</section>
-<section id="va-api">
+</div>
+<div class="section" id="va-api">
 <span id="vaapi-info"></span><span id="index-5"></span><h2>Как получить информацию о поддерживаемых VA-API форматах видео?<a class="headerlink" href="#va-api" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим утилиту <strong>vainfo</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install libva-utils
@@ -102,8 +101,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>vainfo
 </pre></div>
 </div>
-</section>
-<section id="telegram-desktop-fedora">
+</div>
+<div class="section" id="telegram-desktop-fedora">
 <span id="telegram-fedora"></span><span id="index-6"></span><h2>Как лучше установить Telegram Desktop в Fedora?<a class="headerlink" href="#telegram-desktop-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы настоятельно рекомендуем устанавливать данный мессенджер исключительно из <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install telegram-desktop
@@ -111,8 +110,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </div>
 <p>Данная версия собрана и динамически слинкована с использованием исключительно штатных системных библиотек, доступных в репозиториях Fedora, а не давно устаревших и уязвимых версий из комплекта Ubuntu 14.04, как официальная.</p>
 <p>Сборка Fedora поддерживает системные настройки тем, правильное сглаживание шрифтов (за счёт использование общесистемных настроек) и не имеет проблем со скоростью запуска.</p>
-</section>
-<section id="telegram-desktop">
+</div>
+<div class="section" id="telegram-desktop">
 <span id="telegram-cleanup"></span><span id="index-7"></span><h2>Ранее я устанавливал официальную версию Telegram Desktop. Как мне очистить её остатки?<a class="headerlink" href="#telegram-desktop" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Официальная версия с сайта создаёт ярлыки запуска и копирует ряд загруженных бинарных файлов в пользовательский домашний каталог. Избавимся от этого:</p>
 <blockquote>
@@ -122,36 +121,36 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </ol>
 </div></blockquote>
 <p>Теперь можно установить <a class="reference internal" href="#telegram-fedora"><span class="std std-ref">версию</span></a> из <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
-</section>
-<section id="chromium-codecs">
+</div>
+<div class="section" id="chromium-codecs">
 <span id="index-8"></span><span id="id5"></span><h2>Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?<a class="headerlink" href="#chromium-codecs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Из-за патентных ограничений браузер Chromium в репозиториях Fedora сильно кастрирован. Для восстановления полной функциональности необходимо подключить <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установить пакет с полной версией:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install chromium-freeworld
 </pre></div>
 </div>
-</section>
-<section id="firefox-codecs">
+</div>
+<div class="section" id="firefox-codecs">
 <span id="index-9"></span><span id="id6"></span><h2>Как активировать все доступные кодеки в браузере Firefox?<a class="headerlink" href="#firefox-codecs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Браузер Mozilla Firefox использует ffmpeg для работы с мультимедийным контентом, поэтому необходимо его установить из репозитория <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install ffmpeg-libs
 </pre></div>
 </div>
-</section>
-<section id="latex">
+</div>
+<div class="section" id="latex">
 <span id="latex-editor"></span><span id="index-10"></span><h2>В репозиториях есть полнофункциональные редакторы LaTeX?<a class="headerlink" href="#latex" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Для работы с документами в формате LaTeX рекомендуется использовать <strong>texmaker</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install texmaker
 </pre></div>
 </div>
-</section>
-<section id="latex-cyrillic">
+</div>
+<div class="section" id="latex-cyrillic">
 <span id="index-11"></span><span id="id7"></span><h2>Как установить поддержку кириллических шрифтов для LaTeX?<a class="headerlink" href="#latex-cyrillic" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Наборы кириллических шрифтов доступны в виде коллекции:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install texlive-collection-langcyrillic texlive-cyrillic texlive-russ texlive-babel-russian
 </pre></div>
 </div>
-</section>
-<section id="youtube">
+</div>
+<div class="section" id="youtube">
 <span id="youtube-download"></span><span id="index-12"></span><h2>Как скачать видео с Youtube?<a class="headerlink" href="#youtube" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Скачать любое интересующее видео с Youtube, а также ряда других хостингов, можно посредством утилиты <strong>youtube-dl</strong>, доступной в основном репозитории Fedora:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install youtube-dl
@@ -175,15 +174,15 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </pre></div>
 </div>
 <p>Для выхода из окна просмотра справки достаточно нажать <strong>Q</strong>.</p>
-</section>
-<section id="fedora-ms-windows">
+</div>
+<div class="section" id="fedora-ms-windows">
 <span id="fedora-winiso"></span><span id="index-13"></span><h2>Как из Fedora записать образ с MS Windows на флешку?<a class="headerlink" href="#fedora-ms-windows" title="Ссылка на этот заголовок">¶</a></h2>
 <p>К сожалению, <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">штатный способ</span></a> записи посредством использования утилиты dd не сработает в случае ISO образов MS Windows, поэтому для этого следует применять утилиту WoeUSB:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install WoeUSB
 </pre></div>
 </div>
-</section>
-<section id="iconv-convert">
+</div>
+<div class="section" id="iconv-convert">
 <span id="index-14"></span><span id="id8"></span><h2>Как конвертировать текстовый файл из одной кодировки в другую?<a class="headerlink" href="#iconv-convert" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для быстрой перекодировки текстовых файлов из одной кодировки в другую можно использовать утилиту iconv.</p>
 <p>Пример перекодировки файла из cp1251 (Windows-1251) в юникод (UTF-8):</p>
@@ -191,8 +190,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </pre></div>
 </div>
 <p>Здесь <strong>test.txt</strong> – исходный файл с неправильной кодировкой, а <strong>result.txt</strong> используется для записи результата преобразования.</p>
-</section>
-<section id="android-mtp">
+</div>
+<div class="section" id="android-mtp">
 <span id="fuse-mtp"></span><span id="index-15"></span><h2>Как подключить смартфон на Android посредством протокола MTP?<a class="headerlink" href="#android-mtp" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для простой и удобной работы с файловой системой смартфона вне зависимости от используемых приложений, рабочей среды и файлового менеджера, мы рекомендуем использовать основанную на FUSE реализацию.</p>
 <p>Установим пакет <strong>jmtpfs</strong>:</p>
@@ -211,8 +210,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fusermount -u ~/myphone
 </pre></div>
 </div>
-</section>
-<section id="kde-connect">
+</div>
+<div class="section" id="kde-connect">
 <span id="index-16"></span><span id="id9"></span><h2>Как лучше работать со смартфоном посредством компьютера или ноутбука?<a class="headerlink" href="#kde-connect" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для простой и эффективной работы со смартфоном на базе ОС Android пользователи рабочей среды KDE Plasma 5 могут использовать KDE Connect:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install kde-connect
@@ -226,8 +225,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </ul>
 </div></blockquote>
 <p>Запустим плазмоид KDE Connect и выполним сопряжение.</p>
-</section>
-<section id="kde-connect-firewalld">
+</div>
+<div class="section" id="kde-connect-firewalld">
 <span id="index-17"></span><span id="id10"></span><h2>KDE Connect не видит мой смартфон. Как исправить?<a class="headerlink" href="#kde-connect-firewalld" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Добавим правило, разрешающее входящие соединения к сервису kdeconnectd посредством <a class="reference internal" href="security.html#firewalld-about"><span class="std std-ref">Firewalld</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --add-service=kdeconnect --permanent
@@ -237,8 +236,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo firewall-cmd --reload
 </pre></div>
 </div>
-</section>
-<section id="dolphin">
+</div>
+<div class="section" id="dolphin">
 <span id="dolphin-templates"></span><span id="index-18"></span><h2>Как добавить новый тип файлов в меню Создать в Dolphin?<a class="headerlink" href="#dolphin" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Сначала получим пути, в которых KDE пытается обнаружить <em>ярлыки</em> шаблонов новых файлов:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kf5-config --path templates
@@ -265,8 +264,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </div>
 <p>Здесь <strong>Icon</strong> – значок для новой строки, <strong>Name</strong> – название новой строки с поддержкой локализации, а <strong>URL</strong> – полный путь к файлу шаблона.</p>
 <p>Изменения вступят в силу немедленно и через несколько секунд в меню <em>Создать</em> файлового менеджера Dolphin появится новый пункт.</p>
-</section>
-<section id="nautilus">
+</div>
+<div class="section" id="nautilus">
 <span id="nautilus-templates"></span><span id="index-19"></span><h2>Как добавить новый тип файлов в меню Создать в Nautilus?<a class="headerlink" href="#nautilus" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В отличие от <a class="reference internal" href="#dolphin-templates"><span class="std std-ref">Dolphin в KDE</span></a>, Nautilus в Gnome ищет файлы шаблонов в стандартном каталоге <a class="reference internal" href="using-system.html#xdg-reallocate"><span class="std std-ref">$XDG_TEMPLATES_DIR</span></a>. Получим путь к нему:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>xdg-user-dir TEMPLATES
@@ -279,26 +278,26 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </pre></div>
 </div>
 <p>Изменения вступят в силу немедленно и через несколько секунд в меню <em>Создать</em> файлового менеджера Nautilus появится новый пункт.</p>
-</section>
-<section id="mp3">
+</div>
+<div class="section" id="mp3">
 <span id="convert-multiple-files"></span><span id="index-20"></span><h2>Как конвертировать множество файлов в mp3 из текущего каталога?<a class="headerlink" href="#mp3" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Конвертируем все файлы с маской *.ogg в mp3 в текущем каталоге:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find . -maxdepth 1 -type f -name &quot;*.ogg&quot; -exec ffmpeg -i &quot;{}&quot; -acodec mp3 -ab 192k &quot;$(basename {}).mp3&quot; \;
 </pre></div>
 </div>
-</section>
-<section id="kde-plasma-5">
+</div>
+<div class="section" id="kde-plasma-5">
 <span id="window-borders"></span><span id="index-21"></span><h2>Как убрать рамки внутри окон в KDE Plasma 5?<a class="headerlink" href="#kde-plasma-5" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этого следует открыть <strong>Меню KDE</strong> – <strong>Компьютер</strong> – <strong>Параметры системы</strong> – <strong>Оформление приложений</strong> – страница <strong>Стиль интерфейса</strong> – кнопка <strong>Настроить</strong> – вкладка <strong>Рамки</strong>, <strong>убрать все флажки</strong> из чекбоксов на данной странице и нажать кнопку <strong>OK</strong>.</p>
-</section>
-<section id="kde-icons-refresh">
+</div>
+<div class="section" id="kde-icons-refresh">
 <span id="index-22"></span><span id="id11"></span><h2>Как обновить кэш значков приложений в главном меню KDE Plasma 5?<a class="headerlink" href="#kde-icons-refresh" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Обычно кэш обновляется автоматически при любых изменениях файлов внутри каталогов <code class="docutils literal notranslate"><span class="pre">/usr/share/applications</span></code> (глобально), а также <code class="docutils literal notranslate"><span class="pre">~/.local/share/applications</span></code> (пользователь), однако если по какой-то причине этого не произошло, выполним обновление кэшей вручную:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kbuildsycoca5 --noincremental
 </pre></div>
 </div>
-</section>
-<section id="thunderbird">
+</div>
+<div class="section" id="thunderbird">
 <span id="thunderbird-symlinks"></span><span id="index-23"></span><h2>В установленном Thunderbird не обновляются языковые пакеты. Как исправить?<a class="headerlink" href="#thunderbird" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проблема заключается в том, что системные расширения и пакеты с переводами должны копироваться в профиль пользователя при каждом обновлении клиента, но RPM пакетам <a class="reference external" href="https://docs.fedoraproject.org/en-US/packaging-guidelines/">запрещено</a> вносить любые изменения в домашние каталоги пользователей, поэтому они автоматически не обновляются.</p>
 <p>Чтобы исправить проблему необходимо и достаточно создать символические ссылки на XPI файлы, обновляемые пакетом.</p>
@@ -311,8 +310,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </pre></div>
 </div>
 <p>Перезапустим Thunderbird для того, чтобы изменения вступили в силу.</p>
-</section>
-<section id="qr">
+</div>
+<div class="section" id="qr">
 <span id="qr-code"></span><span id="index-24"></span><h2>Как распознать QR-код или штрих-код из консоли?<a class="headerlink" href="#qr" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для распознавания бар-кода на изображении и получения его содержимого воспользуемся пакетом <strong>zbar</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install zbar
@@ -323,8 +322,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </pre></div>
 </div>
 <p>Результат (или результаты (по одному на каждый обнаруженный бар-код)) будут выведены в консоль.</p>
-</section>
-<section id="ocr-app">
+</div>
+<div class="section" id="ocr-app">
 <span id="index-25"></span><span id="id12"></span><h2>Как можно распознать текст с изображения или сканера?<a class="headerlink" href="#ocr-app" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для получения текста из файлов изображений, либо PDF, можно воспользоваться системой оптического распознавания символов Tesseract, а также графической утилитой gImageReader.</p>
 <p>Установим Tesseract и набор файлов для русского языка:</p>
@@ -341,8 +340,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </div>
 <p>Запустим gImageReader, в левой боковой панели выберем отсканированный файл (для наилучших результатов разрешение при сканировании должно быть не меньше 300 DPI), PDF, либо <a class="reference internal" href="hardware.html#scan-drivers"><span class="std std-ref">устройство сканирования</span></a>, зададим режим распознавания и используемые в документе языки, затем нажмём кнопку <strong>Распознать всё</strong>.</p>
 <p>Результат может быть сохранён в файл с панели результатов распознавания.</p>
-</section>
-<section id="zip">
+</div>
+<div class="section" id="zip">
 <span id="zip-encoding"></span><span id="index-26"></span><h2>При распаковке Zip архива появляются кракозябры вместо имён файлов. Как исправить?<a class="headerlink" href="#zip" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Zip-архивы, созданные штатными средствами ОС Windows, сохраняют имена файлов внутри архива исключительно в однобайтовой кодировке системы по умолчанию (в русской версии это Windows-1251 (cp1251), в английской – Windows-1252 (cp1252)), поэтому при распаковке таких архивов вместо русских букв будут отображаться кракозябры.</p>
 <p>Утилита unzip поддерживает явное указание кодировки, поэтому воспользуемся данной функцией:</p>
@@ -350,8 +349,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </pre></div>
 </div>
 <p>Здесь <strong>cp1251</strong> – кодировка имён файлов, <strong>foo-bar.zip</strong> – имя архива, а <strong>/path/to/destination</strong> – каталог, в который он будет распакован.</p>
-</section>
-<section id="tmpfs">
+</div>
+<div class="section" id="tmpfs">
 <span id="browser-tmpfs"></span><span id="index-27"></span><h2>Стоит ли переносить кэши браузеров в tmpfs?<a class="headerlink" href="#tmpfs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, т.к. это даёт следующие преимущества:</p>
 <blockquote>
@@ -360,8 +359,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <li><p>отсутствует необходимость в ручной очистке, т.к. это будет сделано автоматически при перезагрузке системы.</p></li>
 </ol>
 </div></blockquote>
-</section>
-<section id="firefox-tmpfs">
+</div>
+<div class="section" id="firefox-tmpfs">
 <span id="firefox-cache"></span><span id="index-28"></span><h2>Как перенести кэш браузера Firefox в tmpfs?<a class="headerlink" href="#firefox-tmpfs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В Fedora каталог <strong>/tmp</strong> по умолчанию монтируется в tmpfs, поэтому осуществим перенос кэшей данного браузера именно в него:</p>
 <blockquote>
@@ -372,8 +371,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <li><p>перезапустим браузер для применения новых изменений.</p></li>
 </ol>
 </div></blockquote>
-</section>
-<section id="wget-crawler">
+</div>
+<div class="section" id="wget-crawler">
 <span id="index-29"></span><span id="id13"></span><h2>Как скачать веб-страницу рекурсивно?<a class="headerlink" href="#wget-crawler" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для рекурсивного скачивания статических веб-страниц можно использовать wget в специальном режиме.</p>
 <p>Запустим скачивание ресурса <strong>example.org</strong>:</p>
@@ -381,8 +380,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </pre></div>
 </div>
 <p>Рекурсивное скачивание может занять много времени и места на диске. Настоятельно не рекомендуется использовать этот режим на ресурсах с динамическим контентом.</p>
-</section>
-<section id="exif">
+</div>
+<div class="section" id="exif">
 <span id="exif-data"></span><span id="index-30"></span><h2>Как извлечь метаданные EXIF из файла изображения?<a class="headerlink" href="#exif" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет ImageMagick:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install ImageMagick
@@ -392,8 +391,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>identify -verbose foo-bar.jpg
 </pre></div>
 </div>
-</section>
-<section id="wget-spider">
+</div>
+<div class="section" id="wget-spider">
 <span id="index-31"></span><span id="id14"></span><h2>Как проверить действительность ссылок в закладках без сторонних расширений?<a class="headerlink" href="#wget-spider" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проверить действительность любых ссылок, указанных в файле, можно средствами <strong>wget</strong> в режиме <em>spider</em>.</p>
 <p>Запустим веб-браузер и экспортируем список закладок в файл, совместимый с форматом <em>Netscape Bookmarks</em>. В Firefox это можно сделать так:</p>
@@ -409,21 +408,21 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </pre></div>
 </div>
 <p>В зависимости от размера файла процесс проверки может занять очень много времени.</p>
-</section>
-<section id="steam-fedora">
+</div>
+<div class="section" id="steam-fedora">
 <span id="steam"></span><span id="index-32"></span><h2>Как установить Steam в Fedora?<a class="headerlink" href="#steam-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Подключим репозитории <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> (как free, так и nonfree), после чего установим его:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install steam
 </pre></div>
 </div>
 <p>Ярлык запуска клиента Steam появится в главном меню используемой графической среды.</p>
-</section>
-<section id="gnome-shell">
+</div>
+<div class="section" id="gnome-shell">
 <span id="gnome-shell-extensions"></span><span id="index-33"></span><h2>Откуда правильно устанавливать расширения для Gnome Shell?<a class="headerlink" href="#gnome-shell" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Расширения для Gnome Shell можно устанавливать как в виде пакета из репозиториев, так и напрямую из <a class="reference external" href="https://extensions.gnome.org/">Магазина расширений Gnome</a>. Разница лишь в том, что расширения, установленные пакетом, будут доступны сразу для всех пользователей системы.</p>
 <p>Рекомендуется устанавливать расширения из Магазина, т.к. многие пакеты очень редко получают обновления.</p>
-</section>
-<section id="gnome-shell-browser">
+</div>
+<div class="section" id="gnome-shell-browser">
 <span id="index-34"></span><span id="id15"></span><h2>Как разрешить установку расширений Gnome Shell из веб-браузера?<a class="headerlink" href="#gnome-shell-browser" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы разрешить установку <a class="reference internal" href="#gnome-shell-extensions"><span class="std std-ref">расширений Gnome Shell</span></a> из браузеров, необходимо установить соответствующий пакет:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gnome-shell-browser
@@ -436,8 +435,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <li><p><a class="reference external" href="https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=ru">Chrome/Chromium</a>.</p></li>
 </ul>
 </div></blockquote>
-</section>
-<section id="kde-plasma">
+</div>
+<div class="section" id="kde-plasma">
 <span id="plasma-browser"></span><span id="index-35"></span><h2>Как разрешить установку расширений KDE Plasma из веб-браузера?<a class="headerlink" href="#kde-plasma" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы разрешить установку расширений оболочки KDE Plasma из браузеров, необходимо установить соответствующий пакет:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install plasma-browser-integration
@@ -450,8 +449,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <li><p><a class="reference external" href="https://chrome.google.com/webstore/detail/plasma-integration/cimiefiiaegbelhefglklhhakcgmhkai?hl=ru">Chrome/Chromium</a>.</p></li>
 </ul>
 </div></blockquote>
-</section>
-<section id="gnome-shell-tray">
+</div>
+<div class="section" id="gnome-shell-tray">
 <span id="index-36"></span><span id="id16"></span><h2>Как вернуть классический системный лоток (трей) в Gnome Shell?<a class="headerlink" href="#gnome-shell-tray" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Начиная с Gnome 3.26, из области уведомлений оболочки была удалена поддержка классического системного лотка, поэтому многие приложения при закрытии или сворачивании могут не завершать свою работу, а продолжать работать в фоне без отображения видимого окна.</p>
 <p>Восстановить трей можно посредством установки одного из <a class="reference internal" href="#gnome-shell-extensions"><span class="std std-ref">расширений Gnome Shell</span></a>:</p>
@@ -461,13 +460,13 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <li><p><a class="reference external" href="https://extensions.gnome.org/extension/1031/topicons/">TopIcons Plus</a> (также доступно в виде пакета <code class="docutils literal notranslate"><span class="pre">gnome-shell-extension-topicons-plus</span></code> в репозиториях).</p></li>
 </ul>
 </div></blockquote>
-</section>
-<section id="gnome-shell-desktop">
+</div>
+<div class="section" id="gnome-shell-desktop">
 <span id="index-37"></span><span id="id17"></span><h2>Как вернуть классический рабочий стол в Gnome Shell?<a class="headerlink" href="#gnome-shell-desktop" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Начиная с Gnome 3.28, поддержка рабочего стола с возможностью размещения на нём файлов, либо ярлыков приложений, была удалена.</p>
 <p>Восстановить классический рабочий стол можно при помощи установки <a class="reference internal" href="#gnome-shell-extensions"><span class="std std-ref">расширения Gnome Shell</span></a> <a class="reference external" href="https://extensions.gnome.org/extension/1465/desktop-icons/">Desktop Icons</a> (также доступно в виде пакета <code class="docutils literal notranslate"><span class="pre">gnome-shell-extension-desktop-icons</span></code> в репозиториях).</p>
-</section>
-<section id="zip-split">
+</div>
+<div class="section" id="zip-split">
 <span id="index-38"></span><span id="id18"></span><h2>Как упаковать содержимое каталога в архив с разделением на части, пригодные для записи на диск?<a class="headerlink" href="#zip-split" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет <strong>p7zip</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install p7zip
@@ -477,14 +476,14 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>7za a -m0=LZMA2 -mx9 -r -t7z -v4480m /path/to/archive.7z
 </pre></div>
 </div>
-</section>
-<section id="kerberos-gnome">
+</div>
+<div class="section" id="kerberos-gnome">
 <span id="index-39"></span><span id="id19"></span><h2>Как настроить автоматическое обновление Kerberos-тикетов в Gnome?<a class="headerlink" href="#kerberos-gnome" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Актуальные версии среды Gnome поддерживают автоматическое <a class="reference internal" href="administration.html#kerberos-renew"><span class="std std-ref">обновление</span></a> <a class="reference internal" href="administration.html#kerberos-auth"><span class="std std-ref">Kerberos-тикетов</span></a> «из коробки».</p>
 <p>Откроем <strong>настройки Gnome</strong>, выберем пункт <strong>Онлайн учётные записи</strong>, нажмём кнопку с символом <strong>+</strong> для добавления нового, в конце списка выберем вариант <strong>Другие</strong>, а затем <strong>Enterprise login (Kerberos)</strong>.</p>
 <p>В появившемся окне введём авторизационные данные и подтвердим добавление аккаунта.</p>
-</section>
-<section id="transmission-server">
+</div>
+<div class="section" id="transmission-server">
 <span id="index-40"></span><span id="id20"></span><h2>Как запустить фоновый клиент для загрузки торрентов?<a class="headerlink" href="#transmission-server" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим Transsmission в виде сервиса:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install transmission-daemon
@@ -504,8 +503,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </div>
 <p>Запустим «тонкий клиент», подключимся к серверу <strong>127.0.0.1:9091</strong>, перейдём в <strong>Опции</strong> – <strong>Настройки сервера</strong> и внесём свои правки, указав например каталог для загрузок.</p>
 <p>Изменения вступают в силу немедленно. Сервер будет запускаться автоматически при каждой загрузке системы и сразу же осуществлять загрузку, либо раздачу торрентов.</p>
-</section>
-<section id="gnome-shell-reset">
+</div>
+<div class="section" id="gnome-shell-reset">
 <span id="index-41"></span><span id="id21"></span><h2>Как сбросить все настройки Gnome Shell?<a class="headerlink" href="#gnome-shell-reset" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы сбросить все настройки Gnome и Gnome Shell, выполним:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dconf reset -f /
@@ -513,23 +512,23 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </div>
 <p>Это действие удалит все настройки Gnome, включая приложения, использующие dconf для хранения пользовательских настроек, аккаунтов и т.д., параметры системы, настройки среды, установленные темы и расширения и т.д. Перед использованием рекомендуется создать резервную копию.</p>
 <p>При следующем входе будут восстановлены значения по умолчанию.</p>
-</section>
-<section id="directory-tree">
+</div>
+<div class="section" id="directory-tree">
 <span id="index-42"></span><span id="id22"></span><h2>Как построить дерево каталогов и сохранить его в файл?<a class="headerlink" href="#directory-tree" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для построения дерева каталогов воспользуемся утилитой <strong>tree</strong>, затем перенаправим вывод в файл:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>tree /path/to/directory &gt; ~/foo-bar.txt
 </pre></div>
 </div>
 <p>Здесь <strong>/path/to/directory</strong> – путь к каталогу, дерево которого нужно построить, а <strong>~/foo-bar.txt</strong> – файл, в котором будет сохранён результат.</p>
-</section>
-<section id="trash-terminal">
+</div>
+<div class="section" id="trash-terminal">
 <span id="index-43"></span><span id="id23"></span><h2>Как из терминала удалить файл в корзину?<a class="headerlink" href="#trash-terminal" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для удаления в корзину из оболочки воспользуемся утилитой <strong>gio</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gio trash /path/to/file.txt
 </pre></div>
 </div>
-</section>
-<section id="irc-freenode">
+</div>
+<div class="section" id="irc-freenode">
 <span id="irc-nopass"></span><span id="index-44"></span><h2>Можно ли входить в IRC сеть FreeNode без ввода пароля?<a class="headerlink" href="#irc-freenode" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, сеть FreeNode с недавних пор поддерживает вход по ключам.</p>
 <p>Создадим каталог для хранения ключей HexChat:</p>
@@ -568,8 +567,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </div>
 <p>Здесь <strong>PASSWORD</strong> – текущий пароль пользователя, а <strong>XXXXXXXXXX</strong> – отпечаток сертификата.</p>
 <p>Теперь можно отключиться и подключиться заново. Вход будет выполнен уже безопасным способом без использования паролей.</p>
-</section>
-<section id="kde">
+</div>
+<div class="section" id="kde">
 <span id="kickoff-reset"></span><span id="index-45"></span><h2>В меню KDE перестали отображаться значки приложений и документов. Как исправить?<a class="headerlink" href="#kde" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Исчезновение значков приложений, либо документов в меню KDE Plasma 5 часто происходит при повреждении баз данных компонента KDE activity manager.</p>
 <p>Произведём удаление старых баз (при необходимости можно сделать резервную копию):</p>
@@ -577,8 +576,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </pre></div>
 </div>
 <p>При следующем входе в систему все настройки Kickoff будут сброшены, включая страницу <em>Избранное</em> и при этом должна восстановиться его правильная работа.</p>
-</section>
-<section id="sqlite-firefox">
+</div>
+<div class="section" id="sqlite-firefox">
 <span id="firefox-vacuum"></span><span id="index-46"></span><h2>Как сжать базы данных sqlite браузера Firefox?<a class="headerlink" href="#sqlite-firefox" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Браузер Mozilla Firefox сохраняет данные внутри стандартных баз sqlite3, поэтому даже после очистки истории, cookies, кэшей и т.д. их размер на диске не уменьшается, т.к. данные в них лишь помечаются удалёнными, а непосредственная очистка (vacuum) производится по таймеру во время простоя несколько раз в месяц.</p>
 <p>Сжать все базы данных можно и вручную. Для этого установим пакет sqlite:</p>
@@ -590,8 +589,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </pre></div>
 </div>
 <p>Это действие абсолютно безопасно, т.к. физически удаляет лишь те данные, которые в них были помечены в качестве удалённых.</p>
-</section>
-<section id="f3chk-safe">
+</div>
+<div class="section" id="f3chk-safe">
 <span id="index-47"></span><span id="id24"></span><h2>Как безопасно проверить объём накопителя?<a class="headerlink" href="#f3chk-safe" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет <strong>f3</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install f3
@@ -611,8 +610,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </pre></div>
 </div>
 <p>Здесь <strong>/media/foo-bar</strong> – точка монтирования накопителя, объём которого требуется проверить.</p>
-</section>
-<section id="f3chk-deep">
+</div>
+<div class="section" id="f3chk-deep">
 <span id="index-48"></span><span id="id25"></span><h2>Как выполнить глубокую проверку объёма накопителя?<a class="headerlink" href="#f3chk-deep" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет <strong>f3</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install f3
@@ -626,8 +625,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </div>
 <p>Здесь <strong>/dev/sdb</strong> – устройство, объём которого требуется проверить.</p>
 <p>После завершения процесса потребуется заново создать раздел и файловую систему на проверяемом устройстве при помощи таких утилит, как GParted, Gnome Disks, KDE Disk Manager и т.д.</p>
-</section>
-<section id="markdown-pdf">
+</div>
+<div class="section" id="markdown-pdf">
 <span id="index-49"></span><span id="id26"></span><h2>Как из документа в формате Markdown создать PDF?<a class="headerlink" href="#markdown-pdf" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим универсальный конвертер документов pandoc:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install pandoc
@@ -642,23 +641,23 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </pre></div>
 </div>
 <p>Допускается указать любые установленные в системе OpenType шрифты.</p>
-</section>
-<section id="directory-size-console">
+</div>
+<div class="section" id="directory-size-console">
 <span id="index-50"></span><span id="id27"></span><h2>Как из консоли получить размер каталога вместе со всем его содержимым?<a class="headerlink" href="#directory-size-console" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Выведем общий размер каталога в человеко-читаемом формате, включая вложенные объекты:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>du -sh ~/foo-bar
 </pre></div>
 </div>
-</section>
-<section id="directory-size-top">
+</div>
+<div class="section" id="directory-size-top">
 <span id="index-51"></span><span id="id28"></span><h2>Как из консоли вывести список десяти самых крупных каталогов?<a class="headerlink" href="#directory-size-top" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Вывыдем список десяти самых крупных каталогов:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>du -hs /path/to/directory/* 2&gt;/dev/null | sort -rh | head -10
 </pre></div>
 </div>
 <p>Здесь <strong>/path/to/directory</strong> – начальный каталог.</p>
-</section>
-<section id="directory-size-gui">
+</div>
+<div class="section" id="directory-size-gui">
 <span id="index-52"></span><span id="id29"></span><h2>Как вывести содержимое каталога в графическом виде?<a class="headerlink" href="#directory-size-gui" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В графическом режиме для визуализации содержимого каталога могут применяться такие утилиты, как <strong>Baobab</strong> (Gnome, GTK), либо <strong>Filelight</strong> (KDE, Qt).</p>
 <p>Установим <strong>Baobab</strong> (для пользователей Gnome или других DE, основанных на GTK):</p>
@@ -669,15 +668,15 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install filelight
 </pre></div>
 </div>
-</section>
-<section id="plasma-restart">
+</div>
+<div class="section" id="plasma-restart">
 <span id="index-53"></span><span id="id30"></span><h2>Как перезапустить зависшую оболочку KDE Plasma 5?<a class="headerlink" href="#plasma-restart" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Перезапустим KDE Plasma 5:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kquitapp5 plasmashell &amp;&amp; kstart plasmashell
 </pre></div>
 </div>
-</section>
-<section id="kwin-restart">
+</div>
+<div class="section" id="kwin-restart">
 <span id="index-54"></span><span id="id31"></span><h2>Как перезапустить оконный менеджер KDE Plasma 5?<a class="headerlink" href="#kwin-restart" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Перезапустим оконный менеджер KWin, работающий поверх X11:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kwin_x11 --replace &amp;&gt;/dev/null &amp;
@@ -687,31 +686,31 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kwin_wayland --replace &amp;&gt;/dev/null &amp;
 </pre></div>
 </div>
-</section>
-<section id="gnome-shell-restart">
+</div>
+<div class="section" id="gnome-shell-restart">
 <span id="index-55"></span><span id="id32"></span><h2>Как перезапустить зависшую оболочку Gnome Shell?<a class="headerlink" href="#gnome-shell-restart" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Перезапустим Gnome Shell:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gnome-shell --replace
 </pre></div>
 </div>
-</section>
-<section id="dir-hash-save">
+</div>
+<div class="section" id="dir-hash-save">
 <span id="index-56"></span><span id="id33"></span><h2>Как сохранить контрольные суммы файлов в каталоге рекурсивно?<a class="headerlink" href="#dir-hash-save" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Cгенерируем файл с контрольными суммами SHA2 (SHA-512) содержимого текущего каталога при помощи утилит <strong>find</strong> и <strong>sha512sum</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find -type f \( -not -name &#39;sha512sum.txt&#39; \) -exec sha512sum &#39;{}&#39; \; &gt; sha512sum.txt
 </pre></div>
 </div>
 <p>Результат будет сохранён в файле с именем <strong>sha512sum.txt</strong>.</p>
-</section>
-<section id="dir-hash-verify">
+</div>
+<div class="section" id="dir-hash-verify">
 <span id="index-57"></span><span id="id34"></span><h2>Как проверить контрольные суммы файлов в каталоге?<a class="headerlink" href="#dir-hash-verify" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проверим контрольные суммы SHA2 (SHA-512), <a class="reference internal" href="#dir-hash-save"><span class="std std-ref">сохранённые</span></a> в <strong>sha512sum.txt</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sha512sum -c sha512sum.txt &gt; check_results.txt
 </pre></div>
 </div>
 <p>Для удобства <a class="reference internal" href="administration.html#bash-pipelines"><span class="std std-ref">перенаправим вывод</span></a> в файл <strong>check_results.txt</strong> ибо он может быть очень большим и не поместиться на экране.</p>
-</section>
-<section id="dir-hash-missmatch">
+</div>
+<div class="section" id="dir-hash-missmatch">
 <span id="index-58"></span><span id="id35"></span><h2>Как вывести список не совпадающих с сохранёнными контрольными суммами файлов?<a class="headerlink" href="#dir-hash-missmatch" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проверим контрольные суммы SHA2 (SHA-512), <a class="reference internal" href="#dir-hash-save"><span class="std std-ref">сохранённые</span></a> в <strong>sha512sum.txt</strong> и выведем лишь те, проверка которых завершилась неудачно:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sha512sum -c sha512sum.txt | grep -v &#39;OK&#39;
@@ -721,23 +720,23 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sha512sum -c sha512sum.txt | grep -v &#39;OK&#39; &gt; failed_results.txt
 </pre></div>
 </div>
-</section>
-<section id="qt">
+</div>
+<div class="section" id="qt">
 <span id="qt-theme-override"></span><span id="index-59"></span><h2>Как переопределить тему в Qt приложениях?<a class="headerlink" href="#qt" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Воспользуемся <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменными окружения</span></a> для переопределения темы Qt:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>QT_STYLE_OVERRIDE=adwaita QT_QPA_PLATFORMTHEME=qgnomeplatform /usr/bin/foo-bar
 </pre></div>
 </div>
-</section>
-<section id="wine-fedora">
+</div>
+<div class="section" id="wine-fedora">
 <span id="index-60"></span><span id="id36"></span><h2>Как правильно установить Wine в Fedora?<a class="headerlink" href="#wine-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В основном репозитории Fedora всегда находится самый свежий и правильно опакеченный выпуск Wine, поэтому подключать какие-либо сторонние репозитории, в т.ч. официальный от WineHQ, категорически не рекомендуется.</p>
 <p>Установим Wine из репозитория Fedora:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install wine wine.i686
 </pre></div>
 </div>
-</section>
-<section id="dxvk-wine">
+</div>
+<div class="section" id="dxvk-wine">
 <span id="wine-dxvk"></span><span id="index-61"></span><h2>Как правильно установить dxvk для Wine из репозиториев?<a class="headerlink" href="#dxvk-wine" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Наряду с <a class="reference internal" href="#wine-fedora"><span class="std std-ref">правильно опакеченным Wine</span></a>, в основном репозитории Fedora доступен и dxvk.</p>
 <p>Установим dxvk с поддержкой DirectX 10, 11:</p>
@@ -748,20 +747,20 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install wine-dxvk-d3d9 wine-dxvk-d3d9.i686
 </pre></div>
 </div>
-</section>
-<section id="chromium-kde">
+</div>
+<div class="section" id="chromium-kde">
 <span id="kde-chromium-default"></span><span id="index-62"></span><h2>Как сделать Chromium браузером по умолчанию в KDE?<a class="headerlink" href="#chromium-kde" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для того, чтобы назначить Chromium браузером по умолчанию, выполним <strong>Параметры системы</strong> – <strong>Приложения</strong> – <strong>Приложения по умолчанию</strong> – <strong>Браузер</strong> – установим точку около <strong>в следующем приложении</strong>, затем в выпадающем списке выберем <strong>Chromium</strong> и нажмём кнопку <strong>Применить</strong>.</p>
 <p>Однако, даже если указанное действие сделано верно, Chromium всё равно будет предлагать установить его браузером по умолчанию при каждом запуске, т.к. он проверяет привязку не только к протоколам, но и к конкретным <a class="reference internal" href="using-system.html#file-types"><span class="std std-ref">mime-типам</span></a> для HTML-файлов.</p>
 <p>Чтобы избавиться от данного сообщения, повторно откроем <strong>Параметры системы</strong> – <strong>Приложения</strong> – <strong>Привязки файлов</strong>, в строке поиска введём <code class="docutils literal notranslate"><span class="pre">html</span></code> и переместим Chromium в самый верх списка приоритетов для <strong>xhtml+xml</strong> и <strong>html</strong>. Нажмём <strong>Применить</strong>.</p>
-</section>
-<section id="earlyoom">
+</div>
+<div class="section" id="earlyoom">
 <span id="earlyoom-info"></span><span id="index-63"></span><h2>Что такое earlyoom и почему он установлен по умолчанию?<a class="headerlink" href="#earlyoom" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В Fedora 32 и 33, в редакции Workstation, <a class="reference external" href="https://pagure.io/fedora-workstation/issue/119">предустановлен</a> пакет <strong>earlyoom</strong>, который представляет собой систему раннего предотвращения нехватки памяти из пользовательского режима (user-space OOM Killer).</p>
 <p>В случаях, когда объём доступной оперативной памяти опустится ниже 4% или 400 МБ (в зависимости от того, что меньше), earlyoom принудительно завершит работу процесса, наиболее активно потребляющего память (имеющего самое высокое значение oom_score), не доводя систему до очистки системных буферов и вызова ядерного OOM Killer.</p>
 <p>Наиболее приоритетными кандидатами на завершение являются процессы <em>Web Content</em> браузера Mozilla Firefox. В то же время, снижен приоритет для различных системных сервисов, критичных для работы системы.</p>
-</section>
-<section id="earlyoom-enable">
+</div>
+<div class="section" id="earlyoom-enable">
 <span id="index-64"></span><span id="id37"></span><h2>Как активировать earlyoom?<a class="headerlink" href="#earlyoom-enable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет <strong>earlyoom</strong> (для версий, <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">отличных от Workstation</span></a>):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install earlyoom
@@ -771,8 +770,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable --now earlyoom.service
 </pre></div>
 </div>
-</section>
-<section id="earlyoom-disable">
+</div>
+<div class="section" id="earlyoom-disable">
 <span id="index-65"></span><span id="id38"></span><h2>Как отключить earlyoom?<a class="headerlink" href="#earlyoom-disable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Отключим earlyoom (не будет запускаться вместе с системой):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable --now earlyoom.service
@@ -783,8 +782,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </pre></div>
 </div>
 <p>Внимание! Если удалить пакет <strong>earlyoom</strong> в Fedora 32 и 33, он может быть <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">установлен заново</span></a> из-за включённых по умолчанию <a class="reference internal" href="package-manager.html#dnf-weakdeps"><span class="std std-ref">слабых зависимостей</span></a>.</p>
-</section>
-<section id="earlyoom-configure">
+</div>
+<div class="section" id="earlyoom-configure">
 <span id="index-66"></span><span id="id39"></span><h2>Как настроить earlyoom?<a class="headerlink" href="#earlyoom-configure" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Параметры <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">earlyoom</span></a> хранятся в файле <code class="docutils literal notranslate"><span class="pre">/etc/default/earlyoom</span></code>.</p>
 <p>Откроем его в текстовом редакторе:</p>
@@ -796,13 +795,13 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </pre></div>
 </div>
 <p>Подробную документацию о всех поддерживаемых опциях можно найти в <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">earlyoom</span></code>.</p>
-</section>
-<section id="systemd-oomd">
+</div>
+<div class="section" id="systemd-oomd">
 <span id="oomd-info"></span><span id="index-67"></span><h2>Что такое systemd-oomd?<a class="headerlink" href="#systemd-oomd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Начиная с Fedora 34, во всех редакциях <a class="reference external" href="https://fedoraproject.org/wiki/Changes/EnableSystemdOomd">активирован по умолчанию</a> сервис <strong>systemd-oomd</strong>.</p>
 <p>Как и <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">earlyoom</span></a>, он представляет собой систему раннего предотвращения нехватки памяти из пользовательского режима (user-space OOM Killer).</p>
-</section>
-<section id="oomd-disable">
+</div>
+<div class="section" id="oomd-disable">
 <span id="index-68"></span><span id="id40"></span><h2>Как отключить systemd-oomd?<a class="headerlink" href="#oomd-disable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Отключим сервис <strong>systemd-oomd</strong> (не будет запускаться вместе с системой):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable --now systemd-oomd.service
@@ -812,8 +811,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl mask systemd-oomd.service
 </pre></div>
 </div>
-</section>
-<section id="systemd-oomd-earlyoom">
+</div>
+<div class="section" id="systemd-oomd-earlyoom">
 <span id="oomd-revert"></span><span id="index-69"></span><h2>Как отключить systemd-oomd и вернуться к earlyoom?<a class="headerlink" href="#systemd-oomd-earlyoom" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Выполним два простых шага:</p>
 <blockquote>
@@ -823,19 +822,19 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </ol>
 </div></blockquote>
 <p>Изменения вступят в силу немедленно.</p>
-</section>
-<section id="iso-kde">
+</div>
+<div class="section" id="iso-kde">
 <span id="kde-iso"></span><span id="index-70"></span><h2>Как открыть ISO образ в KDE?<a class="headerlink" href="#iso-kde" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Файлы образов ISO могут быть открыты архиватором Ark (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">ark</span></code>), если они не используют <a class="reference external" href="https://ru.wikipedia.org/wiki/Universal_Disk_Format">файловую систему UDF</a>.</p>
 <p>В качестве альтернативного варианта можно установить утилиту Gnome Disks (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">gnome-disk-utility</span></code>), после чего пункт монтирования ISO-файла появится в контекстном меню по щелчку правой кнопки мыши в Dolphin. Таким способом можно быстро смонтировать образ с любой ФС.</p>
-</section>
-<section id="uresourced">
+</div>
+<div class="section" id="uresourced">
 <span id="uresourced-info"></span><span id="index-71"></span><h2>Что такое uresourced и почему он установлен по умолчанию?<a class="headerlink" href="#uresourced" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Начиная с Fedora 33, в редакции Workstation <a class="reference external" href="https://pagure.io/fedora-workstation/issue/154">предустановлен</a> пакет <strong>uresourced</strong>, который представляет собой систему повышения отзывчивости графической оболочки.</p>
 <p>По умолчанию данный сервис резервирует 250 МБ или 10% от общего объёма оперативной памяти (в зависимости от того, что меньше) при помощи cgroupsv2.</p>
 <p>В результате снижается вероятность возникновения ошибок страниц за счёт исключения возможности вытеснения страниц памяти, занимаемых графической оболочкой, что в итоге и приводит к повышению отзывчивости.</p>
-</section>
-<section id="uresourced-enable">
+</div>
+<div class="section" id="uresourced-enable">
 <span id="index-72"></span><span id="id41"></span><h2>Как активировать uresourced?<a class="headerlink" href="#uresourced-enable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакет <strong>uresourced</strong> (для версий, <a class="reference internal" href="#uresourced-info"><span class="std std-ref">отличных от Workstation</span></a>):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install uresourced
@@ -845,8 +844,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable --now uresourced.service
 </pre></div>
 </div>
-</section>
-<section id="uresourced-disable">
+</div>
+<div class="section" id="uresourced-disable">
 <span id="index-73"></span><span id="id42"></span><h2>Как отключить uresourced?<a class="headerlink" href="#uresourced-disable" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Отключим uresourced (не будет запускаться вместе с системой):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable uresourced.service
@@ -857,8 +856,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </pre></div>
 </div>
 <p>Внимание! Если удалить пакет <strong>uresourced</strong> в Fedora Workstation, он может быть <a class="reference internal" href="#earlyoom-info"><span class="std std-ref">установлен заново</span></a> из-за включённых по умолчанию <a class="reference internal" href="package-manager.html#dnf-weakdeps"><span class="std std-ref">слабых зависимостей</span></a>.</p>
-</section>
-<section id="firefox-kde">
+</div>
+<div class="section" id="firefox-kde">
 <span id="firefox-kde-dialog"></span><span id="index-74"></span><h2>Как в Firefox включить диалог загрузки и сохранения файлов от KDE?<a class="headerlink" href="#firefox-kde" title="Ссылка на этот заголовок">¶</a></h2>
 <p>По умолчанию Firefox использует диалоги открытия и сохранения файлов из GTK, однако существует возможность активации родных от используемой рабочей среды, например KDE.</p>
 <p>Установим соответствующий пакет с порталом:</p>
@@ -867,8 +866,8 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 </div>
 <p>Откроем <code class="docutils literal notranslate"><span class="pre">about:config</span></code> и установим переменной <code class="docutils literal notranslate"><span class="pre">widget.use-xdg-desktop-portal</span></code> значение <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
 <p>Изменения вступят в силу немедленно.</p>
-</section>
-</section>
+</div>
+</div>
 
 
           </div>
