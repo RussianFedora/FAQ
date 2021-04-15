@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Сетевое администрирование &#8212; Неофициальный FAQ по Fedora (версия 2021.04.11)</title>
+    <title>Сетевое администрирование &#8212; Неофициальный FAQ по Fedora (версия 2021.04.15)</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -109,12 +109,12 @@ sudo firewall-cmd --reload
 </div>
 <div class="section" id="fedora-iperf">
 <span id="index-10"></span><span id="id4"></span><h2>Как сделать замеры скорости локальной или беспроводной сети?<a class="headerlink" href="#fedora-iperf" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для точных замеров производительности сети нам потребуется как минимум два компьютера (либо компьютер и мобильное устройство), а также утилита iperf, присутствующая в репозиториях Fedora. Установим её:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install iperf2
+<p>Для точных замеров производительности сети нам потребуется как минимум два компьютера (либо компьютер и мобильное устройство), а также утилита <strong>iperf3</strong>, присутствующая в репозиториях Fedora. Установим её:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install iperf3
 </pre></div>
 </div>
-<p>На первом устройстве запустим сервер iperf:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>iperf -s
+<p>На первом устройстве запустим сервер:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>iperf3 -s
 </pre></div>
 </div>
 <p>По умолчанию iperf прослушивает порт <strong>5001/tcp</strong> на всех доступных сетевых соединениях.</p>
@@ -123,10 +123,10 @@ sudo firewall-cmd --reload
 </pre></div>
 </div>
 <p>На втором устройстве запустим клиент и подключимся к серверу:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>iperf -c 192.168.1.2
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>iperf3 -c 192.168.1.2
 </pre></div>
 </div>
-<p>В качестве клиента может выступать и мобильное устройство на базе ОС Android с установленным <a class="reference external" href="https://play.google.com/store/apps/details?id=net.he.networktools">Network Tools</a>. В этом случае в главном меню программы следует выбрать пункт <strong>Iperf2</strong>, а в окне подключения ввести:</p>
+<p>В качестве клиента может выступать и мобильное устройство на базе ОС Android с установленным <a class="reference external" href="https://play.google.com/store/apps/details?id=net.he.networktools">Network Tools</a>. В этом случае в главном меню программы следует выбрать пункт <strong>Iperf3</strong>, а в окне подключения ввести:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-c 192.168.1.2
 </pre></div>
 </div>
