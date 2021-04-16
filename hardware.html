@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Оборудование &#8212; Неофициальный FAQ по Fedora (версия 2021.04.15)</title>
+    <title>Оборудование &#8212; Неофициальный FAQ по Fedora (версия 2021.04.16)</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -643,8 +643,7 @@ chmod +x Unigine_Superposition-1.1.run
 </pre></div>
 </div>
 <p>Для вступления изменений в силу перезапустим PulseAudio:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pulseaudio -k
-pulseaudio -D
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl --user restart pulseaudio.service
 </pre></div>
 </div>
 <p>Сразу после этого все настройки звука будут сброшены на установленные по умолчанию.</p>
