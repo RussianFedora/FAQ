@@ -890,8 +890,7 @@ ICC профиль можно получить либо на сайте прои
 
 .. code-block:: text
 
-    pulseaudio -k
-    pulseaudio -D
+    systemctl --user restart pulseaudio.service
 
 Сразу после этого все настройки звука будут сброшены на установленные по умолчанию.
 
