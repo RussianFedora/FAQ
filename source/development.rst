@@ -709,7 +709,7 @@
 
 .. code-block:: text
 
-    sudo dnf install pycharm-community pycharm-community-jre
+    sudo dnf install pycharm-community
 
 При необходимости установим также набор популярных плагинов:
 
