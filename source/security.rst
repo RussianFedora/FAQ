@@ -383,6 +383,18 @@ KPTI -- это новый механизм ядра, направленный н
 
     mitigations=off
 
+.. index:: gpu, hardware, vulnerability, disable, mitigation, i915, intel
+.. _i915-mitigations:
+
+Можно ли отключить защиту от уязвимостей в Intel GPU?
+=========================================================
+
+Да. Начиная с версии ядра Linux 5.12, появился особый :ref:`параметр ядра <kernelpm-perm>`, отключающий все виды программных защит интегрированных видеокарт Intel:
+
+.. code-block:: text
+
+    i915.mitigations=off
+
 .. index:: hardware, vulnerability, disable, mitigation, cpu
 .. _hardware-vuln:
 
