@@ -991,6 +991,17 @@ end
 </ul>
 </div></blockquote>
 </div>
+<div class="section" id="mock-cleanup">
+<span id="index-65"></span><span id="id45"></span><h2>Как очистить все кэши mock?<a class="headerlink" href="#mock-cleanup" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Выполним полную очистку кэшей <a class="reference internal" href="#build-package"><span class="std std-ref">mock</span></a> для цели по умолчанию:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mock --scrub=all
+</pre></div>
+</div>
+<p>Выполним полную очистку кэшей mock для <strong>fedora-rawhide-x86_64</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mock -r fedora-rawhide-x86_64 --scrub=all
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -1087,6 +1098,7 @@ end
 <li class="toctree-l2"><a class="reference internal" href="#git-remove-all-tags">Как удалить все теги (локальные и удалённые) в Git репозитории?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#koji-extract-data">Как извлечь из Koji какие-либо данные для отправки баг-репорта?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#compare-versions">Как определить, какая из двух версий больше?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mock-cleanup">Как очистить все кэши mock?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>
