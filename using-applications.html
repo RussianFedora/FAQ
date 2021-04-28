@@ -867,6 +867,15 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <p>Откроем <code class="docutils literal notranslate"><span class="pre">about:config</span></code> и установим переменной <code class="docutils literal notranslate"><span class="pre">widget.use-xdg-desktop-portal</span></code> значение <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
 <p>Изменения вступят в силу немедленно.</p>
 </div>
+<div class="section" id="nano-vim">
+<span id="nano-to-vim"></span><span id="index-75"></span><h2>Как заменить текстовый редактор по умолчанию Nano на Vim?<a class="headerlink" href="#nano-vim" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Призведём замену пакета, предоставляющего общесистемную конфигурацию по умолчанию:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf swap nano-default-editor vim-default-editor --allowerasing
+</pre></div>
+</div>
+<p>Данное действие затронет всех пользователей системы, явно не указавших <a class="reference internal" href="using-system.html#editor-selection"><span class="std std-ref">предпочитаемый текстовый редактор</span></a> при помощи <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменных окружения</span></a>.</p>
+<p>Осуществим новый вход в систему для вступления изменений в силу.</p>
+</div>
 </div>
 
 
@@ -971,6 +980,7 @@ media.navigator.mediadatadecoder_vpx_enabled = true
 <li class="toctree-l2"><a class="reference internal" href="#uresourced-enable">Как активировать uresourced?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uresourced-disable">Как отключить uresourced?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firefox-kde">Как в Firefox включить диалог загрузки и сохранения файлов от KDE?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nano-vim">Как заменить текстовый редактор по умолчанию Nano на Vim?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
