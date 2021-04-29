@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Оборудование &#8212; Неофициальный FAQ по Fedora (версия 2021.04.28)</title>
+    <title>Оборудование &#8212; Неофициальный FAQ по Fedora (версия 2021.04.29)</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -535,6 +535,10 @@ chmod +x Unigine_Superposition-1.1.run
 <div class="section" id="firmware-install">
 <span id="index-28"></span><span id="id16"></span><h2>Где взять бинарные прошивки для устройств и как их установить?<a class="headerlink" href="#firmware-install" title="Ссылка на этот заголовок">¶</a></h2>
 <p><a class="reference internal" href="#linux-firmware"><span class="std std-ref">Бинарные прошивки</span></a> для большей части устройств уже находятся в пакете <strong>linux-firmware</strong>, но некоторые (например часть принтеров HP), загружают их самостоятельно, либо поставляют внутри отдельных firmware-пакетов.</p>
+<p>Осуществим установку группы <strong>&#64;hardware-support</strong>, содержащей весь необходимый набор:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install @hardware-support
+</pre></div>
+</div>
 </div>
 <div class="section" id="firmware-status">
 <span id="index-29"></span><span id="id17"></span><h2>Как проверить используются ли в моём устройстве бинарные прошивки?<a class="headerlink" href="#firmware-status" title="Ссылка на этот заголовок">¶</a></h2>
