@@ -16,7 +16,7 @@ from os import getenv
 from time import strftime
 
 # Configuring static version for the packaged builds.
-rel_version = '2021.03.30'
+rel_version = '2021.04.30'
 
 # -- General configuration ------------------------------------------------
 
