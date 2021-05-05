@@ -764,3 +764,11 @@ DHCP сервер провайдера способен выдавать пом�
 
     rm -f /etc/resolv.conf
     mv /etc/resolv.conf.orig /etc/resolv.conf
+
+.. index:: network, dns, server, dnsmasq
+.. _dns-server:
+
+Как установить и запустить собственный DNS-сервер?
+=====================================================
+
+См. `здесь <https://www.easycoding.org/2021/05/03/podnimaem-dns-server-dnsmasq.html>`__.
