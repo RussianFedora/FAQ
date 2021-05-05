@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2021.04.30)</title>
+    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2021.05.05)</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -296,12 +296,12 @@ git rebase master
 <p>Создадим и скомпилируем простой пример <code class="docutils literal notranslate"><span class="pre">example.c</span></code>:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
-<span class="k">static</span> <span class="nf">__attribute__</span><span class="p">((</span><span class="n">constructor</span> <span class="p">(</span><span class="mi">200</span><span class="p">)))</span> <span class="kt">void</span> <span class="n">bar</span><span class="p">()</span>
+<span class="k">static</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">constructor</span> <span class="p">(</span><span class="mi">200</span><span class="p">)))</span> <span class="kt">void</span> <span class="n">bar</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Method bar() was called.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="k">static</span> <span class="nf">__attribute__</span><span class="p">((</span><span class="n">constructor</span> <span class="p">(</span><span class="mi">150</span><span class="p">)))</span> <span class="kt">void</span> <span class="n">foo</span><span class="p">()</span>
+<span class="k">static</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">constructor</span> <span class="p">(</span><span class="mi">150</span><span class="p">)))</span> <span class="kt">void</span> <span class="n">foo</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Method foo() was called.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 <span class="p">}</span>
