@@ -4,12 +4,13 @@
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Установка системы &#8212; Неофициальный FAQ по Fedora (версия 2021.05.05)</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Установка системы &#8212; Неофициальный FAQ по Fedora (версия 2021.05.19)</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -39,29 +40,29 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="installation">
+  <section id="installation">
 <span id="id1"></span><h1>Установка системы<a class="headerlink" href="#installation" title="Ссылка на этот заголовок">¶</a></h1>
-<div class="section" id="usb-flash">
+<section id="usb-flash">
 <span id="index-0"></span><span id="id2"></span><h2>Как мне создать загрузочную флешку?<a class="headerlink" href="#usb-flash" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2017/07/12/sozdayom-fedora-liveusb.html">здесь</a>.</p>
-</div>
-<div class="section" id="live">
+</section>
+<section id="live">
 <span id="live-to-ram"></span><span id="index-1"></span><h2>Как загрузить Live образ целиком в память?<a class="headerlink" href="#live" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для загрузки <a class="reference internal" href="#usb-flash"><span class="std std-ref">Live образа</span></a> целиком в память, необходимо стрелками выбрать пункт <strong>Start Fedora Live</strong>, нажать <strong>Tab</strong>, затем в строке редактирования параметров добавить <code class="docutils literal notranslate"><span class="pre">rd.live.ram</span></code> через пробел сразу после <code class="docutils literal notranslate"><span class="pre">quiet</span></code> и после этого нажать <strong>Enter</strong>.</p>
-</div>
-<div class="section" id="package-selection">
+</section>
+<section id="package-selection">
 <span id="index-2"></span><span id="id3"></span><h2>Есть возможность самому выбрать пакеты для установки?<a class="headerlink" href="#package-selection" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, при помощи netinstall образа, но лишь <a class="reference internal" href="package-manager.html#dnf-groups"><span class="std std-ref">группами</span></a>.</p>
-</div>
-<div class="section" id="web-install">
+</section>
+<section id="web-install">
 <span id="index-3"></span><span id="id4"></span><h2>Необходим ли доступ в Интернет при установке?<a class="headerlink" href="#web-install" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Только для netinstall образа. Все остальные устанавливаются «как есть», т.е. со стандартным набором пакетов.</p>
-</div>
-<div class="section" id="automatic-install">
+</section>
+<section id="automatic-install">
 <span id="index-4"></span><span id="id5"></span><h2>Могу ли я автоматизировать установку?<a class="headerlink" href="#automatic-install" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, посредством <a class="reference external" href="https://pykickstart.readthedocs.io/en/latest/">Kickstart</a>.</p>
-</div>
-<div class="section" id="iso">
+</section>
+<section id="iso">
 <span id="custom-iso"></span><span id="index-5"></span><h2>Могу ли я создать свой собственный ISO образ?<a class="headerlink" href="#iso" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Собственный образ можно создать на базе Kickstart файлов. Более подобную информацию можно найти <a class="reference external" href="https://fedoraproject.org/wiki/Livemedia-creator-_How_to_create_and_use_a_Live_CD">здесь</a>.</p>
 <p>Готовые Kickstart проекты для изучения:</p>
@@ -71,16 +72,16 @@
 <li><p><a class="reference external" href="https://github.com/RussianFedora/rfremix-kickstarts">RFRemix</a>.</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="fedora-arm">
+</section>
+<section id="fedora-arm">
 <span id="index-6"></span><span id="id6"></span><h2>Можно ли установить Fedora на устройство с ARM?<a class="headerlink" href="#fedora-arm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Загрузки доступны для <a class="reference external" href="https://arm.fedoraproject.org/">armhfp</a>, а также <a class="reference external" href="https://alt.fedoraproject.org/alt/">aarch64</a>.</p>
-</div>
-<div class="section" id="secure-boot">
+</section>
+<section id="secure-boot">
 <span id="index-7"></span><span id="id7"></span><h2>Поддерживается ли технология Secure Boot?<a class="headerlink" href="#secure-boot" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, полностью. В качестве предварительного загрузчика используется <strong>shim</strong>, подписанный цифровой подписью Microsoft.</p>
-</div>
-<div class="section" id="fedora">
+</section>
+<section id="fedora">
 <span id="moving-system"></span><span id="index-8"></span><h2>Могу я переместить Fedora на другой диск?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Алгоритм такой:</p>
 <blockquote>
@@ -94,26 +95,26 @@
 <li><p><a class="reference internal" href="using-system.html#grub-rebuild"><span class="std std-ref">установка загрузчика</span></a> (если необходимо).</p></li>
 </ol>
 </div></blockquote>
-</div>
-<div class="section" id="swap-info">
+</section>
+<section id="swap-info">
 <span id="index-9"></span><span id="id8"></span><h2>У меня много оперативной памяти. Нужен ли мне раздел подкачки?<a class="headerlink" href="#swap-info" title="Ссылка на этот заголовок">¶</a></h2>
 <p>За счёт использования <a class="reference internal" href="administration.html#memory-compression"><span class="std std-ref">сжатия памяти zram</span></a>, в современных выпусках Fedora для большинства сценариев использования на рабочих станциях 10+ ГБ оперативной памяти будет вполне достаточно, поэтому раздел подкачки можно не создавать.</p>
 <p>Внимание! При отсутствии раздела подкачки перестанет работать функция suspend to disk (гибернация).</p>
-</div>
-<div class="section" id="mem-outage">
+</section>
+<section id="mem-outage">
 <span id="index-10"></span><span id="id9"></span><h2>Что будет если при отсутствующем разделе подкачки закончится память?<a class="headerlink" href="#mem-outage" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При критическом недостатке оперативной памяти (исчерпании доступных страниц) и при отсутствии подкачки существует риск зависания всей системы.</p>
 <p>Таким образом, для данной конфигурации настоятельно рекомендуется использовать любой OOM killer пользовательского режима: <a class="reference internal" href="using-applications.html#earlyoom-info"><span class="std std-ref">earlyoom</span></a>, <a class="reference internal" href="using-applications.html#oomd-info"><span class="std std-ref">systemd-oomd</span></a> и т.п., чтобы не подвергать систему опасности и не доводить до использования механизма OOM Killer ядра Linux.</p>
-</div>
-<div class="section" id="swap-limits">
+</section>
+<section id="swap-limits">
 <span id="index-11"></span><span id="id10"></span><h2>Сколько нужно подкачки для работы гибернации?<a class="headerlink" href="#swap-limits" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для нормальной работы режима suspend to disk размер подкачки должен быть больше, либо равен объёму установленной в ПК или ноутбуке оперативной памяти.</p>
-</div>
-<div class="section" id="swap-partitions">
+</section>
+<section id="swap-partitions">
 <span id="index-12"></span><span id="id11"></span><h2>Что быстрее: раздел подкачки или файл подкачки?<a class="headerlink" href="#swap-partitions" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Раздел подкачки, т.к. отсутствуют ограничения, накладываемые используемой файловой системой.</p>
-</div>
-<div class="section" id="swappiness">
+</section>
+<section id="swappiness">
 <span id="index-13"></span><span id="id12"></span><h2>Можно ли сделать так, чтобы подкачка использовалась лишь при исчерпании ОП?<a class="headerlink" href="#swappiness" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, это возможно. Откроем терминал и выполним следующие команды:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w vm.swappiness=0
@@ -122,18 +123,18 @@ sudo sysctl -w vm.watermark_scale_factor=1
 </div>
 <p>Изменения вступят в силу немедленно и сохранятся до перезагрузки системы.</p>
 <p>Для того, чтобы сделать эти изменения постоянными, создадим <a class="reference internal" href="administration.html#sysctl-permanent"><span class="std std-ref">файл конфигурации sysctl</span></a>.</p>
-</div>
-<div class="section" id="speedup-main">
+</section>
+<section id="speedup-main">
 <span id="index-14"></span><span id="id13"></span><h2>Как ускорить запуск системы?<a class="headerlink" href="#speedup-main" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Приобрести в компьютер или ноутбук SSD накопитель и установить операционную систему на него. Это даст колоссальный прирост к скорости запуска.</p>
-</div>
-<div class="section" id="ssd">
+</section>
+<section id="ssd">
 <span id="speedup-home"></span><span id="index-15"></span><h2>Можно ли не переносить на SSD домашние каталоги пользователей?<a class="headerlink" href="#ssd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Можно, но настоятельно не рекомендуется так делать ибо в таком случае прирост скорости работы системы будет далеко не таким большим, каким мог бы быть, т.к. колонна всегда двигается со скоростью самой медленной машины, а это всегда жёсткий диск.</p>
 <p>Большая часть приложений хранят в домашних каталогах пользователей свои файлы конфигурации, а также различные кэши. В итоге, они загрузятся быстро, а затем перейдут в состояние iowait для ожидания этих данных с медленного накопителя.</p>
 <p>Таким образом, на быстром SSD накопителе следует размещать как корневой, так и домашние каталоги пользователей.</p>
-</div>
-<div class="section" id="fedora-ssd">
+</section>
+<section id="fedora-ssd">
 <span id="ssd-tuning"></span><span id="index-16"></span><h2>Нужно ли как-то настраивать Fedora для работы с SSD?<a class="headerlink" href="#fedora-ssd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Особой настройки не требуется. Необходимо лишь убедиться, что таймер процедуры TRIM активен:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl status fstrim.timer
@@ -144,8 +145,8 @@ sudo sysctl -w vm.watermark_scale_factor=1
 </pre></div>
 </div>
 <p>Процедура TRIM для всех установленных твердотельных накопителей будет выполняться автоматически по расписанию один раз в неделю во время простоя системы.</p>
-</div>
-<div class="section" id="fedora-trim">
+</section>
+<section id="fedora-trim">
 <span id="ssd-trim"></span><span id="index-17"></span><h2>Возможно ли в Fedora включить TRIM в реальном времени?<a class="headerlink" href="#fedora-trim" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, это возможно. При использовании классической схемы с обычными разделами необходимо добавить опцию монтирования <code class="docutils literal notranslate"><span class="pre">discard</span></code> для каждого раздела на SSD в <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code>.</p>
 <p>При использовании LVM, следует открыть файл <code class="docutils literal notranslate"><span class="pre">/etc/lvm/lvm.conf</span></code> в текстовом редакторе и прописать:</p>
@@ -155,21 +156,21 @@ sudo sysctl -w vm.watermark_scale_factor=1
 <p>При использовании зашифрованных LUKS томов следует в файле <code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code> добавить опцию <code class="docutils literal notranslate"><span class="pre">discard</span></code> для каждого тома.</p>
 <p>Однако следует помнить, что на некоторых накопителях реалтаймовый TRIM может вызвать сбой в работе контроллера и привести к потере всех данных. Именно поэтому он по умолчанию и не применяется.</p>
 <p>Все изменения вступят в силу при следующей загрузке системы.</p>
-</div>
-<div class="section" id="trim">
+</section>
+<section id="trim">
 <span id="ssd-timer"></span><span id="index-18"></span><h2>Почему таймер TRIM отключён по умолчанию?<a class="headerlink" href="#trim" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Изначально <a class="reference internal" href="#ssd-tuning"><span class="std std-ref">таймер TRIM</span></a> активировался автоматически, если установка Fedora производилась на SSD накопитель, но через некоторое время обнаружилась серьёзная проблема с noname-накопителями. Их контроллеры делегировали поддержку процедуры TRIM, однако при её выполнении теряли все данные на носителе.</p>
 <p>Из-за достаточно большого количества жалоб на потерю данных с таких дешёвых контрафактных noname накопителей, созданных на базе простейших контроллеров от флешек и микросхем памяти из отбраковки, было решено таймер отключить.</p>
-</div>
-<div class="section" id="fonts-cleartype">
+</section>
+<section id="fonts-cleartype">
 <span id="index-19"></span><span id="id14"></span><h2>Как улучшить отображение шрифтов в Fedora?<a class="headerlink" href="#fonts-cleartype" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В актуальных релизах Fedora пакет freetype уже собран с поддержкой субпиксельного сглаживания, поэтому, чтобы получить качественный рендеринг шрифтов, необходимо лишь разрешить использование LCD фильтров, создав символическую ссылку на файл <code class="docutils literal notranslate"><span class="pre">11-lcdfilter-default.conf</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/fonts/conf.d</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo ln -s /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d/
 </pre></div>
 </div>
 <p>Для вступления изменений в силу необходимо повторно войти в систему либо перезагрузить компьютер.</p>
-</div>
-<div class="section" id="fonts-console">
+</section>
+<section id="fonts-console">
 <span id="index-20"></span><span id="id15"></span><h2>В консолях фреймбуфера отображаются кракозябры. Как это починить?<a class="headerlink" href="#fonts-console" title="Ссылка на этот заголовок">¶</a></h2>
 <p><strong>Способ 1:</strong></p>
 <p>Зададим <a class="reference internal" href="administration.html#kernelpm-perm"><span class="std std-ref">параметр ядра</span></a> <code class="docutils literal notranslate"><span class="pre">vconsole.font</span></code>:</p>
@@ -191,14 +192,14 @@ sudo sysctl -w vm.watermark_scale_factor=1
 </pre></div>
 </div>
 <p>Сохраним изменения в файле и <a class="reference internal" href="using-system.html#initrd-rebuild"><span class="std std-ref">пересоберём</span></a> initrd.</p>
-</div>
-<div class="section" id="fs-selection">
+</section>
+<section id="fs-selection">
 <span id="index-21"></span><span id="id16"></span><h2>Какую файловую систему рекомендуется использовать на Fedora?<a class="headerlink" href="#fs-selection" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Начиная с Fedora 33, в редакции Workstation, для установки по умолчанию предлагается <a class="reference internal" href="#fs-btrfs"><span class="std std-ref">BTRFS</span></a>.</p>
 <p>Несмотря на это, мы рекомендуем применять <a class="reference external" href="https://ru.wikipedia.org/wiki/Ext4">ext4</a>. На наш взгляд, это самая стабильная и популярная файловая система в настоящее время.</p>
 <p>Для хранения больших объёмов данных можно использовать <a class="reference external" href="https://ru.wikipedia.org/wiki/XFS">XFS</a>. Это также стабильная и быстрая ФС, но следует помнить, что при сбоях электропитания вместо файлов, в которые в этот момент шла запись, могут оказаться нули. Таким образом, XFS лучше применять только если есть источник бесперебойного питания (UPS) либо на ноутбуках.</p>
-</div>
-<div class="section" id="btrfs">
+</section>
+<section id="btrfs">
 <span id="fs-btrfs"></span><span id="index-22"></span><h2>Что вы скажете об установке системы на BTRFS?<a class="headerlink" href="#btrfs" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Достоинства:</p>
 <blockquote>
@@ -223,8 +224,8 @@ sudo sysctl -w vm.watermark_scale_factor=1
 <li><p>без использования флага <code class="docutils literal notranslate"><span class="pre">nodatacow</span></code> проседает производительность баз данных (СУБД), а также виртуальных машин.</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="fs-convert">
+</section>
+<section id="fs-convert">
 <span id="index-23"></span><span id="id17"></span><h2>Можно ли без потерь данных преобразовать одну файловую систему в другую?<a class="headerlink" href="#fs-convert" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Нет, конвертирование ФС без потери данных не представляется возможным, поэтому для выполнения данной процедуры необходим другой раздел диска подходящего размера с поддержкой прав доступа Unix. Алгоритм следующий:</p>
 <blockquote>
@@ -235,8 +236,8 @@ sudo sysctl -w vm.watermark_scale_factor=1
 <li><p><a class="reference internal" href="security.html#selinux-boot-error"><span class="std std-ref">сброс контекста</span></a> SELinux.</p></li>
 </ol>
 </div></blockquote>
-</div>
-<div class="section" id="fedora-uefi">
+</section>
+<section id="fedora-uefi">
 <span id="uefi-boot"></span><span id="index-24"></span><h2>Как установить Fedora в UEFI режиме?<a class="headerlink" href="#fedora-uefi" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Загрузка <a class="reference internal" href="#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a> образа должна производиться исключительно в UEFI режиме. На большинстве материнских плат в меню вариантов загрузки требуется выбрать режим <em>UEFI External Drive</em> или <em>UEFI USB HDD</em>.</p>
 <p>Схемой разбиения диска, на который будет установлен дистрибутив, должна быть <strong>GPT</strong>. Проверить можно посредством выполнения <strong>fdisk</strong>:</p>
@@ -245,8 +246,8 @@ sudo sysctl -w vm.watermark_scale_factor=1
 </div>
 <p>Если используется классический <strong>MBR</strong> (<strong>msdos</strong>), необходимо запустить утилиту GParted, выбрать диск из списка, затем в меню <strong>Устройство</strong> пункт <strong>Создать таблицу разделов</strong> – <strong>GPT</strong> и запустить процесс кнопкой <strong>Применить изменения</strong>. Все данные на диске будут уничтожены.</p>
 <p>Теперь можно приступать к установке. Автоматическое разбиение в Anaconda произведёт все действия самостоятельно.</p>
-</div>
-<div class="section" id="lvm-vs-partitions">
+</section>
+<section id="lvm-vs-partitions">
 <span id="index-25"></span><span id="id18"></span><h2>Какой способ разбиения диска лучше выбрать?<a class="headerlink" href="#lvm-vs-partitions" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Существует 2 способа:</p>
 <blockquote>
@@ -256,8 +257,8 @@ sudo sysctl -w vm.watermark_scale_factor=1
 </ol>
 </div></blockquote>
 <p>Если возможности LVM использовать не планируется на ПК или ноутбуке, то рекомендуется применять <a class="reference internal" href="#fedora-partitions"><span class="std std-ref">классическое разбиение</span></a>, т.к. такая схема работает быстрее и надёжнее.</p>
-</div>
-<div class="section" id="fedora-partitions">
+</section>
+<section id="fedora-partitions">
 <span id="index-26"></span><span id="id19"></span><h2>Как лучше разбить диск самостоятельно?<a class="headerlink" href="#fedora-partitions" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если по какой-то причине не хочется доверять автоматическому разбиению, мы рекомендуем следующую конфигурацию (порядок важен):</p>
 <table class="colwidths-given docutils align-default">
@@ -310,8 +311,8 @@ sudo sysctl -w vm.watermark_scale_factor=1
 </tbody>
 </table>
 <p>Здесь <strong>RAM</strong> – объём установленной оперативной памяти.</p>
-</div>
-<div class="section" id="grub">
+</section>
+<section id="grub">
 <span id="grub-hide"></span><span id="index-27"></span><h2>Как полностью скрыть меню Grub?<a class="headerlink" href="#grub" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Скрытие меню загрузки на UEFI конфигурациях:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo grub2-editenv - set menu_auto_hide=1
@@ -335,8 +336,8 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 </pre></div>
 </div>
 <p>Получить доступ к элементам скрытого меню можно посредством зажатия клавиши <strong>Shift</strong> или <strong>F8</strong> во время начальной загрузки системы.</p>
-</div>
-<div class="section" id="windows-uefi-fedora">
+</section>
+<section id="windows-uefi-fedora">
 <span id="grub2-restore"></span><span id="index-28"></span><h2>После установки Windows был затёрт UEFI загрузчик Fedora. Как его восстановить?<a class="headerlink" href="#windows-uefi-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Во время своей установки ОС Microsoft Windows всегда осуществляет форматирование служебного ESP раздела диска, поэтому придётся вручную восстановить загрузчик.</p>
 <p>Выполним вход в <a class="reference internal" href="administration.html#chroot"><span class="std std-ref">chroot установленной системы</span></a>.</p>
@@ -352,29 +353,29 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>logout
 </pre></div>
 </div>
-</div>
-<div class="section" id="root-no-password">
+</section>
+<section id="root-no-password">
 <span id="index-29"></span><span id="id20"></span><h2>При установке не предлагается установить пароль для суперпользователя. Это нормально?<a class="headerlink" href="#root-no-password" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да. Если при установке системы был создан <a class="reference internal" href="security.html#admin-vs-user"><span class="std std-ref">пользователь-администратор</span></a>, то пароль для учётной записи суперпользователя (root) не устанавливается.</p>
 <p>Для выполнения команд с привилегиями суперпользователя в настоящее время рекомендуется <a class="reference internal" href="security.html#sudo-run"><span class="std std-ref">использовать sudo</span></a>.</p>
 <p>Однако если по какой-то причине работающая учётная запись root необходима, можно её активировать, <a class="reference internal" href="security.html#root-password"><span class="std std-ref">установив пароль</span></a>.</p>
-</div>
-<div class="section" id="installation-date">
+</section>
+<section id="installation-date">
 <span id="index-30"></span><span id="id21"></span><h2>Как определить точную дату установки ОС?<a class="headerlink" href="#installation-date" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Т.к. операционная система постоянно обновляется, точную дату установки ОС напрямую получить не представляется возможным. Можно лишь вывести дату последнего форматирования раздела диска, на котором установлена система:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dumpe2fs /dev/sda1 | grep &#39;Filesystem created:&#39;
 </pre></div>
 </div>
 <p>Здесь <strong>/dev/sda1</strong> – раздел диска с Fedora.</p>
-</div>
-<div class="section" id="installation-mode">
+</section>
+<section id="installation-mode">
 <span id="index-31"></span><span id="id22"></span><h2>Как определить в каком режиме была произведена установка системы?<a class="headerlink" href="#installation-mode" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Определим режим установки системы (<a class="reference internal" href="#uefi-boot"><span class="std std-ref">UEFI</span></a> или Legacy) посредством проверки наличия либо отсутствия каталога <code class="docutils literal notranslate"><span class="pre">/sys/firmware/efi</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>test -d /sys/firmware/efi &amp;&amp; echo EFI || echo Legacy
 </pre></div>
 </div>
-</div>
-<div class="section" id="fedora-dual-boot">
+</section>
+<section id="fedora-dual-boot">
 <span id="dual-boot"></span><span id="index-32"></span><h2>Как установить Fedora в dual-boot вместе с другой ОС?<a class="headerlink" href="#fedora-dual-boot" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Существует два способа: автоматический и ручной.</p>
 <p><strong>Автоматический способ:</strong></p>
@@ -393,8 +394,8 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 </ol>
 </div></blockquote>
 <p>Загрузчик <a class="reference internal" href="generic-info.html#grub-loader"><span class="std std-ref">Grub 2</span></a> автоматически обнаружит другие операционные системы на устройстве и добавит их в список загрузки.</p>
-</div>
-<div class="section" id="minimal-installation">
+</section>
+<section id="minimal-installation">
 <span id="index-33"></span><span id="id23"></span><h2>Как произвести минимальную установку системы?<a class="headerlink" href="#minimal-installation" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если требуется выполнить минимальную установку системы без дополнительного программного обеспечения, но с графической средой Gnome или KDE, выполним следующие шаги в строго указанном порядке:</p>
 <blockquote>
@@ -411,8 +412,8 @@ sudo grub2-mkconfig -o /etc/grub2.cfg
 </ol>
 </div></blockquote>
 <p>Минимально возможная установка успешно завершена.</p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
