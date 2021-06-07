@@ -380,35 +380,21 @@
 Как полностью скрыть меню Grub?
 ====================================
 
-Скрытие меню загрузки на UEFI конфигурациях:
+Скрытие меню загрузки:
 
 .. code-block:: text
 
     sudo grub2-editenv - set menu_auto_hide=1
-    sudo grub2-mkconfig -o /etc/grub2-efi.cfg
-
-Скрытие меню загрузки на legacy конфигурациях:
-
-.. code-block:: text
-
-    sudo grub2-editenv - set menu_auto_hide=1
-    sudo grub2-mkconfig -o /etc/grub2.cfg
+    sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
 Если в дуалбуте установлена ОС Microsoft Windows, но всё равно требуется скрыть меню Grub 2, то вместо ``menu_auto_hide=1`` следует применять ``menu_auto_hide=2``.
 
-Отмена изменений и повторная активацию меню на UEFI конфигурациях:
+Отмена изменений и повторная активацию меню:
 
 .. code-block:: text
 
     sudo grub2-editenv - unset menu_auto_hide
-    sudo grub2-mkconfig -o /etc/grub2-efi.cfg
-
-Отмена изменений и повторная активацию меню на legacy конфигурациях:
-
-.. code-block:: text
-
-    sudo grub2-editenv - unset menu_auto_hide
-    sudo grub2-mkconfig -o /etc/grub2.cfg
+    sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
 Получить доступ к элементам скрытого меню можно посредством зажатия клавиши **Shift** или **F8** во время начальной загрузки системы.
 
