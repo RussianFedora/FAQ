@@ -107,17 +107,11 @@
 
 Начиная с Fedora 30, по умолчанию вместо `устаревшего способа <https://fedoraproject.org/wiki/Changes/BootLoaderSpecByDefault>`__ с добавлением ядер через grubby, применяется :ref:`BLS <grub-bls-info>`, поэтому пересборка конфига больше не требуется.
 
-Пересборка конфига Grub 2 для legacy конфигураций:
+Пересборка конфига Grub 2 для `всех конфигураций <https://fedoraproject.org/wiki/Changes/UnifyGrubConfig>`__ Fedora:
 
 .. code-block:: text
 
     sudo grub2-mkconfig -o /boot/grub2/grub.cfg
-
-Пересборка конфигра Grub 2 для UEFI конфигураций:
-
-.. code-block:: text
-
-    sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
 
 .. index:: boot, grub, bls, loader
 .. _grub-bls-info:
