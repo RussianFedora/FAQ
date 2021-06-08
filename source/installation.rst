@@ -432,6 +432,14 @@
 
     logout
 
+.. index:: grub, boot, btrfs
+.. _grub-btrfs:
+
+Можно ли использовать Grub на BTRFS?
+========================================
+
+Конфигурация, при которой раздел **/boot** использует файловую систему :ref:`BTRFS <fs-btrfs>` (раздел или подтом) является `неподдерживаемой <https://bugzilla.redhat.com/show_bug.cgi?id=1955901#c2>`__ и будет приводить к :ref:`возникновению ошибки <grub-sparse-not-allowed>`.
+
 .. index:: installation, sudo, root, password
 .. _root-no-password:
 
