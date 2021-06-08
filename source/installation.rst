@@ -405,7 +405,7 @@
     sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
 .. index:: grub, bootloader, uefi, efi
-.. _grub2-restore:
+.. _grub-restore:
 
 После установки Windows был затёрт UEFI загрузчик Fedora. Как его восстановить?
 ====================================================================================
@@ -424,7 +424,7 @@
 
 .. code-block:: text
 
-    grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+    grub2-mkconfig -o /boot/grub2/grub.cfg
 
 Завершим работу chroot окружения:
 
