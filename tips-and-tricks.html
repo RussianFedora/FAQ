@@ -411,11 +411,11 @@ EndSection
 <section id="sparse-file-not-allowed">
 <span id="grub-sparse-not-allowed"></span><span id="index-22"></span><h2>При загрузке возникает ошибка sparse file not allowed. Как исправить?<a class="headerlink" href="#sparse-file-not-allowed" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если раздел <strong>/boot</strong> установленной системы использует файловую систему <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a>, при загрузке системы появится ошибка <em>error: ../../grub-core/commands/loadenv.c:216:sparse file not allowed</em>.</p>
-<p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1955901">известная проблема</a>, связанная с записью конфигурации grubenv и неполноценной реализацией драйвера поддержки BTRFS в загрузчике (он перезаписывает непосредственно блоки файла без обновления соответствующих метаданных, после чего BTRFS считает раздел повреждённым из-за несовпадающих контрольных сумм).</p>
+<p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1955901">известная проблема</a>, связанная с записью конфигурации grubenv и неполноценной реализацией драйвера поддержки BTRFS в загрузчике (он перезаписывает непосредственно блоки файла без обновления соответствующих метаданных, после чего BTRFS считает раздел повреждённым из-за несовпадения контрольных сумм).</p>
 <p>В качестве решения предлагается несколько вариантов:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><p>перейти на поддерживаемую конфигурацию загрузки – <a class="reference internal" href="installation.html#fedora-partitions"><span class="std std-ref">переместить</span></a> <strong>/boot</strong> на раздел с файловой системой ext4;</p></li>
+<li><p>перейти на поддерживаемую конфигурацию загрузки – <a class="reference internal" href="installation.html#fedora-partitions"><span class="std std-ref">переместить</span></a> <strong>/boot</strong> на раздел с ФС ext4;</p></li>
 <li><p><a class="reference internal" href="installation.html#grub-show"><span class="std std-ref">отключить скрытие меню</span></a> загрузки GRUB 2.</p></li>
 </ol>
 </div></blockquote>
