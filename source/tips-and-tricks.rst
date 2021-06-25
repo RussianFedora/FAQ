@@ -85,7 +85,7 @@
 
     sudo dnf remove kde-connect kdeconnectd
 
-Опционально удалим библиотеки GTK2 (в то же время от них до сих пор зависят многие популярные приложения, например Gimp, GParted, PulseEffects):
+Опционально удалим библиотеки GTK2 (в то же время от них до сих пор зависят многие популярные приложения, например Gimp, Thunderbird, Audacious, PulseEffects):
 
 .. code-block:: text
 
