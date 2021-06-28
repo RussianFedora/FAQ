@@ -51,7 +51,8 @@
   * `@and-semakin <https://github.com/and-semakin>`__;
   * `@fabius-bile <https://github.com/fabius-bile>`__;
   * `@rafaelrs <https://github.com/rafaelrs>`__;
-  * `@turubanov <https://github.com/turubanov>`__.
+  * `@turubanov <https://github.com/turubanov>`__;
+  * `@cyberMe <https://github.com/cyberMe>`__.
 
 Полный список авторов и вклад каждого можно увидеть на странице `Contributors <https://github.com/RussianFedora/FAQ/graphs/contributors>`__.
 
