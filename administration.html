@@ -1111,6 +1111,33 @@ sudo rmdir /media/foo-bar
 </div>
 <p>Здесь <strong>/dev/sdX2</strong> – накопитель с файловой системой <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a>.</p>
 </section>
+<section id="btrfs">
+<span id="btrfs-compression"></span><span id="index-93"></span><h2>Как включить сжатие данных на разделе с BTRFS?<a class="headerlink" href="#btrfs" title="Ссылка на этот заголовок">¶</a></h2>
+<p><strong>Внимание!</strong> Начиная с Fedora 34 для новых установок уже <a class="reference external" href="https://fedoraproject.org/wiki/Changes/BtrfsTransparentCompression">включено</a> сжатие для разделов с ФС <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a> алгоритмом <strong>zstd</strong> с уровнем сжатия <strong>1</strong>. Для тех, кто обновляется с предыдущих релизов, сжатие можно включить самостоятельно.</p>
+<p>Файловая система <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a> поддерживает прозрачное сжатие данных. Допускается выбрать один из трёх доступных алгоритмов: <strong>zstd</strong>, <strong>zlib</strong> или <strong>lzo</strong>. Сжатие включается посредством указания алгоритма и уровня в параметрах монтирования раздела.</p>
+<p>Включим сжатие для корневого раздела. Для этого внесём правки в файл конфигурации <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
+</pre></div>
+</div>
+<p>В колонке параметров монтирования добавим опцию <code class="docutils literal notranslate"><span class="pre">compress=zstd:1</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>UUID=XXXXX-XXXXX /   btrfs   compress=zstd:1,subvol=fedora   0 0
+</pre></div>
+</div>
+<p>Здесь <strong>XXXXX-XXXXX</strong> – <a class="reference internal" href="#get-uuid"><span class="std std-ref">UUID раздела</span></a>.</p>
+<p>Сохраним изменения и произведём перезагрузку системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+<p>С этого момента все записываемые данные будут сжиматься алгоритмом <em>zstd</em>.</p>
+<p>Подробнее о сжатии можно прочитать в <a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/Compression">официальной документации</a> (на английском языке).</p>
+</section>
+<section id="btrfs-compression-analyze">
+<span id="index-94"></span><span id="id70"></span><h2>Как определить эффективность сжатия на разделе с BTRFS?<a class="headerlink" href="#btrfs-compression-analyze" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Оценим эффективность сжатия данных на разделе с файловой системой <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a> при помощи утилиты <strong>compsize</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo compsize -x /
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -1228,6 +1255,8 @@ sudo rmdir /media/foo-bar
 <li class="toctree-l2"><a class="reference internal" href="#uefi-secure-boot">Как определить текущее состояние UEFI Secure Boot?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#process-tree">Как построить и вывести дерево процессов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#btrfs-subvolume">Как однократно смонтировать BTRFS subvolume?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#btrfs">Как включить сжатие данных на разделе с BTRFS?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#btrfs-compression-analyze">Как определить эффективность сжатия на разделе с BTRFS?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>

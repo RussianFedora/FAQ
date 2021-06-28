@@ -421,51 +421,32 @@ EndSection
 </div></blockquote>
 </section>
 <section id="btrfs">
-<span id="btrfs-balance"></span><span id="index-23"></span><h2>Нужно ли выполнять балансировку раздела BTRFS?<a class="headerlink" href="#btrfs" title="Ссылка на этот заголовок">¶</a></h2>
-<p><a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a> использует двухуровневую структуру хранения данных: пространство поделено на <em>фрагменты</em>, которые содержат <em>блоки данных</em>. При определенных условиях эксплуатации в ФС может возникать большое количество мало заполненных фрагментов. Это приводит к ситуации, когда свободное место вроде есть, а записать очередной файл на диск нельзя.</p>
-<p>Операция балансировки выполняет перенос блоков между фрагментами, освободившиеся фрагменты удаляются. Официальная документация <a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/SysadminGuide#Balancing">SysadminGuide</a> рекомендует выполнять балансировку регулярно. Однако разработчики Fedora <a class="reference external" href="https://pagure.io/fedora-btrfs/project/issue/16">против</a> такого подхода.</p>
-<p>Если у вас на разделе мало свободного места (меньше 20%), идёт интенсивная запись данных, например от СУБД, и вы столкнулись с ошибкой записи, то скорее всего балансировка вам поможет.</p>
-<p>Также можно оценить выгоду от выполнения балансировки командой:</p>
+<span id="btrfs-balancing"></span><span id="index-23"></span><h2>Нужно ли выполнять балансировку раздела с BTRFS?<a class="headerlink" href="#btrfs" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Файловая система <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a> использует двухуровневую структуру хранения данных: пространство поделено на <em>фрагменты</em>, которые содержат <em>блоки данных</em>. При определенных условиях эксплуатации в ФС может возникать большое количество мало заполненных фрагментов. Это приводит к ситуации, когда свободное место вроде есть, а записать очередной файл на диск не получается.</p>
+<p>Операция балансировки выполняет перенос блоков между фрагментами, а освободившиеся при этом удаляются. Официальная <a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/SysadminGuide#Balancing">документация</a> рекомендует выполнять балансировку регулярно, однако разработчики Fedora <a class="reference external" href="https://pagure.io/fedora-btrfs/project/issue/16">против</a> такого подхода.</p>
+<p>Если на разделе мало свободного места (меньше 20%), часто осуществляется интенсивная запись данных (например от СУБД), и происходят ошибки записи, то скорее всего балансировка поможет.</p>
+<p>Оценим выгоду от <a class="reference internal" href="#btrfs-balancing-execute"><span class="std std-ref">выполнения балансировки</span></a> следующей командой:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo btrfs fi usage [mountpoint]
 </pre></div>
 </div>
-<p>Если <strong>Device allocated</strong> значительно превышает <strong>Used</strong>, то балансировка будет полезной.</p>
+<p>Если значение в поле <strong>Device allocated</strong> значительно превышает <strong>Used</strong>, то процедура окажется полезной, в противном случае выполнять её не имеет никакого смысла.</p>
+<p>Здесь <strong>mountpoint</strong> – точка монтирования раздела.</p>
 </section>
-<section id="btrfs-make-balance">
-<span id="index-24"></span><span id="id8"></span><h2>Как выполнить балансировку раздела BTRFS?<a class="headerlink" href="#btrfs-make-balance" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Следующая команда выполняет балансировку для всех фрагментов, заполненных менее чем наполовину:</p>
+<section id="btrfs-balancing-execute">
+<span id="index-24"></span><span id="id7"></span><h2>Как произвести балансировку раздела с BTRFS?<a class="headerlink" href="#btrfs-balancing-execute" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Произведём <a class="reference internal" href="#btrfs-balancing"><span class="std std-ref">балансировку</span></a> для всех фрагментов, заполненных менее, чем наполовину:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo btrfs fi balance start -dusage=50 -musage=50 [mountpoint]
 </pre></div>
 </div>
-<p><strong>-dusage</strong> - относится к балансировке данных, <strong>-musage</strong> - к метаданным. Чем меньше значение <em>usage</em>, тем быстрее выполняется операция.</p>
-<p>Если на диске мало свободного места, то начинать следует с небольших значений, например с 5, постепенно увеличивая это число. Также можно балансировать отдельно данные и метаданные.</p>
-<p>Подробнее о балансировке можно прочитать в официальной документации:</p>
-<ul class="simple">
+<p>Здесь <strong>-dusage</strong> – максимальный процент заполнения при балансировке данных, <strong>-musage</strong> – максимальный процент заполнения при балансировке метаданных, а <strong>mountpoint</strong> – точка монтирования раздела.</p>
+<p>Чем меньше значение <em>usage</em>, тем быстрее выполнится операция. Если на диске мало свободного места, то начинать следует с небольших значений, например с <em>5</em>, постепенно увеличивая это число. Также можно балансировать отдельно данные и метаданные.</p>
+<p>Подробнее о балансировке можно прочитать в официальной документации (на английском языке):</p>
+<blockquote>
+<div><ul class="simple">
 <li><p><a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/SysadminGuide#Balancing">SysadminGuide</a></p></li>
 <li><p><a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/Problem_FAQ#I_get_.22No_space_left_on_device.22_errors.2C_but_df_says_I.27ve_got_lots_of_space">Problem_FAQ</a></p></li>
 </ul>
-</section>
-<section id="btrfs-compression">
-<span id="index-25"></span><span id="id10"></span><h2>Как включить сжатие раздела BTRFS?<a class="headerlink" href="#btrfs-compression" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Начиная с <em>Fedora 34</em> для новых установок уже <a class="reference external" href="https://fedoraproject.org/wiki/Changes/BtrfsTransparentCompression">включено</a> сжатие для разделов <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a> алгоритмом <strong>zstd</strong> с уровнем сжатия 1. Для тех, кто обновляется с предыдущих релизов, сжатие можно включить самостоятельно.</p>
-<p><a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a> поддерживает прозрачное сжатие файлов на разделе. Можно выбрать один из трёх алгоритмов: <strong>zstd</strong>, <strong>zlib</strong>, <strong>lzo</strong>. Сжатие включается через указание параметров монтирования раздела.</p>
-<p>Включим сжатие для корневого раздела. Для этого отредактируем fstab:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
-</pre></div>
-</div>
-<p>В колонке параметров добавим опцию <em>compress=zstd:1</em>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>UUID=4f569164-1ab6-4c8e-8c17-48074da9b8b3 /   btrfs   compress=zstd:1,subvol=fedora   0 0
-</pre></div>
-</div>
-<p>Сохраним и перезагрузимся. После этого записываемые на раздел файлы будут сжиматься алгоритмом zstd.</p>
-<p>Выгоду от использования сжатия можно оценить утилитой <em>compsize</em>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo compsize -x /
-</pre></div>
-</div>
-<p>Подробнее о сжатии можно узнать в официальной документации:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/Compression">Compression</a></p></li>
-</ul>
+</div></blockquote>
 </section>
 </section>
 
@@ -522,9 +503,8 @@ EndSection
 <li class="toctree-l2"><a class="reference internal" href="#modesetting-intel">Как активировать драйвер modesetting на видеокартах Intel?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#usb-flash">Как увеличить срок жизни USB Flash?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sparse-file-not-allowed">При загрузке возникает ошибка sparse file not allowed. Как исправить?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#btrfs">Нужно ли выполнять балансировку раздела BTRFS?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#btrfs-make-balance">Как выполнить балансировку раздела BTRFS?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#btrfs-compression">Как включить сжатие раздела BTRFS?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#btrfs">Нужно ли выполнять балансировку раздела с BTRFS?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#btrfs-balancing-execute">Как произвести балансировку раздела с BTRFS?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
