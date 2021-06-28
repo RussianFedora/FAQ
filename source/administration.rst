@@ -1750,3 +1750,49 @@ Coredump -- это дамп закрытой памяти процесса, со
     sudo rmdir /media/foo-bar
 
 Здесь **/dev/sdX2** -- накопитель с файловой системой :ref:`BTRFS <fs-btrfs>`.
+
+.. index:: btrfs, file system, compression
+.. _btrfs-compression:
+
+Как включить сжатие данных на разделе с BTRFS?
+==================================================
+
+**Внимание!** Начиная с Fedora 34 для новых установок уже `включено <https://fedoraproject.org/wiki/Changes/BtrfsTransparentCompression>`__ сжатие для разделов с ФС :ref:`BTRFS <fs-btrfs>` алгоритмом **zstd** с уровнем сжатия **1**. Для тех, кто обновляется с предыдущих релизов, сжатие можно включить самостоятельно.
+
+Файловая система :ref:`BTRFS <fs-btrfs>` поддерживает прозрачное сжатие данных. Допускается выбрать один из трёх доступных алгоритмов: **zstd**, **zlib** или **lzo**. Сжатие включается посредством указания алгоритма и уровня в параметрах монтирования раздела.
+
+Включим сжатие для корневого раздела. Для этого внесём правки в файл конфигурации ``/etc/fstab``:
+
+.. code-block:: text
+
+    sudoedit /etc/fstab
+
+В колонке параметров монтирования добавим опцию ``compress=zstd:1``:
+
+.. code-block:: text
+
+    UUID=XXXXX-XXXXX /   btrfs   compress=zstd:1,subvol=fedora   0 0
+
+Здесь **XXXXX-XXXXX** -- :ref:`UUID раздела <get-uuid>`.
+
+Сохраним изменения и произведём перезагрузку системы:
+
+.. code-block:: text
+
+    sudo systemctl reboot
+
+С этого момента все записываемые данные будут сжиматься алгоритмом *zstd*.
+
+Подробнее о сжатии можно прочитать в `официальной документации <https://btrfs.wiki.kernel.org/index.php/Compression>`__ (на английском языке).
+
+.. index:: btrfs, file system, compression, compsize
+.. _btrfs-compression-analyze:
+
+Как определить эффективность сжатия на разделе с BTRFS?
+===========================================================
+
+Оценим выгоду от использования сжатия при помощи утилиты **compsize**:
+
+.. code-block:: text
+
+    sudo compsize -x /
