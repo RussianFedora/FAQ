@@ -645,5 +645,5 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
 Подробнее о балансировке можно прочитать в официальной документации (на английском языке):
 
-  * `SysadminGuide <https://btrfs.wiki.kernel.org/index.php/SysadminGuide#Balancing>`__
-  * `Problem_FAQ <https://btrfs.wiki.kernel.org/index.php/Problem_FAQ#I_get_.22No_space_left_on_device.22_errors.2C_but_df_says_I.27ve_got_lots_of_space>`__
+  * `Sysadmin guide <https://btrfs.wiki.kernel.org/index.php/SysadminGuide#Balancing>`__
+  * `Problem FAQ <https://btrfs.wiki.kernel.org/index.php/Problem_FAQ#I_get_.22No_space_left_on_device.22_errors.2C_but_df_says_I.27ve_got_lots_of_space>`__
