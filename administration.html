@@ -328,826 +328,16 @@ sudo fsck -t ext4 /dev/sda3
 </pre></div>
 </div>
 </section>
-<section id="deduplication-memory">
-<span id="index-28"></span><span id="id19"></span><h2>Возможна ли полная дедупликация оперативной памяти?<a class="headerlink" href="#deduplication-memory" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Да, дедупликация памяти <a class="reference external" href="https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html">поддерживается</a> в ядре Linux начиная с версии 2.6.32 модулем <a class="reference external" href="https://ru.wikipedia.org/wiki/KSM">KSM</a> и по умолчанию применяется лишь в системах виртуализации, например в <a class="reference internal" href="virtualization.html#kvm"><span class="std std-ref">KVM</span></a>.</p>
-</section>
-<section id="deduplication-disk">
-<span id="index-29"></span><span id="id20"></span><h2>Возможна ли полная дедупликация данных на дисках?<a class="headerlink" href="#deduplication-disk" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Полная автоматическая дедупликация данных на дисках <a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/Deduplication">поддерживается</a> лишь файловой системой <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a>.</p>
-</section>
-<section id="memory-compression">
-<span id="index-30"></span><span id="id21"></span><h2>Можно ли включить сжатие оперативной памяти?<a class="headerlink" href="#memory-compression" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Да, в ядро Linux, начиная с версии 3.14, по умолчанию входит <a class="reference external" href="https://www.kernel.org/doc/html/latest/admin-guide/blockdev/zram.html">модуль zram</a>, который позволяет увеличить производительность системы посредством использования вместо дисковой подкачки виртуального устройства в оперативной памяти с активным сжатием.</p>
-<p>Начиная с Fedora 33, по умолчанию включено сжатие памяти с пулом 50% от объёма RAM. Допускается <a class="reference internal" href="tips-and-tricks.html#zram-pool-size"><span class="std std-ref">изменять его размер</span></a> в широких пределах.</p>
-<p>Активируем zram в Fedora:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install zram-generator zram-generator-defaults
-</pre></div>
-</div>
-<p>Перезагрузим систему для вступления изменений в силу:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
-</pre></div>
-</div>
-</section>
-<section id="sysctl">
-<span id="sysctl-temporary"></span><span id="index-31"></span><h2>Как временно изменить параметр ядра при помощи sysctl?<a class="headerlink" href="#sysctl" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Временно установить любой параметр ядра возможно через sysctl:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w foo.bar=X
-</pre></div>
-</div>
-<p>Здесь <strong>foo.bar</strong> имя параметра, а <strong>X</strong> – его значение. Изменения вступят в силу немедленно и сохранятся до перезагрузки системы.</p>
-</section>
-<section id="sysctl-permanent">
-<span id="index-32"></span><span id="id22"></span><h2>Как задать и сохранить параметр ядра при помощи sysctl?<a class="headerlink" href="#sysctl-permanent" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Чтобы сохранить параметр ядра, создадим специальный файл <code class="docutils literal notranslate"><span class="pre">99-foobar.conf</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/sysctl.d</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo.bar1=X1
-foo.bar2=X2
-</pre></div>
-</div>
-<p>Каждый параметр должен быть указан с новой строки. Здесь <strong>foo.bar</strong> имя параметра, а <strong>X</strong> – его значение.</p>
-<p>Для вступления изменений в силу требуется перезагрузка:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
-</pre></div>
-</div>
-</section>
-<section id="sysctl-order">
-<span id="index-33"></span><span id="id23"></span><h2>В каком порядке загружаются sysctl файлы настроек?<a class="headerlink" href="#sysctl-order" title="Ссылка на этот заголовок">¶</a></h2>
-<p>При загрузке ядро проверяет следующие каталоги в поисках <strong>.conf</strong> файлов:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">/usr/lib/sysctl.d</span></code> – предустановленные конфиги системы и определённых пакетов;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/run/sysctl.d</span></code> – различные конфиги, сгенерированные в рантайме;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/etc/sysctl.d</span></code> – пользовательские конфиги.</p></li>
-</ol>
-</div></blockquote>
-<p>Порядок выполнения – в алфавитном порядке, поэтому для его изменения многие конфиги содержат цифры и буквы. Например конфиг <code class="docutils literal notranslate"><span class="pre">00-foobar.conf</span></code> выполнится раньше, чем <code class="docutils literal notranslate"><span class="pre">zz-foobar.conf</span></code>.</p>
-</section>
-<section id="configure-runlevel">
-<span id="index-34"></span><span id="id24"></span><h2>Как переключить запуск системы в текстовый режим и обратно?<a class="headerlink" href="#configure-runlevel" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Чтобы активировать запуск Fedora в текстовом режиме, нужно переключиться на цель <code class="docutils literal notranslate"><span class="pre">multi-user.target</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl set-default multi-user.target
-</pre></div>
-</div>
-<p>Чтобы активировать запуск в графическом режиме, необходимо убедиться в том, что установлен какой-либо менеджер графического входа в систему (GDM, SDDM, LightDM и т.д.), а затем переключиться на цель <code class="docutils literal notranslate"><span class="pre">graphical.target</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl set-default graphical.target
-</pre></div>
-</div>
-<p>Определить используемый в настоящее время режим можно так:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl get-default
-</pre></div>
-</div>
-<p>Изменения вступят в силу лишь после перезапуска системы:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
-</pre></div>
-</div>
-</section>
-<section id="fedora">
-<span id="swap-to-file"></span><span id="index-35"></span><h2>Как настроить подкачку в файл в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Создадим файл подкачки на 4 ГБ:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/zero of=/media/pagefile count=4096 bs=1M
-</pre></div>
-</div>
-<p>Установим правильный chmod:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chmod 600 /media/pagefile
-</pre></div>
-</div>
-<p>Подготовим swapfs к работе:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkswap /media/pagefile
-</pre></div>
-</div>
-<p>Активируем файл подкачки:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo swapon /media/pagefile
-</pre></div>
-</div>
-<p>Для того, чтобы подкачка подключалась автоматически при загрузке системы, откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> и добавим в него следующую строку:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/media/pagefile    none    swap    sw    0    0
-</pre></div>
-</div>
-<p>Действия вступят в силу немедленно.</p>
-</section>
-<section id="disk-usage">
-<span id="index-36"></span><span id="id25"></span><h2>Как узнать, какой процесс осуществляет запись на диск?<a class="headerlink" href="#disk-usage" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для мониторинга дисковой активности существуют улититы <strong>iotop</strong> и <strong>fatrace</strong>. Установим их:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install iotop fatrace
-</pre></div>
-</div>
-<p>Запустим iotop в режиме накопления показаний:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo iotop -a
-</pre></div>
-</div>
-<p>Запустим fatrace в режиме накопления с выводом лишь информации о событиях записи на диск:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fatrace -f W
-</pre></div>
-</div>
-<p>Запустим fatrace в режиме накопления, с выводом информации о событиях записи на диск в файл, в течение 10 минут (600 секунд):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fatrace -f W -o ~/disk-usage.log -s 600
-</pre></div>
-</div>
-</section>
-<section id="change-label">
-<span id="index-37"></span><span id="id26"></span><h2>Как сменить метку раздела?<a class="headerlink" href="#change-label" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Смена метки раздела с файловой системой ext2, ext3 и ext4:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo e2label /dev/sda1 &quot;NewLabel&quot;
-</pre></div>
-</div>
-<p>Смена метки раздела с файловой системой XFS:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo xfs_admin -L &quot;NewLabel&quot; /dev/sda1
-</pre></div>
-</div>
-<p>Здесь <strong>/dev/sda1</strong> – раздел, на котором требуется изменить метку.</p>
-</section>
-<section id="uuid">
-<span id="get-uuid"></span><span id="index-38"></span><h2>Как получить UUID всех смонтированных разделов?<a class="headerlink" href="#uuid" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для получения всех UUID можно использовать утилиту <strong>blkid</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo blkid
-</pre></div>
-</div>
-<p>Вывод UUID для указанного раздела:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo blkid /dev/sda1
-</pre></div>
-</div>
-<p>Здесь <strong>/dev/sda1</strong> – раздел, для которого требуется вывести UUID.</p>
-</section>
-<section id="change-uuid">
-<span id="index-39"></span><span id="id27"></span><h2>Как изменить UUID раздела?<a class="headerlink" href="#change-uuid" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Смена UUID раздела с файловой системой ext2, ext3 и ext4:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo tune2fs /dev/sda1 -U $(uuidgen)
-</pre></div>
-</div>
-<p>Смена UUID раздела с файловой системой XFS:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo xfs_admin -U generate /dev/sda1
-</pre></div>
-</div>
-<p>Здесь <strong>/dev/sda1</strong> – раздел, на котором требуется изменить UUID.</p>
-</section>
-<section id="pid">
-<span id="get-pid"></span><span id="index-40"></span><h2>Как получить PID запущенного процесса?<a class="headerlink" href="#pid" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для получения идентификатора запущенного процесса (PID), следует применять утилиту <strong>pidof</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pidof foo-bar
-</pre></div>
-</div>
-<p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, информацию о котором требуется получить.</p>
-</section>
-<section id="kill-sigterm">
-<span id="index-41"></span><span id="id28"></span><h2>Как правильно завершить работу процесса?<a class="headerlink" href="#kill-sigterm" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для того, чтобы завершить работу процесса, необходимо отправить ему сигнал <strong>SIGTERM</strong>. После получения данного сигнала процесс должен немедленно начать завершение своей работы:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>остановить активные потоки;</p></li>
-<li><p>сообщить порождённым им процессам (потомкам) о том, что он завершает свою работу;</p></li>
-<li><p>закрыть все открытые процессом дескрипторы;</p></li>
-<li><p>освободить все занятые процессом ресурсы;</p></li>
-<li><p>вернуть управление операционной системе.</p></li>
-</ul>
-</div></blockquote>
-<p>Чтобы отправить сигнал SIGTERM процессу с определённым <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>, воспользуемся утилитой <strong>kill</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kill -15 XXXX
-</pre></div>
-</div>
-<p>Здесь <strong>XXXX</strong> – PID нужного процесса.</p>
-<p>Вместо явного указания PID процесса существует возможность завершить работу процесса с указанным именем посредством <strong>killall</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>killall -15 foo-bar
-</pre></div>
-</div>
-<p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, который требуется завершить, однако её следует применять с особой осторожностью ибо если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
-</section>
-<section id="kill-sigkill">
-<span id="index-42"></span><span id="id29"></span><h2>Как принудительно завершить работу процесса?<a class="headerlink" href="#kill-sigkill" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Если какой-либо процесс завис и не отвечает на требование завершения посредством <a class="reference internal" href="#kill-sigterm"><span class="std std-ref">SIGTERM</span></a>, можно заставить операционную систему принудительно завершить его работу сигналом <strong>SIGKILL</strong>, который не может быть перехвачен и проигнорирован процессом.</p>
-<p>Данный сигнал следует использовать с особой осторожностью, т.к. в этом случае процесс не сможет корректно освободить все дескрипторы и занятые ресурсы, а также сообщить своим потомкам о своём завершении, что может повлечь за собой появление т.н. <a class="reference internal" href="#process-orphan"><span class="std std-ref">процессов-сирот</span></a>.</p>
-<p>Чтобы отправить сигнал SIGKILL процессу с определённым <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>, воспользуемся утилитой <strong>kill</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kill -9 XXXX
-</pre></div>
-</div>
-<p>Здесь <strong>XXXX</strong> – PID нужного процесса.</p>
-<p>Вместо явного указания PID процесса существует возможность завершить работу процесса с указанным именем посредством <strong>killall</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>killall -9 foo-bar
-</pre></div>
-</div>
-<p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса. Если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
-</section>
-<section id="process-zombie">
-<span id="index-43"></span><span id="id30"></span><h2>Что такое процесс-зомби?<a class="headerlink" href="#process-zombie" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Процессы-зомби появляются в системе если потомок завершил свою работу раньше родительского процесса, а последний не отрегировал на отправленный ему сигнал <strong>SIGCHLD</strong>.</p>
-<p>Такие процессы не занимают ресурсов в системе (ибо успешно завершили свою работу), за исключением строки в таблице процессов, хранящей его <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>.</p>
-<p>Все зомби будут автоматически удалены из таблицы процессов после того, как завершит свою работу их родитель.</p>
-</section>
-<section id="process-orphan">
-<span id="index-44"></span><span id="id31"></span><h2>Что такое процесс-сирота?<a class="headerlink" href="#process-orphan" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Процессы-сироты появляются в системе если их родитель был аварийно уничтожен системой сигналом <a class="reference internal" href="#kill-sigkill"><span class="std std-ref">SIGKILL</span></a> и не смог сообщить своим потомкам о своём завершении работы.</p>
-<p>В отличие от <a class="reference internal" href="#process-zombie"><span class="std std-ref">зомби</span></a>, такие процессы расходуют ресурсы системы и могут быть источником множества проблем.</p>
-<p>При обнаружении таких процессов система выполняет операцию переподчинения и устанавливает их родителем главный процесс инициализации.</p>
-</section>
-<section id="docker-fedora">
-<span id="index-45"></span><span id="id32"></span><h2>Как правильно установить Docker в Fedora?<a class="headerlink" href="#docker-fedora" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Официально Docker в Fedora более не поддерживается. На просторах Интернета можно найти сторонние инструкции по установке Docker, однако мы настоятельно не рекомендуем следовать им, поскольку для их работы требуются изменения в системе, способные нарушить её безопасность и/или работу других приложений (например отключение cgroupv2).</p>
-<p>Вместо этого рекомендуется установить и использовать Podman, т.к. он создан и поддерживается Red Hat, а также не требует прав суперпользователя для работы:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install podman
-</pre></div>
-</div>
-<p>Синтаксис команд аналогичен Docker.</p>
-</section>
-<section id="kernel-bs">
-<span id="index-46"></span><span id="id33"></span><h2>Как определить включена ли определённая опция ядра во время компиляции?<a class="headerlink" href="#kernel-bs" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Полный список опций, заданных на этапе компиляции ядра, всегда можно найти в config-файлах, внутри каталога <code class="docutils literal notranslate"><span class="pre">/boot</span></code>.</p>
-<p>В качестве примера проверим статус опции <code class="docutils literal notranslate"><span class="pre">CONFIG_EFI_STUB</span></code> текущего ядра:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>grep CONFIG_EFI_STUB /boot/config-$(uname -r)
-</pre></div>
-</div>
-<p>В выводе <strong>y</strong> означает, что опция была включена, а <strong>not set</strong>, соответственно, выключена.</p>
-</section>
-<section id="ksoftirqd">
-<span id="index-47"></span><span id="id34"></span><h2>Процесс ksoftirqd съедает все ресурсы системы. Что делать?<a class="headerlink" href="#ksoftirqd" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Ядро операционной системы взаимодействует с устройствами посредством прерываний. Когда возникает новое прерывание, оно немедленно приостанавливает работу текущего выполняемого процесса, переключается в режим ядра и начинает его обработку.</p>
-<p>Может случиться так, что прерывания будут генерироваться настолько часто, что ядро не сможет их обрабатывать немедленно, в порядке получения. На этот случай имеется специальный механизм, помещающий полученные прерывания в очередь для дальнейшей обработки. Этой очередью управляет особый поток ядра <strong>ksoftirqd</strong> (создаётся по одному на каждый имеющийся процессор или ядро многоядерного процессора).</p>
-<p>Если потоки ядра ksoftirqd потребляют значительное количество ресурсов центрального процессора, значит система находится под очень высокой нагрузкой по прерываниям.</p>
-</section>
-<section id="kernel-irq">
-<span id="index-48"></span><span id="id35"></span><h2>Как определить какое устройство генерирует огромное количество прерываний?<a class="headerlink" href="#kernel-irq" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для диагностики системы обработки прерываний, ядро имеет встроенный механизм:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/interrupts
-</pre></div>
-</div>
-<p>Числа в таблице означают точное количество прерываний, инициированных соответствующим устройством или подсистемой, с момента загрузки.</p>
-</section>
-<section id="irq-manual">
-<span id="index-49"></span><span id="id36"></span><h2>Как произвести ручную балансировку прерываний?<a class="headerlink" href="#irq-manual" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Если <a class="reference internal" href="#kernel-irq"><span class="std std-ref">прерывания</span></a> распределены между процессорными ядрами не равномерно, можно использовать режим ручной балансировки:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo bash -c &quot;echo X &gt; /proc/irq/Y/smp_affinity&quot;
-</pre></div>
-</div>
-<p>Здесь <strong>X</strong> – маска процессора (CPU affinity), который будет обрабатывать данное прерывание, а <strong>Y</strong> – номер прерывания (указан в левом столбце таблицы прерываний).</p>
-<p>Чтобы вычислить маску следует возвести число 2 в степень, равную порядкому номеру процессора, и результат перевести в шестнадцатиричную систему счисления.</p>
-</section>
-<section id="too-many-open-files">
-<span id="fd-limit"></span><span id="index-50"></span><h2>При работе приложения возникает ошибка Too many open files. Что делать?<a class="headerlink" href="#too-many-open-files" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Ошибка <em>Too many open files</em> возникает при превышении количества открытых дескрипторов файлов процессом. Для её исправления, нужно <a class="reference internal" href="#fd-increase"><span class="std std-ref">увеличить это ограничение</span></a>.</p>
-</section>
-<section id="fd-hard-soft">
-<span id="index-51"></span><span id="id37"></span><h2>Как узнать текущий лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-hard-soft" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Существует два типа ограничений: мягкий (soft) и жёсткий (hard). Жёсткий задаётся администратором системы, а мягкий может регулироваться как пользователем, так и запущенным приложением, но не может превышать максимально заданное значение жёсткого лимита, а также <a class="reference internal" href="#fd-kernel"><span class="std std-ref">глобальное для всего ядра</span></a>.</p>
-<p>Получим значение мягкого ограничителя:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ulimit -Sn
-</pre></div>
-</div>
-<p>Получим значение жёсткого ограничителя:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ulimit -Hn
-</pre></div>
-</div>
-<p>Значения по умолчанию <strong>1024</strong> (soft) и <strong>4096</strong> (hard).</p>
-</section>
-<section id="fd-kernel">
-<span id="index-52"></span><span id="id38"></span><h2>Как узнать глобальный лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-kernel" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Наряду с <a class="reference internal" href="#fd-hard-soft"><span class="std std-ref">мягким и жёстким лимитами</span></a> открытых файловых дескрипторов существует и глобальный, который ядро Linux способно адресовать и корректно обработать.</p>
-<p>Выведем это значение при помощи соответствующей функции ядра:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/sys/fs/file-max
-</pre></div>
-</div>
-</section>
-<section id="fd-increase">
-<span id="index-53"></span><span id="id39"></span><h2>Как увеличить лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-increase" title="Ссылка на этот заголовок">¶</a></h2>
-<p><a class="reference internal" href="#fd-hard-soft"><span class="std std-ref">Мягкие и жёсткие лимиты</span></a> на количество дескрипторов открытых файлов задаются в файле <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.conf</span></code> суперпользователем, но при этом не могут превышать <a class="reference internal" href="#fd-kernel"><span class="std std-ref">глобальный</span></a>.</p>
-<p>Увеличим ограничение для пользователя <strong>foo-bar</strong> до 8192/2048:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar       soft    nofile          2048
-foo-bar       hard    nofile          8192
-</pre></div>
-</div>
-<p>Увеличим ограничение для любых пользователей до 8192/2048:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>*       soft    nofile          2048
-*       hard    nofile          8192
-</pre></div>
-</div>
-<p>Изменения вступят в силу при следующем входе в систему.</p>
-</section>
-<section id="task-affinity">
-<span id="index-54"></span><span id="id40"></span><h2>Как запустить процесс так, чтобы он мог использовать лишь определённые ядра процессора?<a class="headerlink" href="#task-affinity" title="Ссылка на этот заголовок">¶</a></h2>
-<p>По умолчанию процесс выполняется на любых доступных для Linux процессорах (или их ядрах).</p>
-<p>Выбором наиболее подходящего ядра CPU для каждого потока процесса занимается непосредственно ядро, однако существует возможность и ручного переопределения.</p>
-<p>Запустим приложение <strong>foo-bar</strong> на каждом чётном ядре (нумерация всегда начинается с нуля):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>taskset -a -c 0,2,4,6 foo-bar
-</pre></div>
-</div>
-<p>Изменим ассоциацию ядер для уже запущенного процесса <strong>foo-bar</strong> (в качестве параметра указывается <a class="reference internal" href="#get-pid"><span class="std std-ref">PID необходимого процесса</span></a>):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>taskset -a -c 1,3,5,7 -p $(pidof foo-bar)
-</pre></div>
-</div>
-</section>
-<section id="task-priority">
-<span id="index-55"></span><span id="id41"></span><h2>Как изменить приоритет процесса?<a class="headerlink" href="#task-priority" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Допустимые значения приоритета находятся в диапазоне от -20 (наиболее высокий приоритет) до 19 (наиболее низкий). Отрицательные значения может устанавливать лишь суперпользователь.</p>
-<p>Запустим приложение <strong>foo-bar</strong> с приоритетом <strong>10</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nice -n 10 foo-bar
-</pre></div>
-</div>
-<p>Изменим приоритет запущенного процесса <strong>foo-bar</strong> (в качестве параметра указывается <a class="reference internal" href="#get-pid"><span class="std std-ref">PID необходимого процесса</span></a>) до <strong>8</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>renice -n 8 -p $(pidof foo-bar)
-</pre></div>
-</div>
-</section>
-<section id="effective-uid-real-uid">
-<span id="euid-vs-ruid"></span><span id="index-56"></span><h2>Чем отличается Effective UID процесса от Real UID?<a class="headerlink" href="#effective-uid-real-uid" title="Ссылка на этот заголовок">¶</a></h2>
-<p>В мире UNIX считается нормальным, когда один процесс запускается от одного пользователя, но при этом получает права совсем другого (чаще всего это суперпользователь root).</p>
-<p>В качестве простого примера рассмтрим ситуацию, когда пользователь <strong>user1</strong> запускает бинарник с установленным suid-битом <strong>/usr/bin/foo-bar</strong>. Таким образом, у процесса <strong>foo-bar</strong> в качестве <em>Real user ID</em> будет установлен <strong>user1</strong>, а <em>Effective user ID</em> – <strong>root</strong>. Это сделано для того, чтобы приложение могло самостоятельно отказаться от повышенных прав, либо переключаться между ними при помощи соответствующего системного вызова.</p>
-</section>
-<section id="copying-data">
-<span id="index-57"></span><span id="id42"></span><h2>Как скопировать данные с одного раздела на другой?<a class="headerlink" href="#copying-data" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для копирования файлов с одного раздела на другой лучше всего использовать утилиту <strong>rsync</strong> с опциями на сохранение прав доступа.</p>
-<p>Загрузимся с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>, затем смонтируем старый и новый разделы:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/old-root
-sudo mount -t ext4 /dev/sda1 /media/old-root
-sudo mkdir /media/new-root
-sudo mount -t ext4 /dev/sdb1 /media/new-root
-</pre></div>
-</div>
-<p>Запустим процесс копирования:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rsync -axHAWXS --numeric-ids --info=progress2 /media/old-root/ /media/new-root/
-</pre></div>
-</div>
-<p>По окончании работы обязательно размонтируем оба раздела:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /media/old-root
-sudo umount /media/new-root
-</pre></div>
-</div>
-</section>
-<section id="chmod-immutable">
-<span id="index-58"></span><span id="id43"></span><h2>Как запретить модификацию файла даже владельцу и суперпользователю?<a class="headerlink" href="#chmod-immutable" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Чтобы запретить модификацию файла (изменение, удаление) любым пользователем (включая владельца и суперпользователя), установим ему расширенный атрибут <code class="docutils literal notranslate"><span class="pre">+i</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chattr +i foo-bar.txt
-</pre></div>
-</div>
-<p>Чтобы отменить произведённые изменения, выполним:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chattr -i foo-bar.txt
-</pre></div>
-</div>
-<p>Управлять расширенными атрибутами может лишь суперпользователь.</p>
-</section>
-<section id="chmod-lsattr">
-<span id="index-59"></span><span id="id44"></span><h2>Как узнать какие расширенные атрибуты применены для конкретного файла?<a class="headerlink" href="#chmod-lsattr" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для получения расширенных атрибутов воспользуемся утилитой <strong>lsattr</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>lsattr foo-bar.txt
-</pre></div>
-</div>
-</section>
-<section id="chmod-addonly">
-<span id="index-60"></span><span id="id45"></span><h2>Как разрешить лишь дописывать данные в файл?<a class="headerlink" href="#chmod-addonly" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Чтобы разрешить лишь добавление данных в файл любым пользователем (включая владельца и суперпользователя), установим ему расширенный атрибут <code class="docutils literal notranslate"><span class="pre">+a</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chattr +a foo-bar.txt
-</pre></div>
-</div>
-<p>Чтобы отменить произведённые изменения, выполним:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chattr -a foo-bar.txt
-</pre></div>
-</div>
-</section>
-<section id="ssh">
-<span id="ssh-alias"></span><span id="index-61"></span><h2>Как создать алиасы для быстрого подключения к SSH серверам?<a class="headerlink" href="#ssh" title="Ссылка на этот заголовок">¶</a></h2>
-<p>OpenSSH позволяет создавать неограниченное количество алиасов для быстрых подключений.</p>
-<p>Чтобы сделать это, откроем (создадим) файл <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code> в любом текстовом редакторе и внесём правки:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Host foo
-    HostName example1.org
-    Port 22
-    User user1
-
-Host bar
-    HostName example2.org
-    Port 22
-    User user2
-    IdentityFile ~/.ssh/id_rsa2
-</pre></div>
-</div>
-<p>Здесь <code class="docutils literal notranslate"><span class="pre">foo</span></code> и <code class="docutils literal notranslate"><span class="pre">bar</span></code> – имена сокращений (алиасов), которые будут использоваться для подключения. Для каждого могут быть указаны индивидуальные настройки, включая <a class="reference internal" href="security.html#ssh-keys"><span class="std std-ref">различные SSH ключи</span></a> при помощи директивы <code class="docutils literal notranslate"><span class="pre">IdentityFile</span></code>.</p>
-<p>Подключимся к первому серверу:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ssh foo
-</pre></div>
-</div>
-<p>Подключимся ко второму серверу:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ssh bar
-</pre></div>
-</div>
-</section>
-<section id="fuse">
-<span id="fuse-info"></span><span id="index-62"></span><h2>Что такое FUSE?<a class="headerlink" href="#fuse" title="Ссылка на этот заголовок">¶</a></h2>
-<p>FUSE (file system in userspace) – это модуль ядра и набор утилит для работы с ним, предназначенные для запуска различных файловых систем в пользовательском пространстве.</p>
-<p>Благодаря FUSE в Fedora могут использоваться файловые системы, которые по какой-либо причине не могут войти напрямую в состав ядра Linux из-за лицензионных проблем, либо патентов.</p>
-<p>Некоторые примеры подобных реализаций:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><a class="reference internal" href="using-applications.html#fuse-mtp"><span class="std std-ref">MTP</span></a>;</p></li>
-<li><p>NTFS;</p></li>
-<li><p>ZFS;</p></li>
-<li><p>SSHFS;</p></li>
-<li><p>WebDAV.</p></li>
-</ul>
-</div></blockquote>
-<p>Из-за работы в пользовательском режиме возникает ряд проблем:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>очень медленная работа за счёт постоянных переключений контекста;</p></li>
-<li><p>в зависимости от параметров монтирования может быть не видна для работающих системных сервисов.</p></li>
-</ul>
-</div></blockquote>
-</section>
-<section id="kerberos">
-<span id="kerberos-auth"></span><span id="index-63"></span><h2>Как авторизоваться на удалённой системе с использованием Kerberos?<a class="headerlink" href="#kerberos" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Установим необходимые пакеты для работы с Kerberos 5:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install krb5-workstation
-</pre></div>
-</div>
-<p>Произведём авторизацию на удалённой системе:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit foo-bar@FEDORAPROJECT.ORG
-</pre></div>
-</div>
-<p>Здесь <strong>foo-bar</strong> – логин на удалённой системе, а <strong>FEDORAPROJECT.ORG</strong> – имя домена (должно быть указано строго в верхнем регистре).</p>
-<p>В случае ввода верных авторизационных данных процесс должен пройти в штатном режиме.</p>
-</section>
-<section id="kerberos-renew">
-<span id="index-64"></span><span id="id46"></span><h2>Как обновить Kerberos-тикет?<a class="headerlink" href="#kerberos-renew" title="Ссылка на этот заголовок">¶</a></h2>
-<p>В зависимости от настроек сервера, полученный <a class="reference internal" href="#kerberos-auth"><span class="std std-ref">Kerberos-тикет</span></a> обычно действует в течение 24 часов, затем даётся ещё от 24 до 48 часов для его обновления без необходимости прохождения повторной процедуры авторизации.</p>
-<p>Проверим актуальность Kerberos тикетов:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>klist -A
-</pre></div>
-</div>
-<p>При необходимости обновим необходимый:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit -R foo-bar@FEDORAPROJECT.ORG
-</pre></div>
-</div>
-<p>Здесь <strong>foo-bar</strong> – логин на удалённой системе, а <strong>FEDORAPROJECT.ORG</strong> – имя домена (должно быть указано строго в верхнем регистре).</p>
-</section>
-<section id="delete-inode">
-<span id="index-65"></span><span id="id47"></span><h2>В каталоге появился файл с некорректным именем, который не удаётся удалить. Что делать?<a class="headerlink" href="#delete-inode" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Файлы с некорректными именами могут возникать при повреждениях файловой системы, либо сбоях в приложениях, которые создали их.</p>
-<p>Штатно такие файлы удалить не удастся, поэтому придётся уничтожить соответствующий данному файлу I-узел (I-Node).</p>
-<p>Перейдём в каталог с удаляемым файлом:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd ~/foo-bar
-</pre></div>
-</div>
-<p>Выведем листинг содержимого каталога с включённым отображением номеров I-узлов:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ls -li
-</pre></div>
-</div>
-<p>Найдём в выводе необходимый файл и сохраним значение его I-узла. Теперь мы можем удалить его:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find . -maxdepth 1 -type f -inum XXXXXXX -delete
-</pre></div>
-</div>
-<p>Здесь <strong>XXXXXXX</strong> – номер I-узла некорректного файла.</p>
-</section>
-<section id="ext4">
-<span id="defrag-info"></span><span id="index-66"></span><h2>Нужно ли выполнять дефрагментацию для разделов с ФС ext4?<a class="headerlink" href="#ext4" title="Ссылка на этот заголовок">¶</a></h2>
-<p>В большинстве случаев дефрагментация диска на разделах с файловой системой ext4 не требуется, т.к. драйвер осуществляет предварительное размещение файлов на свободном месте так, чтобы они заняли его целиком, оставляя при этом небольшой участок пространства для дальнейшего расширения.</p>
-<p>Однако при определённых обстоятельствах (например если точный размер при создании неизвестен, либо в него постоянно производится добавление-удаление данных), некоторые файлы могут фрагментироваться.</p>
-</section>
-<section id="defrag-custom">
-<span id="index-67"></span><span id="id48"></span><h2>Как выполнить дефрагментацию отдельных файлов на разделе ФС ext4?<a class="headerlink" href="#defrag-custom" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для выполнения частичной дефрагментации, можно использовать утилиту <strong>e4defrag</strong>, входящую в пакет <strong>e2fsprogs</strong>.</p>
-<p>Данная утилита работает со <strong>смонтированным</strong> диском, т.к. непосредственно дефрагментацией будет заниматься драйвер файловой системы, а утилита лишь укажет ему цели.</p>
-<p>Разрешается выполнять оптимизацию отдельных файлов, либо всего содержимого указанных каталогов.</p>
-<p>Выполним дефрагментацию крупной базы данных <code class="docutils literal notranslate"><span class="pre">/var/db/foo-bar.db</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo e4defrag /var/db/foo-bar.db
-</pre></div>
-</div>
-<p>Выполним дефрагментацию всего корня:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo e4defrag /
-</pre></div>
-</div>
-</section>
-<section id="defrag-full">
-<span id="index-68"></span><span id="id49"></span><h2>Как выполнить дефрагментацию всего раздела с ФС ext4?<a class="headerlink" href="#defrag-full" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Полную дефрагментацию можно осуществить при помощи средства <a class="reference internal" href="#fs-check-lvm"><span class="std std-ref">проверки диска</span></a> на <strong>размонтированном</strong> разделе, например при запуске с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>.</p>
-<p>Запустим процесс:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fsck -t ext4 -fn /dev/sda2
-</pre></div>
-</div>
-<p>Здесь <strong>/dev/sda2</strong> – раздел, на котором следует провести процесс дефрагментации. Операция займёт достаточно много времени (в зависимости от размера диска). Прерывать её не следует, т.к. это может привести к полной потере данных.</p>
-</section>
-<section id="cpu-cores">
-<span id="index-69"></span><span id="id50"></span><h2>Как определить количество доступных процессоров или ядер?<a class="headerlink" href="#cpu-cores" title="Ссылка на этот заголовок">¶</a></h2>
-<p><em>Основной способ.</em> Применим утилиту <strong>nproc</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nproc --all
-</pre></div>
-</div>
-<p>Без параметра <code class="docutils literal notranslate"><span class="pre">--all</span></code> будет указано лишь количество <a class="reference internal" href="#task-affinity"><span class="std std-ref">доступных процессоров</span></a> лишь для данного пользователя/процесса.</p>
-<p><em>Альтернативный способ.</em> Если указанная выше утилита в системе отсутствует, выполним:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/cpuinfo | grep &#39;cpu cores&#39; | uniq | awk &#39;{ print $4 }&#39;
-</pre></div>
-</div>
-</section>
-<section id="bash-pipelines">
-<span id="index-70"></span><span id="id51"></span><h2>Как перенаправить стандартный ввод-вывод в файлы?<a class="headerlink" href="#bash-pipelines" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Перенаправление потока стандартного вывода утилиты <strong>ls</strong>, запущенной с параметром, в файл:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ls -l &gt; ~/foo-bar.txt
-</pre></div>
-</div>
-<p>Перенаправление потока стандартного вывода в файл в режиме <em>добавления данных</em> (не заменяет существующие):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ls -l &gt;&gt; ~/foo-bar.txt
-</pre></div>
-</div>
-<p>Перенаправление потока стандартного ввода на ввод из указанного файла:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sort &lt; ~/foo-bar.txt
-</pre></div>
-</div>
-<p>Перенаправление потока стандартного вывода и потока ошибок в файл:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/usr/bin/foo &gt; ~/foo-bar.txt 2&gt;&amp;1
-</pre></div>
-</div>
-<p>Комбинирование ввода из одного файла с выводом в другой с подавлением возникших ошибок:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/usr/bin/foo &lt; ~/foo-bar.txt &gt; ~/result.txt 2&gt; /dev/null
-</pre></div>
-</div>
-</section>
-<section id="mount-nopass">
-<span id="index-71"></span><span id="id52"></span><h2>Как разрешить монтирование любых дисков без ввода пароля?<a class="headerlink" href="#mount-nopass" title="Ссылка на этот заголовок">¶</a></h2>
-<p>По умолчанию пароль не запрашивается только при монтировании сменных накопителей, однако если требуется реализовать это для любых, потребуется добавить новое правило Polkit.</p>
-<p>Создадим новый конфиг:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo touch /etc/polkit-1/rules.d/10-mount-nopass.rules
-sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
-</pre></div>
-</div>
-<p>Загрузим его в текстовом редакторе:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/polkit-1/rules.d/10-mount-nopass.rules
-</pre></div>
-</div>
-<p>Добавим следующее правило:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>polkit.addRule(function(action, subject) {
-    if ((action.id == &quot;org.freedesktop.udisks2.filesystem-mount-system&quot; ||
-        action.id == &quot;org.freedesktop.udisks.filesystem-mount-system-internal&quot;) &amp;&amp;
-        subject.local &amp;&amp; subject.active &amp;&amp; subject.isInGroup(&quot;wheel&quot;))
-    {
-            return polkit.Result.YES;
-    }
-});
-</pre></div>
-</div>
-<p>Сохраним изменения в файле.</p>
-<p>Теперь пользователи с <a class="reference internal" href="security.html#admin-vs-user"><span class="std std-ref">административными правами</span></a> (входящие в группу <strong>wheel</strong>) смогут монтировать любые диски без ввода пароля.</p>
-</section>
-<section id="coredump-systemd">
-<span id="codedump-info"></span><span id="index-72"></span><h2>Что такое coredump и почему systemd сохраняет их?<a class="headerlink" href="#coredump-systemd" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Coredump – это дамп закрытой памяти процесса, создаваемый в момент возникновения в нём внештатной ситуации, приводящей к аварийному завершению. Эти дампы используются всевозможными системами анализа и необходимы для создания правильных <a class="reference internal" href="generic-info.html#bug-report"><span class="std std-ref">баг-репортов</span></a>.</p>
-<p>По умолчанию systemd при падениях любых процессов (как системных, так и пользовательских), сохраняет дампы их закрытой памяти в каталоге <strong>/var/lib/systemd/coredump</strong>, поэтому он может занимать десятки гигабайт.</p>
-<p>Возможно их <a class="reference internal" href="#codedump-limit"><span class="std std-ref">ограничить</span></a>, либо полностью <a class="reference internal" href="#codedump-disable"><span class="std std-ref">отключить</span></a>.</p>
-</section>
-<section id="codedump-limit">
-<span id="index-73"></span><span id="id53"></span><h2>Как ограничить размер сохраняемых дампов памяти?<a class="headerlink" href="#codedump-limit" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Откроем файл конфигурации <a class="reference internal" href="#codedump-info"><span class="std std-ref">systemd-coredump</span></a>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/systemd/coredump.conf
-</pre></div>
-</div>
-<p>Внесём правки, убирая символ комментария <strong>#</strong> перед каждой строкой:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Coredump]</span>
-<span class="na">Storage</span><span class="o">=</span><span class="s">external</span>
-<span class="na">Compress</span><span class="o">=</span><span class="s">yes</span>
-<span class="na">ProcessSizeMax</span><span class="o">=</span><span class="s">1G</span>
-<span class="na">ExternalSizeMax</span><span class="o">=</span><span class="s">1G</span>
-<span class="na">JournalSizeMax</span><span class="o">=</span><span class="s">200M</span>
-<span class="na">MaxUse</span><span class="o">=</span><span class="s">5</span>
-<span class="na">KeepFree</span><span class="o">=</span>
-</pre></div>
-</div>
-<p>В данном примере мы задаём максимальный размер одного дампа в 1 ГБ (<strong>ProcessSizeMax</strong> и <strong>ExternalSizeMax</strong>) с ограничением хранения не более 5 (<strong>MaxUse</strong>).</p>
-<p>Изменения вступят в силу при следующей загрузке системы.</p>
-</section>
-<section id="codedump-disable">
-<span id="index-74"></span><span id="id54"></span><h2>Как полностью отключить сохранение дампов памяти?<a class="headerlink" href="#codedump-disable" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Откроем файл конфигурации <a class="reference internal" href="#codedump-info"><span class="std std-ref">systemd-coredump</span></a>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/systemd/coredump.conf
-</pre></div>
-</div>
-<p>Уберём символ комментария <strong>#</strong> лишь перед первой строкой и изменим её значение:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Coredump]</span>
-<span class="na">Storage</span><span class="o">=</span><span class="s">none</span>
-</pre></div>
-</div>
-<p>Изменения вступят в силу при следующей загрузке системы.</p>
-</section>
-<section id="kernel-postinstall">
-<span id="index-75"></span><span id="id55"></span><h2>Как настроить автоматическое выполнение скрипта после установки нового ядра?<a class="headerlink" href="#kernel-postinstall" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для того, чтобы выполнять какой-либо shell-скрипт сразу после окончания установки ядра Linux, поместим его в каталог <code class="docutils literal notranslate"><span class="pre">/etc/kernel/install.d</span></code> с chmod <strong>0755</strong> и расширением <strong>.install</strong>.</p>
-<p>Скрипты из него всегда выполняются в алфавитном порядке, т.е. <strong>00-foo.install</strong> запустится раньше, чем <strong>zz-bar.install</strong>, поэтому данную особенность можно использовать для изменения порядка их запуска.</p>
-<p>Каждому скрипту в качестве параметра передаётся версия установленного ядра, которую можно получить через <code class="docutils literal notranslate"><span class="pre">${1}</span></code>.</p>
-</section>
-<section id="modprobe">
-<span id="modprobe-sberr"></span><span id="index-76"></span><h2>При загрузке модуля ядра через modprobe я получаю ошибку. Как исправить?<a class="headerlink" href="#modprobe" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Если при попытке загрузки модуля ядра при помощи modprobe с правами суперпользователя воникает ошибка <em>modprobe: ERROR: could not insert „XXXXXXX“: Operation not permitted</em>, значит включён режим <a class="reference internal" href="installation.html#secure-boot"><span class="std std-ref">UEFI Secure Boot</span></a>, а данный модуль не имеет цифровой подписи.</p>
-<p>Необходимо либо отключить Secure Boot в настройках UEFI компьютера, либо подписать его действительной цифровой подписью.</p>
-</section>
-<section id="systemd-boot">
-<span id="index-77"></span><span id="id56"></span><h2>Как настроить загрузку системы при помощи systemd-boot?<a class="headerlink" href="#systemd-boot" title="Ссылка на этот заголовок">¶</a></h2>
-<p>См. <a class="reference external" href="https://www.easycoding.org/2019/06/27/zagruzhaem-fedora-pri-pomoshhi-systemd-boot.html">здесь</a>.</p>
-</section>
-<section id="port-bind-priv">
-<span id="index-78"></span><span id="id57"></span><h2>Почему моё приложение не может использовать порт ниже 1024?<a class="headerlink" href="#port-bind-priv" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Диапазон портов 1-1023 зарезервирован для суперпользователя, а также приложений, наделённых его правами.</p>
-<p>Стандартная схема использования: сервис запускается с правами root, начинает прослушивать необходимый ему порт, а затем <a class="reference internal" href="#euid-vs-ruid"><span class="std std-ref">сбрасывает</span></a> повышенные права. Так поступают большинство популярных серверных приложений (apache, nginx и т.д.).</p>
-<p>Существует и альтернативный вариант – запуск при помощи <a class="reference internal" href="#port-bind-systemd"><span class="std std-ref">особого юнита systemd</span></a>.</p>
-</section>
-<section id="port-bind-systemd">
-<span id="index-79"></span><span id="id58"></span><h2>Как запустить приложение на порту ниже 1024 при помощи systemd?<a class="headerlink" href="#port-bind-systemd" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Добавим в <a class="reference internal" href="#systemd-info"><span class="std std-ref">systemd-юнит</span></a> <code class="docutils literal notranslate"><span class="pre">foo-bar.service</span></code> запрос привилегии <code class="docutils literal notranslate"><span class="pre">CAP_NET_BIND_SERVICE</span></code>:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span>
-<span class="na">Description</span><span class="o">=</span><span class="s">Simple application</span>
-<span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
-
-<span class="k">[Service]</span>
-<span class="na">RestartSec</span><span class="o">=</span><span class="s">10s</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
-<span class="na">User</span><span class="o">=</span><span class="s">user</span>
-<span class="na">Group</span><span class="o">=</span><span class="s">user</span>
-<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/home/user/foo-bar</span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">/home/user/foo-bar/foo</span>
-<span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
-<span class="na">AmbientCapabilities</span><span class="o">=</span><span class="s">CAP_NET_BIND_SERVICE</span>
-
-<span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
-</pre></div>
-</div>
-<p>Теперь приложение сможет занять любой доступный порт, включая находящиеся в диапазоне 1-1023.</p>
-</section>
-<section id="user-group-remove">
-<span id="index-80"></span><span id="id59"></span><h2>Как удалить пользователя из группы?<a class="headerlink" href="#user-group-remove" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Удалим пользователя с именем <strong>foo</strong> из группы <strong>bar</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo gpasswd -d foo bar
-</pre></div>
-</div>
-<p>Удалим текущего пользователя из группы <strong>bar</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo gpasswd -d $(whoami) bar
-</pre></div>
-</div>
-</section>
-<section id="fs-data-journal">
-<span id="index-81"></span><span id="id60"></span><h2>Как включить полное журналирование данных на диске?<a class="headerlink" href="#fs-data-journal" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Полное журналирование данных поддерживается файловой системой <strong>ext4</strong> и может быть активировано при помощи специального параметра монтирования.</p>
-<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> в текстовом редакторе:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
-</pre></div>
-</div>
-<p>Добавим после параметра монтирования по умолчанию <code class="docutils literal notranslate"><span class="pre">defaults</span></code> через запятую <code class="docutils literal notranslate"><span class="pre">data=journal</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>UUID=XXXXXXX /home ext4 defaults,data=journal 1 2
-</pre></div>
-</div>
-<p>Сохраним изменения в файле и выполним перезагрузку системы.</p>
-</section>
-<section id="fs-journal-adv">
-<span id="index-82"></span><span id="id61"></span><h2>Какие преимущества и недостатки у полного журналирования данных?<a class="headerlink" href="#fs-journal-adv" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Преимущества:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>более высокая надёжность в случае внезапного пропадания подачи электропитания;</p></li>
-<li><p>гарантия сохранности не только структуры файловой системы, но и самих данных.</p></li>
-</ul>
-</div></blockquote>
-<p>Недостатки:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>двойная запись на диск: сначала данные помещаются в журнал и лишь после этого происходит реальное изменение данных на диске в виде атомарной операции;</p></li>
-<li><p>за счёт двойной записи снижается производительность всех файловых операций записи;</p></li>
-<li><p>для файлового журнала будет зарезервировано 10% от свободного места на диске;</p></li>
-<li><p>более быстрое расходование ресурса записи твёрдотельных накопителей данных.</p></li>
-</ul>
-</div></blockquote>
-</section>
-<section id="fs-reserve-info">
-<span id="index-83"></span><span id="id62"></span><h2>Для каких целей резервируется 5% от свободного места на диске?<a class="headerlink" href="#fs-reserve-info" title="Ссылка на этот заголовок">¶</a></h2>
-<p>По умолчанию на каждом разделе с файловой системой ext4 резервируется 5% для нужд суперпользователя.</p>
-</section>
-<section id="fs-reserve-disable">
-<span id="index-84"></span><span id="id63"></span><h2>Как отключить резервирование свободного места на диске?<a class="headerlink" href="#fs-reserve-disable" title="Ссылка на этот заголовок">¶</a></h2>
-<p><a class="reference internal" href="#fs-reserve-info"><span class="std std-ref">Резервирование свободного места</span></a> для нужд суперпользователя может быть отключено при создании файловой системы при помощи опционального параметра <code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">0</span></code>. Например:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkfs -t ext4 -m 0 -L Data /dev/sdX1
-</pre></div>
-</div>
-<p>Для уже существующей файловой системы воспользуемся утилитой <strong>tune2fs</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo tune2fs -m 0 /dev/sdX1
-</pre></div>
-</div>
-<p>Здесь <strong>0</strong> – процентное соотношение зарезервированных блоков к обычным (отсутствуют), а <strong>/dev/sdX1</strong> – раздел диска, на котором будут произведены изменения.</p>
-</section>
-<section id="zswap-fedora">
-<span id="zswap"></span><span id="index-85"></span><h2>Как включить поддержку zswap в Fedora?<a class="headerlink" href="#zswap-fedora" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Установим пакет <strong>zswap-cli</strong> для работы с модулем ядра <em>zswap</em>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install zswap-cli
-</pre></div>
-</div>
-<p>При необходимости внесём правки в файл конфигурации:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/zswap-cli.conf
-</pre></div>
-</div>
-<p>Активируем сервис zswap-cli:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable --now zswap-cli.service
-</pre></div>
-</div>
-<p>Изменения вступят в силу немедленно.</p>
-</section>
-<section id="memory-defrag">
-<span id="index-86"></span><span id="id64"></span><h2>Как произвести дефраментацию оперативной памяти?<a class="headerlink" href="#memory-defrag" title="Ссылка на этот заголовок">¶</a></h2>
-<p>В современных версиях ядра Linux применяется т.н. <a class="reference external" href="https://www.kernel.org/doc/html/latest/admin-guide/sysctl/vm.html#compaction-proactiveness">проактивная дефрагментация</a> оперативной памяти, однако если требуется осуществить данную процедуру немедленно, выполним:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo bash -c &quot;echo 1 &gt; /proc/sys/vm/compact_memory&quot;
-</pre></div>
-</div>
-</section>
-<section id="zram-default-disable">
-<span id="index-87"></span><span id="id65"></span><h2>Как отключить активированное по умолчанию сжатие оперативной памяти?<a class="headerlink" href="#zram-default-disable" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Если в сжатии оперативной памяти <a class="reference internal" href="#memory-compression"><span class="std std-ref">при помощи zram</span></a> нет необходимости, отключим данную функцию простым удалением предоставляющих её пакетов:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove zram-generator zram-generator-defaults
-</pre></div>
-</div>
-<p>Перезагрузим систему для вступления изменений в силу:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
-</pre></div>
-</div>
-</section>
-<section id="io-scheduler">
-<span id="index-88"></span><span id="id66"></span><h2>Как определить какой планировщик ввода-вывода используется?<a class="headerlink" href="#io-scheduler" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Выведем информацию обо всех установленных в системе дисковых накопителях:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>grep . /sys/block/*/queue/scheduler
-</pre></div>
-</div>
-<p>Название активного планировщика на каждом конкретном устройстве указано в квадратных скобках.</p>
-<p>Пример:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/sys/block/sda/queue/scheduler:mq-deadline kyber [bfq] none
-</pre></div>
-</div>
-<p>Данный вывод означает, что в системе для устройства <code class="docutils literal notranslate"><span class="pre">/dev/sda</span></code> применяется <a class="reference internal" href="tips-and-tricks.html#bfq-scheduler"><span class="std std-ref">BFQ</span></a>.</p>
-</section>
-<section id="return-code-get">
-<span id="index-89"></span><span id="id67"></span><h2>Как получить код завершения последней выполненной команды?<a class="headerlink" href="#return-code-get" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Выведем на экран код завершения последней выполненной команды в терминале:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>echo $?
-</pre></div>
-</div>
-</section>
-<section id="uefi-secure-boot">
-<span id="secure-boot-status"></span><span id="index-90"></span><h2>Как определить текущее состояние UEFI Secure Boot?<a class="headerlink" href="#uefi-secure-boot" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Установим пакет <strong>mokutil</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install mokutil
-</pre></div>
-</div>
-<p>Выведем информацию о текущем состоянии <a class="reference internal" href="installation.html#secure-boot"><span class="std std-ref">UEFI Secure Boot</span></a>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mokutil --sb-state
-</pre></div>
-</div>
-</section>
-<section id="process-tree">
-<span id="index-91"></span><span id="id68"></span><h2>Как построить и вывести дерево процессов?<a class="headerlink" href="#process-tree" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Воспользуемся утилитой <strong>ps</strong> для построения и вывода дерева процессов:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ps -aef --forest
-</pre></div>
-</div>
-</section>
-<section id="btrfs-subvolume">
-<span id="index-92"></span><span id="id69"></span><h2>Как однократно смонтировать BTRFS subvolume?<a class="headerlink" href="#btrfs-subvolume" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Создадим каталог для точки монтирования:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/foo-bar
-</pre></div>
-</div>
-<p>Выполним монтирование подтома <strong>foo-bar</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mount -t btrfs /dev/sdX2 -o subvol=foo-bar /media/foo-bar
-</pre></div>
-</div>
-<p>По окончании работы произведём размонтирование и удалим ненужный более каталог:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /media/foo-bar
-sudo rmdir /media/foo-bar
-</pre></div>
-</div>
-<p>Здесь <strong>/dev/sdX2</strong> – накопитель с файловой системой <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a>.</p>
-</section>
 <section id="btrfs">
-<span id="btrfs-compression"></span><span id="index-93"></span><h2>Как включить сжатие данных на разделе с BTRFS?<a class="headerlink" href="#btrfs" title="Ссылка на этот заголовок">¶</a></h2>
-<p><strong>Внимание!</strong> Начиная с Fedora 34 для новых установок уже <a class="reference external" href="https://fedoraproject.org/wiki/Changes/BtrfsTransparentCompression">включено</a> сжатие для разделов с ФС <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a> алгоритмом <strong>zstd</strong> с уровнем сжатия <strong>1</strong>. Для тех, кто обновляется с предыдущих релизов, сжатие можно включить самостоятельно.</p>
-<p>Файловая система <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a> поддерживает прозрачное сжатие данных. Допускается выбрать один из трёх доступных алгоритмов: <strong>zstd</strong>, <strong>zlib</strong> или <strong>lzo</strong>. Сжатие включается посредством указания алгоритма и уровня в параметрах монтирования раздела.</p>
-<p>Включим сжатие для корневого раздела. Для этого внесём правки в файл конфигурации <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
-</pre></div>
-</div>
-<p>В колонке параметров монтирования добавим опцию <code class="docutils literal notranslate"><span class="pre">compress=zstd:1</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>UUID=XXXXX-XXXXX /   btrfs   compress=zstd:1,subvol=fedora   0 0
-</pre></div>
-</div>
-<p>Здесь <strong>XXXXX-XXXXX</strong> – <a class="reference internal" href="#get-uuid"><span class="std std-ref">UUID раздела</span></a>.</p>
-<p>Сохраним изменения и произведём перезагрузку системы:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
-</pre></div>
-</div>
-<p>С этого момента все записываемые данные будут сжиматься алгоритмом <em>zstd</em>.</p>
-<p>Подробнее о сжатии можно прочитать в <a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/Compression">официальной документации</a> (на английском языке).</p>
-</section>
-<section id="btrfs-compression-analyze">
-<span id="index-94"></span><span id="id70"></span><h2>Как определить эффективность сжатия на разделе с BTRFS?<a class="headerlink" href="#btrfs-compression-analyze" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Оценим эффективность сжатия данных на разделе с файловой системой <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a> при помощи утилиты <strong>compsize</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo compsize -x /
-</pre></div>
-</div>
-</section>
-<section id="btrfs-repair">
-<span id="index-95"></span><span id="id71"></span><h2>Как восстановить данные с повреждённого раздела с BTRFS?<a class="headerlink" href="#btrfs-repair" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Существует несколько способов восстановления данных на повреждённом разделе с файловой системой BTRFS. Они подразделяются на безопасные, небезопасные и деструктивные.</p>
-<p>Небезопасные и деструктивные могут привести к полной потере всех данных на накопителе, поэтому прибегать к ним следует лишь при крайней необходимости, если безопасные не помогли. Работать лучше всего с точной посекторной копией вместо реального устройства.</p>
+<span id="btrfs-repair"></span><span id="index-28"></span><h2>Как восстановить данные с повреждённого раздела с BTRFS?<a class="headerlink" href="#btrfs" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Существует несколько способов восстановления данных на повреждённом разделе с файловой системой <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a>. Они подразделяются на безопасные, небезопасные и деструктивные.</p>
+<p>Небезопасные и деструктивные могут привести к полной потере всех данных на накопителе, поэтому прибегать к ним следует лишь при крайней необходимости, если безопасные не помогли. Работать лучше всего с точной <a class="reference internal" href="using-system.html#dd-mount"><span class="std std-ref">посекторной копией</span></a> вместо реального устройства.</p>
 <p>Здесь <strong>/dev/sda2</strong> – блочное устройство раздела, данные с которого мы будем пытаться восстановить, а <strong>/media/btrfs</strong> – временная точка для его монтирования.</p>
-<p>Восстановление будем производить посредством загрузки с Fedora LiveUSB, после чего сразу же запустим эмулятор терминала.</p>
+<p>Восстановление будем производить посредством загрузки с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>, после чего сразу же запустим эмулятор терминала.</p>
 <p>Более подробную информацию можно найти в <a class="reference external" href="https://en.opensuse.org/SDB:BTRFS#How_to_repair_a_broken.2Funmountable_btrfs_filesystem">openSUSE Support Database</a> (на английском языке).</p>
-<section id="id72">
-<h3>Безопасные способы восстановления<a class="headerlink" href="#id72" title="Ссылка на этот заголовок">¶</a></h3>
-<p>Попытаемся смонтировать повреждённый раздел с файловой системой BTRFS:</p>
+<section id="id19">
+<h3>Безопасные способы восстановления<a class="headerlink" href="#id19" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Попытаемся смонтировать повреждённый раздел:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/btrfs
 sudo mount /dev/sda2 /media/btrfs
 </pre></div>
@@ -1167,8 +357,8 @@ sudo btrfs scrub status /dev/sda2
 </pre></div>
 </div>
 </section>
-<section id="id73">
-<h3>Небезопасные способы восстановления<a class="headerlink" href="#id73" title="Ссылка на этот заголовок">¶</a></h3>
+<section id="id20">
+<h3>Небезопасные способы восстановления<a class="headerlink" href="#id20" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Сначала выполним проверку раздела:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo btrfs check /dev/sda2
 </pre></div>
@@ -1194,8 +384,8 @@ sudo btrfs scrub status /dev/sda2
 </pre></div>
 </div>
 </section>
-<section id="id74">
-<h3>Деструктивные способы восстановления<a class="headerlink" href="#id74" title="Ссылка на этот заголовок">¶</a></h3>
+<section id="id21">
+<h3>Деструктивные способы восстановления<a class="headerlink" href="#id21" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Экспортируем сохранившиеся данные на другой накопитель если это не было сделано ранее:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo restore /dev/sda2 /media/external
 </pre></div>
@@ -1209,6 +399,816 @@ sudo btrfs scrub status /dev/sda2
 </pre></div>
 </div>
 </section>
+</section>
+<section id="deduplication-memory">
+<span id="index-29"></span><span id="id22"></span><h2>Возможна ли полная дедупликация оперативной памяти?<a class="headerlink" href="#deduplication-memory" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, дедупликация памяти <a class="reference external" href="https://www.ibm.com/developerworks/linux/library/l-kernel-shared-memory/index.html">поддерживается</a> в ядре Linux начиная с версии 2.6.32 модулем <a class="reference external" href="https://ru.wikipedia.org/wiki/KSM">KSM</a> и по умолчанию применяется лишь в системах виртуализации, например в <a class="reference internal" href="virtualization.html#kvm"><span class="std std-ref">KVM</span></a>.</p>
+</section>
+<section id="deduplication-disk">
+<span id="index-30"></span><span id="id23"></span><h2>Возможна ли полная дедупликация данных на дисках?<a class="headerlink" href="#deduplication-disk" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Полная автоматическая дедупликация данных на дисках <a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/Deduplication">поддерживается</a> лишь файловой системой <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a>.</p>
+</section>
+<section id="memory-compression">
+<span id="index-31"></span><span id="id24"></span><h2>Можно ли включить сжатие оперативной памяти?<a class="headerlink" href="#memory-compression" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, в ядро Linux, начиная с версии 3.14, по умолчанию входит <a class="reference external" href="https://www.kernel.org/doc/html/latest/admin-guide/blockdev/zram.html">модуль zram</a>, который позволяет увеличить производительность системы посредством использования вместо дисковой подкачки виртуального устройства в оперативной памяти с активным сжатием.</p>
+<p>Начиная с Fedora 33, по умолчанию включено сжатие памяти с пулом 50% от объёма RAM. Допускается <a class="reference internal" href="tips-and-tricks.html#zram-pool-size"><span class="std std-ref">изменять его размер</span></a> в широких пределах.</p>
+<p>Активируем zram в Fedora:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install zram-generator zram-generator-defaults
+</pre></div>
+</div>
+<p>Перезагрузим систему для вступления изменений в силу:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</section>
+<section id="sysctl">
+<span id="sysctl-temporary"></span><span id="index-32"></span><h2>Как временно изменить параметр ядра при помощи sysctl?<a class="headerlink" href="#sysctl" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Временно установить любой параметр ядра возможно через sysctl:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w foo.bar=X
+</pre></div>
+</div>
+<p>Здесь <strong>foo.bar</strong> имя параметра, а <strong>X</strong> – его значение. Изменения вступят в силу немедленно и сохранятся до перезагрузки системы.</p>
+</section>
+<section id="sysctl-permanent">
+<span id="index-33"></span><span id="id25"></span><h2>Как задать и сохранить параметр ядра при помощи sysctl?<a class="headerlink" href="#sysctl-permanent" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Чтобы сохранить параметр ядра, создадим специальный файл <code class="docutils literal notranslate"><span class="pre">99-foobar.conf</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/sysctl.d</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo.bar1=X1
+foo.bar2=X2
+</pre></div>
+</div>
+<p>Каждый параметр должен быть указан с новой строки. Здесь <strong>foo.bar</strong> имя параметра, а <strong>X</strong> – его значение.</p>
+<p>Для вступления изменений в силу требуется перезагрузка:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</section>
+<section id="sysctl-order">
+<span id="index-34"></span><span id="id26"></span><h2>В каком порядке загружаются sysctl файлы настроек?<a class="headerlink" href="#sysctl-order" title="Ссылка на этот заголовок">¶</a></h2>
+<p>При загрузке ядро проверяет следующие каталоги в поисках <strong>.conf</strong> файлов:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/usr/lib/sysctl.d</span></code> – предустановленные конфиги системы и определённых пакетов;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/run/sysctl.d</span></code> – различные конфиги, сгенерированные в рантайме;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/etc/sysctl.d</span></code> – пользовательские конфиги.</p></li>
+</ol>
+</div></blockquote>
+<p>Порядок выполнения – в алфавитном порядке, поэтому для его изменения многие конфиги содержат цифры и буквы. Например конфиг <code class="docutils literal notranslate"><span class="pre">00-foobar.conf</span></code> выполнится раньше, чем <code class="docutils literal notranslate"><span class="pre">zz-foobar.conf</span></code>.</p>
+</section>
+<section id="configure-runlevel">
+<span id="index-35"></span><span id="id27"></span><h2>Как переключить запуск системы в текстовый режим и обратно?<a class="headerlink" href="#configure-runlevel" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Чтобы активировать запуск Fedora в текстовом режиме, нужно переключиться на цель <code class="docutils literal notranslate"><span class="pre">multi-user.target</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl set-default multi-user.target
+</pre></div>
+</div>
+<p>Чтобы активировать запуск в графическом режиме, необходимо убедиться в том, что установлен какой-либо менеджер графического входа в систему (GDM, SDDM, LightDM и т.д.), а затем переключиться на цель <code class="docutils literal notranslate"><span class="pre">graphical.target</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl set-default graphical.target
+</pre></div>
+</div>
+<p>Определить используемый в настоящее время режим можно так:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl get-default
+</pre></div>
+</div>
+<p>Изменения вступят в силу лишь после перезапуска системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</section>
+<section id="fedora">
+<span id="swap-to-file"></span><span id="index-36"></span><h2>Как настроить подкачку в файл в Fedora?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Создадим файл подкачки на 4 ГБ:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dd if=/dev/zero of=/media/pagefile count=4096 bs=1M
+</pre></div>
+</div>
+<p>Установим правильный chmod:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chmod 600 /media/pagefile
+</pre></div>
+</div>
+<p>Подготовим swapfs к работе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkswap /media/pagefile
+</pre></div>
+</div>
+<p>Активируем файл подкачки:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo swapon /media/pagefile
+</pre></div>
+</div>
+<p>Для того, чтобы подкачка подключалась автоматически при загрузке системы, откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> и добавим в него следующую строку:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/media/pagefile    none    swap    sw    0    0
+</pre></div>
+</div>
+<p>Действия вступят в силу немедленно.</p>
+</section>
+<section id="disk-usage">
+<span id="index-37"></span><span id="id28"></span><h2>Как узнать, какой процесс осуществляет запись на диск?<a class="headerlink" href="#disk-usage" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для мониторинга дисковой активности существуют улититы <strong>iotop</strong> и <strong>fatrace</strong>. Установим их:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install iotop fatrace
+</pre></div>
+</div>
+<p>Запустим iotop в режиме накопления показаний:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo iotop -a
+</pre></div>
+</div>
+<p>Запустим fatrace в режиме накопления с выводом лишь информации о событиях записи на диск:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fatrace -f W
+</pre></div>
+</div>
+<p>Запустим fatrace в режиме накопления, с выводом информации о событиях записи на диск в файл, в течение 10 минут (600 секунд):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fatrace -f W -o ~/disk-usage.log -s 600
+</pre></div>
+</div>
+</section>
+<section id="change-label">
+<span id="index-38"></span><span id="id29"></span><h2>Как сменить метку раздела?<a class="headerlink" href="#change-label" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Смена метки раздела с файловой системой ext2, ext3 и ext4:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo e2label /dev/sda1 &quot;NewLabel&quot;
+</pre></div>
+</div>
+<p>Смена метки раздела с файловой системой XFS:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo xfs_admin -L &quot;NewLabel&quot; /dev/sda1
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sda1</strong> – раздел, на котором требуется изменить метку.</p>
+</section>
+<section id="uuid">
+<span id="get-uuid"></span><span id="index-39"></span><h2>Как получить UUID всех смонтированных разделов?<a class="headerlink" href="#uuid" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для получения всех UUID можно использовать утилиту <strong>blkid</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo blkid
+</pre></div>
+</div>
+<p>Вывод UUID для указанного раздела:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo blkid /dev/sda1
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sda1</strong> – раздел, для которого требуется вывести UUID.</p>
+</section>
+<section id="change-uuid">
+<span id="index-40"></span><span id="id30"></span><h2>Как изменить UUID раздела?<a class="headerlink" href="#change-uuid" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Смена UUID раздела с файловой системой ext2, ext3 и ext4:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo tune2fs /dev/sda1 -U $(uuidgen)
+</pre></div>
+</div>
+<p>Смена UUID раздела с файловой системой XFS:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo xfs_admin -U generate /dev/sda1
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sda1</strong> – раздел, на котором требуется изменить UUID.</p>
+</section>
+<section id="pid">
+<span id="get-pid"></span><span id="index-41"></span><h2>Как получить PID запущенного процесса?<a class="headerlink" href="#pid" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для получения идентификатора запущенного процесса (PID), следует применять утилиту <strong>pidof</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pidof foo-bar
+</pre></div>
+</div>
+<p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, информацию о котором требуется получить.</p>
+</section>
+<section id="kill-sigterm">
+<span id="index-42"></span><span id="id31"></span><h2>Как правильно завершить работу процесса?<a class="headerlink" href="#kill-sigterm" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для того, чтобы завершить работу процесса, необходимо отправить ему сигнал <strong>SIGTERM</strong>. После получения данного сигнала процесс должен немедленно начать завершение своей работы:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>остановить активные потоки;</p></li>
+<li><p>сообщить порождённым им процессам (потомкам) о том, что он завершает свою работу;</p></li>
+<li><p>закрыть все открытые процессом дескрипторы;</p></li>
+<li><p>освободить все занятые процессом ресурсы;</p></li>
+<li><p>вернуть управление операционной системе.</p></li>
+</ul>
+</div></blockquote>
+<p>Чтобы отправить сигнал SIGTERM процессу с определённым <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>, воспользуемся утилитой <strong>kill</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kill -15 XXXX
+</pre></div>
+</div>
+<p>Здесь <strong>XXXX</strong> – PID нужного процесса.</p>
+<p>Вместо явного указания PID процесса существует возможность завершить работу процесса с указанным именем посредством <strong>killall</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>killall -15 foo-bar
+</pre></div>
+</div>
+<p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса, который требуется завершить, однако её следует применять с особой осторожностью ибо если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
+</section>
+<section id="kill-sigkill">
+<span id="index-43"></span><span id="id32"></span><h2>Как принудительно завершить работу процесса?<a class="headerlink" href="#kill-sigkill" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если какой-либо процесс завис и не отвечает на требование завершения посредством <a class="reference internal" href="#kill-sigterm"><span class="std std-ref">SIGTERM</span></a>, можно заставить операционную систему принудительно завершить его работу сигналом <strong>SIGKILL</strong>, который не может быть перехвачен и проигнорирован процессом.</p>
+<p>Данный сигнал следует использовать с особой осторожностью, т.к. в этом случае процесс не сможет корректно освободить все дескрипторы и занятые ресурсы, а также сообщить своим потомкам о своём завершении, что может повлечь за собой появление т.н. <a class="reference internal" href="#process-orphan"><span class="std std-ref">процессов-сирот</span></a>.</p>
+<p>Чтобы отправить сигнал SIGKILL процессу с определённым <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>, воспользуемся утилитой <strong>kill</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kill -9 XXXX
+</pre></div>
+</div>
+<p>Здесь <strong>XXXX</strong> – PID нужного процесса.</p>
+<p>Вместо явного указания PID процесса существует возможность завершить работу процесса с указанным именем посредством <strong>killall</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>killall -9 foo-bar
+</pre></div>
+</div>
+<p>Здесь вместо <strong>foo-bar</strong> следует указать имя образа процесса. Если существует несколько процессов с одинаковым названием, все они будут завершены.</p>
+</section>
+<section id="process-zombie">
+<span id="index-44"></span><span id="id33"></span><h2>Что такое процесс-зомби?<a class="headerlink" href="#process-zombie" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Процессы-зомби появляются в системе если потомок завершил свою работу раньше родительского процесса, а последний не отрегировал на отправленный ему сигнал <strong>SIGCHLD</strong>.</p>
+<p>Такие процессы не занимают ресурсов в системе (ибо успешно завершили свою работу), за исключением строки в таблице процессов, хранящей его <a class="reference internal" href="#get-pid"><span class="std std-ref">PID</span></a>.</p>
+<p>Все зомби будут автоматически удалены из таблицы процессов после того, как завершит свою работу их родитель.</p>
+</section>
+<section id="process-orphan">
+<span id="index-45"></span><span id="id34"></span><h2>Что такое процесс-сирота?<a class="headerlink" href="#process-orphan" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Процессы-сироты появляются в системе если их родитель был аварийно уничтожен системой сигналом <a class="reference internal" href="#kill-sigkill"><span class="std std-ref">SIGKILL</span></a> и не смог сообщить своим потомкам о своём завершении работы.</p>
+<p>В отличие от <a class="reference internal" href="#process-zombie"><span class="std std-ref">зомби</span></a>, такие процессы расходуют ресурсы системы и могут быть источником множества проблем.</p>
+<p>При обнаружении таких процессов система выполняет операцию переподчинения и устанавливает их родителем главный процесс инициализации.</p>
+</section>
+<section id="docker-fedora">
+<span id="index-46"></span><span id="id35"></span><h2>Как правильно установить Docker в Fedora?<a class="headerlink" href="#docker-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Официально Docker в Fedora более не поддерживается. На просторах Интернета можно найти сторонние инструкции по установке Docker, однако мы настоятельно не рекомендуем следовать им, поскольку для их работы требуются изменения в системе, способные нарушить её безопасность и/или работу других приложений (например отключение cgroupv2).</p>
+<p>Вместо этого рекомендуется установить и использовать Podman, т.к. он создан и поддерживается Red Hat, а также не требует прав суперпользователя для работы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install podman
+</pre></div>
+</div>
+<p>Синтаксис команд аналогичен Docker.</p>
+</section>
+<section id="kernel-bs">
+<span id="index-47"></span><span id="id36"></span><h2>Как определить включена ли определённая опция ядра во время компиляции?<a class="headerlink" href="#kernel-bs" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Полный список опций, заданных на этапе компиляции ядра, всегда можно найти в config-файлах, внутри каталога <code class="docutils literal notranslate"><span class="pre">/boot</span></code>.</p>
+<p>В качестве примера проверим статус опции <code class="docutils literal notranslate"><span class="pre">CONFIG_EFI_STUB</span></code> текущего ядра:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>grep CONFIG_EFI_STUB /boot/config-$(uname -r)
+</pre></div>
+</div>
+<p>В выводе <strong>y</strong> означает, что опция была включена, а <strong>not set</strong>, соответственно, выключена.</p>
+</section>
+<section id="ksoftirqd">
+<span id="index-48"></span><span id="id37"></span><h2>Процесс ksoftirqd съедает все ресурсы системы. Что делать?<a class="headerlink" href="#ksoftirqd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Ядро операционной системы взаимодействует с устройствами посредством прерываний. Когда возникает новое прерывание, оно немедленно приостанавливает работу текущего выполняемого процесса, переключается в режим ядра и начинает его обработку.</p>
+<p>Может случиться так, что прерывания будут генерироваться настолько часто, что ядро не сможет их обрабатывать немедленно, в порядке получения. На этот случай имеется специальный механизм, помещающий полученные прерывания в очередь для дальнейшей обработки. Этой очередью управляет особый поток ядра <strong>ksoftirqd</strong> (создаётся по одному на каждый имеющийся процессор или ядро многоядерного процессора).</p>
+<p>Если потоки ядра ksoftirqd потребляют значительное количество ресурсов центрального процессора, значит система находится под очень высокой нагрузкой по прерываниям.</p>
+</section>
+<section id="kernel-irq">
+<span id="index-49"></span><span id="id38"></span><h2>Как определить какое устройство генерирует огромное количество прерываний?<a class="headerlink" href="#kernel-irq" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для диагностики системы обработки прерываний, ядро имеет встроенный механизм:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/interrupts
+</pre></div>
+</div>
+<p>Числа в таблице означают точное количество прерываний, инициированных соответствующим устройством или подсистемой, с момента загрузки.</p>
+</section>
+<section id="irq-manual">
+<span id="index-50"></span><span id="id39"></span><h2>Как произвести ручную балансировку прерываний?<a class="headerlink" href="#irq-manual" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если <a class="reference internal" href="#kernel-irq"><span class="std std-ref">прерывания</span></a> распределены между процессорными ядрами не равномерно, можно использовать режим ручной балансировки:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo bash -c &quot;echo X &gt; /proc/irq/Y/smp_affinity&quot;
+</pre></div>
+</div>
+<p>Здесь <strong>X</strong> – маска процессора (CPU affinity), который будет обрабатывать данное прерывание, а <strong>Y</strong> – номер прерывания (указан в левом столбце таблицы прерываний).</p>
+<p>Чтобы вычислить маску следует возвести число 2 в степень, равную порядкому номеру процессора, и результат перевести в шестнадцатиричную систему счисления.</p>
+</section>
+<section id="too-many-open-files">
+<span id="fd-limit"></span><span id="index-51"></span><h2>При работе приложения возникает ошибка Too many open files. Что делать?<a class="headerlink" href="#too-many-open-files" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Ошибка <em>Too many open files</em> возникает при превышении количества открытых дескрипторов файлов процессом. Для её исправления, нужно <a class="reference internal" href="#fd-increase"><span class="std std-ref">увеличить это ограничение</span></a>.</p>
+</section>
+<section id="fd-hard-soft">
+<span id="index-52"></span><span id="id40"></span><h2>Как узнать текущий лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-hard-soft" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Существует два типа ограничений: мягкий (soft) и жёсткий (hard). Жёсткий задаётся администратором системы, а мягкий может регулироваться как пользователем, так и запущенным приложением, но не может превышать максимально заданное значение жёсткого лимита, а также <a class="reference internal" href="#fd-kernel"><span class="std std-ref">глобальное для всего ядра</span></a>.</p>
+<p>Получим значение мягкого ограничителя:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ulimit -Sn
+</pre></div>
+</div>
+<p>Получим значение жёсткого ограничителя:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ulimit -Hn
+</pre></div>
+</div>
+<p>Значения по умолчанию <strong>1024</strong> (soft) и <strong>4096</strong> (hard).</p>
+</section>
+<section id="fd-kernel">
+<span id="index-53"></span><span id="id41"></span><h2>Как узнать глобальный лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-kernel" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Наряду с <a class="reference internal" href="#fd-hard-soft"><span class="std std-ref">мягким и жёстким лимитами</span></a> открытых файловых дескрипторов существует и глобальный, который ядро Linux способно адресовать и корректно обработать.</p>
+<p>Выведем это значение при помощи соответствующей функции ядра:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/sys/fs/file-max
+</pre></div>
+</div>
+</section>
+<section id="fd-increase">
+<span id="index-54"></span><span id="id42"></span><h2>Как увеличить лимит открытых файловых дескрипторов?<a class="headerlink" href="#fd-increase" title="Ссылка на этот заголовок">¶</a></h2>
+<p><a class="reference internal" href="#fd-hard-soft"><span class="std std-ref">Мягкие и жёсткие лимиты</span></a> на количество дескрипторов открытых файлов задаются в файле <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.conf</span></code> суперпользователем, но при этом не могут превышать <a class="reference internal" href="#fd-kernel"><span class="std std-ref">глобальный</span></a>.</p>
+<p>Увеличим ограничение для пользователя <strong>foo-bar</strong> до 8192/2048:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo-bar       soft    nofile          2048
+foo-bar       hard    nofile          8192
+</pre></div>
+</div>
+<p>Увеличим ограничение для любых пользователей до 8192/2048:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>*       soft    nofile          2048
+*       hard    nofile          8192
+</pre></div>
+</div>
+<p>Изменения вступят в силу при следующем входе в систему.</p>
+</section>
+<section id="task-affinity">
+<span id="index-55"></span><span id="id43"></span><h2>Как запустить процесс так, чтобы он мог использовать лишь определённые ядра процессора?<a class="headerlink" href="#task-affinity" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По умолчанию процесс выполняется на любых доступных для Linux процессорах (или их ядрах).</p>
+<p>Выбором наиболее подходящего ядра CPU для каждого потока процесса занимается непосредственно ядро, однако существует возможность и ручного переопределения.</p>
+<p>Запустим приложение <strong>foo-bar</strong> на каждом чётном ядре (нумерация всегда начинается с нуля):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>taskset -a -c 0,2,4,6 foo-bar
+</pre></div>
+</div>
+<p>Изменим ассоциацию ядер для уже запущенного процесса <strong>foo-bar</strong> (в качестве параметра указывается <a class="reference internal" href="#get-pid"><span class="std std-ref">PID необходимого процесса</span></a>):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>taskset -a -c 1,3,5,7 -p $(pidof foo-bar)
+</pre></div>
+</div>
+</section>
+<section id="task-priority">
+<span id="index-56"></span><span id="id44"></span><h2>Как изменить приоритет процесса?<a class="headerlink" href="#task-priority" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Допустимые значения приоритета находятся в диапазоне от -20 (наиболее высокий приоритет) до 19 (наиболее низкий). Отрицательные значения может устанавливать лишь суперпользователь.</p>
+<p>Запустим приложение <strong>foo-bar</strong> с приоритетом <strong>10</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nice -n 10 foo-bar
+</pre></div>
+</div>
+<p>Изменим приоритет запущенного процесса <strong>foo-bar</strong> (в качестве параметра указывается <a class="reference internal" href="#get-pid"><span class="std std-ref">PID необходимого процесса</span></a>) до <strong>8</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>renice -n 8 -p $(pidof foo-bar)
+</pre></div>
+</div>
+</section>
+<section id="effective-uid-real-uid">
+<span id="euid-vs-ruid"></span><span id="index-57"></span><h2>Чем отличается Effective UID процесса от Real UID?<a class="headerlink" href="#effective-uid-real-uid" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В мире UNIX считается нормальным, когда один процесс запускается от одного пользователя, но при этом получает права совсем другого (чаще всего это суперпользователь root).</p>
+<p>В качестве простого примера рассмтрим ситуацию, когда пользователь <strong>user1</strong> запускает бинарник с установленным suid-битом <strong>/usr/bin/foo-bar</strong>. Таким образом, у процесса <strong>foo-bar</strong> в качестве <em>Real user ID</em> будет установлен <strong>user1</strong>, а <em>Effective user ID</em> – <strong>root</strong>. Это сделано для того, чтобы приложение могло самостоятельно отказаться от повышенных прав, либо переключаться между ними при помощи соответствующего системного вызова.</p>
+</section>
+<section id="copying-data">
+<span id="index-58"></span><span id="id45"></span><h2>Как скопировать данные с одного раздела на другой?<a class="headerlink" href="#copying-data" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для копирования файлов с одного раздела на другой лучше всего использовать утилиту <strong>rsync</strong> с опциями на сохранение прав доступа.</p>
+<p>Загрузимся с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>, затем смонтируем старый и новый разделы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/old-root
+sudo mount -t ext4 /dev/sda1 /media/old-root
+sudo mkdir /media/new-root
+sudo mount -t ext4 /dev/sdb1 /media/new-root
+</pre></div>
+</div>
+<p>Запустим процесс копирования:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rsync -axHAWXS --numeric-ids --info=progress2 /media/old-root/ /media/new-root/
+</pre></div>
+</div>
+<p>По окончании работы обязательно размонтируем оба раздела:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /media/old-root
+sudo umount /media/new-root
+</pre></div>
+</div>
+</section>
+<section id="chmod-immutable">
+<span id="index-59"></span><span id="id46"></span><h2>Как запретить модификацию файла даже владельцу и суперпользователю?<a class="headerlink" href="#chmod-immutable" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Чтобы запретить модификацию файла (изменение, удаление) любым пользователем (включая владельца и суперпользователя), установим ему расширенный атрибут <code class="docutils literal notranslate"><span class="pre">+i</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chattr +i foo-bar.txt
+</pre></div>
+</div>
+<p>Чтобы отменить произведённые изменения, выполним:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chattr -i foo-bar.txt
+</pre></div>
+</div>
+<p>Управлять расширенными атрибутами может лишь суперпользователь.</p>
+</section>
+<section id="chmod-lsattr">
+<span id="index-60"></span><span id="id47"></span><h2>Как узнать какие расширенные атрибуты применены для конкретного файла?<a class="headerlink" href="#chmod-lsattr" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для получения расширенных атрибутов воспользуемся утилитой <strong>lsattr</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>lsattr foo-bar.txt
+</pre></div>
+</div>
+</section>
+<section id="chmod-addonly">
+<span id="index-61"></span><span id="id48"></span><h2>Как разрешить лишь дописывать данные в файл?<a class="headerlink" href="#chmod-addonly" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Чтобы разрешить лишь добавление данных в файл любым пользователем (включая владельца и суперпользователя), установим ему расширенный атрибут <code class="docutils literal notranslate"><span class="pre">+a</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chattr +a foo-bar.txt
+</pre></div>
+</div>
+<p>Чтобы отменить произведённые изменения, выполним:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo chattr -a foo-bar.txt
+</pre></div>
+</div>
+</section>
+<section id="ssh">
+<span id="ssh-alias"></span><span id="index-62"></span><h2>Как создать алиасы для быстрого подключения к SSH серверам?<a class="headerlink" href="#ssh" title="Ссылка на этот заголовок">¶</a></h2>
+<p>OpenSSH позволяет создавать неограниченное количество алиасов для быстрых подключений.</p>
+<p>Чтобы сделать это, откроем (создадим) файл <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code> в любом текстовом редакторе и внесём правки:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Host foo
+    HostName example1.org
+    Port 22
+    User user1
+
+Host bar
+    HostName example2.org
+    Port 22
+    User user2
+    IdentityFile ~/.ssh/id_rsa2
+</pre></div>
+</div>
+<p>Здесь <code class="docutils literal notranslate"><span class="pre">foo</span></code> и <code class="docutils literal notranslate"><span class="pre">bar</span></code> – имена сокращений (алиасов), которые будут использоваться для подключения. Для каждого могут быть указаны индивидуальные настройки, включая <a class="reference internal" href="security.html#ssh-keys"><span class="std std-ref">различные SSH ключи</span></a> при помощи директивы <code class="docutils literal notranslate"><span class="pre">IdentityFile</span></code>.</p>
+<p>Подключимся к первому серверу:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ssh foo
+</pre></div>
+</div>
+<p>Подключимся ко второму серверу:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ssh bar
+</pre></div>
+</div>
+</section>
+<section id="fuse">
+<span id="fuse-info"></span><span id="index-63"></span><h2>Что такое FUSE?<a class="headerlink" href="#fuse" title="Ссылка на этот заголовок">¶</a></h2>
+<p>FUSE (file system in userspace) – это модуль ядра и набор утилит для работы с ним, предназначенные для запуска различных файловых систем в пользовательском пространстве.</p>
+<p>Благодаря FUSE в Fedora могут использоваться файловые системы, которые по какой-либо причине не могут войти напрямую в состав ядра Linux из-за лицензионных проблем, либо патентов.</p>
+<p>Некоторые примеры подобных реализаций:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="using-applications.html#fuse-mtp"><span class="std std-ref">MTP</span></a>;</p></li>
+<li><p>NTFS;</p></li>
+<li><p>ZFS;</p></li>
+<li><p>SSHFS;</p></li>
+<li><p>WebDAV.</p></li>
+</ul>
+</div></blockquote>
+<p>Из-за работы в пользовательском режиме возникает ряд проблем:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>очень медленная работа за счёт постоянных переключений контекста;</p></li>
+<li><p>в зависимости от параметров монтирования может быть не видна для работающих системных сервисов.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="kerberos">
+<span id="kerberos-auth"></span><span id="index-64"></span><h2>Как авторизоваться на удалённой системе с использованием Kerberos?<a class="headerlink" href="#kerberos" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим необходимые пакеты для работы с Kerberos 5:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install krb5-workstation
+</pre></div>
+</div>
+<p>Произведём авторизацию на удалённой системе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit foo-bar@FEDORAPROJECT.ORG
+</pre></div>
+</div>
+<p>Здесь <strong>foo-bar</strong> – логин на удалённой системе, а <strong>FEDORAPROJECT.ORG</strong> – имя домена (должно быть указано строго в верхнем регистре).</p>
+<p>В случае ввода верных авторизационных данных процесс должен пройти в штатном режиме.</p>
+</section>
+<section id="kerberos-renew">
+<span id="index-65"></span><span id="id49"></span><h2>Как обновить Kerberos-тикет?<a class="headerlink" href="#kerberos-renew" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В зависимости от настроек сервера, полученный <a class="reference internal" href="#kerberos-auth"><span class="std std-ref">Kerberos-тикет</span></a> обычно действует в течение 24 часов, затем даётся ещё от 24 до 48 часов для его обновления без необходимости прохождения повторной процедуры авторизации.</p>
+<p>Проверим актуальность Kerberos тикетов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>klist -A
+</pre></div>
+</div>
+<p>При необходимости обновим необходимый:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit -R foo-bar@FEDORAPROJECT.ORG
+</pre></div>
+</div>
+<p>Здесь <strong>foo-bar</strong> – логин на удалённой системе, а <strong>FEDORAPROJECT.ORG</strong> – имя домена (должно быть указано строго в верхнем регистре).</p>
+</section>
+<section id="delete-inode">
+<span id="index-66"></span><span id="id50"></span><h2>В каталоге появился файл с некорректным именем, который не удаётся удалить. Что делать?<a class="headerlink" href="#delete-inode" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Файлы с некорректными именами могут возникать при повреждениях файловой системы, либо сбоях в приложениях, которые создали их.</p>
+<p>Штатно такие файлы удалить не удастся, поэтому придётся уничтожить соответствующий данному файлу I-узел (I-Node).</p>
+<p>Перейдём в каталог с удаляемым файлом:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd ~/foo-bar
+</pre></div>
+</div>
+<p>Выведем листинг содержимого каталога с включённым отображением номеров I-узлов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ls -li
+</pre></div>
+</div>
+<p>Найдём в выводе необходимый файл и сохраним значение его I-узла. Теперь мы можем удалить его:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find . -maxdepth 1 -type f -inum XXXXXXX -delete
+</pre></div>
+</div>
+<p>Здесь <strong>XXXXXXX</strong> – номер I-узла некорректного файла.</p>
+</section>
+<section id="ext4">
+<span id="defrag-info"></span><span id="index-67"></span><h2>Нужно ли выполнять дефрагментацию для разделов с ФС ext4?<a class="headerlink" href="#ext4" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В большинстве случаев дефрагментация диска на разделах с файловой системой ext4 не требуется, т.к. драйвер осуществляет предварительное размещение файлов на свободном месте так, чтобы они заняли его целиком, оставляя при этом небольшой участок пространства для дальнейшего расширения.</p>
+<p>Однако при определённых обстоятельствах (например если точный размер при создании неизвестен, либо в него постоянно производится добавление-удаление данных), некоторые файлы могут фрагментироваться.</p>
+</section>
+<section id="defrag-custom">
+<span id="index-68"></span><span id="id51"></span><h2>Как выполнить дефрагментацию отдельных файлов на разделе ФС ext4?<a class="headerlink" href="#defrag-custom" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для выполнения частичной дефрагментации, можно использовать утилиту <strong>e4defrag</strong>, входящую в пакет <strong>e2fsprogs</strong>.</p>
+<p>Данная утилита работает со <strong>смонтированным</strong> диском, т.к. непосредственно дефрагментацией будет заниматься драйвер файловой системы, а утилита лишь укажет ему цели.</p>
+<p>Разрешается выполнять оптимизацию отдельных файлов, либо всего содержимого указанных каталогов.</p>
+<p>Выполним дефрагментацию крупной базы данных <code class="docutils literal notranslate"><span class="pre">/var/db/foo-bar.db</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo e4defrag /var/db/foo-bar.db
+</pre></div>
+</div>
+<p>Выполним дефрагментацию всего корня:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo e4defrag /
+</pre></div>
+</div>
+</section>
+<section id="defrag-full">
+<span id="index-69"></span><span id="id52"></span><h2>Как выполнить дефрагментацию всего раздела с ФС ext4?<a class="headerlink" href="#defrag-full" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Полную дефрагментацию можно осуществить при помощи средства <a class="reference internal" href="#fs-check-lvm"><span class="std std-ref">проверки диска</span></a> на <strong>размонтированном</strong> разделе, например при запуске с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>.</p>
+<p>Запустим процесс:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fsck -t ext4 -fn /dev/sda2
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sda2</strong> – раздел, на котором следует провести процесс дефрагментации. Операция займёт достаточно много времени (в зависимости от размера диска). Прерывать её не следует, т.к. это может привести к полной потере данных.</p>
+</section>
+<section id="cpu-cores">
+<span id="index-70"></span><span id="id53"></span><h2>Как определить количество доступных процессоров или ядер?<a class="headerlink" href="#cpu-cores" title="Ссылка на этот заголовок">¶</a></h2>
+<p><em>Основной способ.</em> Применим утилиту <strong>nproc</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nproc --all
+</pre></div>
+</div>
+<p>Без параметра <code class="docutils literal notranslate"><span class="pre">--all</span></code> будет указано лишь количество <a class="reference internal" href="#task-affinity"><span class="std std-ref">доступных процессоров</span></a> лишь для данного пользователя/процесса.</p>
+<p><em>Альтернативный способ.</em> Если указанная выше утилита в системе отсутствует, выполним:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/cpuinfo | grep &#39;cpu cores&#39; | uniq | awk &#39;{ print $4 }&#39;
+</pre></div>
+</div>
+</section>
+<section id="bash-pipelines">
+<span id="index-71"></span><span id="id54"></span><h2>Как перенаправить стандартный ввод-вывод в файлы?<a class="headerlink" href="#bash-pipelines" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Перенаправление потока стандартного вывода утилиты <strong>ls</strong>, запущенной с параметром, в файл:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ls -l &gt; ~/foo-bar.txt
+</pre></div>
+</div>
+<p>Перенаправление потока стандартного вывода в файл в режиме <em>добавления данных</em> (не заменяет существующие):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ls -l &gt;&gt; ~/foo-bar.txt
+</pre></div>
+</div>
+<p>Перенаправление потока стандартного ввода на ввод из указанного файла:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sort &lt; ~/foo-bar.txt
+</pre></div>
+</div>
+<p>Перенаправление потока стандартного вывода и потока ошибок в файл:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/usr/bin/foo &gt; ~/foo-bar.txt 2&gt;&amp;1
+</pre></div>
+</div>
+<p>Комбинирование ввода из одного файла с выводом в другой с подавлением возникших ошибок:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/usr/bin/foo &lt; ~/foo-bar.txt &gt; ~/result.txt 2&gt; /dev/null
+</pre></div>
+</div>
+</section>
+<section id="mount-nopass">
+<span id="index-72"></span><span id="id55"></span><h2>Как разрешить монтирование любых дисков без ввода пароля?<a class="headerlink" href="#mount-nopass" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По умолчанию пароль не запрашивается только при монтировании сменных накопителей, однако если требуется реализовать это для любых, потребуется добавить новое правило Polkit.</p>
+<p>Создадим новый конфиг:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo touch /etc/polkit-1/rules.d/10-mount-nopass.rules
+sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
+</pre></div>
+</div>
+<p>Загрузим его в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/polkit-1/rules.d/10-mount-nopass.rules
+</pre></div>
+</div>
+<p>Добавим следующее правило:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>polkit.addRule(function(action, subject) {
+    if ((action.id == &quot;org.freedesktop.udisks2.filesystem-mount-system&quot; ||
+        action.id == &quot;org.freedesktop.udisks.filesystem-mount-system-internal&quot;) &amp;&amp;
+        subject.local &amp;&amp; subject.active &amp;&amp; subject.isInGroup(&quot;wheel&quot;))
+    {
+            return polkit.Result.YES;
+    }
+});
+</pre></div>
+</div>
+<p>Сохраним изменения в файле.</p>
+<p>Теперь пользователи с <a class="reference internal" href="security.html#admin-vs-user"><span class="std std-ref">административными правами</span></a> (входящие в группу <strong>wheel</strong>) смогут монтировать любые диски без ввода пароля.</p>
+</section>
+<section id="coredump-systemd">
+<span id="codedump-info"></span><span id="index-73"></span><h2>Что такое coredump и почему systemd сохраняет их?<a class="headerlink" href="#coredump-systemd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Coredump – это дамп закрытой памяти процесса, создаваемый в момент возникновения в нём внештатной ситуации, приводящей к аварийному завершению. Эти дампы используются всевозможными системами анализа и необходимы для создания правильных <a class="reference internal" href="generic-info.html#bug-report"><span class="std std-ref">баг-репортов</span></a>.</p>
+<p>По умолчанию systemd при падениях любых процессов (как системных, так и пользовательских), сохраняет дампы их закрытой памяти в каталоге <strong>/var/lib/systemd/coredump</strong>, поэтому он может занимать десятки гигабайт.</p>
+<p>Возможно их <a class="reference internal" href="#codedump-limit"><span class="std std-ref">ограничить</span></a>, либо полностью <a class="reference internal" href="#codedump-disable"><span class="std std-ref">отключить</span></a>.</p>
+</section>
+<section id="codedump-limit">
+<span id="index-74"></span><span id="id56"></span><h2>Как ограничить размер сохраняемых дампов памяти?<a class="headerlink" href="#codedump-limit" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл конфигурации <a class="reference internal" href="#codedump-info"><span class="std std-ref">systemd-coredump</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/systemd/coredump.conf
+</pre></div>
+</div>
+<p>Внесём правки, убирая символ комментария <strong>#</strong> перед каждой строкой:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Coredump]</span>
+<span class="na">Storage</span><span class="o">=</span><span class="s">external</span>
+<span class="na">Compress</span><span class="o">=</span><span class="s">yes</span>
+<span class="na">ProcessSizeMax</span><span class="o">=</span><span class="s">1G</span>
+<span class="na">ExternalSizeMax</span><span class="o">=</span><span class="s">1G</span>
+<span class="na">JournalSizeMax</span><span class="o">=</span><span class="s">200M</span>
+<span class="na">MaxUse</span><span class="o">=</span><span class="s">5</span>
+<span class="na">KeepFree</span><span class="o">=</span>
+</pre></div>
+</div>
+<p>В данном примере мы задаём максимальный размер одного дампа в 1 ГБ (<strong>ProcessSizeMax</strong> и <strong>ExternalSizeMax</strong>) с ограничением хранения не более 5 (<strong>MaxUse</strong>).</p>
+<p>Изменения вступят в силу при следующей загрузке системы.</p>
+</section>
+<section id="codedump-disable">
+<span id="index-75"></span><span id="id57"></span><h2>Как полностью отключить сохранение дампов памяти?<a class="headerlink" href="#codedump-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл конфигурации <a class="reference internal" href="#codedump-info"><span class="std std-ref">systemd-coredump</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/systemd/coredump.conf
+</pre></div>
+</div>
+<p>Уберём символ комментария <strong>#</strong> лишь перед первой строкой и изменим её значение:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Coredump]</span>
+<span class="na">Storage</span><span class="o">=</span><span class="s">none</span>
+</pre></div>
+</div>
+<p>Изменения вступят в силу при следующей загрузке системы.</p>
+</section>
+<section id="kernel-postinstall">
+<span id="index-76"></span><span id="id58"></span><h2>Как настроить автоматическое выполнение скрипта после установки нового ядра?<a class="headerlink" href="#kernel-postinstall" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для того, чтобы выполнять какой-либо shell-скрипт сразу после окончания установки ядра Linux, поместим его в каталог <code class="docutils literal notranslate"><span class="pre">/etc/kernel/install.d</span></code> с chmod <strong>0755</strong> и расширением <strong>.install</strong>.</p>
+<p>Скрипты из него всегда выполняются в алфавитном порядке, т.е. <strong>00-foo.install</strong> запустится раньше, чем <strong>zz-bar.install</strong>, поэтому данную особенность можно использовать для изменения порядка их запуска.</p>
+<p>Каждому скрипту в качестве параметра передаётся версия установленного ядра, которую можно получить через <code class="docutils literal notranslate"><span class="pre">${1}</span></code>.</p>
+</section>
+<section id="modprobe">
+<span id="modprobe-sberr"></span><span id="index-77"></span><h2>При загрузке модуля ядра через modprobe я получаю ошибку. Как исправить?<a class="headerlink" href="#modprobe" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если при попытке загрузки модуля ядра при помощи modprobe с правами суперпользователя воникает ошибка <em>modprobe: ERROR: could not insert „XXXXXXX“: Operation not permitted</em>, значит включён режим <a class="reference internal" href="installation.html#secure-boot"><span class="std std-ref">UEFI Secure Boot</span></a>, а данный модуль не имеет цифровой подписи.</p>
+<p>Необходимо либо отключить Secure Boot в настройках UEFI компьютера, либо подписать его действительной цифровой подписью.</p>
+</section>
+<section id="systemd-boot">
+<span id="index-78"></span><span id="id59"></span><h2>Как настроить загрузку системы при помощи systemd-boot?<a class="headerlink" href="#systemd-boot" title="Ссылка на этот заголовок">¶</a></h2>
+<p>См. <a class="reference external" href="https://www.easycoding.org/2019/06/27/zagruzhaem-fedora-pri-pomoshhi-systemd-boot.html">здесь</a>.</p>
+</section>
+<section id="port-bind-priv">
+<span id="index-79"></span><span id="id60"></span><h2>Почему моё приложение не может использовать порт ниже 1024?<a class="headerlink" href="#port-bind-priv" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Диапазон портов 1-1023 зарезервирован для суперпользователя, а также приложений, наделённых его правами.</p>
+<p>Стандартная схема использования: сервис запускается с правами root, начинает прослушивать необходимый ему порт, а затем <a class="reference internal" href="#euid-vs-ruid"><span class="std std-ref">сбрасывает</span></a> повышенные права. Так поступают большинство популярных серверных приложений (apache, nginx и т.д.).</p>
+<p>Существует и альтернативный вариант – запуск при помощи <a class="reference internal" href="#port-bind-systemd"><span class="std std-ref">особого юнита systemd</span></a>.</p>
+</section>
+<section id="port-bind-systemd">
+<span id="index-80"></span><span id="id61"></span><h2>Как запустить приложение на порту ниже 1024 при помощи systemd?<a class="headerlink" href="#port-bind-systemd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Добавим в <a class="reference internal" href="#systemd-info"><span class="std std-ref">systemd-юнит</span></a> <code class="docutils literal notranslate"><span class="pre">foo-bar.service</span></code> запрос привилегии <code class="docutils literal notranslate"><span class="pre">CAP_NET_BIND_SERVICE</span></code>:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Simple application</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+
+<span class="k">[Service]</span>
+<span class="na">RestartSec</span><span class="o">=</span><span class="s">10s</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+<span class="na">User</span><span class="o">=</span><span class="s">user</span>
+<span class="na">Group</span><span class="o">=</span><span class="s">user</span>
+<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/home/user/foo-bar</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/home/user/foo-bar/foo</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+<span class="na">AmbientCapabilities</span><span class="o">=</span><span class="s">CAP_NET_BIND_SERVICE</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</pre></div>
+</div>
+<p>Теперь приложение сможет занять любой доступный порт, включая находящиеся в диапазоне 1-1023.</p>
+</section>
+<section id="user-group-remove">
+<span id="index-81"></span><span id="id62"></span><h2>Как удалить пользователя из группы?<a class="headerlink" href="#user-group-remove" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим пользователя с именем <strong>foo</strong> из группы <strong>bar</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo gpasswd -d foo bar
+</pre></div>
+</div>
+<p>Удалим текущего пользователя из группы <strong>bar</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo gpasswd -d $(whoami) bar
+</pre></div>
+</div>
+</section>
+<section id="fs-data-journal">
+<span id="index-82"></span><span id="id63"></span><h2>Как включить полное журналирование данных на диске?<a class="headerlink" href="#fs-data-journal" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Полное журналирование данных поддерживается файловой системой <strong>ext4</strong> и может быть активировано при помощи специального параметра монтирования.</p>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
+</pre></div>
+</div>
+<p>Добавим после параметра монтирования по умолчанию <code class="docutils literal notranslate"><span class="pre">defaults</span></code> через запятую <code class="docutils literal notranslate"><span class="pre">data=journal</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>UUID=XXXXXXX /home ext4 defaults,data=journal 1 2
+</pre></div>
+</div>
+<p>Сохраним изменения в файле и выполним перезагрузку системы.</p>
+</section>
+<section id="fs-journal-adv">
+<span id="index-83"></span><span id="id64"></span><h2>Какие преимущества и недостатки у полного журналирования данных?<a class="headerlink" href="#fs-journal-adv" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Преимущества:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>более высокая надёжность в случае внезапного пропадания подачи электропитания;</p></li>
+<li><p>гарантия сохранности не только структуры файловой системы, но и самих данных.</p></li>
+</ul>
+</div></blockquote>
+<p>Недостатки:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>двойная запись на диск: сначала данные помещаются в журнал и лишь после этого происходит реальное изменение данных на диске в виде атомарной операции;</p></li>
+<li><p>за счёт двойной записи снижается производительность всех файловых операций записи;</p></li>
+<li><p>для файлового журнала будет зарезервировано 10% от свободного места на диске;</p></li>
+<li><p>более быстрое расходование ресурса записи твёрдотельных накопителей данных.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="fs-reserve-info">
+<span id="index-84"></span><span id="id65"></span><h2>Для каких целей резервируется 5% от свободного места на диске?<a class="headerlink" href="#fs-reserve-info" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По умолчанию на каждом разделе с файловой системой ext4 резервируется 5% для нужд суперпользователя.</p>
+</section>
+<section id="fs-reserve-disable">
+<span id="index-85"></span><span id="id66"></span><h2>Как отключить резервирование свободного места на диске?<a class="headerlink" href="#fs-reserve-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<p><a class="reference internal" href="#fs-reserve-info"><span class="std std-ref">Резервирование свободного места</span></a> для нужд суперпользователя может быть отключено при создании файловой системы при помощи опционального параметра <code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">0</span></code>. Например:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkfs -t ext4 -m 0 -L Data /dev/sdX1
+</pre></div>
+</div>
+<p>Для уже существующей файловой системы воспользуемся утилитой <strong>tune2fs</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo tune2fs -m 0 /dev/sdX1
+</pre></div>
+</div>
+<p>Здесь <strong>0</strong> – процентное соотношение зарезервированных блоков к обычным (отсутствуют), а <strong>/dev/sdX1</strong> – раздел диска, на котором будут произведены изменения.</p>
+</section>
+<section id="zswap-fedora">
+<span id="zswap"></span><span id="index-86"></span><h2>Как включить поддержку zswap в Fedora?<a class="headerlink" href="#zswap-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим пакет <strong>zswap-cli</strong> для работы с модулем ядра <em>zswap</em>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install zswap-cli
+</pre></div>
+</div>
+<p>При необходимости внесём правки в файл конфигурации:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/zswap-cli.conf
+</pre></div>
+</div>
+<p>Активируем сервис zswap-cli:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable --now zswap-cli.service
+</pre></div>
+</div>
+<p>Изменения вступят в силу немедленно.</p>
+</section>
+<section id="memory-defrag">
+<span id="index-87"></span><span id="id67"></span><h2>Как произвести дефраментацию оперативной памяти?<a class="headerlink" href="#memory-defrag" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В современных версиях ядра Linux применяется т.н. <a class="reference external" href="https://www.kernel.org/doc/html/latest/admin-guide/sysctl/vm.html#compaction-proactiveness">проактивная дефрагментация</a> оперативной памяти, однако если требуется осуществить данную процедуру немедленно, выполним:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo bash -c &quot;echo 1 &gt; /proc/sys/vm/compact_memory&quot;
+</pre></div>
+</div>
+</section>
+<section id="zram-default-disable">
+<span id="index-88"></span><span id="id68"></span><h2>Как отключить активированное по умолчанию сжатие оперативной памяти?<a class="headerlink" href="#zram-default-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если в сжатии оперативной памяти <a class="reference internal" href="#memory-compression"><span class="std std-ref">при помощи zram</span></a> нет необходимости, отключим данную функцию простым удалением предоставляющих её пакетов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove zram-generator zram-generator-defaults
+</pre></div>
+</div>
+<p>Перезагрузим систему для вступления изменений в силу:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</section>
+<section id="io-scheduler">
+<span id="index-89"></span><span id="id69"></span><h2>Как определить какой планировщик ввода-вывода используется?<a class="headerlink" href="#io-scheduler" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Выведем информацию обо всех установленных в системе дисковых накопителях:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>grep . /sys/block/*/queue/scheduler
+</pre></div>
+</div>
+<p>Название активного планировщика на каждом конкретном устройстве указано в квадратных скобках.</p>
+<p>Пример:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/sys/block/sda/queue/scheduler:mq-deadline kyber [bfq] none
+</pre></div>
+</div>
+<p>Данный вывод означает, что в системе для устройства <code class="docutils literal notranslate"><span class="pre">/dev/sda</span></code> применяется <a class="reference internal" href="tips-and-tricks.html#bfq-scheduler"><span class="std std-ref">BFQ</span></a>.</p>
+</section>
+<section id="return-code-get">
+<span id="index-90"></span><span id="id70"></span><h2>Как получить код завершения последней выполненной команды?<a class="headerlink" href="#return-code-get" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Выведем на экран код завершения последней выполненной команды в терминале:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>echo $?
+</pre></div>
+</div>
+</section>
+<section id="uefi-secure-boot">
+<span id="secure-boot-status"></span><span id="index-91"></span><h2>Как определить текущее состояние UEFI Secure Boot?<a class="headerlink" href="#uefi-secure-boot" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим пакет <strong>mokutil</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install mokutil
+</pre></div>
+</div>
+<p>Выведем информацию о текущем состоянии <a class="reference internal" href="installation.html#secure-boot"><span class="std std-ref">UEFI Secure Boot</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mokutil --sb-state
+</pre></div>
+</div>
+</section>
+<section id="process-tree">
+<span id="index-92"></span><span id="id71"></span><h2>Как построить и вывести дерево процессов?<a class="headerlink" href="#process-tree" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Воспользуемся утилитой <strong>ps</strong> для построения и вывода дерева процессов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ps -aef --forest
+</pre></div>
+</div>
+</section>
+<section id="btrfs-subvolume">
+<span id="index-93"></span><span id="id72"></span><h2>Как однократно смонтировать BTRFS subvolume?<a class="headerlink" href="#btrfs-subvolume" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Создадим каталог для точки монтирования:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/foo-bar
+</pre></div>
+</div>
+<p>Выполним монтирование подтома <strong>foo-bar</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mount -t btrfs /dev/sdX2 -o subvol=foo-bar /media/foo-bar
+</pre></div>
+</div>
+<p>По окончании работы произведём размонтирование и удалим ненужный более каталог:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo umount /media/foo-bar
+sudo rmdir /media/foo-bar
+</pre></div>
+</div>
+<p>Здесь <strong>/dev/sdX2</strong> – накопитель с файловой системой <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a>.</p>
+</section>
+<section id="btrfs-compression">
+<span id="index-94"></span><span id="id73"></span><h2>Как включить сжатие данных на разделе с BTRFS?<a class="headerlink" href="#btrfs-compression" title="Ссылка на этот заголовок">¶</a></h2>
+<p><strong>Внимание!</strong> Начиная с Fedora 34 для новых установок уже <a class="reference external" href="https://fedoraproject.org/wiki/Changes/BtrfsTransparentCompression">включено</a> сжатие для разделов с ФС <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a> алгоритмом <strong>zstd</strong> с уровнем сжатия <strong>1</strong>. Для тех, кто обновляется с предыдущих релизов, сжатие можно включить самостоятельно.</p>
+<p>Файловая система <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a> поддерживает прозрачное сжатие данных. Допускается выбрать один из трёх доступных алгоритмов: <strong>zstd</strong>, <strong>zlib</strong> или <strong>lzo</strong>. Сжатие включается посредством указания алгоритма и уровня в параметрах монтирования раздела.</p>
+<p>Включим сжатие для корневого раздела. Для этого внесём правки в файл конфигурации <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
+</pre></div>
+</div>
+<p>В колонке параметров монтирования добавим опцию <code class="docutils literal notranslate"><span class="pre">compress=zstd:1</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>UUID=XXXXX-XXXXX /   btrfs   compress=zstd:1,subvol=fedora   0 0
+</pre></div>
+</div>
+<p>Здесь <strong>XXXXX-XXXXX</strong> – <a class="reference internal" href="#get-uuid"><span class="std std-ref">UUID раздела</span></a>.</p>
+<p>Сохраним изменения и произведём перезагрузку системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+<p>С этого момента все записываемые данные будут сжиматься алгоритмом <em>zstd</em>.</p>
+<p>Подробнее о сжатии можно прочитать в <a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/Compression">официальной документации</a> (на английском языке).</p>
+</section>
+<section id="btrfs-compression-analyze">
+<span id="index-95"></span><span id="id74"></span><h2>Как определить эффективность сжатия на разделе с BTRFS?<a class="headerlink" href="#btrfs-compression-analyze" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Оценим эффективность сжатия данных на разделе с файловой системой <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a> при помощи утилиты <strong>compsize</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo compsize -x /
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -1262,6 +1262,7 @@ sudo btrfs scrub status /dev/sda2
 <li class="toctree-l2"><a class="reference internal" href="#lvm-liveusb">Как мне проверить ФС в составе LVM с LiveUSB?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#liveusb">Как мне проверить ФС при использовании классических разделов с LiveUSB?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#luks-liveusb">Как мне проверить ФС на зашифрованном LUKS разделе с LiveUSB?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#btrfs">Как восстановить данные с повреждённого раздела с BTRFS?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#deduplication-memory">Возможна ли полная дедупликация оперативной памяти?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#deduplication-disk">Возможна ли полная дедупликация данных на дисках?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#memory-compression">Можно ли включить сжатие оперативной памяти?</a></li>
@@ -1327,9 +1328,8 @@ sudo btrfs scrub status /dev/sda2
 <li class="toctree-l2"><a class="reference internal" href="#uefi-secure-boot">Как определить текущее состояние UEFI Secure Boot?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#process-tree">Как построить и вывести дерево процессов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#btrfs-subvolume">Как однократно смонтировать BTRFS subvolume?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#btrfs">Как включить сжатие данных на разделе с BTRFS?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#btrfs-compression">Как включить сжатие данных на разделе с BTRFS?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#btrfs-compression-analyze">Как определить эффективность сжатия на разделе с BTRFS?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#btrfs-repair">Как восстановить данные с повреждённого раздела с BTRFS?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>
