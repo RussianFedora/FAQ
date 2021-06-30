@@ -364,7 +364,7 @@ sudo btrfs scrub status /dev/sda2
 </pre></div>
 </div>
 <p>Сделаем копию сохранившихся данных с раздела на другой накопитель (например на USB-flash, смонтированный как <strong>/media/external</strong>):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo restore /dev/sda2 /media/external
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo btrfs restore /dev/sda2 /media/external
 </pre></div>
 </div>
 <p><strong>Внимание!</strong> После выполнения каждой следующей операции будем пытаться повторно смонтировать раздел и продолжать <strong>только</strong> если это до сих пор не удаётся:</p>
@@ -387,7 +387,7 @@ sudo btrfs scrub status /dev/sda2
 <section id="id21">
 <h3>Деструктивные способы восстановления<a class="headerlink" href="#id21" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Экспортируем сохранившиеся данные на другой накопитель если это не было сделано ранее:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo restore /dev/sda2 /media/external
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo btrfs restore /dev/sda2 /media/external
 </pre></div>
 </div>
 <p>Запустим принудительное восстановление данных на устройстве (может привести к полной потере всех данных без возможности восстановления):</p>
