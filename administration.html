@@ -1138,6 +1138,78 @@ sudo rmdir /media/foo-bar
 </pre></div>
 </div>
 </section>
+<section id="btrfs-repair">
+<span id="index-95"></span><span id="id71"></span><h2>Как восстановить данные с повреждённого раздела с BTRFS?<a class="headerlink" href="#btrfs-repair" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Существует несколько способов восстановления данных на повреждённом разделе с файловой системой BTRFS. Они подразделяются на безопасные, небезопасные и деструктивные.</p>
+<p>Небезопасные и деструктивные могут привести к полной потере всех данных на накопителе, поэтому прибегать к ним следует лишь при крайней необходимости, если безопасные не помогли. Работать лучше всего с точной посекторной копией вместо реального устройства.</p>
+<p>Здесь <strong>/dev/sda2</strong> – блочное устройство раздела, данные с которого мы будем пытаться восстановить, а <strong>/media/btrfs</strong> – временная точка для его монтирования.</p>
+<p>Восстановление будем производить посредством загрузки с Fedora LiveUSB, после чего сразу же запустим эмулятор терминала.</p>
+<p>Более подробную информацию можно найти в <a class="reference external" href="https://en.opensuse.org/SDB:BTRFS#How_to_repair_a_broken.2Funmountable_btrfs_filesystem">openSUSE Support Database</a> (на английском языке).</p>
+<section id="id72">
+<h3>Безопасные способы восстановления<a class="headerlink" href="#id72" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Попытаемся смонтировать повреждённый раздел с файловой системой BTRFS:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/btrfs
+sudo mount /dev/sda2 /media/btrfs
+</pre></div>
+</div>
+<p>Если монтирование прошло успешно, выполним операцию scrub (проверка контрольных сумм для всех данных с попыткой восстановления) на точке монтирования:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo btrfs scrub start /media/btrfs
+sudo btrfs scrub status /media/btrfs
+</pre></div>
+</div>
+<p>Если монтирование осуществить не удалось, сделаем то же самое на блочном устройстве:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo btrfs scrub start /dev/sda2
+sudo btrfs scrub status /dev/sda2
+</pre></div>
+</div>
+<p>Если предыдущие шаги не помогли, воспользуемся особым параметром монтирования <code class="docutils literal notranslate"><span class="pre">usebackuproot</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mount -o usebackuproot /dev/sda2 /media/btrfs
+</pre></div>
+</div>
+</section>
+<section id="id73">
+<h3>Небезопасные способы восстановления<a class="headerlink" href="#id73" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Сначала выполним проверку раздела:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo btrfs check /dev/sda2
+</pre></div>
+</div>
+<p>Сделаем копию сохранившиеся данные с раздела на другой накопитель (например на USB, смонтированный как <strong>/media/external</strong>):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo restore /dev/sda2 /media/external
+</pre></div>
+</div>
+<p><strong>Внимание!</strong> После выполнения каждой следующей операции будем пытаться повторно смонтировать раздел и продолжать <strong>только</strong> если это до сих пор не удаётся:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mount /dev/sda2 /media/btrfs
+</pre></div>
+</div>
+<p>Попытаемся восстановить суперблок файловой системы из его копии:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo btrfs rescue super-recover /dev/sda2
+</pre></div>
+</div>
+<p>Выполним очистку журнала транзакций:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo btrfs rescue zero-log /dev/sda2
+</pre></div>
+</div>
+<p>Запустим восстановление блоков данных (процесс займёт <em>очень много времени</em> и прерывать его <strong>нельзя</strong>):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo btrfs rescue chunk-recover /dev/sda2
+</pre></div>
+</div>
+</section>
+<section id="id74">
+<h3>Деструктивные способы восстановления<a class="headerlink" href="#id74" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Экспортируем сохранившиеся данные на другой накопитель если это не было сделано ранее:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo restore /dev/sda2 /media/external
+</pre></div>
+</div>
+<p>Запустим принудительное восстановление данных на устройстве (может привести к полной потере всех данных без возможности восстановления):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo btrfs check --repair /dev/sda2
+</pre></div>
+</div>
+<p>Попытаемся повторно смонтировать раздел:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mount /dev/sda2 /media/btrfs
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
 
@@ -1257,6 +1329,7 @@ sudo rmdir /media/foo-bar
 <li class="toctree-l2"><a class="reference internal" href="#btrfs-subvolume">Как однократно смонтировать BTRFS subvolume?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#btrfs">Как включить сжатие данных на разделе с BTRFS?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#btrfs-compression-analyze">Как определить эффективность сжатия на разделе с BTRFS?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#btrfs-repair">Как восстановить данные с повреждённого раздела с BTRFS?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>
