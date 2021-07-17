@@ -654,24 +654,21 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 Как исправить ошибку Failed to start Setup Virtual Console?
 ==============================================================
 
-Если при загрузке системы возникает ошибка *Failed to start Setup Virtual Console*, выполним следующие действия для её временного исправления:
+Если при загрузке системы возникает ошибка *Failed to start Setup Virtual Console*, это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=1967457>`__, связанная с отсутствием установленных keymaps для множества отличных от en_US локалей.
 
-1. В файле **/etc/vconsole.conf** заменим `KEYMAP=ru` на `KEYMAP=us`.
-
-Например командой
+В качестве решения установим пакет **kbd-legacy**:
 
 .. code-block:: text
 
-    sudo sed -e 's/KEYMAP=ru/KEYMAP=us/g' -i /etc/vconsole.conf
+    sudo dnf install kbd-legacy
 
-
-2. Пересоберём образ initrd:
+Пересоберём :ref:`образ initrd <initrd-rebuild>` для всех установленных ядер:
 
 .. code-block:: text
 
     sudo dracut --regenerate-all --force
 
-Для проверки перезапустим сервис и проверим результат его работы:
+Перезапустим сервис и проверим результат его работы:
 
 .. code-block:: text
 
