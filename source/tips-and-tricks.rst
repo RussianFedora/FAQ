@@ -656,7 +656,7 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
 Если при загрузке системы возникает ошибка *Failed to start Setup Virtual Console*, выполним следующие действия для её временного исправления:
 
-1. В файле **/etc/vconsole.conf** замениv `KEYMAP=ru` на `KEYMAP=us`.
+1. В файле **/etc/vconsole.conf** заменим `KEYMAP=ru` на `KEYMAP=us`.
 
 Например командой
 
