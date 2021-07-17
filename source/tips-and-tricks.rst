@@ -651,8 +651,8 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 .. index:: vconsole, boot, tty, systemd, workaround, bug
 .. _failed-setup-virtual-console:
 
-Как исправить ошибку *Failed to start Setup Virtual Console* при старте системы?
-===========================================================
+Как исправить ошибку Failed to start Setup Virtual Console?
+==============================================================
 
 Если при загрузке системы возникает ошибка *Failed to start Setup Virtual Console*, выполним следующие действия для её временного исправления:
 
