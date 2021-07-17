@@ -1902,23 +1902,3 @@ Coredump -- это дамп закрытой памяти процесса, со
 .. code-block:: text
 
     sudo compsize -x /
-
-
-.. index:: vconsole, boot, tty, systemd
-.. _failed-setup-virtual-console:
-
-Как исправить ошибку Failed to start Setup Virtual Console при старте системы?
-===========================================================
-
-Если при загрузке системы вы видите данную ошибку (а также в `/var/boot/log` или в выводе `systemctl status systemd-vconsole-setup`), то выполните следующее:
-
-1. В файле **/etc/vconsole.conf** замените KEYMAP="ru" на KEYMAP="us".
-
-2. Выполните команды:
-
-.. code-block:: text
-
-    sudo dracut -f
-    sudo dracut --regenerate-all --force
-    
-После этого можно выполнить `sudo systemctl start systemd-vconsole-setup` и при перезагрузке сервис тоже будет стартовать нормально.
