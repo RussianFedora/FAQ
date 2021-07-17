@@ -647,3 +647,33 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
   * `Sysadmin guide <https://btrfs.wiki.kernel.org/index.php/SysadminGuide#Balancing>`__
   * `Problem FAQ <https://btrfs.wiki.kernel.org/index.php/Problem_FAQ#I_get_.22No_space_left_on_device.22_errors.2C_but_df_says_I.27ve_got_lots_of_space>`__
+
+.. index:: vconsole, boot, tty, systemd, workaround, bug
+.. _failed-setup-virtual-console:
+
+Как исправить ошибку Failed to start Setup Virtual Console?
+==============================================================
+
+Если при загрузке системы возникает ошибка *Failed to start Setup Virtual Console*, выполним следующие действия для её временного исправления:
+
+1. В файле **/etc/vconsole.conf** заменим `KEYMAP=ru` на `KEYMAP=us`.
+
+Например командой
+
+.. code-block:: text
+
+    sudo sed -e 's/KEYMAP=ru/KEYMAP=us/g' -i /etc/vconsole.conf
+
+
+2. Пересоберём образ initrd:
+
+.. code-block:: text
+
+    sudo dracut --regenerate-all --force
+
+Для проверки перезапустим сервис и проверим результат его работы:
+
+.. code-block:: text
+
+    sudo systemctl start systemd-vconsole-setup.service
+    systemctl status systemd-vconsole-setup.service
