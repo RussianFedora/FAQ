@@ -450,21 +450,16 @@ EndSection
 </section>
 <section id="failed-to-start-setup-virtual-console">
 <span id="failed-setup-virtual-console"></span><span id="index-25"></span><h2>Как исправить ошибку Failed to start Setup Virtual Console?<a class="headerlink" href="#failed-to-start-setup-virtual-console" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Если при загрузке системы возникает ошибка <em>Failed to start Setup Virtual Console</em>, выполним следующие действия для её временного исправления:</p>
-<ol class="arabic simple">
-<li><p>В файле <strong>/etc/vconsole.conf</strong> заменим <cite>KEYMAP=ru</cite> на <cite>KEYMAP=us</cite>.</p></li>
-</ol>
-<p>Например командой</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo sed -e &#39;s/KEYMAP=ru/KEYMAP=us/g&#39; -i /etc/vconsole.conf
+<p>Если при загрузке системы возникает ошибка <em>Failed to start Setup Virtual Console</em>, это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1967457">известная проблема</a>, связанная с отсутствием установленных keymaps для множества отличных от en_US локалей.</p>
+<p>В качестве решения установим пакет <strong>kbd-legacy</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install kbd-legacy
 </pre></div>
 </div>
-<ol class="arabic simple" start="2">
-<li><p>Пересоберём образ initrd:</p></li>
-</ol>
+<p>Пересоберём <a class="reference internal" href="using-system.html#initrd-rebuild"><span class="std std-ref">образ initrd</span></a> для всех установленных ядер:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut --regenerate-all --force
 </pre></div>
 </div>
-<p>Для проверки перезапустим сервис и проверим результат его работы:</p>
+<p>Перезапустим сервис и проверим результат его работы:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl start systemd-vconsole-setup.service
 systemctl status systemd-vconsole-setup.service
 </pre></div>
