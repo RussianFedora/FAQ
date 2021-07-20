@@ -654,7 +654,7 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 Как исправить ошибку Failed to start Setup Virtual Console?
 ==============================================================
 
-Если при загрузке системы возникает ошибка *Failed to start Setup Virtual Console*, это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=1967457>`__, связанная с отсутствием установленных keymaps для множества отличных от en_US локалей.
+Если при загрузке системы возникает ошибка *Failed to start Setup Virtual Console*, это `известная проблема <https://fedoraproject.org/wiki/Common_F34_bugs#kbd-legacy-media>`__, связанная с отсутствием установленных keymaps для множества отличных от en_US локалей.
 
 В качестве решения установим пакет **kbd-legacy**:
 
