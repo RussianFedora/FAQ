@@ -1542,3 +1542,11 @@ ICC профиль можно получить либо на сайте прои
 .. code-block:: text
 
     sudo systemctl reboot
+
+.. index:: performance, profiles, tuned
+.. _performance-profiles:
+
+Как увеличить производительность системы?
+=============================================
+
+См. `здесь <https://www.easycoding.org/2021/07/22/upravlyaem-profilyami-proizvoditelnosti-linux.html>`__.
