@@ -1610,3 +1610,5 @@ ICC профиль можно получить либо на сайте прои
 .. code-block:: text
 
     sudo fstrim -v /media/foo-bar
+
+Здесь **/media/foo-bar** -- это точка монтирования.
