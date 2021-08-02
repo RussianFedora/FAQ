@@ -1550,3 +1550,49 @@ ICC профиль можно получить либо на сайте прои
 =============================================
 
 См. `здесь <https://www.easycoding.org/2021/07/22/upravlyaem-profilyami-proizvoditelnosti-linux.html>`__.
+
+.. index:: trim, ssd, udev, rules, udevadm, hdd, smr, usb
+.. _trim-usb:
+
+Как включить поддержку TRIM на USB устройствах?
+===================================================
+
+По умолчанию поддержка :ref:`процедуры TRIM <ssd-trim>` для USB SSD, а также USB HDD с технологией SMR, недоступна, поэтому любые попытки вручную запустить утилиту **fstrim** приведут к возникновению ошибки *fstrim: /media/foo-bar/: the discard operation is not supported*.
+
+Чтобы это исправить, создадим специальный файл конфигурации udev, который разрешит использование данной функции для USB-устройств с указанными VID:PID.
+
+Получим значения VID:PID для нужного USB-устройства:
+
+.. code-block:: text
+
+    lsusb
+
+Создадим файл конфигурации ``/etc/udev/50-usb-trim.rules`` и установим для него корректные права доступа:
+
+.. code-block:: text
+
+    sudo touch /etc/udev/50-usb-trim.rules
+    sudo chown root:root /etc/udev/50-usb-trim.rules
+    sudo chmod 0644 /etc/udev/50-usb-trim.rules
+
+Откроем данный файл в текстовом редакторе:
+
+.. code-block:: text
+
+    sudoedit /etc/udev/50-usb-trim.rules
+
+Добавим по одной строке для каждого USB-устройства, для которого требуется разрешить TRIM:
+
+.. code-block:: text
+
+    ACTION=="add|change", ATTRS{idVendor}=="1234", ATTRS{idProduct}=="0000", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"
+
+Здесь вместо **1234** укажем VID, а **0000** -- PID, полученные ранее.
+
+Сохраним изменения и перезагрузим правила udev:
+
+.. code-block:: text
+
+    sudo udevadm control --reload
+
+Изменения вступят в силу при следующем подключении накопителя.
