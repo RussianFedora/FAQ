@@ -112,7 +112,7 @@
 
 См. `здесь <https://www.easycoding.org/2018/04/03/reshaem-problemu-otsutstviya-libcurl-gnutls-v-fedora.html>`__.
 
-.. index:: bfq, hdd, optimizations, scheduler, kernel
+.. index:: bfq, hdd, optimizations, scheduler, kernel, udev, udevadm
 .. _bfq-scheduler:
 
 Как задействовать планировщик ввода/вывода BFQ для HDD?
