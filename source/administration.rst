@@ -1902,3 +1902,15 @@ Coredump -- это дамп закрытой памяти процесса, со
 .. code-block:: text
 
     sudo compsize -x /
+
+.. index:: udev, rules, udevadm
+.. _udev-rules-reload:
+
+Как применить изменения в правилах udev без перезагрузки?
+============================================================
+
+Перезагрузим правила udev при помощи утилиты **udevadm**:
+
+.. code-block:: text
+
+    sudo udevadm control --reload
