@@ -134,7 +134,7 @@ BFQ -- это планировщик ввода-вывода (I/O), предна
 
     sudo bash -c "echo 'ACTION==\"add|change\", KERNEL==\"sd[a-z]\", ATTR{queue/rotational}==\"1\", ATTR{queue/scheduler}=\"bfq\"' >> /etc/udev/rules.d/60-ioschedulers.rules"
 
-Применим изменения в политиках udev:
+Применим изменения в :ref:`политиках udev <udev-rules-reload>`:
 
 .. code-block:: text
 
