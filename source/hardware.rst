@@ -1585,9 +1585,9 @@ ICC профиль можно получить либо на сайте прои
 
 .. code-block:: text
 
-    ACTION=="add|change", ATTRS{idVendor}=="1234", ATTRS{idProduct}=="0000", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"
+    ACTION=="add|change", ATTRS{idVendor}=="1234", ATTRS{idProduct}=="5678", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"
 
-Здесь вместо **1234** укажем VID, а **0000** -- PID, полученные ранее.
+Здесь вместо **1234** укажем VID, а **5678** -- PID, полученные ранее.
 
 Сохраним изменения и перезагрузим правила udev:
 
