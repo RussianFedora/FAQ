@@ -569,7 +569,7 @@ Java 11:
 
     sudo dnf install java-11-openjdk
 
-Java 12 (preview):
+Java 16:
 
 .. code-block:: text
 
