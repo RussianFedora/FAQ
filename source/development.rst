@@ -68,7 +68,7 @@
 .. code-block:: text
 
     cd foo-bar
-    fedpkg switch-branch f32
+    fedpkg switch-branch f34
 
 Внесём свои правки, сделаем коммит в репозиторий:
 
@@ -111,17 +111,17 @@
 Как переопределить пакет в Koji репозитория RPM Fusion?
 ===========================================================
 
-Создание build override для репозитория f32-free:
+Создание build override для репозитория f34-free:
 
 .. code-block:: text
 
-    koji-rpmfusion tag f32-free-override foo-bar-1.0-1.fc32
+    koji-rpmfusion tag f34-free-override foo-bar-1.0-1.fc34
 
-Удаление build override для репозитория f32-free:
+Удаление build override для репозитория f34-free:
 
 .. code-block:: text
 
-    koji-rpmfusion untag f32-free-override foo-bar-1.0-1.fc32
+    koji-rpmfusion untag f34-free-override foo-bar-1.0-1.fc34
 
 .. index:: git, gmail, mail
 .. _git-gmail:
@@ -447,19 +447,12 @@
 .. index:: lto, optimization, linker, compilation, gcc
 .. _enable-lto:
 
-Как можно активировать LTO оптимизации при сборке пакета?
-============================================================
+Как активировать LTO-оптимизации при сборке пакета?
+=======================================================
 
-Для активации `LTO оптимизаций <https://gcc.gnu.org/wiki/LinkTimeOptimization>`__ необходимо и достаточно передать параметр ``-flto`` как для компилятора (**CFLAGS** и/или **CXXFLAGS**), так и для компоновщика.
+Актуальные релизы Fedora автоматически включают `LTO оптимизации <https://gcc.gnu.org/wiki/LinkTimeOptimization>`__ для всех собираемых пакетов.
 
-Самый простой способ сделать это -- переопределение значений стандартных макросов внутри SPEC файла:
-
-.. code-block:: text
-
-    %global optflags %{optflags} -flto
-    %global build_ldflags %{build_ldflags} -flto
-
-Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то также необходимо переопределить ряд :ref:`переменных окружения <env-set>` внутри секции ``%build``:
+Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то экспортируем ряд :ref:`переменных окружения <env-set>` внутри секции ``%build``:
 
 .. code-block:: text
 
@@ -467,7 +460,7 @@
     export RANLIB=%{_bindir}/gcc-ranlib
     export NM=%{_bindir}/gcc-nm
 
-Если используется система сборки cmake, рекомендуется использовать штатную функцию переопределения встроенных параметров:
+В случае использования системы сборки cmake, воспользуемся штатной функцией переопределения встроенных параметров:
 
 .. code-block:: text
 
@@ -479,6 +472,20 @@
         ..
 
 В противном случае появится ошибка *plugin needed to handle lto object*.
+
+.. index:: lto, optimization, linker, compilation
+.. _disable-lto:
+
+Как запретить LTO-оптимизации при сборке пакета?
+===================================================
+
+При необходимости :ref:`LTO-оптимизации <enable-lto>` допускается отключить.
+
+Определим переменную **_lto_cflags** и установим ей пустое значение:
+
+.. code-block:: text
+
+    %global _lto_cflags %{nil}
 
 .. index:: gcc, c, rpm, dependencies, package
 .. _rpm-unneeded:
@@ -702,7 +709,7 @@
 
 .. code-block:: text
 
-    sudo dnf install pycharm-community pycharm-community-jre
+    sudo dnf install pycharm-community
 
 При необходимости установим также набор популярных плагинов:
 
@@ -998,6 +1005,30 @@
 
 Также для некоторых операций необходимо загрузить :ref:`публичный ключ <ssh-keygen>` SSH в `FAS аккаунт <https://admin.fedoraproject.org/accounts>`__.
 
+.. index:: fedora, infrastructure, authentication, kerberos, kinit, 2fa, otp
+.. _fedora-login-2fa:
+
+Как авторизоваться в инфраструктуре Fedora с поддержкой 2FA?
+================================================================
+
+Для авторизации в инфраструктуре Fedora с поддержкой двухфакторной аутентификации :ref:`стандартный вход <fedora-login>` :ref:`посредством Kerberos <kerberos-auth>` работать не будет из-за возникновения ошибки *kinit: Pre-authentication failed: Invalid argument while getting initial credentials*, поэтому мы должны использовать альтернативный способ.
+
+Сгенерируем актуальный файл Kerberos Credentials Cache:
+
+.. code-block:: text
+
+    kinit -n @FEDORAPROJECT.ORG -c FILE:$HOME/.cache/fedora-armor.ccache
+
+Авторизуемся в домене с указанием KCC-файла:
+
+.. code-block:: text
+
+    kinit -T FILE:$HOME/.cache/fedora-armor.ccache foo-bar@FEDORAPROJECT.ORG
+
+Когда сервер запросит ввод *Enter OTP Token Value:*, укажем свой пароль и текущий код из OTP-аутентификатора по схеме **парольКОД** без пробелов и прочих знаков.
+
+Здесь **foo-bar** -- логин в FAS. Имя домена должно быть указано строго в верхнем регистре.
+
 .. index:: fedora, package, request, fedpkg
 .. _package-request:
 
@@ -1057,7 +1088,7 @@
 .. code-block:: text
 
     fedpkg switch-branch master
-    fedpkg import /путь/к/foo-bar-1.0-1.fc32.src.rpm
+    fedpkg import /путь/к/foo-bar-1.0-1.fc34.src.rpm
 
 Проверим внесённые изменения и если всё верно, жмём **Q** для выхода. Зафиксируем наши изменения:
 
@@ -1069,7 +1100,7 @@
 
 .. code-block:: text
 
-    fedpkg switch-branch f32
+    fedpkg switch-branch f34
     git merge master
 
 Отправим изменения на сервер:
@@ -1096,7 +1127,7 @@
 
 .. code-block:: text
 
-    fedpkg switch-branch f32
+    fedpkg switch-branch f34
     fedpkg build
 
 .. index:: fedora, package, build, fedpkg, scratch
@@ -1273,14 +1304,13 @@ GDB позволяет не только отлаживать приложени
 Как собрать пакет с использованием компилятора Clang в Fedora?
 ===================================================================
 
-Самый простой способ сделать это -- переопределение значений стандартных :ref:`переменных окружения <env-set>` **CC** и **CXX** внутри секции ``%build``:
+Определим переменную **toolchain** и установим ей значение **clang**:
 
 .. code-block:: text
 
-    export CC=%{_bindir}/clang
-    export CXX=%{_bindir}/clang++
+    %global toolchain clang
 
-Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то потребуется задать также ряд иных переменных:
+Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то экспортируем ряд :ref:`переменных окружения <env-set>` внутри секции ``%build``:
 
 .. code-block:: text
 
@@ -1290,7 +1320,7 @@ GDB позволяет не только отлаживать приложени
     export OBJDUMP=%{_bindir}/llvm-objdump
     export NM=%{_bindir}/llvm-nm
 
-Если используется система сборки cmake, рекомендуется использовать штатную функцию переопределения встроенных параметров:
+В случае использования системы сборки cmake, воспользуемся штатной функцией переопределения встроенных параметров:
 
 .. code-block:: text
 
@@ -1419,3 +1449,47 @@ Qt-приложение, собранное Clang с LTO не запускает
     uudecode foo-bar.uue
 
 Загрузим полученный архив в :ref:`баг-репорт <bug-report>`.
+
+.. index:: rpm, rpmbuild, version, package, compare
+.. _compare-versions:
+
+Как определить, какая из двух версий больше?
+================================================
+
+Для проверки версий воспользуемся утилитой **rpmdev-vercmp**, входящей в состав пакета **rpmdevtools**.
+
+Установим его:
+
+.. code-block:: text
+
+    sudo dnf install rpmdevtools
+
+Произведём проверку между **X** и **Y**:
+
+.. code-block:: text
+
+    rpmdev-vercmp X Y
+
+Данную утилиту также можно использовать в различных скриптах, исходя из возвращаемых ею кодов завершения:
+
+  * **0** -- версии равны;
+  * **11** -- версия **X** больше, чем **Y**;
+  * **12** -- версия **X** меньше, чем **Y**.
+
+.. index:: mock, cleanup, cache
+.. _mock-cleanup:
+
+Как очистить все кэши mock?
+================================
+
+Выполним полную очистку кэшей :ref:`mock <build-package>` для цели по умолчанию:
+
+.. code-block:: text
+
+    mock --scrub=all
+
+Выполним полную очистку кэшей mock для **fedora-rawhide-x86_64**:
+
+.. code-block:: text
+
+    mock -r fedora-rawhide-x86_64 --scrub=all

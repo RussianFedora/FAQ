@@ -85,7 +85,7 @@
 
     sudo dnf remove kde-connect kdeconnectd
 
-Опционально удалим библиотеки GTK2 (в то же время от них до сих пор зависят многие популярные приложения, например Firefox, Gimp, GParted):
+Опционально удалим библиотеки GTK2 (в то же время от них до сих пор зависят многие популярные приложения, например Gimp, Thunderbird, Audacious, PulseEffects):
 
 .. code-block:: text
 
@@ -112,7 +112,7 @@
 
 См. `здесь <https://www.easycoding.org/2018/04/03/reshaem-problemu-otsutstviya-libcurl-gnutls-v-fedora.html>`__.
 
-.. index:: bfq, hdd, optimizations, scheduler, kernel
+.. index:: bfq, hdd, optimizations, scheduler, kernel, udev, udevadm
 .. _bfq-scheduler:
 
 Как задействовать планировщик ввода/вывода BFQ для HDD?
@@ -134,7 +134,7 @@ BFQ -- это планировщик ввода-вывода (I/O), предна
 
     sudo bash -c "echo 'ACTION==\"add|change\", KERNEL==\"sd[a-z]\", ATTR{queue/rotational}==\"1\", ATTR{queue/scheduler}=\"bfq\"' >> /etc/udev/rules.d/60-ioschedulers.rules"
 
-Применим изменения в политиках udev:
+Применим изменения в :ref:`политиках udev <udev-rules-reload>`:
 
 .. code-block:: text
 
@@ -267,19 +267,27 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
 Увеличивать размер пула выше стандартного значения категорически не рекомендуется, т.к. это может приводить к зависаниям системы.
 
-Если всё-таки хочется внести поправки, откроем файл ``/etc/zram.conf`` в текстовом редакторе:
+Если всё-таки хочется внести поправки, откроем файл ``/etc/systemd/zram-generator.conf`` в текстовом редакторе:
 
 .. code-block:: text
 
-    sudoedit /etc/zram.conf
+    sudoedit /etc/systemd/zram-generator.conf
 
-Внесём изменения в переменную ``FACTOR``, явно указав нужное значение:
+Внесём изменения в переменные ``zram-fraction`` и ``max-zram-size``, явно указав необходимые значения:
 
 .. code-block:: text
 
-    FACTOR=2
+    zram-fraction = 0.5
+    max-zram-size = 4096
 
-Формула расчёта: ``1 / FACTOR``. Значение **2** -- выделение под пул 50% (выбор по умолчанию) от оперативной памяти, **4** -- 25%, **1** -- 100% соответственно (не рекомендуется).
+Допустимые значения **zram-fraction**:
+
+  * **0.5** -- выделение под пул 50% (выбор по умолчанию) от оперативной памяти;
+  * **0.25** -- 25%;
+  * **0.1** -- 10%;
+  * **1.0** -- 100% соответственно (не рекомендуется).
+
+В **max-zram-size** указывается максимально допустимый объём для пула в мегабайтах.
 
 Изменения вступят в силу при следующей загрузке системы.
 
@@ -555,3 +563,114 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 .. code-block:: text
 
     sudo systemctl reboot
+
+.. index:: usb, flash, drive, mount options, file system, journal, lazytime, tune2fs, ext4
+.. _usb-flash-tuning:
+
+Как увеличить срок жизни USB Flash?
+=======================================
+
+Использование современных журналируемых :ref:`файловых систем <fs-selection>` Linux на накопителях USB Flash, контроллер которых не способен автоматически балансировать износ ячеек, требует выполнения небольшой оптимизации.
+
+Изменим режим журнала в ``writeback``, а также активируем параметр монтирования ``lazytime``:
+
+.. code-block:: text
+
+    sudo debugfs -w -R "set_super_value mount_opts data=writeback,lazytime" /dev/sdX1
+
+Для максимального продления срока службы допускается полностью отключить журнал ФС (только на ext4):
+
+.. code-block:: text
+
+    sudo tune2fs -O ^has_journal /dev/sdX1
+
+**Внимание!** Отключение журнала может привести к потере всех данных на устройстве при его некорректном извлечении, либо исчезновении питания.
+
+Здесь **/dev/sdX1** -- раздел на устройстве флеш-памяти, который требуется настроить.
+
+Изменения вступят в силу при следующем монтировании.
+
+.. index:: grub, boot, bootloader, workaround, issue, btrfs, ext4
+.. _grub-sparse-not-allowed:
+
+При загрузке возникает ошибка sparse file not allowed. Как исправить?
+==========================================================================
+
+Если раздел **/boot** установленной системы использует файловую систему :ref:`BTRFS <fs-btrfs>`, при загрузке системы появится ошибка *error: ../../grub-core/commands/loadenv.c:216:sparse file not allowed*.
+
+Это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=1955901>`__, связанная с записью конфигурации grubenv и неполноценной реализацией драйвера поддержки BTRFS в загрузчике (он перезаписывает непосредственно блоки файла без обновления соответствующих метаданных, после чего BTRFS считает раздел повреждённым из-за несовпадения контрольных сумм).
+
+В качестве решения предлагается несколько вариантов:
+
+  1. перейти на :ref:`поддерживаемую конфигурацию <fedora-partitions>` загрузки -- :ref:`переместить <moving-system>` **/boot** на раздел с ФС ext4;
+  2. :ref:`отключить скрытие меню <grub-show>` загрузки GRUB 2.
+
+.. index:: btrfs, file system, balancing
+.. _btrfs-balancing:
+
+Нужно ли выполнять балансировку раздела с BTRFS?
+===================================================
+
+Файловая система :ref:`BTRFS <fs-btrfs>` использует двухуровневую структуру хранения данных: пространство поделено на *фрагменты*, которые содержат *блоки данных*. При определенных условиях эксплуатации в ФС может возникать большое количество мало заполненных фрагментов. Это приводит к ситуации, когда свободное место вроде есть, а записать очередной файл на диск не получается.
+
+Операция балансировки выполняет перенос блоков между фрагментами, а освободившиеся при этом удаляются. Официальная `документация <https://btrfs.wiki.kernel.org/index.php/SysadminGuide#Balancing>`__ рекомендует выполнять балансировку регулярно, однако разработчики Fedora `против <https://pagure.io/fedora-btrfs/project/issue/16>`__ такого подхода.
+
+Если на разделе мало свободного места (меньше 20%), часто осуществляется интенсивная запись данных (например от СУБД), и происходят ошибки записи, то скорее всего балансировка поможет.
+
+Оценим выгоду от :ref:`выполнения балансировки <btrfs-balancing-execute>` следующей командой:
+
+.. code-block:: text
+
+    sudo btrfs fi usage [mountpoint]
+
+Если значение в поле **Device allocated** значительно превышает **Used**, то процедура окажется полезной, в противном случае выполнять её не имеет никакого смысла.
+
+Здесь **mountpoint** -- точка монтирования раздела.
+
+.. index:: btrfs, file system, balancing
+.. _btrfs-balancing-execute:
+
+Как произвести балансировку раздела с BTRFS?
+===============================================
+
+Произведём :ref:`балансировку <btrfs-balancing>` для всех фрагментов, заполненных менее, чем наполовину:
+
+.. code-block:: text
+
+    sudo btrfs fi balance start -dusage=50 -musage=50 [mountpoint]
+
+Здесь **-dusage** -- максимальный процент заполнения при балансировке данных, **-musage** -- максимальный процент заполнения при балансировке метаданных, а **mountpoint** -- точка монтирования раздела.
+
+Чем меньше значение *usage*, тем быстрее выполнится операция. Если на диске мало свободного места, то начинать следует с небольших значений, например с *5*, постепенно увеличивая это число. Также можно балансировать отдельно данные и метаданные.
+
+Подробнее о балансировке можно прочитать в официальной документации (на английском языке):
+
+  * `Sysadmin guide <https://btrfs.wiki.kernel.org/index.php/SysadminGuide#Balancing>`__
+  * `Problem FAQ <https://btrfs.wiki.kernel.org/index.php/Problem_FAQ#I_get_.22No_space_left_on_device.22_errors.2C_but_df_says_I.27ve_got_lots_of_space>`__
+
+.. index:: vconsole, boot, tty, systemd, workaround, bug
+.. _failed-setup-virtual-console:
+
+Как исправить ошибку Failed to start Setup Virtual Console?
+==============================================================
+
+Если при загрузке системы возникает ошибка *Failed to start Setup Virtual Console*, это `известная проблема <https://fedoraproject.org/wiki/Common_F34_bugs#kbd-legacy-media>`__, связанная с отсутствием установленных keymaps для множества отличных от en_US локалей.
+
+В качестве решения установим пакет **kbd-legacy**:
+
+.. code-block:: text
+
+    sudo dnf install kbd-legacy
+
+Пересоберём :ref:`образ initrd <initrd-rebuild>` для всех установленных ядер:
+
+.. code-block:: text
+
+    sudo dracut --regenerate-all --force
+
+Перезапустим сервис и проверим результат его работы:
+
+.. code-block:: text
+
+    sudo systemctl start systemd-vconsole-setup.service
+    systemctl status systemd-vconsole-setup.service

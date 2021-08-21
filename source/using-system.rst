@@ -107,17 +107,11 @@
 
 Начиная с Fedora 30, по умолчанию вместо `устаревшего способа <https://fedoraproject.org/wiki/Changes/BootLoaderSpecByDefault>`__ с добавлением ядер через grubby, применяется :ref:`BLS <grub-bls-info>`, поэтому пересборка конфига больше не требуется.
 
-Пересборка конфига Grub 2 для legacy конфигураций:
+Пересборка конфига Grub 2 для `всех конфигураций <https://fedoraproject.org/wiki/Changes/UnifyGrubConfig>`__ Fedora:
 
 .. code-block:: text
 
     sudo grub2-mkconfig -o /boot/grub2/grub.cfg
-
-Пересборка конфигра Grub 2 для UEFI конфигураций:
-
-.. code-block:: text
-
-    sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
 
 .. index:: boot, grub, bls, loader
 .. _grub-bls-info:
@@ -336,20 +330,6 @@
     InputMethod=
 
 Изменения вступят в силу при следующей загрузке системы.
-
-.. index:: file system, fs, exfat, fuse
-.. _fedora-exfat:
-
-Почему я не могу использовать файловую систему exFAT в Fedora?
-===================================================================
-
-:ref:`Файловая система <fs-selection>` exFAT защищена множеством патентов Microsoft, поэтому она не может быть включена в ядро Linux и соответственно быть доступной в Fedora по умолчанию.
-
-Для того, чтобы использовать её, необходимо установить пакет **fuse-exfat** из :ref:`репозитория <3rd-repositories>` :ref:`RPM Fusion <rpmfusion>`:
-
-.. code-block:: text
-
-    sudo dnf install fuse fuse-exfat
 
 .. index:: systemd, failed to start modules, kernel, virtualbox
 .. _failed-to-start:
@@ -817,13 +797,13 @@ KDE предоставляет особый PAM модуль для автома
 
 .. code-block:: text
 
-    sudo localectl set-locale LANG=en_US.utf8
+    sudo localectl set-locale LANG=en_US.UTF-8
 
 Установим русскую локаль для системы:
 
 .. code-block:: text
 
-    sudo localectl set-locale LANG=ru_RU.utf8
+    sudo localectl set-locale LANG=ru_RU.UTF-8
 
 .. index:: locale, localization, language
 .. _application-locale:
@@ -835,7 +815,7 @@ KDE предоставляет особый PAM модуль для автома
 
 .. code-block:: text
 
-    LANG=en_US.utf8 foo-bar
+    LANG=en_US.UTF-8 foo-bar
 
 .. index:: timezone, time
 .. _application-timezone:

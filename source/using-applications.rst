@@ -25,6 +25,7 @@
 
     layers.acceleration.force-enabled = true
     webgl.force-enabled = true
+    gfx.webrender.enabled = true
     gfx.webrender.all = true
     dom.webgpu.enabled = true
 
@@ -38,17 +39,47 @@
 Как активировать аппаратное ускорение декодирования мультимедиа в браузерах?
 ===============================================================================
 
-В настоящее время аппаратное ускорение декодирования мультимедиа "из коробки" в GNU/Linux не поддерживается ни в одном браузере.
+Поддерживаемые веб-браузеры:
 
-В Mozilla Firefox оно реализовано только для Wayland-сеанса (в X11 не работает: `MZBZ#563206 <https://bugzilla.mozilla.org/show_bug.cgi?id=563206>`__ и `MZBZ#1210727 <https://bugzilla.mozilla.org/show_bug.cgi?id=1210727>`__).
+  * :ref:`Mozilla Firefox <hwaccel-firefox>`;
+  * :ref:`Chromium <hwaccel-chromium>`.
 
-В Google Chrome и Chromium частично реализовано, но отключено на этапе компиляции и без особых VA-API патчей недоступно. Репозиторий :ref:`RPM Fusion <rpmfusion>` предоставляет такую сборку Chromium. Для её установки необходимо подключить его и установить пакет **chromium-freeworld**:
+.. index:: firefox, chromium, chrome, hardware acceleration, vaapi
+.. _hwaccel-firefox:
+
+Как активировать аппаратное ускорение декодирования мультимедиа в Firefox?
+===============================================================================
+
+Начиная с версии `Firefox 77.0 <https://mastransky.wordpress.com/2020/06/03/firefox-on-fedora-finally-gets-va-api-on-wayland/>`__, аппаратное ускорение декодирования мультимедиа доступно для :ref:`сеанса Wayland <session-type>`, а с `Firefox 81.0 <https://mastransky.wordpress.com/2020/09/29/firefox-81-on-fedora-with-va-api-webrtc-and-x11/>`__ и для X11.
+
+Установим полный :ref:`набор кодеков <firefox-codecs>`, а также :ref:`VA-API драйверы <hwaccel-drivers>` из репозитория :ref:`RPM Fusion <rpmfusion>`.
+
+Откроем модуль конфигурации ``about:config`` и изменим значения следующих переменных (при отсутствии создадим):
+
+.. code-block:: text
+
+    widget.wayland-dmabuf-vaapi.enabled = true
+    media.ffmpeg.vaapi.enabled = true
+    media.ffmpeg.low-latency.enabled = true
+    media.navigator.mediadatadecoder_vpx_enabled = true
+
+Перезапустим браузер для вступления изменений в силу.
+
+.. index:: chromium, chrome, hardware acceleration, vaapi
+.. _hwaccel-chromium:
+
+Как активировать аппаратное ускорение декодирования мультимедиа в Chromium?
+===============================================================================
+
+В Google Chrome и Chromium аппаратное ускорение декодирования мультимедиа реализовано, но отключено в официальных сборках на этапе компиляции для GNU/Linux платформы.
+
+Репозиторий :ref:`RPM Fusion <rpmfusion>` предоставляет сборку Chromium с включённой поддержкой :ref:`VA-API <video-hwaccel>`. Для её установки активируем его, установим :ref:`VA-API драйверы <hwaccel-drivers>`, а также пакет **chromium-freeworld**:
 
 .. code-block:: text
 
     sudo dnf install chromium-freeworld
 
-Далее необходимо запустить его, зайти в ``chrome://flags`` и установить пункт **Hardware decoding** в значение **Enabled**, после чего перезапустить браузер.
+Далее в Chromium Freeworld зайдём в ``chrome://flags`` и установим для пункта **Hardware decoding** значение **Enabled**, после чего перезапустим браузер для вступления изменений в силу.
 
 .. index:: mpv, video player, hardware acceleration, vaapi, vdpau
 .. _video-hwaccel:
@@ -387,11 +418,11 @@ KDE Connect не видит мой смартфон. Как исправить?
 
     kbuildsycoca5 --noincremental
 
-.. index:: thunderbird, mail client, email, extension, translation, lightning, langpack
+.. index:: thunderbird, mail client, email, extension, translation, langpack
 .. _thunderbird-symlinks:
 
-В установленном Thunderbird не обновляется расширение Lightning и языковые пакеты. Как исправить?
-====================================================================================================
+В установленном Thunderbird не обновляются языковые пакеты. Как исправить?
+===============================================================================
 
 Проблема заключается в том, что системные расширения и пакеты с переводами должны копироваться в профиль пользователя при каждом обновлении клиента, но RPM пакетам `запрещено <https://docs.fedoraproject.org/en-US/packaging-guidelines/>`__ вносить любые изменения в домашние каталоги пользователей, поэтому они автоматически не обновляются.
 
@@ -402,16 +433,12 @@ KDE Connect не видит мой смартфон. Как исправить?
 .. code-block:: text
 
     rm -f ~/.thunderbird/*/extensions/langpack-ru@thunderbird.mozilla.org.xpi
-    rm -f ~/.thunderbird/*/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi
-    rm -f ~/.thunderbird/*/extensions/langpack-cal-ru@lightning.mozilla.org.xpi
 
 Создадим символические ссылки на месте удалённых XPI файлов:
 
 .. code-block:: text
 
     ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-ru@thunderbird.mozilla.org.xpi ~/.thunderbird/*/extensions/langpack-ru@thunderbird.mozilla.org.xpi
-    ln -s /usr/lib64/thunderbird/distribution/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi ~/.thunderbird/*/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi
-    ln -s /usr/lib64/thunderbird/distribution/extensions/langpack-cal-ru@lightning.mozilla.org.xpi ~/.thunderbird/*/extensions/langpack-cal-ru@lightning.mozilla.org.xpi
 
 Перезапустим Thunderbird для того, чтобы изменения вступили в силу.
 
@@ -748,13 +775,13 @@ Zip-архивы, созданные штатными средствами ОС 
 
     gio trash /path/to/file.txt
 
-.. index:: irc, certificate, login, hexchat, freenode, openssl, sasl
+.. index:: irc, certificate, login, hexchat, liberachat, openssl, sasl
 .. _irc-nopass:
 
-Можно ли входить в IRC сеть FreeNode без ввода пароля?
-=========================================================
+Можно ли входить в IRC сеть LiberaChat без ввода пароля?
+============================================================
 
-Да, сеть FreeNode с недавних пор поддерживает вход по ключам.
+Да, сеть LiberaChat поддерживает вход по ключам.
 
 Создадим каталог для хранения ключей HexChat:
 
@@ -762,23 +789,23 @@ Zip-архивы, созданные штатными средствами ОС 
 
     mkdir -p ~/.config/hexchat/certs
 
-Воспользуемся утилитой **openssl**, чтобы сгенерировать ключевую пару:
+Воспользуемся утилитой **openssl**, чтобы сгенерировать новую ключевую пару:
 
 .. code-block:: text
 
-    openssl req -x509 -new -newkey rsa:4096 -sha256 -days 1825 -nodes -out ~/.config/hexchat/certs/freenode.pem -keyout ~/.config/hexchat/certs/freenode.pem
+    openssl req -x509 -new -newkey rsa:4096 -sha256 -days 1825 -nodes -out ~/.config/hexchat/certs/liberachat.pem -keyout ~/.config/hexchat/certs/liberachat.pem
 
-Будут заданы стандартные вопросы. На них можно отвечать как угодно (сервер не проверяет валидность данных), за исключением **Common Name** (зарегистрированный ник в сети freenode) и **Email Address** (привязанный к учётной записи адрес электронной почты).
+Будут заданы стандартные вопросы. На них можно отвечать как угодно (сервер не проверяет валидность данных), за исключением **Common Name** (зарегистрированный ник в сети LiberaChat) и **Email Address** (привязанный к учётной записи адрес электронной почты).
 
 Установим корректный chmod:
 
 .. code-block:: text
 
-    chmod 0400 ~/.config/hexchat/certs/freenode.pem
+    chmod 0400 ~/.config/hexchat/certs/liberachat.pem
 
-Запустим HexChat, откроем список сетей и убедимся, что FreeNode называется **freenode** (в нижнем регистре; важно, чтобы имя файла сертификата соответствовало названию сети). Если это не так, нажмём **F2** и осуществим переименование.
+Запустим HexChat, откроем список сетей и убедимся, что FreeNode называется **liberachat** (в нижнем регистре; важно, чтобы имя файла сертификата соответствовало названию сети). Если это не так, нажмём **F2** и осуществим переименование.
 
-Зайдём в расширенные настройки сети freenode, укажем в качестве основного сервера ``irc.freenode.net/6697`` (остальные лучше вообще удалить), затем установим следующие параметры:
+Зайдём в расширенные настройки сети liberachat, укажем в качестве основного сервера ``irc.liberachat.net/6697`` (остальные лучше вообще удалить), затем установим следующие параметры:
 
   * флажок **соединяться только с выделенным сервером** -- включено;
   * флажок **использовать SSL для всех серверов в этой сети** -- включено;
@@ -788,7 +815,7 @@ Zip-архивы, созданные штатными средствами ОС 
 
 .. code-block:: text
 
-    openssl x509 -in ~/.config/hexchat/certs/freenode.pem -outform der | sha1sum -b | cut -d' ' -f1
+    openssl x509 -in ~/.config/hexchat/certs/freenode.pem -outform der | sha512sum -b | cut -d' ' -f1
 
 Подключимся к серверу, затем авторизуемся в системе:
 
@@ -1128,7 +1155,7 @@ Cгенерируем файл с контрольными суммами SHA2 (
 Что такое earlyoom и почему он установлен по умолчанию?
 ============================================================
 
-Начиная с Fedora 32, в редакции Workstation `предустановлен <https://pagure.io/fedora-workstation/issue/119>`__ пакет **earlyoom**, который представляет собой систему раннего предотвращения нехватки памяти из пользовательского режима (user-space OOM Killer).
+В Fedora 32 и 33, в редакции Workstation, `предустановлен <https://pagure.io/fedora-workstation/issue/119>`__ пакет **earlyoom**, который представляет собой систему раннего предотвращения нехватки памяти из пользовательского режима (user-space OOM Killer).
 
 В случаях, когда объём доступной оперативной памяти опустится ниже 4% или 400 МБ (в зависимости от того, что меньше), earlyoom принудительно завершит работу процесса, наиболее активно потребляющего память (имеющего самое высокое значение oom_score), не доводя систему до очистки системных буферов и вызова ядерного OOM Killer.
 
@@ -1162,9 +1189,15 @@ Cгенерируем файл с контрольными суммами SHA2 (
 
 .. code-block:: text
 
-    sudo systemctl disable earlyoom.service
+    sudo systemctl disable --now earlyoom.service
 
-Внимание! Если удалить пакет **earlyoom** в Fedora Workstation, он может быть :ref:`установлен заново <earlyoom-info>` из-за включённых по умолчанию :ref:`слабых зависимостей <dnf-weakdeps>`.
+Удалим пакет **earlyoom**:
+
+.. code-block:: text
+
+    sudo dnf remove earlyoom
+
+Внимание! Если удалить пакет **earlyoom** в Fedora 32 и 33, он может быть :ref:`установлен заново <earlyoom-info>` из-за включённых по умолчанию :ref:`слабых зависимостей <dnf-weakdeps>`.
 
 .. index:: oom, kernel, earlyoom, config
 .. _earlyoom-configure:
@@ -1188,6 +1221,47 @@ Cгенерируем файл с контрольными суммами SHA2 (
 
 Подробную документацию о всех поддерживаемых опциях можно найти в ``man earlyoom``.
 
+.. index:: oom, kernel, systemd, oomd
+.. _oomd-info:
+
+Что такое systemd-oomd?
+=============================
+
+Начиная с Fedora 34, во всех редакциях `активирован по умолчанию <https://fedoraproject.org/wiki/Changes/EnableSystemdOomd>`__ сервис **systemd-oomd**.
+
+Как и :ref:`earlyoom <earlyoom-info>`, он представляет собой систему раннего предотвращения нехватки памяти из пользовательского режима (user-space OOM Killer).
+
+.. index:: oom, kernel, systemd, oomd
+.. _oomd-disable:
+
+Как отключить systemd-oomd?
+===============================
+
+Отключим сервис **systemd-oomd** (не будет запускаться вместе с системой):
+
+.. code-block:: text
+
+    sudo systemctl disable --now systemd-oomd.service
+
+Заблокируем возможность его повторной активации и запуска:
+
+.. code-block:: text
+
+    sudo systemctl mask systemd-oomd.service
+
+.. index:: oom, kernel, systemd, oomd, earlyoom
+.. _oomd-revert:
+
+Как отключить systemd-oomd и вернуться к earlyoom?
+=====================================================
+
+Выполним два простых шага:
+
+  1. :ref:`отключим systemd-oomd <oomd-disable>`;
+  2. :ref:`активируем earlyoom <earlyoom-enable>`.
+
+Изменения вступят в силу немедленно.
+
 .. index:: kde, iso, dolphin, ark, udf, plasma, dolphin
 .. _kde-iso:
 
@@ -1197,3 +1271,87 @@ Cгенерируем файл с контрольными суммами SHA2 (
 Файлы образов ISO могут быть открыты архиватором Ark (``sudo dnf install ark``), если они не используют `файловую систему UDF <https://ru.wikipedia.org/wiki/Universal_Disk_Format>`__.
 
 В качестве альтернативного варианта можно установить утилиту Gnome Disks (``sudo dnf install gnome-disk-utility``), после чего пункт монтирования ISO-файла появится в контекстном меню по щелчку правой кнопки мыши в Dolphin. Таким способом можно быстро смонтировать образ с любой ФС.
+
+.. index:: kernel, memory, uresourced, gui, ram, cgroupsv2
+.. _uresourced-info:
+
+Что такое uresourced и почему он установлен по умолчанию?
+============================================================
+
+Начиная с Fedora 33, в редакции Workstation `предустановлен <https://pagure.io/fedora-workstation/issue/154>`__ пакет **uresourced**, который представляет собой систему повышения отзывчивости графической оболочки.
+
+По умолчанию данный сервис резервирует 250 МБ или 10% от общего объёма оперативной памяти (в зависимости от того, что меньше) при помощи cgroupsv2.
+
+В результате снижается вероятность возникновения ошибок страниц за счёт исключения возможности вытеснения страниц памяти, занимаемых графической оболочкой, что в итоге и приводит к повышению отзывчивости.
+
+.. index:: kernel, memory, uresourced, gui, ram, systemd
+.. _uresourced-enable:
+
+Как активировать uresourced?
+===============================
+
+Установим пакет **uresourced** (для версий, :ref:`отличных от Workstation <uresourced-info>`):
+
+.. code-block:: text
+
+    sudo dnf install uresourced
+
+Активируем его сервис (будет запускаться вместе с системой):
+
+.. code-block:: text
+
+    sudo systemctl enable --now uresourced.service
+
+.. index:: kernel, memory, uresourced, gui, ram, systemd
+.. _uresourced-disable:
+
+Как отключить uresourced?
+============================
+
+Отключим uresourced (не будет запускаться вместе с системой):
+
+.. code-block:: text
+
+    sudo systemctl disable uresourced.service
+
+Удалим пакет **uresourced**:
+
+.. code-block:: text
+
+    sudo dnf remove uresourced
+
+Внимание! Если удалить пакет **uresourced** в Fedora Workstation, он может быть :ref:`установлен заново <earlyoom-info>` из-за включённых по умолчанию :ref:`слабых зависимостей <dnf-weakdeps>`.
+
+.. index:: firefox, dialog, save, open, file, kde
+.. _firefox-kde-dialog:
+
+Как в Firefox включить диалог загрузки и сохранения файлов от KDE?
+======================================================================
+
+По умолчанию Firefox использует диалоги открытия и сохранения файлов из GTK, однако существует возможность активации родных от используемой рабочей среды, например KDE.
+
+Установим соответствующий пакет с порталом:
+
+.. code-block:: text
+
+    sudo dnf install xdg-desktop-portal-kde
+
+Откроем ``about:config`` и установим переменной ``widget.use-xdg-desktop-portal`` значение ``true``.
+
+Изменения вступят в силу немедленно.
+
+.. index:: text editor, text, editor, vim, nano
+.. _nano-to-vim:
+
+Как заменить текстовый редактор по умолчанию Nano на Vim?
+=============================================================
+
+Призведём замену пакета, предоставляющего общесистемную конфигурацию по умолчанию:
+
+.. code-block:: text
+
+    sudo dnf swap nano-default-editor vim-default-editor --allowerasing
+
+Данное действие затронет всех пользователей системы, явно не указавших :ref:`предпочитаемый текстовый редактор <editor-selection>` при помощи :ref:`переменных окружения <env-set>`.
+
+Осуществим новый вход в систему для вступления изменений в силу.

@@ -682,7 +682,7 @@ Java 12 (preview):
 Что такое модульные репозитории?
 ====================================
 
-Репозитории Fedora Modular позволяют установить в систему несколько различных версий определённых пакетов. Они включены по умолчанию начиная с Fedora 29.
+Репозитории Fedora Modular позволяют установить в систему несколько различных версий определённых пакетов. Они включены по умолчанию начиная с Fedora 29. Поддержка модулей объявлена устаревшей с Fedora 33.
 
 Вывод списка доступных модулей:
 
@@ -694,7 +694,7 @@ Java 12 (preview):
 
 .. code-block:: text
 
-    dnf module install nodejs:6/default
+    sudo dnf module install nodejs:6/default
 
 Более подробную информацию о модулях можно найти `здесь <https://docs.fedoraproject.org/en-US/modularity/using-modules/>`__.
 
@@ -704,19 +704,23 @@ Java 12 (preview):
 Мне не нужна поддержка модулей. Как их можно отключить?
 ===========================================================
 
-Отключение репозитория с модулями:
+Отключим все модули:
 
 .. code-block:: text
 
-    sudo dnf config-manager --set-disabled fedora-modular
-    sudo dnf config-manager --set-disabled updates-modular
+    sudo dnf module reset '*'
 
-Повторное включение поддержки модулей:
+Удалим пакет с модульными репозиториями:
 
 .. code-block:: text
 
-    sudo dnf config-manager --set-enabled fedora-modular
-    sudo dnf config-manager --set-enabled updates-modular
+    sudo dnf remove fedora-repos-modular
+
+Произведём синхронизацию:
+
+.. code-block:: text
+
+    sudo dnf distro-sync
 
 .. index:: dnf, updates, gui
 .. _dnf-gui-updates:
@@ -1227,3 +1231,41 @@ Dnf автоматически удаляет зависимости, не ну�
     countme=False
 
 Сохраним изменения в файле.
+
+.. index:: rpm, dnf, development, build, package, packaging
+.. _check-build-deps:
+
+Как вывести список пакетов, использующих при сборке определённый?
+====================================================================
+
+Однократно подключим репозитории с исходниками и при помощи dnf выведем список пакетов, для сборки которых необходим **foo-bar-devel**:
+
+.. code-block:: text
+
+    dnf repoquery -q  --releasever=rawhide --disablerepo="*" --qf="%{name}" --enablerepo=fedora-source --enablerepo=updates-source --enablerepo=updates-testing-source --archlist=src --whatrequires="foo-bar-devel"
+
+.. index:: rpm, dnf, package, remove
+.. _dnf-remove-packages-repository:
+
+Как удалить все пакеты из определённого репозитория?
+========================================================
+
+Удалим все пакеты, установленнные из репозитория **foo-bar**
+
+.. code-block:: text
+
+    sudo dnf repository-packages --installed foo-bar remove
+
+.. index:: rpm, dnf, package, remove, debug, debuginfo
+.. _dnf-remove-debuginfo:
+
+Как удалить все пакеты с отладочной информацией?
+====================================================
+
+Удалим все пакеты с отладочной информацией, установленные из основных репозиториев Fedora:
+
+.. code-block:: text
+
+    sudo dnf repository-packages --installed fedora-debuginfo remove
+    sudo dnf repository-packages --installed updates-debuginfo remove
+    sudo dnf repository-packages --installed updates-testing-debuginfo remove

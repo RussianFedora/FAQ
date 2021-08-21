@@ -83,7 +83,7 @@ FESCo -- `Fedora Engineering Steering Committee <https://docs.fedoraproject.org/
 Когда выходит следующий релиз?
 ===================================
 
-`Fedora 32 Schedule <https://fedorapeople.org/groups/schedule/f-32/f-32-key-tasks.html>`__.
+`Fedora 34 Schedule <https://fedorapeople.org/groups/schedule/f-34/f-34-key-tasks.html>`__.
 
 .. index:: difference, fedora, bleeding edge, distribution
 .. _differences:
@@ -237,9 +237,9 @@ RFRemix -- это ремикс оргинального дистрибутива
 
 Чаты в IRC:
 
-  * `#fedora <https://webchat.freenode.net/?channels=#fedora>`__ -- основной чат на английском языке;
-  * `#fedora-devel <https://webchat.freenode.net/?channels=#fedora-devel>`__ -- чат для разработчиков на английском языке;
-  * `#rpmfusion <https://webchat.freenode.net/?channels=#rpmfusion>`__ -- чат поддержки репозитория :ref:`RPM Fusion <rpmfusion>` на английском языке.
+  * `#fedora <https://web.libera.chat/?channels=#fedora>`__ -- основной чат на английском языке;
+  * `#fedora-devel <https://web.libera.chat/?channels=#fedora-devel>`__ -- чат для разработчиков на английском языке;
+  * `#rpmfusion <https://web.libera.chat/?channels=#rpmfusion>`__ -- чат поддержки репозитория :ref:`RPM Fusion <rpmfusion>` на английском языке.
 
 Чаты в XMPP:
 
@@ -247,6 +247,7 @@ RFRemix -- это ремикс оргинального дистрибутива
 
 Форумы:
 
+  * `Fedora Discussion на английском языке <https://discussion.fedoraproject.org/>`__;
   * `Fedora Ask на русском языке <https://ask.fedoraproject.org/ru/questions/>`__;
   * `Fedora Ask на английском языке <https://ask.fedoraproject.org/en/questions/>`__.
 
