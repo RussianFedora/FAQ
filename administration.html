@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Системное администрирование &#8212; Неофициальный FAQ по Fedora (версия 2021.08.03)</title>
+    <title>Системное администрирование &#8212; Неофициальный FAQ по Fedora (версия 2021.08.22)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -44,7 +44,10 @@
 <span id="id1"></span><h1>Системное администрирование<a class="headerlink" href="#administration" title="Ссылка на этот заголовок">¶</a></h1>
 <section id="kernelpm-once">
 <span id="index-0"></span><span id="id2"></span><h2>Как однократно передать параметр ядра?<a class="headerlink" href="#kernelpm-once" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для передачи параметра необходимо в меню загрузчика Grub 2 выбрать нужную строку и нажать клавишу <strong>E</strong> на клавиатуре для перехода к её редактированию, затем в конце строки, начинающейся с <strong>linux</strong>, через пробел дописать нужный параметр (или параметры), после чего нажать <strong>Ctrl + X</strong>, чтобы начать процесс загрузки.</p>
+<p>Однократная передача параметра ядра возможна только перед загрузкой ядра в память, то есть во время начала загрузки системы.</p>
+<p>В меню загрузчика Grub 2 выберем нужную загрузочную опцию и нажмем клавишу <strong>E</strong> на клавиатуре для перехода в режим редактирвоания.</p>
+<p>В открывшемся редакторе найдем строку, которая начинается со слова <strong>linux</strong>, переёдем в ее конец. Отступим пробел от последнего символа и добавим нужный параметр. Если параметров несколько, следует использовать пробел в качестве разделителя между ними.</p>
+<p>Для начала загрузки нажмем сочетание <strong>Ctrl + X</strong> на клавиатуре.</p>
 </section>
 <section id="kernelpm-perm">
 <span id="index-1"></span><span id="id3"></span><h2>Как мне задать параметр ядра для постоянного использования?<a class="headerlink" href="#kernelpm-perm" title="Ссылка на этот заголовок">¶</a></h2>

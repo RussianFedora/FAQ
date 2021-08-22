@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Установка системы &#8212; Неофициальный FAQ по Fedora (версия 2021.08.03)</title>
+    <title>Установка системы &#8212; Неофициальный FAQ по Fedora (версия 2021.08.22)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -159,7 +159,7 @@ sudo sysctl -w vm.watermark_scale_factor=1
 </section>
 <section id="trim">
 <span id="ssd-timer"></span><span id="index-18"></span><h2>Почему таймер TRIM отключён по умолчанию?<a class="headerlink" href="#trim" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Изначально <a class="reference internal" href="#ssd-tuning"><span class="std std-ref">таймер TRIM</span></a> активировался автоматически, если установка Fedora производилась на SSD накопитель, но через некоторое время обнаружилась серьёзная проблема с noname-накопителями. Их контроллеры делегировали поддержку процедуры TRIM, однако при её выполнении теряли все данные на носителе.</p>
+<p>Изначально <a class="reference internal" href="#ssd-tuning"><span class="std std-ref">таймер TRIM</span></a> активировался автоматически, если установка Fedora производилась на SSD накопитель, но через некоторое время обнаружилась серьёзная проблема с noname-накопителями. Их контроллеры декларировали поддержку процедуры TRIM, однако при её выполнении теряли все данные на носителе.</p>
 <p>Из-за достаточно большого количества жалоб на потерю данных с таких дешёвых контрафактных noname накопителей, созданных на базе простейших контроллеров от флешек и микросхем памяти из отбраковки, было решено таймер отключить.</p>
 </section>
 <section id="fonts-cleartype">
