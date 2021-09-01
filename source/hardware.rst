@@ -1612,3 +1612,29 @@ ICC профиль можно получить либо на сайте прои
     sudo fstrim -v /media/foo-bar
 
 Здесь **/media/foo-bar** -- это точка монтирования.
+
+.. index:: video, gpu, nvidia, drivers, third-party, suspend, hibernate, systemd
+.. _nvidia-hibernate:
+
+После обновления драйверов NVIDIA перестал работать спящий режим. Как исправить?
+===================================================================================
+
+Для корректной работы спящего режима и гибернации, проприетарные драйверы NVIDIA версии 470.xx и выше предоставляют несколько особых экспериментальных systemd-юнитов, которые в настоящее время не устанавливаются и не активируются автоматически.
+
+Установим пакет с systemd-юнитами:
+
+.. code-block:: text
+
+    sudo dnf install xorg-x11-drv-nvidia-power
+
+Активируем их:
+
+.. code-block:: text
+
+    sudo systemctl enable nvidia-{suspend,resume,hibernate}
+
+Произведём перезагрузку системы для вступления изменений в силу:
+
+.. code-block:: text
+
+    sudo systemctl reboot
