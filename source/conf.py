@@ -158,6 +158,13 @@ latex_elements = {
 \setromanfont{DejaVu Sans}
 \setsansfont{DejaVu Sans}
 \setmonofont{DejaVu Sans Mono}
+''',
+    'preamble': r'''
+\makeatletter
+\renewcommand{\sphinxtableofcontentshook}{%
+  \renewcommand*\l@section{\@dottedtocline{1}{1.5em}{3.2em}}%
+}
+\makeatother
 '''
 }
 
