@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# Fedora-Faq-Ru (c) 2018 - 2020, EasyCoding Team and contributors
 #
-# Fedora-Faq-Ru is licensed under a
-# Creative Commons Attribution-ShareAlike 4.0 International License.
+# SPDX-FileCopyrightText: 2018-2021 EasyCoding Team and contributors
 #
-# You should have received a copy of the license along with this
-# work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
+# SPDX-License-Identifier: CC-BY-SA-4.0
+#
 
 # All configuration values have a default; values that are commented out
 # serve to show the default.
