@@ -1489,3 +1489,11 @@ Qt-приложение, собранное Clang с LTO не запускает
 .. code-block:: text
 
     mock -r fedora-rawhide-x86_64 --scrub=all
+
+.. index:: root, permissions, library, shared library, so, ld preload, ld
+.. _root-check-bypass:
+
+Как обойти проверку приложением наличия прав суперпользователя?
+===================================================================
+
+См. `здесь <https://www.easycoding.org/2021/08/31/obxodim-proverku-na-nalichie-prav-superpolzovatelya.html>`__.
