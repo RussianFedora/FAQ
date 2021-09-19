@@ -59,6 +59,14 @@
     media.ffmpeg.low-latency.enabled = true
     media.navigator.mediadatadecoder_vpx_enabled = true
 
+В случае использования сеанса на базе Wayland ввиду `известной ошибки <https://bugzilla.mozilla.org/show_bug.cgi?id=1683808>`__ потребуется также отключить встроенную песочницу для декодировщика мультимедиа (это значительно снизит безопасность браузера):
+
+.. code-block:: text
+
+    media.ffvpx.enabled = false
+    media.rdd-ffvpx.enabled = false
+    media.rdd-vpx.enabled = false
+
 Перезапустим браузер для вступления изменений в силу.
 
 .. index:: chromium, chrome, hardware acceleration, vaapi
