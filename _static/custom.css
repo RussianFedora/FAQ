@@ -1,3 +1,9 @@
+/**
+ * SPDX-FileCopyrightText: 2018-2021 EasyCoding Team and contributors
+ *
+ * SPDX-License-Identifier: CC-BY-SA-4.0
+*/
+
 div.sphinxsidebar #searchbox input[type="submit"]
 {
     visibility: hidden;
