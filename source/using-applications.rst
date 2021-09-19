@@ -59,7 +59,7 @@
     media.ffmpeg.low-latency.enabled = true
     media.navigator.mediadatadecoder_vpx_enabled = true
 
-В случае использования сеанса на базе :ref:`Wayland <session-type>` ввиду `известной ошибки <https://bugzilla.mozilla.org/show_bug.cgi?id=1683808>`__ потребуется также отключить встроенную песочницу для декодировщика мультимедиа (это значительно снизит безопасность браузера):
+В случае использования сеанса на базе :ref:`Wayland <session-type>` ввиду `известной ошибки <https://bugzilla.mozilla.org/show_bug.cgi?id=1683808>`__ отключим встроенную песочницу для декодировщика мультимедиа (это значительно снизит безопасность браузера):
 
 .. code-block:: text
 
