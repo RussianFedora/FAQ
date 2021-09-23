@@ -566,7 +566,7 @@ Java 11:
 
     sudo dnf install java-11-openjdk
 
-Java 16:
+Java 17:
 
 .. code-block:: text
 
