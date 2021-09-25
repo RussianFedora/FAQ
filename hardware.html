@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Оборудование &#8212; Неофициальный FAQ по Fedora (версия 2021.09.23)</title>
+    <title>Оборудование &#8212; Неофициальный FAQ по Fedora (версия 2021.09.25)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -129,8 +129,8 @@
 <span id="index-5"></span><span id="id4"></span><h2>Как установить драйвер видеокарт NVIDIA для ноутбуков?<a class="headerlink" href="#nvidia-optimus" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Начиная с Fedora 31 и версии проприетарного драйвера 435.xx, технология NVIDIA Optimus поддерживается в полной мере «из коробки». Старые поколения видеокарт (ниже серии 700) работать не будут.</p>
 <p>Подключим репозитории <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установим <a class="reference internal" href="#nvidia-standard"><span class="std std-ref">стандартный драйвер NVIDIA</span></a>.</p>
-<p>Для запуска приложения на дискретном видеоадаптере передадим ему следующие <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменные окружения</span></a> <code class="docutils literal notranslate"><span class="pre">__NV_PRIME_RENDER_OFFLOAD=1</span> <span class="pre">__GLX_VENDOR_LIBRARY_NAME=nvidia</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia /path/to/game/launcher
+<p>Для запуска приложения на дискретном видеоадаптере передадим ему следующие <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменные окружения</span></a> <code class="docutils literal notranslate"><span class="pre">__NV_PRIME_RENDER_OFFLOAD=1</span> <span class="pre">__VK_LAYER_NV_optimus=NVIDIA_only</span> <span class="pre">__GLX_VENDOR_LIBRARY_NAME=nvidia</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>__NV_PRIME_RENDER_OFFLOAD=1 __VK_LAYER_NV_optimus=NVIDIA_only __GLX_VENDOR_LIBRARY_NAME=nvidia /path/to/game/launcher
 </pre></div>
 </div>
 <p>Здесь вместо <strong>/path/to/game/launcher</strong> укажем путь к бинарнику, который требуется запустить.</p>
@@ -672,7 +672,7 @@ chmod +x Unigine_Superposition-1.1.run
 <p>Актуальные версии клиента Steam <a class="reference external" href="https://support.steampowered.com/kb_article.php?ref=6316-GJKC-7437">поддерживают</a> технологию NVIDIA Optimus «из коробки» если установлен <a class="reference internal" href="#nvidia-optimus"><span class="std std-ref">проприетарный драйвер Bumblebee</span></a>.</p>
 <p>Чтобы запустить игру на дискретной видеокарте, нажмём <strong>правой кнопкой мыши</strong> по нужной игре в Библиотеке, выберем пункт контекстного меню <strong>Свойства</strong>, нажмём кнопку <strong>Установить параметры запуска</strong> и в открывшемся окне введём команду.</p>
 <p>Для <a class="reference internal" href="#nvidia-optimus"><span class="std std-ref">современных драйверов Optimus</span></a>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia %command%
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>__NV_PRIME_RENDER_OFFLOAD=1 __VK_LAYER_NV_optimus=NVIDIA_only __GLX_VENDOR_LIBRARY_NAME=nvidia %command%
 </pre></div>
 </div>
 <p>Сохраним изменения, нажав <strong>OK</strong> и <strong>Закрыть</strong>.</p>
