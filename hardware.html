@@ -1003,8 +1003,7 @@ headset_head_unit: Headset Head Unit (HSP/HFP)
 </pre></div>
 </div>
 <p>Перезапустим сервер PulseAudio:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pulseaudio -k
-pulseaudio -D
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl --user restart pulseaudio.service
 </pre></div>
 </div>
 <p>Теперь в настройках используемой графической среды, после подключения наушников, выберем необходимый кодек.</p>
