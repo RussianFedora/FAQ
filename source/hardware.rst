@@ -1456,8 +1456,7 @@ ICC профиль можно получить либо на сайте прои
 
 .. code-block:: text
 
-    pulseaudio -k
-    pulseaudio -D
+    systemctl --user restart pulseaudio.service
 
 Теперь в настройках используемой графической среды, после подключения наушников, выберем необходимый кодек.
 
