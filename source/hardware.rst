@@ -1471,7 +1471,17 @@ ICC профиль можно получить либо на сайте прои
 
 В репозиториях Fedora модули звукового сервера PipeWire для работы с Bluetooth собраны без поддержки AAC, aptX, aptX HD и LDAC ввиду патентных ограничений.
 
-Для активации поддержки кодеков высокого качества необходимо :ref:`переключиться на PulseAudio <pipewire-revert>` и произвести :ref:`установку необходимых пакетов <bluetooth-codecs-pulseaudio>`.
+Подключим репозиторий :ref:`RPM Fusion <rpmfusion>` и установим пакет **pipewire-codec-aptx**:
+
+.. code-block:: text
+
+    sudo dnf install pipewire-codec-aptx
+
+Перезапустим сервер PipeWire:
+
+.. code-block:: text
+
+    systemctl --user restart pipewire.service pipewire-pulse.service pipewire-media-session.service
 
 .. index:: alsa, pulseaudio, audio, 5.1, 7.1, channel
 .. _audio-analog-multichannel:
