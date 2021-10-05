@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Оборудование &#8212; Неофициальный FAQ по Fedora (версия 2021.09.30)</title>
+    <title>Оборудование &#8212; Неофициальный FAQ по Fedora (версия 2021.10.05)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -1013,7 +1013,14 @@ pulseaudio -D
 <section id="bluetooth-pipewire">
 <span id="bluetooth-codecs-pipewire"></span><span id="index-67"></span><h2>Как включить поддержку Bluetooth-кодеков высокого качества в PipeWire?<a class="headerlink" href="#bluetooth-pipewire" title="Ссылка на этот заголовок">¶</a></h2>
 <p>В репозиториях Fedora модули звукового сервера PipeWire для работы с Bluetooth собраны без поддержки AAC, aptX, aptX HD и LDAC ввиду патентных ограничений.</p>
-<p>Для активации поддержки кодеков высокого качества необходимо <a class="reference internal" href="#pipewire-revert"><span class="std std-ref">переключиться на PulseAudio</span></a> и произвести <a class="reference internal" href="#bluetooth-codecs-pulseaudio"><span class="std std-ref">установку необходимых пакетов</span></a>.</p>
+<p>Подключим репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установим пакет <strong>pipewire-codec-aptx</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install pipewire-codec-aptx
+</pre></div>
+</div>
+<p>Перезапустим сервер PipeWire:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl --user restart pipewire.service pipewire-pulse.service pipewire-media-session.service
+</pre></div>
+</div>
 </section>
 <section id="audio-analog-multichannel">
 <span id="index-68"></span><span id="id40"></span><h2>Как настроить многоканальный аналоговый аудиовыход?<a class="headerlink" href="#audio-analog-multichannel" title="Ссылка на этот заголовок">¶</a></h2>
