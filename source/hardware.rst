@@ -167,7 +167,6 @@
 
 Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
 
-
 .. index:: video, gpu, repository, nvidia, drivers, third-party, optimus
 .. _nvidia-optimus:
 
@@ -176,7 +175,7 @@
 
 Начиная с Fedora 31 и версии проприетарного драйвера 435.xx, технология NVIDIA Optimus поддерживается в полной мере "из коробки". Устаревшие поколения видеокарт (ниже серии 700) работать не будут.
 
-Подключим репозитории :ref:`RPM Fusion <rpmfusion>` и установим :ref:`стандартный драйвер NVIDIA <nvidia-standard>`.
+Подключим репозитории :ref:`RPM Fusion <rpmfusion>` и установим :ref:`стандартный драйвер NVIDIA <nvidia-drivers>`.
 
 Для запуска приложения на дискретном видеоадаптере передадим ему следующие :ref:`переменные окружения <env-set>` ``__NV_PRIME_RENDER_OFFLOAD=1 __VK_LAYER_NV_optimus=NVIDIA_only __GLX_VENDOR_LIBRARY_NAME=nvidia``:
 
