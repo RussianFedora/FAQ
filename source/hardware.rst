@@ -43,7 +43,7 @@
 
 Драйверы `CUDA <https://ru.wikipedia.org/wiki/CUDA>`__ входят в комплект :ref:`основных проприетарных драйверов <nvidia-drivers>`, хотя и не устанавливаются по умолчанию:
 
-  * :ref:`современные поколения видеокарт (800, 900, 1000, 1600, 2000 и 3000) <nvidia-cuda-generic>`;
+  * :ref:`современные поколения видеокарт (800, 900, 1000, 1600, 2000 и 3000) <nvidia-cuda-standard>`;
   * :ref:`более старые поколения видеокарт (600, 700) <nvidia-cuda-legacy-470>`;
   * :ref:`устаревшие поколения видеокарт (400, 500) <nvidia-cuda-legacy-390>`.
 
@@ -189,7 +189,7 @@
 Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
 
 .. index:: video, gpu, repository, nvidia, drivers, third-party, cuda
-.. _nvidia-cuda-generic:
+.. _nvidia-cuda-standard:
 
 Как установить драйвер CUDA для современных видеокарт NVIDIA?
 =================================================================
