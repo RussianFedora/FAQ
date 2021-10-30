@@ -90,8 +90,8 @@
 .. index:: video, gpu, repository, nvidia, drivers, third-party, legacy
 .. _nvidia-legacy-470:
 
-Как установить стандартный драйвер видеокарт NVIDIA для старых видеокарт?
-============================================================================
+Как установить стандартный драйвер видеокарт NVIDIA для более старых видеокарт?
+==================================================================================
 
 Подключим репозитории :ref:`RPM Fusion <rpmfusion>`.
 
@@ -174,7 +174,7 @@
 Как установить драйвер видеокарт NVIDIA для ноутбуков?
 =========================================================
 
-Начиная с Fedora 31 и версии проприетарного драйвера 435.xx, технология NVIDIA Optimus поддерживается в полной мере "из коробки". Старые поколения видеокарт (ниже серии 700) работать не будут.
+Начиная с Fedora 31 и версии проприетарного драйвера 435.xx, технология NVIDIA Optimus поддерживается в полной мере "из коробки". Устаревшие поколения видеокарт (ниже серии 700) работать не будут.
 
 Подключим репозитории :ref:`RPM Fusion <rpmfusion>` и установим :ref:`стандартный драйвер NVIDIA <nvidia-standard>`.
 
@@ -208,7 +208,25 @@
 
     sudo dnf install xorg-x11-drv-nvidia-cuda-libs.i686
 
-.. index:: video, gpu, repository, nvidia, drivers, third-party, cuda
+.. index:: video, gpu, repository, nvidia, drivers, third-party, cuda, legacy
+.. _nvidia-cuda-legacy-470:
+
+Как установить драйвер CUDA для более старых видеокарт NVIDIA?
+==================================================================
+
+Установим проприетарные драйверы NVIDIA для :ref:`более старых поколений видеокарт <nvidia-legacy-470>`.
+
+.. code-block:: text
+
+    sudo dnf install xorg-x11-drv-nvidia-470xx-cuda xorg-x11-drv-nvidia-470xx-cuda-libs
+
+Если используется 64-битная ОС, но требуется запускать ещё и 32-битные версии ПО, использующие CUDA для работы, установим также 32-битный драйвер:
+
+.. code-block:: text
+
+    sudo dnf install xorg-x11-drv-nvidia-470xx-cuda-libs.i686
+
+.. index:: video, gpu, repository, nvidia, drivers, third-party, cuda, legacy
 .. _nvidia-cuda-legacy-390:
 
 Как установить драйвер CUDA для устаревших видеокарт NVIDIA?
