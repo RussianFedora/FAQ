@@ -43,8 +43,9 @@
 
 Драйверы `CUDA <https://ru.wikipedia.org/wiki/CUDA>`__ входят в комплект :ref:`основных проприетарных драйверов <nvidia-drivers>`, хотя и не устанавливаются по умолчанию:
 
-  * :ref:`современные поколения видеокарт (700, 800, 900, 1000, 1600 и 2000) <nvidia-cuda-generic>`;
-  * :ref:`более старые поколения видеокарт (400, 500, 600) <nvidia-cuda-legacy-390>`.
+  * :ref:`современные поколения видеокарт (800, 900, 1000, 1600, 2000 и 3000) <nvidia-cuda-generic>`;
+  * :ref:`более старые поколения видеокарт (600, 700) <nvidia-cuda-legacy-470>`;
+  * :ref:`устаревшие поколения видеокарт (400, 500) <nvidia-cuda-legacy-390>`.
 
 .. index:: video, gpu, repository, nvidia, drivers, third-party
 .. _nvidia-standard:
