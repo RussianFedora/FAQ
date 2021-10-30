@@ -87,11 +87,51 @@
 
 Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
 
-.. index:: video, gpu, repository, nvidia, drivers, third-party
-.. _nvidia-legacy-390:
+.. index:: video, gpu, repository, nvidia, drivers, third-party, legacy
+.. _nvidia-legacy-470:
 
 Как установить стандартный драйвер видеокарт NVIDIA для старых видеокарт?
 ============================================================================
+
+Подключим репозитории :ref:`RPM Fusion <rpmfusion>`.
+
+Загрузим все обновления системы:
+
+.. code-block:: text
+
+    sudo dnf upgrade --refresh
+
+Установим стандартные драйверы из LTS ветки 470.xx для старых видеокарт:
+
+.. code-block:: text
+
+    sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia-470xx xorg-x11-drv-nvidia-470xx xorg-x11-drv-nvidia-470xx-libs nvidia-settings-470xx
+
+Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:
+
+.. code-block:: text
+
+    sudo dnf install xorg-x11-drv-nvidia-470xx-libs.i686
+
+Подождём 3-5 минут и убедимся, что модули были успешно собраны:
+
+.. code-block:: text
+
+    sudo akmods --force
+
+Пересоберём :ref:`образ initrd <initrd-rebuild>`:
+
+.. code-block:: text
+
+    sudo dracut --force
+
+Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
+
+.. index:: video, gpu, repository, nvidia, drivers, third-party, legacy
+.. _nvidia-legacy-390:
+
+Как установить стандартный драйвер видеокарт NVIDIA для устаревших видеокарт?
+=================================================================================
 
 Подключим репозитории :ref:`RPM Fusion <rpmfusion>`.
 
@@ -126,6 +166,7 @@
     sudo dracut --force
 
 Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
+
 
 .. index:: video, gpu, repository, nvidia, drivers, third-party, optimus
 .. _nvidia-optimus:
