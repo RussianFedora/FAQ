@@ -670,3 +670,19 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
     sudo systemctl start systemd-vconsole-setup.service
     systemctl status systemd-vconsole-setup.service
+
+.. index:: pipewire, wireplumber, bug, issue, workaround
+.. _wireplumber-no-sound:
+
+После обновления до Fedora 35 отсутствует звук. Как исправить?
+=================================================================
+
+Отсутствие усстройств вывода звука после обновления до Fedora 35 при использовании звукового сервера PipeWire -- это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=2016253>`__, связанная с `переходом на WirePlumber <https://fedoraproject.org/wiki/Changes/WirePlumber>`__.
+
+Решим её активацией необходимого systemd-сервиса:
+
+.. code-block:: text
+
+    systemctl --user enable --now wireplumber.service
+
+Изменения вступят в силу немедленно.
