@@ -465,6 +465,15 @@ systemctl status systemd-vconsole-setup.service
 </pre></div>
 </div>
 </section>
+<section id="fedora-35">
+<span id="wireplumber-no-sound"></span><span id="index-26"></span><h2>После обновления до Fedora 35 отсутствует звук. Как исправить?<a class="headerlink" href="#fedora-35" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Отсутствие усстройств вывода звука после обновления до Fedora 35 при использовании звукового сервера PipeWire – это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=2016253">известная проблема</a>, связанная с <a class="reference external" href="https://fedoraproject.org/wiki/Changes/WirePlumber">переходом на WirePlumber</a>.</p>
+<p>Решим её активацией необходимого systemd-сервиса:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl --user enable --now wireplumber.service
+</pre></div>
+</div>
+<p>Изменения вступят в силу немедленно.</p>
+</section>
 </section>
 
 
@@ -523,6 +532,7 @@ systemctl status systemd-vconsole-setup.service
 <li class="toctree-l2"><a class="reference internal" href="#btrfs">Нужно ли выполнять балансировку раздела с BTRFS?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#btrfs-balancing-execute">Как произвести балансировку раздела с BTRFS?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#failed-to-start-setup-virtual-console">Как исправить ошибку Failed to start Setup Virtual Console?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora-35">После обновления до Fedora 35 отсутствует звук. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
