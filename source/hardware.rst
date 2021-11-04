@@ -111,7 +111,7 @@
 
 .. code-block:: text
 
-    sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia-470xx xorg-x11-drv-nvidia-470xx xorg-x11-drv-nvidia-470xx-libs nvidia-settings-470xx
+    sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia-470xx xorg-x11-drv-nvidia-470xx xorg-x11-drv-nvidia-470xx-libs xorg-x11-drv-nvidia-470xx-power nvidia-settings-470xx
 
 Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:
 
@@ -130,6 +130,12 @@
 .. code-block:: text
 
     sudo dracut --force
+
+Активируем systemd-юниты для корректной работы ждущего и спящего режимов:
+
+.. code-block:: text
+
+    sudo systemctl enable nvidia-{suspend,resume,hibernate}
 
 Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
 
