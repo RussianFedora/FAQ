@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Оборудование &#8212; Неофициальный FAQ по Fedora (версия 2021.10.30)</title>
+    <title>Оборудование &#8212; Неофициальный FAQ по Fedora (версия 2021.11.04)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -85,7 +85,7 @@
 </pre></div>
 </div>
 <p>Установим стандартные драйверы:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-power nvidia-settings
 </pre></div>
 </div>
 <p>Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:</p>
@@ -100,6 +100,14 @@
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut --force
 </pre></div>
 </div>
+<p>Активируем systemd-юниты для корректной работы ждущего и спящего режимов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable nvidia-{suspend,resume,hibernate}
+</pre></div>
+</div>
+<p>Произведём перезагрузку системы для вступления изменений в силу:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
 <p>Более подробная информация доступна <a class="reference external" href="https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html">здесь</a>.</p>
 </section>
 <section id="nvidia-legacy-470">
@@ -110,7 +118,7 @@
 </pre></div>
 </div>
 <p>Установим стандартные драйверы из LTS ветки 470.xx для более старых видеокарт:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia-470xx xorg-x11-drv-nvidia-470xx xorg-x11-drv-nvidia-470xx-libs nvidia-settings-470xx
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia-470xx xorg-x11-drv-nvidia-470xx xorg-x11-drv-nvidia-470xx-libs xorg-x11-drv-nvidia-470xx-power nvidia-settings-470xx
 </pre></div>
 </div>
 <p>Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:</p>
@@ -123,6 +131,14 @@
 </div>
 <p>Пересоберём <a class="reference internal" href="using-system.html#initrd-rebuild"><span class="std std-ref">образ initrd</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut --force
+</pre></div>
+</div>
+<p>Активируем systemd-юниты для корректной работы ждущего и спящего режимов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable nvidia-{suspend,resume,hibernate}
+</pre></div>
+</div>
+<p>Произведём перезагрузку системы для вступления изменений в силу:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
 </pre></div>
 </div>
 <p>Более подробная информация доступна <a class="reference external" href="https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html">здесь</a>.</p>
@@ -148,6 +164,10 @@
 </div>
 <p>Пересоберём <a class="reference internal" href="using-system.html#initrd-rebuild"><span class="std std-ref">образ initrd</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut --force
+</pre></div>
+</div>
+<p>Произведём перезагрузку системы для вступления изменений в силу:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
 </pre></div>
 </div>
 <p>Более подробная информация доступна <a class="reference external" href="https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html">здесь</a>.</p>
@@ -1144,22 +1164,6 @@ sudo chmod 0644 /etc/udev/50-usb-trim.rules
 </div>
 <p>Здесь <strong>/media/foo-bar</strong> – это точка монтирования.</p>
 </section>
-<section id="nvidia-hibernate">
-<span id="index-76"></span><span id="id47"></span><h2>После обновления драйверов NVIDIA перестал работать спящий режим. Как исправить?<a class="headerlink" href="#nvidia-hibernate" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для корректной работы спящего режима и гибернации, <a class="reference internal" href="#nvidia-drivers"><span class="std std-ref">проприетарные драйверы NVIDIA</span></a> версии 470.xx и выше предоставляют несколько особых экспериментальных systemd-юнитов, которые в настоящее время не устанавливаются и не активируются автоматически.</p>
-<p>Установим пакет с systemd-юнитами:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install xorg-x11-drv-nvidia-power
-</pre></div>
-</div>
-<p>Активируем их:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable nvidia-{suspend,resume,hibernate}
-</pre></div>
-</div>
-<p>Произведём перезагрузку системы для вступления изменений в силу:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
-</pre></div>
-</div>
-</section>
 </section>
 
 
@@ -1266,7 +1270,6 @@ sudo chmod 0644 /etc/udev/50-usb-trim.rules
 <li class="toctree-l2"><a class="reference internal" href="#performance-profiles">Как увеличить производительность системы?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#trim-usb">Как включить поддержку TRIM на USB устройствах?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#trim-usb-manual">Как вручную выполнить TRIM на USB устройстве?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#nvidia-hibernate">После обновления драйверов NVIDIA перестал работать спящий режим. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Разработка и сборка пакетов</a></li>
