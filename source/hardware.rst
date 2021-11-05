@@ -1707,3 +1707,23 @@ ICC профиль можно получить либо на сайте прои
     sudo fstrim -v /media/foo-bar
 
 Здесь **/media/foo-bar** -- это точка монтирования.
+
+.. index:: pipewire, wireplumber, audio, sound, session, manager
+.. _pipewire-wireplumber:
+
+Как заменить менеджер сессий PipeWire с WirePlumber на альтернативный?
+=========================================================================
+
+Начиная `с Fedora 35 <https://fedoraproject.org/wiki/Changes/WirePlumber>`__, в качестве менеджера сессий PipeWire используется WirePlumber.
+
+При необходимости заменим его любой другой совместимой реализацией, например стандартным **pipewire-media-session**:
+
+.. code-block:: text
+
+    sudo dnf swap wireplumber pipewire-media-session
+
+Произведём перезагрузку для вступления изменений в силу:
+
+.. code-block:: text
+
+    sudo systemctl reboot
