@@ -683,6 +683,6 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
 .. code-block:: text
 
-    systemctl --user enable --now wireplumber.service
+    systemctl --global enable --now wireplumber.service
 
 Изменения вступят в силу немедленно.
