@@ -1281,3 +1281,21 @@ Dnf автоматически удаляет зависимости, не ну�
     sudo dnf repository-packages --installed fedora-debuginfo remove
     sudo dnf repository-packages --installed updates-debuginfo remove
     sudo dnf repository-packages --installed updates-testing-debuginfo remove
+
+.. index:: dnf, download, package
+.. _dnf-parallel-downloads:
+
+Как изменить количество одновременно загружаемых пакетов?
+=============================================================
+
+Откроем файл ``/etc/dnf/dnf.conf`` в текстовом редакторе:
+
+.. code-block:: text
+
+    sudoedit /etc/dnf/dnf.conf
+
+Добавим переменную ``max_parallel_downloads`` с необходимым нам значением, например **10** (по умолчанию *3*, максимум *20*):
+
+.. code-block:: text
+
+    max_parallel_downloads=10
