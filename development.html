@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2021.11.17)</title>
+    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2021.11.26)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -70,7 +70,7 @@
 </div>
 <p>Перейдём в каталог с загруженными исходниками и переключимся на ветку для конкретной версии Fedora (если нужна версия из Rawhide – следует использовать <strong>master</strong>):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
-fedpkg switch-branch f34
+fedpkg switch-branch f35
 </pre></div>
 </div>
 <p>Внесём свои правки, сделаем коммит в репозиторий:</p>
@@ -98,12 +98,12 @@ git commit -m &quot;Description of our changes.&quot;
 </section>
 <section id="koji-rpm-fusion">
 <span id="rpmfusion-override"></span><span id="index-6"></span><h2>Как переопределить пакет в Koji репозитория RPM Fusion?<a class="headerlink" href="#koji-rpm-fusion" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Создание build override для репозитория f34-free:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion tag f34-free-override foo-bar-1.0-1.fc34
+<p>Создание build override для репозитория f35-free:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion tag f35-free-override foo-bar-1.0-1.fc35
 </pre></div>
 </div>
-<p>Удаление build override для репозитория f34-free:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion untag f34-free-override foo-bar-1.0-1.fc34
+<p>Удаление build override для репозитория f35-free:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion untag f35-free-override foo-bar-1.0-1.fc35
 </pre></div>
 </div>
 </section>
@@ -745,7 +745,7 @@ cd foo-bar
 </div>
 <p>Самым простым способом загрузки является импорт готового SRPM файла, поэтому выполним именно эту процедуру:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch master
-fedpkg import /путь/к/foo-bar-1.0-1.fc34.src.rpm
+fedpkg import /путь/к/foo-bar-1.0-1.fc35.src.rpm
 </pre></div>
 </div>
 <p>Проверим внесённые изменения и если всё верно, жмём <strong>Q</strong> для выхода. Зафиксируем наши изменения:</p>
@@ -753,7 +753,7 @@ fedpkg import /путь/к/foo-bar-1.0-1.fc34.src.rpm
 </pre></div>
 </div>
 <p>При необходимости внесём изменения и в ветки поддерживаемых релизов Fedora:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch f34
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch f35
 git merge master
 </pre></div>
 </div>
@@ -771,7 +771,7 @@ fedpkg build
 </pre></div>
 </div>
 <p>При необходимости соберём и для других поддерживаемых релизов Fedora:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch f34
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch f35
 fedpkg build
 </pre></div>
 </div>
@@ -994,11 +994,11 @@ end
 </section>
 <section id="mock-cleanup">
 <span id="index-65"></span><span id="id45"></span><h2>Как очистить все кэши mock?<a class="headerlink" href="#mock-cleanup" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Выполним полную очистку кэшей <a class="reference internal" href="#build-package"><span class="std std-ref">mock</span></a> для цели по умолчанию:</p>
+<p>Выполним очистку сборочного каталога <a class="reference internal" href="#build-package"><span class="std std-ref">mock</span></a> для цели по умолчанию:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mock --scrub=all
 </pre></div>
 </div>
-<p>Выполним полную очистку кэшей mock для <strong>fedora-rawhide-x86_64</strong>:</p>
+<p>Выполним очистку сборочного каталога, а также кэша загруженных пакетов mock для <strong>fedora-rawhide-x86_64</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mock -r fedora-rawhide-x86_64 --scrub=all
 </pre></div>
 </div>
