@@ -456,9 +456,9 @@ Dnf сохраняет старые ядра. Это нормально?
 
 .. code-block:: text
 
-    sudo dnf remove kernel-4.10.14* kernel-core-4.10.14* kernel-modules-4.10.14* kernel-devel-4.10.14*
+    sudo dnf remove kernel-5.15.5* kernel-core-5.15.5* kernel-modules-5.15.5* kernel-devel-5.15.5*
 
-Здесь **4.10.14** -- это версия удаляемого ядра.
+Здесь **5.15.5** -- это версия удаляемого ядра.
 
 .. index:: repository, third-party
 .. _3rd-repositories:
