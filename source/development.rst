@@ -64,7 +64,7 @@
 .. code-block:: text
 
     cd foo-bar
-    fedpkg switch-branch f34
+    fedpkg switch-branch f35
 
 Внесём свои правки, сделаем коммит в репозиторий:
 
@@ -107,17 +107,17 @@
 Как переопределить пакет в Koji репозитория RPM Fusion?
 ===========================================================
 
-Создание build override для репозитория f34-free:
+Создание build override для репозитория f35-free:
 
 .. code-block:: text
 
-    koji-rpmfusion tag f34-free-override foo-bar-1.0-1.fc34
+    koji-rpmfusion tag f35-free-override foo-bar-1.0-1.fc35
 
-Удаление build override для репозитория f34-free:
+Удаление build override для репозитория f35-free:
 
 .. code-block:: text
 
-    koji-rpmfusion untag f34-free-override foo-bar-1.0-1.fc34
+    koji-rpmfusion untag f35-free-override foo-bar-1.0-1.fc35
 
 .. index:: git, gmail, mail
 .. _git-gmail:
@@ -1084,7 +1084,7 @@
 .. code-block:: text
 
     fedpkg switch-branch master
-    fedpkg import /путь/к/foo-bar-1.0-1.fc34.src.rpm
+    fedpkg import /путь/к/foo-bar-1.0-1.fc35.src.rpm
 
 Проверим внесённые изменения и если всё верно, жмём **Q** для выхода. Зафиксируем наши изменения:
 
@@ -1096,7 +1096,7 @@
 
 .. code-block:: text
 
-    fedpkg switch-branch f34
+    fedpkg switch-branch f35
     git merge master
 
 Отправим изменения на сервер:
@@ -1123,7 +1123,7 @@
 
 .. code-block:: text
 
-    fedpkg switch-branch f34
+    fedpkg switch-branch f35
     fedpkg build
 
 .. index:: fedora, package, build, fedpkg, scratch
