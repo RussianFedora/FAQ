@@ -1498,8 +1498,8 @@ Qt-приложение, собранное Clang с LTO не запускает
 
 См. `здесь <https://www.easycoding.org/2021/08/31/obxodim-proverku-na-nalichie-prav-superpolzovatelya.html>`__.
 
-.. index:: rpm, architecture, rpmbuild, excludearch
-.. _rpm-exclude-arch:
+.. index:: rpm, architecture, rpmbuild, excludearch, package
+.. _rpmbuild-exclude-arch:
 
 Как исключить определённую архитектуру из сборки пакета?
 ============================================================
@@ -1512,8 +1512,8 @@ Qt-приложение, собранное Clang с LTO не запускает
 
     ExcludeArch: %{arm} %{ix86}
 
-.. index:: rpm, architecture, rpmbuild, exclusivearch
-.. _rpm-exclusive-arch:
+.. index:: rpm, architecture, rpmbuild, exclusivearch, package
+.. _rpmbuild-exclusive-arch:
 
 Как собрать пакет только для определённой архитектуры?
 =========================================================
