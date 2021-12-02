@@ -1497,3 +1497,17 @@ Qt-приложение, собранное Clang с LTO не запускает
 ===================================================================
 
 См. `здесь <https://www.easycoding.org/2021/08/31/obxodim-proverku-na-nalichie-prav-superpolzovatelya.html>`__.
+
+.. index:: rpm, architecture, rpmbuild, excludearch
+.. _rpm-exclude-arch:
+
+Как исключить определённую архитектуру из сборки пакета?
+============================================================
+
+Для исключения указанных архитектур из сборки, добавим в SPEC директиву ``ExcludeArch``.
+
+В качестве примера исключим 32-битные ARM и x86:
+
+.. code-block:: text
+
+    ExcludeArch: %{arm} %{ix86}
