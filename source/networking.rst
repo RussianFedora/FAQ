@@ -711,6 +711,7 @@ DHCP сервер провайдера способен выдавать пом�
     sudo sysctl -w net.ipv4.conf.all.forwarding=1
     sudo sysctl -w net.ipv6.conf.all.forwarding=1
     sudo firewall-cmd --zone=public --add-masquerade
+    firewall-cmd --zone public --add-forward
     
 Отредактируем файл конфигурации данного клиента, дописав в ``AllowedIPs`` подсеть через запятую (однако если там уже указано **0.0.0.0/0**, то ничего более делать не требуется).
 
@@ -728,6 +729,7 @@ DHCP сервер провайдера способен выдавать пом�
 
     sudo bash -c "echo -e \"net.ipv4.conf.all.forwarding=1\nnet.ipv6.conf.all.forwarding=1\" > /etc/sysctl.d/99-wireguard.conf"
     sudo firewall-cmd --zone=public --add-masquerade --permanent
+    firewall-cmd --permanent --zone public --add-forward
 
 Перезагрузим настройки Firewalld:
 
