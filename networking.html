@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Сетевое администрирование &#8212; Неофициальный FAQ по Fedora (версия 2021.12.02)</title>
+    <title>Сетевое администрирование &#8212; Неофициальный FAQ по Fedora (версия 2021.12.16)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -473,6 +473,7 @@ AllowedIPs = 10.9.0.2/32, 192.168.1.0/24
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo sysctl -w net.ipv4.conf.all.forwarding=1
 sudo sysctl -w net.ipv6.conf.all.forwarding=1
 sudo firewall-cmd --zone=public --add-masquerade
+sudo firewall-cmd --zone public --add-forward
 </pre></div>
 </div>
 <p>Отредактируем файл конфигурации данного клиента, дописав в <code class="docutils literal notranslate"><span class="pre">AllowedIPs</span></code> подсеть через запятую (однако если там уже указано <strong>0.0.0.0/0</strong>, то ничего более делать не требуется).</p>
@@ -484,6 +485,7 @@ sudo firewall-cmd --zone=public --add-masquerade
 <p>Если всё работает корректно, сделаем изменения на клиенте с LAN постоянными:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo bash -c &quot;echo -e \&quot;net.ipv4.conf.all.forwarding=1\nnet.ipv6.conf.all.forwarding=1\&quot; &gt; /etc/sysctl.d/99-wireguard.conf&quot;
 sudo firewall-cmd --zone=public --add-masquerade --permanent
+sudo firewall-cmd --permanent --zone public --add-forward
 </pre></div>
 </div>
 <p>Перезагрузим настройки Firewalld:</p>
