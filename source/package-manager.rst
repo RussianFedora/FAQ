@@ -570,7 +570,7 @@ Java 17:
 
 .. code-block:: text
 
-    sudo dnf install java-latest-openjdk
+    sudo dnf install java-17-openjdk
 
 После установки укажем необходимую версию :ref:`Java по умолчанию <alternatives-java>`.
 
