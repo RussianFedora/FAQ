@@ -1029,7 +1029,7 @@ end
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global __provides_exclude_from %{_libdir}/%{name}/.*
 </pre></div>
 </div>
-<p>При необходимости указать несколько каталогов, разделим их символом <strong>|</strong>:</p>
+<p>При необходимости указать несколько каталогов, разделим их стандартным для <a class="reference external" href="https://ru.wikipedia.org/wiki/PCRE">регулярного выражения PCRE</a> способом:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global __provides_exclude_from %{_libdir}/%{name}/foo/.*|%{_libdir}/%{name}/bar/.*
 </pre></div>
 </div>
@@ -1040,7 +1040,7 @@ end
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global __requires_exclude_from %{_libdir}/%{name}/.*
 </pre></div>
 </div>
-<p>При необходимости указать несколько каталогов, разделим их символом <strong>|</strong>:</p>
+<p>При необходимости указать несколько каталогов, разделим их стандартным для <a class="reference external" href="https://ru.wikipedia.org/wiki/PCRE">регулярного выражения PCRE</a> способом:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global __requires_exclude_from %{_libdir}/%{name}/foo/.*|%{_libdir}/%{name}/bar/.*
 </pre></div>
 </div>
