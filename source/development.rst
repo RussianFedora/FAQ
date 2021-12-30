@@ -1526,13 +1526,13 @@ Qt-приложение, собранное Clang с LTO не запускает
 
     ExcludeArch: aarch64 x86_64
 
-.. index:: rpm, rpmbuild, exclude, package, library, provides
-.. _rpmbuild-exclude-provides:
+.. index:: rpm, rpmbuild, exclude, package, library, provides, filter
+.. _rpmbuild-filter-provides:
 
 Как исключить библиотеку из списка предоставляемых пакетом?
 ===============================================================
 
-Исключим все файлы, расположенные в каталоге **%{_libdir}/%{name}**, из списка предоставляемых пакетом:
+Исключим все файлы, расположенные в каталоге **%{_libdir}/%{name}**, из автоматически генерируемого списка предоставляемых пакетом:
 
 .. code-block:: text
 
@@ -1543,3 +1543,21 @@ Qt-приложение, собранное Clang с LTO не запускает
 .. code-block:: text
 
     %global __provides_exclude_from %{_libdir}/%{name}/foo/.*|%{_libdir}/%{name}/bar/.*
+
+.. index:: rpm, rpmbuild, exclude, package, library, requires, filter
+.. _rpmbuild-filter-requires:
+
+Как исключить библиотеку из списка зависимостей пакета?
+===========================================================
+
+Отключим автоматическое построение списка зависимостей пакета для ELF-объектов, расположенных в каталоге **%{_libdir}/%{name}**:
+
+.. code-block:: text
+
+    %global __requires_exclude_from %{_libdir}/%{name}/.*
+
+При необходимости указать несколько каталогов, разделим их символом **|**:
+
+.. code-block:: text
+
+    %global __requires_exclude_from %{_libdir}/%{name}/foo/.*|%{_libdir}/%{name}/bar/.*
