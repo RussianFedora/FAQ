@@ -1525,3 +1525,21 @@ Qt-приложение, собранное Clang с LTO не запускает
 .. code-block:: text
 
     ExcludeArch: aarch64 x86_64
+
+.. index:: rpm, rpmbuild, exclude, package, library, provides
+.. _rpmbuild-exclude-provides:
+
+Как исключить библиотеку из списка предоставляемых пакетом?
+===============================================================
+
+Исключим все файлы, расположенные в каталоге **%{_libdir}/%{name}**, из списка предоставляемых пакетом:
+
+.. code-block:: text
+
+    %global __provides_exclude_from %{_libdir}/%{name}/.*
+
+При необходимости указать несколько каталогов, разделим их символом **|**:
+
+.. code-block:: text
+
+    %global __provides_exclude_from %{_libdir}/%{name}/foo/.*|%{_libdir}/%{name}/bar/.*
