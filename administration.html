@@ -946,14 +946,14 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 </pre></div>
 </div>
 <p>Добавим следующее правило:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>polkit.addRule(function(action, subject) {
-    if ((action.id == &quot;org.freedesktop.udisks2.filesystem-mount-system&quot; ||
-        action.id == &quot;org.freedesktop.udisks.filesystem-mount-system-internal&quot;) &amp;&amp;
-        subject.local &amp;&amp; subject.active &amp;&amp; subject.isInGroup(&quot;wheel&quot;))
-    {
-            return polkit.Result.YES;
-    }
-});
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">polkit</span><span class="p">.</span><span class="nx">addRule</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">action</span><span class="p">,</span> <span class="nx">subject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">((</span><span class="nx">action</span><span class="p">.</span><span class="nx">id</span> <span class="o">==</span> <span class="s2">&quot;org.freedesktop.udisks2.filesystem-mount-system&quot;</span> <span class="o">||</span>
+        <span class="nx">action</span><span class="p">.</span><span class="nx">id</span> <span class="o">==</span> <span class="s2">&quot;org.freedesktop.udisks.filesystem-mount-system-internal&quot;</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+        <span class="nx">subject</span><span class="p">.</span><span class="nx">local</span> <span class="o">&amp;&amp;</span> <span class="nx">subject</span><span class="p">.</span><span class="nx">active</span> <span class="o">&amp;&amp;</span> <span class="nx">subject</span><span class="p">.</span><span class="nx">isInGroup</span><span class="p">(</span><span class="s2">&quot;wheel&quot;</span><span class="p">))</span>
+    <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">polkit</span><span class="p">.</span><span class="nx">Result</span><span class="p">.</span><span class="nx">YES</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
 </pre></div>
 </div>
 <p>Сохраним изменения в файле.</p>
