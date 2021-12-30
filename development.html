@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2021.12.17)</title>
+    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2021.12.30)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -1023,6 +1023,28 @@ end
 </pre></div>
 </div>
 </section>
+<section id="rpmbuild-filter-provides">
+<span id="index-69"></span><span id="id49"></span><h2>Как исключить библиотеку из списка предоставляемых пакетом?<a class="headerlink" href="#rpmbuild-filter-provides" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Исключим все файлы, расположенные в каталоге <strong>%{_libdir}/%{name}</strong>, из автоматически генерируемого списка предоставляемых пакетом:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global __provides_exclude_from %{_libdir}/%{name}/.*
+</pre></div>
+</div>
+<p>При необходимости указать несколько каталогов, разделим их символом <strong>|</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global __provides_exclude_from %{_libdir}/%{name}/foo/.*|%{_libdir}/%{name}/bar/.*
+</pre></div>
+</div>
+</section>
+<section id="rpmbuild-filter-requires">
+<span id="index-70"></span><span id="id50"></span><h2>Как исключить библиотеку из списка зависимостей пакета?<a class="headerlink" href="#rpmbuild-filter-requires" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Отключим автоматическое построение списка зависимостей пакета для ELF-объектов, расположенных в каталоге <strong>%{_libdir}/%{name}</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global __requires_exclude_from %{_libdir}/%{name}/.*
+</pre></div>
+</div>
+<p>При необходимости указать несколько каталогов, разделим их символом <strong>|</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global __requires_exclude_from %{_libdir}/%{name}/foo/.*|%{_libdir}/%{name}/bar/.*
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -1123,6 +1145,8 @@ end
 <li class="toctree-l2"><a class="reference internal" href="#root-check-bypass">Как обойти проверку приложением наличия прав суперпользователя?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpmbuild-exclude-arch">Как исключить определённую архитектуру из сборки пакета?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpmbuild-exclusive-arch">Как собрать пакет только для определённой архитектуры?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpmbuild-filter-provides">Как исключить библиотеку из списка предоставляемых пакетом?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpmbuild-filter-requires">Как исключить библиотеку из списка зависимостей пакета?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>
