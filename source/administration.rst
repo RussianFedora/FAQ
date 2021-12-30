@@ -1484,7 +1484,7 @@ FUSE (file system in userspace) -- это модуль ядра и набор у
 
 Добавим следующее правило:
 
-.. code-block:: text
+.. code-block:: javascript
 
     polkit.addRule(function(action, subject) {
         if ((action.id == "org.freedesktop.udisks2.filesystem-mount-system" ||
