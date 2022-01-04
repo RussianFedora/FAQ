@@ -1,16 +1,14 @@
-# Fedora-Faq-Ru (c) 2018 - 2019, EasyCoding Team and contributors
 #
-# Fedora-Faq-Ru is licensed under a
-# Creative Commons Attribution-ShareAlike 4.0 International License.
+# SPDX-FileCopyrightText: 2018-2021 EasyCoding Team and contributors
 #
-# You should have received a copy of the license along with this
-# work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
+# SPDX-License-Identifier: CC-BY-SA-4.0
+#
 
 # Minimal makefile for Sphinx documentation
 #
 
 # You can set these variables from the command line.
-SPHINXOPTS    =
+SPHINXOPTS    = -W --keep-going -n
 SPHINXBUILD   = sphinx-build
 SPHINXPROJ    = fedora-faq-ru
 SOURCEDIR     = source

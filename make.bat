@@ -1,12 +1,10 @@
 @ECHO OFF
 
-rem Fedora-Faq-Ru (c) 2018 - 2019, EasyCoding Team and contributors
 rem
-rem Fedora-Faq-Ru is licensed under a
-rem Creative Commons Attribution-ShareAlike 4.0 International License.
+rem SPDX-FileCopyrightText: 2018-2021 EasyCoding Team and contributors
 rem
-rem You should have received a copy of the license along with this
-rem work. If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
+rem SPDX-License-Identifier: CC-BY-SA-4.0
+rem
 
 pushd %~dp0
 
@@ -15,6 +13,7 @@ REM Command file for Sphinx documentation
 if "%SPHINXBUILD%" == "" (
 	set SPHINXBUILD=sphinx-build
 )
+set SPHINXOPTS=-W --keep-going -n
 set SOURCEDIR=source
 set BUILDDIR=build
 set SPHINXPROJ=fedora-faq-ru

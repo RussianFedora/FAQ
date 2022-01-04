@@ -1,9 +1,69 @@
+/**
+ * SPDX-FileCopyrightText: 2018-2021 EasyCoding Team and contributors
+ *
+ * SPDX-License-Identifier: CC-BY-SA-4.0
+*/
+
 div.sphinxsidebar #searchbox input[type="submit"]
 {
-    width: 29%;
+    visibility: hidden;
+    float: none;
 }
 
-div.sphinxsidebar #searchbox input[type="text"] 
+div.sphinxsidebar #searchbox input[type="text"]
 {
-    width: 71%;
+    width: 100%;
+}
+
+div.sphinxsidebar #searchbox form.search
+{
+    overflow: visible;
+}
+
+div.body
+{
+    min-width: 320px
+}
+
+@media screen and (max-width: 875px) {
+    body { margin: 0; padding: 0; }
+
+    div.document {
+        position: relative;
+        padding-top: 72px;
+    }
+
+    div.documentwrapper
+    {
+        width: auto;
+        margin: 0; padding: 10px 20px;
+        background: #fff;
+    }
+
+    div.sphinxsidebar
+    {
+        width: 100%; height: 65px;
+        position: absolute; top: 0; left: 0;
+        margin: 0; padding: 0;
+        background: #333;
+        color: #fff;
+    }
+
+    div.sphinxsidebar .relations,
+    div.sphinxsidebar h3, .sphinxsidebar ul,
+    div.sphinxsidebar #searchbox input[type="submit"]
+    {
+        display: none
+    }
+
+    div.sphinxsidebar .sphinxsidebarwrapper
+    {
+        padding: 10px 20px;
+    }
+
+    div.sphinxsidebar .algolia-autocomplete
+    {
+        width: 100%;
+        position: relative;
+    }
 }
