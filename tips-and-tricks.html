@@ -1,24 +1,27 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<html lang="ru">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Вопросы, связанные с оптимизацией и тонкой настройкой &#8212; Документация Fedora FAQ RU 2019.01.25</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/translations.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Оптимизация и тонкая настройка &#8212; Неофициальный FAQ по Fedora (версия 2022.01.04)</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script defer="defer" src="_static/search.js"></script>
     <link rel="shortcut icon" href="_static/faq-icon.ico"/>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
     <link rel="next" title="Правовая информация" href="legal-info.html" />
-    <link rel="prev" title="Вопросы, связанные с разработкой и сборкой пакетов" href="development.html" />
+    <link rel="prev" title="Разработка и сборка пакетов" href="development.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -37,63 +40,441 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="tips-and-tricks">
-<span id="id1"></span><h1>Вопросы, связанные с оптимизацией и тонкой настройкой<a class="headerlink" href="#tips-and-tricks" title="Ссылка на этот заголовок">¶</a></h1>
-<div class="section" id="gnome-3">
+  <section id="tips-and-tricks">
+<span id="id1"></span><h1>Оптимизация и тонкая настройка<a class="headerlink" href="#tips-and-tricks" title="Ссылка на этот заголовок">¶</a></h1>
+<section id="gnome-3">
 <span id="gnome-reduce-ram-usage"></span><span id="index-0"></span><h2>Как уменьшить потребление оперативной памяти средой рабочего стола GNOME 3?<a class="headerlink" href="#gnome-3" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Отключим службу автоматической регистрации ошибок и удалим GUI апплет, уведомляющий об их возникновении:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove abrt
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove abrt
 </pre></div>
 </div>
 <p>Удалим Магазин приложений (графический менеджер пакетов):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove PackageKit gnome-software
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove PackageKit gnome-software
 </pre></div>
 </div>
 <p>Отключим службу управления виртуализацией (если на установленной системе не предполагается использовать виртуальные машины):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable libvirtd
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl disable libvirtd
 </pre></div>
 </div>
 <p>Отключим службы Evolution, необходимые для синхронизации онлайн аккаунтов:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl --user mask evolution-addressbook-factory evolution-calendar-factory evolution-source-registry
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl --user mask evolution-addressbook-factory evolution-calendar-factory evolution-source-registry
 </pre></div>
 </div>
 <p>Отключим службы, необходимые для создания индекса файловой системы, необходимого для быстрого поиска (если не предполагается использовать поиск в главном меню):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl --user mask tracker-miner-apps tracker-miner-fs tracker-store
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl --user mask tracker-miner-apps tracker-miner-fs tracker-store
 </pre></div>
 </div>
-</div>
-<div class="section" id="kde">
+</section>
+<section id="kde">
 <span id="kde-reduce-ram-usage"></span><span id="index-1"></span><h2>Как уменьшить потребление оперативной памяти средой рабочего стола KDE?<a class="headerlink" href="#kde" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Отключим службу индексации файлов. Для этого зайдём в <strong>Параметры системы</strong> - <strong>Поиск</strong>, снимем флажок из чекбокса <strong>Включить службы поиска файлов</strong> и нажмём <strong>Применить</strong>. Теперь удалим Akonadi:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove akonadi
+<p>Отключим службу индексации файлов. Для этого зайдём в <strong>Параметры системы</strong> – <strong>Поиск</strong>, снимем флажок из чекбокса <strong>Включить службы поиска файлов</strong> и нажмём <strong>Применить</strong>. Теперь удалим Akonadi:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove akonadi
 </pre></div>
 </div>
 <p>Удалим устаревшие библиотеки Qt4 и службу автоматической регистрации ошибок ABRT:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove qt abrt
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove qt abrt
 </pre></div>
 </div>
 <p>Удалим Магазин приложений (графический менеджер пакетов):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove PackageKit
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove PackageKit plasma-discover dnfdragora
 </pre></div>
 </div>
 <p>Удалим runtime библиотеки для экономии ОЗУ (при этом по зависимостям будут удалены некоторые приложения, например KMail и KOrganizer):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove kdepim-runtime-libs
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove kdepim-runtime-libs kdepim-apps-libs
 </pre></div>
 </div>
-<p>Удалим <a class="reference internal" href="using-system.html#kde-connect"><span class="std std-ref">KDE Connect</span></a> (если не планируется управлять смартфоном с компьютера и наоборот):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove kde-connect kdeconnectd
+<p>Удалим <a class="reference internal" href="using-applications.html#kde-connect"><span class="std std-ref">KDE Connect</span></a> (если не планируется управлять смартфоном с компьютера и наоборот):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove kde-connect kdeconnectd
 </pre></div>
 </div>
-<p>Опционально удалим библиотеки GTK2 (в то же время от них до сих пор зависят многие популярные приложения, например Firefox, Gimp, GParted):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove gtk2
+<p>Опционально удалим библиотеки GTK2 (в то же время от них до сих пор зависят многие популярные приложения, например Audacious, GIMP, Thunderbird):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove gtk2
 </pre></div>
 </div>
+</section>
+<section id="kde-wipe-unused">
+<span id="index-2"></span><span id="id2"></span><h2>Как максимально очистить KDE от неиспользуемых программ?<a class="headerlink" href="#kde-wipe-unused" title="Ссылка на этот заголовок">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Произведём стандартную очистку по <a class="reference internal" href="#kde-reduce-ram-usage"><span class="std std-ref">описанному выше</span></a> сценарию.</p></li>
+<li><p>Удалим оставшиеся редко используемые пакеты:</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove krdc dragon kontact ktorrent kget konversation konqueror falkon kmail krusader krfb akregator juk kamoso k3b calligra\* kfind kgpg kmouth kmag
+</pre></div>
 </div>
-<div class="section" id="libcurl-gnutls-so-4">
-<span id="libcurl-workaround"></span><span id="index-2"></span><h2>Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?<a class="headerlink" href="#libcurl-gnutls-so-4" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="libcurl-gnutls-so-4">
+<span id="libcurl-workaround"></span><span id="index-3"></span><h2>Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?<a class="headerlink" href="#libcurl-gnutls-so-4" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2018/04/03/reshaem-problemu-otsutstviya-libcurl-gnutls-v-fedora.html">здесь</a>.</p>
+</section>
+<section id="bfq-hdd">
+<span id="bfq-scheduler"></span><span id="index-4"></span><h2>Как задействовать планировщик ввода/вывода BFQ для HDD?<a class="headerlink" href="#bfq-hdd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>BFQ – это планировщик ввода-вывода (I/O), предназначенный для повышения отзывчивости пользовательского окружения при значительных нагрузках на дисковую подсистему.</p>
+<p>Проверим, какой из планировщиков <a class="reference internal" href="administration.html#io-scheduler"><span class="std std-ref">используется в данный момент</span></a>. Если это не BFQ, произведём редактирование файла шаблонов GRUB:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/default/grub
+</pre></div>
 </div>
+<p>В конец строки <code class="docutils literal notranslate"><span class="pre">GRUB_CMDLINE_LINUX=</span></code> добавим <code class="docutils literal notranslate"><span class="pre">scsi_mod.use_blk_mq=1</span></code>, после чего <a class="reference internal" href="using-system.html#grub-rebuild"><span class="std std-ref">сгенерируем новую конфигурацию GRUB</span></a>.</p>
+<p>Создадим новое правило udev для принудительной активации BFQ для любых жёстких дисков:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo bash -c &quot;echo &#39;ACTION==\&quot;add|change\&quot;, KERNEL==\&quot;sd[a-z]\&quot;, ATTR{queue/rotational}==\&quot;1\&quot;, ATTR{queue/scheduler}=\&quot;bfq\&quot;&#39; &gt;&gt; /etc/udev/rules.d/60-ioschedulers.rules&quot;
+</pre></div>
 </div>
+<p>Применим изменения в <a class="reference internal" href="administration.html#udev-rules-reload"><span class="std std-ref">политиках udev</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo udevadm control --reload
+</pre></div>
+</div>
+<p>Выполним перезагрузку системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</section>
+<section id="swf-flash">
+<span id="swf-player"></span><span id="index-5"></span><h2>Чем можно запустить SWF файл без установки Flash плагина в браузер?<a class="headerlink" href="#swf-flash" title="Ссылка на этот заголовок">¶</a></h2>
+<p>SWF файл – это исполняемый файл формата Adobe Flash. Для того, чтобы проиграть его без установки соответствующего плагина в браузер, можно загрузить специальную версию Flash Projector (ранее назывался Standalone).</p>
+<p>Скачаем Projector:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>wget https://fpdownload.macromedia.com/pub/flashplayer/updaters/32/flash_player_sa_linux.x86_64.tar.gz -O fpsa.tar.gz
+</pre></div>
+</div>
+<p>Создадим новый каталог и распакуем архив в него:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/foo-bar
+tar -xzf fpsa.tar.gz -C ~/foo-bar
+</pre></div>
+</div>
+<p>Запустим проигрыватель:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>~/foo-bar/flashplayer
+</pre></div>
+</div>
+<p>В открывшемся окне нажмём <strong>Файл</strong> – <strong>Открыть</strong> (или комбинацию <strong>Ctrl + O</strong>) и найдём SWF файл на диске.</p>
+<p>По окончании использования удалим каталог с программой:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rm -rf ~/foo-bar
+</pre></div>
+</div>
+<p>Внимание! Запускать SWF файлы следует с особой осторожностью, т.к. плеер выполняется без какой-либо изоляции и имеет полный доступ к домашнему каталогу пользователя.</p>
+</section>
+<section id="python-2">
+<span id="python2-remove"></span><span id="index-6"></span><h2>Можно ли удалить Python 2 из системы?<a class="headerlink" href="#python-2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Поскольку поддержка Python версии 2 была прекращена 01.01.2020, его уже не рекомендуется использовать. Вместо него следует применять Python 3. Большая часть активных проектов и библиотек уже давно были портированы на эту версию.</p>
+<p>Возможность полностью избавиться от Python 2 появилась у пользователей Fedora 30 и выше. От данной версии интерпретатора более не зависят важные компоненты и его можно смело удалить:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove python2
+</pre></div>
+</div>
+<p>Это действие автоматически удалит и все его зависимости.</p>
+</section>
+<section id="fs-noexec">
+<span id="index-7"></span><span id="id3"></span><h2>Как запретить возможность исполнения любых файлов из домашнего каталога?<a class="headerlink" href="#fs-noexec" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для максимальной безопасности можно запретить запуск любых исполняемых файлов, а также загрузку динамических библиотек из домашнего каталога.</p>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> в <a class="reference internal" href="using-system.html#editor-selection"><span class="std std-ref">текстовом редакторе</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/fstab
+</pre></div>
+</div>
+<p>Добавим в опции монтирования домашнего каталога флаги <code class="docutils literal notranslate"><span class="pre">noexec,nodev,nosuid</span></code> после <code class="docutils literal notranslate"><span class="pre">defaults</span></code>.</p>
+<p>Пример итоговой строки после внесения изменений:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>UUID=XXXXXXXXXX /home ext4 defaults,noexec,nodev,nosuid 1 2
+</pre></div>
+</div>
+<p>Здесь <strong>XXXXXXXXXX</strong> – <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID раздела</span></a>, а <strong>ext4</strong> – используемая <a class="reference internal" href="installation.html#fs-selection"><span class="std std-ref">файловая система</span></a>.</p>
+<p>Следует помнить, что это действие не повлияет на запуск различных скриптов интерпретаторами, т.е. запуск <code class="docutils literal notranslate"><span class="pre">./foo-bar</span></code> с установленным битом исполнения будет запрещён, но в то же время <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">foo-bar</span></code> выполнится в штатном режиме.</p>
+</section>
+<section id="microsoft-fedora">
+<span id="msttcorefonts"></span><span id="index-8"></span><h2>Как установить шрифты Microsoft в Fedora?<a class="headerlink" href="#microsoft-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>См. <a class="reference external" href="https://www.easycoding.org/2011/08/14/ustanovka-microsoft-core-fonts-v-fedora.html">здесь</a>.</p>
+</section>
+<section id="root-account-is-locked">
+<span id="eshell-error"></span><span id="index-9"></span><h2>При загрузке режима восстановления появляется ошибка root account is locked. Как исправить?<a class="headerlink" href="#root-account-is-locked" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Ошибка <em>Cannot open access to console, the root account is locked</em> появляется при запуске системы в режиме восстановления в том случае если при установке Fedora был создан <a class="reference internal" href="security.html#admin-vs-user"><span class="std std-ref">пользователь-администратор</span></a> и не был задан пароль для учётной записи суперпользователя.</p>
+<p>Таким образом, при недоступности раздела /home, войти в систему в emergency режиме не представляется возможным, т.к. отсутствуют пользователи с доступными профилями (суперпользователь заблокирован, а обычные пользовательские учётные записи отключены из-за отсутствия доступа к их домашним каталогам).</p>
+<p>Решим данную проблему посредством загрузки с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Fedora LiveUSB</span></a>, выполнением <a class="reference internal" href="administration.html#chroot"><span class="std std-ref">chroot</span></a> в установленную систему и <a class="reference internal" href="security.html#root-password"><span class="std std-ref">установкой пароля для root</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>passwd root
+</pre></div>
+</div>
+<p>Завершим работу chroot окружения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>logout
+</pre></div>
+</div>
+<p>При следующей загрузке работа режима восстановления будет полностью восстановлена.</p>
+</section>
+<section id="zram-pool-size">
+<span id="index-10"></span><span id="id4"></span><h2>Как изменить размер пула сжатия памяти?<a class="headerlink" href="#zram-pool-size" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По умолчанию модуль <a class="reference internal" href="administration.html#memory-compression"><span class="std std-ref">сжатия памяти zram</span></a> создаёт пул, равный половине объёма имеющейся оперативной памяти.</p>
+<p>Увеличивать размер пула выше стандартного значения категорически не рекомендуется, т.к. это может приводить к зависаниям системы.</p>
+<p>Если всё-таки хочется внести поправки, откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/systemd/zram-generator.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/systemd/zram-generator.conf
+</pre></div>
+</div>
+<p>Внесём изменения в переменные <code class="docutils literal notranslate"><span class="pre">zram-fraction</span></code> и <code class="docutils literal notranslate"><span class="pre">max-zram-size</span></code>, явно указав необходимые значения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>zram-fraction = 0.5
+max-zram-size = 4096
+</pre></div>
+</div>
+<p>Допустимые значения <strong>zram-fraction</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>0.5</strong> – выделение под пул 50% (выбор по умолчанию) от оперативной памяти;</p></li>
+<li><p><strong>0.25</strong> – 25%;</p></li>
+<li><p><strong>0.1</strong> – 10%;</p></li>
+<li><p><strong>1.0</strong> – 100% соответственно (не рекомендуется).</p></li>
+</ul>
+</div></blockquote>
+<p>В <strong>max-zram-size</strong> указывается максимально допустимый объём для пула в мегабайтах.</p>
+<p>Изменения вступят в силу при следующей загрузке системы.</p>
+</section>
+<section id="rfremix-fedora">
+<span id="index-11"></span><span id="id5"></span><h2>Как правильно преобразовать RFRemix в Fedora?<a class="headerlink" href="#rfremix-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Заменим пакеты с брендированием:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf swap rfremix-release fedora-release --allowerasing
+sudo dnf swap rfremix-logos fedora-logos --allowerasing
+</pre></div>
+</div>
+<p>Полностью отключим и удалим репозитории <a class="reference internal" href="generic-info.html#russian-fedora"><span class="std std-ref">Russian Fedora</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove &#39;russianfedora*&#39;
+</pre></div>
+</div>
+<p>Произведём синхронизацию компонентов дистрибутива:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf distro-sync --allowerasing
+</pre></div>
+</div>
+</section>
+<section id="rfremix-upgrade">
+<span id="index-12"></span><span id="id6"></span><h2>Как правильно обновиться с RFRemix до Fedora?<a class="headerlink" href="#rfremix-upgrade" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В связи с прекращением поддержки RFRemix, выполним следующие действия:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><a class="reference internal" href="#rfremix-fedora"><span class="std std-ref">преобразуем RFRemix в Fedora</span></a>.</p></li>
+<li><p><a class="reference internal" href="package-manager.html#dist-upgrade"><span class="std std-ref">установим обновления системы штатным способом</span></a>.</p></li>
+</ol>
+</div></blockquote>
+</section>
+<section id="windows-dual-boot">
+<span id="dual-boot-optimizations"></span><span id="index-13"></span><h2>Как оптимизировать Windows для корректной работы в dual-boot?<a class="headerlink" href="#windows-dual-boot" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если необходимо использовать Fedora вместе с Microsoft Windows в режиме <a class="reference internal" href="installation.html#dual-boot"><span class="std std-ref">двойной загрузки</span></a>, то необходимо применить ряд оптимизаций, специфичных для данной ОС:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>переведём часы в UTC во всех установленных ОС: <a class="reference internal" href="administration.html#system-time-utc"><span class="std std-ref">Fedora</span></a>, <a class="reference internal" href="administration.html#windows-utc"><span class="std std-ref">Windows</span></a>;</p></li>
+<li><p>отключим использование <a class="reference internal" href="using-system.html#ntfs-readonly"><span class="std std-ref">гибридного режима завершения работы</span></a>.</p></li>
+</ol>
+</div></blockquote>
+<p>После выполнения указанных действий, обе ОС смогут сосуществовать на одном устройстве.</p>
+</section>
+<section id="webkitgtk">
+<span id="webkitgtk-legacy"></span><span id="index-14"></span><h2>Приложение требует webkitgtk. Что делать?<a class="headerlink" href="#webkitgtk" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Библиотека webkitgtk более не поддерживается апстримом, имеет сотни незакрытых критических уязвимостей (в т.ч. допускающих удалённое исполнение кода), и по этой причине она была удалена из репозиториев Fedora начиная с версии 25.</p>
+<p>Если приложение требует webkitgtk, то лучше всего воздержаться от его использования, однако если это по какой-либо причине невозможно, то проще всего будет применить загрузку библиотеки через <a class="reference internal" href="development.html#library-path"><span class="std std-ref">переопределение LD_LIBRARY_PATH</span></a>.</p>
+<p>Настоятельно не рекомендуется устанавливать данную библиотеку глобально в систему!</p>
+</section>
+<section id="php">
+<span id="php-remi-install"></span><span id="index-15"></span><h2>Можно ли установить несколько версий PHP одновременно?<a class="headerlink" href="#php" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, это возможно при использовании репозитория Remi’s RPM.</p>
+<p>В то же время одновременная установка и использование одной и той же <em>мажорной версии PHP</em> невозможна, т.е. нельзя одновременно установить и использовать версии <strong>7.3.1</strong> и <strong>7.3.2</strong>, однако <strong>7.2.9</strong> и <strong>7.3.2</strong> уже можно.</p>
+<p><a class="reference external" href="https://rpms.remirepo.net/">Remi’s RPM</a> – это сторонний репозиторий, созданный и поддерживаемый Remi Collect – активным участником сообщества и мейнтейнером всего PHP стека в Fedora.</p>
+<p>Основная цель данного репозитория – предоставление различных версий стека PHP с возможностью одновременного использования, а также некоторых других программ для пользователей Fedora и Enterprise Linux (RHEL, CentOS, Oracle, Scientific Linux и т.д.).</p>
+<p><strong>Важно:</strong> Remi’s RPM – это сторонний репозиторий, поэтому в случае, если вы используете бета-версии Fedora или Fedora Rawhide, репозиторий может работать некорректно.</p>
+<p>Для подключения выполним сдедующую команду:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install https://rpms.remirepo.net/fedora/remi-release-$(rpm -E %fedora).rpm
+</pre></div>
+</div>
+<p><strong>Важно:</strong> Перед использованием репозитория Remi, необходимо подключить <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
+<p>Для того, чтобы получать обновления PHP, активируем данный репозиторий:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-enabled remi
+</pre></div>
+</div>
+<p>При необходимости можно включить экспериментальные репозитории с бета-версиями PHP (на примере версии 7.4):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-enabled remi-php74
+</pre></div>
+</div>
+<p>Установим PHP-интерпретатор версии 7.3:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install php73-php
+</pre></div>
+</div>
+<p>Для корректного использования PHP с веб-сервером Apache в режиме FastCGI, необходимо вручную указать путь к исполняемому файлу PHP в файле конфигурации веб-сервера.</p>
+<p>В случае использования nginx, установим менеджер процессов PHP-FPM для PHP версии 7.3:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install php73-php-fpm
+</pre></div>
+</div>
+<p>Стоит обратить внимание на то, что все пакеты в репозитории Remi’s RPM, относящиеся к PHP, имеют в своем названии префикс вида <code class="docutils literal notranslate"><span class="pre">php&lt;php_version&gt;</span></code>, где <code class="docutils literal notranslate"><span class="pre">&lt;php_version&gt;</span></code> – первые две цифры версии PHP, которую необходимо использовать.</p>
+<p>Запустим PHP-FPM и включим его автоматический старт при включения системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable --now php73-php-fpm.servie
+</pre></div>
+</div>
+<p>Указанный выше префикс необходимо использовать и при взаимодействии с юнитами <a class="reference internal" href="administration.html#systemd-info"><span class="std std-ref">systemd</span></a>.</p>
+<p>Для выполнения PHP сценария в терминале, вызовем интерпретатор и передадим путь к файлу в качестве параметра:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/usr/bin/php73 /path/to/file.php
+</pre></div>
+</div>
+<p>Здесь <code class="docutils literal notranslate"><span class="pre">/usr/bin/php73</span></code> является символической ссылкой для быстрого вызова исполняемого файла интерпретатора PHP указанной версии, например <code class="docutils literal notranslate"><span class="pre">/opt/remi/php73/root/usr/bin/php</span></code>.</p>
+<p>Файлы конфигурации <code class="docutils literal notranslate"><span class="pre">php.ini</span></code> и <code class="docutils literal notranslate"><span class="pre">php-fpm.conf</span></code> располагаются в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/opt/remi/php73</span></code>. Префикс используется в качестве имени каталога.</p>
+</section>
+<section id="qt-wayland">
+<span id="qt-wayland-issue"></span><span id="index-16"></span><h2>С некоторыми Qt приложениями в Wayland наблюдаются проблемы. Как исправить?<a class="headerlink" href="#qt-wayland" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Некоторые приложения, использующие фреймворк Qt, могут некорректно работать в Wayland, поэтому активируем для них принудительное использование системы X11:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>QT_QPA_PLATFORM=xcb /usr/bin/foo-bar
+</pre></div>
+</div>
+<p>При необходимости постоянного старта в таком режиме создадим переопределение для ярлыка, прописав <code class="docutils literal notranslate"><span class="pre">env</span> <span class="pre">QT_QPA_PLATFORM=xcb</span></code> перед строкой запуска внутри директивы <code class="docutils literal notranslate"><span class="pre">Exec=</span></code>.</p>
+<p>Пример:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Exec=env QT_QPA_PLATFORM=xcb /usr/bin/foo-bar
+</pre></div>
+</div>
+<p>Здесь <strong>/usr/bin/foo-bar</strong> – путь запуска проблемного приложения.</p>
+</section>
+<section id="spectacle-print-screen">
+<span id="spectacle-dbus"></span><span id="index-17"></span><h2>В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?<a class="headerlink" href="#spectacle-print-screen" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1754395">известная проблема</a> пакета <strong>Lmod</strong>, приводящая к тому, что при вызове через D-Bus не полностью передаются <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменные окружения</span></a>.</p>
+<p>Удалим Lmod:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove Lmod
+</pre></div>
+</div>
+<p>Произведём перезагрузку системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</section>
+<section id="amd">
+<span id="amdgpu-black-screen"></span><span id="index-18"></span><h2>Как решить проблему с чёрным экраном после обновления ядра на видеокартах AMD?<a class="headerlink" href="#amd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Иногда чёрный экран на видеокартах AMD может появляться по причинам отсутствия нужной прошивки в initramfs образе.</p>
+<p>Для решения данной проблемы <a class="reference internal" href="using-system.html#initrd-rebuild"><span class="std std-ref">пересоберём образ initrd</span></a> с принудительным добавлением прошивок, используемых драйвером amdgpu:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut --regenerate-all --force --install &quot;/usr/lib/firmware/amdgpu/*&quot;
+</pre></div>
+</div>
+<p>Произведём перезагрузку системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</section>
+<section id="vga-0-nvidia">
+<span id="nvidia-vga0-error"></span><span id="index-19"></span><h2>Как исправить ошибку, связанную с VGA-0, на видеокартах NVIDIA?<a class="headerlink" href="#vga-0-nvidia" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если в системном журнале появляется сообщение вида <em>WARNING: GPU:0: Unable to read EDID for display device VGA-0</em>, отключим соответствующий видеовыход.</p>
+<p>Создадим файл <code class="docutils literal notranslate"><span class="pre">80-vgaoff.conf</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo touch /etc/X11/xorg.conf.d/80-vgaoff.conf
+sudo chown root:root /etc/X11/xorg.conf.d/80-vgaoff.conf
+sudo chmod 0644 /etc/X11/xorg.conf.d/80-vgaoff.conf
+</pre></div>
+</div>
+<p>Откроем его в <a class="reference internal" href="using-system.html#editor-selection"><span class="std std-ref">текстовом редакторе</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/X11/xorg.conf.d/80-vgaoff.conf
+</pre></div>
+</div>
+<p>Добавим следующее содержание:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Section &quot;Monitor&quot;
+    Identifier &quot;VGA-0&quot;
+    Option &quot;Ignore&quot; &quot;true&quot;
+    Option &quot;Enable&quot; &quot;false&quot;
+EndSection
+</pre></div>
+</div>
+<p>Произведём перезагрузку системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</section>
+<section id="modesetting-intel">
+<span id="intel-modesetting"></span><span id="index-20"></span><h2>Как активировать драйвер modesetting на видеокартах Intel?<a class="headerlink" href="#modesetting-intel" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Создадим новый файл конфигурации X11 – <code class="docutils literal notranslate"><span class="pre">10-modesetting.conf</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo touch /etc/X11/xorg.conf.d/10-modesetting.conf
+sudo chmod 0644 /etc/X11/xorg.conf.d/10-modesetting.conf
+</pre></div>
+</div>
+<p>Откроем его в <a class="reference internal" href="using-system.html#editor-selection"><span class="std std-ref">текстовом редакторе</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/X11/xorg.conf.d/10-modesetting.conf
+</pre></div>
+</div>
+<p>Вставим следующее содержание:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Section &quot;Device&quot;
+    Identifier  &quot;Intel Graphics&quot;
+    Driver      &quot;modesetting&quot;
+EndSection
+</pre></div>
+</div>
+<p>Сохраним изменения в файле.</p>
+<p>Удалим компоненты стандартного драйвера Intel:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove xorg-x11-drv-intel
+</pre></div>
+</div>
+<p>Перезагрузим систему и выберем сеанс X11 (<strong>Gnome on X11</strong> для пользователей Fedora Workstation):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
+</pre></div>
+</div>
+</section>
+<section id="usb-flash">
+<span id="usb-flash-tuning"></span><span id="index-21"></span><h2>Как увеличить срок жизни USB Flash?<a class="headerlink" href="#usb-flash" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Использование современных журналируемых <a class="reference internal" href="installation.html#fs-selection"><span class="std std-ref">файловых систем</span></a> Linux на накопителях USB Flash, контроллер которых не способен автоматически балансировать износ ячеек, требует выполнения небольшой оптимизации.</p>
+<p>Изменим режим журнала в <code class="docutils literal notranslate"><span class="pre">writeback</span></code>, а также активируем параметр монтирования <code class="docutils literal notranslate"><span class="pre">lazytime</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo debugfs -w -R &quot;set_super_value mount_opts data=writeback,lazytime&quot; /dev/sdX1
+</pre></div>
+</div>
+<p>Для максимального продления срока службы допускается полностью отключить журнал ФС (только на ext4):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo tune2fs -O ^has_journal /dev/sdX1
+</pre></div>
+</div>
+<p><strong>Внимание!</strong> Отключение журнала может привести к потере всех данных на устройстве при его некорректном извлечении, либо исчезновении питания.</p>
+<p>Здесь <strong>/dev/sdX1</strong> – раздел на устройстве флеш-памяти, который требуется настроить.</p>
+<p>Изменения вступят в силу при следующем монтировании.</p>
+</section>
+<section id="sparse-file-not-allowed">
+<span id="grub-sparse-not-allowed"></span><span id="index-22"></span><h2>При загрузке возникает ошибка sparse file not allowed. Как исправить?<a class="headerlink" href="#sparse-file-not-allowed" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если раздел <strong>/boot</strong> установленной системы использует файловую систему <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a>, при загрузке системы появится ошибка <em>error: ../../grub-core/commands/loadenv.c:216:sparse file not allowed</em>.</p>
+<p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1955901">известная проблема</a>, связанная с записью конфигурации grubenv и неполноценной реализацией драйвера поддержки BTRFS в загрузчике (он перезаписывает непосредственно блоки файла без обновления соответствующих метаданных, после чего BTRFS считает раздел повреждённым из-за несовпадения контрольных сумм).</p>
+<p>В качестве решения предлагается несколько вариантов:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>перейти на <a class="reference internal" href="installation.html#fedora-partitions"><span class="std std-ref">поддерживаемую конфигурацию</span></a> загрузки – <a class="reference internal" href="installation.html#moving-system"><span class="std std-ref">переместить</span></a> <strong>/boot</strong> на раздел с ФС ext4;</p></li>
+<li><p><a class="reference internal" href="installation.html#grub-show"><span class="std std-ref">отключить скрытие меню</span></a> загрузки GRUB 2.</p></li>
+</ol>
+</div></blockquote>
+</section>
+<section id="btrfs">
+<span id="btrfs-balancing"></span><span id="index-23"></span><h2>Нужно ли выполнять балансировку раздела с BTRFS?<a class="headerlink" href="#btrfs" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Файловая система <a class="reference internal" href="installation.html#fs-btrfs"><span class="std std-ref">BTRFS</span></a> использует двухуровневую структуру хранения данных: пространство поделено на <em>фрагменты</em>, которые содержат <em>блоки данных</em>. При определенных условиях эксплуатации в ФС может возникать большое количество мало заполненных фрагментов. Это приводит к ситуации, когда свободное место вроде есть, а записать очередной файл на диск не получается.</p>
+<p>Операция балансировки выполняет перенос блоков между фрагментами, а освободившиеся при этом удаляются. Официальная <a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/SysadminGuide#Balancing">документация</a> рекомендует выполнять балансировку регулярно, однако разработчики Fedora <a class="reference external" href="https://pagure.io/fedora-btrfs/project/issue/16">против</a> такого подхода.</p>
+<p>Если на разделе мало свободного места (меньше 20%), часто осуществляется интенсивная запись данных (например от СУБД), и происходят ошибки записи, то скорее всего балансировка поможет.</p>
+<p>Оценим выгоду от <a class="reference internal" href="#btrfs-balancing-execute"><span class="std std-ref">выполнения балансировки</span></a> следующей командой:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo btrfs fi usage [mountpoint]
+</pre></div>
+</div>
+<p>Если значение в поле <strong>Device allocated</strong> значительно превышает <strong>Used</strong>, то процедура окажется полезной, в противном случае выполнять её не имеет никакого смысла.</p>
+<p>Здесь <strong>mountpoint</strong> – точка монтирования раздела.</p>
+</section>
+<section id="btrfs-balancing-execute">
+<span id="index-24"></span><span id="id7"></span><h2>Как произвести балансировку раздела с BTRFS?<a class="headerlink" href="#btrfs-balancing-execute" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Произведём <a class="reference internal" href="#btrfs-balancing"><span class="std std-ref">балансировку</span></a> для всех фрагментов, заполненных менее, чем наполовину:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo btrfs fi balance start -dusage=50 -musage=50 [mountpoint]
+</pre></div>
+</div>
+<p>Здесь <strong>-dusage</strong> – максимальный процент заполнения при балансировке данных, <strong>-musage</strong> – максимальный процент заполнения при балансировке метаданных, а <strong>mountpoint</strong> – точка монтирования раздела.</p>
+<p>Чем меньше значение <em>usage</em>, тем быстрее выполнится операция. Если на диске мало свободного места, то начинать следует с небольших значений, например с <em>5</em>, постепенно увеличивая это число. Также можно балансировать отдельно данные и метаданные.</p>
+<p>Подробнее о балансировке можно прочитать в официальной документации (на английском языке):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/SysadminGuide#Balancing">Sysadmin guide</a></p></li>
+<li><p><a class="reference external" href="https://btrfs.wiki.kernel.org/index.php/Problem_FAQ#I_get_.22No_space_left_on_device.22_errors.2C_but_df_says_I.27ve_got_lots_of_space">Problem FAQ</a></p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="failed-to-start-setup-virtual-console">
+<span id="failed-setup-virtual-console"></span><span id="index-25"></span><h2>Как исправить ошибку Failed to start Setup Virtual Console?<a class="headerlink" href="#failed-to-start-setup-virtual-console" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если при загрузке системы возникает ошибка <em>Failed to start Setup Virtual Console</em>, это <a class="reference external" href="https://fedoraproject.org/wiki/Common_F34_bugs#kbd-legacy-media">известная проблема</a>, связанная с отсутствием установленных keymaps для множества отличных от en_US локалей.</p>
+<p>В качестве решения установим пакет <strong>kbd-legacy</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install kbd-legacy
+</pre></div>
+</div>
+<p>Пересоберём <a class="reference internal" href="using-system.html#initrd-rebuild"><span class="std std-ref">образ initrd</span></a> для всех установленных ядер:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut --regenerate-all --force
+</pre></div>
+</div>
+<p>Перезапустим сервис и проверим результат его работы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl start systemd-vconsole-setup.service
+systemctl status systemd-vconsole-setup.service
+</pre></div>
+</div>
+</section>
+<section id="fedora-35">
+<span id="wireplumber-no-sound"></span><span id="index-26"></span><h2>После обновления до Fedora 35 отсутствует звук. Как исправить?<a class="headerlink" href="#fedora-35" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Отсутствие усстройств вывода звука после обновления до Fedora 35 при использовании звукового сервера PipeWire – это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=2016253">известная проблема</a>, связанная с <a class="reference external" href="https://fedoraproject.org/wiki/Changes/WirePlumber">переходом на WirePlumber</a>.</p>
+<p>Решим её активацией необходимого systemd-сервиса:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl --global enable --now wireplumber.service
+</pre></div>
+</div>
+<p>Изменения вступят в силу немедленно.</p>
+</section>
+</section>
 
 
           </div>
@@ -103,30 +484,55 @@
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none" role="search">
-  <h3>Быстрый поиск</h3>
+  <h3 id="searchlabel">Быстрый поиск</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Искать" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script><h3>Навигация</h3>
+<script>$('#searchbox').show(0);</script><h3>Навигация</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Вопросы, связанные с установкой системы</a></li>
-<li class="toctree-l1"><a class="reference internal" href="package-manager.html">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
-<li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
-<li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные с оптимизацией и тонкой настройкой</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Установка системы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package-manager.html">Пакетный менеджер и установка пакетов</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Системное администрирование</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>
+<li class="toctree-l1"><a class="reference internal" href="virtualization.html">Виртуализация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Безопасность</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-system.html">Работа в системе</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-applications.html">Сторонние приложения</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Разработка и сборка пакетов</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Оптимизация и тонкая настройка</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#gnome-3">Как уменьшить потребление оперативной памяти средой рабочего стола GNOME 3?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde">Как уменьшить потребление оперативной памяти средой рабочего стола KDE?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kde-wipe-unused">Как максимально очистить KDE от неиспользуемых программ?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#libcurl-gnutls-so-4">Как решить проблему с отсутствием библиотеки libcurl-gnutls.so.4?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bfq-hdd">Как задействовать планировщик ввода/вывода BFQ для HDD?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#swf-flash">Чем можно запустить SWF файл без установки Flash плагина в браузер?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-2">Можно ли удалить Python 2 из системы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fs-noexec">Как запретить возможность исполнения любых файлов из домашнего каталога?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#microsoft-fedora">Как установить шрифты Microsoft в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#root-account-is-locked">При загрузке режима восстановления появляется ошибка root account is locked. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zram-pool-size">Как изменить размер пула сжатия памяти?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rfremix-fedora">Как правильно преобразовать RFRemix в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rfremix-upgrade">Как правильно обновиться с RFRemix до Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows-dual-boot">Как оптимизировать Windows для корректной работы в dual-boot?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#webkitgtk">Приложение требует webkitgtk. Что делать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#php">Можно ли установить несколько версий PHP одновременно?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qt-wayland">С некоторыми Qt приложениями в Wayland наблюдаются проблемы. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spectacle-print-screen">В Spectacle при вызове через Print Screen отсутствует оформление окна. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#amd">Как решить проблему с чёрным экраном после обновления ядра на видеокартах AMD?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vga-0-nvidia">Как исправить ошибку, связанную с VGA-0, на видеокартах NVIDIA?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modesetting-intel">Как активировать драйвер modesetting на видеокартах Intel?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usb-flash">Как увеличить срок жизни USB Flash?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sparse-file-not-allowed">При загрузке возникает ошибка sparse file not allowed. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#btrfs">Нужно ли выполнять балансировку раздела с BTRFS?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#btrfs-balancing-execute">Как произвести балансировку раздела с BTRFS?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#failed-to-start-setup-virtual-console">Как исправить ошибку Failed to start Setup Virtual Console?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora-35">После обновления до Fedora 35 отсутствует звук. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
@@ -136,7 +542,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="development.html" title="предыдущая глава">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
+      <li>Previous: <a href="development.html" title="предыдущая глава">Разработка и сборка пакетов</a></li>
       <li>Next: <a href="legal-info.html" title="следующая глава">Правовая информация</a></li>
   </ul></li>
 </ul>
@@ -146,7 +552,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018 - 2019, EasyCoding Team and contributors.
+      &copy;2018 - 2022, EasyCoding Team and contributors.
       
     </div>
 

@@ -1,24 +1,27 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<html lang="ru">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Вопросы, связанные с пакетным менеджером и установкой пакетов &#8212; Документация Fedora FAQ RU 2019.01.25</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/translations.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Пакетный менеджер и установка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2022.01.04)</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script defer="defer" src="_static/search.js"></script>
     <link rel="shortcut icon" href="_static/faq-icon.ico"/>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
-    <link rel="next" title="Вопросы, связанные с администрированием системы" href="administration.html" />
-    <link rel="prev" title="Вопросы, связанные с установкой системы" href="installation.html" />
+    <link rel="next" title="Системное администрирование" href="administration.html" />
+    <link rel="prev" title="Установка системы" href="installation.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -37,444 +40,806 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="package-manager">
-<span id="id1"></span><h1>Вопросы, связанные с пакетным менеджером и установкой пакетов<a class="headerlink" href="#package-manager" title="Ссылка на этот заголовок">¶</a></h1>
-<div class="section" id="pkg-manager">
+  <section id="package-manager">
+<span id="id1"></span><h1>Пакетный менеджер и установка пакетов<a class="headerlink" href="#package-manager" title="Ссылка на этот заголовок">¶</a></h1>
+<section id="pkg-manager">
 <span id="index-0"></span><span id="id2"></span><h2>Какой менеджер пакетов используется в настоящее время?<a class="headerlink" href="#pkg-manager" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Dnf, являющийся, в свою очередь, форком Yum.</p>
-</div>
-<div class="section" id="yum-fedora">
+</section>
+<section id="yum-fedora">
 <span id="index-1"></span><span id="id3"></span><h2>Могу ли я использовать Yum в Fedora?<a class="headerlink" href="#yum-fedora" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Начиная с Fedora 24 yum присутствует в Fedora лишь как символическая ссылка на dnf, сохранённая для обратной совместимости.</p>
-</div>
-<div class="section" id="make-install">
-<span id="index-2"></span><span id="id4"></span><h2>Можно ли устанавливать программы посредством make install?<a class="headerlink" href="#make-install" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Категорически не рекомендуется ибо:</p>
+<p>Начиная с Fedora 24, yum присутствует в Fedora лишь как символическая ссылка на dnf, сохранённая для обратной совместимости.</p>
+</section>
+<section id="flatpak">
+<span id="flatpak-info"></span><span id="index-2"></span><h2>Что такое Flatpak пакеты?<a class="headerlink" href="#flatpak" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Flatpak – это современный прогрессивный формат самодостаточных пакетов для GNU/Linux. Он поддерживает рантаймы, изоляцию внутри песочниц, установку без наличия прав суперпользователя и многое другое.</p>
+</section>
+<section id="flatpak-advantages">
+<span id="index-3"></span><span id="id4"></span><h2>Какие преимущества и недостатки у Flatpak пакетов?<a class="headerlink" href="#flatpak-advantages" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Преимущества:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>поддерживает динамическую линковку с большим количеством библиотек из рантаймов, что решает проблемы с лицензированием, их поддержкой в актуальном состоянии и исправлением в них ошибок, а также уязвимостей;</p></li>
+<li><p>библиотеки, для которых нет рантаймов, могут быть упакованы непосредственно внутрь флатпака и подгружаться по мере необходимости;</p></li>
+<li><p>Flatpak позволяет установить разные версии приложений одновременно;</p></li>
+<li><p>для установки не требуются права суперпользователя;</p></li>
+<li><p>поддерживается контейнерная изоляция приложения внутри собственной песочницы;</p></li>
+<li><p>приложению могут быть выданы только необходимые права доступа и разрешения;</p></li>
+<li><p>могут использоваться на любом дистрибутиве GNU/Linux без перекомпиляции и перекомпоновки;</p></li>
+<li><p>лёгкое создание и хостинг собственных репозиториев.</p></li>
+</ul>
+</div></blockquote>
+<p>Недостатки:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>из-за того, что Flatpak пакеты по определению должны запускаться на разных дистрибутивах, они содержат в себе все зависимости либо в виде рантаймов, либо внутри флатпака;</p></li>
+<li><p>в публичных репозиториях (например Flathub) мейнтейнеры не занимаются обновлением своих пакетов до актуальных рантаймов, из-за чего уже при установке нескольких приложений в системе появится куча различных версий одних и тех же рантаймов, что тратит очень много места на диске впустую;</p></li>
+<li><p>из-за использования разных рантаймов полноценно не используется разделяемая память библиотек, т.е. каждое приложение загружает все свои зависимости в собственное адресное пространство;</p></li>
+<li><p>отсутствует возможность использования общесистемных настроек среды для контейнеризированных приложений;</p></li>
+<li><p>отсутствует возможность использования уже установленных в системе библиотек.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="make-install">
+<span id="index-4"></span><span id="id5"></span><h2>Можно ли устанавливать программы посредством make install?<a class="headerlink" href="#make-install" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Категорически не рекомендуется, ибо:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>make install порождает в системе кучу никем и ничем не отслеживаемых файлов: бинарников, конфигов, прочих файлов. Это в большинстве случаев приведёт к множеству проблем при обновлении или удалении;</li>
-<li>make install не учитывает файлы других пакетов и может запросто перезаписать или удалить в системе что-то важное, т.к. действие выполняется с правами суперпользователя;</li>
-<li>make install не ведёт никакого журнала действий, поэтому всё, что оно произвело, невозможно полноценно откатить;</li>
-<li>установленные через make install приложения очень часто невозможно удалить вообще, т.к. многие разработчики не делают правило make uninstall, что, в принципе, верно ибо оно не нужно большинству, а если и делают, то оно способно лишь удалить скопированные файлы. Изменения конфигов, других файлов и пр. откатить оно не способно.</li>
+<li><p>make install порождает в системе кучу никем и ничем не отслеживаемых файлов: бинарников, конфигов, прочих файлов. Это в большинстве случаев приведёт к множеству проблем при обновлении или удалении;</p></li>
+<li><p>make install не учитывает файлы других пакетов и может запросто перезаписать или удалить в системе что-то важное, т.к. действие выполняется с правами суперпользователя;</p></li>
+<li><p>make install не ведёт никакого журнала действий, поэтому всё, что оно произвело, невозможно полноценно откатить;</p></li>
+<li><p>установленные через make install приложения очень часто невозможно удалить вообще, т.к. многие разработчики не делают правило make uninstall, что, в принципе, верно ибо оно не нужно большинству, а если и делают, то оно способно лишь удалить скопированные файлы. Изменения конфигов, других файлов и пр. откатить оно не способно.</p></li>
 </ol>
 </div></blockquote>
 <p>Установка пакетов штатным пакетным менеджеров имеет множество преимуществ:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>при установке пакетный менеджер разрешает все зависимости, добавляет нужные, устраняет конфликты;</li>
-<li>перед выполнением установки пакетный менеджер проверяет, чтобы устанавливаемый пакет не вмешивался в работу других, а также самой системы. Если это так, он не будет установлен;</li>
-<li>во время установки все изменения, сделанные пакетом, вносятся в специальную базу данных пакетного менеджера и при удалении или обновлении будут учтены;</li>
-<li>при удалении пакета производится полный откат действий, предпринятых при установке (даже если были изменены какие-то конфиги, эти действия будут откачены полностью, т.к. хранится diff внутри базы ПМ);</li>
-<li>при обновлении перезаписываются только изменённые файлы. Более того, может быть скачан и установлен только дифф. изменений;</li>
-<li>если при обновлении пакета возникает конфликт какого-то конфига, он не будет молча перезаписан, а будет применён патч на существующий, либо, если это невозможно, будет запрошено действие у пользователя.</li>
+<li><p>при установке пакетный менеджер разрешает все зависимости, добавляет нужные, устраняет конфликты;</p></li>
+<li><p>перед выполнением установки пакетный менеджер проверяет, чтобы устанавливаемый пакет не вмешивался в работу других, а также самой системы. Если это так, он не будет установлен;</p></li>
+<li><p>во время установки все изменения, сделанные пакетом, вносятся в специальную базу данных пакетного менеджера и при удалении или обновлении будут учтены;</p></li>
+<li><p>при удалении пакета производится полный откат действий, предпринятых при установке (даже если были изменены какие-то конфиги, эти действия будут откачены полностью, т.к. хранится diff внутри базы ПМ);</p></li>
+<li><p>при обновлении перезаписываются только изменённые файлы. Более того, может быть скачан и установлен только дифф. изменений;</p></li>
+<li><p>если при обновлении пакета возникает конфликт какого-то конфига, он не будет молча перезаписан, а будет применён патч на существующий, либо, если это невозможно, будет запрошено действие у пользователя.</p></li>
 </ol>
 </div></blockquote>
-</div>
-<div class="section" id="pip-npm">
-<span id="using-pip"></span><span id="index-3"></span><h2>Можно ли использовать PIP или NPM для установки программ и модулей?<a class="headerlink" href="#pip-npm" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Нет. Глобальная установка чего-либо через pip (pip2, pip3), либо npm, по своей деструктивности аналогична <a class="reference internal" href="#make-install"><span class="std std-ref">make install</span></a>.</p>
-</div>
-<div class="section" id="python-pip">
-<span id="pip-user"></span><span id="index-4"></span><h2>Нужной Python библиотеки нет в репозиториях. Как можно безопасно использовать PIP?<a class="headerlink" href="#python-pip" title="Ссылка на этот заголовок">¶</a></h2>
-<p>В таком случае рекомендуется либо локальная установка модулей посредством pip с параметром <strong>–user</strong>, либо использование <a class="reference internal" href="#python-venv"><span class="std std-ref">Python Virtual Environment</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 --user install foo-bar
+</section>
+<section id="pip-npm">
+<span id="using-pip"></span><span id="index-5"></span><h2>Можно ли использовать PIP или NPM для установки программ и модулей?<a class="headerlink" href="#pip-npm" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Нет. Глобальная установка чего-либо через pip (pip2, pip3) либо npm по своей деструктивности аналогична <a class="reference internal" href="#make-install"><span class="std std-ref">make install</span></a>.</p>
+</section>
+<section id="python-pip">
+<span id="pip-user"></span><span id="index-6"></span><h2>Нужной Python библиотеки нет в репозиториях. Как можно безопасно использовать PIP?<a class="headerlink" href="#python-pip" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В таком случае рекомендуется либо локальная установка модулей посредством pip с параметром <code class="docutils literal notranslate"><span class="pre">--user</span></code>, либо использование <a class="reference internal" href="#python-venv"><span class="std std-ref">Python Virtual Environment</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pip3 --user install foo-bar
 </pre></div>
 </div>
 <p>Установленные таким способом модули будут размещены в домашнем каталоге пользователя и не помешают работе системы.</p>
-</div>
-<div class="section" id="python-virtual-environment">
-<span id="python-venv"></span><span id="index-5"></span><h2>Как правильно применять Python Virtual Environment?<a class="headerlink" href="#python-virtual-environment" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="python-virtual-environment">
+<span id="python-venv"></span><span id="index-7"></span><h2>Как правильно применять Python Virtual Environment?<a class="headerlink" href="#python-virtual-environment" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим пакеты <strong>python3-virtualenv</strong> и <strong>python3-setuptools</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install python3-setuptools python3-virtualenv
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install python3-setuptools python3-virtualenv
 </pre></div>
 </div>
 <p>Создадим виртуальное окружение:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m venv foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python3 -m venv foo-bar
 </pre></div>
 </div>
 <p>Запустим его:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> foo-bar/bin/activate
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>source foo-bar/bin/activate
 </pre></div>
 </div>
 <p>Теперь внутри него допускается использовать любые механизмы установки пакетов Python: pip, install.py и т.д.</p>
-<p>Здесь <strong>foo-bar</strong> - название venv контейнера. Допускается создавать неограниченное их количество.</p>
-</div>
-<div class="section" id="gdm-sddm">
-<span id="change-dm"></span><span id="index-6"></span><h2>У меня в системе используется GDM, но я хочу заменить его на SDDM. Это возможно?<a class="headerlink" href="#gdm-sddm" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Установка SDDM:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install sddm
+<p>Здесь <strong>foo-bar</strong> – название venv контейнера. Допускается создавать неограниченное их количество.</p>
+</section>
+<section id="python-venv-remove">
+<span id="index-8"></span><span id="id6"></span><h2>Как удалить установленные пакеты из Python Virtual Environment?<a class="headerlink" href="#python-venv-remove" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Запустим <a class="reference internal" href="#python-venv"><span class="std std-ref">Python Virtual Environment</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>source foo-bar/bin/activate
 </pre></div>
 </div>
-<p>Отключение GDM и активация SDDM:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl -f <span class="nb">enable</span> sddm
+<p>Создадим и экспортируем в файл <code class="docutils literal notranslate"><span class="pre">foo-bar-installed.txt</span></code> список установленных пакетов из PIP:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pip3 freeze &gt; foo-bar-installed.txt
 </pre></div>
 </div>
-<p>Изменения вступят в силу при следующей загрузке системы.</p>
+<p>Удалим данные пакеты:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pip3 uninstall -y -r foo-bar-installed.txt
+rm -f foo-bar-installed.txt
+</pre></div>
 </div>
-<div class="section" id="fedora">
-<span id="dist-upgrade"></span><span id="index-7"></span><h2>Как мне обновить Fedora до новой версии?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="dnf-update">
+<span id="index-9"></span><span id="id7"></span><h2>Как правильно обновлять систему?<a class="headerlink" href="#dnf-update" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Fedora поддерживает два вида обновлений: через консоль средствами пакетного <a class="reference internal" href="#pkg-manager"><span class="std std-ref">менеджера dnf</span></a>, либо через графические менеджеры, основанные на PackageKit.</p>
+<p>Обновление системы средствами dnf:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
+</pre></div>
+</div>
+<p>При этом <a class="reference internal" href="#dnf-gui-updates"><span class="std std-ref">настоятельно не рекомендуется</span></a> запускать процесс в эмуляторах терминала графической среды.</p>
+</section>
+<section id="update-interval">
+<span id="index-10"></span><span id="id8"></span><h2>Как часто следует устанавливать обновления системы?<a class="headerlink" href="#update-interval" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Чем чаще устанавливаются обновления, тем меньше проблем будет при этом за счёт плавной миграции между файлами конфигурации приложений, сервисов и т.д.</p>
+<p>Мы рекомендуем устанавливать <a class="reference internal" href="#dnf-update"><span class="std std-ref">обновления системы</span></a> ежедневно.</p>
+</section>
+<section id="update-auto">
+<span id="index-11"></span><span id="id9"></span><h2>Можно ли автоматизировать установку критических обновлений?<a class="headerlink" href="#update-auto" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Установим специальный сервис для автоматической проверки и установки обновлений:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install dnf-automatic
+</pre></div>
+</div>
+<p>Активируем systemd-таймер:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo systemctl enable dnf-automatic.timer
+</pre></div>
+</div>
+<p>Все параметры могут быть тонко настроены в конфигурационном файле <code class="docutils literal notranslate"><span class="pre">/etc/dnf/automatic.conf</span></code>.</p>
+</section>
+<section id="fedora">
+<span id="dist-upgrade"></span><span id="index-12"></span><h2>Как мне обновить Fedora до новой версии?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Процесс обновления стандартен и максимально безопасен:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
 sudo dnf install dnf-plugin-system-upgrade
-sudo dnf system-upgrade download --releasever<span class="o">=</span><span class="m">29</span>
-sudo dnf system-upgrade reboot
-</pre></div>
-</div>
-<p>Здесь <strong>29</strong> - номер версии, на которую нужно обновиться. Весь процесс установки будет выполнен во время следующей загрузки системы.</p>
-<p>Если произошёл какой-то конфликт, то рекомендуется очистить все кэши dnf:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf clean all
-</pre></div>
-</div>
-</div>
-<div class="section" id="fedora-rawhide">
-<span id="dist-rawhide"></span><span id="index-8"></span><h2>Как мне обновить Fedora до Rawhide?<a class="headerlink" href="#fedora-rawhide" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Допускается обновление с любой поддерживаемой версии Fedora до Rawhide. Следует помнить, что это действие необратимо. Пути назад на стабильный выпуск без полной переустановки системы уже не будет.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
-sudo dnf install dnf-plugin-system-upgrade
-sudo dnf system-upgrade download --releasever<span class="o">=</span>rawhide
+sudo dnf system-upgrade download --releasever=$(($(rpm -E %fedora) + 1))
 sudo dnf system-upgrade reboot
 </pre></div>
 </div>
 <p>Весь процесс установки будет выполнен во время следующей загрузки системы.</p>
+<p>Если произошёл какой-то конфликт, то рекомендуется очистить все кэши dnf:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf clean all
+</pre></div>
 </div>
-<div class="section" id="dnf">
-<span id="dnf-duplicates"></span><span id="index-9"></span><h2>При обновлении dnf ругается на дубликаты пакетов.<a class="headerlink" href="#dnf" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="dist-downgrade">
+<span id="index-13"></span><span id="id10"></span><h2>Возможно ли сделать откат к предыдущей версии Fedora?<a class="headerlink" href="#dist-downgrade" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Нет, это действие официально не поддерживается.</p>
+<p>Для отката на предыдущую версию необходимо восстановить созданную ранее резервную копию.</p>
+</section>
+<section id="fedora-rawhide">
+<span id="dist-rawhide"></span><span id="index-14"></span><h2>Как мне обновить Fedora до Rawhide?<a class="headerlink" href="#fedora-rawhide" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Допускается обновление с любой поддерживаемой версии Fedora до Rawhide. Следует помнить, что это действие необратимо. Пути назад на стабильный выпуск без полной переустановки системы уже не будет.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
+sudo dnf install dnf-plugin-system-upgrade
+sudo dnf system-upgrade download --releasever=rawhide
+sudo dnf system-upgrade reboot
+</pre></div>
+</div>
+<p>Весь процесс установки будет выполнен во время следующей загрузки системы.</p>
+</section>
+<section id="rawhide">
+<span id="downgrade-rawhide"></span><span id="index-15"></span><h2>Возможно ли откатиться с Rawhide назад на обычный релиз?<a class="headerlink" href="#rawhide" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Нет.</p>
+</section>
+<section id="upgrade-jump">
+<span id="index-16"></span><span id="id11"></span><h2>Можно ли обновляться через несколько версий?<a class="headerlink" href="#upgrade-jump" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Официально поддерживается лишь <a class="reference internal" href="#dist-upgrade"><span class="std std-ref">обновление</span></a> с текущей на следующую версию. Если требуется выполнить обновление сразу через несколько релизов дистрибутива, то настоятельно рекомендуется делать это последовательно (например F27 -&gt; F28 -&gt; F29 -&gt; F30 и т.д.).</p>
+</section>
+<section id="upgrade-time">
+<span id="index-17"></span><span id="id12"></span><h2>Когда лучше выполнять обновление при выходе новой версии дистрибутива?<a class="headerlink" href="#upgrade-time" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Рекомендуется <a class="reference internal" href="#dist-upgrade"><span class="std std-ref">обновлять систему</span></a> до новой версии Fedora в течение месяца после её официального релиза.</p>
+</section>
+<section id="dnf">
+<span id="dnf-duplicates"></span><span id="index-18"></span><h2>При обновлении dnf ругается на дубликаты пакетов.<a class="headerlink" href="#dnf" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим утилиту <strong>package-cleanup</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install dnf-utils
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install dnf-utils
 </pre></div>
 </div>
 <p>Удалим дубликаты и повреждённые пакеты:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo package-cleanup --cleandupes
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo package-cleanup --cleandupes
 </pre></div>
 </div>
-</div>
-<div class="section" id="rpm">
-<span id="dnf-rpmdb"></span><span id="index-10"></span><h2>База RPM оказалась повреждена. Как восстановить?<a class="headerlink" href="#rpm" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="rpm">
+<span id="dnf-rpmdb"></span><span id="index-19"></span><h2>База RPM оказалась повреждена. Как восстановить?<a class="headerlink" href="#rpm" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для запуска пересборки базы данных RPM следует выполнить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo rpm --rebuilddb
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rpm --rebuilddb
 </pre></div>
 </div>
-<p>Настоятельно рекомендуется сделать резервную копию каталога <strong>/var/lib/rpm</strong> перед этим действием.</p>
+<p>Настоятельно рекомендуется сделать резервную копию каталога <code class="docutils literal notranslate"><span class="pre">/var/lib/rpm</span></code> перед этим действием.</p>
+</section>
+<section id="dnf-kernel-store">
+<span id="index-20"></span><span id="id13"></span><h2>Dnf сохраняет старые ядра. Это нормально?<a class="headerlink" href="#dnf-kernel-store" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. По умолчанию dnf сохраняет 3 последних ядра, чтобы в случае сбоя была возможность загрузки в более старое для разрешения проблем и восстановления работы системы.</p>
+</section>
+<section id="dnf-kernel-change">
+<span id="index-21"></span><span id="id14"></span><h2>Как можно уменьшить количество сохраняемых ядер?<a class="headerlink" href="#dnf-kernel-change" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
 </div>
-<div class="section" id="dnf-kernel-store">
-<span id="index-11"></span><span id="id5"></span><h2>Dnf сохраняет старые ядра. Это нормально?<a class="headerlink" href="#dnf-kernel-store" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Да. По умолчанию dnf сохраняет 3 последних ядра, чтобы в случае сбоя была возможность загрузки в более старое и исправления работы системы.</p>
-</div>
-<div class="section" id="dnf-kernel-change">
-<span id="index-12"></span><span id="id6"></span><h2>Как можно уменьшить количество сохраняемых ядер?<a class="headerlink" href="#dnf-kernel-change" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо открыть файл <strong>/etc/dnf/dnf.conf</strong> в любом текстовом редакторе и изменить значение переменной <strong>installonly_limit</strong>:</p>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">installonly_limit</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>installonly_limit=2
 </pre></div>
 </div>
-<p>Минимально допустимое значение - <strong>2</strong> (будут сохраняться два ядра: текущее и предыдущее).</p>
+<p>Минимально допустимое значение – <strong>2</strong> (будут сохраняться два ядра: текущее и предыдущее).</p>
+</section>
+<section id="dnf-proxy">
+<span id="index-22"></span><span id="id15"></span><h2>Как настроить работу dnf через прокси?<a class="headerlink" href="#dnf-proxy" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
 </div>
-<div class="section" id="dnf-proxy">
-<span id="index-13"></span><span id="id7"></span><h2>Как настроить работу dnf через прокси?<a class="headerlink" href="#dnf-proxy" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо открыть файл <strong>/etc/dnf/dnf.conf</strong> в любом текстовом редакторе и изменить значение переменной <strong>proxy</strong> (при отсутствии добавить):</p>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">proxy</span></code> (при отсутствии добавим):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>proxy=socks5://localhost:8080
 </pre></div>
 </div>
 <p>Поддерживаются HTTP, HTTPS и SOCKS.</p>
+<p>Если используемый прокси-сервер требует проверки подлинности (аутентификации), то укажем также и авторизационные данные для подключения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>proxy_username=LOGIN
+proxy_password=PASSWORD
+</pre></div>
 </div>
-<div class="section" id="dnf-weakdeps">
-<span id="index-14"></span><span id="id8"></span><h2>Как отключить установку слабых зависимостей?<a class="headerlink" href="#dnf-weakdeps" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо открыть файл <strong>/etc/dnf/dnf.conf</strong> в любом текстовом редакторе и изменить значение переменной <strong>install_weak_deps</strong> (при отсутствии добавить):</p>
+<p>Здесь <strong>LOGIN</strong> – логин пользователя на прокси-сервере, а <strong>PASSWORD</strong> – его пароль.</p>
+<p>Обычно DNF корректно определяет тип авторизации, используемый прокси-сервером, но иногда (в случае HTTP-прокси) этот механизм работает некорретно. В этом случае достаточно указать ее тип:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>proxy_auth_method=METHOD
+</pre></div>
+</div>
+<p>Здесь <strong>METHOD</strong> – название метода аутентификации, используемого прокси-сервером.</p>
+<p>Список часто используемых методов:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">basic</span></code> – базовая HTTP аутентификация, вероятно вы используете именно этот метод;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">digest</span></code> – HTTP дайджест-аутентификация;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ntlm</span></code> – NTLM HTTP аутентификация, активно применяется в среде продуктов Microsoft.</p></li>
+</ul>
+</div></blockquote>
+<p>Подробнее о поддерживаемых методах аутентификации см. <a class="reference external" href="https://dnf.readthedocs.io/en/latest/conf_ref.html#options-for-both-main-and-repo">в документации</a>.</p>
+</section>
+<section id="dnf-weakdeps">
+<span id="index-23"></span><span id="id16"></span><h2>Как отключить установку слабых зависимостей?<a class="headerlink" href="#dnf-weakdeps" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">install_weak_deps</span></code> (при отсутствии добавим):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>install_weak_deps=0
 </pre></div>
 </div>
+</section>
+<section id="dnf-pkgupdates">
+<span id="index-24"></span><span id="id17"></span><h2>Как мне запретить установку обновлений для ряда пакетов?<a class="headerlink" href="#dnf-pkgupdates" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
 </div>
-<div class="section" id="dnf-pkgupdates">
-<span id="index-15"></span><span id="id9"></span><h2>Как мне запретить установку обновлений для ряда пакетов?<a class="headerlink" href="#dnf-pkgupdates" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Необходимо открыть файл <strong>/etc/dnf/dnf.conf</strong> в любом текстовом редакторе и изменить значение переменной <strong>exclude</strong> (при отсутствии добавить):</p>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">exclude</span></code> (при отсутствии добавим):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>exclude=kernel* PackageKit*
 </pre></div>
 </div>
-<p>Здесь вместо примера следует указать нужные пакеты, разделяя их пробелом. Допускаются символы подстановки.</p>
+<p>Здесь вместо примера укажем нужные пакеты, разделяя их пробелом. Допускаются стандартные символы подстановки.</p>
+</section>
+<section id="delta-rpm">
+<span id="dnf-drpm"></span><span id="index-25"></span><h2>Что такое Delta RPM?<a class="headerlink" href="#delta-rpm" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Технология Delta RPM позволяет сократить расход трафика при <em>регулярной</em> установке обновлений за счёт того, что скачиваться будет не новая версия целиком, а лишь разница между ней и установленной в системе.</p>
+<p>К сожалению, на медленных устройствах: HDD, eMMC, SD и т.д., это значительно замедляет процесс <a class="reference internal" href="#dnf-update"><span class="std std-ref">установки обновлений</span></a>, поэтому функцию можно <a class="reference internal" href="#drpm-disable"><span class="std std-ref">отключить</span></a>.</p>
+</section>
+<section id="drpm-disable">
+<span id="index-26"></span><span id="id18"></span><h2>Как отключить использование Delta RPM?<a class="headerlink" href="#drpm-disable" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
 </div>
-<div class="section" id="dnf-kernel-remove">
-<span id="index-16"></span><span id="id10"></span><h2>Как можно вручную удалить старое ядро?<a class="headerlink" href="#dnf-kernel-remove" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">deltarpm</span></code> (при отсутствии добавим):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>deltarpm=0
+</pre></div>
+</div>
+</section>
+<section id="dnf-kernel-remove">
+<span id="index-27"></span><span id="id19"></span><h2>Как можно вручную удалить старое ядро?<a class="headerlink" href="#dnf-kernel-remove" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для ручного удаления старого ядра можно выполнить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf remove kernel-4.10.14* kernel-core-4.10.14* kernel-modules-4.10.14* kernel-devel-4.10.14*
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove kernel-5.15.5* kernel-core-5.15.5* kernel-modules-5.15.5* kernel-devel-5.15.5*
 </pre></div>
 </div>
-<p>Здесь <strong>4.10.14</strong> - это версия удаляемого ядра.</p>
-</div>
-<div class="section" id="microsoft-fedora">
-<span id="msttcorefonts"></span><span id="index-17"></span><h2>Как установить шрифты Microsoft в Fedora?<a class="headerlink" href="#microsoft-fedora" title="Ссылка на этот заголовок">¶</a></h2>
-<p>См. <a class="reference external" href="https://www.easycoding.org/2011/08/14/ustanovka-microsoft-core-fonts-v-fedora.html">здесь</a>.</p>
-</div>
-<div class="section" id="rd-repositories">
-<span id="index-18"></span><span id="id11"></span><h2>Какие сторонние репозитории лучше всего подключать?<a class="headerlink" href="#rd-repositories" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Здесь <strong>5.15.5</strong> – это версия удаляемого ядра.</p>
+</section>
+<section id="rd-repositories">
+<span id="index-28"></span><span id="id20"></span><h2>Какие сторонние репозитории лучше всего подключать?<a class="headerlink" href="#rd-repositories" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2017/03/24/poleznye-storonnie-repozitorii-dlya-fedora.html">здесь</a>.</p>
-</div>
-<div class="section" id="flatpak-fedora">
-<span id="flatpak"></span><span id="index-19"></span><h2>Как работать с Flatpak пакетами в Fedora?<a class="headerlink" href="#flatpak-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="flatpak-fedora">
+<span id="id21"></span><span id="index-29"></span><h2>Как работать с Flatpak пакетами в Fedora?<a class="headerlink" href="#flatpak-fedora" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2018/07/25/rabotaem-s-flatpak-paketami-v-fedora.html">здесь</a>.</p>
-</div>
-<div class="section" id="multimedia-codecs">
-<span id="index-20"></span><span id="id12"></span><h2>В системе нет кодеков мультимедиа. Как их установить?<a class="headerlink" href="#multimedia-codecs" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для начала следует подключить репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установить кодеки из группы <strong>multimedia</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf groupinstall multimedia
+</section>
+<section id="multimedia-codecs">
+<span id="index-30"></span><span id="id22"></span><h2>В системе нет кодеков мультимедиа. Как их установить?<a class="headerlink" href="#multimedia-codecs" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для начала следует подключить репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>, после чего установить кодеки из группы <strong>multimedia</strong> и <strong>sound-and-video</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf groupupdate multimedia sound-and-video
 </pre></div>
 </div>
-</div>
-<div class="section" id="chromium">
-<span id="chromium-codecs"></span><span id="index-21"></span><h2>Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?<a class="headerlink" href="#chromium" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Из-за патентных ограничений браузер Chromium в репозиториях Fedora сильно кастрирован. Для восстановления полной функциональности необходимо подключить RPMFusion и установить пакет с кодеками для данного браузера:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install chromium-libs-media-freeworld
-</pre></div>
-</div>
-</div>
-<div class="section" id="firefox">
-<span id="firefox-codecs"></span><span id="index-22"></span><h2>Как активировать все доступные кодеки в браузере Firefox?<a class="headerlink" href="#firefox" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Браузер Mozilla Firefox использует ffmpeg для работы с мультимедийным контентом, поэтому необходимо его установить из репозитория <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install ffmpeg-libs
-</pre></div>
-</div>
-</div>
-<div class="section" id="nvidia">
-<span id="nvidia-drivers"></span><span id="index-23"></span><h2>Как правильно установить драйверы NVIDIA?<a class="headerlink" href="#nvidia" title="Ссылка на этот заголовок">¶</a></h2>
-<p>См. <a class="reference external" href="https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html">здесь</a>.</p>
-</div>
-<div class="section" id="virtualization">
-<span id="index-24"></span><span id="id13"></span><h2>Какую систему управления виртуальными машинами лучше установить?<a class="headerlink" href="#virtualization" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Рекомендуется использовать <a class="reference internal" href="#kvm"><span class="std std-ref">KVM</span></a>, т.к. её гипервизор и необходимые модули уже находятся в ядре Linux и не вызывают проблем.</p>
-</div>
-<div class="section" id="kvm">
-<span id="index-25"></span><span id="id14"></span><h2>Как правильно установить систему виртуализации KVM?<a class="headerlink" href="#kvm" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Установим KVM и графическую утилиту управления виртуальными машинами <strong>virt-manager</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf group install Virtualization
-</pre></div>
-</div>
-<p>Перезагрузим машину для вступления изменений в силу:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl reboot
-</pre></div>
-</div>
-</div>
-<div class="section" id="kvm-users">
-<span id="index-26"></span><span id="id15"></span><h2>Как отключить запрос пароля во время запуска или остановки виртуальных машин при использовании KVM?<a class="headerlink" href="#kvm-users" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Возможностью управления виртуальными машинами обладают члены группы <strong>libvirt</strong>, поэтому нужно добавить в неё свой аккаунт:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G libvirt <span class="k">$(</span>whoami<span class="k">)</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="virtualbox-fedora">
-<span id="virtualbox"></span><span id="index-27"></span><h2>Как правильно установить VirtualBox в Fedora?<a class="headerlink" href="#virtualbox-fedora" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Сначала нужно подключить репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>, затем выполнить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
-sudo dnf install gcc kernel-devel kernel-headers akmod-VirtualBox VirtualBox
-</pre></div>
-</div>
-<p>Для нормальной работы с USB устройствами и общими папками потребуется также добавить свой аккаунт в группу <strong>vboxusers</strong> и <strong>vboxsf</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo usermod -a -G vboxusers <span class="k">$(</span>whoami<span class="k">)</span>
-sudo usermod -a -G vboxsf <span class="k">$(</span>whoami<span class="k">)</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="wi-fi-broadcom">
-<span id="broadcom-drivers"></span><span id="index-28"></span><h2>Как правильно установить драйверы Wi-Fi модулей Broadcom?<a class="headerlink" href="#wi-fi-broadcom" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Сначала нужно подключить <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>, затем выполнить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh
-sudo dnf install gcc kernel-devel kernel-headers akmod-wl
-</pre></div>
-</div>
-</div>
-<div class="section" id="dnf-caches">
-<span id="index-29"></span><span id="id16"></span><h2>Как отключить автообновление кэшей dnf?<a class="headerlink" href="#dnf-caches" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="dnf-caches">
+<span id="index-31"></span><span id="id23"></span><h2>Как отключить автообновление кэшей dnf?<a class="headerlink" href="#dnf-caches" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2016/01/27/otklyuchaem-avto-obnovlenie-v-dnf-pod-fedora-22.html">здесь</a>.</p>
-</div>
-<div class="section" id="dkms-akmods">
-<span id="index-30"></span><span id="id17"></span><h2>Что лучше: dkms или akmods?<a class="headerlink" href="#dkms-akmods" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="dkms-akmods">
+<span id="index-32"></span><span id="id24"></span><h2>Что лучше: dkms или akmods?<a class="headerlink" href="#dkms-akmods" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Конечно akmods, т.к. он автоматически собирает и устанавливает полноценные RPM пакеты.</p>
-</div>
-<div class="section" id="updates-testing">
-<span id="index-31"></span><span id="id18"></span><h2>Каким способом можно обновить пакет из тестовых репозиториев?<a class="headerlink" href="#updates-testing" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="updates-testing">
+<span id="index-33"></span><span id="id25"></span><h2>Каким способом можно обновить пакет из тестовых репозиториев?<a class="headerlink" href="#updates-testing" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы установить обновление из Fedora Testing, необходимо временно подключить соответствующий репозиторий:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh foo-bar* --enablerepo<span class="o">=</span>updates-testing
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh foo-bar* --enablerepo=updates-testing
 </pre></div>
 </div>
-<p>Репозиторий <strong>updates-testing</strong> подключается однократно, только для данного сеанса работы dnf.</p>
-</div>
-<div class="section" id="dnf-list-contents">
-<span id="index-32"></span><span id="id19"></span><h2>Как получить список файлов установленного пакета?<a class="headerlink" href="#dnf-list-contents" title="Ссылка на этот заголовок">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf repoquery -l foo-bar
+<p>Репозиторий <strong>updates-testing</strong> подключается однократно только для данного сеанса работы dnf.</p>
+</section>
+<section id="dnf-list-contents">
+<span id="index-34"></span><span id="id26"></span><h2>Как получить список файлов установленного пакета?<a class="headerlink" href="#dnf-list-contents" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf repoquery -l foo-bar
 </pre></div>
 </div>
-</div>
-<div class="section" id="dnf-find-file">
-<span id="index-33"></span><span id="id20"></span><h2>Как узнать в каком пакете находится конкретный файл?<a class="headerlink" href="#dnf-find-file" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="dnf-find-file">
+<span id="index-35"></span><span id="id27"></span><h2>Как узнать в каком пакете находится конкретный файл?<a class="headerlink" href="#dnf-find-file" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для этого можно воспользоваться плагином dnf repoquery:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf repoquery -f */имя_файла
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf repoquery -f */имя_файла
 </pre></div>
 </div>
 <p>Для поиска бинарников и динамических библиотек можно применять альтернативный метод:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf provides */имя_бинарника
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf provides */имя_бинарника
 </pre></div>
 </div>
-</div>
-<div class="section" id="java">
-<span id="java-multiple"></span><span id="index-34"></span><h2>Можно ли установить несколько версий Java в систему?<a class="headerlink" href="#java" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="java">
+<span id="java-multiple"></span><span id="index-36"></span><h2>Можно ли установить несколько версий Java в систему?<a class="headerlink" href="#java" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, это возможно. В настоящее время поддерживаются следующие версии Java. Допускается их одновременная установка.</p>
 <p>Java 8:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install java-1.8.0-openjdk
-</pre></div>
-</div>
-<p>Java 9:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install java-9-openjdk
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install java-1.8.0-openjdk
 </pre></div>
 </div>
 <p>Java 11:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install java-11-openjdk
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install java-11-openjdk
 </pre></div>
 </div>
-</div>
-<div class="section" id="alternatives-java">
-<span id="index-35"></span><span id="id21"></span><h2>Как мне выбрать версию Java по умолчанию?<a class="headerlink" href="#alternatives-java" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для выбора дефолтной версии Java следует использовать систему альтернатив:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo update-alternatives --config java
+<p>Java 17:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install java-17-openjdk
 </pre></div>
 </div>
-</div>
-<div class="section" id="dnf-repo-contents">
-<span id="index-36"></span><span id="id22"></span><h2>Как вывести список пакетов из определённого репозитория?<a class="headerlink" href="#dnf-repo-contents" title="Ссылка на этот заголовок">¶</a></h2>
+<p>После установки укажем необходимую версию <a class="reference internal" href="administration.html#alternatives-java"><span class="std std-ref">Java по умолчанию</span></a>.</p>
+</section>
+<section id="dnf-repo-contents">
+<span id="index-37"></span><span id="id28"></span><h2>Как вывести список пакетов из определённого репозитория?<a class="headerlink" href="#dnf-repo-contents" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Вывод полного списка пакетов из репозитория (на примере rpmfusion-free):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf repo-pkgs rpmfusion-free list
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf repo-pkgs rpmfusion-free list
 </pre></div>
 </div>
 <p>Вывод полного списка установленных пакетов из репозитория (также на примере rpmfusion-free):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf repo-pkgs rpmfusion-free list installed
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf repo-pkgs rpmfusion-free list installed
 </pre></div>
 </div>
-</div>
-<div class="section" id="dnf-repo-orphans">
-<span id="index-37"></span><span id="id23"></span><h2>Как вывести список пакетов, установленных не из репозиториев, либо удалённых из них?<a class="headerlink" href="#dnf-repo-orphans" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="dnf-repo-orphans">
+<span id="index-38"></span><span id="id29"></span><h2>Как вывести список пакетов, установленных не из репозиториев, либо удалённых из них?<a class="headerlink" href="#dnf-repo-orphans" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Выполним в терминале:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf -C list extras
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf list extras
 </pre></div>
 </div>
-</div>
-<div class="section" id="dnf-transactions-cleanup">
-<span id="index-38"></span><span id="id24"></span><h2>Как очистить журнал транзакций dnf?<a class="headerlink" href="#dnf-transactions-cleanup" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для очистки журнала транзакций dnf history, выполним:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo rm -rf /var/lib/dnf/history/*
+</section>
+<section id="dnf-transactions-cleanup">
+<span id="index-39"></span><span id="id30"></span><h2>Как очистить журнал транзакций dnf?<a class="headerlink" href="#dnf-transactions-cleanup" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для очистки журнала транзакций <code class="docutils literal notranslate"><span class="pre">dnf</span> <span class="pre">history</span></code>, выполним:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rm -f /var/lib/dnf/history.sql*
 </pre></div>
 </div>
-</div>
-<div class="section" id="dnf-list-export">
-<span id="index-39"></span><span id="id25"></span><h2>Как сохранить список установленных пакетов, чтобы легко установить их после переустановки системы?<a class="headerlink" href="#dnf-list-export" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="dnf-list-export">
+<span id="index-40"></span><span id="id31"></span><h2>Как сохранить список установленных пакетов, чтобы легко установить их после переустановки системы?<a class="headerlink" href="#dnf-list-export" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Экспортируем список установленных вручную пакетов:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf repoquery --qf <span class="s2">&quot;%{name}&quot;</span> --userinstalled &gt; ~/packages.lst
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf repoquery --qf &quot;%{name}&quot; --userinstalled &gt; ~/packages.lst
 </pre></div>
 </div>
 <p>Копируем любым способом получившийся файл <strong>~/packages.lst</strong> на другое устройство.</p>
 <p>Устанавливаем отсутствующие пакеты:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install <span class="k">$(</span>cat ~/packages.lst<span class="k">)</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install $(cat ~/packages.lst)
 </pre></div>
 </div>
-</div>
-<div class="section" id="dnf-download-only">
-<span id="index-40"></span><span id="id26"></span><h2>Можно ли скачать, но не устанавливать пакет из репозитория?<a class="headerlink" href="#dnf-download-only" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="dnf-download-only">
+<span id="index-41"></span><span id="id32"></span><h2>Можно ли скачать, но не устанавливать пакет из репозитория?<a class="headerlink" href="#dnf-download-only" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Скачивание пакета foo-bar в текущий рабочий каталог:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf download foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf download foo-bar
 </pre></div>
 </div>
 <p>Скачивание пакета foo-bar в текущий рабочий каталог вместе со всеми его зависимостями, отсутствующими в системе в настоящий момент:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf download --resolve foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf download --resolve foo-bar
 </pre></div>
 </div>
 <p>Скачивание пакета foo-bar вместе со всеми зависимостями в указанный каталог:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf download --resolve foo-bar --downloaddir ~/mypkg
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf download --resolve foo-bar --downloaddir ~/mypkg
 </pre></div>
 </div>
 <p>Для работы плагина dnf-download права суперпользователя не требуются.</p>
-</div>
-<div class="section" id="dnf-manage-repo">
-<span id="index-41"></span><span id="id27"></span><h2>Как правильно включать или отключать репозитории?<a class="headerlink" href="#dnf-manage-repo" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="dnf-manage-repo">
+<span id="index-42"></span><span id="id33"></span><h2>Как правильно включать или отключать репозитории?<a class="headerlink" href="#dnf-manage-repo" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Включить репозиторий постоянно (на примере <em>foo-bar</em>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-enabled foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-enabled foo-bar
 </pre></div>
 </div>
 <p>Отключить репозиторий постоянно:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-disabled foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-disabled foo-bar
 </pre></div>
 </div>
 <p>Временно подключить репозиторий и установить пакет из него:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install --refresh foo-bar --enablerepo<span class="o">=</span>foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install --refresh foo-bar --enablerepo=foo-bar
 </pre></div>
 </div>
-<p>Опциональный параметр <strong>–refresh</strong> добавляется для принудительного обновления кэшей dnf.</p>
-</div>
-<div class="section" id="dnf-modular">
-<span id="index-42"></span><span id="id28"></span><h2>Что такое модульные репозитории?<a class="headerlink" href="#dnf-modular" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Репозитории Fedora Modular позволяют установить в систему несколько различных версий определённых пакетов. Они включены по умолчанию начиная с Fedora 29.</p>
+<p>Опциональный параметр <code class="docutils literal notranslate"><span class="pre">--refresh</span></code> добавляется для принудительного обновления кэшей dnf.</p>
+</section>
+<section id="dnf-modular">
+<span id="index-43"></span><span id="id34"></span><h2>Что такое модульные репозитории?<a class="headerlink" href="#dnf-modular" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Репозитории Fedora Modular позволяют установить в систему несколько различных версий определённых пакетов. Они включены по умолчанию начиная с Fedora 29. Поддержка модулей объявлена устаревшей с Fedora 33.</p>
 <p>Вывод списка доступных модулей:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf module list
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf module list
 </pre></div>
 </div>
 <p>Установка пакета в виде модуля (на примере <em>nodejs</em>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dnf module install nodejs:6/default
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf module install nodejs:6/default
 </pre></div>
 </div>
 <p>Более подробную информацию о модулях можно найти <a class="reference external" href="https://docs.fedoraproject.org/en-US/modularity/using-modules/">здесь</a>.</p>
-</div>
-<div class="section" id="dnf-disable-modules">
-<span id="index-43"></span><span id="id29"></span><h2>Мне не нужна поддержка модулей. Как их можно отключить?<a class="headerlink" href="#dnf-disable-modules" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Отключение репозитория с модулями:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-disabled fedora-modular
-sudo dnf config-manager --set-disabled updates-modular
+</section>
+<section id="dnf-disable-modules">
+<span id="index-44"></span><span id="id35"></span><h2>Мне не нужна поддержка модулей. Как их можно отключить?<a class="headerlink" href="#dnf-disable-modules" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Отключим все модули:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf module reset &#39;*&#39;
 </pre></div>
 </div>
-<p>Повторное включение поддержки модулей:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-enabled fedora-modular
-sudo dnf config-manager --set-enabled updates-modular
+<p>Удалим пакет с модульными репозиториями:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove fedora-repos-modular
 </pre></div>
 </div>
+<p>Произведём синхронизацию:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf distro-sync
+</pre></div>
 </div>
-<div class="section" id="dnf-gui-updates">
-<span id="index-44"></span><span id="id30"></span><h2>Можно ли устанавливать обновления через dnf из графического режима?<a class="headerlink" href="#dnf-gui-updates" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Устанавливать обновления посредством dnf из графического режима конечно же возможно, однако мы настоятельно не рекомендуем этого делать ибо в случае любого сбоя и падения приложения с эмулятором терминала, упадёт и менеджер пакетов, после чего ваша система может быть серьёзно повреждена и станет непригодной для использования.</p>
+</section>
+<section id="dnf-gui-updates">
+<span id="index-45"></span><span id="id36"></span><h2>Можно ли устанавливать обновления через dnf из графического режима?<a class="headerlink" href="#dnf-gui-updates" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Устанавливать обновления посредством dnf из графического режима конечно же возможно, однако мы настоятельно не рекомендуем этого делать. В случае любого сбоя и падения приложения с эмулятором терминала, упадёт и менеджер пакетов, после чего ваша система может быть серьёзно повреждена и станет непригодной для использования.</p>
 <p>Для установки обновлений посредством dnf рекомендуется два варианта:</p>
 <blockquote>
 <div><ul class="simple">
-<li>переключение в консоль фреймбуфера посредством нажатия комбинации <strong>Ctrl+Alt+F2</strong> (для возврата в графический режим - <strong>Ctrl+Alt+F1</strong>), выполнение в ней нового входа в систему и запуск процесса обновления;</li>
-<li>использование screen сессии. В таком случае в случае падения эмулятора терминала, процесс не будет прерван.</li>
+<li><p>переключение в консоль фреймбуфера посредством нажатия комбинации <strong>Ctrl+Alt+F3</strong> (для возврата в графический режим – <strong>Ctrl+Alt+F1</strong>), выполнение в ней нового входа в систему и запуск процесса обновления;</p></li>
+<li><p>использование screen сессии. Тогда, в случае падения эмулятора терминала, процесс не будет прерван.</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="packagekit">
-<span id="packagekit-updates"></span><span id="index-45"></span><h2>Безопасно ли использовать основанные на PackageKit модули обновления из графического режима?<a class="headerlink" href="#packagekit" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="packagekit">
+<span id="packagekit-updates"></span><span id="index-46"></span><h2>Безопасно ли использовать основанные на PackageKit модули обновления из графического режима?<a class="headerlink" href="#packagekit" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Да, использование Gnome Software, Apper, Discover и других, основанных на PackageKit, для обновления системы из графического режима полностью безопасно, т.к. они сначала скачивают файлы обновлений в свой кэш, а для непосредственной установки уже используют специальный сервис. В случае падения GUI приложения, никаких повреждений не будет.</p>
-</div>
-<div class="section" id="fedora-bodhi">
-<span id="index-46"></span><span id="id31"></span><h2>Как правильно тестировать новые версии пакетов в Fedora?<a class="headerlink" href="#fedora-bodhi" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="fedora-bodhi">
+<span id="index-47"></span><span id="id37"></span><h2>Как правильно тестировать новые версии пакетов в Fedora?<a class="headerlink" href="#fedora-bodhi" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Все обновления сначала попадают в <a class="reference internal" href="#updates-testing"><span class="std std-ref">тестовые репозитории</span></a>, поэтому их сначала нужно <a class="reference internal" href="#dnf-advisory"><span class="std std-ref">установить</span></a>.</p>
 <p>По результатам тестирования следует перейти в <a class="reference external" href="https://bodhi.fedoraproject.org/">Fedora Bodhi</a>, выбрать соответствующее обновление и либо добавить ему карму (работает исправно), либо отнять (возникли какие-то проблемы), а также опционально составить краткий отчёт (особенно если обновление работает не так, как ожидалось).</p>
 <p>Также для упрощения работы тестировщиков была создана утилита <a class="reference external" href="https://fedoraproject.org/wiki/Fedora_Easy_Karma">Fedora Easy Karma</a>, позволяющая работать с Bodhi из командной строки.</p>
-</div>
-<div class="section" id="dnf-advisory">
-<span id="index-47"></span><span id="id32"></span><h2>Как проще установить определённое обновление из тестового репозитория?<a class="headerlink" href="#dnf-advisory" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="dnf-advisory">
+<span id="index-48"></span><span id="id38"></span><h2>Как проще установить определённое обновление из тестового репозитория?<a class="headerlink" href="#dnf-advisory" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Проще всего найти данное обновление в <a class="reference internal" href="#fedora-bodhi"><span class="std std-ref">Bodhi</span></a>, затем выполнить:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh --enablerepo<span class="o">=</span>updates-testing --advisory<span class="o">=</span>FEDORA-2018-XXXXXXXXX
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf upgrade --refresh --enablerepo=updates-testing --advisory=FEDORA-2018-XXXXXXXXX
 </pre></div>
 </div>
-<p>Здесь <strong>FEDORA-2018-XXXXXXXXX</strong> - уникальный идентификатор обновления из Bodhi.</p>
-</div>
-<div class="section" id="koji">
-<span id="koji-download"></span><span id="index-48"></span><h2>Как скачать определённую сборку пакета из Koji?<a class="headerlink" href="#koji" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Здесь <strong>FEDORA-2018-XXXXXXXXX</strong> – уникальный идентификатор обновления из Bodhi.</p>
+</section>
+<section id="koji">
+<span id="koji-download"></span><span id="index-49"></span><h2>Как скачать определённую сборку пакета из Koji?<a class="headerlink" href="#koji" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для начала установим клиент <a class="reference internal" href="development.html#koji-about"><span class="std std-ref">Koji</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install koji
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install koji
 </pre></div>
 </div>
 <p>Выведем список всех успешно завершённых сборок пакета <strong>kernel</strong> за последнюю неделю:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>koji list-builds --package<span class="o">=</span>kernel --after<span class="o">=</span><span class="k">$(($(</span>date +%s<span class="k">)</span> <span class="o">-</span> <span class="m">604800</span><span class="k">))</span> --state<span class="o">=</span>COMPLETE
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji list-builds --package=kernel --after=$(($(date +%s) - 604800)) --state=COMPLETE
 </pre></div>
 </div>
 <p>Скачаем выбранную сборку для используемой архитектуры:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>koji download-build kernel-4.19.7-300.fc29 --arch<span class="o">=</span><span class="k">$(</span>uname -m<span class="k">)</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji download-build kernel-4.19.7-300.fc29 --arch=$(uname -m)
 </pre></div>
 </div>
+</section>
+<section id="package-version">
+<span id="index-50"></span><span id="id39"></span><h2>Почему некоторые пакеты в Fedora не обновляют до новейших версий?<a class="headerlink" href="#package-version" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Согласно <a class="reference external" href="https://docs.fedoraproject.org/en-US/fesco/Updates_Policy/#stable-releases">Fedora updates policy</a>, запрещается обновлять пакеты в пределах стабильного выпуска Fedora до новых мажорных версий кроме тех, для которых было выдано <a class="reference internal" href="#upgrades-allowed"><span class="std std-ref">специальное разрешение</span></a> от <a class="reference internal" href="generic-info.html#fesco"><span class="std std-ref">FESCo</span></a>.</p>
+</section>
+<section id="upgrades-allowed">
+<span id="index-51"></span><span id="id40"></span><h2>Какие пакеты разрешено обновлять до новых версий в пределах стабильного выпуска?<a class="headerlink" href="#upgrades-allowed" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В настоящее время <a class="reference external" href="https://docs.fedoraproject.org/en-US/fesco/Updates_Policy/#exceptions-list">определён список пакетов</a>, для которых разрешены обновления до новых версий в пределах стабильного выпуска Fedora:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ядро Linux;</p></li>
+<li><p>весь KDE стек (включая Qt);</p></li>
+<li><p>веб-браузеры и почтовые клиенты.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="dnf-user">
+<span id="index-52"></span><span id="id41"></span><h2>При запуске dnf без прав суперпользователя он заново загружает и обновляет кэши. Это нормально?<a class="headerlink" href="#dnf-user" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Если необходимо, чтобы dnf использовал глобальные общесистемные кэши репозиториев, следует применять параметр <code class="docutils literal notranslate"><span class="pre">-C</span></code>, например:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf -C search foo
+</pre></div>
 </div>
+</section>
+<section id="dnf-remove-32bit">
+<span id="index-53"></span><span id="id42"></span><h2>Как удалить все установленные в системе 32-битные пакеты?<a class="headerlink" href="#dnf-remove-32bit" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удаление всех 32-битных пакетов из системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove &quot;*.i686&quot;
+</pre></div>
 </div>
+</section>
+<section id="dnf-mirror">
+<span id="index-54"></span><span id="id43"></span><h2>Можно ли создать собственное зеркало репозиториев Fedora?<a class="headerlink" href="#dnf-mirror" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, см. <a class="reference external" href="https://fedoraproject.org/wiki/Infrastructure/Mirroring">здесь</a>.</p>
+</section>
+<section id="dnf-signatures">
+<span id="index-55"></span><span id="id44"></span><h2>Безопасно ли устанавливать обновления через небезопасные соединения?<a class="headerlink" href="#dnf-signatures" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да. Все пакеты в репозиториях Fedora подписываются цифровыми подписями GnuPG, которые в обязательном порядке проверяются перед установкой и обновлением.</p>
+<p>В случае если пакет был заменён, он не сможет быть установлен, т.к. его ЭЦП не будет соответстствовать подписи репозитория.</p>
+</section>
+<section id="rfremix-fedora">
+<span id="rfremix-to-fedora"></span><span id="index-56"></span><h2>Как превратить RFRemix в Fedora и наоборот?<a class="headerlink" href="#rfremix-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для превращения Fedora в <a class="reference internal" href="generic-info.html#rfremix"><span class="std std-ref">RFRemix</span></a> необходимо и достаточно подключить репозиторий <a class="reference internal" href="generic-info.html#russian-fedora"><span class="std std-ref">russianfedora-branding</span></a>, а чтобы вернуть всё назад – отключить его.</p>
+<p>После подключения/отключения необходимо выполнить синхронизацию:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf swap rfremix-release fedora-release --allowerasing
+sudo dnf distro-sync --allowerasing
+</pre></div>
+</div>
+</section>
+<section id="copr">
+<span id="copr-use"></span><span id="index-57"></span><h2>Безопасно ли использовать COPR репозитории?<a class="headerlink" href="#copr" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Т.к. все пакеты в <a class="reference internal" href="generic-info.html#copr"><span class="std std-ref">COPR</span></a> создаются простыми пользователями, их качество значительно отличается. Есть как хорошие репозитории, так и те, что способны вывести систему из строя.</p>
+<p>Перед подключением мы рекомендуем проверить является ли владелец репозитория мейнтейнером Fedora или нет и, если нет, отказаться от этого.</p>
+</section>
+<section id="fedora-snap">
+<span id="index-58"></span><span id="id45"></span><h2>Можно ли использовать в Fedora Snap пакеты?<a class="headerlink" href="#fedora-snap" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим пакет <strong>snapd</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install snapd
+</pre></div>
+</div>
+<p>Для работы некоторых приложений требуется наличие символической ссылки <code class="docutils literal notranslate"><span class="pre">/snap</span></code>, поэтому создадим её:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo ln -s /var/lib/snapd/snap /snap
+</pre></div>
+</div>
+<p>Установим приложение <strong>foo-bar</strong> из <a class="reference external" href="https://snapcraft.io/store">Snap Store</a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo snap install foo-bar
+</pre></div>
+</div>
+<p>Внимание! Вне Ubuntu все Snap-пакеты выполняются без какой-либо изоляции из-за отсутствия поддержки AppArmor. Более подробно об этом можно прочитать в <a class="reference internal" href="#flatpak-vs-snap"><span class="std std-ref">сравнении самодостаточных пакетов</span></a>.</p>
+</section>
+<section id="dnf-groups">
+<span id="index-59"></span><span id="id46"></span><h2>Безопасно ли устанавливать и удалять пакеты группами?<a class="headerlink" href="#dnf-groups" title="Ссылка на этот заголовок">¶</a></h2>
+<p><a class="reference internal" href="#dnf-group-install"><span class="std std-ref">Устанавливать</span></a> пакеты группами абсолютно безопасно, однако <a class="reference internal" href="#dnf-group-remove"><span class="std std-ref">удалять</span></a> – нет, т.к. это приведёт к удалению всех её членов, что может привести к полной неработоспособности системы из-за удаления важных компонентов, таких как графическое окружение, менеджер входа в систему и т.д.</p>
+<p>Вывод списка доступных групп:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf grouplist
+</pre></div>
+</div>
+</section>
+<section id="dnf-group-install">
+<span id="index-60"></span><span id="id47"></span><h2>Как установить группу пакетов?<a class="headerlink" href="#dnf-group-install" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установка группы <strong>Fedora Workstation</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf groupinstall &#39;Fedora Workstation&#39;
+</pre></div>
+</div>
+</section>
+<section id="dnf-group-remove">
+<span id="index-61"></span><span id="id48"></span><h2>Как удалить группу пакетов?<a class="headerlink" href="#dnf-group-remove" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удаление группы <strong>Fedora Workstation</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf groupremove &#39;Fedora Workstation&#39;
+</pre></div>
+</div>
+<p>Настоятельно <a class="reference internal" href="#dnf-groups"><span class="std std-ref">не рекомендуется</span></a> удалять группы таким способом.</p>
+</section>
+<section id="dnf-autoremove">
+<span id="index-62"></span><span id="id49"></span><h2>Как автоматически удалить не нужные более пакеты?<a class="headerlink" href="#dnf-autoremove" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Dnf автоматически удаляет зависимости, не нужные более для работы установленных пакетов, однако этот процесс можно инициировать и вручную:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf autoremove
+</pre></div>
+</div>
+<p>Следует соблюдать максимальную осторожность при использовании данной команды, т.к. это может повлечь за собой удаление важных, но автоматически установленных компонентов рабочей среды.</p>
+<p>Если какие-либо из кандидатов необходимы для дальнейшей работы, их лучше всего пометить как <a class="reference internal" href="#dnf-mark"><span class="std std-ref">установленные пользователем</span></a>.</p>
+</section>
+<section id="dnf-mark">
+<span id="index-63"></span><span id="id50"></span><h2>Как отметить пакет в качестве установленного пользователем?<a class="headerlink" href="#dnf-mark" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Отметим пакет <strong>foo-bar</strong> в качестве установленного пользователем:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf mark install foo-bar
+</pre></div>
+</div>
+<p>После этого пакет не будет автоматически помечаться в качестве <a class="reference internal" href="#dnf-autoremove"><span class="std std-ref">кандидата на удаление</span></a>.</p>
+</section>
+<section id="dnf-noautoremove">
+<span id="index-64"></span><span id="id51"></span><h2>Как запретить автоматически удалять не нужные более зависимости?<a class="headerlink" href="#dnf-noautoremove" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">clean_requirements_on_remove</span></code> (при отсутствии добавим):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>clean_requirements_on_remove=True
+</pre></div>
+</div>
+</section>
+<section id="dnf-param">
+<span id="index-65"></span><span id="id52"></span><h2>Как однократно передать dnf параметр?<a class="headerlink" href="#dnf-param" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для однократной передачи параметра воспользуемся опцией <code class="docutils literal notranslate"><span class="pre">--setopt</span></code>.</p>
+<p>Например в качестве примера удалим пакет <strong>foo-bar</strong>, сохранив при этом его <a class="reference internal" href="#dnf-noautoremove"><span class="std std-ref">зависимости</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove foo-bar --setopt=clean_requirements_on_remove=True
+</pre></div>
+</div>
+</section>
+<section id="dnf-mirrors">
+<span id="index-66"></span><span id="id53"></span><h2>Как dnf определяет зеркала, с которых будет загружать пакеты?<a class="headerlink" href="#dnf-mirrors" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По умолчанию в актуальных версиях Fedora применяется <a class="reference external" href="https://www.metalinker.org/">технология metalink</a>, при помощи которой на основе внешнего IP-адреса сервер определяет ближайшие зеркала по географическому признаку и отдаёт результат в виде отсортированного списка с указанием приоритетов.</p>
+<p>Также существует альтернативная реализация в виде <a class="reference internal" href="#dnf-fastestmirror"><span class="std std-ref">плагина fastestmirror</span></a>, который определяет самое быстрое зеркало локально при помощи ICMP PING. Реальных замеров скорости при этом не производится, поэтому их качество остаётся на достаточно низком уровне.</p>
+</section>
+<section id="dnf-fastestmirror">
+<span id="index-67"></span><span id="id54"></span><h2>Как включить в dnf использование плагина fastestmirror?<a class="headerlink" href="#dnf-fastestmirror" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">fastestmirror</span></code> (при отсутствии добавим):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fastestmirror=1
+</pre></div>
+</div>
+</section>
+<section id="fastestmirror-clear">
+<span id="index-68"></span><span id="id55"></span><h2>Как очистить кэш плагина dnf fastestmirror?<a class="headerlink" href="#fastestmirror-clear" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим файл с кэшем плагина fastestmirror:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rm -f /var/cache/dnf/fastestmirror.cache
+</pre></div>
+</div>
+</section>
+<section id="dnf-local-verify">
+<span id="index-69"></span><span id="id56"></span><h2>Почему dnf не проверяет подписи локально устанавливаемых пакетов?<a class="headerlink" href="#dnf-local-verify" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По умолчанию это отключено, т.к. предполагается, что большинство локально собранных RPM пакетов не имеют GnuPG подписей.</p>
+<p>При необходимости данная функция <a class="reference internal" href="#dnf-local-enable"><span class="std std-ref">может быть включена</span></a>.</p>
+</section>
+<section id="dnf-local-enable">
+<span id="index-70"></span><span id="id57"></span><h2>Как включить проверку подписей для локально устанавливаемых пакетов?<a class="headerlink" href="#dnf-local-enable" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">localpkg_gpgcheck</span></code> (при отсутствии добавим):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>localpkg_gpgcheck=1
+</pre></div>
+</div>
+</section>
+<section id="flatpak-vs-snap">
+<span id="index-71"></span><span id="id58"></span><h2>Какой вид самодостаточных пакетов является лучшим?<a class="headerlink" href="#flatpak-vs-snap" title="Ссылка на этот заголовок">¶</a></h2>
+<p>См. <a class="reference external" href="https://www.easycoding.org/2019/10/14/sravnenie-samodostatochnyx-paketov.html">здесь</a>.</p>
+</section>
+<section id="rpm-packages-other">
+<span id="index-72"></span><span id="id59"></span><h2>Как вывести список пакетов из другой установки?<a class="headerlink" href="#rpm-packages-other" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Выведем список установленных пакетов другой инсталляции Fedora:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rpm -qa --dbpath /path/to/other/var/lib/rpm
+</pre></div>
+</div>
+<p>Здесь <strong>/path/to/other/var/lib/rpm</strong> – полный путь к базе RPM.</p>
+</section>
+<section id="rpm-reinstall-package">
+<span id="index-73"></span><span id="id60"></span><h2>Как мне переустановить пакет?<a class="headerlink" href="#rpm-reinstall-package" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для переустановки пакета или пакетов можем воспользоваться штатной функцией <strong>reinstall</strong> dnf.</p>
+<p>Переустановим пакет <strong>foo-bar</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf reinstall &quot;foo-bar*&quot;
+</pre></div>
+</div>
+<p>Переустановим все установленные в системе пакеты:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf reinstall &quot;*&quot;
+</pre></div>
+</div>
+</section>
+<section id="rpm-check-file">
+<span id="index-74"></span><span id="id61"></span><h2>Как определить какому пакету принадлежит файл?<a class="headerlink" href="#rpm-check-file" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Воспрользуемся прямым вызовом <strong>rpm</strong> для получения информации о принадлежности файла какому-либо <em>установленному</em> пакету (для не установленных существует <a class="reference internal" href="#dnf-find-file"><span class="std std-ref">иной способ</span></a>):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rpm -qf /path/to/file
+</pre></div>
+</div>
+<p>Здесь <strong>/path/to/file</strong> – абсолютный путь к файлу, который необходимо проверить.</p>
+<p>Если принадлежность установлена, будет выдано полное имя пакета. В противном случае – сообщение об ошибке.</p>
+</section>
+<section id="rpm-check-system">
+<span id="index-75"></span><span id="id62"></span><h2>Как проверить какие файлы в системе были изменены?<a class="headerlink" href="#rpm-check-system" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Воспрользуемся прямым вызовом <strong>rpm</strong> для выполнения полной проверки и вывода информации о результатах:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rpm -qVa --nomtime
+</pre></div>
+</div>
+<p>Далеко не всё является ошибкой. Например сообщение об изменённых файлах конфигурации является абсолютно нормальным явлением.</p>
+</section>
+<section id="fedora-cisco-openh264">
+<span id="cisco-openh264"></span><span id="index-76"></span><h2>Что такое fedora-cisco-openh264?<a class="headerlink" href="#fedora-cisco-openh264" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Репозиторий <strong>fedora-cisco-openh264</strong> представляет специальную бинарную сборку библиотеки openh264, которая применяется в браузере Mozilla Firefox для аудио/видео вызовов, для США и Австралии (т.е. стран, где действуют патенты на алгоритмы).</p>
+<p>Пользователям из всех остальных стран мы рекомендуем использовать <a class="reference internal" href="using-applications.html#firefox-codecs"><span class="std std-ref">ffmpeg-libs</span></a> из репозитория <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>, который предоставляет все доступные кодеки мультимедиа без каких-либо ограничений.</p>
+<p>Отключим данный репозиторий:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf config-manager --set-disabled fedora-cisco-openh264
+</pre></div>
+</div>
+<p>Удалим установленные из него пакеты:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove openh264 mozilla-openh264 gstreamer1-plugin-openh264
+</pre></div>
+</div>
+</section>
+<section id="dnf-no-color">
+<span id="index-77"></span><span id="id63"></span><h2>Как запретить цвета в выводе dnf?<a class="headerlink" href="#dnf-no-color" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Изменим значение переменной <code class="docutils literal notranslate"><span class="pre">color</span></code> (при отсутствии создадим):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>color=never
+</pre></div>
+</div>
+<p>Сохраним изменения в файле.</p>
+</section>
+<section id="zchunk-dnf">
+<span id="dnf-zchunk-disable"></span><span id="index-78"></span><h2>Как отключить использование zchunk в dnf?<a class="headerlink" href="#zchunk-dnf" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем главный конфигурационный файл dnf:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Добавим в самый конец следующую строку:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>zchunk=False
+</pre></div>
+</div>
+<p>Сохраним изменения в файле.</p>
+</section>
+<section id="dnf-disable-telemetry">
+<span id="index-79"></span><span id="id64"></span><h2>Как отключить телеметрию в dnf?<a class="headerlink" href="#dnf-disable-telemetry" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По умолчанию для основных репозиториев Fedora, начиная с версии 32, один раз в неделю dnf отправляет beacon, чтобы можно было оценить количество пользователей дистрибутива.</p>
+<p>Для отключения откроем главный конфигурационный файл dnf:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Добавим в самый конец следующую строку:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>countme=False
+</pre></div>
+</div>
+<p>Сохраним изменения в файле.</p>
+</section>
+<section id="check-build-deps">
+<span id="index-80"></span><span id="id65"></span><h2>Как вывести список пакетов, использующих при сборке определённый?<a class="headerlink" href="#check-build-deps" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Однократно подключим репозитории с исходниками и при помощи dnf выведем список пакетов, для сборки которых необходим <strong>foo-bar-devel</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf repoquery -q  --releasever=rawhide --disablerepo=&quot;*&quot; --qf=&quot;%{name}&quot; --enablerepo=fedora-source --enablerepo=updates-source --enablerepo=updates-testing-source --archlist=src --whatrequires=&quot;foo-bar-devel&quot;
+</pre></div>
+</div>
+</section>
+<section id="dnf-remove-packages-repository">
+<span id="index-81"></span><span id="id66"></span><h2>Как удалить все пакеты из определённого репозитория?<a class="headerlink" href="#dnf-remove-packages-repository" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим все пакеты, установленнные из репозитория <strong>foo-bar</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf repository-packages --installed foo-bar remove
+</pre></div>
+</div>
+</section>
+<section id="dnf-remove-debuginfo">
+<span id="index-82"></span><span id="id67"></span><h2>Как удалить все пакеты с отладочной информацией?<a class="headerlink" href="#dnf-remove-debuginfo" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим все пакеты с отладочной информацией, установленные из основных репозиториев Fedora:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf repository-packages --installed fedora-debuginfo remove
+sudo dnf repository-packages --installed updates-debuginfo remove
+sudo dnf repository-packages --installed updates-testing-debuginfo remove
+</pre></div>
+</div>
+</section>
+<section id="dnf-parallel-downloads">
+<span id="index-83"></span><span id="id68"></span><h2>Как изменить количество одновременно загружаемых пакетов?<a class="headerlink" href="#dnf-parallel-downloads" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Добавим переменную <code class="docutils literal notranslate"><span class="pre">max_parallel_downloads</span></code> с необходимым значением, например <strong>10</strong> (по умолчанию <em>3</em>, максимум <em>20</em>):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>max_parallel_downloads=10
+</pre></div>
+</div>
+</section>
+<section id="dnf-download-threshold">
+<span id="index-84"></span><span id="id69"></span><h2>Как установить порог скорости до выбора другого зеркала?<a class="headerlink" href="#dnf-download-threshold" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
+</pre></div>
+</div>
+<p>Добавим переменную <code class="docutils literal notranslate"><span class="pre">minrate</span></code> с необходимым значением, например <strong>200k</strong> (по умолчанию <em>1000</em>; допускаются суффиксы <strong>k</strong> (килобайты в секунду) и <strong>M</strong> (мегабайты в секунду)):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>minrate=200k
+</pre></div>
+</div>
+</section>
+</section>
 
 
           </div>
@@ -484,30 +849,37 @@ sudo dnf config-manager --set-enabled updates-modular
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none" role="search">
-  <h3>Быстрый поиск</h3>
+  <h3 id="searchlabel">Быстрый поиск</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Искать" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script><h3>Навигация</h3>
+<script>$('#searchbox').show(0);</script><h3>Навигация</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Вопросы, связанные с установкой системы</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные с пакетным менеджером и установкой пакетов</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Установка системы</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Пакетный менеджер и установка пакетов</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#pkg-manager">Какой менеджер пакетов используется в настоящее время?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#yum-fedora">Могу ли я использовать Yum в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flatpak">Что такое Flatpak пакеты?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flatpak-advantages">Какие преимущества и недостатки у Flatpak пакетов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#make-install">Можно ли устанавливать программы посредством make install?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pip-npm">Можно ли использовать PIP или NPM для установки программ и модулей?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#python-pip">Нужной Python библиотеки нет в репозиториях. Как можно безопасно использовать PIP?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#python-virtual-environment">Как правильно применять Python Virtual Environment?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#gdm-sddm">У меня в системе используется GDM, но я хочу заменить его на SDDM. Это возможно?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-venv-remove">Как удалить установленные пакеты из Python Virtual Environment?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-update">Как правильно обновлять систему?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#update-interval">Как часто следует устанавливать обновления системы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#update-auto">Можно ли автоматизировать установку критических обновлений?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora">Как мне обновить Fedora до новой версии?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dist-downgrade">Возможно ли сделать откат к предыдущей версии Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora-rawhide">Как мне обновить Fedora до Rawhide?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rawhide">Возможно ли откатиться с Rawhide назад на обычный релиз?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#upgrade-jump">Можно ли обновляться через несколько версий?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#upgrade-time">Когда лучше выполнять обновление при выходе новой версии дистрибутива?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf">При обновлении dnf ругается на дубликаты пакетов.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpm">База RPM оказалась повреждена. Как восстановить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-kernel-store">Dnf сохраняет старые ядра. Это нормально?</a></li>
@@ -515,26 +887,18 @@ sudo dnf config-manager --set-enabled updates-modular
 <li class="toctree-l2"><a class="reference internal" href="#dnf-proxy">Как настроить работу dnf через прокси?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-weakdeps">Как отключить установку слабых зависимостей?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-pkgupdates">Как мне запретить установку обновлений для ряда пакетов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#delta-rpm">Что такое Delta RPM?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#drpm-disable">Как отключить использование Delta RPM?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-kernel-remove">Как можно вручную удалить старое ядро?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#microsoft-fedora">Как установить шрифты Microsoft в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rd-repositories">Какие сторонние репозитории лучше всего подключать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#flatpak-fedora">Как работать с Flatpak пакетами в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#multimedia-codecs">В системе нет кодеков мультимедиа. Как их установить?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#chromium">Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#firefox">Как активировать все доступные кодеки в браузере Firefox?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#nvidia">Как правильно установить драйверы NVIDIA?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#virtualization">Какую систему управления виртуальными машинами лучше установить?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#kvm">Как правильно установить систему виртуализации KVM?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#kvm-users">Как отключить запрос пароля во время запуска или остановки виртуальных машин при использовании KVM?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#virtualbox-fedora">Как правильно установить VirtualBox в Fedora?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#wi-fi-broadcom">Как правильно установить драйверы Wi-Fi модулей Broadcom?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-caches">Как отключить автообновление кэшей dnf?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dkms-akmods">Что лучше: dkms или akmods?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#updates-testing">Каким способом можно обновить пакет из тестовых репозиториев?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-list-contents">Как получить список файлов установленного пакета?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-find-file">Как узнать в каком пакете находится конкретный файл?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#java">Можно ли установить несколько версий Java в систему?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#alternatives-java">Как мне выбрать версию Java по умолчанию?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-repo-contents">Как вывести список пакетов из определённого репозитория?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-repo-orphans">Как вывести список пакетов, установленных не из репозиториев, либо удалённых из них?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-transactions-cleanup">Как очистить журнал транзакций dnf?</a></li>
@@ -548,14 +912,52 @@ sudo dnf config-manager --set-enabled updates-modular
 <li class="toctree-l2"><a class="reference internal" href="#fedora-bodhi">Как правильно тестировать новые версии пакетов в Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-advisory">Как проще установить определённое обновление из тестового репозитория?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#koji">Как скачать определённую сборку пакета из Koji?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#package-version">Почему некоторые пакеты в Fedora не обновляют до новейших версий?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#upgrades-allowed">Какие пакеты разрешено обновлять до новых версий в пределах стабильного выпуска?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-user">При запуске dnf без прав суперпользователя он заново загружает и обновляет кэши. Это нормально?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-remove-32bit">Как удалить все установленные в системе 32-битные пакеты?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-mirror">Можно ли создать собственное зеркало репозиториев Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-signatures">Безопасно ли устанавливать обновления через небезопасные соединения?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rfremix-fedora">Как превратить RFRemix в Fedora и наоборот?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copr">Безопасно ли использовать COPR репозитории?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora-snap">Можно ли использовать в Fedora Snap пакеты?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-groups">Безопасно ли устанавливать и удалять пакеты группами?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-group-install">Как установить группу пакетов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-group-remove">Как удалить группу пакетов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-autoremove">Как автоматически удалить не нужные более пакеты?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-mark">Как отметить пакет в качестве установленного пользователем?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-noautoremove">Как запретить автоматически удалять не нужные более зависимости?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-param">Как однократно передать dnf параметр?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-mirrors">Как dnf определяет зеркала, с которых будет загружать пакеты?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-fastestmirror">Как включить в dnf использование плагина fastestmirror?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fastestmirror-clear">Как очистить кэш плагина dnf fastestmirror?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-local-verify">Почему dnf не проверяет подписи локально устанавливаемых пакетов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-local-enable">Как включить проверку подписей для локально устанавливаемых пакетов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flatpak-vs-snap">Какой вид самодостаточных пакетов является лучшим?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpm-packages-other">Как вывести список пакетов из другой установки?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpm-reinstall-package">Как мне переустановить пакет?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpm-check-file">Как определить какому пакету принадлежит файл?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpm-check-system">Как проверить какие файлы в системе были изменены?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora-cisco-openh264">Что такое fedora-cisco-openh264?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-no-color">Как запретить цвета в выводе dnf?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zchunk-dnf">Как отключить использование zchunk в dnf?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-disable-telemetry">Как отключить телеметрию в dnf?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#check-build-deps">Как вывести список пакетов, использующих при сборке определённый?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-remove-packages-repository">Как удалить все пакеты из определённого репозитория?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-remove-debuginfo">Как удалить все пакеты с отладочной информацией?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-parallel-downloads">Как изменить количество одновременно загружаемых пакетов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-download-threshold">Как установить порог скорости до выбора другого зеркала?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
-<li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Системное администрирование</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>
+<li class="toctree-l1"><a class="reference internal" href="virtualization.html">Виртуализация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Безопасность</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-system.html">Работа в системе</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-applications.html">Сторонние приложения</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Разработка и сборка пакетов</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
 </ul>
 
@@ -563,8 +965,8 @@ sudo dnf config-manager --set-enabled updates-modular
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="installation.html" title="предыдущая глава">Вопросы, связанные с установкой системы</a></li>
-      <li>Next: <a href="administration.html" title="следующая глава">Вопросы, связанные с администрированием системы</a></li>
+      <li>Previous: <a href="installation.html" title="предыдущая глава">Установка системы</a></li>
+      <li>Next: <a href="administration.html" title="следующая глава">Системное администрирование</a></li>
   </ul></li>
 </ul>
 </div>
@@ -573,7 +975,7 @@ sudo dnf config-manager --set-enabled updates-modular
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018 - 2019, EasyCoding Team and contributors.
+      &copy;2018 - 2022, EasyCoding Team and contributors.
       
     </div>
 

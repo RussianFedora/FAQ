@@ -1,28 +1,28 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<html lang="ru">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Поиск &#8212; Документация Fedora FAQ RU 2019.01.25</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/translations.js"></script>
-    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Поиск &#8212; Неофициальный FAQ по Fedora (версия 2022.01.04)</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script defer="defer" src="_static/search.js"></script>
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
     <link rel="shortcut icon" href="_static/faq-icon.ico"/>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="#" />
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
+  <script src="searchindex.js" defer></script>
   
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -44,24 +44,34 @@
           <div class="body" role="main">
             
   <h1 id="search-documentation">Поиск</h1>
-  <div id="fallback" class="admonition warning">
-  <script type="text/javascript">$('#fallback').hide();</script>
+  
+  <noscript>
+  <div class="admonition warning">
   <p>
     Для работы поиска включите JavaScript в браузере.
   </p>
   </div>
+  </noscript>
+  
+  
   <p>
-    Здесь можно делать поиск по всем разделам этой документации. Введите     ключевые слова в текстовое поле и нажмите кнопку «искать». Внимание: будут     найдены только те страницы, в которых есть все указанные слова. Страницы,     где есть только часть этих слов, отобраны не будут.
+    Searching for multiple words only shows matches that contain
+    all words.
   </p>
+  
+  
   <form action="" method="get">
-    <input type="text" name="q" value="" />
+    <input type="text" name="q" aria-labelledby="search-documentation" value="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
     <input type="submit" value="искать" />
     <span id="search-progress" style="padding-left: 10px"></span>
   </form>
   
+  
+  
   <div id="search-results">
   
   </div>
+  
 
           </div>
           
@@ -71,14 +81,17 @@
         <div class="sphinxsidebarwrapper"><h3>Навигация</h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Вопросы, связанные с установкой системы</a></li>
-<li class="toctree-l1"><a class="reference internal" href="package-manager.html">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
-<li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
-<li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">Вопросы, связанные с разработкой и сборкой пакетов</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Установка системы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package-manager.html">Пакетный менеджер и установка пакетов</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Системное администрирование</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>
+<li class="toctree-l1"><a class="reference internal" href="virtualization.html">Виртуализация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Безопасность</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-system.html">Работа в системе</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-applications.html">Сторонние приложения</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Разработка и сборка пакетов</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
 </ul>
 
@@ -94,7 +107,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018 - 2019, EasyCoding Team and contributors.
+      &copy;2018 - 2022, EasyCoding Team and contributors.
       
     </div>
 

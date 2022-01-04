@@ -1,24 +1,27 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<html lang="ru">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Вопросы, связанные с разработкой и сборкой пакетов &#8212; Документация Fedora FAQ RU 2019.01.25</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/translations.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2022.01.04)</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script defer="defer" src="_static/search.js"></script>
     <link rel="shortcut icon" href="_static/faq-icon.ico"/>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
-    <link rel="next" title="Вопросы, связанные с оптимизацией и тонкой настройкой" href="tips-and-tricks.html" />
-    <link rel="prev" title="Вопросы, связанные с использованием различного оборудования" href="hardware.html" />
+    <link rel="next" title="Оптимизация и тонкая настройка" href="tips-and-tricks.html" />
+    <link rel="prev" title="Оборудование" href="hardware.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -37,110 +40,1012 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="development">
-<span id="id1"></span><h1>Вопросы, связанные с разработкой и сборкой пакетов<a class="headerlink" href="#development" title="Ссылка на этот заголовок">¶</a></h1>
-<div class="section" id="fedora">
+  <section id="development">
+<span id="id1"></span><h1>Разработка и сборка пакетов<a class="headerlink" href="#development" title="Ссылка на этот заголовок">¶</a></h1>
+<section id="fedora">
 <span id="create-package"></span><span id="index-0"></span><h2>Я хочу создать пакет для Fedora. Что мне следует знать?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
-<p>См. <a class="reference external" href="https://docs.fedoraproject.org/quick-docs/en-US/creating-rpm-packages.html">здесь</a> и <a class="reference external" href="https://www.easycoding.org/2018/06/17/pravilno-paketim-po-dlya-linux.html">здесь</a>.</p>
-</div>
-<div class="section" id="rpm-mock">
+<p>См. <a class="reference external" href="https://www.easycoding.org/2019/01/28/sozdayom-rpm-pakety-dlya-fedora.html">здесь</a> и <a class="reference external" href="https://www.easycoding.org/2018/06/17/pravilno-paketim-po-dlya-linux.html">здесь</a>.</p>
+</section>
+<section id="rpm-mock">
 <span id="build-package"></span><span id="index-1"></span><h2>Как собрать RPM пакет в mock?<a class="headerlink" href="#rpm-mock" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2017/02/22/sobiraem-rpm-pakety-dlya-fedora-v-mock.html">здесь</a>.</p>
-</div>
-<div class="section" id="becoming-maintainer">
+</section>
+<section id="becoming-maintainer">
 <span id="index-2"></span><span id="id2"></span><h2>Как добавить свой пакет в репозиторий Fedora и стать мейнтейнером?<a class="headerlink" href="#becoming-maintainer" title="Ссылка на этот заголовок">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2016/06/20/dobavlyaem-paket-v-glavnyj-repozitorij-fedora.html">здесь</a>.</p>
-</div>
-<div class="section" id="koji">
+</section>
+<section id="koji">
 <span id="koji-about"></span><span id="index-3"></span><h2>Что такое Koji?<a class="headerlink" href="#koji" title="Ссылка на этот заголовок">¶</a></h2>
-<p><a class="reference external" href="https://koji.fedoraproject.org/koji/">Fedora Koji</a> - это автоматизированная среда для сборки пакетов для Fedora.</p>
-</div>
-<div class="section" id="fedpkg-rebuild">
+<p><a class="reference external" href="https://koji.fedoraproject.org/koji/">Fedora Koji</a> – это автоматизированная среда для сборки пакетов для Fedora.</p>
+</section>
+<section id="fedpkg-rebuild">
 <span id="index-4"></span><span id="id3"></span><h2>Хочу внести свои правки в пакет и пересобрать его для личных нужд. Как проще это сделать?<a class="headerlink" href="#fedpkg-rebuild" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Установим утилиты fedpkg и mock:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install fedpkg mock
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install fedpkg mock
 </pre></div>
 </div>
 <p>Скачаем исходники необходимого пакета <strong>foo-bar</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fedpkg clone -a foo-bar
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg clone -a foo-bar
 </pre></div>
 </div>
-<p>Перейдём в каталог с загруженными исходниками и переключимся на ветку для конкретной версии Fedora (если нужна версия из Rawhide - следует использовать <strong>master</strong>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> foo-bar
-fedpkg switch-branch f29
+<p>Перейдём в каталог с загруженными исходниками и переключимся на ветку для конкретной версии Fedora (если нужна версия из Rawhide – следует использовать <strong>master</strong>):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
+fedpkg switch-branch f35
 </pre></div>
 </div>
 <p>Внесём свои правки, сделаем коммит в репозиторий:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add -A
-git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add -A
+git commit -m &quot;Description of our changes.&quot;
 </pre></div>
 </div>
 <p>Запустим автоматическую <a class="reference internal" href="#build-package"><span class="std std-ref">сборку в mock</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fedpkg mockbuild
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg mockbuild
 </pre></div>
 </div>
-</div>
-<div class="section" id="tarball-git">
+</section>
+<section id="tarball-git">
 <span id="git-tarball"></span><span id="index-5"></span><h2>Как создать tarball с исходниками из Git репозитория?<a class="headerlink" href="#tarball-git" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Если проект по какой-либо причине не поставляет готовые тарболы и отсутствует возможность их скачать напрямую с хостинга VCS, можно создать их из Git.</p>
 <p>Клонируем репозиторий источника:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://example.org/foo-bar.git
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git clone https://example.org/foo-bar.git
 </pre></div>
 </div>
 <p>Создадим архив с исходниками:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git archive --format<span class="o">=</span>tar --prefix<span class="o">=</span>foo-bar-1.0.0/ HEAD <span class="p">|</span> gzip &gt; ~/rpmbuild/SOURCES/foo-bar-1.0.0.tar.gz
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git archive --format=tar --prefix=foo-bar-1.0.0/ HEAD | gzip &gt; ~/rpmbuild/SOURCES/foo-bar-1.0.0.tar.gz
 </pre></div>
 </div>
-<p>Здесь <strong>HEAD</strong> - указатель на актуальный коммит (вместо этого можно использовать SHA1 хеш любого коммита, а также имя тега или ветки), <strong>foo-bar</strong> - название проекта, а <strong>1.0.0</strong> - его версия.</p>
-</div>
-<div class="section" id="koji-rpm-fusion">
+<p>Здесь <strong>HEAD</strong> – указатель на актуальный коммит (вместо этого можно использовать SHA1 хеш любого коммита, а также имя тега или ветки), <strong>foo-bar</strong> – название проекта, а <strong>1.0.0</strong> – его версия.</p>
+</section>
+<section id="koji-rpm-fusion">
 <span id="rpmfusion-override"></span><span id="index-6"></span><h2>Как переопределить пакет в Koji репозитория RPM Fusion?<a class="headerlink" href="#koji-rpm-fusion" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Создание build override для репозитория f29-free:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion tag f29-free-override foo-bar-1.0-1.fc29
+<p>Создание build override для репозитория f35-free:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion tag f35-free-override foo-bar-1.0-1.fc35
 </pre></div>
 </div>
-<p>Удаление build override для репозитория f29-free:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion untag f29-free-override foo-bar-1.0-1.fc29
+<p>Удаление build override для репозитория f35-free:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion untag f35-free-override foo-bar-1.0-1.fc35
 </pre></div>
 </div>
-</div>
-<div class="section" id="git-gmail">
+</section>
+<section id="git-gmail">
 <span id="index-7"></span><span id="id4"></span><h2>Как настроить Git для работы с почтовым сервисом Gmail?<a class="headerlink" href="#git-gmail" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Для того, чтобы использовать функцию <strong>git send-mail</strong> с почтовым сервисом Gmail, необходимо:</p>
+<p>Для того, чтобы использовать функцию <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">send-mail</span></code> с почтовым сервисом Gmail, необходимо:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>включить двухфакторную аутентификацию в настройках Google аккаунта;</li>
-<li>в настройках безопасности почтового ящика Gmail разрешить использование «небезопасных приложений» (под небезопасными Google понимает любые, не поддерживающие OAuth2);</li>
-<li>там же включить доступ к почте посредством POP3 или IMAP (это активирует также и необходимый для нас протокол SMTP);</li>
-<li>в настройках безопасности сгенерировать новый пароль для приложения;</li>
-<li>указать в файле <strong>~/.gitconfig</strong> параметры почтового сервиса;</li>
-<li>когда будет запрошен пароль, ввести созданный ранее пароль приложения.</li>
+<li><p>включить двухфакторную аутентификацию в настройках Google аккаунта;</p></li>
+<li><p>в настройках безопасности почтового ящика Gmail разрешить использование «небезопасных приложений» (под небезопасными Google понимает любые, не поддерживающие OAuth2);</p></li>
+<li><p>там же включить доступ к почте посредством POP3 или IMAP (это активирует также и необходимый для нас протокол SMTP);</p></li>
+<li><p>в настройках безопасности сгенерировать новый пароль для приложения;</p></li>
+<li><p>указать в файле <code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code> параметры почтового сервиса;</p></li>
+<li><p>когда будет запрошен пароль, ввести созданный ранее пароль приложения.</p></li>
 </ol>
 </div></blockquote>
-<p>Пример файла <strong>~/.gitconfig</strong> для работы с почтовым сервисом Gmail:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[sendemail]</span>
-    <span class="na">smtpEncryption</span> <span class="o">=</span> <span class="s">tls</span>
-<span class="s">    smtpServer = smtp.gmail.com</span>
-<span class="s">    smtpUser = yourname@gmail.com</span>
-<span class="s">    smtpServerPort = 587</span>
+<p>Пример файла <code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code> для работы с почтовым сервисом Gmail:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[sendemail]</span><span class="w"></span>
+<span class="w">    </span><span class="na">smtpEncryption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">tls</span><span class="w"></span>
+<span class="w">    </span><span class="na">smtpServer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">smtp.gmail.com</span><span class="w"></span>
+<span class="w">    </span><span class="na">smtpUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yourname@gmail.com</span><span class="w"></span>
+<span class="w">    </span><span class="na">smtpServerPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">587</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="dlopen">
+</section>
+<section id="dlopen">
 <span id="dlopen-usage"></span><span id="index-8"></span><h2>Правильно ли использовать dlopen для загрузки динамических библиотек в приложении?<a class="headerlink" href="#dlopen" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для загрузки динамических библиотек в приложении использовать dlopen допускается, но мы настоятельно рекомендуем избегать этого и использовать полноценную линковку по следующим причинам:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>в каждом дистрибутиве GNU/Linux именование библиотек, особенно если у них нет чётко установленной апстримом SOVERSION константы, ложится на плечи мейнтейнеров. К примеру есть популярная libcurl. Во всех дистрибутивах она линкуется с openssl и называется libcurl.so, а в Debian и Ubuntu была переименована в libcurl-gnutls.so из-за линковки с gnutls;</li>
-<li>нет никакой гарантии, что загрузится именно необходимая версия библиотеки, имеющая необходимую функцию, а отсутствии оной приложение будет аварийно завершено с ошибкой сегментирования;</li>
-<li>если существует несколько версий библиотеки с разными SOVERSION, необходимо самостоятельно их искать на диске и подгружать с рядом хаков ибо имя libfoo.so без указанной SOVERSION в большинстве дистрибутивов представляет собой символическую ссылку и доступен лишь после установки соответствующего development пакета. Соответственно на машинах обычных пользователей он отсутствует;</li>
-<li>о библиотеках, подгружаемых динамически, не в курсе LD, а следовательно он не сможет при загрузке образа приложения подгрузить их в память;</li>
-<li>в случае корректной линковки LD перед запуском приложения осуществит автоматический поиск необходимых экспортируемых функций во всех указанных библиотеках. При их отсутствии приложение не будет запущено;</li>
-<li>при сборке пакета динамически подгружаемые через dlopen библиотеки не будут определены и прописаны в качестве зависимостей пакета, что может вызвать проблемы у пользователей и падение приложения;</li>
+<li><p>в каждом дистрибутиве GNU/Linux именование библиотек, особенно если у них нет чётко установленной апстримом SOVERSION константы, ложится на плечи мейнтейнеров. К примеру есть популярная libcurl. Во всех дистрибутивах она линкуется с openssl и называется libcurl.so, а в Debian и Ubuntu была переименована в libcurl-gnutls.so из-за линковки с gnutls;</p></li>
+<li><p>нет никакой гарантии, что загрузится именно необходимая версия библиотеки, имеющая необходимую функцию, а отсутствии оной приложение будет аварийно завершено с ошибкой сегментирования;</p></li>
+<li><p>если существует несколько версий библиотеки с разными SOVERSION, необходимо самостоятельно их искать на диске и подгружать с рядом хаков ибо имя libfoo.so без указанной SOVERSION в большинстве дистрибутивов представляет собой символическую ссылку и доступен лишь после установки соответствующего development пакета. Соответственно на машинах обычных пользователей он отсутствует;</p></li>
+<li><p>о библиотеках, подгружаемых динамически, не в курсе LD, а следовательно он не сможет при загрузке образа приложения подгрузить их в память;</p></li>
+<li><p>в случае корректной линковки LD перед запуском приложения осуществит автоматический поиск необходимых экспортируемых функций во всех указанных библиотеках. При их отсутствии приложение не будет запущено;</p></li>
+<li><p>при сборке пакета динамически подгружаемые через dlopen библиотеки не будут определены и прописаны в качестве зависимостей пакета, что может вызвать проблемы у пользователей и падение приложения;</p></li>
 </ol>
 </div></blockquote>
+</section>
+<section id="env-get-term">
+<span id="index-9"></span><span id="id5"></span><h2>Как получить полный список установленных переменных окружения в текущем терминале?<a class="headerlink" href="#env-get-term" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Получить список установленных <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> можно посредством выполнения утилиты <strong>env</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>env
+</pre></div>
 </div>
+</section>
+<section id="env-get-app">
+<span id="index-10"></span><span id="id6"></span><h2>Как получить полный список установленных переменных для запущенного процесса?<a class="headerlink" href="#env-get-app" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Получение списка установленных <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> для запущенных процессов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/$PID/environ
+</pre></div>
 </div>
+<p>Здесь <strong>$PID</strong> – <a class="reference internal" href="administration.html#get-pid"><span class="std std-ref">PID</span></a> процесса, информацию о котором необходимо получить.</p>
+</section>
+<section id="env-set">
+<span id="index-11"></span><span id="id7"></span><h2>Как задать переменную окружения?<a class="headerlink" href="#env-set" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Вариант 1. Запуск процесса с заданной переменной окружения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FOO=BAR /usr/bin/foo-bar
+</pre></div>
+</div>
+<p>Вариант 2. Экспорт переменной окружения в запущенном терминале и дальнейший запуск приложения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export FOO=BAR
+/usr/bin/foo-bar
+</pre></div>
+</div>
+<p>Вариант 3. Модификация директивы <code class="docutils literal notranslate"><span class="pre">Exec=</span></code> в ярлыке запуска приложения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Exec=env FOO=BAR /usr/bin/foo-bar
+</pre></div>
+</div>
+</section>
+<section id="env-unset">
+<span id="index-12"></span><span id="id8"></span><h2>Как удалить переменную окружения?<a class="headerlink" href="#env-unset" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Вариант 1. Удаление экспортированной <a class="reference internal" href="#env-set"><span class="std std-ref">переменной окружения</span></a> при помощи команды оболочки <strong>unset</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>unset FOO
+</pre></div>
+</div>
+<p>Вариант 2. Удаление экспортированной переменной окружения в запущенном терминале и дальнейший запуск приложения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>unset FOO
+/usr/bin/foo-bar
+</pre></div>
+</div>
+<p>Вариант 3. Модификация директивы <code class="docutils literal notranslate"><span class="pre">Exec=</span></code> в ярлыке запуска приложения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Exec=env -u FOO /usr/bin/foo-bar
+</pre></div>
+</div>
+</section>
+<section id="git">
+<span id="git-configuration"></span><span id="index-13"></span><h2>Как правильно настроить Git для работы?<a class="headerlink" href="#git" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Сначала укажем своё имя и адрес электронной почты:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git config --global user.name &quot;Your Name&quot;
+git config --global user.email email@example.org
+</pre></div>
+</div>
+<p>Установим <a class="reference internal" href="using-system.html#editor-git"><span class="std std-ref">предпочитаемый текстовый редактор</span></a> для работы с коммитами:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git config --global core.editor vim
+</pre></div>
+</div>
+</section>
+<section id="git-pull-request">
+<span id="index-14"></span><span id="id9"></span><h2>Я хочу внести правки в проект. Как правильно отправить их в апстрим?<a class="headerlink" href="#git-pull-request" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если проект хостится на одном из популярных сервисов (GitHub, BitBucket или GitLab), сначала войдём в свой аккаунт (при осутствии создадим) и сделаем форк репозитория.</p>
+<p>Осуществим <a class="reference internal" href="#git-configuration"><span class="std std-ref">базовую настройку Git</span></a> клиента если это ещё не было сделано ранее.</p>
+<p>Клонируем наш форк:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:YOURNAME/foo-bar.git
+</pre></div>
+</div>
+<p>Создадим ветку <strong>new_feature</strong> для наших изменений (для каждого крупного изменения следует создавать отдельную ветку и <em>ни в коем случае не коммитить в master</em>):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout -b new_feature
+</pre></div>
+</div>
+<p>Внесём свои правки в проект, затем осуществим их фиксацию:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add -A
+git commit -s
+</pre></div>
+</div>
+<p>В появившемся <a class="reference internal" href="using-system.html#editor-git"><span class="std std-ref">текстовом редакторе</span></a> укажем подробное описание всех наших изменений на английском языке. Несмотря на то, что параметр <code class="docutils literal notranslate"><span class="pre">-s</span></code> является опциональным, большинство проектов требуют его использования для автоматического создания подписи вида:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Signed-off-by: Your Name &lt;email@example.org&gt;
+</pre></div>
+</div>
+<p>Многие проекты обновляются слишком быстро, поэтому потребуется осуществить синхронизацию наших изменений с актуальной веткой апстрима. Для этого подключим к нашем форку оригинальный репозиторий:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git remote add upstream https://github.com/foo/foo-bar.git
+</pre></div>
+</div>
+<p>Скачаем актуальные изменения и выполним rebase основной ветки нашего форка с апстримом:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git fetch upstream
+git checkout master
+git merge upstream/master
+</pre></div>
+</div>
+<p>Осуществим rebase ветки с нашими изменениями с основной:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout new_feature
+git rebase master
+</pre></div>
+</div>
+<p>Отправим наши изменения на сервер:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git push -u origin new_feature
+</pre></div>
+</div>
+<p>Создадим новый Pull Request.</p>
+</section>
+<section id="c">
+<span id="cxx-console"></span><span id="index-15"></span><h2>Как скомпилировать простую программу на языке C++ из консоли?<a class="headerlink" href="#c" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим компилятор GCC-C++ (G++) и ряд вспомогательных компонентов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc-c++ rpm-build
+</pre></div>
+</div>
+<p>Создадим простейший пример <code class="docutils literal notranslate"><span class="pre">helloworld.cpp</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[],</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">env</span><span class="p">[])</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello, World!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Скомпилируем и слинкуем его:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>g++ $(rpm -E %{optflags}) -fPIC helloworld.cpp -o helloworld $(rpm -E %{build_ldflags}) -lstdc++
+</pre></div>
+</div>
+<p>Здесь <strong>g++</strong> – запускающий файл файл компилятора, <strong>helloworld.cpp</strong> – файл с исходным кодом (если их несколько, то разделяются пробелом), <strong>helloworld</strong> – имя результирующего бинарника, <strong>-lstdc++</strong> – указание компоновщику на необходимость линковки со стандартной библиотекой C++.</p>
+<p>Корректные флаги компиляции и компоновки вставляются автоматически из соответствующих макросов RPM.</p>
+<p>Запустим результат сборки:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>./helloworld
+</pre></div>
+</div>
+<p>Если всё сделано верно, то увидим сообщение <em>Hello, World!</em> в консоли.</p>
+</section>
+<section id="debug-application">
+<span id="index-16"></span><span id="id10"></span><h2>Приложение падает. Как мне его отладить?<a class="headerlink" href="#debug-application" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для начала рекомендуется (хотя и не обязательно) установить отладочную информацию для данного пакета:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf debuginfo-install foo-bar
+</pre></div>
+</div>
+<p>После завершения процесса отладки символы можно снова удалить.</p>
+<p>Чтобы получить бэктрейс падения, нужно выполнить в терминале:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gdb /usr/bin/foo-bar 2&gt;&amp;1 | tee ~/backtrace.log
+</pre></div>
+</div>
+<p>Далее в интерактивной консоли отладчика ввести: <code class="docutils literal notranslate"><span class="pre">handle</span> <span class="pre">SIGPIPE</span> <span class="pre">nostop</span> <span class="pre">noprint</span></code> и затем <code class="docutils literal notranslate"><span class="pre">run</span></code>, дождаться сегфолта и выполнить <code class="docutils literal notranslate"><span class="pre">bt</span> <span class="pre">full</span></code> для получения бэктрейса. Теперь можно прописать <code class="docutils literal notranslate"><span class="pre">quit</span></code> для выхода из режима отладки.</p>
+<p>Далее получившийся файл <code class="docutils literal notranslate"><span class="pre">~/backtrace.log</span></code> следует загрузить на любой сервис размещения текстовых файлов.</p>
+<p>Также рекомендуется ещё сделать трассировку приложения до момента падения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>strace -o ~/trace.log /usr/bin/foo-bar
+</pre></div>
+</div>
+<p>Полученный файл <code class="docutils literal notranslate"><span class="pre">~/trace.log</span></code> также следует загрузить на сервис.</p>
+</section>
+<section id="ld-preload">
+<span id="ldpreload-safety"></span><span id="index-17"></span><h2>Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?<a class="headerlink" href="#ld-preload" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Нет, это не безопасно, т.к. существует возможность создания внутри библиотек <a class="reference external" href="https://gcc.gnu.org/onlinedocs/gcc-8.2.0/gcc/Common-Function-Attributes.html">суперглобальных конструкторов</a>, которые будут выполняться в момент присоединения библиотеки <em>до запуска приложения</em>.</p>
+<p>Создадим и скомпилируем простой пример <code class="docutils literal notranslate"><span class="pre">example.c</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="k">static</span><span class="w"> </span><span class="n">__attribute__</span><span class="p">((</span><span class="n">constructor</span><span class="w"> </span><span class="p">(</span><span class="mi">200</span><span class="p">)))</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">bar</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Method bar() was called.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">static</span><span class="w"> </span><span class="n">__attribute__</span><span class="p">((</span><span class="n">constructor</span><span class="w"> </span><span class="p">(</span><span class="mi">150</span><span class="p">)))</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">foo</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Method foo() was called.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Данный метод содержит сразу два суперглобальных конструктора с указанием приоритетов. Чем ниже приоритет, тем скорее данный метод будет исполнен.</p>
+<p>Скомпилируем и слинкуем наш пример:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gcc -shared $(rpm -E %{optflags}) -fPIC example.c -o example.so $(rpm -E %{build_ldflags}) -lc
+</pre></div>
+</div>
+<p>Внедрим нашу библиотеку в известный доверенный процесс, например <strong>whoami</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>LD_PRELOAD=./example.so whoami
+</pre></div>
+</div>
+<p>Оба суперглобальных метода будут немедленно исполнены <em>с правами запускаемого приложения</em> и изменят его вывод:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Method foo() was called.
+Method bar() was called.
+user1
+</pre></div>
+</div>
+<p>Разумеется, вместо безобидных вызовов функции printf() может находиться абсолютно любой код, в т.ч. вредоносный.</p>
+</section>
+<section id="lto">
+<span id="enable-lto"></span><span id="index-18"></span><h2>Как активировать LTO-оптимизации при сборке пакета?<a class="headerlink" href="#lto" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Актуальные релизы Fedora автоматически включают <a class="reference external" href="https://gcc.gnu.org/wiki/LinkTimeOptimization">LTO оптимизации</a> для всех собираемых пакетов.</p>
+<p>Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то экспортируем ряд <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> внутри секции <code class="docutils literal notranslate"><span class="pre">%build</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export AR=%{_bindir}/gcc-ar
+export RANLIB=%{_bindir}/gcc-ranlib
+export NM=%{_bindir}/gcc-nm
+</pre></div>
+</div>
+<p>В случае использования системы сборки cmake, воспользуемся штатной функцией переопределения встроенных параметров:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%cmake -G Ninja \
+    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+    -DCMAKE_AR=%{_bindir}/gcc-ar \
+    -DCMAKE_RANLIB=%{_bindir}/gcc-ranlib \
+    -DCMAKE_NM=%{_bindir}/gcc-nm \
+    ..
+</pre></div>
+</div>
+<p>В противном случае появится ошибка <em>plugin needed to handle lto object</em>.</p>
+</section>
+<section id="disable-lto">
+<span id="index-19"></span><span id="id11"></span><h2>Как запретить LTO-оптимизации при сборке пакета?<a class="headerlink" href="#disable-lto" title="Ссылка на этот заголовок">¶</a></h2>
+<p>При необходимости <a class="reference internal" href="#enable-lto"><span class="std std-ref">LTO-оптимизации</span></a> допускается отключить.</p>
+<p>Определим переменную <strong>_lto_cflags</strong> и установим ей пустое значение:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global _lto_cflags %{nil}
+</pre></div>
+</div>
+</section>
+<section id="rpm-unneeded">
+<span id="index-20"></span><span id="id12"></span><h2>Как вывести список установленных пакетов, от которых никто не зависит?<a class="headerlink" href="#rpm-unneeded" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В настоящее время данная функциональность отсутствует в dnf «из коробки», поэтому напишем и скомпилируем небольшую программу на языке C, реализующую это средствами библиотеки <strong>libsolv</strong>.</p>
+<p>Установим компилятор и необходимые для сборки библиотеки:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc libsolv-devel
+</pre></div>
+</div>
+<p>Создадим файл <code class="docutils literal notranslate"><span class="pre">rpm-unneeded.c</span></code> с исходным текстом программы:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;solv/pool.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;solv/poolarch.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;solv/repo_rpmdb.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;solv/solver.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Pool</span><span class="w"> </span><span class="o">*</span><span class="n">pool</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Repo</span><span class="w"> </span><span class="o">*</span><span class="n">rpmdb</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Solver</span><span class="w"> </span><span class="o">*</span><span class="n">solver</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Queue</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">pool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pool_create</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">pool_setarch</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">pool_set_flag</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span><span class="w"> </span><span class="n">POOL_FLAG_IMPLICITOBSOLETEUSESCOLORS</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">rpmdb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repo_create</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;@system&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">repo_add_rpmdb</span><span class="p">(</span><span class="n">rpmdb</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">pool</span><span class="o">-&gt;</span><span class="n">installed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rpmdb</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">solver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solver_create</span><span class="p">(</span><span class="n">pool</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">solver_set_flag</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span><span class="w"> </span><span class="n">SOLVER_FLAG_KEEP_EXPLICIT_OBSOLETES</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">solver_set_flag</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span><span class="w"> </span><span class="n">SOLVER_FLAG_BEST_OBEY_POLICY</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">solver_set_flag</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span><span class="w"> </span><span class="n">SOLVER_FLAG_YUM_OBSOLETES</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">queue_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">solver_solve</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">solver_get_unneeded</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">count</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pool_solvid2str</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">queue_free</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">pool_free</span><span class="p">(</span><span class="n">pool</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Скомпилируем и слинкуем приложение:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gcc $(rpm -E %{optflags}) -fPIC rpm-unneeded.c -o rpm-unneeded $(rpm -E %{build_ldflags}) -lsolv -lsolvext
+</pre></div>
+</div>
+<p>Запустим приложение <code class="docutils literal notranslate"><span class="pre">./rpm-unneeded</span></code> и получим список установленных пакетов, от которых никто не зависит.</p>
+</section>
+<section id="cpack-gnu-linux">
+<span id="using-cpack"></span><span id="index-21"></span><h2>Можно ли использовать cpack для сборки пакетов для GNU/Linux?<a class="headerlink" href="#cpack-gnu-linux" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Нет, использовать cpack категорически не рекомендуется по следующим причинам:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>создаёт RPM и DEB пакеты в виде архивов;</p></li>
+<li><p>не добавляет метаданные в создаваемые пакеты;</p></li>
+<li><p>не прописывает зависимости от библиотек и других пакетов;</p></li>
+<li><p>не экспортирует provides;</p></li>
+<li><p>не обрабатывает <a class="reference internal" href="using-system.html#file-types"><span class="std std-ref">mime-типы</span></a>;</p></li>
+<li><p>не добавляет обязательные скриптлеты;</p></li>
+<li><p>не соблюдает гайдлайны дистрибутивов.</p></li>
+</ul>
+</div></blockquote>
+<p>Вместо cpack следует собирать <a class="reference internal" href="#create-package"><span class="std std-ref">нативные пакеты</span></a>.</p>
+</section>
+<section id="library-path">
+<span id="index-22"></span><span id="id13"></span><h2>Приложение собрано со старой версией библиотеки. Как заставить его работать?<a class="headerlink" href="#library-path" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если приложение было собрано со старой версией библиотеки <strong>foo-bar</strong>, которой уже нет в репозиториях и его требуется запустить, существует два способа:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><a class="reference internal" href="#ldpreload-safety"><span class="std std-ref">LD_PRELOAD</span></a> – небезопасный – библиотека (или библиотеки) напрямую инъектируется в процесс средствами интерпретатора динамических библиотек LD до его непосредственного запуска;</p></li>
+<li><p>LD_LIBRARY_PATH – более безопасный – список каталогов, в которых интерпретатор динамических библиотек LD ищет соответствующие so, расширяется на указанные пользователем значения.</p></li>
+</ol>
+</div></blockquote>
+<p>Рассмотрим второй способ с переопределением <a class="reference internal" href="#env-set"><span class="std std-ref">переменной окружения</span></a> <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code>.</p>
+<p>Скачаем RPM пакет <strong>foo-bar</strong> необходимой версии из любого источника (лучшим вариантом будет конечно же репозитории старых версий Fedora), распакуем его например в <code class="docutils literal notranslate"><span class="pre">~/lib/foo-bar</span></code> и извлечём необходимые динамические библиотеки (.so файлы).</p>
+<p>Создадим shell-скрипт <code class="docutils literal notranslate"><span class="pre">run-foo.sh</span></code> для запуска бинарника:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/sh
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
+/path/to/binary/foo
+</pre></div>
+</div>
+<p>Здесь <strong>foo</strong> – имя бинарника, который требуется запустить, а <strong>/path/to/binary</strong> – каталог, в котором он находится. В качестве разделителя путей <strong>LD_LIBRARY_PATH</strong> применяется двоеточие. Закрывающий слэш не ставится.</p>
+<p>Установим скрипту разрешение не запуск и запустим его:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>chmod +x run-foo.sh
+./run-foo.sh
+</pre></div>
+</div>
+<p>Если всё сделано верно, приложение успешно стартует.</p>
+</section>
+<section id="fedora-licenses">
+<span id="index-23"></span><span id="id14"></span><h2>Проекты под какими лицензиями допускается распространять в репозиториях?<a class="headerlink" href="#fedora-licenses" title="Ссылка на этот заголовок">¶</a></h2>
+<p>См. <a class="reference external" href="https://fedoraproject.org/wiki/Licensing:Main">здесь</a>.</p>
+</section>
+<section id="pipe-order">
+<span id="index-24"></span><span id="id15"></span><h2>В каком порядке запускаются процессы через канал (пайп)?<a class="headerlink" href="#pipe-order" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если запускается несколько процессов с передачей данных через канал (пайп; pipe), то все они стартуют одновременно, затем начинает выполняться первый, а остальные уходят в состояние ожидания ввода.</p>
+</section>
+<section id="build-flags">
+<span id="index-25"></span><span id="id16"></span><h2>Можно ли использовать собственные флаги компиляции при сборке пакета?<a class="headerlink" href="#build-flags" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для любых официальных сборок следует использовать исключительно стандартные для дистрибутива флаги, предоставляемые макросами <code class="docutils literal notranslate"><span class="pre">%{optflags}</span></code> (флаги компилятора) и <code class="docutils literal notranslate"><span class="pre">%{build_ldflags}</span></code> (флаги компоновки).</p>
+</section>
+<section id="cxx-ide">
+<span id="index-26"></span><span id="ide-c-fedora"></span><h2>Какую IDE использовать для разработки на C++ в Fedora?<a class="headerlink" href="#cxx-ide" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Мы рекомендуем Qt Creator, которая одинаково хорошо подходит как для разработки на C++ (с Qt и без него), так и чистого C.</p>
+<p>Установим данную IDE, а также компилятор C++ и ряд необходимых библиотек и средств для сборки проектов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc gcc-c++ qt-creator qt5-qtbase-devel cmake
+</pre></div>
+</div>
+<p>При необходимости установим также документацию Qt и готовые примеры стандартных приложений:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install qt5-qtbase-doc qt5-qtbase-examples qt-creator-doc
+</pre></div>
+</div>
+</section>
+<section id="qt-creator">
+<span id="qtcreator-docs"></span><span id="index-27"></span><h2>В Qt Creator отсутствует документация. Как исправить?<a class="headerlink" href="#qt-creator" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если Qt Creator при попытке загрузить документацию выдаёт ошибку <em>Error loading: qthelp://org.qt-project.qtcreator.472/doc/index.html</em>, выберем пункт меню <strong>Tools</strong> – <strong>Options</strong> – <strong>Help</strong> – <strong>Documentation</strong> – <strong>Add</strong>, затем вручную добавим следующие файлы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/usr/share/doc/qt5/qmake.qch
+/usr/share/doc/qt5/qtconcurrent.qch
+/usr/share/doc/qt5/qtcore.qch
+/usr/share/doc/qt5/qtdbus.qch
+/usr/share/doc/qt5/qtgui.qch
+/usr/share/doc/qt5/qtnetwork.qch
+/usr/share/doc/qt5/qtnetworkauth.qch
+/usr/share/doc/qt5/qtopengl.qch
+/usr/share/doc/qt5/qtplatformheaders.qch
+/usr/share/doc/qt5/qtprintsupport.qch
+/usr/share/doc/qt5/qtsql.qch
+/usr/share/doc/qt5/qttestlib.qch
+/usr/share/doc/qt5/qtwidgets.qch
+/usr/share/doc/qt5/qtxml.qch
+/usr/share/doc/qt5/qtxmlpatterns.qch
+/usr/share/doc/qtcreator/qtcreator.qch
+/usr/share/doc/qtcreator/qtcreator-dev.qch
+</pre></div>
+</div>
+<p>Изменения вступят в силу после перезапуска IDE.</p>
+</section>
+<section id="qtcreator-kits">
+<span id="index-28"></span><span id="id17"></span><h2>В Qt Creator отсутствуют компиляторы. Как исправить?<a class="headerlink" href="#qtcreator-kits" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если Qt Creator не смог самостоятельно обнаружить установленный в системе фреймворк Qt, а также компилятор, то необходимо добавить их самостоятельно.</p>
+<p>Для этого войдём в настройки IDE, затем сначала добавим компилятор GCC <code class="docutils literal notranslate"><span class="pre">/usr/bin/gcc</span></code>, а затем тулчейн Qt – <code class="docutils literal notranslate"><span class="pre">/usr/bin/qmake-qt5</span></code>. После этого на вкладке <strong>Kits</strong> создадим новый набор из данных компонентов.</p>
+<p>Сохраним изменения в настройках и добавим созданный Kit к своему проекту.</p>
+</section>
+<section id="python-ide">
+<span id="index-29"></span><span id="ide-python-fedora"></span><h2>Какую IDE использовать для разработки на Python в Fedora?<a class="headerlink" href="#python-ide" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Мы рекомендуем PyCharm Community Edition.</p>
+<p>Подключим COPR репозиторий:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf copr enable phracek/PyCharm
+</pre></div>
+</div>
+<p>Установим IDE:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install pycharm-community
+</pre></div>
+</div>
+<p>При необходимости установим также набор популярных плагинов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install pycharm-community-plugins
+</pre></div>
+</div>
+</section>
+<section id="fw-image">
+<span id="index-30"></span><span id="id18"></span><h2>Как получить информацию о содержимом образа бинарной прошивки?<a class="headerlink" href="#fw-image" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для работы с образами прошивок можно использовать утилиту <strong>binwalk</strong>. Установим её:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install binwalk
+</pre></div>
+</div>
+<p>Произведём анализ файла и получим результат:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>binwalk foo-bar.bin
+</pre></div>
+</div>
+</section>
+<section id="spec">
+<span id="spectool"></span><span id="index-31"></span><h2>Как автоматически скачать исходники, прописанные в SPEC-файле?<a class="headerlink" href="#spec" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим необходимые утилиты:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install rpm-build rpmdevtools
+</pre></div>
+</div>
+<p>Создадим базовую иерархию каталогов для rpmbuild:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rpmdev-setuptree
+</pre></div>
+</div>
+<p>Скачаем исходники, прописанные в SPEC-файле <strong>foo-bar.spec</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>spectool -g -R foo-bar.spec
+</pre></div>
+</div>
+</section>
+<section id="spec-auto">
+<span id="index-32"></span><span id="id19"></span><h2>Как автоматически инкрементировать релиз в SPEC-файле?<a class="headerlink" href="#spec-auto" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим необходимый для работы пакет:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install rpmdevtools
+</pre></div>
+</div>
+<p>Инкрементируем релиз SPEC-файла (директива <em>Release</em>) с автоматическим созданием новой строки в <em>%changelog</em>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rpmdev-bumpspec -c &quot;Updated to latest snapshot.&quot;
+</pre></div>
+</div>
+</section>
+<section id="git-multi">
+<span id="index-33"></span><span id="id20"></span><h2>Как загрузить изменения во всех вложенных репозиториях из данного каталога?<a class="headerlink" href="#git-multi" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если Git репозитории были клонированы в общий каталог <code class="docutils literal notranslate"><span class="pre">~/foo-bar</span></code>, то загрузим изменения в каждом из вложенных проектов при помощи <strong>find</strong> и <strong>bash</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find ~/foo-bar -maxdepth 1 ! -path . -type d -exec bash -c &quot;pushd &#39;{}&#39; ; git pull ; popd&quot; \;
+</pre></div>
+</div>
+</section>
+<section id="git-empty">
+<span id="index-34"></span><span id="id21"></span><h2>Как создать пустую ветку в Git без общей истории?<a class="headerlink" href="#git-empty" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Создадим новую пустую ветку <strong>foo-bar</strong> от текущего HEAD:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout --orphan foo-bar
+</pre></div>
+</div>
+<p>Создадим удалим всё проиндексированное содержимое данной ветки:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git reset --hard
+</pre></div>
+</div>
+</section>
+<section id="mock">
+<span id="mock-move"></span><span id="index-35"></span><h2>Можно ли перенести каталоги сборки и кэшей mock на другой диск?<a class="headerlink" href="#mock" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Система автоматической <a class="reference internal" href="#build-package"><span class="std std-ref">сборки пакетов mock</span></a> занимает огромное количество места в корневом разделе, поэтому многие мейнтейнеры хотели бы перенести её на другой диск. Штатно это сделать не представляется возможным ибо значения каталогов по умолчанию <code class="docutils literal notranslate"><span class="pre">/var/cache/mock</span></code> и <code class="docutils literal notranslate"><span class="pre">/var/lib/mock</span></code> жёстко прописаны внутри приложения и не подлежат изменению со стороны пользователя, поэтому воспользуемся символическими ссылками.</p>
+<p>Создадим на другом накопителе (его файловая система должна поддерживать права доступа Unix) базовый каталог для mock:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd /media/foo-bar
+sudo mkdir mock
+sudo chown root:mock mock
+sudo chmod 4775 mock
+</pre></div>
+</div>
+<p>Переместим содержимое текущих рабочих каталогов mock:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo mv /var/cache/mock /media/foo-bar/mock/cache
+sudo mv /var/lib/mock /media/foo-bar/mock/lib
+</pre></div>
+</div>
+<p>Создадим символические ссылки на старом месте:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo ln -s /media/foo-bar/mock/cache /var/cache/mock
+sudo ln -s /media/foo-bar/mock/lib /var/lib/mock
+</pre></div>
+</div>
+<p>Зададим контекст <a class="reference internal" href="security.html#selinux"><span class="std std-ref">SELinux</span></a> по умолчанию для нового хранилища:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -a -t mock_cache_t &quot;/media/foo-bar/mock/cache(/.*)?&quot;
+sudo semanage fcontext -a -t mock_var_lib_t &quot;/media/foo-bar/mock/lib(/.*)?&quot;
+</pre></div>
+</div>
+<p>Сбросим контекст SELinux для всех рабочих каталогов:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo restorecon -Rv /var/cache/mock
+sudo restorecon -Rv /var/lib/mock
+sudo restorecon -Rv /media/foo-bar/mock/cache
+sudo restorecon -Rv /media/foo-bar/mock/lib
+</pre></div>
+</div>
+<p>Здесь <strong>/media/foo-bar</strong> – точка монтирования нового накопителя, на котором будут располагаться кэши mock.</p>
+<p>Внимание! Раздел назначения должен использовать флаги монтирования по умолчанию <code class="docutils literal notranslate"><span class="pre">defaults</span></code>. В противном случае не будут выполнены скриптлеты и сборка не завершится успешно.</p>
+</section>
+<section id="git-bash">
+<span id="bash-git-branch"></span><span id="index-36"></span><h2>Как включить отображение текущей ветки Git в Bash?<a class="headerlink" href="#git-bash" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Модуль интеграции с Bash входит в состав пакета Git. Добавим в <a class="reference internal" href="using-system.html#bash-shell"><span class="std std-ref">приветствие Bash</span></a> следующую строку:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export PS1=&#39;[\u@\h \W$(declare -F __git_ps1 &amp;&gt;/dev/null &amp;&amp; __git_ps1 &quot; (%s)&quot;)]\$ &#39;
+</pre></div>
+</div>
+<p>В качестве опциональных параметров поддерживаются <code class="docutils literal notranslate"><span class="pre">GIT_PS1_SHOWDIRTYSTATE</span></code> (показывать наличие незакреплённых изменений внутри каталога) и <code class="docutils literal notranslate"><span class="pre">GIT_PS1_SHOWUNTRACKEDFILES</span></code> (учитывать, либо нет не отслеживаемые системой контроля версий файлы):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWUNTRACKEDFILES=true
+</pre></div>
+</div>
+<p>Изменения вступят в силу при следующем запуске оболочки.</p>
+</section>
+<section id="patch-file">
+<span id="index-37"></span><span id="id22"></span><h2>Как создать унифицированный патч изменений между двумя файлами?<a class="headerlink" href="#patch-file" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для создания патча нам необходимо две версии файла: оригинальная и текущая.</p>
+<p>Создадим унифицрованный патч с разностью между файлами <strong>foo-bar.txt.orig</strong> (оригинальный) и <strong>foo-bar.txt</strong> (текущий):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>diff -Naur foo-bar.txt.orig foo-bar.txt &gt; result.patch
+</pre></div>
+</div>
+<p>Результат будет сохранён в файле <strong>result.patch</strong>.</p>
+</section>
+<section id="patch-directory">
+<span id="index-38"></span><span id="id23"></span><h2>Как создать унифицированный патч изменений между двумя каталогами?<a class="headerlink" href="#patch-directory" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Создадим унифицрованный патч с разностью между каталогами <strong>foo-bar_orig</strong> (оригинальный) и <strong>foo-bar</strong> (текущий):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>diff -Naur foo-bar_orig foo-bar &gt; result.patch
+</pre></div>
+</div>
+<p>Результат будет сохранён в файле <strong>result.patch</strong>.</p>
+</section>
+<section id="patch-apply">
+<span id="index-39"></span><span id="id24"></span><h2>Как применить унифицированный патч?<a class="headerlink" href="#patch-apply" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Проверим возможность применения патча <strong>foo-bar.patch</strong> без внесения каких-либо изменений:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>patch -p0 --dry-run -i foo-bar.patch
+</pre></div>
+</div>
+<p>Применим патч:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>patch -p0 -i foo-bar.patch
+</pre></div>
+</div>
+<p>Параметром <code class="docutils literal notranslate"><span class="pre">-p</span></code> задаётся количество каталогов, которые будут отброшены при поиске файлов, указанных внутри унифицированного патча.</p>
+</section>
+<section id="patch-revert">
+<span id="index-40"></span><span id="id25"></span><h2>Как откатить наложенный унифицированный патч?<a class="headerlink" href="#patch-revert" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Проверим возможность отката патча <strong>foo-bar.patch</strong> без внесения каких-либо изменений:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>patch -p0 -R --dry-run -i foo-bar.patch
+</pre></div>
+</div>
+<p>Откатитим внесённые изменения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>patch -p0 -R -i foo-bar.patch
+</pre></div>
+</div>
+<p>Параметром <code class="docutils literal notranslate"><span class="pre">-p</span></code> задаётся количество каталогов, которые будут отброшены при поиске файлов, указанных внутри унифицированного патча.</p>
+</section>
+<section id="patch-git-create">
+<span id="index-41"></span><span id="id26"></span><h2>Как создать унифицированный патч между двумя коммитами?<a class="headerlink" href="#patch-git-create" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Создадим патч между двумя коммитами <strong>AAA</strong> и <strong>BBB</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git diff AAA BBB &gt; result.patch
+</pre></div>
+</div>
+<p>Создадим патч коммитом <strong>CCC</strong> и текущим рабочей рабочей версией:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git diff CCC &gt; result.patch
+</pre></div>
+</div>
+<p>Здесь <strong>AAA</strong>, <strong>BBB</strong> и <strong>CCC</strong> – хеши коммитов в Git репозитории.</p>
+</section>
+<section id="patch-git-export">
+<span id="index-42"></span><span id="id27"></span><h2>Как экспортировать Git коммит для отправки по электронной почте?<a class="headerlink" href="#patch-git-export" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В Git имеется встроенное средство экспорта коммитов для их дальнейшей отправки по электронной почте.</p>
+<p>Экспортируем один коммит:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git format-patch -1
+</pre></div>
+</div>
+<p>Экспортируем сразу 3 коммита:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git format-patch -3
+</pre></div>
+</div>
+</section>
+<section id="fedora-login">
+<span id="index-43"></span><span id="id28"></span><h2>Как авторизоваться в инфраструктуре Fedora?<a class="headerlink" href="#fedora-login" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для авторизации мы должны использовать вход в домен <a class="reference internal" href="administration.html#kerberos-auth"><span class="std std-ref">посредством Kerberos</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit foo-bar@FEDORAPROJECT.ORG
+</pre></div>
+</div>
+<p>Здесь <strong>foo-bar</strong> – логин в FAS. Имя домена должно быть указано строго в верхнем регистре.</p>
+<p>Также для некоторых операций необходимо загрузить <a class="reference internal" href="security.html#ssh-keygen"><span class="std std-ref">публичный ключ</span></a> SSH в <a class="reference external" href="https://admin.fedoraproject.org/accounts">FAS аккаунт</a>.</p>
+</section>
+<section id="fedora-2fa">
+<span id="fedora-login-2fa"></span><span id="index-44"></span><h2>Как авторизоваться в инфраструктуре Fedora с поддержкой 2FA?<a class="headerlink" href="#fedora-2fa" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для авторизации в инфраструктуре Fedora с поддержкой двухфакторной аутентификации <a class="reference internal" href="#fedora-login"><span class="std std-ref">стандартный вход</span></a> <a class="reference internal" href="administration.html#kerberos-auth"><span class="std std-ref">посредством Kerberos</span></a> работать не будет из-за возникновения ошибки <em>kinit: Pre-authentication failed: Invalid argument while getting initial credentials</em>, поэтому мы должны использовать альтернативный способ.</p>
+<p>Сгенерируем актуальный файл Kerberos Credentials Cache:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit -n @FEDORAPROJECT.ORG -c FILE:$HOME/.cache/fedora-armor.ccache
+</pre></div>
+</div>
+<p>Авторизуемся в домене с указанием KCC-файла:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit -T FILE:$HOME/.cache/fedora-armor.ccache foo-bar@FEDORAPROJECT.ORG
+</pre></div>
+</div>
+<p>Когда сервер запросит ввод <em>Enter OTP Token Value:</em>, укажем свой пароль и текущий код из OTP-аутентификатора по схеме <strong>парольКОД</strong> без пробелов и прочих знаков.</p>
+<p>Здесь <strong>foo-bar</strong> – логин в FAS. Имя домена должно быть указано строго в верхнем регистре.</p>
+</section>
+<section id="package-request">
+<span id="index-45"></span><span id="id29"></span><h2>Как запросить создание пакета в репозитории?<a class="headerlink" href="#package-request" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Сразу после завершения <a class="reference internal" href="#becoming-maintainer"><span class="std std-ref">процедуры package review</span></a>, мейнтейнер должен запросить создание пакета в репозиториях Fedora.</p>
+<p>Установим утилиту <strong>fedpkg</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install fedpkg
+</pre></div>
+</div>
+<p>Получим <a class="reference external" href="https://pagure.io/settings">новый токен</a> в Pagure, который будет использоваться утилитой fedpkg для создания заявки. Для этого перейдём в раздел <strong>Settings</strong> – <strong>API Keys</strong> – <strong>Create new key</strong>, затем в списке доступных разрешений (<strong>ACLs</strong>) установим флажок только около опции <strong>Create a new ticket</strong> и нажмём кнопку <strong>Add</strong>.</p>
+<p>Создадим файл конфигурации fedpkg:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/.config/rpkg
+touch ~/.config/rpkg/fedpkg.conf
+</pre></div>
+</div>
+<p>Загрузим созданный файл <code class="docutils literal notranslate"><span class="pre">~/.config/rpkg/fedpkg.conf</span></code> в любом текстовом редакторе и добавим:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[fedpkg.pagure]</span><span class="w"></span>
+<span class="na">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">XXXXXXXXXX</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Здесь <strong>XXXXXXXXXX</strong> – полученный от Pagure токен.</p>
+<p>Запросим создание нового пакета в репозитории, а также веток для всех поддерживаемых релизов Fedora:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg request-repo --namespace rpms --monitor monitoring foo-bar YYYYYY
+fedpkg request-branch --namespace rpms --repo foo-bar --all-releases
+</pre></div>
+</div>
+<p>Здесь <strong>foo-bar</strong> – имя пакета, а <strong>YYYYYY</strong> – номер заявки в Red Hat BugZilla с успешно завершённым package review.</p>
+</section>
+<section id="fedpkg-upload">
+<span id="index-46"></span><span id="id30"></span><h2>Как загрузить файлы с исходными кодами пакета в систему сборки?<a class="headerlink" href="#fedpkg-upload" title="Ссылка на этот заголовок">¶</a></h2>
+<p>После <a class="reference internal" href="#package-request"><span class="std std-ref">создания пакета</span></a> осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora, затем скачаем репозиторий пакета из Fedora SCM, содержащий SPEC файл и набор патчей (при необходимости), а также прочие службные файлы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg clone foo-bar
+cd foo-bar
+</pre></div>
+</div>
+<p>Самым простым способом загрузки является импорт готового SRPM файла, поэтому выполним именно эту процедуру:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch master
+fedpkg import /путь/к/foo-bar-1.0-1.fc35.src.rpm
+</pre></div>
+</div>
+<p>Проверим внесённые изменения и если всё верно, жмём <strong>Q</strong> для выхода. Зафиксируем наши изменения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git commit -m &quot;Initial import.&quot;
+</pre></div>
+</div>
+<p>При необходимости внесём изменения и в ветки поддерживаемых релизов Fedora:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch f35
+git merge master
+</pre></div>
+</div>
+<p>Отправим изменения на сервер:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git push
+</pre></div>
+</div>
+</section>
+<section id="fedpkg-build">
+<span id="index-47"></span><span id="id31"></span><h2>Как осуществить сборку пакета для публикации в репозиториях?<a class="headerlink" href="#fedpkg-build" title="Ссылка на этот заголовок">¶</a></h2>
+<p>После <a class="reference internal" href="#fedpkg-upload"><span class="std std-ref">загрузки файлов с исходными кодами</span></a> пакета, осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora, а затем приступим к непосредственно сборке в <a class="reference internal" href="#koji-about"><span class="std std-ref">Fedora Koji</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
+fedpkg switch-branch master
+fedpkg build
+</pre></div>
+</div>
+<p>При необходимости соберём и для других поддерживаемых релизов Fedora:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch f35
+fedpkg build
+</pre></div>
+</div>
+</section>
+<section id="fedpkg-scratch">
+<span id="index-48"></span><span id="id32"></span><h2>Как осуществить тестовую сборку пакета для определённой архитектуры?<a class="headerlink" href="#fedpkg-scratch" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora.</p>
+<p>Выполним стандартную scratch-сборку для всех поддерживаемых данным выпуском архитектур:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
+fedpkg switch-branch master
+fedpkg build --scratch
+</pre></div>
+</div>
+<p>Выполним scratch-сборку только для указанных архитектур:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
+fedpkg switch-branch master
+fedpkg scratch-build --arches x86_64 aarch64
+</pre></div>
+</div>
+</section>
+<section id="fedpkg-publish">
+<span id="index-49"></span><span id="id33"></span><h2>Как выложить собранный пакет в репозитории?<a class="headerlink" href="#fedpkg-publish" title="Ссылка на этот заголовок">¶</a></h2>
+<p>По окончании <a class="reference internal" href="#fedpkg-build"><span class="std std-ref">сборки</span></a> мы можем воспользоваться <a class="reference external" href="https://bodhi.fedoraproject.org/">Fedora Bodhi</a> и <a class="reference external" href="https://bodhi.fedoraproject.org/updates/new">выложить обновление</a> в репозитории.</p>
+<p>Сначала все обновления попадают в тестовые репозитории Fedora (<em>updates-testing</em>) и лишь после получения положительной кармы от других участников сообщества (уровень задаётся мейнтейнером, но не может быть меньше 1), либо по истечении 7 дней, оно может попасть в стабильные (<em>updates</em>) и будет доставлено конечным пользователям.</p>
+<p>Заполним стандартную, хорошо документированную форму, затем нажмём кнопку <strong>Submit</strong>.</p>
+</section>
+<section id="copr">
+<span id="copr-legal"></span><span id="index-50"></span><h2>Что разрешается хранить в COPR репозиториях?<a class="headerlink" href="#copr" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В <a class="reference internal" href="generic-info.html#copr"><span class="std std-ref">COPR</span></a> разрешается распространять всё то же, что и в <a class="reference internal" href="#fedora-licenses"><span class="std std-ref">основных репозиториях</span></a> Fedora. Сборка и публикация запатентованного и проприетарного программного обеспечения в пользовательских оверлеях не допускается.</p>
+</section>
+<section id="linux-vdso-so-1">
+<span id="linux-vdso"></span><span id="index-51"></span><h2>Что такое linux-vdso.so.1 и почему она загружена в каждый процесс?<a class="headerlink" href="#linux-vdso-so-1" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Библиотека <strong>linux-vdso.so.1</strong> не является обычной динамической библиотекой. Это виртуальный динамически разделяемый объект (VDSO), который отображается на адресное пространство каждого запущенного процесса ядром Linux и представляет собой интерфейс для осуществления быстрых системных вызовов.</p>
+<p>Данный объект можно обнаружить в <a class="reference internal" href="#linux-ldd"><span class="std std-ref">выводе ldd</span></a> для любого бинарного ELF-файла, но без прямого пути, т.к. он не является реальным файлом.</p>
+</section>
+<section id="linux-ldd">
+<span id="index-52"></span><span id="id34"></span><h2>Как определить зависимости конкретного бинарника?<a class="headerlink" href="#linux-ldd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для определения зависимостей любых ELF-файлов, воспользуемся утилитой <strong>ldd</strong>.</p>
+<p>Определим зависимости динамически разделяемой библиотеки:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ldd /path/to/shared/library.so.1
+</pre></div>
+</div>
+<p>Определим зависимости исполняемого файла:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ldd /path/to/application
+</pre></div>
+</div>
+<p>Если библиотека была найдена в системе, наряду с именем будет указан абсолютный путь к её файлу на диске, а также адрес предполагаемой загрузки.</p>
+<p>Исключение составляют <a class="reference internal" href="#linux-vdso"><span class="std std-ref">виртуальные объекты</span></a>, для которых будет указан лишь адрес, без пути.</p>
+</section>
+<section id="git-switch-remote">
+<span id="index-53"></span><span id="id35"></span><h2>Как изменить адрес Git репозитория после его переезда?<a class="headerlink" href="#git-switch-remote" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Получим список подключённых удалённых ресурсов текущего Git репозитория:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git remote -v
+</pre></div>
+</div>
+<p>Изменим апстрим для <code class="docutils literal notranslate"><span class="pre">origin</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git remote set-url origin https://github.com/foo-bar/new_repo.git
+</pre></div>
+</div>
+<p>После этого команды Git, отвечающие за работу с удалёнными ресурсами, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>, начнут использовать новый апстрим.</p>
+</section>
+<section id="rpmbuild">
+<span id="rpmbuild-move"></span><span id="index-54"></span><h2>Можно ли перенести стандартный каталог сборки rpmbuild?<a class="headerlink" href="#rpmbuild" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Да, это возможно. Откроем файл <code class="docutils literal notranslate"><span class="pre">~/.rpmmacros</span></code> в любом текстовом редаторе, найдём строку:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%_topdir %(echo $HOME)/rpmbuild
+</pre></div>
+</div>
+<p>Заменим её на следующую:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%_topdir /media/foo-bar/rpmbuild
+</pre></div>
+</div>
+<p>Здесь <strong>/media/foo-bar</strong> – новый каталог размещения базовой иерархии rpmbuild.</p>
+<p>Сохраним изменения, которые вступят в силу немеденно.</p>
+</section>
+<section id="license-check">
+<span id="index-55"></span><span id="id36"></span><h2>Как определить какие лицензии используются в проекте?<a class="headerlink" href="#license-check" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установим утилиту <strong>licensecheck</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install licensecheck
+</pre></div>
+</div>
+<p>Запустим проверку проекта:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>licensecheck --recursive --merge-licenses --no-verbose /path/to/foo-bar &gt; ~/results.txt
+</pre></div>
+</div>
+<p>Здесь <strong>/path/to/foo-bar</strong> – путь к распакованным исходникам проекта, а <strong>~/results.txt</strong> – имя файла, в котором будут сохранены результаты проверки.</p>
+</section>
+<section id="gdb-coredump">
+<span id="index-56"></span><span id="id37"></span><h2>Как загрузить в gdb отладчик coredump падения?<a class="headerlink" href="#gdb-coredump" title="Ссылка на этот заголовок">¶</a></h2>
+<p>GDB позволяет не только отлаживать приложения напрямую, но и загружать <a class="reference internal" href="administration.html#codedump-info"><span class="std std-ref">coredump падений</span></a>.</p>
+<p>Установим утилиту <strong>lz4</strong> для распаковки сжатых файлов с дампами:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install lz4
+</pre></div>
+</div>
+<p>Распакуем coredump:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>unlz4 /path/to/coredump.lz4
+</pre></div>
+</div>
+<p>Воспользуемся <a class="reference internal" href="#debug-application"><span class="std std-ref">описанным выше</span></a> способом получения backtrace падения, но слегка модифицируем команду запуска отладчика:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gdb /usr/bin/foo-bar /path/to/coredump 2&gt;&amp;1 | tee ~/backtrace.log
+</pre></div>
+</div>
+<p>Здесь <strong>/usr/bin/foo-bar</strong> – путь к отлаживаемому приложению, <strong>/path/to/coredump</strong> – coredump падения (версия приложения и дампа, снятого с него, должны обязательно совпадать), а <strong>~/backtrace.log</strong> – файл, в котором будет сохранён трейс падения.</p>
+</section>
+<section id="clang-fedora">
+<span id="index-57"></span><span id="id38"></span><h2>Как собрать пакет с использованием компилятора Clang в Fedora?<a class="headerlink" href="#clang-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Определим переменную <strong>toolchain</strong> и установим ей значение <strong>clang</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global toolchain clang
+</pre></div>
+</div>
+<p>Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то экспортируем ряд <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> внутри секции <code class="docutils literal notranslate"><span class="pre">%build</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export AR=%{_bindir}/llvm-ar
+export RANLIB=%{_bindir}/llvm-ranlib
+export LINKER=%{_bindir}/llvm-ld
+export OBJDUMP=%{_bindir}/llvm-objdump
+export NM=%{_bindir}/llvm-nm
+</pre></div>
+</div>
+<p>В случае использования системы сборки cmake, воспользуемся штатной функцией переопределения встроенных параметров:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%cmake -G Ninja \
+    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+    -DCMAKE_C_COMPILER=%{_bindir}/clang \
+    -DCMAKE_CXX_COMPILER=%{_bindir}/clang++ \
+    -DCMAKE_AR=%{_bindir}/llvm-ar \
+    -DCMAKE_RANLIB=%{_bindir}/llvm-ranlib \
+    -DCMAKE_LINKER=%{_bindir}/llvm-ld \
+    -DCMAKE_OBJDUMP=%{_bindir}/llvm-objdump \
+    -DCMAKE_NM=%{_bindir}/llvm-nm \
+    ..
+</pre></div>
+</div>
+<p>Следует <a class="reference internal" href="#qt-clang-lto"><span class="std std-ref">быть осторожным</span></a> при сборке Qt-приложений данным компилятором при использовании <a class="reference internal" href="#enable-lto"><span class="std std-ref">LTO-оптимизаций</span></a>.</p>
+</section>
+<section id="qt-clang-lto">
+<span id="index-58"></span><span id="id39"></span><h2>Qt-приложение, собранное Clang с LTO не запускается. Что делать?<a class="headerlink" href="#qt-clang-lto" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Невозможность запуска Qt-приложений, собранных компилятором Clang с включёнными <a class="reference internal" href="#enable-lto"><span class="std std-ref">LTO-оптимизациями</span></a> – это <a class="reference external" href="https://bugreports.qt.io/browse/QTBUG-61710">известная проблема</a>, которая в настоящее время не решена.</p>
+<p>Для её решения необходимо либо отказаться от использования компилятора Clang и вернуться на GCC, либо отключить LTO-оптимизации.</p>
+</section>
+<section id="ldd">
+<span id="using-ldd"></span><span id="index-59"></span><h2>Безопасно ли использовать LDD для проверки зависимостей бинарника?<a class="headerlink" href="#ldd" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Нет, т.к. утилита <a class="reference internal" href="#linux-ldd"><span class="std std-ref">ldd</span></a> лишь изменяет ряд <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a>, а затем запускает бинарник, чтобы определить все динамически загружаемые библиотеки, от которых он зависит.</p>
+<p>Внедоносный код сможет легко перехватить управление и начать выполнять свои задачи в пределах имеющихся полномочий.</p>
+</section>
+<section id="git-remove-tag">
+<span id="index-60"></span><span id="id40"></span><h2>Как удалить тег во внешнем Git репозитории?<a class="headerlink" href="#git-remove-tag" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим локальный тег <strong>1.0.0</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git tag -d v1.0.0
+</pre></div>
+</div>
+<p>Удалим удалённый тег <strong>1.0.0</strong> из удалённого Git репозитория:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git push --delete origin v1.0.0
+</pre></div>
+</div>
+</section>
+<section id="git-remove-branch">
+<span id="index-61"></span><span id="id41"></span><h2>Как удалить ветку во внешнем Git репозитории?<a class="headerlink" href="#git-remove-branch" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим удалённую ветку <strong>foo-bar</strong> из удалённого Git репозитория:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git push --delete origin foo-bar
+</pre></div>
+</div>
+</section>
+<section id="git-remove-all-tags">
+<span id="index-62"></span><span id="id42"></span><h2>Как удалить все теги (локальные и удалённые) в Git репозитории?<a class="headerlink" href="#git-remove-all-tags" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Удалим все теги из внешнего Git репозитория:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git push origin --delete $(git tag -l)
+</pre></div>
+</div>
+<p>Удалим все оставшиеся локальные теги:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git tag -d $(git tag -l)
+</pre></div>
+</div>
+</section>
+<section id="koji-extract-data">
+<span id="index-63"></span><span id="id43"></span><h2>Как извлечь из Koji какие-либо данные для отправки баг-репорта?<a class="headerlink" href="#koji-extract-data" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Т.к. <a class="reference internal" href="#koji-about"><span class="std std-ref">Koji</span></a> автоматически очищает каталог сборки по её завершении с любым статусом, единственная возможность извлечь полезные данные – это закодировать их в формате <a class="reference external" href="https://ru.wikipedia.org/wiki/UUE">Uuencode</a> и вывести в общий журнал сборки.</p>
+<p>Добавим в <a class="reference internal" href="#create-package"><span class="std std-ref">SPEC-файл пакета</span></a> зависимость от <strong>sharutils</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>BuildRequires: sharutils
+</pre></div>
+</div>
+<p>Немного доработаем команду сборки (например <code class="docutils literal notranslate"><span class="pre">%make_build</span></code>), включив в неё упаковку всех необработанных preprocessed sources в архив с кодированием в UUE, при возникновении ошибки:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%make_build || (tar cf - /tmp/cc*.out | bzip2 -9 | uuencode cc.tar.bz2)
+</pre></div>
+</div>
+<p>Найдём в журнале <code class="docutils literal notranslate"><span class="pre">build.log</span></code> блок вида:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>begin 644 cc.tar.bz2
+...
+...
+end
+</pre></div>
+</div>
+<p>Извлечём и сохраним его в файл <code class="docutils literal notranslate"><span class="pre">foo-bar.uue</span></code>.</p>
+<p>Установим утилиту <strong>uudecode</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install sharutils
+</pre></div>
+</div>
+<p>Декодируем полезную нагрузку:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>uudecode foo-bar.uue
+</pre></div>
+</div>
+<p>Загрузим полученный архив в <a class="reference internal" href="generic-info.html#bug-report"><span class="std std-ref">баг-репорт</span></a>.</p>
+</section>
+<section id="compare-versions">
+<span id="index-64"></span><span id="id44"></span><h2>Как определить, какая из двух версий больше?<a class="headerlink" href="#compare-versions" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для проверки версий воспользуемся утилитой <strong>rpmdev-vercmp</strong>, входящей в состав пакета <strong>rpmdevtools</strong>.</p>
+<p>Установим его:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install rpmdevtools
+</pre></div>
+</div>
+<p>Произведём проверку между <strong>X</strong> и <strong>Y</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rpmdev-vercmp X Y
+</pre></div>
+</div>
+<p>Данную утилиту также можно использовать в различных скриптах, исходя из возвращаемых ею кодов завершения:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>0</strong> – версии равны;</p></li>
+<li><p><strong>11</strong> – версия <strong>X</strong> больше, чем <strong>Y</strong>;</p></li>
+<li><p><strong>12</strong> – версия <strong>X</strong> меньше, чем <strong>Y</strong>.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="mock-cleanup">
+<span id="index-65"></span><span id="id45"></span><h2>Как очистить все кэши mock?<a class="headerlink" href="#mock-cleanup" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Выполним очистку сборочного каталога <a class="reference internal" href="#build-package"><span class="std std-ref">mock</span></a> для цели по умолчанию:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mock --scrub=all
+</pre></div>
+</div>
+<p>Выполним очистку сборочного каталога, а также кэша загруженных пакетов mock для <strong>fedora-rawhide-x86_64</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mock -r fedora-rawhide-x86_64 --scrub=all
+</pre></div>
+</div>
+</section>
+<section id="root-check-bypass">
+<span id="index-66"></span><span id="id46"></span><h2>Как обойти проверку приложением наличия прав суперпользователя?<a class="headerlink" href="#root-check-bypass" title="Ссылка на этот заголовок">¶</a></h2>
+<p>См. <a class="reference external" href="https://www.easycoding.org/2021/08/31/obxodim-proverku-na-nalichie-prav-superpolzovatelya.html">здесь</a>.</p>
+</section>
+<section id="rpmbuild-exclude-arch">
+<span id="index-67"></span><span id="id47"></span><h2>Как исключить определённую архитектуру из сборки пакета?<a class="headerlink" href="#rpmbuild-exclude-arch" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для исключения указанных архитектур из сборки, добавим в SPEC-файл директиву <code class="docutils literal notranslate"><span class="pre">ExcludeArch</span></code>.</p>
+<p>В качестве примера исключим 32-битные ARM и x86:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ExcludeArch: %{arm} %{ix86}
+</pre></div>
+</div>
+</section>
+<section id="rpmbuild-exclusive-arch">
+<span id="index-68"></span><span id="id48"></span><h2>Как собрать пакет только для определённой архитектуры?<a class="headerlink" href="#rpmbuild-exclusive-arch" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для выбора конкретных архитектур сборки, добавим в SPEC-файл директиву <code class="docutils literal notranslate"><span class="pre">ExclusiveArch</span></code>.</p>
+<p>В качестве примера включим только 64-битные ARM и x86:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ExcludeArch: aarch64 x86_64
+</pre></div>
+</div>
+</section>
+<section id="rpmbuild-filter-provides">
+<span id="index-69"></span><span id="id49"></span><h2>Как исключить библиотеку из списка предоставляемых пакетом?<a class="headerlink" href="#rpmbuild-filter-provides" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Исключим все файлы, расположенные в каталоге <strong>%{_libdir}/%{name}</strong>, из автоматически генерируемого списка предоставляемых пакетом:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global __provides_exclude_from %{_libdir}/%{name}/.*
+</pre></div>
+</div>
+<p>При необходимости указать несколько каталогов, разделим их стандартным для <a class="reference external" href="https://ru.wikipedia.org/wiki/PCRE">регулярного выражения PCRE</a> способом:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global __provides_exclude_from %{_libdir}/%{name}/foo/.*|%{_libdir}/%{name}/bar/.*
+</pre></div>
+</div>
+</section>
+<section id="rpmbuild-filter-requires">
+<span id="index-70"></span><span id="id50"></span><h2>Как исключить библиотеку из списка зависимостей пакета?<a class="headerlink" href="#rpmbuild-filter-requires" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Отключим автоматическое построение списка зависимостей пакета для ELF-объектов, расположенных в каталоге <strong>%{_libdir}/%{name}</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global __requires_exclude_from %{_libdir}/%{name}/.*
+</pre></div>
+</div>
+<p>При необходимости указать несколько каталогов, разделим их стандартным для <a class="reference external" href="https://ru.wikipedia.org/wiki/PCRE">регулярного выражения PCRE</a> способом:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global __requires_exclude_from %{_libdir}/%{name}/foo/.*|%{_libdir}/%{name}/bar/.*
+</pre></div>
+</div>
+</section>
+</section>
 
 
           </div>
@@ -150,26 +1055,27 @@ git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none" role="search">
-  <h3>Быстрый поиск</h3>
+  <h3 id="searchlabel">Быстрый поиск</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Искать" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script><h3>Навигация</h3>
+<script>$('#searchbox').show(0);</script><h3>Навигация</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Вопросы, связанные с установкой системы</a></li>
-<li class="toctree-l1"><a class="reference internal" href="package-manager.html">Вопросы, связанные с пакетным менеджером и установкой пакетов</a></li>
-<li class="toctree-l1"><a class="reference internal" href="administration.html">Вопросы, связанные с администрированием системы</a></li>
-<li class="toctree-l1"><a class="reference internal" href="security.html">Вопросы, связанные с безопасностью</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using-system.html">Вопросы, связанные с работой в системе</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hardware.html">Вопросы, связанные с использованием различного оборудования</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Вопросы, связанные с разработкой и сборкой пакетов</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Установка системы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package-manager.html">Пакетный менеджер и установка пакетов</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Системное администрирование</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networking.html">Сетевое администрирование</a></li>
+<li class="toctree-l1"><a class="reference internal" href="virtualization.html">Виртуализация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Безопасность</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-system.html">Работа в системе</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-applications.html">Сторонние приложения</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Разработка и сборка пакетов</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#fedora">Я хочу создать пакет для Fedora. Что мне следует знать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpm-mock">Как собрать RPM пакет в mock?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#becoming-maintainer">Как добавить свой пакет в репозиторий Fedora и стать мейнтейнером?</a></li>
@@ -179,9 +1085,71 @@ git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
 <li class="toctree-l2"><a class="reference internal" href="#koji-rpm-fusion">Как переопределить пакет в Koji репозитория RPM Fusion?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-gmail">Как настроить Git для работы с почтовым сервисом Gmail?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dlopen">Правильно ли использовать dlopen для загрузки динамических библиотек в приложении?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#env-get-term">Как получить полный список установленных переменных окружения в текущем терминале?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#env-get-app">Как получить полный список установленных переменных для запущенного процесса?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#env-set">Как задать переменную окружения?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#env-unset">Как удалить переменную окружения?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git">Как правильно настроить Git для работы?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-pull-request">Я хочу внести правки в проект. Как правильно отправить их в апстрим?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c">Как скомпилировать простую программу на языке C++ из консоли?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#debug-application">Приложение падает. Как мне его отладить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ld-preload">Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lto">Как активировать LTO-оптимизации при сборке пакета?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#disable-lto">Как запретить LTO-оптимизации при сборке пакета?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpm-unneeded">Как вывести список установленных пакетов, от которых никто не зависит?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cpack-gnu-linux">Можно ли использовать cpack для сборки пакетов для GNU/Linux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#library-path">Приложение собрано со старой версией библиотеки. Как заставить его работать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora-licenses">Проекты под какими лицензиями допускается распространять в репозиториях?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pipe-order">В каком порядке запускаются процессы через канал (пайп)?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-flags">Можно ли использовать собственные флаги компиляции при сборке пакета?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cxx-ide">Какую IDE использовать для разработки на C++ в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qt-creator">В Qt Creator отсутствует документация. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qtcreator-kits">В Qt Creator отсутствуют компиляторы. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-ide">Какую IDE использовать для разработки на Python в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fw-image">Как получить информацию о содержимом образа бинарной прошивки?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spec">Как автоматически скачать исходники, прописанные в SPEC-файле?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spec-auto">Как автоматически инкрементировать релиз в SPEC-файле?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-multi">Как загрузить изменения во всех вложенных репозиториях из данного каталога?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-empty">Как создать пустую ветку в Git без общей истории?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mock">Можно ли перенести каталоги сборки и кэшей mock на другой диск?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-bash">Как включить отображение текущей ветки Git в Bash?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#patch-file">Как создать унифицированный патч изменений между двумя файлами?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#patch-directory">Как создать унифицированный патч изменений между двумя каталогами?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#patch-apply">Как применить унифицированный патч?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#patch-revert">Как откатить наложенный унифицированный патч?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#patch-git-create">Как создать унифицированный патч между двумя коммитами?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#patch-git-export">Как экспортировать Git коммит для отправки по электронной почте?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora-login">Как авторизоваться в инфраструктуре Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora-2fa">Как авторизоваться в инфраструктуре Fedora с поддержкой 2FA?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#package-request">Как запросить создание пакета в репозитории?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedpkg-upload">Как загрузить файлы с исходными кодами пакета в систему сборки?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedpkg-build">Как осуществить сборку пакета для публикации в репозиториях?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedpkg-scratch">Как осуществить тестовую сборку пакета для определённой архитектуры?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedpkg-publish">Как выложить собранный пакет в репозитории?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copr">Что разрешается хранить в COPR репозиториях?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linux-vdso-so-1">Что такое linux-vdso.so.1 и почему она загружена в каждый процесс?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linux-ldd">Как определить зависимости конкретного бинарника?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-switch-remote">Как изменить адрес Git репозитория после его переезда?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpmbuild">Можно ли перенести стандартный каталог сборки rpmbuild?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license-check">Как определить какие лицензии используются в проекте?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gdb-coredump">Как загрузить в gdb отладчик coredump падения?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clang-fedora">Как собрать пакет с использованием компилятора Clang в Fedora?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qt-clang-lto">Qt-приложение, собранное Clang с LTO не запускается. Что делать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ldd">Безопасно ли использовать LDD для проверки зависимостей бинарника?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-remove-tag">Как удалить тег во внешнем Git репозитории?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-remove-branch">Как удалить ветку во внешнем Git репозитории?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-remove-all-tags">Как удалить все теги (локальные и удалённые) в Git репозитории?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#koji-extract-data">Как извлечь из Koji какие-либо данные для отправки баг-репорта?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compare-versions">Как определить, какая из двух версий больше?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mock-cleanup">Как очистить все кэши mock?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#root-check-bypass">Как обойти проверку приложением наличия прав суперпользователя?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpmbuild-exclude-arch">Как исключить определённую архитектуру из сборки пакета?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpmbuild-exclusive-arch">Как собрать пакет только для определённой архитектуры?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpmbuild-filter-provides">Как исключить библиотеку из списка предоставляемых пакетом?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpmbuild-filter-requires">Как исключить библиотеку из списка зависимостей пакета?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
 </ul>
 
@@ -189,8 +1157,8 @@ git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="hardware.html" title="предыдущая глава">Вопросы, связанные с использованием различного оборудования</a></li>
-      <li>Next: <a href="tips-and-tricks.html" title="следующая глава">Вопросы, связанные с оптимизацией и тонкой настройкой</a></li>
+      <li>Previous: <a href="hardware.html" title="предыдущая глава">Оборудование</a></li>
+      <li>Next: <a href="tips-and-tricks.html" title="следующая глава">Оптимизация и тонкая настройка</a></li>
   </ul></li>
 </ul>
 </div>
@@ -199,7 +1167,7 @@ git commit -m <span class="s2">&quot;Description of our changes.&quot;</span>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018 - 2019, EasyCoding Team and contributors.
+      &copy;2018 - 2022, EasyCoding Team and contributors.
       
     </div>
 
