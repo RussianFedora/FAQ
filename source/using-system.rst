@@ -945,3 +945,51 @@ KDE предоставляет особый PAM модуль для автома
 Внесём свои правки.
 
 Кэш :ref:`значков главного меню <kde-icons-refresh>` обновится автоматически, т.к. все популярные среды рабочего стола отслеживают изменения в данном каталоге.
+
+.. index:: language, gnome, key, bindings, input, source
+.. _switch-input-source:
+
+Как изменить сочетание клавиш для переключения языка ввода в Gnome?
+======================================================================
+
+Рассмотрим два способа изменения сочетания клавиш для переключения между языками: консоль и GUI.
+
+Консоль:
+^^^^^^^^^^
+
+Проверим, какой вариант сочетаний установлен:
+
+.. code-block:: text
+
+    gsettings get org.gnome.desktop.wm.keybindings switch-input-source
+
+Установим новое сочетание для переключения раскладок:
+
+.. code-block:: text
+
+    gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Shift>Alt_L']"
+
+Возможные варианты сочетаний клавиш (допустимо несколько вариантов, через запятую):
+
+.. code-block:: text
+
+    '<Alt>Shift_L', '<Shift>Alt_L', '<Shift>Alt_R', '<Alt>Shift_R'
+    '<Ctrl>Shift_L', '<Shift>Control_L', '<Shift>Control_R', '<Ctrl>Shift_R'
+    'Caps_Lock'
+
+GUI:
+^^^^^^^
+
+Установим **dconf-editor**, если он не установлен:
+
+.. code-block:: text
+
+    sudo dnf install dconf-editor
+
+Запустим dconf-editor:
+
+.. code-block:: text
+
+    dconf-editor
+
+В ветке ``org.gnome.desktop.wm.keybindings`` установим у параметра ``switch-input-source`` желаемое значение. Значение по-умолчанию ``['<Super>space', 'XF86Keyboard']``. Убедимся в присутствии квадратных скобок при установке значения через GUI.
