@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Системное администрирование &#8212; Неофициальный FAQ по Fedora (версия 2021.12.30)</title>
+    <title>Системное администрирование &#8212; Неофициальный FAQ по Fedora (версия 2022.01.05)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -258,10 +258,10 @@ sudo mount -t vfat /dev/sda1 boot/efi
 <section id="fedora-windows">
 <span id="windows-utc"></span><span id="index-21"></span><h2>У меня в дуалбуте с Fedora установлена Windows и часы постоянно сбиваются. В чём дело?<a class="headerlink" href="#fedora-windows" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Чтобы такого не происходило, обе операционные системы должны хранить время в формате UTC. Для этого в Windows нужно применить следующий файл реестра:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">Windows Registry Editor Version 5.00</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">Windows Registry Editor Version 5.00</span><span class="w"></span>
 
-<span class="k">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation]</span>
-<span class="na">&quot;RealTimeIsUniversal&quot;</span><span class="o">=</span><span class="s">dword:00000001</span>
+<span class="k">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation]</span><span class="w"></span>
+<span class="na">&quot;RealTimeIsUniversal&quot;</span><span class="o">=</span><span class="s">dword:00000001</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -972,14 +972,14 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 </pre></div>
 </div>
 <p>Внесём правки, убирая символ комментария <strong>#</strong> перед каждой строкой:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Coredump]</span>
-<span class="na">Storage</span><span class="o">=</span><span class="s">external</span>
-<span class="na">Compress</span><span class="o">=</span><span class="s">yes</span>
-<span class="na">ProcessSizeMax</span><span class="o">=</span><span class="s">1G</span>
-<span class="na">ExternalSizeMax</span><span class="o">=</span><span class="s">1G</span>
-<span class="na">JournalSizeMax</span><span class="o">=</span><span class="s">200M</span>
-<span class="na">MaxUse</span><span class="o">=</span><span class="s">5</span>
-<span class="na">KeepFree</span><span class="o">=</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Coredump]</span><span class="w"></span>
+<span class="na">Storage</span><span class="o">=</span><span class="s">external</span><span class="w"></span>
+<span class="na">Compress</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
+<span class="na">ProcessSizeMax</span><span class="o">=</span><span class="s">1G</span><span class="w"></span>
+<span class="na">ExternalSizeMax</span><span class="o">=</span><span class="s">1G</span><span class="w"></span>
+<span class="na">JournalSizeMax</span><span class="o">=</span><span class="s">200M</span><span class="w"></span>
+<span class="na">MaxUse</span><span class="o">=</span><span class="s">5</span><span class="w"></span>
+<span class="na">KeepFree</span><span class="o">=</span><span class="w"></span>
 </pre></div>
 </div>
 <p>В данном примере мы задаём максимальный размер одного дампа в 1 ГБ (<strong>ProcessSizeMax</strong> и <strong>ExternalSizeMax</strong>) с ограничением хранения не более 5 (<strong>MaxUse</strong>).</p>
@@ -992,8 +992,8 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 </pre></div>
 </div>
 <p>Уберём символ комментария <strong>#</strong> лишь перед первой строкой и изменим её значение:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Coredump]</span>
-<span class="na">Storage</span><span class="o">=</span><span class="s">none</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Coredump]</span><span class="w"></span>
+<span class="na">Storage</span><span class="o">=</span><span class="s">none</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Изменения вступят в силу при следующей загрузке системы.</p>
@@ -1022,22 +1022,22 @@ sudo chmod 0644 /etc/polkit-1/rules.d/10-mount-nopass.rules
 <section id="port-bind-systemd">
 <span id="index-80"></span><span id="id61"></span><h2>Как запустить приложение на порту ниже 1024 при помощи systemd?<a class="headerlink" href="#port-bind-systemd" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Добавим в <a class="reference internal" href="#systemd-info"><span class="std std-ref">systemd-юнит</span></a> <code class="docutils literal notranslate"><span class="pre">foo-bar.service</span></code> запрос привилегии <code class="docutils literal notranslate"><span class="pre">CAP_NET_BIND_SERVICE</span></code>:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span>
-<span class="na">Description</span><span class="o">=</span><span class="s">Simple application</span>
-<span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span><span class="w"></span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Simple application</span><span class="w"></span>
+<span class="na">After</span><span class="o">=</span><span class="s">network.target</span><span class="w"></span>
 
-<span class="k">[Service]</span>
-<span class="na">RestartSec</span><span class="o">=</span><span class="s">10s</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
-<span class="na">User</span><span class="o">=</span><span class="s">user</span>
-<span class="na">Group</span><span class="o">=</span><span class="s">user</span>
-<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/home/user/foo-bar</span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">/home/user/foo-bar/foo</span>
-<span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
-<span class="na">AmbientCapabilities</span><span class="o">=</span><span class="s">CAP_NET_BIND_SERVICE</span>
+<span class="k">[Service]</span><span class="w"></span>
+<span class="na">RestartSec</span><span class="o">=</span><span class="s">10s</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">simple</span><span class="w"></span>
+<span class="na">User</span><span class="o">=</span><span class="s">user</span><span class="w"></span>
+<span class="na">Group</span><span class="o">=</span><span class="s">user</span><span class="w"></span>
+<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/home/user/foo-bar</span><span class="w"></span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/home/user/foo-bar/foo</span><span class="w"></span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">always</span><span class="w"></span>
+<span class="na">AmbientCapabilities</span><span class="o">=</span><span class="s">CAP_NET_BIND_SERVICE</span><span class="w"></span>
 
-<span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+<span class="k">[Install]</span><span class="w"></span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Теперь приложение сможет занять любой доступный порт, включая находящиеся в диапазоне 1-1023.</p>
@@ -1372,7 +1372,7 @@ sudo rmdir /media/foo-bar
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018 - 2021, EasyCoding Team and contributors.
+      &copy;2018 - 2022, EasyCoding Team and contributors.
       
     </div>
 

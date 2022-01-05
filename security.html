@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Безопасность &#8212; Неофициальный FAQ по Fedora (версия 2021.12.30)</title>
+    <title>Безопасность &#8212; Неофициальный FAQ по Fedora (версия 2022.01.05)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -100,7 +100,7 @@
 Warning: Directory /var/www/html/foo-bar/foo not writable, please chmod to 755 in /var/www/html/foo-bar/foo.php on line XXX
 </pre></div>
 </div>
-<p>Это значают, что процесс веб-сервера (или интерпретатора языка программирования) не может получить доступ на запись. Если права доступа (chmod и chown) при этом установлены верно, значит доступ блокирует <a class="reference internal" href="#selinux"><span class="std std-ref">SELinux</span></a>.</p>
+<p>Они означают, что процесс веб-сервера (или интерпретатора языка программирования) не может получить доступ на запись. Если права доступа (chmod и chown) при этом установлены верно, значит доступ блокирует <a class="reference internal" href="#selinux"><span class="std std-ref">SELinux</span></a>.</p>
 <p>Установим правильный контекст безопасности для всех каталогов внутри <code class="docutils literal notranslate"><span class="pre">document_root/foo-bar</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo semanage fcontext -a -t httpd_sys_rw_content_t &quot;/var/www/html/foo-bar(/.*)?&quot;
 </pre></div>
@@ -623,22 +623,22 @@ Match Group sftp
 </ol>
 </div></blockquote>
 <p>Профиль <strong>stable</strong>. Файл <code class="docutils literal notranslate"><span class="pre">00-macrandomize-stable.conf</span></code>:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[device]</span>
-<span class="na">wifi.scan-rand-mac-address</span><span class="o">=</span><span class="s">yes</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[device]</span><span class="w"></span>
+<span class="na">wifi.scan-rand-mac-address</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
 
-<span class="k">[connection]</span>
-<span class="na">wifi.cloned-mac-address</span><span class="o">=</span><span class="s">stable</span>
-<span class="na">ethernet.cloned-mac-address</span><span class="o">=</span><span class="s">stable</span>
-<span class="na">connection.stable-id</span><span class="o">=</span><span class="s">${CONNECTION}/${BOOT}</span>
+<span class="k">[connection]</span><span class="w"></span>
+<span class="na">wifi.cloned-mac-address</span><span class="o">=</span><span class="s">stable</span><span class="w"></span>
+<span class="na">ethernet.cloned-mac-address</span><span class="o">=</span><span class="s">stable</span><span class="w"></span>
+<span class="na">connection.stable-id</span><span class="o">=</span><span class="s">${CONNECTION}/${BOOT}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Профиль <strong>random</strong>. Файл <code class="docutils literal notranslate"><span class="pre">00-macrandomize-random.conf</span></code>:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[device]</span>
-<span class="na">wifi.scan-rand-mac-address</span><span class="o">=</span><span class="s">yes</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[device]</span><span class="w"></span>
+<span class="na">wifi.scan-rand-mac-address</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
 
-<span class="k">[connection]</span>
-<span class="na">wifi.cloned-mac-address</span><span class="o">=</span><span class="s">random</span>
-<span class="na">ethernet.cloned-mac-address</span><span class="o">=</span><span class="s">random</span>
+<span class="k">[connection]</span><span class="w"></span>
+<span class="na">wifi.cloned-mac-address</span><span class="o">=</span><span class="s">random</span><span class="w"></span>
+<span class="na">ethernet.cloned-mac-address</span><span class="o">=</span><span class="s">random</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Для применения одной из конфигураций создадим в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/NetworkManager/conf.d</span></code> файл с выбранным профилем, после чего перезапустим Network Manager:</p>
@@ -1395,7 +1395,7 @@ sudo rmdir /media/data
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018 - 2021, EasyCoding Team and contributors.
+      &copy;2018 - 2022, EasyCoding Team and contributors.
       
     </div>
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Сетевое администрирование &#8212; Неофициальный FAQ по Fedora (версия 2021.12.30)</title>
+    <title>Сетевое администрирование &#8212; Неофициальный FAQ по Fedora (версия 2022.01.05)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -300,8 +300,8 @@ fw_add <span class="m">6</span>
 </pre></div>
 </div>
 <p>Создадим в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/NetworkManager/conf.d</span></code> файл <code class="docutils literal notranslate"><span class="pre">99-resolved.conf</span></code> следующего содержания:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[main]</span>
-<span class="na">dns</span><span class="o">=</span><span class="s">systemd-resolved</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[main]</span><span class="w"></span>
+<span class="na">dns</span><span class="o">=</span><span class="s">systemd-resolved</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Убедимся, что файл <code class="docutils literal notranslate"><span class="pre">/etc/resolv.conf</span></code> является символической ссылкой на <code class="docutils literal notranslate"><span class="pre">/run/NetworkManager/resolv.conf</span></code>:</p>
@@ -373,17 +373,17 @@ sudo systemctl mask systemd-resolved.service
 </pre></div>
 </div>
 <p>Внесём следующие правки:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Resolve]</span>
-<span class="na">DNS</span><span class="o">=</span><span class="s">1.1.1.1 1.0.0.1 2606:4700:4700::1111 2606:4700:4700::1001</span>
-<span class="na">FallbackDNS</span><span class="o">=</span><span class="s">8.8.8.8 8.8.4.4 2001:4860:4860::8888 2001:4860:4860::8844</span>
-<span class="c1">#Domains=</span>
-<span class="c1">#LLMNR=yes</span>
-<span class="na">MulticastDNS</span><span class="o">=</span><span class="s">yes</span>
-<span class="na">DNSSEC</span><span class="o">=</span><span class="s">allow-downgrade</span>
-<span class="na">DNSOverTLS</span><span class="o">=</span><span class="s">opportunistic</span>
-<span class="na">Cache</span><span class="o">=</span><span class="s">yes</span>
-<span class="na">DNSStubListener</span><span class="o">=</span><span class="s">yes</span>
-<span class="na">ReadEtcHosts</span><span class="o">=</span><span class="s">yes</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Resolve]</span><span class="w"></span>
+<span class="na">DNS</span><span class="o">=</span><span class="s">1.1.1.1 1.0.0.1 2606:4700:4700::1111 2606:4700:4700::1001</span><span class="w"></span>
+<span class="na">FallbackDNS</span><span class="o">=</span><span class="s">8.8.8.8 8.8.4.4 2001:4860:4860::8888 2001:4860:4860::8844</span><span class="w"></span>
+<span class="c1">#Domains=</span><span class="w"></span>
+<span class="c1">#LLMNR=yes</span><span class="w"></span>
+<span class="na">MulticastDNS</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
+<span class="na">DNSSEC</span><span class="o">=</span><span class="s">allow-downgrade</span><span class="w"></span>
+<span class="na">DNSOverTLS</span><span class="o">=</span><span class="s">opportunistic</span><span class="w"></span>
+<span class="na">Cache</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
+<span class="na">DNSStubListener</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
+<span class="na">ReadEtcHosts</span><span class="o">=</span><span class="s">yes</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Здесь используются серверы <a class="reference external" href="https://cloudflare-dns.com/dns/">CloudFlare</a> с поддержкой DNS-over-TLS.</p>
@@ -604,7 +604,7 @@ mv /etc/resolv.conf.orig /etc/resolv.conf
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018 - 2021, EasyCoding Team and contributors.
+      &copy;2018 - 2022, EasyCoding Team and contributors.
       
     </div>
 
