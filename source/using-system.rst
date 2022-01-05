@@ -946,19 +946,30 @@ KDE предоставляет особый PAM модуль для автома
 
 Кэш :ref:`значков главного меню <kde-icons-refresh>` обновится автоматически, т.к. все популярные среды рабочего стола отслеживают изменения в данном каталоге.
 
-.. index:: language, key, bindings, input, source
+.. index:: language, gnome, key, bindings, input, source
 .. _switch-input-source:
 
-Как изменить сочетание клавиш для переключения языка ввода?
-===============================================================
+Как изменить сочетание клавиш для переключения языка ввода в Gnome?
+===================================================================
 
-Установить новое сочетание для переключения языка ввода возможно следующей командой:
+Рассмотрим два способа изменения сочетания клавиш для переключения между языками: консоль и GUI
+
+Консоль:
+^^^^^^^^^^
+
+Проверим, какой вариант сочетаний установлен:
+
+.. code-block:: text
+
+    gsettings get org.gnome.desktop.wm.keybindings switch-input-source
+
+Установим новое сочетание для переключения раскладок:
 
 .. code-block:: text
 
     gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Shift>Alt_L']"
 
-Возможные варианты сочетаний клавиш (в том числе несколько вариантов, через запятую):
+Возможные варианты сочетаний клавиш (допустимо несколько вариантов, через запятую):
 
 .. code-block:: text
 
@@ -966,19 +977,19 @@ KDE предоставляет особый PAM модуль для автома
     '<Ctrl>Shift_L', '<Shift>Control_L', '<Shift>Control_R', '<Ctrl>Shift_R'
     'Caps_Lock'
 
-Посмотреть, какой вариант сочетаний установлен:
+GUI:
+^^^^^
 
-.. code-block:: text
-
-    gsettings get org.gnome.desktop.wm.keybindings switch-input-source
-
-Также возможно назначить клавиши для переключения раскладок с помощью GUI
-(установив dconf-editor, если он не установлен):
+Установим dconf-editor, если он не установлен:
 
 .. code-block:: text
 
     sudo dnf install dconf-editor
+
+Запустим  dconf-editor:
+
+.. code-block:: text
+
     dconf-editor
 
-И далее в ветке ``org.gnome.desktop.wm.keybindings`` установить у параметра ``switch-input-source`` желаемое значение
-Значение по-умолчанию ``'[<Super>space', 'XF86Keyboard']``. Обратите вниманеие на квадратные скобки при установке через GUI
+В ветке ``org.gnome.desktop.wm.keybindings`` установим у параметра ``switch-input-source`` желаемое значение. Значение по-умолчанию ``['<Super>space', 'XF86Keyboard']``. Обратите вниманеие на квадратные скобки при установке значения через GUI
