@@ -398,11 +398,14 @@ Dnf сохраняет старые ядра. Это нормально?
 
     install_weak_deps=0
 
-.. index:: dnf, package, updates
-.. _dnf-pkgupdates:
+.. index:: dnf, package, updates, exclude
+.. _dnf-exclude:
 
 Как мне запретить установку обновлений для ряда пакетов?
 ============================================================
+
+Классический способ
+^^^^^^^^^^^^^^^^^^^^^^
 
 Откроем файл ``/etc/dnf/dnf.conf`` в текстовом редакторе:
 
@@ -417,6 +420,27 @@ Dnf сохраняет старые ядра. Это нормально?
     exclude=kernel* PackageKit*
 
 Здесь вместо примера укажем нужные пакеты, разделяя их пробелом. Допускаются стандартные символы подстановки.
+
+Современный способ
+^^^^^^^^^^^^^^^^^^^^^
+
+Установим плагин `versionlock <https://dnf-plugins-core.readthedocs.io/en/latest/versionlock.html>`__ для dnf:
+
+.. code-block:: text
+
+    sudo dnf install python3-dnf-plugin-versionlock
+
+Отметим пакеты, версии которых будут закреплены:
+
+.. code-block:: text
+
+    sudo dnf versionlock add kernel
+
+Отметим пакеты, которые будут игнорироваться в любых транзакциях:
+
+.. code-block:: text
+
+    sudo dnf versionlock exclude PackageKit
 
 .. index:: dnf, delta rpm, rpm, package, drpm
 .. _dnf-drpm:
