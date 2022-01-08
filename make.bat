@@ -1,7 +1,7 @@
 @ECHO OFF
 
 rem
-rem SPDX-FileCopyrightText: 2018-2021 EasyCoding Team and contributors
+rem SPDX-FileCopyrightText: 2018-2022 EasyCoding Team and contributors
 rem
 rem SPDX-License-Identifier: CC-BY-SA-4.0
 rem
