@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Сторонние приложения &#8212; Неофициальный FAQ по Fedora (версия 2022.01.08)</title>
+    <title>Сторонние приложения &#8212; Неофициальный FAQ по Fedora (версия 2022.01.10)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -883,6 +883,28 @@ media.rdd-vpx.enabled = false
 <p>Данное действие затронет всех пользователей системы, явно не указавших <a class="reference internal" href="using-system.html#editor-selection"><span class="std std-ref">предпочитаемый текстовый редактор</span></a> при помощи <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменных окружения</span></a>.</p>
 <p>Осуществим новый вход в систему для вступления изменений в силу.</p>
 </section>
+<section id="pdf">
+<span id="pdf-merge"></span><span id="index-76"></span><h2>Как объединить несколько PDF-файлов в один?<a class="headerlink" href="#pdf" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для объединения нескольких PDF-файлов в один воспользуемся утилитой <strong>pdfjam</strong>, входящей в набор <strong>texlive</strong>.</p>
+<p>Установим пакет <strong>texlive-pdfjam</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install texlive-pdfjam
+</pre></div>
+</div>
+<p>Объединим файлы с именами <em>file1.pdf</em> – <em>fileN.pdf</em> в <strong>result.pdf</strong> по схеме 3x1 (3 на 1 странице):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pdfjam file*.pdf --nup 3x1 --outfile result.pdf
+</pre></div>
+</div>
+<p>Поддерживаются следующие схемы размещения исходников:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>1x1</strong> – один файл на странице (по сути, простое объединение);</p></li>
+<li><p><strong>2x1</strong> – два файла на одной странице;</p></li>
+<li><p><strong>3x1</strong> – три файла;</p></li>
+<li><p><strong>4x1</strong> – четыре файла.</p></li>
+</ul>
+</div></blockquote>
+<p>Внимание! Если в оригиналах присутствовали цифровые подписи, они не будут перенесены в итоговый PDF.</p>
+</section>
 </section>
 
 
@@ -988,6 +1010,7 @@ media.rdd-vpx.enabled = false
 <li class="toctree-l2"><a class="reference internal" href="#uresourced-disable">Как отключить uresourced?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#firefox-kde">Как в Firefox включить диалог загрузки и сохранения файлов от KDE?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nano-vim">Как заменить текстовый редактор по умолчанию Nano на Vim?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pdf">Как объединить несколько PDF-файлов в один?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
