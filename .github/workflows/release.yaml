@@ -1,4 +1,4 @@
-name: Deploy release
+name: Release CI
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
       - name: Installing build dependencies
         run: |
           sudo dnf -y install make python3-sphinx latexmk texlive-cmap texlive-metafont-bin texlive-collection-fontsrecommended texlive-babel-russian texlive-hyphen-russian texlive-titling texlive-fancyhdr texlive-titlesec texlive-tabulary texlive-framed texlive-wrapfig texlive-parskip texlive-upquote texlive-capt-of texlive-needspace texlive-collection-langcyrillic texlive-cyrillic-bin texlive-cmcyr texlive-cyrillic-bin-bin texlive-fncychap texlive-xetex dejavu-sans-fonts dejavu-serif-fonts dejavu-sans-mono-fonts texlive-polyglossia texlive-xindy
-      - name: Building PDF using Sphinx
+      - name: Building PDF using Sphinx-Doc
         run: |
           make latexpdf
       - name: Uploading built PDF artifact to releases
