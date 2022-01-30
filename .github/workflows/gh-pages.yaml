@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - 'master'
+  pull_request:
+    branches:
+      - 'master'
 
 jobs:
   build-and-deploy:
@@ -29,6 +32,7 @@ jobs:
         run: |
           make html
       - name: Deploying built HTML to GitHub pages
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
           branch: gh-pages

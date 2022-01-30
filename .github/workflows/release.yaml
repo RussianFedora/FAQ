@@ -1,0 +1,28 @@
+name: Deploy release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-and-deploy:
+    name: Build and deploy release assets
+    runs-on: ubuntu-latest
+    container: fedora:latest
+    steps:
+      - name: Installing core packages
+        run: |
+          sudo dnf -y install git-core
+      - name: Fetching sources from repository
+        uses: actions/checkout@v2
+      - name: Installing build dependencies
+        run: |
+          sudo dnf -y install make python3-sphinx latexmk texlive-cmap texlive-metafont-bin texlive-collection-fontsrecommended texlive-babel-russian texlive-hyphen-russian texlive-titling texlive-fancyhdr texlive-titlesec texlive-tabulary texlive-framed texlive-wrapfig texlive-parskip texlive-upquote texlive-capt-of texlive-needspace texlive-collection-langcyrillic texlive-cyrillic-bin texlive-cmcyr texlive-cyrillic-bin-bin texlive-fncychap texlive-xetex dejavu-sans-fonts dejavu-serif-fonts dejavu-sans-mono-fonts texlive-polyglossia texlive-xindy
+      - name: Building PDF using Sphinx
+        run: |
+          make latexpdf
+      - name: Uploading built PDF artifact to releases
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/latex/fedora-faq-ru.pdf
