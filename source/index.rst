@@ -24,3 +24,4 @@
    development.rst
    tips-and-tricks.rst
    legal-info.rst
+   beginners.rst
