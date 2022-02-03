@@ -12,18 +12,15 @@ jobs:
   build-and-deploy:
     name: Build and deploy HTML
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ['3.10']
     env:
       CI_ACTION: '1'
     steps:
       - name: Fetching sources from repository
         uses: actions/checkout@v2
-      - name: Setting up Python ${{ matrix.python-version }}
+      - name: Setting up Python interpreter
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.10'
       - name: Installing dependencies
         run: |
           python -m pip install --upgrade pip
