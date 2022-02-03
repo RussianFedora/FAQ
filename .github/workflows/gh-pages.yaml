@@ -12,8 +12,6 @@ jobs:
   build-and-deploy:
     name: Build and deploy HTML
     runs-on: ubuntu-latest
-    env:
-      CI_ACTION: '1'
     steps:
       - name: Fetching sources from repository
         uses: actions/checkout@v2
@@ -28,6 +26,8 @@ jobs:
       - name: Building HTML using Sphinx
         run: |
           make html
+        env:
+          CI_ACTION: '1'
       - name: Deploying built HTML to GitHub pages
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         uses: JamesIves/github-pages-deploy-action@4.0.0
