@@ -859,8 +859,8 @@ sudo dnf repository-packages --installed updates-testing-debuginfo remove
 </section>
 <section id="gnome-software-flatpak-rpm">
 <span id="gnome-software-preference"></span><span id="index-85"></span><h2>GNOME Software при установке выбирает Flatpak вместо RPM. Как исправить?<a class="headerlink" href="#gnome-software-flatpak-rpm" title="Ссылка на этот заголовок">¶</a></h2>
-<p>В конфигурации по умолчанию GNOME Software отдаёт предпочтение Flatpak-пакетам вместо стандартных RPM.</p>
-<p>Исправим это, изменив приоритет:</p>
+<p>GNOME Software в конфигурации по умолчанию отдаёт предпочтение Flatpak-пакетам перед стандартными RPM при совпадении ID.</p>
+<p>Исправим это, изменив приоритет опцией <strong>packaging-format-preference</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gsettings set org.gnome.software packaging-format-preference &quot;[&#39;RPM&#39;, &#39;flatpak&#39;]&quot;
 </pre></div>
 </div>
