@@ -119,6 +119,24 @@
 
     koji-rpmfusion untag f35-free-override foo-bar-1.0-1.fc35
 
+.. index:: rpmfusion, koji, build, repository
+.. _rpmfusion-koji-regen:
+
+Как обновить кэши репозиториев Koji в RPM Fusion?
+=====================================================
+
+Запустим обновление кэшей репозиториев для free:
+
+.. code-block:: text
+
+    koji-rpmfusion regen-repo f35-free-build --nowait
+
+Запустим обновление кэшей репозиториев для nonfree:
+
+.. code-block:: text
+
+    koji-rpmfusion regen-repo f35-nonfree-build --nowait
+
 .. index:: git, gmail, mail
 .. _git-gmail:
 
