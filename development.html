@@ -1058,18 +1058,18 @@ end
 </section>
 <section id="koji-side-tags">
 <span id="index-72"></span><span id="id52"></span><h2>Как собрать несколько зависящих друг от друга пакетов?<a class="headerlink" href="#koji-side-tags" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Если раньше приходилось использовать механизм «build overrides», позволяющий вручную переопределять пакеты в сборочном репозитории, то сейчас рекомендуется для сборки двух и более пакетов применять side-теги, т.к. это более простой и безопасный способ, не создающий проблем с зависимостями.</p>
-<p>Мейнтейнер может запросить создание любого количества side-тегов и производить сборку в них по своему усмотрению.</p>
+<p>Если раньше приходилось использовать механизм «build overrides», позволяющий вручную переопределять пакеты в сборочном репозитории, то сейчас рекомендуется для сборки двух и более пакетов применять side-теги, т.к. это более простой и безопасный способ, не создающий конфликтов и проблем с зависимостями.</p>
+<p>Мейнтейнер может запросить создание любого числа side-тегов и производить сборку в них по своему усмотрению.</p>
 <p>Запросим новый side-tag для F35:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg request-side-tag --base-tag f35-build
 </pre></div>
 </div>
 <p>В выводе <strong>fedpkg</strong> сообщит нам уникальный идентификатор созданного репозитория, например <em>f35-build-side-12345</em>.</p>
-<p>Дождёмся его создания:</p>
+<p>Ждём его создания и готовности к работе:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji wait-repo f35-build-side-XXXXX
 </pre></div>
 </div>
-<p>Соберём первый пакет <strong>foo</strong>:</p>
+<p>Произведём сборку первого пакета <strong>foo</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg build --target=f35-build-side-XXXXX
 </pre></div>
 </div>
@@ -1077,7 +1077,7 @@ end
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji wait-repo --build=foo-1.0.0-1.fc35 f35-build-side-XXXXX
 </pre></div>
 </div>
-<p>Собираем остальные пакеты тем же способом.</p>
+<p>Собираем все остальные пакеты тем же способом.</p>
 <p>По окончании перейдём в <a class="reference external" href="https://bodhi.fedoraproject.org/">Bodhi</a> и выберем <strong>Create New Update</strong> – <strong>Use Side Tag</strong> для выгрузки его в основной репозиторий.</p>
 </section>
 </section>
