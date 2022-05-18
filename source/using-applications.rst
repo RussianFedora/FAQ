@@ -32,10 +32,6 @@
 .. index:: firefox, chromium, chrome, hardware acceleration, vaapi
 .. _browser-hwaccel:
 
-.. index:: libreoffice
-.. _hwaccel-libreoffice:
-
-
 Как активировать аппаратное ускорение декодирования мультимедиа в браузерах?
 ===============================================================================
 
