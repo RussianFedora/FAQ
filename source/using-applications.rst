@@ -32,13 +32,6 @@
 .. index:: firefox, chromium, chrome, hardware acceleration, vaapi
 .. _browser-hwaccel:
 
-Как устранить лаги при редактории документов, презентаций и таблиц в продуктах LibreOffice?
-===============================================================================
-
-В данной статье речь пойдёт о продуктах LibreOffice Writer, LibreOffice Calc и LibreOffice Impress.
-Если вы испытываете лаги, даже при включенном аппаратном ускорении, переключитесь с Wayland сессии на X11 сессию. 
-Актуально на 18 мая 2022 года. 
-
 .. index:: libreoffice
 .. _hwaccel-libreoffice:
 
