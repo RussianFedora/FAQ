@@ -40,7 +40,7 @@
   * `@ZaWertun <https://github.com/ZaWertun>`__;
   * `@krepver <https://github.com/krepver>`__;
   * `@jsonguard <https://github.com/jsonguard>`__;
-  * `@xshram <https://github.com/xshram>`__;
+  * `@callhimnow <https://github.com/callhimnow>`__;
   * `@bookwar <https://github.com/bookwar>`__;
   * `@ElXreno <https://github.com/ElXreno>`__;
   * `@crayxt <https://github.com/crayxt>`__;
