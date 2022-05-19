@@ -64,7 +64,7 @@
 .. code-block:: text
 
     cd foo-bar
-    fedpkg switch-branch f35
+    fedpkg switch-branch f36
 
 Внесём свои правки, сделаем коммит в репозиторий:
 
@@ -107,17 +107,17 @@
 Как переопределить пакет в Koji репозитория RPM Fusion?
 ===========================================================
 
-Создание build override для репозитория f35-free:
+Создание build override для репозитория f36-free:
 
 .. code-block:: text
 
-    koji-rpmfusion tag f35-free-override foo-bar-1.0-1.fc35
+    koji-rpmfusion tag f36-free-override foo-bar-1.0-1.fc36
 
-Удаление build override для репозитория f35-free:
+Удаление build override для репозитория f36-free:
 
 .. code-block:: text
 
-    koji-rpmfusion untag f35-free-override foo-bar-1.0-1.fc35
+    koji-rpmfusion untag f36-free-override foo-bar-1.0-1.fc36
 
 .. index:: rpmfusion, koji, build, repository
 .. _rpmfusion-koji-regen:
@@ -129,13 +129,13 @@
 
 .. code-block:: text
 
-    koji-rpmfusion regen-repo f35-free-build --nowait
+    koji-rpmfusion regen-repo f36-free-build --nowait
 
 Запустим обновление кэшей репозиториев для nonfree:
 
 .. code-block:: text
 
-    koji-rpmfusion regen-repo f35-nonfree-build --nowait
+    koji-rpmfusion regen-repo f36-nonfree-build --nowait
 
 .. index:: git, gmail, mail
 .. _git-gmail:
@@ -1102,7 +1102,7 @@
 .. code-block:: text
 
     fedpkg switch-branch master
-    fedpkg import /путь/к/foo-bar-1.0-1.fc35.src.rpm
+    fedpkg import /путь/к/foo-bar-1.0-1.fc36.src.rpm
 
 Проверим внесённые изменения и если всё верно, жмём **Q** для выхода. Зафиксируем наши изменения:
 
@@ -1114,7 +1114,7 @@
 
 .. code-block:: text
 
-    fedpkg switch-branch f35
+    fedpkg switch-branch f36
     git merge master
 
 Отправим изменения на сервер:
@@ -1141,7 +1141,7 @@
 
 .. code-block:: text
 
-    fedpkg switch-branch f35
+    fedpkg switch-branch f36
     fedpkg build
 
 .. index:: fedora, package, build, fedpkg, scratch
@@ -1594,27 +1594,27 @@ Qt-приложение, собранное Clang с LTO не запускает
 
 .. code-block:: text
 
-    fedpkg request-side-tag --base-tag f35-build
+    fedpkg request-side-tag --base-tag f36-build
 
-В выводе **fedpkg** сообщит нам уникальный идентификатор созданного репозитория, например *f35-build-side-12345*.
+В выводе **fedpkg** сообщит нам уникальный идентификатор созданного репозитория, например *f36-build-side-12345*.
 
 Ждём его создания и готовности к работе:
 
 .. code-block:: text
 
-    koji wait-repo f35-build-side-XXXXX
+    koji wait-repo f36-build-side-XXXXX
 
 Произведём сборку первого пакета **foo**:
 
 .. code-block:: text
 
-    fedpkg build --target=f35-build-side-XXXXX
+    fedpkg build --target=f36-build-side-XXXXX
 
 Ожидаем его появления в теге:
 
 .. code-block:: text
 
-    koji wait-repo --build=foo-1.0.0-1.fc35 f35-build-side-XXXXX
+    koji wait-repo --build=foo-1.0.0-1.fc36 f36-build-side-XXXXX
 
 Собираем все остальные пакеты тем же способом.
 
