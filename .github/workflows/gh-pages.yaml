@@ -14,9 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetching sources from repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setting up Python interpreter
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: '3.10'
       - name: Installing dependencies
@@ -30,7 +30,7 @@ jobs:
           CI_ACTION: '1'
       - name: Deploying built HTML to GitHub pages
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
-        uses: JamesIves/github-pages-deploy-action@4.0.0
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: build/html
