@@ -79,7 +79,7 @@ FESCo -- `Fedora Engineering Steering Committee <https://docs.fedoraproject.org/
 Когда выходит следующий релиз?
 ===================================
 
-`Fedora 36 Schedule <https://fedorapeople.org/groups/schedule/f-36/f-36-key-tasks.html>`__.
+`Fedora 37 Schedule <https://fedorapeople.org/groups/schedule/f-37/f-37-key-tasks.html>`__.
 
 .. index:: difference, fedora, bleeding edge, distribution
 .. _differences:
