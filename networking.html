@@ -517,7 +517,7 @@ mv /etc/resolv.conf.orig /etc/resolv.conf
 <section id="fedoraproject-org-5">
 <span id="nm-connectivity-check"></span><span id="index-39"></span><h2>Почему система обращается к fedoraproject.org каждые 5 минут?<a class="headerlink" href="#fedoraproject-org-5" title="Ссылка на этот заголовок">¶</a></h2>
 <p>С настройками по умолчанию, предустановленными пакетом <strong>NetworkManager-config-connectivity-fedora</strong>, NetworkManager проверяет доступность подключения к Интернету по таймеру каждые 5 минут посредством обращения к файлу <strong>hotspot.txt</strong> по протоколу HTTP и анализируя ответ сервера.</p>
-<p>Подключение считается полнофункциональным в случае получения с сервера строки <strong>OK</strong>.</p>
+<p>Подключение считается полнофункциональным после получения строки <strong>OK</strong>. При любом другом ответе – ограниченным.</p>
 <p>С целью сохранения приватности возможно <a class="reference internal" href="#nm-connectivity-disable"><span class="std std-ref">отключить это поведение</span></a>.</p>
 </section>
 <section id="nm-connectivity-disable">
