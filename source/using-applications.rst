@@ -548,7 +548,7 @@ Zip-архивы, созданные штатными средствами ОС 
 
 .. code-block:: text
 
-    wget --random-wait -r -p -e robots=off -U "Mozilla/5.0 (X11; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0" https://example.org
+    wget --random-wait -r -p -e robots=off -U "Mozilla/5.0 (X11; Linux x86_64; rv:100.0) Gecko/20100101 Firefox/100.0" https://example.org
 
 Рекурсивное скачивание может занять много времени и места на диске. Настоятельно не рекомендуется использовать этот режим на ресурсах с динамическим контентом.
 
@@ -853,7 +853,7 @@ Zip-архивы, созданные штатными средствами ОС 
 
 При следующем входе в систему все настройки Kickoff будут сброшены, включая страницу *Избранное* и при этом должна восстановиться его правильная работа.
 
-.. index:: firefox, browser, sqlite, database, vacuum, compress
+.. index:: firefox, browser, sqlite, database, vacuum, compress, find
 .. _firefox-vacuum:
 
 Как сжать базы данных sqlite браузера Firefox?
@@ -871,7 +871,7 @@ Zip-архивы, созданные штатными средствами ОС 
 
 .. code-block:: text
 
-    find ~/.mozilla/firefox -name "*.sqlite" -exec sqlite3 {} VACUUM \;
+    find ~/.mozilla/firefox -name "*.sqlite" -exec sqlite3 "{}" VACUUM \;
 
 Это действие абсолютно безопасно, т.к. физически удаляет лишь те данные, которые в них были помечены в качестве удалённых.
 
