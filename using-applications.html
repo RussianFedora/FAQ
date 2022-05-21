@@ -383,7 +383,7 @@ media.rdd-vpx.enabled = false
 <span id="index-29"></span><span id="id13"></span><h2>Как скачать веб-страницу рекурсивно?<a class="headerlink" href="#wget-crawler" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для рекурсивного скачивания статических веб-страниц можно использовать wget в специальном режиме.</p>
 <p>Запустим скачивание ресурса <strong>example.org</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>wget --random-wait -r -p -e robots=off -U &quot;Mozilla/5.0 (X11; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0&quot; https://example.org
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>wget --random-wait -r -p -e robots=off -U &quot;Mozilla/5.0 (X11; Linux x86_64; rv:100.0) Gecko/20100101 Firefox/100.0&quot; https://example.org
 </pre></div>
 </div>
 <p>Рекурсивное скачивание может занять много времени и места на диске. Настоятельно не рекомендуется использовать этот режим на ресурсах с динамическим контентом.</p>
@@ -592,7 +592,7 @@ media.rdd-vpx.enabled = false
 </pre></div>
 </div>
 <p>Убедимся, что Firefox <strong>не запущен</strong>, затем выполним команду vaccuum для всех sqlite файлов внутри локальных профилей браузера:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find ~/.mozilla/firefox -name &quot;*.sqlite&quot; -exec sqlite3 {} VACUUM \;
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find ~/.mozilla/firefox -name &quot;*.sqlite&quot; -exec sqlite3 &quot;{}&quot; VACUUM \;
 </pre></div>
 </div>
 <p>Это действие абсолютно безопасно, т.к. физически удаляет лишь те данные, которые в них были помечены в качестве удалённых.</p>
