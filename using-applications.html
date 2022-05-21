@@ -919,14 +919,14 @@ media.rdd-vpx.enabled = false
 </section>
 <section id="git">
 <span id="mass-change-files-git"></span><span id="index-78"></span><h2>Как изменить строку во всех файлах Git-репозитория?<a class="headerlink" href="#git" title="Ссылка на этот заголовок">¶</a></h2>
-<p>При использовании системы контроля версий Git не следует использовать <a class="reference internal" href="#mass-change-files"><span class="std std-ref">классический поиск</span></a> без указания маски имени, либо начального каталога, т.к. это может привести к внесению правок в индексы, расположенные внутри служебной директории <code class="docutils literal notranslate"><span class="pre">.git</span></code>, что приведёт к повреждению локальной копии репозитория.</p>
+<p>При использовании системы контроля версий Git не следует применять <a class="reference internal" href="#mass-change-files"><span class="std std-ref">классический поиск</span></a> без указания маски имени, либо начального каталога, т.к. это может повлечь за собой внесение правок в индексы, расположенные внутри служебной директории <code class="docutils literal notranslate"><span class="pre">.git</span></code>, что приведёт к повреждению локальной копии репозитория.</p>
 <p>Воспользуемся функцией Git <strong>ls-files</strong> и утилитами <strong>xargs</strong> и <strong>sed</strong> для замены строки <em>foo</em> на <em>bar</em>.</p>
 <p>Произведём поиск и замену во всех файлах репозитория:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git ls-files | xargs sed -i -e &quot;s/foo/bar/g&quot;
 </pre></div>
 </div>
 <p>Произведём поиск и замену в файлах репозитория, удовлетворяющих маске имени <code class="docutils literal notranslate"><span class="pre">*.txt</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git ls-files -- &quot;*.txt&quot; | xargs sed -i -e &quot;s/foo/bar/g&quot;
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git ls-files &quot;*.txt&quot; | xargs sed -i -e &quot;s/foo/bar/g&quot;
 </pre></div>
 </div>
 </section>
