@@ -292,6 +292,6 @@ Fedora Silverblue -- это особая версия Fedora, основанна
 Можно ли скачать данный FAQ для оффлайнового чтения?
 ========================================================
 
-Да. Каждый месяц формируются выпуски для оффлайнового чтения в форматах PDF и CHM.
+Да. При накоплении определённого числа изменений, формируются выпуски для оффлайнового чтения в формате PDF.
 
-Скачать их можно из `раздела загрузок <https://github.com/RussianFedora/FAQ/releases>`__ на GitHub.
+Скачать их можно из `раздела загрузок <https://github.com/RussianFedora/FAQ/releases>`__ на GitHub, либо по `прямой ссылке <https://github.com/RussianFedora/FAQ/releases/latest/download/fedora-faq-ru.pdf>`__.
