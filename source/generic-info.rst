@@ -98,7 +98,7 @@ Fedora -- это `bleeding edge <https://en.wikipedia.org/wiki/Bleeding_edge_tec
 Загрузить ISO образ дистрибутива можно с официального сайта:
 
   * `Fedora Workstation (с GNOME) <https://getfedora.org/ru/workstation/download/>`__;
-  * `Fedora с другими DE <https://spins.fedoraproject.org/>`__;
+  * `Fedora с другими DE <https://spins.fedoraproject.org/ru/>`__;
   * `официальные торренты <https://torrents.fedoraproject.org/>`__.
 
 Также существуют еженедельные `автоматические сборки <https://dl.fedoraproject.org/pub/alt/live-respins/>`__ («respins»), содержащие все выпущенные на данный момент обновления.
