@@ -109,7 +109,17 @@ Fedora -- это `bleeding edge <https://en.wikipedia.org/wiki/Bleeding_edge_tec
 Какие DE поддерживаются?
 ===========================
 
-Gnome 3 (версия Workstation), KDE Plasma 5, Xfce, LXDE, LXQt, Cinnamon, Mate.
+Текущий выпуск Fedora поддерживает следующие DE:
+
+  * `GNOME <https://getfedora.org/ru/workstation/download/>`__;
+  * `KDE Plasma <https://spins.fedoraproject.org/ru/kde/download/>`__;
+  * `XFCE <https://spins.fedoraproject.org/ru/xfce/download/>`__;
+  * `LXQt <https://spins.fedoraproject.org/ru/lxqt/download/>`__;
+  * `Mate <https://spins.fedoraproject.org/ru/mate-compiz/download/>`__;
+  * `Cinnamon <https://spins.fedoraproject.org/ru/cinnamon/download/>`__;
+  * `LXDE <https://spins.fedoraproject.org/ru/lxde/download/>`__;
+  * `SOAS <https://spins.fedoraproject.org/ru/soas/download/>`__;
+  * `i3 <https://spins.fedoraproject.org/ru/i3/download/>`__.
 
 .. index:: releases, rolling, fedora, rawhide
 .. _rolling-model:
