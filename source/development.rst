@@ -1620,7 +1620,7 @@ Qt-приложение, собранное Clang с LTO не запускает
 
 По окончании перейдём в `Bodhi <https://bodhi.fedoraproject.org/>`__ и выберем **Create New Update** -- **Use Side Tag** для выгрузки его в основной репозиторий.
 
-.. index:: rpm, rpmbuild, koji, fedpkg, build, chain
+.. index:: rpm, rpmbuild, koji, fedpkg, build, chain, rawhide
 .. _koji-chain-build:
 
 Как собрать несколько зависящих друг от друга пакетов по цепочке?
@@ -1637,15 +1637,17 @@ Qt-приложение, собранное Clang с LTO не запускает
 .. code-block:: text
 
     cd bar
+    fedpkg switch-branch rawhide
     fedpkg chain-build libfoo1 libfoo2
 
 Данное действие создаст следующую цепочку *libfoo1* -> *libfoo2* -> *bar*.
 
-В случае если некоторые пакеты допустимо собирать параллельно, поделим задание на подгруппы:
+В случае если некоторые пакеты допустимо собирать параллельно, поделим задание на подгруппы (разделителем является двоеточие):
 
 .. code-block:: text
 
     cd bar
+    fedpkg switch-branch rawhide
     fedpkg chain-build libfoo1 : libfoo2 libfoo3 :
 
 В результате появится цепочка *libfoo1* -> *libfoo2* + *libfoo3* -> *bar*.
