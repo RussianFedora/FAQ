@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2022.05.22)</title>
+    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2022.05.23)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -1080,6 +1080,24 @@ end
 <p>Собираем все остальные пакеты тем же способом.</p>
 <p>По окончании перейдём в <a class="reference external" href="https://bodhi.fedoraproject.org/">Bodhi</a> и выберем <strong>Create New Update</strong> – <strong>Use Side Tag</strong> для выгрузки его в основной репозиторий.</p>
 </section>
+<section id="koji-chain-build">
+<span id="index-73"></span><span id="id53"></span><h2>Как собрать несколько зависящих друг от друга пакетов по цепочке?<a class="headerlink" href="#koji-chain-build" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В <a class="reference internal" href="generic-info.html#using-rawhide"><span class="std std-ref">Fedora Rawhide</span></a> наряду с <a class="reference internal" href="#koji-side-tags"><span class="std std-ref">использованием side-тегов</span></a>, существует и более удобный способ – сборки по цепочке (chain builds).</p>
+<p>Мейнтейнер может указать произвольное количество пакетов в пределах одного задания. Koji выполнит задачу строго в указанном порядке.</p>
+<p>Внимание! Каталоги с исходниками всех участников группы должны находиться на одном уровне файловой иерархии.</p>
+<p>Перейдём в каталог последнего пакета в цепочке (в данном примере это <strong>bar</strong>) и запустим процесс:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd bar
+fedpkg chain-build libfoo1 libfoo2
+</pre></div>
+</div>
+<p>Данное действие создаст следующую цепочку <em>libfoo1</em> -&gt; <em>libfoo2</em> -&gt; <em>bar</em>.</p>
+<p>В случае если некоторые пакеты допустимо собирать параллельно, поделим задание на подгруппы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd bar
+fedpkg chain-build libfoo1 : libfoo2 libfoo3 :
+</pre></div>
+</div>
+<p>В результате появится цепочка <em>libfoo1</em> -&gt; <em>libfoo2</em> + <em>libfoo3</em> -&gt; <em>bar</em>.</p>
+</section>
 </section>
 
 
@@ -1184,6 +1202,7 @@ end
 <li class="toctree-l2"><a class="reference internal" href="#rpmbuild-filter-provides">Как исключить библиотеку из списка предоставляемых пакетом?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpmbuild-filter-requires">Как исключить библиотеку из списка зависимостей пакета?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#koji-side-tags">Как собрать несколько зависящих друг от друга пакетов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#koji-chain-build">Как собрать несколько зависящих друг от друга пакетов по цепочке?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>
