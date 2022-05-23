@@ -1087,12 +1087,14 @@ end
 <p>Внимание! Каталоги с исходниками всех участников группы должны находиться на одном уровне файловой иерархии.</p>
 <p>Перейдём в каталог последнего пакета в цепочке (в данном примере это <strong>bar</strong>) и запустим процесс:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd bar
+fedpkg switch-branch rawhide
 fedpkg chain-build libfoo1 libfoo2
 </pre></div>
 </div>
 <p>Данное действие создаст следующую цепочку <em>libfoo1</em> -&gt; <em>libfoo2</em> -&gt; <em>bar</em>.</p>
-<p>В случае если некоторые пакеты допустимо собирать параллельно, поделим задание на подгруппы:</p>
+<p>В случае если некоторые пакеты допустимо собирать параллельно, поделим задание на подгруппы (разделителем является двоеточие):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd bar
+fedpkg switch-branch rawhide
 fedpkg chain-build libfoo1 : libfoo2 libfoo3 :
 </pre></div>
 </div>
