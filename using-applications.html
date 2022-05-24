@@ -159,12 +159,12 @@ media.rdd-vpx.enabled = false
 </section>
 <section id="youtube">
 <span id="youtube-download"></span><span id="index-12"></span><h2>Как скачать видео с Youtube?<a class="headerlink" href="#youtube" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Скачать любое интересующее видео с Youtube, а также ряда других хостингов, можно посредством утилиты <strong>youtube-dl</strong>, доступной в основном репозитории Fedora:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install youtube-dl
+<p>Скачать любое интересующее видео с Youtube, а также ряда других хостингов, можно посредством утилиты <strong>yt-dlp</strong>, доступной в основном репозитории Fedora:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install yt-dlp
 </pre></div>
 </div>
 <p>Скачивание видео с настройками по умолчанию в наилучшем качестве:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>youtube-dl -f bestvideo https://www.youtube.com/watch?v=XXXXXXXXXX
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>yt-dlp https://www.youtube.com/watch?v=XXXXXXXXXX
 </pre></div>
 </div>
 <p>Иногда при скачивании видео в разрешении 4K с ключом <code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">bestvideo</span></code> может не работать аппаратное ускорение при воспроизведении из-за того, что кодек vp9.2 не поддерживается аппаратными кодировщиками. В таких случаях необходимо явно указывать кодек (<code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">bestvideo[vcodec=vp9]</span></code>).</p>
@@ -173,11 +173,15 @@ media.rdd-vpx.enabled = false
 </pre></div>
 </div>
 <p>В качестве примера скачаем видео в наилучшем качестве, сжатое кодеком VP9 (с возможностью аппаратного ускорения) и звуком:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>youtube-dl -f bestvideo[vcodec=vp9]+bestaudio https://www.youtube.com/watch?v=XXXXXXXXXX
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>yt-dlp -f bestvideo[vcodec=vp9]+bestaudio https://www.youtube.com/watch?v=XXXXXXXXXX
+</pre></div>
+</div>
+<p>Поддерживается автоматическое удаление спонсорских интеграций из видеоряда на основе базы данных <a class="reference external" href="https://sponsor.ajay.app/">SponsorBlock</a>, активируемое параметром <code class="docutils literal notranslate"><span class="pre">--sponsorblock-remove=sponsor</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>yt-dlp -f bestvideo+bestaudio --sponsorblock-remove=sponsor https://www.youtube.com/watch?v=XXXXXXXXXX
 </pre></div>
 </div>
 <p>Данная утилита имеет множество параметров командной строки, справку по которым можно найти в её странице man:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>man youtube-dl
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>man yt-dlp
 </pre></div>
 </div>
 <p>Для выхода из окна просмотра справки достаточно нажать <strong>Q</strong>.</p>
