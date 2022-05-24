@@ -190,23 +190,23 @@
 
     sudo dnf install texlive-collection-langcyrillic texlive-cyrillic texlive-russ texlive-babel-russian
 
-.. index:: video, youtube, download
+.. index:: video, youtube, download, yt-dlp, ffmpeg
 .. _youtube-download:
 
 Как скачать видео с Youtube?
 =================================
 
-Скачать любое интересующее видео с Youtube, а также ряда других хостингов, можно посредством утилиты **youtube-dl**, доступной в основном репозитории Fedora:
+Скачать любое интересующее видео с Youtube, а также ряда других хостингов, можно посредством утилиты **yt-dlp**, доступной в основном репозитории Fedora:
 
 .. code-block:: text
 
-    sudo dnf install youtube-dl
+    sudo dnf install yt-dlp
 
 Скачивание видео с настройками по умолчанию в наилучшем качестве:
 
 .. code-block:: text
 
-    youtube-dl -f bestvideo https://www.youtube.com/watch?v=XXXXXXXXXX
+    yt-dlp https://www.youtube.com/watch?v=XXXXXXXXXX
 
 Иногда при скачивании видео в разрешении 4K с ключом ``-f bestvideo`` может не работать аппаратное ускорение при воспроизведении из-за того, что кодек vp9.2 не поддерживается аппаратными кодировщиками. В таких случаях необходимо явно указывать кодек (``-f bestvideo[vcodec=vp9]``).
 
@@ -220,13 +220,19 @@
 
 .. code-block:: text
 
-    youtube-dl -f bestvideo[vcodec=vp9]+bestaudio https://www.youtube.com/watch?v=XXXXXXXXXX
+    yt-dlp -f bestvideo[vcodec=vp9]+bestaudio https://www.youtube.com/watch?v=XXXXXXXXXX
+
+Поддерживается автоматическое удаление спонсорских интеграций из видеоряда на основе базы данных `SponsorBlock <https://sponsor.ajay.app/>`__, активируемое параметром ``--sponsorblock-remove=sponsor``:
+
+.. code-block:: text
+
+    yt-dlp -f bestvideo+bestaudio --sponsorblock-remove=sponsor https://www.youtube.com/watch?v=XXXXXXXXXX
 
 Данная утилита имеет множество параметров командной строки, справку по которым можно найти в её странице man:
 
 .. code-block:: text
 
-    man youtube-dl
+    man yt-dlp
 
 Для выхода из окна просмотра справки достаточно нажать **Q**.
 
