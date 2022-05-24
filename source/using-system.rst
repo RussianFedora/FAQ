@@ -997,9 +997,9 @@ GUI:
 Обязательно убедимся в наличии квадратных скобок. Конфигурация по-умолчанию -- ``['<Super>space', 'XF86Keyboard']``.
 
 .. index:: x11, wayland, session, gnome, gdm
-.. _x11-gdm:
+.. _x11-gnome:
 
-Как переключить GDM на использование X11?
+Как переключить GNOME на использование X11?
 ===============================================
 
 Откроем файл конфигурации ``/etc/gdm/custom.conf`` в текстовом редакторе:
@@ -1021,3 +1021,23 @@ GUI:
 .. code-block:: text
 
     systemctl reboot
+
+.. index:: x11, wayland, session, kde, sddm
+.. _x11-plasma:
+
+Как переключить KDE на использование X11?
+==============================================
+
+Произведём замену пакета **sddm-wayland-plasma** на **sddm-x11**:
+
+.. code-block:: text
+
+    sudo dnf swap sddm-wayland-plasma sddm-x11 --allowerasing
+
+Перезагрузим устройство для вступления изменений в силу:
+
+.. code-block:: text
+
+    systemctl reboot
+
+При следующем входе в меню выбора доступных сеансов выберем **Plasma (X11)**.
