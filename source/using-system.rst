@@ -995,3 +995,29 @@ GUI:
 В ветке ``org.gnome.desktop.wm.keybindings`` установим параметру ``switch-input-source`` желаемое значение.
 
 Обязательно убедимся в наличии квадратных скобок. Конфигурация по-умолчанию -- ``['<Super>space', 'XF86Keyboard']``.
+
+.. index:: x11, wayland, session, gnome, gdm
+.. _x11-gdm:
+
+Как переключить GDM на использование X11?
+===============================================
+
+Откроем файл конфигурации ``/etc/gdm/custom.conf`` в текстовом редакторе:
+
+.. code-block:: text
+
+    sudoedit /etc/gdm/custom.conf
+
+Внесём изменения в секцию **daemon**:
+
+.. code-block:: ini
+
+    [daemon]
+    WaylandEnable=false
+    DefaultSession=gnome-xorg.desktop
+
+Сохраним изменения и перезагрузим устройство:
+
+.. code-block:: text
+
+    systemctl reboot
