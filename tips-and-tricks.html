@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Оптимизация и тонкая настройка &#8212; Неофициальный FAQ по Fedora (версия 2022.05.24)</title>
+    <title>Оптимизация и тонкая настройка &#8212; Неофициальный FAQ по Fedora (версия 2022.05.25)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -478,6 +478,18 @@ systemctl status systemd-vconsole-setup.service
 <span id="libreoffice-wayland"></span><span id="index-27"></span><h2>Как устранить лаги при редактировании документов в LibreOffice?<a class="headerlink" href="#libreoffice" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При возникновении лагов во время работы с документами в приложениях LibreOffice вне зависимости от настроек аппаратного ускорения, переключим <a class="reference internal" href="using-system.html#session-type"><span class="std std-ref">активный сеанс</span></a> сессии с <a class="reference internal" href="using-system.html#x11-session"><span class="std std-ref">Wayland на X11</span></a>.</p>
 </section>
+<section id="fedora-36-nvidia">
+<span id="nvidia-upgrade-bug"></span><span id="index-28"></span><h2>После обновления до Fedora 36 не работают драйверы NVIDIA. Как исправить?<a class="headerlink" href="#fedora-36-nvidia" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=2011120">известная проблема</a>, из-за которой плагин dnf system-upgrade перезагружает систему до того, как пакеты <a class="reference internal" href="hardware.html#nvidia-drivers"><span class="std std-ref">проприетарных драйверов NVIDIA</span></a> будут корректно собраны и установлены.</p>
+<p>В качестве решения обновим базу установленных модулей ядра Linux:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo depmod -ae
+</pre></div>
+</div>
+<p>Произведём перезагрузку устройства:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl reboot
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -538,6 +550,7 @@ systemctl status systemd-vconsole-setup.service
 <li class="toctree-l2"><a class="reference internal" href="#failed-to-start-setup-virtual-console">Как исправить ошибку Failed to start Setup Virtual Console?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora-35">После обновления до Fedora 35 отсутствует звук. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#libreoffice">Как устранить лаги при редактировании документов в LibreOffice?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora-36-nvidia">После обновления до Fedora 36 не работают драйверы NVIDIA. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
