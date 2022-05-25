@@ -229,6 +229,13 @@
 
     sudo ln -s /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d/
 
+Включим поддержку сглаживания для GTK 4 приложений посредством добавления параметра **gtk-hint-font-metrics** в файл конфигурации ``~/.config/gtk-4.0/settings.ini`` (при отстутствии -- создадим):
+
+.. code-block:: ini
+
+    [Settings]
+    gtk-hint-font-metrics=1
+
 Для вступления изменений в силу необходимо повторно войти в систему либо перезагрузить компьютер.
 
 .. index:: console, framebuffer, fonts, cyrillic
