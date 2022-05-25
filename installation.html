@@ -168,6 +168,11 @@ sudo sysctl -w vm.watermark_scale_factor=1
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo ln -s /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d/
 </pre></div>
 </div>
+<p>Включим поддержку сглаживания для GTK 4 приложений посредством добавления параметра <strong>gtk-hint-font-metrics</strong> в файл конфигурации <code class="docutils literal notranslate"><span class="pre">~/.config/gtk-4.0/settings.ini</span></code> (при отстутствии – создадим):</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Settings]</span><span class="w"></span>
+<span class="na">gtk-hint-font-metrics</span><span class="o">=</span><span class="s">1</span><span class="w"></span>
+</pre></div>
+</div>
 <p>Для вступления изменений в силу необходимо повторно войти в систему либо перезагрузить компьютер.</p>
 </section>
 <section id="fonts-console">
