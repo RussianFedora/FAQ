@@ -671,7 +671,7 @@ SWF файл -- это исполняемый файл формата Adobe Flas
     sudo systemctl start systemd-vconsole-setup.service
     systemctl status systemd-vconsole-setup.service
 
-.. index:: pipewire, wireplumber, bug, issue, workaround
+.. index:: pipewire, wireplumber, bug, issue, workaround, f35
 .. _wireplumber-no-sound:
 
 После обновления до Fedora 35 отсутствует звук. Как исправить?
@@ -687,7 +687,7 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
 Изменения вступят в силу немедленно.
 
-.. index:: libreoffice, hardware, acceleration, x11, wayland, workaround, bug
+.. index:: libreoffice, hardware, acceleration, x11, wayland, workaround, bug, f36
 .. _libreoffice-wayland:
 
 Как устранить лаги при редактировании документов в LibreOffice?
@@ -695,7 +695,7 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
 При возникновении лагов во время работы с документами в приложениях LibreOffice вне зависимости от настроек аппаратного ускорения, переключим :ref:`активный сеанс <session-type>` сессии с :ref:`Wayland на X11 <x11-session>`.
 
-.. index:: nvidia, driver, dnf, upgrade, bug, issue, workaround
+.. index:: nvidia, driver, dnf, upgrade, bug, issue, workaround, f36
 .. _nvidia-upgrade-bug:
 
 После обновления до Fedora 36 не работают драйверы NVIDIA. Как исправить?
@@ -715,7 +715,7 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
     systemctl reboot
 
-.. index:: printer, usb, hardware, upgrade, bug, issue, workaround
+.. index:: printer, usb, hardware, upgrade, bug, issue, workaround, f36
 .. _ipp-usb-disable:
 
 После обновления перестали работать USB принтеры и сканеры. Как исправить?
