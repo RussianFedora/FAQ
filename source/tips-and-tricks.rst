@@ -714,3 +714,23 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 .. code-block:: text
 
     systemctl reboot
+
+.. index:: printer, usb, hardware, upgrade, bug, issue, workaround
+.. _ipp-usb-disable:
+
+После обновления перестали работать USB принтеры и сканеры. Как исправить?
+=============================================================================
+
+Начиная с Fedora 36, применяется технология печати без необходимости установки драйверов (driverless printing) на основе эмуляции `протокола IPP <https://ru.wikipedia.org/wiki/Internet_Printing_Protocol>`__ для любых подключённых локально USB-принтеров.
+
+Если устройство не работает, либо не поддерживается, для возврата к классической конфигурации печати удалим пакет **ipp-usb**:
+
+.. code-block:: text
+
+    sudo dnf remove ipp-usb
+
+Перезагрузим устройство:
+
+.. code-block:: text
+
+    systemctl reboot
