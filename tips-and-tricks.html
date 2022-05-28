@@ -507,7 +507,7 @@ systemctl status systemd-vconsole-setup.service
 <p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=2077359">известная проблема</a>, из-за которой Fedora 36 работает некорректно в <a class="reference internal" href="installation.html#uefi-boot"><span class="std std-ref">UEFI-режиме</span></a> при наличии видеокарты NVIDIA из-за использования Wayland-сеанса в менеджере входа в систему SDDM.</p>
 <section id="id8">
 <h3>Устанавливаем систему<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h3>
-<p>Если Fedora 36 KDE Live отказывается корректно загружаться, выполним следующие действия:</p>
+<p>Если Fedora 36 KDE Live не загружается, либо отображает чёрный экран, выполним следующие действия:</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li><p>При загрузке с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Live-образа</span></a> в меню <strong>Troubleshooting</strong> выберем пункт <strong>Safe graphics mode</strong> и установим систему в штатном режиме.</p></li>
@@ -520,7 +520,7 @@ systemctl status systemd-vconsole-setup.service
 </section>
 <section id="id9">
 <h3>Исправляем установленную систему<a class="headerlink" href="#id9" title="Ссылка на этот заголовок">¶</a></h3>
-<p>Если Fedora 36 с KDE отказывается корректно загружаться, выполним следующие действия:</p>
+<p>Если Fedora 36 с KDE отображает чёрный экран после загрузки, выполним следующие действия:</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li><p><a class="reference internal" href="administration.html#kernelpm-once"><span class="std std-ref">Однократно передадим параметр ядра</span></a> <strong>nomodeset</strong>.</p></li>
