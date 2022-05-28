@@ -734,3 +734,31 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 .. code-block:: text
 
     systemctl reboot
+
+.. index:: nvidia, kde, live, installation, bug, issue, workaround, sddm, wayland, f36
+.. _kde-nvidia-bug:
+
+Fedora 36 KDE не загружается при наличии видеокарты NVIDIA. Как исправить?
+=============================================================================
+
+Это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=2077359>`__, из-за которой Fedora 36 работает некорректно в UEFI-режиме при наличии видеокарты NVIDIA из-за использования Wayland-сеанса в менеджере входа в систему SDDM.
+
+Устанавливаем систему
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Если Fedora 36 KDE Live отказывается корректно загружаться, выполним следующие действия:
+
+  1. При загрузке с :ref:`Live-образа <usb-flash>` в меню **Troubleshooting** выберем пункт **Safe graphics mode** и установим систему в штатном режиме.
+  2. Установим :ref:`проприетарные драйверы NVIDIA <nvidia-drivers>`.
+  3. Переключим :ref:`SDDM на использование X11 <x11-plasma>` вместо Wayland.
+  4. Удалим :ref:`параметр ядра <kernelpm-remove>` **nomodeset**: ``sudo grubby --update-kernel=ALL --remove-args="nomodeset"``.
+  5. Произведём перезагрузку системы: ``sudo systemctl reboot``.
+
+Исправляем установленную систему
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Если Fedora 36 с KDE отказывается корректно загружаться, выполним следующие действия:
+
+  1. Однократно :ref:`передадим параметр ядра <kernelpm-once>` **nomodeset**.
+  2. Переключим :ref:`SDDM на использование X11 <x11-plasma>` вместо Wayland.
+  3. Произведём перезагрузку системы: ``sudo systemctl reboot``.
