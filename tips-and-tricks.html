@@ -512,8 +512,8 @@ systemctl status systemd-vconsole-setup.service
 <div><ol class="arabic simple">
 <li><p>При загрузке с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Live-образа</span></a> в меню <strong>Troubleshooting</strong> выберем пункт <strong>Safe graphics mode</strong> и установим систему в штатном режиме.</p></li>
 <li><p>Установим <a class="reference internal" href="hardware.html#nvidia-drivers"><span class="std std-ref">проприетарные драйверы NVIDIA</span></a>.</p></li>
-<li><p>Переключим <a class="reference internal" href="using-system.html#x11-plasma"><span class="std std-ref">SDDM на использование X11</span></a> вместо Wayland.</p></li>
-<li><p><a class="reference internal" href="administration.html#kernelpm-remove"><span class="std std-ref">Удалим параметр ядра</span></a> <strong>nomodeset</strong>.</p></li>
+<li><p><a class="reference internal" href="using-system.html#x11-plasma"><span class="std std-ref">Переключим KDE на использование X11</span></a> вместо Wayland.</p></li>
+<li><p><a class="reference internal" href="administration.html#kernelpm-remove"><span class="std std-ref">Удалим параметр ядра</span></a> <code class="docutils literal notranslate"><span class="pre">nomodeset</span></code>.</p></li>
 <li><p>Произведём перезагрузку системы.</p></li>
 </ol>
 </div></blockquote>
@@ -523,8 +523,8 @@ systemctl status systemd-vconsole-setup.service
 <p>Если Fedora 36 с KDE отображает чёрный экран после загрузки, выполним следующие действия:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><p><a class="reference internal" href="administration.html#kernelpm-once"><span class="std std-ref">Однократно передадим параметр ядра</span></a> <strong>nomodeset</strong>.</p></li>
-<li><p>Переключим <a class="reference internal" href="using-system.html#x11-plasma"><span class="std std-ref">SDDM на использование X11</span></a> вместо Wayland.</p></li>
+<li><p><a class="reference internal" href="administration.html#kernelpm-once"><span class="std std-ref">Однократно передадим параметр ядра</span></a> <code class="docutils literal notranslate"><span class="pre">nomodeset</span></code>.</p></li>
+<li><p><a class="reference internal" href="using-system.html#x11-plasma"><span class="std std-ref">Переключим KDE на использование X11</span></a> вместо Wayland.</p></li>
 <li><p>Произведём перезагрузку системы.</p></li>
 </ol>
 </div></blockquote>
