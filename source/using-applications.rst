@@ -5,9 +5,9 @@
 
 .. _using-applications:
 
-********************
+**********************
 Сторонние приложения
-********************
+**********************
 
 .. index:: firefox, hardware acceleration
 .. _firefox-hwaccel:

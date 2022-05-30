@@ -5,9 +5,9 @@
 
 .. _virtualization:
 
-*************
+***************
 Виртуализация
-*************
+***************
 
 .. index:: virtualization, vm, kvm, virtualbox
 .. _virt-selection:

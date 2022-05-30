@@ -5,9 +5,9 @@
 
 .. _networking:
 
-*************************
+***************************
 Сетевое администрирование
-*************************
+***************************
 
 .. index:: openvpn, vpn, traffic encryption, pptp, l2tp, ipsec, wireguard
 .. _vpn-selection:
