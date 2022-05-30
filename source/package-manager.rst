@@ -827,7 +827,7 @@ Java 17:
 
 .. code-block:: text
 
-    koji download-build kernel-4.19.7-300.fc29 --arch=$(uname -m)
+    koji download-build kernel-5.17.12-300.fc36.x86_64 --arch=$(uname -m)
 
 .. index:: package, version, update, fesco
 .. _package-version:
