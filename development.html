@@ -4,15 +4,16 @@
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2022.05.29)</title>
+    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2022.05.30)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/translations.js"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
@@ -41,25 +42,25 @@
           <div class="body" role="main">
             
   <section id="development">
-<span id="id1"></span><h1>Разработка и сборка пакетов<a class="headerlink" href="#development" title="Ссылка на этот заголовок">¶</a></h1>
+<span id="id1"></span><h1>Разработка и сборка пакетов<a class="headerlink" href="#development" title="Permalink to this heading">¶</a></h1>
 <section id="fedora">
-<span id="create-package"></span><span id="index-0"></span><h2>Я хочу создать пакет для Fedora. Что мне следует знать?<a class="headerlink" href="#fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="create-package"></span><span id="index-0"></span><h2>Я хочу создать пакет для Fedora. Что мне следует знать?<a class="headerlink" href="#fedora" title="Permalink to this heading">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2019/01/28/sozdayom-rpm-pakety-dlya-fedora.html">здесь</a> и <a class="reference external" href="https://www.easycoding.org/2018/06/17/pravilno-paketim-po-dlya-linux.html">здесь</a>.</p>
 </section>
 <section id="rpm-mock">
-<span id="build-package"></span><span id="index-1"></span><h2>Как собрать RPM пакет в mock?<a class="headerlink" href="#rpm-mock" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="build-package"></span><span id="index-1"></span><h2>Как собрать RPM пакет в mock?<a class="headerlink" href="#rpm-mock" title="Permalink to this heading">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2017/02/22/sobiraem-rpm-pakety-dlya-fedora-v-mock.html">здесь</a>.</p>
 </section>
 <section id="becoming-maintainer">
-<span id="index-2"></span><span id="id2"></span><h2>Как добавить свой пакет в репозиторий Fedora и стать мейнтейнером?<a class="headerlink" href="#becoming-maintainer" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-2"></span><span id="id2"></span><h2>Как добавить свой пакет в репозиторий Fedora и стать мейнтейнером?<a class="headerlink" href="#becoming-maintainer" title="Permalink to this heading">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2016/06/20/dobavlyaem-paket-v-glavnyj-repozitorij-fedora.html">здесь</a>.</p>
 </section>
 <section id="koji">
-<span id="koji-about"></span><span id="index-3"></span><h2>Что такое Koji?<a class="headerlink" href="#koji" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="koji-about"></span><span id="index-3"></span><h2>Что такое Koji?<a class="headerlink" href="#koji" title="Permalink to this heading">¶</a></h2>
 <p><a class="reference external" href="https://koji.fedoraproject.org/koji/">Fedora Koji</a> – это автоматизированная среда для сборки пакетов для Fedora.</p>
 </section>
 <section id="fedpkg-rebuild">
-<span id="index-4"></span><span id="id3"></span><h2>Хочу внести свои правки в пакет и пересобрать его для личных нужд. Как проще это сделать?<a class="headerlink" href="#fedpkg-rebuild" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-4"></span><span id="id3"></span><h2>Хочу внести свои правки в пакет и пересобрать его для личных нужд. Как проще это сделать?<a class="headerlink" href="#fedpkg-rebuild" title="Permalink to this heading">¶</a></h2>
 <p>Установим утилиты fedpkg и mock:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install fedpkg mock
 </pre></div>
@@ -84,7 +85,7 @@ git commit -m &quot;Description of our changes.&quot;
 </div>
 </section>
 <section id="tarball-git">
-<span id="git-tarball"></span><span id="index-5"></span><h2>Как создать tarball с исходниками из Git репозитория?<a class="headerlink" href="#tarball-git" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="git-tarball"></span><span id="index-5"></span><h2>Как создать tarball с исходниками из Git репозитория?<a class="headerlink" href="#tarball-git" title="Permalink to this heading">¶</a></h2>
 <p>Если проект по какой-либо причине не поставляет готовые тарболы и отсутствует возможность их скачать напрямую с хостинга VCS, можно создать их из Git.</p>
 <p>Клонируем репозиторий источника:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git clone https://example.org/foo-bar.git
@@ -97,7 +98,7 @@ git commit -m &quot;Description of our changes.&quot;
 <p>Здесь <strong>HEAD</strong> – указатель на актуальный коммит (вместо этого можно использовать SHA1 хеш любого коммита, а также имя тега или ветки), <strong>foo-bar</strong> – название проекта, а <strong>1.0.0</strong> – его версия.</p>
 </section>
 <section id="koji-rpm-fusion">
-<span id="rpmfusion-override"></span><span id="index-6"></span><h2>Как переопределить пакет в Koji репозитория RPM Fusion?<a class="headerlink" href="#koji-rpm-fusion" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="rpmfusion-override"></span><span id="index-6"></span><h2>Как переопределить пакет в Koji репозитория RPM Fusion?<a class="headerlink" href="#koji-rpm-fusion" title="Permalink to this heading">¶</a></h2>
 <p>Создание build override для репозитория f36-free:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion tag f36-free-override foo-bar-1.0-1.fc36
 </pre></div>
@@ -108,7 +109,7 @@ git commit -m &quot;Description of our changes.&quot;
 </div>
 </section>
 <section id="rpmfusion-koji-regen">
-<span id="index-7"></span><span id="id4"></span><h2>Как обновить кэши репозиториев Koji в RPM Fusion?<a class="headerlink" href="#rpmfusion-koji-regen" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-7"></span><span id="id4"></span><h2>Как обновить кэши репозиториев Koji в RPM Fusion?<a class="headerlink" href="#rpmfusion-koji-regen" title="Permalink to this heading">¶</a></h2>
 <p>Запустим обновление кэшей репозиториев для free:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion regen-repo f36-free-build --nowait
 </pre></div>
@@ -119,7 +120,7 @@ git commit -m &quot;Description of our changes.&quot;
 </div>
 </section>
 <section id="git-gmail">
-<span id="index-8"></span><span id="id5"></span><h2>Как настроить Git для работы с почтовым сервисом Gmail?<a class="headerlink" href="#git-gmail" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-8"></span><span id="id5"></span><h2>Как настроить Git для работы с почтовым сервисом Gmail?<a class="headerlink" href="#git-gmail" title="Permalink to this heading">¶</a></h2>
 <p>Для того, чтобы использовать функцию <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">send-mail</span></code> с почтовым сервисом Gmail, необходимо:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -141,7 +142,7 @@ git commit -m &quot;Description of our changes.&quot;
 </div>
 </section>
 <section id="dlopen">
-<span id="dlopen-usage"></span><span id="index-9"></span><h2>Правильно ли использовать dlopen для загрузки динамических библиотек в приложении?<a class="headerlink" href="#dlopen" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="dlopen-usage"></span><span id="index-9"></span><h2>Правильно ли использовать dlopen для загрузки динамических библиотек в приложении?<a class="headerlink" href="#dlopen" title="Permalink to this heading">¶</a></h2>
 <p>Для загрузки динамических библиотек в приложении использовать dlopen допускается, но мы настоятельно рекомендуем избегать этого и использовать полноценную линковку по следующим причинам:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -155,14 +156,14 @@ git commit -m &quot;Description of our changes.&quot;
 </div></blockquote>
 </section>
 <section id="env-get-term">
-<span id="index-10"></span><span id="id6"></span><h2>Как получить полный список установленных переменных окружения в текущем терминале?<a class="headerlink" href="#env-get-term" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-10"></span><span id="id6"></span><h2>Как получить полный список установленных переменных окружения в текущем терминале?<a class="headerlink" href="#env-get-term" title="Permalink to this heading">¶</a></h2>
 <p>Получить список установленных <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> можно посредством выполнения утилиты <strong>env</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>env
 </pre></div>
 </div>
 </section>
 <section id="env-get-app">
-<span id="index-11"></span><span id="id7"></span><h2>Как получить полный список установленных переменных для запущенного процесса?<a class="headerlink" href="#env-get-app" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-11"></span><span id="id7"></span><h2>Как получить полный список установленных переменных для запущенного процесса?<a class="headerlink" href="#env-get-app" title="Permalink to this heading">¶</a></h2>
 <p>Получение списка установленных <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> для запущенных процессов:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat /proc/$PID/environ
 </pre></div>
@@ -170,7 +171,7 @@ git commit -m &quot;Description of our changes.&quot;
 <p>Здесь <strong>$PID</strong> – <a class="reference internal" href="administration.html#get-pid"><span class="std std-ref">PID</span></a> процесса, информацию о котором необходимо получить.</p>
 </section>
 <section id="env-set">
-<span id="index-12"></span><span id="id8"></span><h2>Как задать переменную окружения?<a class="headerlink" href="#env-set" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-12"></span><span id="id8"></span><h2>Как задать переменную окружения?<a class="headerlink" href="#env-set" title="Permalink to this heading">¶</a></h2>
 <p>Вариант 1. Запуск процесса с заданной переменной окружения:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FOO=BAR /usr/bin/foo-bar
 </pre></div>
@@ -186,7 +187,7 @@ git commit -m &quot;Description of our changes.&quot;
 </div>
 </section>
 <section id="env-unset">
-<span id="index-13"></span><span id="id9"></span><h2>Как удалить переменную окружения?<a class="headerlink" href="#env-unset" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-13"></span><span id="id9"></span><h2>Как удалить переменную окружения?<a class="headerlink" href="#env-unset" title="Permalink to this heading">¶</a></h2>
 <p>Вариант 1. Удаление экспортированной <a class="reference internal" href="#env-set"><span class="std std-ref">переменной окружения</span></a> при помощи команды оболочки <strong>unset</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>unset FOO
 </pre></div>
@@ -202,7 +203,7 @@ git commit -m &quot;Description of our changes.&quot;
 </div>
 </section>
 <section id="git">
-<span id="git-configuration"></span><span id="index-14"></span><h2>Как правильно настроить Git для работы?<a class="headerlink" href="#git" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="git-configuration"></span><span id="index-14"></span><h2>Как правильно настроить Git для работы?<a class="headerlink" href="#git" title="Permalink to this heading">¶</a></h2>
 <p>Сначала укажем своё имя и адрес электронной почты:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git config --global user.name &quot;Your Name&quot;
 git config --global user.email email@example.org
@@ -214,7 +215,7 @@ git config --global user.email email@example.org
 </div>
 </section>
 <section id="git-pull-request">
-<span id="index-15"></span><span id="id10"></span><h2>Я хочу внести правки в проект. Как правильно отправить их в апстрим?<a class="headerlink" href="#git-pull-request" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-15"></span><span id="id10"></span><h2>Я хочу внести правки в проект. Как правильно отправить их в апстрим?<a class="headerlink" href="#git-pull-request" title="Permalink to this heading">¶</a></h2>
 <p>Если проект хостится на одном из популярных сервисов (GitHub, BitBucket или GitLab), сначала войдём в свой аккаунт (при осутствии создадим) и сделаем форк репозитория.</p>
 <p>Осуществим <a class="reference internal" href="#git-configuration"><span class="std std-ref">базовую настройку Git</span></a> клиента если это ещё не было сделано ранее.</p>
 <p>Клонируем наш форк:</p>
@@ -256,7 +257,7 @@ git rebase master
 <p>Создадим новый Pull Request.</p>
 </section>
 <section id="c">
-<span id="cxx-console"></span><span id="index-16"></span><h2>Как скомпилировать простую программу на языке C++ из консоли?<a class="headerlink" href="#c" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="cxx-console"></span><span id="index-16"></span><h2>Как скомпилировать простую программу на языке C++ из консоли?<a class="headerlink" href="#c" title="Permalink to this heading">¶</a></h2>
 <p>Установим компилятор GCC-C++ (G++) и ряд вспомогательных компонентов:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc-c++ rpm-build
 </pre></div>
@@ -284,7 +285,7 @@ git rebase master
 <p>Если всё сделано верно, то увидим сообщение <em>Hello, World!</em> в консоли.</p>
 </section>
 <section id="debug-application">
-<span id="index-17"></span><span id="id11"></span><h2>Приложение падает. Как мне его отладить?<a class="headerlink" href="#debug-application" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-17"></span><span id="id11"></span><h2>Приложение падает. Как мне его отладить?<a class="headerlink" href="#debug-application" title="Permalink to this heading">¶</a></h2>
 <p>Для начала рекомендуется (хотя и не обязательно) установить отладочную информацию для данного пакета:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf debuginfo-install foo-bar
 </pre></div>
@@ -303,7 +304,7 @@ git rebase master
 <p>Полученный файл <code class="docutils literal notranslate"><span class="pre">~/trace.log</span></code> также следует загрузить на сервис.</p>
 </section>
 <section id="ld-preload">
-<span id="ldpreload-safety"></span><span id="index-18"></span><h2>Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?<a class="headerlink" href="#ld-preload" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="ldpreload-safety"></span><span id="index-18"></span><h2>Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?<a class="headerlink" href="#ld-preload" title="Permalink to this heading">¶</a></h2>
 <p>Нет, это не безопасно, т.к. существует возможность создания внутри библиотек <a class="reference external" href="https://gcc.gnu.org/onlinedocs/gcc-8.2.0/gcc/Common-Function-Attributes.html">суперглобальных конструкторов</a>, которые будут выполняться в момент присоединения библиотеки <em>до запуска приложения</em>.</p>
 <p>Создадим и скомпилируем простой пример <code class="docutils literal notranslate"><span class="pre">example.c</span></code>:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
@@ -337,7 +338,7 @@ user1
 <p>Разумеется, вместо безобидных вызовов функции printf() может находиться абсолютно любой код, в т.ч. вредоносный.</p>
 </section>
 <section id="lto">
-<span id="enable-lto"></span><span id="index-19"></span><h2>Как активировать LTO-оптимизации при сборке пакета?<a class="headerlink" href="#lto" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="enable-lto"></span><span id="index-19"></span><h2>Как активировать LTO-оптимизации при сборке пакета?<a class="headerlink" href="#lto" title="Permalink to this heading">¶</a></h2>
 <p>Актуальные релизы Fedora автоматически включают <a class="reference external" href="https://gcc.gnu.org/wiki/LinkTimeOptimization">LTO оптимизации</a> для всех собираемых пакетов.</p>
 <p>Если в проекте применяются статические библиотеки (в т.ч. для внутренних целей), то экспортируем ряд <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a> внутри секции <code class="docutils literal notranslate"><span class="pre">%build</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export AR=%{_bindir}/gcc-ar
@@ -357,7 +358,7 @@ export NM=%{_bindir}/gcc-nm
 <p>В противном случае появится ошибка <em>plugin needed to handle lto object</em>.</p>
 </section>
 <section id="disable-lto">
-<span id="index-20"></span><span id="id12"></span><h2>Как запретить LTO-оптимизации при сборке пакета?<a class="headerlink" href="#disable-lto" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-20"></span><span id="id12"></span><h2>Как запретить LTO-оптимизации при сборке пакета?<a class="headerlink" href="#disable-lto" title="Permalink to this heading">¶</a></h2>
 <p>При необходимости <a class="reference internal" href="#enable-lto"><span class="std std-ref">LTO-оптимизации</span></a> допускается отключить.</p>
 <p>Определим переменную <strong>_lto_cflags</strong> и установим ей пустое значение:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global _lto_cflags %{nil}
@@ -365,7 +366,7 @@ export NM=%{_bindir}/gcc-nm
 </div>
 </section>
 <section id="rpm-unneeded">
-<span id="index-21"></span><span id="id13"></span><h2>Как вывести список установленных пакетов, от которых никто не зависит?<a class="headerlink" href="#rpm-unneeded" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-21"></span><span id="id13"></span><h2>Как вывести список установленных пакетов, от которых никто не зависит?<a class="headerlink" href="#rpm-unneeded" title="Permalink to this heading">¶</a></h2>
 <p>В настоящее время данная функциональность отсутствует в dnf «из коробки», поэтому напишем и скомпилируем небольшую программу на языке C, реализующую это средствами библиотеки <strong>libsolv</strong>.</p>
 <p>Установим компилятор и необходимые для сборки библиотеки:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc libsolv-devel
@@ -420,7 +421,7 @@ export NM=%{_bindir}/gcc-nm
 <p>Запустим приложение <code class="docutils literal notranslate"><span class="pre">./rpm-unneeded</span></code> и получим список установленных пакетов, от которых никто не зависит.</p>
 </section>
 <section id="cpack-gnu-linux">
-<span id="using-cpack"></span><span id="index-22"></span><h2>Можно ли использовать cpack для сборки пакетов для GNU/Linux?<a class="headerlink" href="#cpack-gnu-linux" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="using-cpack"></span><span id="index-22"></span><h2>Можно ли использовать cpack для сборки пакетов для GNU/Linux?<a class="headerlink" href="#cpack-gnu-linux" title="Permalink to this heading">¶</a></h2>
 <p>Нет, использовать cpack категорически не рекомендуется по следующим причинам:</p>
 <blockquote>
 <div><ul class="simple">
@@ -436,7 +437,7 @@ export NM=%{_bindir}/gcc-nm
 <p>Вместо cpack следует собирать <a class="reference internal" href="#create-package"><span class="std std-ref">нативные пакеты</span></a>.</p>
 </section>
 <section id="library-path">
-<span id="index-23"></span><span id="id14"></span><h2>Приложение собрано со старой версией библиотеки. Как заставить его работать?<a class="headerlink" href="#library-path" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-23"></span><span id="id14"></span><h2>Приложение собрано со старой версией библиотеки. Как заставить его работать?<a class="headerlink" href="#library-path" title="Permalink to this heading">¶</a></h2>
 <p>Если приложение было собрано со старой версией библиотеки <strong>foo-bar</strong>, которой уже нет в репозиториях и его требуется запустить, существует два способа:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -461,19 +462,19 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 <p>Если всё сделано верно, приложение успешно стартует.</p>
 </section>
 <section id="fedora-licenses">
-<span id="index-24"></span><span id="id15"></span><h2>Проекты под какими лицензиями допускается распространять в репозиториях?<a class="headerlink" href="#fedora-licenses" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-24"></span><span id="id15"></span><h2>Проекты под какими лицензиями допускается распространять в репозиториях?<a class="headerlink" href="#fedora-licenses" title="Permalink to this heading">¶</a></h2>
 <p>См. <a class="reference external" href="https://fedoraproject.org/wiki/Licensing:Main">здесь</a>.</p>
 </section>
 <section id="pipe-order">
-<span id="index-25"></span><span id="id16"></span><h2>В каком порядке запускаются процессы через канал (пайп)?<a class="headerlink" href="#pipe-order" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-25"></span><span id="id16"></span><h2>В каком порядке запускаются процессы через канал (пайп)?<a class="headerlink" href="#pipe-order" title="Permalink to this heading">¶</a></h2>
 <p>Если запускается несколько процессов с передачей данных через канал (пайп; pipe), то все они стартуют одновременно, затем начинает выполняться первый, а остальные уходят в состояние ожидания ввода.</p>
 </section>
 <section id="build-flags">
-<span id="index-26"></span><span id="id17"></span><h2>Можно ли использовать собственные флаги компиляции при сборке пакета?<a class="headerlink" href="#build-flags" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-26"></span><span id="id17"></span><h2>Можно ли использовать собственные флаги компиляции при сборке пакета?<a class="headerlink" href="#build-flags" title="Permalink to this heading">¶</a></h2>
 <p>Для любых официальных сборок следует использовать исключительно стандартные для дистрибутива флаги, предоставляемые макросами <code class="docutils literal notranslate"><span class="pre">%{optflags}</span></code> (флаги компилятора) и <code class="docutils literal notranslate"><span class="pre">%{build_ldflags}</span></code> (флаги компоновки).</p>
 </section>
 <section id="cxx-ide">
-<span id="index-27"></span><span id="ide-c-fedora"></span><h2>Какую IDE использовать для разработки на C++ в Fedora?<a class="headerlink" href="#cxx-ide" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-27"></span><span id="ide-c-fedora"></span><h2>Какую IDE использовать для разработки на C++ в Fedora?<a class="headerlink" href="#cxx-ide" title="Permalink to this heading">¶</a></h2>
 <p>Мы рекомендуем Qt Creator, которая одинаково хорошо подходит как для разработки на C++ (с Qt и без него), так и чистого C.</p>
 <p>Установим данную IDE, а также компилятор C++ и ряд необходимых библиотек и средств для сборки проектов:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc gcc-c++ qt-creator qt5-qtbase-devel cmake
@@ -485,7 +486,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 </div>
 </section>
 <section id="qt-creator">
-<span id="qtcreator-docs"></span><span id="index-28"></span><h2>В Qt Creator отсутствует документация. Как исправить?<a class="headerlink" href="#qt-creator" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="qtcreator-docs"></span><span id="index-28"></span><h2>В Qt Creator отсутствует документация. Как исправить?<a class="headerlink" href="#qt-creator" title="Permalink to this heading">¶</a></h2>
 <p>Если Qt Creator при попытке загрузить документацию выдаёт ошибку <em>Error loading: qthelp://org.qt-project.qtcreator.472/doc/index.html</em>, выберем пункт меню <strong>Tools</strong> – <strong>Options</strong> – <strong>Help</strong> – <strong>Documentation</strong> – <strong>Add</strong>, затем вручную добавим следующие файлы:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/usr/share/doc/qt5/qmake.qch
 /usr/share/doc/qt5/qtconcurrent.qch
@@ -509,13 +510,13 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 <p>Изменения вступят в силу после перезапуска IDE.</p>
 </section>
 <section id="qtcreator-kits">
-<span id="index-29"></span><span id="id18"></span><h2>В Qt Creator отсутствуют компиляторы. Как исправить?<a class="headerlink" href="#qtcreator-kits" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-29"></span><span id="id18"></span><h2>В Qt Creator отсутствуют компиляторы. Как исправить?<a class="headerlink" href="#qtcreator-kits" title="Permalink to this heading">¶</a></h2>
 <p>Если Qt Creator не смог самостоятельно обнаружить установленный в системе фреймворк Qt, а также компилятор, то необходимо добавить их самостоятельно.</p>
 <p>Для этого войдём в настройки IDE, затем сначала добавим компилятор GCC <code class="docutils literal notranslate"><span class="pre">/usr/bin/gcc</span></code>, а затем тулчейн Qt – <code class="docutils literal notranslate"><span class="pre">/usr/bin/qmake-qt5</span></code>. После этого на вкладке <strong>Kits</strong> создадим новый набор из данных компонентов.</p>
 <p>Сохраним изменения в настройках и добавим созданный Kit к своему проекту.</p>
 </section>
 <section id="python-ide">
-<span id="index-30"></span><span id="ide-python-fedora"></span><h2>Какую IDE использовать для разработки на Python в Fedora?<a class="headerlink" href="#python-ide" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-30"></span><span id="ide-python-fedora"></span><h2>Какую IDE использовать для разработки на Python в Fedora?<a class="headerlink" href="#python-ide" title="Permalink to this heading">¶</a></h2>
 <p>Мы рекомендуем PyCharm Community Edition.</p>
 <p>Подключим COPR репозиторий:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf copr enable phracek/PyCharm
@@ -531,7 +532,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 </div>
 </section>
 <section id="fw-image">
-<span id="index-31"></span><span id="id19"></span><h2>Как получить информацию о содержимом образа бинарной прошивки?<a class="headerlink" href="#fw-image" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-31"></span><span id="id19"></span><h2>Как получить информацию о содержимом образа бинарной прошивки?<a class="headerlink" href="#fw-image" title="Permalink to this heading">¶</a></h2>
 <p>Для работы с образами прошивок можно использовать утилиту <strong>binwalk</strong>. Установим её:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install binwalk
 </pre></div>
@@ -542,7 +543,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 </div>
 </section>
 <section id="spec">
-<span id="spectool"></span><span id="index-32"></span><h2>Как автоматически скачать исходники, прописанные в SPEC-файле?<a class="headerlink" href="#spec" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="spectool"></span><span id="index-32"></span><h2>Как автоматически скачать исходники, прописанные в SPEC-файле?<a class="headerlink" href="#spec" title="Permalink to this heading">¶</a></h2>
 <p>Установим необходимые утилиты:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install rpm-build rpmdevtools
 </pre></div>
@@ -557,7 +558,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 </div>
 </section>
 <section id="spec-auto">
-<span id="index-33"></span><span id="id20"></span><h2>Как автоматически инкрементировать релиз в SPEC-файле?<a class="headerlink" href="#spec-auto" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-33"></span><span id="id20"></span><h2>Как автоматически инкрементировать релиз в SPEC-файле?<a class="headerlink" href="#spec-auto" title="Permalink to this heading">¶</a></h2>
 <p>Установим необходимый для работы пакет:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install rpmdevtools
 </pre></div>
@@ -568,14 +569,14 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 </div>
 </section>
 <section id="git-multi">
-<span id="index-34"></span><span id="id21"></span><h2>Как загрузить изменения во всех вложенных репозиториях из данного каталога?<a class="headerlink" href="#git-multi" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-34"></span><span id="id21"></span><h2>Как загрузить изменения во всех вложенных репозиториях из данного каталога?<a class="headerlink" href="#git-multi" title="Permalink to this heading">¶</a></h2>
 <p>Если Git репозитории были клонированы в общий каталог <code class="docutils literal notranslate"><span class="pre">~/foo-bar</span></code>, то загрузим изменения в каждом из вложенных проектов при помощи <strong>find</strong> и <strong>bash</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>find ~/foo-bar -maxdepth 1 ! -path . -type d -exec bash -c &quot;pushd &#39;{}&#39; ; git pull ; popd&quot; \;
 </pre></div>
 </div>
 </section>
 <section id="git-empty">
-<span id="index-35"></span><span id="id22"></span><h2>Как создать пустую ветку в Git без общей истории?<a class="headerlink" href="#git-empty" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-35"></span><span id="id22"></span><h2>Как создать пустую ветку в Git без общей истории?<a class="headerlink" href="#git-empty" title="Permalink to this heading">¶</a></h2>
 <p>Создадим новую пустую ветку <strong>foo-bar</strong> от текущего HEAD:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout --orphan foo-bar
 </pre></div>
@@ -586,7 +587,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/lib/foo-bar
 </div>
 </section>
 <section id="mock">
-<span id="mock-move"></span><span id="index-36"></span><h2>Можно ли перенести каталоги сборки и кэшей mock на другой диск?<a class="headerlink" href="#mock" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="mock-move"></span><span id="index-36"></span><h2>Можно ли перенести каталоги сборки и кэшей mock на другой диск?<a class="headerlink" href="#mock" title="Permalink to this heading">¶</a></h2>
 <p>Система автоматической <a class="reference internal" href="#build-package"><span class="std std-ref">сборки пакетов mock</span></a> занимает огромное количество места в корневом разделе, поэтому многие мейнтейнеры хотели бы перенести её на другой диск. Штатно это сделать не представляется возможным ибо значения каталогов по умолчанию <code class="docutils literal notranslate"><span class="pre">/var/cache/mock</span></code> и <code class="docutils literal notranslate"><span class="pre">/var/lib/mock</span></code> жёстко прописаны внутри приложения и не подлежат изменению со стороны пользователя, поэтому воспользуемся символическими ссылками.</p>
 <p>Создадим на другом накопителе (его файловая система должна поддерживать права доступа Unix) базовый каталог для mock:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd /media/foo-bar
@@ -621,7 +622,7 @@ sudo restorecon -Rv /media/foo-bar/mock/lib
 <p>Внимание! Раздел назначения должен использовать флаги монтирования по умолчанию <code class="docutils literal notranslate"><span class="pre">defaults</span></code>. В противном случае не будут выполнены скриптлеты и сборка не завершится успешно.</p>
 </section>
 <section id="git-bash">
-<span id="bash-git-branch"></span><span id="index-37"></span><h2>Как включить отображение текущей ветки Git в Bash?<a class="headerlink" href="#git-bash" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="bash-git-branch"></span><span id="index-37"></span><h2>Как включить отображение текущей ветки Git в Bash?<a class="headerlink" href="#git-bash" title="Permalink to this heading">¶</a></h2>
 <p>Модуль интеграции с Bash входит в состав пакета Git. Добавим в <a class="reference internal" href="using-system.html#bash-shell"><span class="std std-ref">приветствие Bash</span></a> следующую строку:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>export PS1=&#39;[\u@\h \W$(declare -F __git_ps1 &amp;&gt;/dev/null &amp;&amp; __git_ps1 &quot; (%s)&quot;)]\$ &#39;
 </pre></div>
@@ -634,7 +635,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <p>Изменения вступят в силу при следующем запуске оболочки.</p>
 </section>
 <section id="patch-file">
-<span id="index-38"></span><span id="id23"></span><h2>Как создать унифицированный патч изменений между двумя файлами?<a class="headerlink" href="#patch-file" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-38"></span><span id="id23"></span><h2>Как создать унифицированный патч изменений между двумя файлами?<a class="headerlink" href="#patch-file" title="Permalink to this heading">¶</a></h2>
 <p>Для создания патча нам необходимо две версии файла: оригинальная и текущая.</p>
 <p>Создадим унифицрованный патч с разностью между файлами <strong>foo-bar.txt.orig</strong> (оригинальный) и <strong>foo-bar.txt</strong> (текущий):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>diff -Naur foo-bar.txt.orig foo-bar.txt &gt; result.patch
@@ -643,7 +644,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <p>Результат будет сохранён в файле <strong>result.patch</strong>.</p>
 </section>
 <section id="patch-directory">
-<span id="index-39"></span><span id="id24"></span><h2>Как создать унифицированный патч изменений между двумя каталогами?<a class="headerlink" href="#patch-directory" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-39"></span><span id="id24"></span><h2>Как создать унифицированный патч изменений между двумя каталогами?<a class="headerlink" href="#patch-directory" title="Permalink to this heading">¶</a></h2>
 <p>Создадим унифицрованный патч с разностью между каталогами <strong>foo-bar_orig</strong> (оригинальный) и <strong>foo-bar</strong> (текущий):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>diff -Naur foo-bar_orig foo-bar &gt; result.patch
 </pre></div>
@@ -651,7 +652,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <p>Результат будет сохранён в файле <strong>result.patch</strong>.</p>
 </section>
 <section id="patch-apply">
-<span id="index-40"></span><span id="id25"></span><h2>Как применить унифицированный патч?<a class="headerlink" href="#patch-apply" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-40"></span><span id="id25"></span><h2>Как применить унифицированный патч?<a class="headerlink" href="#patch-apply" title="Permalink to this heading">¶</a></h2>
 <p>Проверим возможность применения патча <strong>foo-bar.patch</strong> без внесения каких-либо изменений:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>patch -p0 --dry-run -i foo-bar.patch
 </pre></div>
@@ -663,7 +664,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <p>Параметром <code class="docutils literal notranslate"><span class="pre">-p</span></code> задаётся количество каталогов, которые будут отброшены при поиске файлов, указанных внутри унифицированного патча.</p>
 </section>
 <section id="patch-revert">
-<span id="index-41"></span><span id="id26"></span><h2>Как откатить наложенный унифицированный патч?<a class="headerlink" href="#patch-revert" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-41"></span><span id="id26"></span><h2>Как откатить наложенный унифицированный патч?<a class="headerlink" href="#patch-revert" title="Permalink to this heading">¶</a></h2>
 <p>Проверим возможность отката патча <strong>foo-bar.patch</strong> без внесения каких-либо изменений:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>patch -p0 -R --dry-run -i foo-bar.patch
 </pre></div>
@@ -675,7 +676,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <p>Параметром <code class="docutils literal notranslate"><span class="pre">-p</span></code> задаётся количество каталогов, которые будут отброшены при поиске файлов, указанных внутри унифицированного патча.</p>
 </section>
 <section id="patch-git-create">
-<span id="index-42"></span><span id="id27"></span><h2>Как создать унифицированный патч между двумя коммитами?<a class="headerlink" href="#patch-git-create" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-42"></span><span id="id27"></span><h2>Как создать унифицированный патч между двумя коммитами?<a class="headerlink" href="#patch-git-create" title="Permalink to this heading">¶</a></h2>
 <p>Создадим патч между двумя коммитами <strong>AAA</strong> и <strong>BBB</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git diff AAA BBB &gt; result.patch
 </pre></div>
@@ -687,7 +688,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <p>Здесь <strong>AAA</strong>, <strong>BBB</strong> и <strong>CCC</strong> – хеши коммитов в Git репозитории.</p>
 </section>
 <section id="patch-git-export">
-<span id="index-43"></span><span id="id28"></span><h2>Как экспортировать Git коммит для отправки по электронной почте?<a class="headerlink" href="#patch-git-export" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-43"></span><span id="id28"></span><h2>Как экспортировать Git коммит для отправки по электронной почте?<a class="headerlink" href="#patch-git-export" title="Permalink to this heading">¶</a></h2>
 <p>В Git имеется встроенное средство экспорта коммитов для их дальнейшей отправки по электронной почте.</p>
 <p>Экспортируем один коммит:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git format-patch -1
@@ -699,7 +700,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 </div>
 </section>
 <section id="fedora-login">
-<span id="index-44"></span><span id="id29"></span><h2>Как авторизоваться в инфраструктуре Fedora?<a class="headerlink" href="#fedora-login" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-44"></span><span id="id29"></span><h2>Как авторизоваться в инфраструктуре Fedora?<a class="headerlink" href="#fedora-login" title="Permalink to this heading">¶</a></h2>
 <p>Для авторизации мы должны использовать вход в домен <a class="reference internal" href="administration.html#kerberos-auth"><span class="std std-ref">посредством Kerberos</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit foo-bar@FEDORAPROJECT.ORG
 </pre></div>
@@ -708,7 +709,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <p>Также для некоторых операций необходимо загрузить <a class="reference internal" href="security.html#ssh-keygen"><span class="std std-ref">публичный ключ</span></a> SSH в <a class="reference external" href="https://admin.fedoraproject.org/accounts">FAS аккаунт</a>.</p>
 </section>
 <section id="fedora-2fa">
-<span id="fedora-login-2fa"></span><span id="index-45"></span><h2>Как авторизоваться в инфраструктуре Fedora с поддержкой 2FA?<a class="headerlink" href="#fedora-2fa" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="fedora-login-2fa"></span><span id="index-45"></span><h2>Как авторизоваться в инфраструктуре Fedora с поддержкой 2FA?<a class="headerlink" href="#fedora-2fa" title="Permalink to this heading">¶</a></h2>
 <p>Для авторизации в инфраструктуре Fedora с поддержкой двухфакторной аутентификации <a class="reference internal" href="#fedora-login"><span class="std std-ref">стандартный вход</span></a> <a class="reference internal" href="administration.html#kerberos-auth"><span class="std std-ref">посредством Kerberos</span></a> работать не будет из-за возникновения ошибки <em>kinit: Pre-authentication failed: Invalid argument while getting initial credentials</em>, поэтому мы должны использовать альтернативный способ.</p>
 <p>Сгенерируем актуальный файл Kerberos Credentials Cache:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kinit -n @FEDORAPROJECT.ORG -c FILE:$HOME/.cache/fedora-armor.ccache
@@ -722,7 +723,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 <p>Здесь <strong>foo-bar</strong> – логин в FAS. Имя домена должно быть указано строго в верхнем регистре.</p>
 </section>
 <section id="package-request">
-<span id="index-46"></span><span id="id30"></span><h2>Как запросить создание пакета в репозитории?<a class="headerlink" href="#package-request" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-46"></span><span id="id30"></span><h2>Как запросить создание пакета в репозитории?<a class="headerlink" href="#package-request" title="Permalink to this heading">¶</a></h2>
 <p>Сразу после завершения <a class="reference internal" href="#becoming-maintainer"><span class="std std-ref">процедуры package review</span></a>, мейнтейнер должен запросить создание пакета в репозиториях Fedora.</p>
 <p>Установим утилиту <strong>fedpkg</strong></p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install fedpkg
@@ -748,7 +749,7 @@ fedpkg request-branch --namespace rpms --repo foo-bar --all-releases
 <p>Здесь <strong>foo-bar</strong> – имя пакета, а <strong>YYYYYY</strong> – номер заявки в Red Hat BugZilla с успешно завершённым package review.</p>
 </section>
 <section id="fedpkg-upload">
-<span id="index-47"></span><span id="id31"></span><h2>Как загрузить файлы с исходными кодами пакета в систему сборки?<a class="headerlink" href="#fedpkg-upload" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-47"></span><span id="id31"></span><h2>Как загрузить файлы с исходными кодами пакета в систему сборки?<a class="headerlink" href="#fedpkg-upload" title="Permalink to this heading">¶</a></h2>
 <p>После <a class="reference internal" href="#package-request"><span class="std std-ref">создания пакета</span></a> осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora, затем скачаем репозиторий пакета из Fedora SCM, содержащий SPEC файл и набор патчей (при необходимости), а также прочие службные файлы:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg clone foo-bar
 cd foo-bar
@@ -774,7 +775,7 @@ git merge master
 </div>
 </section>
 <section id="fedpkg-build">
-<span id="index-48"></span><span id="id32"></span><h2>Как осуществить сборку пакета для публикации в репозиториях?<a class="headerlink" href="#fedpkg-build" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-48"></span><span id="id32"></span><h2>Как осуществить сборку пакета для публикации в репозиториях?<a class="headerlink" href="#fedpkg-build" title="Permalink to this heading">¶</a></h2>
 <p>После <a class="reference internal" href="#fedpkg-upload"><span class="std std-ref">загрузки файлов с исходными кодами</span></a> пакета, осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora, а затем приступим к непосредственно сборке в <a class="reference internal" href="#koji-about"><span class="std std-ref">Fedora Koji</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
 fedpkg switch-branch master
@@ -788,7 +789,7 @@ fedpkg build
 </div>
 </section>
 <section id="fedpkg-scratch">
-<span id="index-49"></span><span id="id33"></span><h2>Как осуществить тестовую сборку пакета для определённой архитектуры?<a class="headerlink" href="#fedpkg-scratch" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-49"></span><span id="id33"></span><h2>Как осуществить тестовую сборку пакета для определённой архитектуры?<a class="headerlink" href="#fedpkg-scratch" title="Permalink to this heading">¶</a></h2>
 <p>Осуществим <a class="reference internal" href="#fedora-login"><span class="std std-ref">вход в инфраструктуру</span></a> Fedora.</p>
 <p>Выполним стандартную scratch-сборку для всех поддерживаемых данным выпуском архитектур:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
@@ -804,22 +805,22 @@ fedpkg scratch-build --arches x86_64 aarch64
 </div>
 </section>
 <section id="fedpkg-publish">
-<span id="index-50"></span><span id="id34"></span><h2>Как выложить собранный пакет в репозитории?<a class="headerlink" href="#fedpkg-publish" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-50"></span><span id="id34"></span><h2>Как выложить собранный пакет в репозитории?<a class="headerlink" href="#fedpkg-publish" title="Permalink to this heading">¶</a></h2>
 <p>По окончании <a class="reference internal" href="#fedpkg-build"><span class="std std-ref">сборки</span></a> мы можем воспользоваться <a class="reference external" href="https://bodhi.fedoraproject.org/">Fedora Bodhi</a> и <a class="reference external" href="https://bodhi.fedoraproject.org/updates/new">выложить обновление</a> в репозитории.</p>
 <p>Сначала все обновления попадают в тестовые репозитории Fedora (<em>updates-testing</em>) и лишь после получения положительной кармы от других участников сообщества (уровень задаётся мейнтейнером, но не может быть меньше 1), либо по истечении 7 дней, оно может попасть в стабильные (<em>updates</em>) и будет доставлено конечным пользователям.</p>
 <p>Заполним стандартную, хорошо документированную форму, затем нажмём кнопку <strong>Submit</strong>.</p>
 </section>
 <section id="copr">
-<span id="copr-legal"></span><span id="index-51"></span><h2>Что разрешается хранить в COPR репозиториях?<a class="headerlink" href="#copr" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="copr-legal"></span><span id="index-51"></span><h2>Что разрешается хранить в COPR репозиториях?<a class="headerlink" href="#copr" title="Permalink to this heading">¶</a></h2>
 <p>В <a class="reference internal" href="generic-info.html#copr"><span class="std std-ref">COPR</span></a> разрешается распространять всё то же, что и в <a class="reference internal" href="#fedora-licenses"><span class="std std-ref">основных репозиториях</span></a> Fedora. Сборка и публикация запатентованного и проприетарного программного обеспечения в пользовательских оверлеях не допускается.</p>
 </section>
 <section id="linux-vdso-so-1">
-<span id="linux-vdso"></span><span id="index-52"></span><h2>Что такое linux-vdso.so.1 и почему она загружена в каждый процесс?<a class="headerlink" href="#linux-vdso-so-1" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="linux-vdso"></span><span id="index-52"></span><h2>Что такое linux-vdso.so.1 и почему она загружена в каждый процесс?<a class="headerlink" href="#linux-vdso-so-1" title="Permalink to this heading">¶</a></h2>
 <p>Библиотека <strong>linux-vdso.so.1</strong> не является обычной динамической библиотекой. Это виртуальный динамически разделяемый объект (VDSO), который отображается на адресное пространство каждого запущенного процесса ядром Linux и представляет собой интерфейс для осуществления быстрых системных вызовов.</p>
 <p>Данный объект можно обнаружить в <a class="reference internal" href="#linux-ldd"><span class="std std-ref">выводе ldd</span></a> для любого бинарного ELF-файла, но без прямого пути, т.к. он не является реальным файлом.</p>
 </section>
 <section id="linux-ldd">
-<span id="index-53"></span><span id="id35"></span><h2>Как определить зависимости конкретного бинарника?<a class="headerlink" href="#linux-ldd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-53"></span><span id="id35"></span><h2>Как определить зависимости конкретного бинарника?<a class="headerlink" href="#linux-ldd" title="Permalink to this heading">¶</a></h2>
 <p>Для определения зависимостей любых ELF-файлов, воспользуемся утилитой <strong>ldd</strong>.</p>
 <p>Определим зависимости динамически разделяемой библиотеки:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ldd /path/to/shared/library.so.1
@@ -833,7 +834,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <p>Исключение составляют <a class="reference internal" href="#linux-vdso"><span class="std std-ref">виртуальные объекты</span></a>, для которых будет указан лишь адрес, без пути.</p>
 </section>
 <section id="git-switch-remote">
-<span id="index-54"></span><span id="id36"></span><h2>Как изменить адрес Git репозитория после его переезда?<a class="headerlink" href="#git-switch-remote" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-54"></span><span id="id36"></span><h2>Как изменить адрес Git репозитория после его переезда?<a class="headerlink" href="#git-switch-remote" title="Permalink to this heading">¶</a></h2>
 <p>Получим список подключённых удалённых ресурсов текущего Git репозитория:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git remote -v
 </pre></div>
@@ -845,7 +846,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <p>После этого команды Git, отвечающие за работу с удалёнными ресурсами, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>, начнут использовать новый апстрим.</p>
 </section>
 <section id="rpmbuild">
-<span id="rpmbuild-move"></span><span id="index-55"></span><h2>Можно ли перенести стандартный каталог сборки rpmbuild?<a class="headerlink" href="#rpmbuild" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="rpmbuild-move"></span><span id="index-55"></span><h2>Можно ли перенести стандартный каталог сборки rpmbuild?<a class="headerlink" href="#rpmbuild" title="Permalink to this heading">¶</a></h2>
 <p>Да, это возможно. Откроем файл <code class="docutils literal notranslate"><span class="pre">~/.rpmmacros</span></code> в любом текстовом редаторе, найдём строку:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%_topdir %(echo $HOME)/rpmbuild
 </pre></div>
@@ -858,7 +859,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <p>Сохраним изменения, которые вступят в силу немеденно.</p>
 </section>
 <section id="license-check">
-<span id="index-56"></span><span id="id37"></span><h2>Как определить какие лицензии используются в проекте?<a class="headerlink" href="#license-check" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-56"></span><span id="id37"></span><h2>Как определить какие лицензии используются в проекте?<a class="headerlink" href="#license-check" title="Permalink to this heading">¶</a></h2>
 <p>Установим утилиту <strong>licensecheck</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install licensecheck
 </pre></div>
@@ -870,7 +871,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <p>Здесь <strong>/path/to/foo-bar</strong> – путь к распакованным исходникам проекта, а <strong>~/results.txt</strong> – имя файла, в котором будут сохранены результаты проверки.</p>
 </section>
 <section id="gdb-coredump">
-<span id="index-57"></span><span id="id38"></span><h2>Как загрузить в gdb отладчик coredump падения?<a class="headerlink" href="#gdb-coredump" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-57"></span><span id="id38"></span><h2>Как загрузить в gdb отладчик coredump падения?<a class="headerlink" href="#gdb-coredump" title="Permalink to this heading">¶</a></h2>
 <p>GDB позволяет не только отлаживать приложения напрямую, но и загружать <a class="reference internal" href="administration.html#codedump-info"><span class="std std-ref">coredump падений</span></a>.</p>
 <p>Установим утилиту <strong>lz4</strong> для распаковки сжатых файлов с дампами:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install lz4
@@ -887,7 +888,7 @@ fedpkg scratch-build --arches x86_64 aarch64
 <p>Здесь <strong>/usr/bin/foo-bar</strong> – путь к отлаживаемому приложению, <strong>/path/to/coredump</strong> – coredump падения (версия приложения и дампа, снятого с него, должны обязательно совпадать), а <strong>~/backtrace.log</strong> – файл, в котором будет сохранён трейс падения.</p>
 </section>
 <section id="clang-fedora">
-<span id="index-58"></span><span id="id39"></span><h2>Как собрать пакет с использованием компилятора Clang в Fedora?<a class="headerlink" href="#clang-fedora" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-58"></span><span id="id39"></span><h2>Как собрать пакет с использованием компилятора Clang в Fedora?<a class="headerlink" href="#clang-fedora" title="Permalink to this heading">¶</a></h2>
 <p>Определим переменную <strong>toolchain</strong> и установим ей значение <strong>clang</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global toolchain clang
 </pre></div>
@@ -916,17 +917,17 @@ export NM=%{_bindir}/llvm-nm
 <p>Следует <a class="reference internal" href="#qt-clang-lto"><span class="std std-ref">быть осторожным</span></a> при сборке Qt-приложений данным компилятором при использовании <a class="reference internal" href="#enable-lto"><span class="std std-ref">LTO-оптимизаций</span></a>.</p>
 </section>
 <section id="qt-clang-lto">
-<span id="index-59"></span><span id="id40"></span><h2>Qt-приложение, собранное Clang с LTO не запускается. Что делать?<a class="headerlink" href="#qt-clang-lto" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-59"></span><span id="id40"></span><h2>Qt-приложение, собранное Clang с LTO не запускается. Что делать?<a class="headerlink" href="#qt-clang-lto" title="Permalink to this heading">¶</a></h2>
 <p>Невозможность запуска Qt-приложений, собранных компилятором Clang с включёнными <a class="reference internal" href="#enable-lto"><span class="std std-ref">LTO-оптимизациями</span></a> – это <a class="reference external" href="https://bugreports.qt.io/browse/QTBUG-61710">известная проблема</a>, которая в настоящее время не решена.</p>
 <p>Для её решения необходимо либо отказаться от использования компилятора Clang и вернуться на GCC, либо отключить LTO-оптимизации.</p>
 </section>
 <section id="ldd">
-<span id="using-ldd"></span><span id="index-60"></span><h2>Безопасно ли использовать LDD для проверки зависимостей бинарника?<a class="headerlink" href="#ldd" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="using-ldd"></span><span id="index-60"></span><h2>Безопасно ли использовать LDD для проверки зависимостей бинарника?<a class="headerlink" href="#ldd" title="Permalink to this heading">¶</a></h2>
 <p>Нет, т.к. утилита <a class="reference internal" href="#linux-ldd"><span class="std std-ref">ldd</span></a> лишь изменяет ряд <a class="reference internal" href="#env-set"><span class="std std-ref">переменных окружения</span></a>, а затем запускает бинарник, чтобы определить все динамически загружаемые библиотеки, от которых он зависит.</p>
 <p>Внедоносный код сможет легко перехватить управление и начать выполнять свои задачи в пределах имеющихся полномочий.</p>
 </section>
 <section id="git-remove-tag">
-<span id="index-61"></span><span id="id41"></span><h2>Как удалить тег во внешнем Git репозитории?<a class="headerlink" href="#git-remove-tag" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-61"></span><span id="id41"></span><h2>Как удалить тег во внешнем Git репозитории?<a class="headerlink" href="#git-remove-tag" title="Permalink to this heading">¶</a></h2>
 <p>Удалим локальный тег <strong>1.0.0</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git tag -d v1.0.0
 </pre></div>
@@ -937,14 +938,14 @@ export NM=%{_bindir}/llvm-nm
 </div>
 </section>
 <section id="git-remove-branch">
-<span id="index-62"></span><span id="id42"></span><h2>Как удалить ветку во внешнем Git репозитории?<a class="headerlink" href="#git-remove-branch" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-62"></span><span id="id42"></span><h2>Как удалить ветку во внешнем Git репозитории?<a class="headerlink" href="#git-remove-branch" title="Permalink to this heading">¶</a></h2>
 <p>Удалим удалённую ветку <strong>foo-bar</strong> из удалённого Git репозитория:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git push --delete origin foo-bar
 </pre></div>
 </div>
 </section>
 <section id="git-remove-all-tags">
-<span id="index-63"></span><span id="id43"></span><h2>Как удалить все теги (локальные и удалённые) в Git репозитории?<a class="headerlink" href="#git-remove-all-tags" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-63"></span><span id="id43"></span><h2>Как удалить все теги (локальные и удалённые) в Git репозитории?<a class="headerlink" href="#git-remove-all-tags" title="Permalink to this heading">¶</a></h2>
 <p>Удалим все теги из внешнего Git репозитория:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git push origin --delete $(git tag -l)
 </pre></div>
@@ -955,7 +956,7 @@ export NM=%{_bindir}/llvm-nm
 </div>
 </section>
 <section id="koji-extract-data">
-<span id="index-64"></span><span id="id44"></span><h2>Как извлечь из Koji какие-либо данные для отправки баг-репорта?<a class="headerlink" href="#koji-extract-data" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-64"></span><span id="id44"></span><h2>Как извлечь из Koji какие-либо данные для отправки баг-репорта?<a class="headerlink" href="#koji-extract-data" title="Permalink to this heading">¶</a></h2>
 <p>Т.к. <a class="reference internal" href="#koji-about"><span class="std std-ref">Koji</span></a> автоматически очищает каталог сборки по её завершении с любым статусом, единственная возможность извлечь полезные данные – это закодировать их в формате <a class="reference external" href="https://ru.wikipedia.org/wiki/UUE">Uuencode</a> и вывести в общий журнал сборки.</p>
 <p>Добавим в <a class="reference internal" href="#create-package"><span class="std std-ref">SPEC-файл пакета</span></a> зависимость от <strong>sharutils</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>BuildRequires: sharutils
@@ -984,7 +985,7 @@ end
 <p>Загрузим полученный архив в <a class="reference internal" href="generic-info.html#bug-report"><span class="std std-ref">баг-репорт</span></a>.</p>
 </section>
 <section id="compare-versions">
-<span id="index-65"></span><span id="id45"></span><h2>Как определить, какая из двух версий больше?<a class="headerlink" href="#compare-versions" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-65"></span><span id="id45"></span><h2>Как определить, какая из двух версий больше?<a class="headerlink" href="#compare-versions" title="Permalink to this heading">¶</a></h2>
 <p>Для проверки версий воспользуемся утилитой <strong>rpmdev-vercmp</strong>, входящей в состав пакета <strong>rpmdevtools</strong>.</p>
 <p>Установим его:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install rpmdevtools
@@ -1004,7 +1005,7 @@ end
 </div></blockquote>
 </section>
 <section id="mock-cleanup">
-<span id="index-66"></span><span id="id46"></span><h2>Как очистить все кэши mock?<a class="headerlink" href="#mock-cleanup" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-66"></span><span id="id46"></span><h2>Как очистить все кэши mock?<a class="headerlink" href="#mock-cleanup" title="Permalink to this heading">¶</a></h2>
 <p>Выполним очистку сборочного каталога <a class="reference internal" href="#build-package"><span class="std std-ref">mock</span></a> для цели по умолчанию:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mock --scrub=all
 </pre></div>
@@ -1015,11 +1016,11 @@ end
 </div>
 </section>
 <section id="root-check-bypass">
-<span id="index-67"></span><span id="id47"></span><h2>Как обойти проверку приложением наличия прав суперпользователя?<a class="headerlink" href="#root-check-bypass" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-67"></span><span id="id47"></span><h2>Как обойти проверку приложением наличия прав суперпользователя?<a class="headerlink" href="#root-check-bypass" title="Permalink to this heading">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2021/08/31/obxodim-proverku-na-nalichie-prav-superpolzovatelya.html">здесь</a>.</p>
 </section>
 <section id="rpmbuild-exclude-arch">
-<span id="index-68"></span><span id="id48"></span><h2>Как исключить определённую архитектуру из сборки пакета?<a class="headerlink" href="#rpmbuild-exclude-arch" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-68"></span><span id="id48"></span><h2>Как исключить определённую архитектуру из сборки пакета?<a class="headerlink" href="#rpmbuild-exclude-arch" title="Permalink to this heading">¶</a></h2>
 <p>Для исключения указанных архитектур из сборки, добавим в SPEC-файл директиву <code class="docutils literal notranslate"><span class="pre">ExcludeArch</span></code>.</p>
 <p>В качестве примера исключим 32-битные ARM и x86:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ExcludeArch: %{arm} %{ix86}
@@ -1027,7 +1028,7 @@ end
 </div>
 </section>
 <section id="rpmbuild-exclusive-arch">
-<span id="index-69"></span><span id="id49"></span><h2>Как собрать пакет только для определённой архитектуры?<a class="headerlink" href="#rpmbuild-exclusive-arch" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-69"></span><span id="id49"></span><h2>Как собрать пакет только для определённой архитектуры?<a class="headerlink" href="#rpmbuild-exclusive-arch" title="Permalink to this heading">¶</a></h2>
 <p>Для выбора конкретных архитектур сборки, добавим в SPEC-файл директиву <code class="docutils literal notranslate"><span class="pre">ExclusiveArch</span></code>.</p>
 <p>В качестве примера включим только 64-битные ARM и x86:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ExcludeArch: aarch64 x86_64
@@ -1035,7 +1036,7 @@ end
 </div>
 </section>
 <section id="rpmbuild-filter-provides">
-<span id="index-70"></span><span id="id50"></span><h2>Как исключить библиотеку из списка предоставляемых пакетом?<a class="headerlink" href="#rpmbuild-filter-provides" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-70"></span><span id="id50"></span><h2>Как исключить библиотеку из списка предоставляемых пакетом?<a class="headerlink" href="#rpmbuild-filter-provides" title="Permalink to this heading">¶</a></h2>
 <p>Исключим все файлы, расположенные в каталоге <strong>%{_libdir}/%{name}</strong>, из автоматически генерируемого списка предоставляемых пакетом:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global __provides_exclude_from %{_libdir}/%{name}/.*
 </pre></div>
@@ -1046,7 +1047,7 @@ end
 </div>
 </section>
 <section id="rpmbuild-filter-requires">
-<span id="index-71"></span><span id="id51"></span><h2>Как исключить библиотеку из списка зависимостей пакета?<a class="headerlink" href="#rpmbuild-filter-requires" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-71"></span><span id="id51"></span><h2>Как исключить библиотеку из списка зависимостей пакета?<a class="headerlink" href="#rpmbuild-filter-requires" title="Permalink to this heading">¶</a></h2>
 <p>Отключим автоматическое построение списка зависимостей пакета для ELF-объектов, расположенных в каталоге <strong>%{_libdir}/%{name}</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%global __requires_exclude_from %{_libdir}/%{name}/.*
 </pre></div>
@@ -1057,7 +1058,7 @@ end
 </div>
 </section>
 <section id="koji-side-tags">
-<span id="index-72"></span><span id="id52"></span><h2>Как собрать несколько зависящих друг от друга пакетов?<a class="headerlink" href="#koji-side-tags" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-72"></span><span id="id52"></span><h2>Как собрать несколько зависящих друг от друга пакетов?<a class="headerlink" href="#koji-side-tags" title="Permalink to this heading">¶</a></h2>
 <p>Если раньше приходилось использовать механизм «build overrides», позволяющий вручную переопределять пакеты в сборочном репозитории, то сейчас рекомендуется для сборки двух и более пакетов применять side-теги, т.к. это более простой и безопасный способ, не создающий конфликтов и проблем с зависимостями.</p>
 <p>Мейнтейнер может запросить создание произвольного количества side-тегов и производить сборку в них по своему усмотрению.</p>
 <p>Запросим новый side-tag для F36:</p>
@@ -1081,7 +1082,7 @@ end
 <p>По окончании перейдём в <a class="reference external" href="https://bodhi.fedoraproject.org/">Bodhi</a> и выберем <strong>Create New Update</strong> – <strong>Use Side Tag</strong> для выгрузки его в основной репозиторий.</p>
 </section>
 <section id="koji-chain-build">
-<span id="index-73"></span><span id="id53"></span><h2>Как собрать несколько зависящих друг от друга пакетов по цепочке?<a class="headerlink" href="#koji-chain-build" title="Ссылка на этот заголовок">¶</a></h2>
+<span id="index-73"></span><span id="id53"></span><h2>Как собрать несколько зависящих друг от друга пакетов по цепочке?<a class="headerlink" href="#koji-chain-build" title="Permalink to this heading">¶</a></h2>
 <p>В <a class="reference internal" href="generic-info.html#using-rawhide"><span class="std std-ref">Fedora Rawhide</span></a> наряду с <a class="reference internal" href="#koji-side-tags"><span class="std std-ref">использованием side-тегов</span></a>, существует и более удобный способ – сборки по цепочке (chain builds).</p>
 <p>Мейнтейнер может указать произвольное количество пакетов в пределах одного задания. Koji выполнит задачу строго в указанном порядке.</p>
 <p>Внимание! Каталоги с исходниками всех участников группы должны находиться на одном уровне файловой иерархии.</p>
@@ -1118,7 +1119,7 @@ fedpkg chain-build libfoo1 : libfoo2 libfoo3 :
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script><h3>Навигация</h3>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Навигация</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="generic-info.html">Основная информация</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Установка системы</a></li>
