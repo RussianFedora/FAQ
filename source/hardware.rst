@@ -1720,7 +1720,7 @@ ICC профиль можно получить либо на сайте прои
 
 .. code-block:: text
 
-    sudo dnf swap wireplumber pipewire-media-session
+    sudo dnf swap wireplumber pipewire-media-session --allowerasing
 
 Произведём перезагрузку для вступления изменений в силу:
 
