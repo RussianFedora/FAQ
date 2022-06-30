@@ -70,13 +70,15 @@
 
 Да. Загрузки доступны для `armhfp <https://arm.fedoraproject.org/>`__, а также `aarch64 <https://alt.fedoraproject.org/alt/>`__.
 
-.. index:: boot, secure boot
+.. index:: boot, uefi, secure boot
 .. _secure-boot:
 
 Поддерживается ли технология Secure Boot?
-==========================================================
+=============================================
 
 Да, полностью. В качестве предварительного загрузчика используется **shim**, подписанный цифровой подписью Microsoft.
+
+В случае использования внешних модулей ядра, поддержка UEFI Secure Boot может быть :ref:`настроена вручную <nvidia-secure-boot>`.
 
 .. index:: moving installed system, move
 .. _moving-system:
