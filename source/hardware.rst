@@ -301,6 +301,14 @@
 
 Пересоберём :ref:`образ initrd <initrd-rebuild>`, а также :ref:`конфиг Grub 2 <grub-rebuild>`.
 
+.. index:: video, gpu, nvidia, drivers, third-party, boot, secure boot
+.. _nvidia-secure-boot:
+
+Как настроить проприетарные драйверы NVIDIA для работы с Secure Boot?
+=========================================================================
+
+См. `здесь <https://www.easycoding.org/2022/05/31/nastraivaem-podderzhku-uefi-secure-boot-dlya-drajverov-nvidia.html>`__.
+
 .. index:: video, gpu, amd, ati, drivers
 .. _amd-drivers:
 
