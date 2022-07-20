@@ -1437,7 +1437,7 @@ Cгенерируем файл с контрольными суммами SHA2 (
 
     git ls-files "*.txt" | xargs sed -i -e "s/foo/bar/g"
 
-.. index:: kde, plasma, kactivitymanagerd, privacy
+.. index:: kde, plasma, kactivitymanagerd, privacy, tracking, activity, sqlite, database
 .. _plasma-privacy:
 
 Как улучшить приватность KDE Plasma 5?
