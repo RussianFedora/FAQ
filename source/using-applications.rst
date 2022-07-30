@@ -1466,3 +1466,42 @@ KDE activity manager накапливает в базе данных SQLite ``~/
 .. code-block:: text
 
     sqlite3 ~/.local/share/kactivitymanagerd/resources/database 'DELETE from ResourceInfo; PRAGMA wal_checkpoint(TRUNCATE); VACUUM;'
+
+.. index:: kde, plasma, kactivitymanagerd, privacy, tracking, activity, sqlite, mime, systemd, timer
+.. _plasma-mime-autoclean:
+
+Как автоматизировать очистку кэша файлов и каталогов в KDE Plasma 5?
+=======================================================================
+
+Т.к. в настоящее время не существует возможности штатно запретить KDE activity manager накапливать данные о :ref:`mime-типах <file-types>`, автоматизируем :ref:`очистку <plasma-mime-clean>` при помощи пользовательского :ref:`systemd-юнита <systemd-info>`.
+
+Создадим и откроем файл ``~/.config/systemd/user/plasma-clean-database.service`` в любом :ref:`текстовом редакторе <editor-selection>`:
+
+.. code-block:: text
+
+    mkdir -p ~/.config/systemd/user
+    touch ~/.config/systemd/user/plasma-clean-database.service
+    restorecon -Rv ~/.config/systemd
+
+Добавим следующее содержимое:
+
+.. code-block:: ini
+
+    [Unit]
+    Description=Clean KDE Activity Manager database
+    Before=plasma-plasmashell.service
+
+    [Service]
+    Type=oneshot
+    ExecStart=/usr/bin/sqlite3 %h/.local/share/kactivitymanagerd/resources/database 'DELETE from ResourceInfo; PRAGMA wal_checkpoint(TRUNCATE); VACUUM;'
+    RemainAfterExit=true
+
+    [Install]
+    WantedBy=graphical-session.target
+
+Активируем его автоматический запуск:
+
+.. code-block:: text
+
+    systemctl --user daemon-reload
+    systemctl --user enable plasma-clean-database.service
