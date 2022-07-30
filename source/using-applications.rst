@@ -1452,3 +1452,17 @@ Cгенерируем файл с контрольными суммами SHA2 (
 На вкладке **Конфиденциальность** (**Privacy**), в разделе **Запоминать открытые документы** (**Remember opened documents**), установим точку около пункта **Не запоминать** (**Do not remember**), после чего нажмём **Применить** (**Apply**). Здесь же обязательно очистим все уже собранные данные при помощи **Очистить историю** (**Clear history**) -- **Стереть всё** (**Forget everything**).
 
 Изменения вступят в силу при следующем входе в систему.
+
+.. index:: kde, plasma, kactivitymanagerd, privacy, tracking, activity, sqlite, database, mime
+.. _plasma-mime-clean:
+
+Как очистить кэш файлов и каталогов в KDE Plasma 5?
+=======================================================
+
+KDE activity manager накапливает в базе данных SQLite ``~/.local/share/kactivitymanagerd/resources/database``, в таблице **ResourceInfo**, информацию о :ref:`mime-типе <file-types>` каждого файла или каталога, которые был открыты при помощи любого приложения из состава KDE.
+
+Очистим данную таблицу вручную:
+
+.. code-block:: text
+
+    sqlite3 ~/.local/share/kactivitymanagerd/resources/database 'DELETE from ResourceInfo; PRAGMA wal_checkpoint(TRUNCATE); VACUUM;'
