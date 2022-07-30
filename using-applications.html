@@ -4,9 +4,9 @@
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Сторонние приложения &#8212; Неофициальный FAQ по Fedora (версия 2022.07.20)</title>
+    <title>Сторонние приложения &#8212; Неофициальный FAQ по Fedora (версия 2022.07.30)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -941,7 +941,45 @@ media.rdd-vpx.enabled = false
 <p>Для отключения этой функциональности перейдём в <strong>Настройки системы</strong> (<strong>System Settings</strong>) – <strong>Рабочая среда</strong> (<strong>Workspace</strong>) – <strong>Поведение рабочей среды</strong> (<strong>Workspace Behavior</strong>) – <strong>Комнаты</strong> (<strong>Комнаты</strong>).</p>
 <p>На вкладке <strong>Комнаты</strong> (<strong>Activities</strong>), справа от имени каждой существующей комнаты, выберем вариант <strong>Настроить комнату</strong> (<strong>Configure activity</strong>), в появившемся окне установим флажок в чекбокс <strong>Не запоминать статистику использования</strong> (<strong>Do not track usage for this activity</strong>) и нажмём кнопку <strong>OK</strong>.</p>
 <p>На вкладке <strong>Конфиденциальность</strong> (<strong>Privacy</strong>), в разделе <strong>Запоминать открытые документы</strong> (<strong>Remember opened documents</strong>), установим точку около пункта <strong>Не запоминать</strong> (<strong>Do not remember</strong>), после чего нажмём <strong>Применить</strong> (<strong>Apply</strong>). Здесь же обязательно очистим все уже собранные данные при помощи <strong>Очистить историю</strong> (<strong>Clear history</strong>) – <strong>Стереть всё</strong> (<strong>Forget everything</strong>).</p>
+<p>Произведём <a class="reference internal" href="#plasma-mime-clean"><span class="std std-ref">очистку</span></a> кэша <a class="reference internal" href="using-system.html#file-types"><span class="std std-ref">mime-типов</span></a> файлов и каталогов и при необходимости <a class="reference internal" href="#plasma-mime-autoclean"><span class="std std-ref">автоматизируем</span></a> это действие.</p>
 <p>Изменения вступят в силу при следующем входе в систему.</p>
+</section>
+<section id="plasma-mime-clean">
+<span id="index-80"></span><span id="id45"></span><h2>Как очистить кэш файлов и каталогов в KDE Plasma 5?<a class="headerlink" href="#plasma-mime-clean" title="Permalink to this heading">¶</a></h2>
+<p>KDE activity manager накапливает в базе данных SQLite <code class="docutils literal notranslate"><span class="pre">~/.local/share/kactivitymanagerd/resources/database</span></code>, в таблице <strong>ResourceInfo</strong>, информацию о <a class="reference internal" href="using-system.html#file-types"><span class="std std-ref">mime-типе</span></a> каждого файла или каталога, которые был открыты при помощи любого приложения из состава KDE.</p>
+<p>Очистим данную таблицу вручную:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sqlite3 ~/.local/share/kactivitymanagerd/resources/database &#39;DELETE from ResourceInfo; PRAGMA wal_checkpoint(TRUNCATE); VACUUM;&#39;
+</pre></div>
+</div>
+</section>
+<section id="plasma-mime-autoclean">
+<span id="index-81"></span><span id="id46"></span><h2>Как автоматизировать очистку кэша файлов и каталогов в KDE Plasma 5?<a class="headerlink" href="#plasma-mime-autoclean" title="Permalink to this heading">¶</a></h2>
+<p>Т.к. в настоящее время не существует возможности штатно запретить KDE activity manager накапливать данные о <a class="reference internal" href="using-system.html#file-types"><span class="std std-ref">mime-типах</span></a>, автоматизируем <a class="reference internal" href="#plasma-mime-clean"><span class="std std-ref">очистку</span></a> при помощи пользовательского <a class="reference internal" href="administration.html#systemd-info"><span class="std std-ref">systemd-юнита</span></a>.</p>
+<p>Создадим и откроем файл <code class="docutils literal notranslate"><span class="pre">~/.config/systemd/user/plasma-clean-database.service</span></code> в любом <a class="reference internal" href="using-system.html#editor-selection"><span class="std std-ref">текстовом редакторе</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/.config/systemd/user
+touch ~/.config/systemd/user/plasma-clean-database.service
+restorecon -Rv ~/.config/systemd
+</pre></div>
+</div>
+<p>Добавим следующее содержимое:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span><span class="w"></span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Clean KDE Activity Manager database</span><span class="w"></span>
+<span class="na">Before</span><span class="o">=</span><span class="s">plasma-plasmashell.service</span><span class="w"></span>
+
+<span class="k">[Service]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">oneshot</span><span class="w"></span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/sqlite3 %h/.local/share/kactivitymanagerd/resources/database &#39;DELETE from ResourceInfo; PRAGMA wal_checkpoint(TRUNCATE); VACUUM;&#39;</span><span class="w"></span>
+<span class="na">RemainAfterExit</span><span class="o">=</span><span class="s">true</span><span class="w"></span>
+
+<span class="k">[Install]</span><span class="w"></span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">graphical-session.target</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Активируем его автоматический запуск:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl --user daemon-reload
+systemctl --user enable plasma-clean-database.service
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -1052,6 +1090,8 @@ media.rdd-vpx.enabled = false
 <li class="toctree-l2"><a class="reference internal" href="#mass-change-files">Как изменить строку во всех файлах рекурсивно?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git">Как изменить строку во всех файлах Git-репозитория?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#plasma-privacy">Как улучшить приватность KDE Plasma 5?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plasma-mime-clean">Как очистить кэш файлов и каталогов в KDE Plasma 5?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plasma-mime-autoclean">Как автоматизировать очистку кэша файлов и каталогов в KDE Plasma 5?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
