@@ -1461,7 +1461,7 @@ Cгенерируем файл с контрольными суммами SHA2 (
 Как очистить кэш файлов и каталогов в KDE Plasma 5?
 =======================================================
 
-KDE activity manager накапливает в базе данных SQLite ``~/.local/share/kactivitymanagerd/resources/database``, в таблице **ResourceInfo**, информацию о :ref:`mime-типе <file-types>` каждого файла или каталога, которые был открыты при помощи любого приложения из состава KDE.
+KDE activity manager отслеживает, собирает и сохраняет в базе данных SQLite ``~/.local/share/kactivitymanagerd/resources/database``, в таблице **ResourceInfo**, информацию о :ref:`mime-типе <file-types>` каждого файла или каталога, которые был открыты при помощи любого приложения из состава KDE.
 
 Очистим данную таблицу вручную при помощи утилиты **sqlite3**:
 
