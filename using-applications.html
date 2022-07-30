@@ -946,7 +946,7 @@ media.rdd-vpx.enabled = false
 </section>
 <section id="plasma-mime-clean">
 <span id="index-80"></span><span id="id45"></span><h2>Как очистить кэш файлов и каталогов в KDE Plasma 5?<a class="headerlink" href="#plasma-mime-clean" title="Permalink to this heading">¶</a></h2>
-<p>KDE activity manager накапливает в базе данных SQLite <code class="docutils literal notranslate"><span class="pre">~/.local/share/kactivitymanagerd/resources/database</span></code>, в таблице <strong>ResourceInfo</strong>, информацию о <a class="reference internal" href="using-system.html#file-types"><span class="std std-ref">mime-типе</span></a> каждого файла или каталога, которые был открыты при помощи любого приложения из состава KDE.</p>
+<p>KDE activity manager отслеживает, собирает и сохраняет в базе данных SQLite <code class="docutils literal notranslate"><span class="pre">~/.local/share/kactivitymanagerd/resources/database</span></code>, в таблице <strong>ResourceInfo</strong>, информацию о <a class="reference internal" href="using-system.html#file-types"><span class="std std-ref">mime-типе</span></a> каждого файла или каталога, которые был открыты при помощи любого приложения из состава KDE.</p>
 <p>Очистим данную таблицу вручную при помощи утилиты <strong>sqlite3</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sqlite3 ~/.local/share/kactivitymanagerd/resources/database &#39;DELETE from ResourceInfo; PRAGMA wal_checkpoint(TRUNCATE); VACUUM;&#39;
 </pre></div>
