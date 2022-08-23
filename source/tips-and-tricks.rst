@@ -762,3 +762,34 @@ Fedora 36 KDE не загружается при наличии видеокар
   1. :ref:`Однократно передадим параметр ядра <kernelpm-once>` ``nomodeset``.
   2. :ref:`Переключим KDE на использование X11 <x11-plasma>` вместо Wayland.
   3. Произведём перезагрузку системы.
+
+Как запретить Steam использовать собственный runtime?
+========================================================
+
+Избавление от ubuntu12 рантайма в STEAM.
+
+Установим все необходимые библиотеки для этого:
+
+.. code-block:: text
+
+    sudo dnf install libSM.i686 libICE.i686 openal-soft.i686 libnma.i686 libnma-gtk4.i686 -y
+
+
+Проверим что все библиотеки на месте:
+
+.. code-block:: text
+
+    cd ~/.local/share/Steam/ubuntu12_32
+    LD_LIBRARY_PATH=".:${LD_LIBRARY_PATH}" ldd $(file *| sed '/ELF/!d;s/:.*//g' )|grep 'not found'|sort|uniq
+
+Если на предыдущем этапе все библиотеки найдены, переходим к отключению ubuntu12 рантайма:
+
+.. code-block:: text
+
+    sudo sed -i "\$aexport STEAM_RUNTIME=0" "/etc/profile.d/steam.sh"
+
+Отключаем прекеш шейдеров(Прирост только если выбран Steam Linux Runtime):
+Steam -> Настройки -> Кэш шейдеров снимаем чекбокс "Включить кэш шейдеров".
+В параметрах запуска игры Совместимость(Compatibility) ставим Steam Linux Runtime.
+
+
