@@ -1666,7 +1666,7 @@ Qt-приложение, собранное Clang с LTO не запускает
 
     sudo dnf install rpmdevtools
 
-Выполним проверку `ABI-совместимости <https://ru.wikipedia.org/wiki/%D0%94%D0%B2%D0%BE%D0%B8%D1%87%D0%BD%D1%8B%D0%B9_%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81_%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9>`__ между версиями *1.0.0* и *1.1.1* пакета *foo-bar*:
+Выполним проверку `ABI-совместимости <https://ru.wikipedia.org/wiki/%D0%94%D0%B2%D0%BE%D0%B8%D1%87%D0%BD%D1%8B%D0%B9_%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81_%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9>`__ между версиями *1.1.0* и *1.0.0* пакета *foo-bar*:
 
 .. code-block:: text
 
