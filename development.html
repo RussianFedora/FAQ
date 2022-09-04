@@ -1108,7 +1108,7 @@ fedpkg chain-build libfoo1 : libfoo2 libfoo3 :
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install rpmdevtools
 </pre></div>
 </div>
-<p>Выполним проверку <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%94%D0%B2%D0%BE%D0%B8%D1%87%D0%BD%D1%8B%D0%B9_%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81_%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9">ABI-совместимости</a> между версиями <em>1.0.0</em> и <em>1.1.1</em> пакета <em>foo-bar</em>:</p>
+<p>Выполним проверку <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%94%D0%B2%D0%BE%D0%B8%D1%87%D0%BD%D1%8B%D0%B9_%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81_%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9">ABI-совместимости</a> между версиями <em>1.1.0</em> и <em>1.0.0</em> пакета <em>foo-bar</em>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rpmsodiff ./foo-bar-1.1.0-1.fc36.x86_64.rpm ./foo-bar-1.0.0-1.fc36.x86_64.rpm
 </pre></div>
 </div>
