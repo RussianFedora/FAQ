@@ -1651,3 +1651,23 @@ Qt-приложение, собранное Clang с LTO не запускает
     fedpkg chain-build libfoo1 : libfoo2 libfoo3 :
 
 В результате появится цепочка *libfoo1* -> *libfoo2* + *libfoo3* -> *bar*.
+
+.. index:: rpm, api, abi, diff, rpmsodiff
+.. _rpm-check-abi:
+
+Как определить наличие изменений ABI между разными версиями пакета?
+======================================================================
+
+Воспользуемся утилитой **rpmsodiff**, входящей в состав пакета **rpmdevtools**.
+
+Установим его:
+
+.. code-block:: text
+
+    sudo dnf install rpmdevtools
+
+Выполним проверку ABI-совместимости между версиями *1.0.0* и *1.1.1* пакета *foo-bar*:
+
+.. code-block:: text
+
+    rpmsodiff ./foo-bar-1.1.0-1.fc36.x86_64.rpm ./foo-bar-1.0.0-1.fc36.x86_64.rpm
