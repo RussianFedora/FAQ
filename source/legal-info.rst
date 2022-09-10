@@ -50,7 +50,8 @@
   * `@fabius-bile <https://github.com/fabius-bile>`__;
   * `@rafaelrs <https://github.com/rafaelrs>`__;
   * `@turubanov <https://github.com/turubanov>`__;
-  * `@cyberMe <https://github.com/cyberMe>`__.
+  * `@cyberMe <https://github.com/cyberMe>`__;
+  * `@leha-bot <https://github.com/leha-bot>`__.
 
 Полный список авторов и вклад каждого можно увидеть на странице `Contributors <https://github.com/RussianFedora/FAQ/graphs/contributors>`__.
 
