@@ -531,6 +531,19 @@ systemctl status systemd-vconsole-setup.service
 </div></blockquote>
 </section>
 </section>
+<section id="linux-firmware-intel-amd">
+<span id="linux-firmware-separation"></span><span id="index-31"></span><h2>После обновления linux-firmware перестали работать видеокарты Intel и AMD. Как исправить?<a class="headerlink" href="#linux-firmware-intel-amd" title="Permalink to this heading">¶</a></h2>
+<p>В обновлении linux-firmware до версии 137, прошивки для видеокарт AMD, Intel и NVIDIA (относится только к свободным драйверам nouveau) <a class="reference external" href="https://src.fedoraproject.org/rpms/linux-firmware/c/6e605212ebbc6b5477dd397a4cb96a7bff5d4da0?branch=rawhide">были перемещены</a> в отдельные пакеты: <strong>amd-gpu-firmware</strong>, <strong>intel-gpu-firmware</strong> и <strong>nvidia-gpu-firmware</strong> соответственно.</p>
+<p>Они не являются обязательными для установки, поэтому если в настройках dnf отключена поддержка <a class="reference internal" href="package-manager.html#dnf-weakdeps"><span class="std std-ref">слабых зависимостей</span></a>, они не будут установлены, что и приведёт к неработоспособности видеокарт данных производителей.</p>
+<p>Установим их вручную:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
+</pre></div>
+</div>
+<p>Произведём перезагрузку системы для вступления изменений в силу:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl reboot
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -594,6 +607,7 @@ systemctl status systemd-vconsole-setup.service
 <li class="toctree-l2"><a class="reference internal" href="#fedora-36-nvidia">После обновления до Fedora 36 не работают драйверы NVIDIA. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#usb">После обновления перестали работать USB принтеры и сканеры. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora-36-kde-nvidia">Fedora 36 KDE не загружается при наличии видеокарты NVIDIA. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linux-firmware-intel-amd">После обновления linux-firmware перестали работать видеокарты Intel и AMD. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
