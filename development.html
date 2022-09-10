@@ -1129,11 +1129,22 @@ fedpkg chain-build --target f36-build-side-XXXXX libfoo1 : libfoo2 libfoo3 :
 </section>
 <section id="git-backport-commits">
 <span id="index-75"></span><span id="id54"></span><h2>Как переместить набор коммитов из одной ветки Git-репозитория в другую?<a class="headerlink" href="#git-backport-commits" title="Permalink to this heading">¶</a></h2>
-<p>При необходимости переложить несколько коммитов из одной ветки <strong>foo</strong> в ветку <strong>bar</strong> (например, вы сделали некоторые правки в вашей ветке, которые не относятся к разрабатываемой вами функциональности), то мы можем запросить список из N коммитов из первой ветки, и сделать <strong>cherry-pick</strong> на второй ветке. Эти действия можно схлопнуть в одну конвейерную команду (пример приведен для 10 коммитов из ветки mybranch, его надо выполнять в другом каталоге, созданном через <strong>git worktree add</strong>. Пример приведен для Bash-совместимых shell, в которых также есть команды <strong>tac</strong> и <strong>xargs</strong>):</p>
+<p>При необходимости перенести несколько коммитов из одной ветки в другую (например, сделаны некоторые правки в ветке, которые не относятся к разрабатываемой функциональности), мы можем запросить список из N коммитов первой ветки, и выполнить <strong>cherry-pick</strong> во второй.</p>
+<p>Создадим отдельный рабочий каталог <code class="docutils literal notranslate"><span class="pre">/tmp/bar</span></code> для ветки <strong>bar</strong> и перейдём в него:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git worktree add /tmp/bar bar
+pushd /tmp/bar
+</pre></div>
+</div>
+<p>Произведём перемещение <strong>10</strong> коммитов из ветки <strong>foo</strong> в <strong>bar</strong>. Объединим данные действия в одну конвейерную команду:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git log --format=%h -10 foo | tac | xargs git cherry-pick
 </pre></div>
 </div>
-<p>Данная команда сначала запрашивает список из коммитов в формате «список хешей», затем разворачивает список с помощью команды <strong>tac</strong>, и затем каждую строчку списка передает команде <strong>git cherry-pick</strong>, которая впоследствие и применяет каждый коммит в нужную ветку.</p>
+<p>При этом будет запрошен список хешей коммитов из указанной ветки, затем он будет отсортирован в обратном порядке при помощи утилиты <strong>tac</strong>, и результат построчно передан <strong>git cherry-pick</strong>, которая впоследствие и применит каждый коммит в нужную ветку.</p>
+<p>Вернёмся назад в основной каталог Git-репозитория и произведём очистку:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>popd
+git worktree remove /tmp/bar
+</pre></div>
+</div>
 </section>
 </section>
 
