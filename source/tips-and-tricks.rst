@@ -762,3 +762,25 @@ Fedora 36 KDE не загружается при наличии видеокар
   1. :ref:`Однократно передадим параметр ядра <kernelpm-once>` ``nomodeset``.
   2. :ref:`Переключим KDE на использование X11 <x11-plasma>` вместо Wayland.
   3. Произведём перезагрузку системы.
+
+.. index:: nvidia, intel, amd, bug, issue, firmware, dnf
+.. _linux-firmware-separation:
+
+После обновления linux-firmware перестали работать видеокарты Intel и AMD. Как исправить?
+============================================================================================
+
+В обновлении linux-firmware до версии 137, прошивки для видеокарт AMD, Intel и NVIDIA (относится только к свободным драйверам nouveau) `были перемещены <https://src.fedoraproject.org/rpms/linux-firmware/c/6e605212ebbc6b5477dd397a4cb96a7bff5d4da0?branch=rawhide>`__ в отдельные пакеты: **amd-gpu-firmware**, **intel-gpu-firmware** и **nvidia-gpu-firmware** соответственно.
+
+Они не являются обязательными для установки, поэтому если в настройках dnf отключена поддержка :ref:`слабых зависимостей <dnf-weakdeps>`, они не будут установлены, что и приведёт к неработоспособности видеокарт данных производителей.
+
+Установим их вручную:
+
+.. code-block:: text
+
+    sudo dnf install amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware
+
+Произведём перезагрузку системы для вступления изменений в силу:
+
+.. code-block:: text
+
+    systemctl reboot
