@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2022.09.08)</title>
+    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2022.09.10)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -1127,6 +1127,14 @@ fedpkg chain-build --target f36-build-side-XXXXX libfoo1 : libfoo2 libfoo3 :
 </pre></div>
 </div>
 </section>
+<section id="git-backport-commits">
+<span id="index-75"></span><span id="id54"></span><h2>Как переместить набор коммитов из одной ветки Git-репозитория в другую?<a class="headerlink" href="#git-backport-commits" title="Permalink to this heading">¶</a></h2>
+<p>При необходимости переложить несколько коммитов из одной ветки <strong>foo</strong> в ветку <strong>bar</strong> (например, вы сделали некоторые правки в вашей ветке, которые не относятся к разрабатываемой вами функциональности), то мы можем запросить список из N коммитов из первой ветки, и сделать <strong>cherry-pick</strong> на второй ветке. Эти действия можно схлопнуть в одну конвейерную команду (пример приведен для 10 коммитов из ветки mybranch, его надо выполнять в другом каталоге, созданном через <strong>git worktree add</strong>. Пример приведен для Bash-совместимых shell, в которых также есть команды <strong>tac</strong> и <strong>xargs</strong>):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git log --format=%h -10 foo | tac | xargs git cherry-pick
+</pre></div>
+</div>
+<p>Данная команда сначала запрашивает список из коммитов в формате «список хешей», затем разворачивает список с помощью команды <strong>tac</strong>, и затем каждую строчку списка передает команде <strong>git cherry-pick</strong>, которая впоследствие и применяет каждый коммит в нужную ветку.</p>
+</section>
 </section>
 
 
@@ -1233,6 +1241,7 @@ fedpkg chain-build --target f36-build-side-XXXXX libfoo1 : libfoo2 libfoo3 :
 <li class="toctree-l2"><a class="reference internal" href="#koji-side-tags">Как собрать несколько зависящих друг от друга пакетов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#koji-chain-build">Как собрать несколько зависящих друг от друга пакетов по цепочке?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#abi">Как определить наличие изменений ABI между разными версиями пакета?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-backport-commits">Как переместить набор коммитов из одной ветки Git-репозитория в другую?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>
