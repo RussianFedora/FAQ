@@ -35,23 +35,23 @@
 
 Пользователи, принявшие участие в данном проекте:
 
-  * `@xvitaly <https://github.com/xvitaly>`__;
-  * `@tim77 <https://github.com/tim77>`__;
-  * `@Vascom <https://github.com/Vascom>`__;
-  * `@sotnikov123 <https://github.com/sotnikov123>`__;
-  * `@ZaWertun <https://github.com/ZaWertun>`__;
-  * `@krepver <https://github.com/krepver>`__;
-  * `@jsonguard <https://github.com/jsonguard>`__;
-  * `@callhimnow <https://github.com/callhimnow>`__;
-  * `@bookwar <https://github.com/bookwar>`__;
-  * `@ElXreno <https://github.com/ElXreno>`__;
-  * `@crayxt <https://github.com/crayxt>`__;
-  * `@and-semakin <https://github.com/and-semakin>`__;
-  * `@fabius-bile <https://github.com/fabius-bile>`__;
-  * `@rafaelrs <https://github.com/rafaelrs>`__;
-  * `@turubanov <https://github.com/turubanov>`__;
-  * `@cyberMe <https://github.com/cyberMe>`__;
-  * `@leha-bot <https://github.com/leha-bot>`__.
+  * `@xvitaly <https://github.com/xvitaly>`__
+  * `@tim77 <https://github.com/tim77>`__
+  * `@Vascom <https://github.com/Vascom>`__
+  * `@sotnikov123 <https://github.com/sotnikov123>`__
+  * `@ZaWertun <https://github.com/ZaWertun>`__
+  * `@krepver <https://github.com/krepver>`__
+  * `@jsonguard <https://github.com/jsonguard>`__
+  * `@callhimnow <https://github.com/callhimnow>`__
+  * `@bookwar <https://github.com/bookwar>`__
+  * `@ElXreno <https://github.com/ElXreno>`__
+  * `@crayxt <https://github.com/crayxt>`__
+  * `@and-semakin <https://github.com/and-semakin>`__
+  * `@fabius-bile <https://github.com/fabius-bile>`__
+  * `@rafaelrs <https://github.com/rafaelrs>`__
+  * `@turubanov <https://github.com/turubanov>`__
+  * `@cyberMe <https://github.com/cyberMe>`__
+  * `@leha-bot <https://github.com/leha-bot>`__
 
 Полный список авторов и вклад каждого можно увидеть на странице `Contributors <https://github.com/RussianFedora/FAQ/graphs/contributors>`__.
 
