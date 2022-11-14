@@ -1922,3 +1922,15 @@ Coredump -- это дамп закрытой памяти процесса, со
 .. code-block:: text
 
     sudo udevadm control --reload
+
+.. index:: ssh, proxy, nc, socks
+.. _ssh-proxy:
+
+Как однократно подключиться к SSH-серверу через proxy?
+==========================================================
+
+Для подключения к SSH-серверу через proxy, воспользуемся утилитой **nc**, параметры которой передадим при помощи опции **ProxyCommand**:
+
+.. code-block:: text
+
+    ssh -o ProxyCommand='nc -X 5 --proxy-type socks5 --proxy 127.0.0.1:8080 %h %p' user@example.org
