@@ -1934,3 +1934,16 @@ Coredump -- это дамп закрытой памяти процесса, со
 .. code-block:: text
 
     ssh -o ProxyCommand='nc -X 5 --proxy-type socks5 --proxy 127.0.0.1:8080 %h %p' user@example.org
+
+.. index:: ssh, proxy, nc, socks, config
+.. _ssh-proxy-always:
+
+Как настроить подключение к любым SSH-серверам через proxy?
+===============================================================
+
+Добавим опцию **ProxyCommand** в файл конфигурации ``~/.ssh/config`` для постоянного использования с любыми хостами:
+
+.. code-block:: text
+
+    Host *
+        ProxyCommand nc -X 5 --proxy-type socks5 --proxy 127.0.0.1:8080 %h %p
