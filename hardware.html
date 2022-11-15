@@ -980,28 +980,46 @@ sudo dkms install -m rtl8812au -v v4.2.3
 <p>Реализация аппаратного ускорения декодирования мультимедиа доступна на следующих видеокартах:</p>
 <blockquote>
 <div><ul class="simple">
+<li><p><a class="reference internal" href="#vaapi-amd"><span class="std std-ref">AMD</span></a>;</p></li>
 <li><p><a class="reference internal" href="#vaapi-intel"><span class="std std-ref">Intel</span></a>;</p></li>
-<li><p><a class="reference internal" href="#vaapi-nvidia"><span class="std std-ref">NVIDIA</span></a>;</p></li>
-<li><p>AMD (включено в mesa).</p></li>
+<li><p><a class="reference internal" href="#vaapi-nvidia"><span class="std std-ref">NVIDIA</span></a>.</p></li>
 </ul>
 </div></blockquote>
 </section>
+<section id="va-api-amd">
+<span id="vaapi-amd"></span><span id="index-65"></span><h2>Как активировать VA-API на видеокартах AMD?<a class="headerlink" href="#va-api-amd" title="Permalink to this heading">¶</a></h2>
+<p>Начиная с версии 22.2.0, поддержка аппаратного декодирования патентованных форматов видео (H.264, H.265 и т.д.) была <a class="reference external" href="https://src.fedoraproject.org/rpms/mesa/c/94ef544b3f2125912dfbff4c6ef373fe49806b52?branch=rawhide">удалена из mesa</a> в Fedora 37 и выше из-за патентных ограничений.</p>
+<p>Для полноценной работы модуля <a class="reference internal" href="using-applications.html#video-hwaccel"><span class="std std-ref">аппаратного декодирования</span></a> мультимедиа <a class="reference internal" href="#mesa-freeworld"><span class="std std-ref">произведём замену</span></a> базовых драйверов полными версиями.</p>
+</section>
 <section id="va-api-intel">
-<span id="vaapi-intel"></span><span id="index-65"></span><h2>Как активировать VA-API на видеокартах Intel?<a class="headerlink" href="#va-api-intel" title="Permalink to this heading">¶</a></h2>
+<span id="vaapi-intel"></span><span id="index-66"></span><h2>Как активировать VA-API на видеокартах Intel?<a class="headerlink" href="#va-api-intel" title="Permalink to this heading">¶</a></h2>
 <p>Для полноценной работы модуля <a class="reference internal" href="using-applications.html#video-hwaccel"><span class="std std-ref">аппаратного декодирования</span></a> мультимедиа подключим репозитории <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установим драйверы <strong>libva-intel-driver</strong> (i915) и <strong>intel-media-driver</strong> (iHD):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install libva-intel-driver intel-media-driver
 </pre></div>
 </div>
 </section>
 <section id="va-api-nvidia">
-<span id="vaapi-nvidia"></span><span id="index-66"></span><h2>Как активировать VA-API на видеокартах NVIDIA?<a class="headerlink" href="#va-api-nvidia" title="Permalink to this heading">¶</a></h2>
+<span id="vaapi-nvidia"></span><span id="index-67"></span><h2>Как активировать VA-API на видеокартах NVIDIA?<a class="headerlink" href="#va-api-nvidia" title="Permalink to this heading">¶</a></h2>
 <p>Т.к. NVIDIA использует VDPAU для <a class="reference internal" href="using-applications.html#video-hwaccel"><span class="std std-ref">аппаратного декодирования</span></a> мультимедиа, для активации VA-API, установим особый драйвер-конвертер <strong>libva-vdpau-driver</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install libva-vdpau-driver
 </pre></div>
 </div>
+<p>В случае использования свободного драйвера nouveau, потребуется также включить поддержку <a class="reference internal" href="using-applications.html#video-hwaccel"><span class="std std-ref">декодирования патентованных форматов</span></a> в mesa.</p>
+</section>
+<section id="mesa">
+<span id="mesa-freeworld"></span><span id="index-68"></span><h2>Как активировать декодирование патентованных форматов в mesa?<a class="headerlink" href="#mesa" title="Permalink to this heading">¶</a></h2>
+<p>Подключим репозитории <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и произведём замену стандартных пакетов mesa с драйверами их полными версиями:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld --allowerasing
+sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld --allowerasing
+</pre></div>
+</div>
+<p>Перезагрузим систему для вступления изменений в силу:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl reboot
+</pre></div>
+</div>
 </section>
 <section id="battery-status">
-<span id="index-67"></span><span id="id41"></span><h2>Как вывести информацию о состоянии батареи ноутбука?<a class="headerlink" href="#battery-status" title="Permalink to this heading">¶</a></h2>
+<span id="index-69"></span><span id="id41"></span><h2>Как вывести информацию о состоянии батареи ноутбука?<a class="headerlink" href="#battery-status" title="Permalink to this heading">¶</a></h2>
 <p>Для вывода информации об используемых аккумуляторных батареях, воспользуемся утилитой <strong>upower</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>upower -i /org/freedesktop/UPower/devices/battery_BAT0
 </pre></div>
@@ -1009,7 +1027,7 @@ sudo dkms install -m rtl8812au -v v4.2.3
 <p>Если в устройстве их более одной, вместо <strong>BAT0</strong> укажем следующую по порядку.</p>
 </section>
 <section id="mpris-proxy">
-<span id="index-68"></span><span id="id42"></span><h2>Как включить управление воспроизведением с Bluetooth-наушников?<a class="headerlink" href="#mpris-proxy" title="Permalink to this heading">¶</a></h2>
+<span id="index-70"></span><span id="id42"></span><h2>Как включить управление воспроизведением с Bluetooth-наушников?<a class="headerlink" href="#mpris-proxy" title="Permalink to this heading">¶</a></h2>
 <p>За управление воспроизведением при помощи D-Bus событий отвечает служба <a class="reference external" href="https://ru.wikipedia.org/wiki/MPRIS">MPRIS</a>.</p>
 <p>В первую очередь убедимся, что используемый медиа-проигрыватель его поддерживает. В большинстве случаев необходимо и достаточно просто включить модуль MPRIS в настройках. В VLC например включён «из коробки».</p>
 <p>Установим утилиту <strong>mpris-proxy</strong> из пакета <strong>bluez</strong>.</p>
@@ -1051,7 +1069,7 @@ touch ~/.config/systemd/user/mpris-proxy.service
 </div>
 </section>
 <section id="bluetooth-pulseaudio">
-<span id="bluetooth-codecs-pulseaudio"></span><span id="index-69"></span><h2>Как включить поддержку Bluetooth-кодеков высокого качества в PulseAudio?<a class="headerlink" href="#bluetooth-pulseaudio" title="Permalink to this heading">¶</a></h2>
+<span id="bluetooth-codecs-pulseaudio"></span><span id="index-71"></span><h2>Как включить поддержку Bluetooth-кодеков высокого качества в PulseAudio?<a class="headerlink" href="#bluetooth-pulseaudio" title="Permalink to this heading">¶</a></h2>
 <p>В репозиториях Fedora модули звукового сервера PulseAudio для работы с Bluetooth собраны без поддержки AAC, aptX, aptX HD и LDAC ввиду патентных ограничений.</p>
 <p>Однако <a class="reference external" href="https://github.com/EHfive/pulseaudio-modules-bt">существует форк</a>, в котором добавлена полная поддержка данных кодеков, а также расширены возможности по настройке SBC:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>a2dp_sink_sbc: High Fidelity Playback (A2DP Sink: SBC)
@@ -1074,7 +1092,7 @@ headset_head_unit: Headset Head Unit (HSP/HFP)
 <p>Внимание! Выбранный кодек должен поддерживаться наушниками аппаратно.</p>
 </section>
 <section id="bluetooth-pipewire">
-<span id="bluetooth-codecs-pipewire"></span><span id="index-70"></span><h2>Как включить поддержку Bluetooth-кодеков высокого качества в PipeWire?<a class="headerlink" href="#bluetooth-pipewire" title="Permalink to this heading">¶</a></h2>
+<span id="bluetooth-codecs-pipewire"></span><span id="index-72"></span><h2>Как включить поддержку Bluetooth-кодеков высокого качества в PipeWire?<a class="headerlink" href="#bluetooth-pipewire" title="Permalink to this heading">¶</a></h2>
 <p>В репозиториях Fedora модули звукового сервера PipeWire для работы с Bluetooth собраны без поддержки AAC, aptX, aptX HD и LDAC ввиду патентных ограничений.</p>
 <p>Подключим репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> и установим пакет <strong>pipewire-codec-aptx</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install pipewire-codec-aptx
@@ -1086,7 +1104,7 @@ headset_head_unit: Headset Head Unit (HSP/HFP)
 </div>
 </section>
 <section id="audio-analog-multichannel">
-<span id="index-71"></span><span id="id43"></span><h2>Как настроить многоканальный аналоговый аудиовыход?<a class="headerlink" href="#audio-analog-multichannel" title="Permalink to this heading">¶</a></h2>
+<span id="index-73"></span><span id="id43"></span><h2>Как настроить многоканальный аналоговый аудиовыход?<a class="headerlink" href="#audio-analog-multichannel" title="Permalink to this heading">¶</a></h2>
 <p>В простейшем случае просто выберем в настройках звука используемой рабочей среды профиль <strong>Аналоговый объёмный 5.1 выход</strong> (2.1, 4.0, 4.1, 5.0, 7.1).</p>
 <p>Если же доступен только профиль <strong>Cтерео</strong>, то, возможно, некоторые выходы звуковой карты зарезервированы для микрофона и линейного входа.</p>
 <p>В этом случае запустим утилиту <strong>hdajackretask</strong> из пакета <strong>alsa-tools</strong> (при отсутствии установим его – <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">alsa-tools</span></code>), которая позволит нам легко и быстро переназначить выходы звуковой карты в соответствии с текущим подключением устройств вывода звука.</p>
@@ -1098,7 +1116,7 @@ headset_head_unit: Headset Head Unit (HSP/HFP)
 <p>Теперь в настройках звуковой карты появятся требуемые профили объёмного вывода.</p>
 </section>
 <section id="display-check">
-<span id="index-72"></span><span id="id44"></span><h2>Как проверить дисплей на дефектные пиксели?<a class="headerlink" href="#display-check" title="Permalink to this heading">¶</a></h2>
+<span id="index-74"></span><span id="id44"></span><h2>Как проверить дисплей на дефектные пиксели?<a class="headerlink" href="#display-check" title="Permalink to this heading">¶</a></h2>
 <p>Установим утилиту <strong>lcdtest</strong> из репозиториев Fedora:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install lcdtest
 </pre></div>
@@ -1118,7 +1136,7 @@ headset_head_unit: Headset Head Unit (HSP/HFP)
 <p>По окончании проверки нажмём клавишу <strong>Q</strong> для выхода.</p>
 </section>
 <section id="pipewire-pulseaudio">
-<span id="pipewire-revert"></span><span id="index-73"></span><h2>Как переключиться с PipeWire на PulseAudio?<a class="headerlink" href="#pipewire-pulseaudio" title="Permalink to this heading">¶</a></h2>
+<span id="pipewire-revert"></span><span id="index-75"></span><h2>Как переключиться с PipeWire на PulseAudio?<a class="headerlink" href="#pipewire-pulseaudio" title="Permalink to this heading">¶</a></h2>
 <p>Удалим пакет <strong>pipewire-pulseaudio</strong> и сразу же установим <strong>pulseaudio</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf swap pipewire-pulseaudio pulseaudio --allowerasing
 </pre></div>
@@ -1129,11 +1147,11 @@ headset_head_unit: Headset Head Unit (HSP/HFP)
 </div>
 </section>
 <section id="performance-profiles">
-<span id="index-74"></span><span id="id45"></span><h2>Как увеличить производительность системы?<a class="headerlink" href="#performance-profiles" title="Permalink to this heading">¶</a></h2>
+<span id="index-76"></span><span id="id45"></span><h2>Как увеличить производительность системы?<a class="headerlink" href="#performance-profiles" title="Permalink to this heading">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2021/07/22/upravlyaem-profilyami-proizvoditelnosti-linux.html">здесь</a>.</p>
 </section>
 <section id="trim-usb">
-<span id="index-75"></span><span id="id46"></span><h2>Как включить поддержку TRIM на USB устройствах?<a class="headerlink" href="#trim-usb" title="Permalink to this heading">¶</a></h2>
+<span id="index-77"></span><span id="id46"></span><h2>Как включить поддержку TRIM на USB устройствах?<a class="headerlink" href="#trim-usb" title="Permalink to this heading">¶</a></h2>
 <p>По умолчанию поддержка <a class="reference internal" href="installation.html#ssd-trim"><span class="std std-ref">процедуры TRIM</span></a> для USB SSD, а также USB HDD с <a class="reference external" href="https://en.wikipedia.org/wiki/Shingled_magnetic_recording">технологией SMR</a>, недоступна, поэтому любые попытки вручную запустить утилиту <strong>fstrim</strong> приведут к возникновению ошибки <em>fstrim: /media/foo-bar/: the discard operation is not supported</em>.</p>
 <p>Чтобы это исправить, создадим специальный файл конфигурации udev, который разрешит использование данной функции для USB-устройств с указанными VID:PID.</p>
 <p>Получим значения VID:PID для нужного USB-устройства:</p>
@@ -1162,7 +1180,7 @@ sudo chmod 0644 /etc/udev/50-usb-trim.rules
 <p>Изменения вступят в силу при следующем подключении накопителя.</p>
 </section>
 <section id="trim-usb-manual">
-<span id="index-76"></span><span id="id47"></span><h2>Как вручную выполнить TRIM на USB устройстве?<a class="headerlink" href="#trim-usb-manual" title="Permalink to this heading">¶</a></h2>
+<span id="index-78"></span><span id="id47"></span><h2>Как вручную выполнить TRIM на USB устройстве?<a class="headerlink" href="#trim-usb-manual" title="Permalink to this heading">¶</a></h2>
 <p>Убедимся, что поддержка <a class="reference internal" href="#trim-usb"><span class="std std-ref">TRIM на USB</span></a> устройстве активирована.</p>
 <p>Запустим данную процедуру вручную при помощи утилиты <strong>fstrim</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fstrim -v /media/foo-bar
@@ -1171,7 +1189,7 @@ sudo chmod 0644 /etc/udev/50-usb-trim.rules
 <p>Здесь <strong>/media/foo-bar</strong> – это точка монтирования.</p>
 </section>
 <section id="pipewire-wireplumber">
-<span id="index-77"></span><span id="id48"></span><h2>Как заменить менеджер сессий PipeWire с WirePlumber на альтернативный?<a class="headerlink" href="#pipewire-wireplumber" title="Permalink to this heading">¶</a></h2>
+<span id="index-79"></span><span id="id48"></span><h2>Как заменить менеджер сессий PipeWire с WirePlumber на альтернативный?<a class="headerlink" href="#pipewire-wireplumber" title="Permalink to this heading">¶</a></h2>
 <p>Начиная <a class="reference external" href="https://fedoraproject.org/wiki/Changes/WirePlumber">с Fedora 35</a>, в качестве менеджера сессий PipeWire используется WirePlumber.</p>
 <p>При необходимости заменим его любой другой совместимой реализацией, например стандартным <strong>pipewire-media-session</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf swap wireplumber pipewire-media-session --allowerasing
@@ -1277,8 +1295,10 @@ sudo chmod 0644 /etc/udev/50-usb-trim.rules
 <li class="toctree-l2"><a class="reference internal" href="#rtl8812au-update">Как обновить или удалить драйвер сетевой карты на чипе rtl8812au?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ram-info">Как получить информацию об установленной оперативной памяти?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#hwaccel-drivers">Какие драйверы необходимы для работы аппаратного ускорения декодирования мультимедиа?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#va-api-amd">Как активировать VA-API на видеокартах AMD?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#va-api-intel">Как активировать VA-API на видеокартах Intel?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#va-api-nvidia">Как активировать VA-API на видеокартах NVIDIA?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mesa">Как активировать декодирование патентованных форматов в mesa?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#battery-status">Как вывести информацию о состоянии батареи ноутбука?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mpris-proxy">Как включить управление воспроизведением с Bluetooth-наушников?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bluetooth-pulseaudio">Как включить поддержку Bluetooth-кодеков высокого качества в PulseAudio?</a></li>
