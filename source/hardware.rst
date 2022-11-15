@@ -1422,9 +1422,9 @@ ICC профиль можно получить либо на сайте прои
 
 Реализация аппаратного ускорения декодирования мультимедиа доступна на следующих видеокартах:
 
+  * :ref:`AMD <vaapi-amd>`;
   * :ref:`Intel <vaapi-intel>`;
-  * :ref:`NVIDIA <vaapi-nvidia>`;
-  * AMD (включено в mesa).
+  * :ref:`NVIDIA <vaapi-nvidia>`.
 
 .. index:: hardware acceleration, vaapi, amd
 .. _vaapi-amd:
