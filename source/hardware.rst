@@ -1460,6 +1460,8 @@ ICC профиль можно получить либо на сайте прои
 
     sudo dnf install libva-vdpau-driver
 
+В случае использования свободного драйвера nouveau, потребуется также включить поддержку :ref:`декодирования патентованных форматов <video-hwaccel>` в mesa.
+
 .. index:: hardware acceleration, vaapi, amd, nouveau, mesa
 .. _mesa-freeworld:
 
