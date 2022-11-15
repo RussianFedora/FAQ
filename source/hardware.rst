@@ -1426,6 +1426,27 @@ ICC профиль можно получить либо на сайте прои
   * :ref:`NVIDIA <vaapi-nvidia>`;
   * AMD (включено в mesa).
 
+.. index:: hardware acceleration, vaapi, amd, mesa
+.. _vaapi-amd:
+
+Как активировать VA-API на видеокартах AMD?
+================================================
+
+Начиная с версии 22.2.0, поддержка аппаратного декодирования патентованных форматов видео (H.264, H.265 и т.д.) была `удалена из mesa <https://src.fedoraproject.org/rpms/mesa/c/94ef544b3f2125912dfbff4c6ef373fe49806b52?branch=rawhide>`__ в Fedora 37 и выше из-за патентных ограничений.
+
+Для полноценной работы модуля :ref:`аппаратного декодирования <video-hwaccel>` мультимедиа подключим репозитории :ref:`RPM Fusion <rpmfusion>` и произведём замену стандартных пакетов на их полные версии:
+
+.. code-block:: text
+
+    sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld --allowerasing
+    sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld --allowerasing
+
+Перезагрузим систему для вступления изменений в силу:
+
+.. code-block:: text
+
+    systemctl reboot
+
 .. index:: hardware acceleration, vaapi, intel
 .. _vaapi-intel:
 
