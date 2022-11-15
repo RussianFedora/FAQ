@@ -480,9 +480,9 @@ Dnf сохраняет старые ядра. Это нормально?
 
 .. code-block:: text
 
-    sudo dnf remove kernel-5.15.5* kernel-core-5.15.5* kernel-modules-5.15.5* kernel-devel-5.15.5*
+    sudo dnf remove kernel-6.0.8* kernel-core-6.0.8* kernel-modules-6.0.8* kernel-devel-6.0.8*
 
-Здесь **5.15.5** -- это версия удаляемого ядра.
+Здесь **6.0.8** -- это версия удаляемого ядра.
 
 .. index:: repository, third-party
 .. _3rd-repositories:
@@ -827,7 +827,7 @@ Java 17:
 
 .. code-block:: text
 
-    koji download-build kernel-5.17.12-300.fc36.x86_64 --arch=$(uname -m)
+    koji download-build kernel-6.0.8-300.fc37.x86_64 --arch=$(uname -m)
 
 .. index:: package, version, update, fesco
 .. _package-version:

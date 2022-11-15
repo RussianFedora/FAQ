@@ -64,7 +64,7 @@
 .. code-block:: text
 
     cd foo-bar
-    fedpkg switch-branch f36
+    fedpkg switch-branch f37
 
 Внесём свои правки, сделаем коммит в репозиторий:
 
@@ -107,17 +107,17 @@
 Как переопределить пакет в Koji репозитория RPM Fusion?
 ===========================================================
 
-Создание build override для репозитория f36-free:
+Создание build override для репозитория f37-free:
 
 .. code-block:: text
 
-    koji-rpmfusion tag f36-free-override foo-bar-1.0-1.fc36
+    koji-rpmfusion tag f37-free-override foo-bar-1.0-1.fc37
 
-Удаление build override для репозитория f36-free:
+Удаление build override для репозитория f37-free:
 
 .. code-block:: text
 
-    koji-rpmfusion untag f36-free-override foo-bar-1.0-1.fc36
+    koji-rpmfusion untag f37-free-override foo-bar-1.0-1.fc37
 
 .. index:: rpmfusion, koji, build, repository
 .. _rpmfusion-koji-regen:
@@ -129,13 +129,13 @@
 
 .. code-block:: text
 
-    koji-rpmfusion regen-repo f36-free-build --nowait
+    koji-rpmfusion regen-repo f37-free-build --nowait
 
 Запустим обновление кэшей репозиториев для nonfree:
 
 .. code-block:: text
 
-    koji-rpmfusion regen-repo f36-nonfree-build --nowait
+    koji-rpmfusion regen-repo f37-nonfree-build --nowait
 
 .. index:: git, gmail, mail
 .. _git-gmail:
@@ -1102,7 +1102,7 @@
 .. code-block:: text
 
     fedpkg switch-branch master
-    fedpkg import /путь/к/foo-bar-1.0-1.fc36.src.rpm
+    fedpkg import /путь/к/foo-bar-1.0-1.fc37.src.rpm
 
 Проверим внесённые изменения и если всё верно, жмём **Q** для выхода. Зафиксируем наши изменения:
 
@@ -1114,7 +1114,7 @@
 
 .. code-block:: text
 
-    fedpkg switch-branch f36
+    fedpkg switch-branch f37
     git merge master
 
 Отправим изменения на сервер:
@@ -1141,7 +1141,7 @@
 
 .. code-block:: text
 
-    fedpkg switch-branch f36
+    fedpkg switch-branch f37
     fedpkg build
 
 .. index:: fedora, package, build, fedpkg, scratch
@@ -1594,27 +1594,27 @@ Qt-приложение, собранное Clang с LTO не запускает
 
 .. code-block:: text
 
-    fedpkg request-side-tag --base-tag f36-build
+    fedpkg request-side-tag --base-tag f37-build
 
-В выводе **fedpkg** сообщит нам уникальный идентификатор созданного репозитория, например *f36-build-side-12345*.
+В выводе **fedpkg** сообщит нам уникальный идентификатор созданного репозитория, например *f37-build-side-12345*.
 
 Ждём его создания и готовности к работе:
 
 .. code-block:: text
 
-    koji wait-repo f36-build-side-XXXXX
+    koji wait-repo f37-build-side-XXXXX
 
 Произведём сборку первого пакета **foo**:
 
 .. code-block:: text
 
-    fedpkg build --target=f36-build-side-XXXXX
+    fedpkg build --target=f37-build-side-XXXXX
 
 Ожидаем его появления в теге:
 
 .. code-block:: text
 
-    koji wait-repo --build=foo-1.0.0-1.fc36 f36-build-side-XXXXX
+    koji wait-repo --build=foo-1.0.0-1.fc37 f37-build-side-XXXXX
 
 Собираем все остальные пакеты тем же способом.
 
@@ -1630,7 +1630,7 @@ Qt-приложение, собранное Clang с LTO не запускает
 
 Мейнтейнер может указать произвольное количество пакетов в пределах одного задания. Koji выполнит задачу строго в указанном порядке.
 
-Внимание! Каталоги с исходниками всех участников группы должны находиться на одном уровне файловой иерархии. При сборке для side-tag, перед запуском процесса необходимо зайти в каталог каждого пакета из цепочки и при помощи команды ``fedpkg switch-branch f36`` переключиться на нужную ветку.
+Внимание! Каталоги с исходниками всех участников группы должны находиться на одном уровне файловой иерархии. При сборке для side-tag, перед запуском процесса необходимо зайти в каталог каждого пакета из цепочки и при помощи команды ``fedpkg switch-branch f37`` переключиться на нужную ветку.
 
 Перейдём в каталог последнего пакета в цепочке (в данном примере это **bar**) и запустим процесс.
 
@@ -1647,8 +1647,8 @@ Rawhide:
 .. code-block:: text
 
     cd bar
-    fedpkg switch-branch f36
-    fedpkg chain-build --target f36-build-side-XXXXX libfoo1 libfoo2
+    fedpkg switch-branch f37
+    fedpkg chain-build --target f37-build-side-XXXXX libfoo1 libfoo2
 
 Данное действие создаст следующую цепочку *libfoo1* -> *libfoo2* -> *bar*.
 
@@ -1667,8 +1667,8 @@ Rawhide:
 .. code-block:: text
 
     cd bar
-    fedpkg switch-branch f36
-    fedpkg chain-build --target f36-build-side-XXXXX libfoo1 : libfoo2 libfoo3 :
+    fedpkg switch-branch f37
+    fedpkg chain-build --target f37-build-side-XXXXX libfoo1 : libfoo2 libfoo3 :
 
 В результате появится цепочка *libfoo1* -> *libfoo2* + *libfoo3* -> *bar*.
 
@@ -1690,7 +1690,7 @@ Rawhide:
 
 .. code-block:: text
 
-    rpmsodiff ./foo-bar-1.1.0-1.fc36.x86_64.rpm ./foo-bar-1.0.0-1.fc36.x86_64.rpm
+    rpmsodiff ./foo-bar-1.1.0-1.fc37.x86_64.rpm ./foo-bar-1.0.0-1.fc37.x86_64.rpm
 
 .. index:: git, commit, cherry-pick, backport, tac, xargs
 .. _git-backport-commits:
