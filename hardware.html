@@ -988,8 +988,8 @@ sudo dkms install -m rtl8812au -v v4.2.3
 </section>
 <section id="va-api-amd">
 <span id="vaapi-amd"></span><span id="index-65"></span><h2>Как активировать VA-API на видеокартах AMD?<a class="headerlink" href="#va-api-amd" title="Permalink to this heading">¶</a></h2>
-<p>Начиная с версии 22.2.0, поддержка аппаратного декодирования патентованных форматов видео (H.264, H.265 и т.д.) была <a class="reference external" href="https://src.fedoraproject.org/rpms/mesa/c/94ef544b3f2125912dfbff4c6ef373fe49806b52?branch=rawhide">удалена из mesa</a> в Fedora 37 и выше из-за патентных ограничений.</p>
-<p>Для полноценной работы модуля <a class="reference internal" href="using-applications.html#video-hwaccel"><span class="std std-ref">аппаратного декодирования</span></a> мультимедиа <a class="reference internal" href="#mesa-freeworld"><span class="std std-ref">произведём замену</span></a> базовых драйверов полными версиями.</p>
+<p>Начиная с версии 22.2.0, поддержка <a class="reference internal" href="using-applications.html#video-hwaccel"><span class="std std-ref">аппаратного декодирования</span></a> патентованных форматов видео (H.264, H.265 и т.д.) была <a class="reference external" href="https://src.fedoraproject.org/rpms/mesa/c/94ef544b3f2125912dfbff4c6ef373fe49806b52?branch=rawhide">удалена из mesa</a> в Fedora 37 и выше из-за патентных ограничений.</p>
+<p>Для повторной активации вырезанных функций <a class="reference internal" href="#mesa-freeworld"><span class="std std-ref">произведём замену</span></a> базовых драйверов полными версиями.</p>
 </section>
 <section id="va-api-intel">
 <span id="vaapi-intel"></span><span id="index-66"></span><h2>Как активировать VA-API на видеокартах Intel?<a class="headerlink" href="#va-api-intel" title="Permalink to this heading">¶</a></h2>
@@ -1004,7 +1004,7 @@ sudo dkms install -m rtl8812au -v v4.2.3
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install libva-vdpau-driver
 </pre></div>
 </div>
-<p>В случае использования свободного драйвера nouveau, потребуется также включить поддержку <a class="reference internal" href="using-applications.html#video-hwaccel"><span class="std std-ref">декодирования патентованных форматов</span></a> в mesa.</p>
+<p>В случае использования свободного драйвера nouveau, включим также поддержку <a class="reference internal" href="using-applications.html#video-hwaccel"><span class="std std-ref">декодирования патентованных форматов</span></a> в mesa.</p>
 </section>
 <section id="mesa">
 <span id="mesa-freeworld"></span><span id="index-68"></span><h2>Как активировать декодирование патентованных форматов в mesa?<a class="headerlink" href="#mesa" title="Permalink to this heading">¶</a></h2>
