@@ -1053,7 +1053,7 @@ GUI:
 
 При следующем входе в меню выбора доступных сеансов выберем **Plasma (X11)**.
 
-.. index:: font, ttf, fc-match, freetype
+.. index:: font, ttf, fc-match, fontconfig
 .. _font-identify:
 
 Как определить, какой шрифт будет использован для указанной гарнитуры?
@@ -1064,3 +1064,55 @@ GUI:
 .. code-block:: text
 
     fc-match 'sans-serif'
+
+.. index:: font, ttf, fontconfig, fonts.d
+.. _font-replace:
+
+Как заменить один шрифт другим на системном уровне?
+======================================================
+
+Заменим шрифты **Foo Bar** и **Foo Bar Emoji** на *Noto*.
+
+Создадим каталог для пользовательских настроек fontconfig:
+
+.. code-block:: text
+
+    mkdir -p ~/.config/fontconfig/fonts.d
+
+Добавим новый файл конфигурации и сразу же установим правильный контекст безопасности SELinux:
+
+.. code-block:: text
+
+    touch ~/.config/fontconfig/fonts.d/30-replace-foo.conf
+    restorecon -Rv ~/.config/fontconfig
+
+Вставим в ``~/.config/fontconfig/fonts.d/30-replace-foo.conf`` следующий код:
+
+.. code-block:: xml
+
+    <?xml version="1.0"?>
+    <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+    <fontconfig>
+    <alias>
+        <family>Foo Bar</family>
+        <prefer>
+            <family>Noto Sans</family>
+        </prefer>
+    </alias>
+    <alias>
+        <family>Foo Bar Emoji</family>
+        <prefer>
+            <family>Noto Color Emoji</family>
+        </prefer>
+    </alias>
+    </fontconfig>
+
+Очистим кэши fontconfig:
+
+.. code-block:: text
+
+    fc-cache -fr
+
+Убедимся, что для шрифта **Foo Bar** теперь :ref:`используется <font-identify>` **Noto Sans Regular**.
+
+Если всё сделано верно, перезапустим все приложения, либо выполним новый вход в систему для вступления изменений в силу.
