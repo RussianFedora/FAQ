@@ -695,6 +695,44 @@ export SUDO_EDITOR=vim
 </pre></div>
 </div>
 </section>
+<section id="font-replace">
+<span id="index-59"></span><span id="id37"></span><h2>Как заменить один шрифт другим на системном уровне?<a class="headerlink" href="#font-replace" title="Permalink to this heading">¶</a></h2>
+<p>Заменим шрифты <strong>Foo Bar</strong> и <strong>Foo Bar Emoji</strong> на <em>Noto</em>.</p>
+<p>Создадим каталог для пользовательских настроек fontconfig:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/.config/fontconfig/fonts.d
+</pre></div>
+</div>
+<p>Добавим новый файл конфигурации и сразу же установим правильный контекст безопасности SELinux:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>touch ~/.config/fontconfig/fonts.d/30-replace-foo.conf
+restorecon -Rv ~/.config/fontconfig
+</pre></div>
+</div>
+<p>Вставим в <code class="docutils literal notranslate"><span class="pre">~/.config/fontconfig/fonts.d/30-replace-foo.conf</span></code> следующий код:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE fontconfig SYSTEM &quot;urn:fontconfig:fonts.dtd&quot;&gt;</span>
+<span class="nt">&lt;fontconfig&gt;</span>
+<span class="nt">&lt;alias&gt;</span>
+    <span class="nt">&lt;family&gt;</span>Foo Bar<span class="nt">&lt;/family&gt;</span>
+    <span class="nt">&lt;prefer&gt;</span>
+        <span class="nt">&lt;family&gt;</span>Noto Sans<span class="nt">&lt;/family&gt;</span>
+    <span class="nt">&lt;/prefer&gt;</span>
+<span class="nt">&lt;/alias&gt;</span>
+<span class="nt">&lt;alias&gt;</span>
+    <span class="nt">&lt;family&gt;</span>Foo Bar Emoji<span class="nt">&lt;/family&gt;</span>
+    <span class="nt">&lt;prefer&gt;</span>
+        <span class="nt">&lt;family&gt;</span>Noto Color Emoji<span class="nt">&lt;/family&gt;</span>
+    <span class="nt">&lt;/prefer&gt;</span>
+<span class="nt">&lt;/alias&gt;</span>
+<span class="nt">&lt;/fontconfig&gt;</span>
+</pre></div>
+</div>
+<p>Очистим кэши fontconfig:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fc-cache -fr
+</pre></div>
+</div>
+<p>Убедимся, что для шрифта <strong>Foo Bar</strong> теперь <a class="reference internal" href="#font-identify"><span class="std std-ref">используется</span></a> <strong>Noto Sans Regular</strong>.</p>
+<p>Если всё сделано верно, перезапустим все приложения, либо выполним новый вход в систему для вступления изменений в силу.</p>
+</section>
 </section>
 
 
@@ -782,6 +820,7 @@ export SUDO_EDITOR=vim
 <li class="toctree-l2"><a class="reference internal" href="#gnome-x11">Как переключить GNOME на использование X11?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kde-x11">Как переключить KDE на использование X11?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#font-identify">Как определить, какой шрифт будет использован для указанной гарнитуры?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#font-replace">Как заменить один шрифт другим на системном уровне?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-applications.html">Сторонние приложения</a></li>
