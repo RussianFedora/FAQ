@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2022.11.16)</title>
+    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2022.11.17)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -1147,6 +1147,42 @@ git worktree remove /tmp/bar
 </pre></div>
 </div>
 </section>
+<section id="rpmbuild-conditional-patch">
+<span id="index-76"></span><span id="id55"></span><h2>Как применять патч при сборке пакета только при выполнении условия?<a class="headerlink" href="#rpmbuild-conditional-patch" title="Permalink to this heading">¶</a></h2>
+<p>Т.к. согласно гайдлайнам Fedora, все SRPM пакеты должны быть готовы к пересборке для любой поддерживаемой версии дистрибутива, мы не можем использовать условные операторы для директив <em>Source</em> и <em>Patch</em>, поэтому должны сначала заменим <code class="docutils literal notranslate"><span class="pre">%autosetup</span></code> на <code class="docutils literal notranslate"><span class="pre">%setup</span> <span class="pre">-q</span></code>, а затем воспользуемся одним из описанных далее способов.</p>
+<section id="id56">
+<h3>Способ 1. Ручной.<a class="headerlink" href="#id56" title="Permalink to this heading">¶</a></h3>
+<p>Применим патчи последовательно от 1 до N:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%prep
+%setup -q
+%if 0%{?fedora} &amp;&amp; 0%{?fedora} &gt;= 37
+%patch1 -p1
+%endif
+...
+%patchN -p1
+</pre></div>
+</div>
+</section>
+<section id="id57">
+<h3>Способ 2. Полуавтоматический.<a class="headerlink" href="#id57" title="Permalink to this heading">¶</a></h3>
+<p>Изменим нумерацию патчей в директивах <strong>Patch</strong> так, чтобы от <strong>1</strong> до <strong>9</strong> были патчи, которые требуется применить при выполнении заданного условия, а с <strong>10</strong> – все остальные:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Patch1: %{name}-foo.patch
+Patch10: %{name}-bar.patch
+...
+PatchN: %{name}-other.patch
+</pre></div>
+</div>
+<p>Сначала применим условные патчи, а затем, с использованием <code class="docutils literal notranslate"><span class="pre">%autopatch</span></code>, все остальные, начиная с номера <strong>10</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%prep
+%setup -q
+%if 0%{?fedora} &amp;&amp; 0%{?fedora} &gt;= 37
+%patch1 -p1
+%endif
+%autopatch -M10 -p1
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
 
@@ -1254,6 +1290,7 @@ git worktree remove /tmp/bar
 <li class="toctree-l2"><a class="reference internal" href="#koji-chain-build">Как собрать несколько зависящих друг от друга пакетов по цепочке?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#abi">Как определить наличие изменений ABI между разными версиями пакета?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-backport-commits">Как переместить набор коммитов из одной ветки Git-репозитория в другую?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpmbuild-conditional-patch">Как применять патч при сборке пакета только при выполнении условия?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>
