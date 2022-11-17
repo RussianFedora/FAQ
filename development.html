@@ -1149,7 +1149,7 @@ git worktree remove /tmp/bar
 </section>
 <section id="rpmbuild-conditional-patch">
 <span id="index-76"></span><span id="id55"></span><h2>Как применять патч при сборке пакета только при выполнении условия?<a class="headerlink" href="#rpmbuild-conditional-patch" title="Permalink to this heading">¶</a></h2>
-<p>Т.к. согласно гайдлайнам Fedora, все SRPM пакеты должны быть готовы к пересборке для любой поддерживаемой версии дистрибутива, мы не можем использовать условные операторы для директив <em>Source</em> и <em>Patch</em>, поэтому должны сначала заменим <code class="docutils literal notranslate"><span class="pre">%autosetup</span></code> на <code class="docutils literal notranslate"><span class="pre">%setup</span> <span class="pre">-q</span></code>, а затем воспользуемся одним из описанных далее способов.</p>
+<p>Т.к. согласно гайдлайнам Fedora, все SRPM пакеты должны быть готовы к пересборке для любой поддерживаемой версии дистрибутива, мы не можем использовать условные операторы для директив <em>Source</em> и <em>Patch</em>, поэтому сначала заменим <code class="docutils literal notranslate"><span class="pre">%autosetup</span></code> на <code class="docutils literal notranslate"><span class="pre">%setup</span> <span class="pre">-q</span></code>, а затем воспользуемся одним из описанных далее способов.</p>
 <section id="id56">
 <h3>Способ 1. Ручной.<a class="headerlink" href="#id56" title="Permalink to this heading">¶</a></h3>
 <p>Применим патчи последовательно от 1 до N:</p>
@@ -1165,7 +1165,7 @@ git worktree remove /tmp/bar
 </section>
 <section id="id57">
 <h3>Способ 2. Полуавтоматический.<a class="headerlink" href="#id57" title="Permalink to this heading">¶</a></h3>
-<p>Изменим нумерацию патчей в директивах <strong>Patch</strong> так, чтобы от <strong>1</strong> до <strong>9</strong> были патчи, которые требуется применить при выполнении заданного условия, а с <strong>10</strong> – все остальные:</p>
+<p>Изменим нумерацию патчей в директивах <strong>Patch</strong> так, чтобы от <strong>1</strong> до <strong>9</strong> были патчи, которые требуется использовать при выполнении заданного условия, а с <strong>10</strong> – все остальные:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Patch1: %{name}-foo.patch
 Patch10: %{name}-bar.patch
 ...
