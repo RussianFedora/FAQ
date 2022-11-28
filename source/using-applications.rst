@@ -164,7 +164,7 @@
 
 .. code-block:: text
 
-    sudo dnf install ffmpeg-libs
+    sudo dnf install ffmpeg-libs --allowerasing
 
 .. index:: latex, editor
 .. _latex-editor:
