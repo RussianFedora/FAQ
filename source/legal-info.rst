@@ -52,6 +52,7 @@
   * `@turubanov <https://github.com/turubanov>`__
   * `@cyberMe <https://github.com/cyberMe>`__
   * `@leha-bot <https://github.com/leha-bot>`__
+  * `@punkrelique <https://github.com/punkrelique>`__
 
 Полный список авторов и вклад каждого можно увидеть на странице `Contributors <https://github.com/RussianFedora/FAQ/graphs/contributors>`__.
 
