@@ -586,17 +586,28 @@ proxy_password=PASSWORD
 </pre></div>
 </div>
 </section>
+<section id="dnf-leaves">
+<span id="index-54"></span><span id="id45"></span><h2>Как вывести список установленных пакетов, от которых никто не зависит?<a class="headerlink" href="#dnf-leaves" title="Permalink to this heading">¶</a></h2>
+<p>Установим пакет с плагином <strong>dnf-leaves</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install python3-dnf-plugin-leaves
+</pre></div>
+</div>
+<p>Выведем список установленных пакетов, от которых никто не зависит:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf -C leaves
+</pre></div>
+</div>
+</section>
 <section id="dnf-mirror">
-<span id="index-54"></span><span id="id45"></span><h2>Можно ли создать собственное зеркало репозиториев Fedora?<a class="headerlink" href="#dnf-mirror" title="Permalink to this heading">¶</a></h2>
+<span id="index-55"></span><span id="id46"></span><h2>Можно ли создать собственное зеркало репозиториев Fedora?<a class="headerlink" href="#dnf-mirror" title="Permalink to this heading">¶</a></h2>
 <p>Да, см. <a class="reference external" href="https://fedoraproject.org/wiki/Infrastructure/Mirroring">здесь</a>.</p>
 </section>
 <section id="dnf-signatures">
-<span id="index-55"></span><span id="id46"></span><h2>Безопасно ли устанавливать обновления через небезопасные соединения?<a class="headerlink" href="#dnf-signatures" title="Permalink to this heading">¶</a></h2>
+<span id="index-56"></span><span id="id47"></span><h2>Безопасно ли устанавливать обновления через небезопасные соединения?<a class="headerlink" href="#dnf-signatures" title="Permalink to this heading">¶</a></h2>
 <p>Да. Все пакеты в репозиториях Fedora подписываются цифровыми подписями GnuPG, которые в обязательном порядке проверяются перед установкой и обновлением.</p>
 <p>В случае если пакет был заменён, он не сможет быть установлен, т.к. его ЭЦП не будет соответстствовать подписи репозитория.</p>
 </section>
 <section id="rfremix-fedora">
-<span id="rfremix-to-fedora"></span><span id="index-56"></span><h2>Как превратить RFRemix в Fedora и наоборот?<a class="headerlink" href="#rfremix-fedora" title="Permalink to this heading">¶</a></h2>
+<span id="rfremix-to-fedora"></span><span id="index-57"></span><h2>Как превратить RFRemix в Fedora и наоборот?<a class="headerlink" href="#rfremix-fedora" title="Permalink to this heading">¶</a></h2>
 <p>Для превращения Fedora в <a class="reference internal" href="generic-info.html#rfremix"><span class="std std-ref">RFRemix</span></a> необходимо и достаточно подключить репозиторий <a class="reference internal" href="generic-info.html#russian-fedora"><span class="std std-ref">russianfedora-branding</span></a>, а чтобы вернуть всё назад – отключить его.</p>
 <p>После подключения/отключения необходимо выполнить синхронизацию:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf swap rfremix-release fedora-release --allowerasing
@@ -605,12 +616,12 @@ sudo dnf distro-sync --allowerasing
 </div>
 </section>
 <section id="copr">
-<span id="copr-use"></span><span id="index-57"></span><h2>Безопасно ли использовать COPR репозитории?<a class="headerlink" href="#copr" title="Permalink to this heading">¶</a></h2>
+<span id="copr-use"></span><span id="index-58"></span><h2>Безопасно ли использовать COPR репозитории?<a class="headerlink" href="#copr" title="Permalink to this heading">¶</a></h2>
 <p>Т.к. все пакеты в <a class="reference internal" href="generic-info.html#copr"><span class="std std-ref">COPR</span></a> создаются простыми пользователями, их качество значительно отличается. Есть как хорошие репозитории, так и те, что способны вывести систему из строя.</p>
 <p>Перед подключением мы рекомендуем проверить является ли владелец репозитория мейнтейнером Fedora или нет и, если нет, отказаться от этого.</p>
 </section>
 <section id="fedora-snap">
-<span id="index-58"></span><span id="id47"></span><h2>Можно ли использовать в Fedora Snap пакеты?<a class="headerlink" href="#fedora-snap" title="Permalink to this heading">¶</a></h2>
+<span id="index-59"></span><span id="id48"></span><h2>Можно ли использовать в Fedora Snap пакеты?<a class="headerlink" href="#fedora-snap" title="Permalink to this heading">¶</a></h2>
 <p>Установим пакет <strong>snapd</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install snapd
 </pre></div>
@@ -626,7 +637,7 @@ sudo dnf distro-sync --allowerasing
 <p>Внимание! Вне Ubuntu все Snap-пакеты выполняются без какой-либо изоляции из-за отсутствия поддержки AppArmor. Более подробно об этом можно прочитать в <a class="reference internal" href="#flatpak-vs-snap"><span class="std std-ref">сравнении самодостаточных пакетов</span></a>.</p>
 </section>
 <section id="dnf-groups">
-<span id="index-59"></span><span id="id48"></span><h2>Безопасно ли устанавливать и удалять пакеты группами?<a class="headerlink" href="#dnf-groups" title="Permalink to this heading">¶</a></h2>
+<span id="index-60"></span><span id="id49"></span><h2>Безопасно ли устанавливать и удалять пакеты группами?<a class="headerlink" href="#dnf-groups" title="Permalink to this heading">¶</a></h2>
 <p><a class="reference internal" href="#dnf-group-install"><span class="std std-ref">Устанавливать</span></a> пакеты группами абсолютно безопасно, однако <a class="reference internal" href="#dnf-group-remove"><span class="std std-ref">удалять</span></a> – нет, т.к. это приведёт к удалению всех её членов, что может привести к полной неработоспособности системы из-за удаления важных компонентов, таких как графическое окружение, менеджер входа в систему и т.д.</p>
 <p>Вывод списка доступных групп:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf grouplist
@@ -634,14 +645,14 @@ sudo dnf distro-sync --allowerasing
 </div>
 </section>
 <section id="dnf-group-install">
-<span id="index-60"></span><span id="id49"></span><h2>Как установить группу пакетов?<a class="headerlink" href="#dnf-group-install" title="Permalink to this heading">¶</a></h2>
+<span id="index-61"></span><span id="id50"></span><h2>Как установить группу пакетов?<a class="headerlink" href="#dnf-group-install" title="Permalink to this heading">¶</a></h2>
 <p>Установка группы <strong>Fedora Workstation</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf groupinstall &#39;Fedora Workstation&#39;
 </pre></div>
 </div>
 </section>
 <section id="dnf-group-remove">
-<span id="index-61"></span><span id="id50"></span><h2>Как удалить группу пакетов?<a class="headerlink" href="#dnf-group-remove" title="Permalink to this heading">¶</a></h2>
+<span id="index-62"></span><span id="id51"></span><h2>Как удалить группу пакетов?<a class="headerlink" href="#dnf-group-remove" title="Permalink to this heading">¶</a></h2>
 <p>Удаление группы <strong>Fedora Workstation</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf groupremove &#39;Fedora Workstation&#39;
 </pre></div>
@@ -649,7 +660,7 @@ sudo dnf distro-sync --allowerasing
 <p>Настоятельно <a class="reference internal" href="#dnf-groups"><span class="std std-ref">не рекомендуется</span></a> удалять группы таким способом.</p>
 </section>
 <section id="dnf-autoremove">
-<span id="index-62"></span><span id="id51"></span><h2>Как автоматически удалить не нужные более пакеты?<a class="headerlink" href="#dnf-autoremove" title="Permalink to this heading">¶</a></h2>
+<span id="index-63"></span><span id="id52"></span><h2>Как автоматически удалить не нужные более пакеты?<a class="headerlink" href="#dnf-autoremove" title="Permalink to this heading">¶</a></h2>
 <p>Dnf автоматически удаляет зависимости, не нужные более для работы установленных пакетов, однако этот процесс можно инициировать и вручную:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf autoremove
 </pre></div>
@@ -658,7 +669,7 @@ sudo dnf distro-sync --allowerasing
 <p>Если какие-либо из кандидатов необходимы для дальнейшей работы, их лучше всего пометить как <a class="reference internal" href="#dnf-mark"><span class="std std-ref">установленные пользователем</span></a>.</p>
 </section>
 <section id="dnf-mark">
-<span id="index-63"></span><span id="id52"></span><h2>Как отметить пакет в качестве установленного пользователем?<a class="headerlink" href="#dnf-mark" title="Permalink to this heading">¶</a></h2>
+<span id="index-64"></span><span id="id53"></span><h2>Как отметить пакет в качестве установленного пользователем?<a class="headerlink" href="#dnf-mark" title="Permalink to this heading">¶</a></h2>
 <p>Отметим пакет <strong>foo-bar</strong> в качестве установленного пользователем:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf mark install foo-bar
 </pre></div>
@@ -666,7 +677,7 @@ sudo dnf distro-sync --allowerasing
 <p>После этого пакет не будет автоматически помечаться в качестве <a class="reference internal" href="#dnf-autoremove"><span class="std std-ref">кандидата на удаление</span></a>.</p>
 </section>
 <section id="dnf-noautoremove">
-<span id="index-64"></span><span id="id53"></span><h2>Как запретить автоматически удалять не нужные более зависимости?<a class="headerlink" href="#dnf-noautoremove" title="Permalink to this heading">¶</a></h2>
+<span id="index-65"></span><span id="id54"></span><h2>Как запретить автоматически удалять не нужные более зависимости?<a class="headerlink" href="#dnf-noautoremove" title="Permalink to this heading">¶</a></h2>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
 </pre></div>
@@ -677,7 +688,7 @@ sudo dnf distro-sync --allowerasing
 </div>
 </section>
 <section id="dnf-param">
-<span id="index-65"></span><span id="id54"></span><h2>Как однократно передать dnf параметр?<a class="headerlink" href="#dnf-param" title="Permalink to this heading">¶</a></h2>
+<span id="index-66"></span><span id="id55"></span><h2>Как однократно передать dnf параметр?<a class="headerlink" href="#dnf-param" title="Permalink to this heading">¶</a></h2>
 <p>Для однократной передачи параметра воспользуемся опцией <code class="docutils literal notranslate"><span class="pre">--setopt</span></code>.</p>
 <p>Например в качестве примера удалим пакет <strong>foo-bar</strong>, сохранив при этом его <a class="reference internal" href="#dnf-noautoremove"><span class="std std-ref">зависимости</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf remove foo-bar --setopt=clean_requirements_on_remove=True
@@ -685,12 +696,12 @@ sudo dnf distro-sync --allowerasing
 </div>
 </section>
 <section id="dnf-mirrors">
-<span id="index-66"></span><span id="id55"></span><h2>Как dnf определяет зеркала, с которых будет загружать пакеты?<a class="headerlink" href="#dnf-mirrors" title="Permalink to this heading">¶</a></h2>
+<span id="index-67"></span><span id="id56"></span><h2>Как dnf определяет зеркала, с которых будет загружать пакеты?<a class="headerlink" href="#dnf-mirrors" title="Permalink to this heading">¶</a></h2>
 <p>По умолчанию в актуальных версиях Fedora применяется <a class="reference external" href="https://www.metalinker.org/">технология metalink</a>, при помощи которой на основе внешнего IP-адреса сервер определяет ближайшие зеркала по географическому признаку и отдаёт результат в виде отсортированного списка с указанием приоритетов.</p>
 <p>Также существует альтернативная реализация в виде <a class="reference internal" href="#dnf-fastestmirror"><span class="std std-ref">плагина fastestmirror</span></a>, который определяет самое быстрое зеркало локально при помощи ICMP PING. Реальных замеров скорости при этом не производится, поэтому их качество остаётся на достаточно низком уровне.</p>
 </section>
 <section id="dnf-fastestmirror">
-<span id="index-67"></span><span id="id56"></span><h2>Как включить в dnf использование плагина fastestmirror?<a class="headerlink" href="#dnf-fastestmirror" title="Permalink to this heading">¶</a></h2>
+<span id="index-68"></span><span id="id57"></span><h2>Как включить в dnf использование плагина fastestmirror?<a class="headerlink" href="#dnf-fastestmirror" title="Permalink to this heading">¶</a></h2>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
 </pre></div>
@@ -701,19 +712,19 @@ sudo dnf distro-sync --allowerasing
 </div>
 </section>
 <section id="fastestmirror-clear">
-<span id="index-68"></span><span id="id57"></span><h2>Как очистить кэш плагина dnf fastestmirror?<a class="headerlink" href="#fastestmirror-clear" title="Permalink to this heading">¶</a></h2>
+<span id="index-69"></span><span id="id58"></span><h2>Как очистить кэш плагина dnf fastestmirror?<a class="headerlink" href="#fastestmirror-clear" title="Permalink to this heading">¶</a></h2>
 <p>Удалим файл с кэшем плагина fastestmirror:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rm -f /var/cache/dnf/fastestmirror.cache
 </pre></div>
 </div>
 </section>
 <section id="dnf-local-verify">
-<span id="index-69"></span><span id="id58"></span><h2>Почему dnf не проверяет подписи локально устанавливаемых пакетов?<a class="headerlink" href="#dnf-local-verify" title="Permalink to this heading">¶</a></h2>
+<span id="index-70"></span><span id="id59"></span><h2>Почему dnf не проверяет подписи локально устанавливаемых пакетов?<a class="headerlink" href="#dnf-local-verify" title="Permalink to this heading">¶</a></h2>
 <p>По умолчанию это отключено, т.к. предполагается, что большинство локально собранных RPM пакетов не имеют GnuPG подписей.</p>
 <p>При необходимости данная функция <a class="reference internal" href="#dnf-local-enable"><span class="std std-ref">может быть включена</span></a>.</p>
 </section>
 <section id="dnf-local-enable">
-<span id="index-70"></span><span id="id59"></span><h2>Как включить проверку подписей для локально устанавливаемых пакетов?<a class="headerlink" href="#dnf-local-enable" title="Permalink to this heading">¶</a></h2>
+<span id="index-71"></span><span id="id60"></span><h2>Как включить проверку подписей для локально устанавливаемых пакетов?<a class="headerlink" href="#dnf-local-enable" title="Permalink to this heading">¶</a></h2>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
 </pre></div>
@@ -724,11 +735,11 @@ sudo dnf distro-sync --allowerasing
 </div>
 </section>
 <section id="flatpak-vs-snap">
-<span id="index-71"></span><span id="id60"></span><h2>Какой вид самодостаточных пакетов является лучшим?<a class="headerlink" href="#flatpak-vs-snap" title="Permalink to this heading">¶</a></h2>
+<span id="index-72"></span><span id="id61"></span><h2>Какой вид самодостаточных пакетов является лучшим?<a class="headerlink" href="#flatpak-vs-snap" title="Permalink to this heading">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2019/10/14/sravnenie-samodostatochnyx-paketov.html">здесь</a>.</p>
 </section>
 <section id="rpm-packages-other">
-<span id="index-72"></span><span id="id61"></span><h2>Как вывести список пакетов из другой установки?<a class="headerlink" href="#rpm-packages-other" title="Permalink to this heading">¶</a></h2>
+<span id="index-73"></span><span id="id62"></span><h2>Как вывести список пакетов из другой установки?<a class="headerlink" href="#rpm-packages-other" title="Permalink to this heading">¶</a></h2>
 <p>Выведем список установленных пакетов другой инсталляции Fedora:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rpm -qa --dbpath /path/to/other/var/lib/rpm
 </pre></div>
@@ -736,7 +747,7 @@ sudo dnf distro-sync --allowerasing
 <p>Здесь <strong>/path/to/other/var/lib/rpm</strong> – полный путь к базе RPM.</p>
 </section>
 <section id="rpm-reinstall-package">
-<span id="index-73"></span><span id="id62"></span><h2>Как мне переустановить пакет?<a class="headerlink" href="#rpm-reinstall-package" title="Permalink to this heading">¶</a></h2>
+<span id="index-74"></span><span id="id63"></span><h2>Как мне переустановить пакет?<a class="headerlink" href="#rpm-reinstall-package" title="Permalink to this heading">¶</a></h2>
 <p>Для переустановки пакета или пакетов можем воспользоваться штатной функцией <strong>reinstall</strong> dnf.</p>
 <p>Переустановим пакет <strong>foo-bar</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf reinstall &quot;foo-bar*&quot;
@@ -748,7 +759,7 @@ sudo dnf distro-sync --allowerasing
 </div>
 </section>
 <section id="rpm-check-file">
-<span id="index-74"></span><span id="id63"></span><h2>Как определить какому пакету принадлежит файл?<a class="headerlink" href="#rpm-check-file" title="Permalink to this heading">¶</a></h2>
+<span id="index-75"></span><span id="id64"></span><h2>Как определить какому пакету принадлежит файл?<a class="headerlink" href="#rpm-check-file" title="Permalink to this heading">¶</a></h2>
 <p>Воспрользуемся прямым вызовом <strong>rpm</strong> для получения информации о принадлежности файла какому-либо <em>установленному</em> пакету (для не установленных существует <a class="reference internal" href="#dnf-find-file"><span class="std std-ref">иной способ</span></a>):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rpm -qf /path/to/file
 </pre></div>
@@ -757,7 +768,7 @@ sudo dnf distro-sync --allowerasing
 <p>Если принадлежность установлена, будет выдано полное имя пакета. В противном случае – сообщение об ошибке.</p>
 </section>
 <section id="rpm-check-system">
-<span id="index-75"></span><span id="id64"></span><h2>Как проверить какие файлы в системе были изменены?<a class="headerlink" href="#rpm-check-system" title="Permalink to this heading">¶</a></h2>
+<span id="index-76"></span><span id="id65"></span><h2>Как проверить какие файлы в системе были изменены?<a class="headerlink" href="#rpm-check-system" title="Permalink to this heading">¶</a></h2>
 <p>Воспрользуемся прямым вызовом <strong>rpm</strong> для выполнения полной проверки и вывода информации о результатах:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo rpm -qVa --nomtime
 </pre></div>
@@ -765,7 +776,7 @@ sudo dnf distro-sync --allowerasing
 <p>Далеко не всё является ошибкой. Например сообщение об изменённых файлах конфигурации является абсолютно нормальным явлением.</p>
 </section>
 <section id="fedora-cisco-openh264">
-<span id="cisco-openh264"></span><span id="index-76"></span><h2>Что такое fedora-cisco-openh264?<a class="headerlink" href="#fedora-cisco-openh264" title="Permalink to this heading">¶</a></h2>
+<span id="cisco-openh264"></span><span id="index-77"></span><h2>Что такое fedora-cisco-openh264?<a class="headerlink" href="#fedora-cisco-openh264" title="Permalink to this heading">¶</a></h2>
 <p>Репозиторий <strong>fedora-cisco-openh264</strong> представляет специальную бинарную сборку библиотеки openh264, которая применяется в браузере Mozilla Firefox для аудио/видео вызовов, для США и Австралии (т.е. стран, где действуют патенты на алгоритмы).</p>
 <p>Пользователям из всех остальных стран мы рекомендуем использовать <a class="reference internal" href="using-applications.html#firefox-codecs"><span class="std std-ref">ffmpeg-libs</span></a> из репозитория <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>, который предоставляет все доступные кодеки мультимедиа без каких-либо ограничений.</p>
 <p>Отключим данный репозиторий:</p>
@@ -778,7 +789,7 @@ sudo dnf distro-sync --allowerasing
 </div>
 </section>
 <section id="dnf-no-color">
-<span id="index-77"></span><span id="id65"></span><h2>Как запретить цвета в выводе dnf?<a class="headerlink" href="#dnf-no-color" title="Permalink to this heading">¶</a></h2>
+<span id="index-78"></span><span id="id66"></span><h2>Как запретить цвета в выводе dnf?<a class="headerlink" href="#dnf-no-color" title="Permalink to this heading">¶</a></h2>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
 </pre></div>
@@ -790,7 +801,7 @@ sudo dnf distro-sync --allowerasing
 <p>Сохраним изменения в файле.</p>
 </section>
 <section id="zchunk-dnf">
-<span id="dnf-zchunk-disable"></span><span id="index-78"></span><h2>Как отключить использование zchunk в dnf?<a class="headerlink" href="#zchunk-dnf" title="Permalink to this heading">¶</a></h2>
+<span id="dnf-zchunk-disable"></span><span id="index-79"></span><h2>Как отключить использование zchunk в dnf?<a class="headerlink" href="#zchunk-dnf" title="Permalink to this heading">¶</a></h2>
 <p>Откроем главный конфигурационный файл dnf:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
 </pre></div>
@@ -802,7 +813,7 @@ sudo dnf distro-sync --allowerasing
 <p>Сохраним изменения в файле.</p>
 </section>
 <section id="dnf-disable-telemetry">
-<span id="index-79"></span><span id="id66"></span><h2>Как отключить телеметрию в dnf?<a class="headerlink" href="#dnf-disable-telemetry" title="Permalink to this heading">¶</a></h2>
+<span id="index-80"></span><span id="id67"></span><h2>Как отключить телеметрию в dnf?<a class="headerlink" href="#dnf-disable-telemetry" title="Permalink to this heading">¶</a></h2>
 <p>По умолчанию для основных репозиториев Fedora, начиная с версии 32, один раз в неделю dnf отправляет beacon, чтобы можно было оценить количество пользователей дистрибутива.</p>
 <p>Для отключения откроем главный конфигурационный файл dnf:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
@@ -815,21 +826,21 @@ sudo dnf distro-sync --allowerasing
 <p>Сохраним изменения в файле.</p>
 </section>
 <section id="check-build-deps">
-<span id="index-80"></span><span id="id67"></span><h2>Как вывести список пакетов, использующих при сборке определённый?<a class="headerlink" href="#check-build-deps" title="Permalink to this heading">¶</a></h2>
+<span id="index-81"></span><span id="id68"></span><h2>Как вывести список пакетов, использующих при сборке определённый?<a class="headerlink" href="#check-build-deps" title="Permalink to this heading">¶</a></h2>
 <p>Однократно подключим репозитории с исходниками и при помощи dnf выведем список пакетов, для сборки которых необходим <strong>foo-bar-devel</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dnf repoquery -q  --releasever=rawhide --disablerepo=&quot;*&quot; --qf=&quot;%{name}&quot; --enablerepo=fedora-source --enablerepo=updates-source --enablerepo=updates-testing-source --archlist=src --whatrequires=&quot;foo-bar-devel&quot;
 </pre></div>
 </div>
 </section>
 <section id="dnf-remove-packages-repository">
-<span id="index-81"></span><span id="id68"></span><h2>Как удалить все пакеты из определённого репозитория?<a class="headerlink" href="#dnf-remove-packages-repository" title="Permalink to this heading">¶</a></h2>
+<span id="index-82"></span><span id="id69"></span><h2>Как удалить все пакеты из определённого репозитория?<a class="headerlink" href="#dnf-remove-packages-repository" title="Permalink to this heading">¶</a></h2>
 <p>Удалим все пакеты, установленнные из репозитория <strong>foo-bar</strong></p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf repository-packages --installed foo-bar remove
 </pre></div>
 </div>
 </section>
 <section id="dnf-remove-debuginfo">
-<span id="index-82"></span><span id="id69"></span><h2>Как удалить все пакеты с отладочной информацией?<a class="headerlink" href="#dnf-remove-debuginfo" title="Permalink to this heading">¶</a></h2>
+<span id="index-83"></span><span id="id70"></span><h2>Как удалить все пакеты с отладочной информацией?<a class="headerlink" href="#dnf-remove-debuginfo" title="Permalink to this heading">¶</a></h2>
 <p>Удалим все пакеты с отладочной информацией, установленные из основных репозиториев Fedora:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf repository-packages --installed fedora-debuginfo remove
 sudo dnf repository-packages --installed updates-debuginfo remove
@@ -838,7 +849,7 @@ sudo dnf repository-packages --installed updates-testing-debuginfo remove
 </div>
 </section>
 <section id="dnf-parallel-downloads">
-<span id="index-83"></span><span id="id70"></span><h2>Как изменить количество одновременно загружаемых пакетов?<a class="headerlink" href="#dnf-parallel-downloads" title="Permalink to this heading">¶</a></h2>
+<span id="index-84"></span><span id="id71"></span><h2>Как изменить количество одновременно загружаемых пакетов?<a class="headerlink" href="#dnf-parallel-downloads" title="Permalink to this heading">¶</a></h2>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
 </pre></div>
@@ -849,7 +860,7 @@ sudo dnf repository-packages --installed updates-testing-debuginfo remove
 </div>
 </section>
 <section id="dnf-download-threshold">
-<span id="index-84"></span><span id="id71"></span><h2>Как установить порог скорости до выбора другого зеркала?<a class="headerlink" href="#dnf-download-threshold" title="Permalink to this heading">¶</a></h2>
+<span id="index-85"></span><span id="id72"></span><h2>Как установить порог скорости до выбора другого зеркала?<a class="headerlink" href="#dnf-download-threshold" title="Permalink to this heading">¶</a></h2>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">/etc/dnf/dnf.conf</span></code> в текстовом редакторе:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudoedit /etc/dnf/dnf.conf
 </pre></div>
@@ -860,7 +871,7 @@ sudo dnf repository-packages --installed updates-testing-debuginfo remove
 </div>
 </section>
 <section id="gnome-software-flatpak-rpm">
-<span id="gnome-software-preference"></span><span id="index-85"></span><h2>GNOME Software при установке выбирает Flatpak вместо RPM. Как исправить?<a class="headerlink" href="#gnome-software-flatpak-rpm" title="Permalink to this heading">¶</a></h2>
+<span id="gnome-software-preference"></span><span id="index-86"></span><h2>GNOME Software при установке выбирает Flatpak вместо RPM. Как исправить?<a class="headerlink" href="#gnome-software-flatpak-rpm" title="Permalink to this heading">¶</a></h2>
 <p>GNOME Software в конфигурации по умолчанию отдаёт предпочтение Flatpak-пакетам перед стандартными RPM при совпадении ID.</p>
 <p>Исправим это, изменив приоритет опцией <strong>packaging-format-preference</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gsettings set org.gnome.software packaging-format-preference &quot;[&#39;RPM&#39;, &#39;flatpak&#39;]&quot;
@@ -944,6 +955,7 @@ sudo dnf repository-packages --installed updates-testing-debuginfo remove
 <li class="toctree-l2"><a class="reference internal" href="#upgrades-allowed">Какие пакеты разрешено обновлять до новых версий в пределах стабильного выпуска?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-user">При запуске dnf без прав суперпользователя он заново загружает и обновляет кэши. Это нормально?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-remove-32bit">Как удалить все установленные в системе 32-битные пакеты?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnf-leaves">Как вывести список установленных пакетов, от которых никто не зависит?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-mirror">Можно ли создать собственное зеркало репозиториев Fedora?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-signatures">Безопасно ли устанавливать обновления через небезопасные соединения?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rfremix-fedora">Как превратить RFRemix в Fedora и наоборот?</a></li>

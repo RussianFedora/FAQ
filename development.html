@@ -367,8 +367,8 @@ export NM=%{_bindir}/gcc-nm
 </div>
 </section>
 <section id="rpm-unneeded">
-<span id="index-21"></span><span id="id13"></span><h2>Как вывести список установленных пакетов, от которых никто не зависит?<a class="headerlink" href="#rpm-unneeded" title="Permalink to this heading">¶</a></h2>
-<p>В настоящее время данная функциональность отсутствует в dnf «из коробки», поэтому напишем и скомпилируем небольшую программу на языке C, реализующую это средствами библиотеки <strong>libsolv</strong>.</p>
+<span id="index-21"></span><span id="id13"></span><h2>Как программно вывести список установленных пакетов, от которых никто не зависит?<a class="headerlink" href="#rpm-unneeded" title="Permalink to this heading">¶</a></h2>
+<p>В случае если функциональность <a class="reference internal" href="package-manager.html#dnf-leaves"><span class="std std-ref">плагина dnf-leaves</span></a> чем-то не устраивает, напишем и скомпилируем небольшую программу на языке C, реализующую вывод списка установленных пакетов, от которых никто не зависит, средствами библиотеки <strong>libsolv</strong>.</p>
 <p>Установим компилятор и необходимые для сборки библиотеки:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc libsolv-devel
 </pre></div>
@@ -408,6 +408,7 @@ export NM=%{_bindir}/gcc-nm
 <span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pool_solvid2str</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
+<span class="w">    </span><span class="n">solver_free</span><span class="p">(</span><span class="n">solver</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">queue_free</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">pool_free</span><span class="p">(</span><span class="n">pool</span><span class="p">);</span><span class="w"></span>
 
@@ -419,7 +420,7 @@ export NM=%{_bindir}/gcc-nm
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gcc $(rpm -E %{optflags}) -fPIC rpm-unneeded.c -o rpm-unneeded $(rpm -E %{build_ldflags}) -lsolv -lsolvext
 </pre></div>
 </div>
-<p>Запустим приложение <code class="docutils literal notranslate"><span class="pre">./rpm-unneeded</span></code> и получим список установленных пакетов, от которых никто не зависит.</p>
+<p>Запустим приложение <code class="docutils literal notranslate"><span class="pre">./rpm-unneeded</span></code> и получим результат.</p>
 </section>
 <section id="cpack-gnu-linux">
 <span id="using-cpack"></span><span id="index-22"></span><h2>Можно ли использовать cpack для сборки пакетов для GNU/Linux?<a class="headerlink" href="#cpack-gnu-linux" title="Permalink to this heading">¶</a></h2>
@@ -1235,7 +1236,7 @@ PatchN: %{name}-other.patch
 <li class="toctree-l2"><a class="reference internal" href="#ld-preload">Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lto">Как активировать LTO-оптимизации при сборке пакета?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#disable-lto">Как запретить LTO-оптимизации при сборке пакета?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rpm-unneeded">Как вывести список установленных пакетов, от которых никто не зависит?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpm-unneeded">Как программно вывести список установленных пакетов, от которых никто не зависит?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cpack-gnu-linux">Можно ли использовать cpack для сборки пакетов для GNU/Linux?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#library-path">Приложение собрано со старой версией библиотеки. Как заставить его работать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora-licenses">Проекты под какими лицензиями допускается распространять в репозиториях?</a></li>
