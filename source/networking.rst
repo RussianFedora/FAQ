@@ -222,7 +222,7 @@ PPTP
 
 .. code-block:: text
 
-    sudo firewall-cmd --zone=public --remove-icmp-block={echo-request,echo-reply,timestamp-reply,timestamp-request} --permanent
+    sudo firewall-cmd --zone=public --add-icmp-block={echo-request,echo-reply,timestamp-reply,timestamp-request} --permanent
 
 Применим новые правила:
 
