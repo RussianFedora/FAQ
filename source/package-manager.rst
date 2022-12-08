@@ -873,6 +873,24 @@ Java 17:
 
     sudo dnf remove "*.i686"
 
+.. index:: rpm, dnf, plugin, dependencies, package, leaves
+.. _dnf-leaves:
+
+Как вывести список установленных пакетов, от которых никто не зависит?
+=========================================================================
+
+Установим пакет с плагином **dnf-leaves**:
+
+.. code-block:: text
+
+    sudo dnf install python3-dnf-plugin-leaves
+
+Выведем список установленных пакетов, от которых никто не зависит:
+
+.. code-block:: text
+
+    dnf -C leaves
+
 .. index:: dnf, mirror, repository
 .. _dnf-mirror:
 
