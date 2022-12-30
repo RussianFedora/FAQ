@@ -6,14 +6,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Виртуализация &#8212; Неофициальный FAQ по Fedora (версия 2022.12.08)</title>
+    <title>Виртуализация &#8212; Неофициальный FAQ по Fedora (версия 2022.12.30)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/translations.js"></script>
@@ -130,21 +127,37 @@ sudo usermod -a -G vboxsf $(whoami)
 <span id="index-9"></span><span id="id6"></span><h2>Какие дисковые образы лучше: динамически расширяющиеся или фиксированного размера?<a class="headerlink" href="#image-type" title="Permalink to this heading">¶</a></h2>
 <p>Фиксированного размера, т.к. они меньше фрагментируются.</p>
 </section>
-<section id="convert-to-fixed">
-<span id="index-10"></span><span id="id7"></span><h2>Как конвертировать динамически расширяющийся образ диска VirtualBox в фиксированный?<a class="headerlink" href="#convert-to-fixed" title="Permalink to this heading">¶</a></h2>
+<section id="convert-vdi-to-fixed">
+<span id="index-10"></span><span id="id7"></span><h2>Как конвертировать динамически расширяющийся образ диска VirtualBox в фиксированный?<a class="headerlink" href="#convert-vdi-to-fixed" title="Permalink to this heading">¶</a></h2>
 <p>Динамическая конвертация не поддерживается, поэтому воспользуемся утилитой <strong>VBoxManage</strong>, входящей в базовую поставку VirtualBox, для создания нового дискового образа на базе старого:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>VBoxManage clonehd /path/to/System.vdi /path/to/System_fixed.vdi --variant Fixed
 </pre></div>
 </div>
 <p>Теперь в свойствах виртуальной машины подключим новый образ фиксированного размера. Старый при этом можно удалить.</p>
 </section>
+<section id="qcow2">
+<span id="convert-qcow2-to-fixed"></span><span id="index-11"></span><h2>Как конвертировать динамически расширяющийся образ диска QCOW2 в фиксированный?<a class="headerlink" href="#qcow2" title="Permalink to this heading">¶</a></h2>
+<p>Динамическая конвертация не поддерживается, поэтому воспользуемся утилитой <strong>qemu-img</strong> для создания нового дискового образа на базе старого.</p>
+<p>Остановим виртуальную машину и переименуем старый файл:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mv System.qcow2 System-old.qcow2
+</pre></div>
+</div>
+<p>Выполним преобразование:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f qcow2 -O qcow2 System-old.qcow2 System.qcow2 -o preallocation=full
+</pre></div>
+</div>
+<p>Проверим работу с новой конфигурацией и, если всё верно, удалим оригинал:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rm -f System-old.qcow2
+</pre></div>
+</div>
+</section>
 <section id="kvm-cpu">
-<span id="kvm-no-acceleration"></span><span id="index-11"></span><h2>Можно ли использовать KVM на CPU без поддержки аппаратной виртуализации?<a class="headerlink" href="#kvm-cpu" title="Permalink to this heading">¶</a></h2>
+<span id="kvm-no-acceleration"></span><span id="index-12"></span><h2>Можно ли использовать KVM на CPU без поддержки аппаратной виртуализации?<a class="headerlink" href="#kvm-cpu" title="Permalink to this heading">¶</a></h2>
 <p>Нет. KVM требует наличие активной <a class="reference internal" href="#cpu-virt"><span class="std std-ref">аппаратной виртуализации</span></a> и при её осутствии работать не будет.</p>
 <p>В то же время, без наличия этой функции со стороны CPU, могут работать VirtualBox до версии 6.1.0 и VMWare, хотя и с очень низкой производительностью.</p>
 </section>
 <section id="kvm-move-directory">
-<span id="index-12"></span><span id="id8"></span><h2>Можно ли перенести каталог с образами виртуальных машин KVM?<a class="headerlink" href="#kvm-move-directory" title="Permalink to this heading">¶</a></h2>
+<span id="index-13"></span><span id="id8"></span><h2>Можно ли перенести каталог с образами виртуальных машин KVM?<a class="headerlink" href="#kvm-move-directory" title="Permalink to this heading">¶</a></h2>
 <p>По умолчанию образы создаваемых виртуальных машин создаются в каталоге <code class="docutils literal notranslate"><span class="pre">/var/lib/libvirt/images</span></code>, что многих не устраивает.</p>
 <p>Переместим образы виртуальных машин на отдельный накопитель, смонтированный как <code class="docutils literal notranslate"><span class="pre">/media/foo-bar</span></code>. ISO будем размещать в каталоге <code class="docutils literal notranslate"><span class="pre">iso</span></code>, а дисковые образы виртуальных машин – <code class="docutils literal notranslate"><span class="pre">images</span></code>.</p>
 <p>Создаём собственные политики SELinux для указанных каталогов:</p>
@@ -160,7 +173,7 @@ sudo restorecon -Rv /media/foo-bar/images
 <p>В настройках Virt Manager добавим новую библиотеку <code class="docutils literal notranslate"><span class="pre">/media/foo-bar/images</span></code> и зададим её использование для всех виртуальных машин по умолчанию.</p>
 </section>
 <section id="kvm-transfer">
-<span id="index-13"></span><span id="id9"></span><h2>Как переместить виртуальную машину KVM на другой ПК?<a class="headerlink" href="#kvm-transfer" title="Permalink to this heading">¶</a></h2>
+<span id="index-14"></span><span id="id9"></span><h2>Как переместить виртуальную машину KVM на другой ПК?<a class="headerlink" href="#kvm-transfer" title="Permalink to this heading">¶</a></h2>
 <p>Переместим образы дисков из каталога <code class="docutils literal notranslate"><span class="pre">/var/lib/libvirt/images</span></code> старого хоста на новый <a class="reference internal" href="administration.html#copying-data"><span class="std std-ref">любым удобным способом</span></a>.</p>
 <p>Экспортируем конфигурацию виртуальной машины:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>virsh dumpxml vmname &gt; vmname.xml
@@ -174,7 +187,7 @@ sudo restorecon -Rv /media/foo-bar/images
 <p>Новая виртуальная машина появится в списке и будет готова к работе немедленно.</p>
 </section>
 <section id="virtualbox-transfer">
-<span id="index-14"></span><span id="id10"></span><h2>Как переместить виртуальную машину VirtualBox на другой ПК?<a class="headerlink" href="#virtualbox-transfer" title="Permalink to this heading">¶</a></h2>
+<span id="index-15"></span><span id="id10"></span><h2>Как переместить виртуальную машину VirtualBox на другой ПК?<a class="headerlink" href="#virtualbox-transfer" title="Permalink to this heading">¶</a></h2>
 <p>Получим список доступных виртуальных машин VirtualBox:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>vboxmanage list vms
 </pre></div>
@@ -191,11 +204,11 @@ sudo restorecon -Rv /media/foo-bar/images
 <p>Через некоторое время новая виртуальная машина появится в списке и будет готова к работе.</p>
 </section>
 <section id="kvm-windows">
-<span id="index-15"></span><span id="id11"></span><h2>Как правильно установить в KVM Windows?<a class="headerlink" href="#kvm-windows" title="Permalink to this heading">¶</a></h2>
+<span id="index-16"></span><span id="id11"></span><h2>Как правильно установить в KVM Windows?<a class="headerlink" href="#kvm-windows" title="Permalink to this heading">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2019/12/19/zapuskaem-windows-v-kvm-na-fedora.html">здесь</a>.</p>
 </section>
-<section id="qcow2">
-<span id="qcow2-type"></span><span id="index-16"></span><h2>Какой тип QCOW2 образов выбрать?<a class="headerlink" href="#qcow2" title="Permalink to this heading">¶</a></h2>
+<section id="qcow2-type">
+<span id="index-17"></span><span id="id12"></span><h2>Какой тип QCOW2 образов выбрать?<a class="headerlink" href="#qcow2-type" title="Permalink to this heading">¶</a></h2>
 <p>Существует два типа образов:</p>
 <blockquote>
 <div><ul class="simple">
@@ -206,7 +219,7 @@ sudo restorecon -Rv /media/foo-bar/images
 <p>У каждого есть как достоинства, так и недостатки.</p>
 </section>
 <section id="qcow2-dynamic">
-<span id="index-17"></span><span id="id12"></span><h2>Что нужно знать о динамически расширяющихся образах?<a class="headerlink" href="#qcow2-dynamic" title="Permalink to this heading">¶</a></h2>
+<span id="index-18"></span><span id="id13"></span><h2>Что нужно знать о динамически расширяющихся образах?<a class="headerlink" href="#qcow2-dynamic" title="Permalink to this heading">¶</a></h2>
 <p>Достоинства:</p>
 <blockquote>
 <div><ul class="simple">
@@ -222,7 +235,7 @@ sudo restorecon -Rv /media/foo-bar/images
 </div></blockquote>
 </section>
 <section id="qcow2-fixed">
-<span id="index-18"></span><span id="id13"></span><h2>Что нужно знать об образах фиксированного размера?<a class="headerlink" href="#qcow2-fixed" title="Permalink to this heading">¶</a></h2>
+<span id="index-19"></span><span id="id14"></span><h2>Что нужно знать об образах фиксированного размера?<a class="headerlink" href="#qcow2-fixed" title="Permalink to this heading">¶</a></h2>
 <p>Достоинства:</p>
 <blockquote>
 <div><ul class="simple">
@@ -238,7 +251,7 @@ sudo restorecon -Rv /media/foo-bar/images
 </div></blockquote>
 </section>
 <section id="qcow2-resize">
-<span id="index-19"></span><span id="id14"></span><h2>Как увеличить размер дискового образа QCOW2?<a class="headerlink" href="#qcow2-resize" title="Permalink to this heading">¶</a></h2>
+<span id="index-20"></span><span id="id15"></span><h2>Как увеличить размер дискового образа QCOW2?<a class="headerlink" href="#qcow2-resize" title="Permalink to this heading">¶</a></h2>
 <p>Воспользуемся утилитой <strong>qemu-img</strong> для увеличения дискового образа:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img resize --preallocation=full /path/to/image.qcow2 +10G
 </pre></div>
@@ -251,7 +264,7 @@ sudo restorecon -Rv /media/foo-bar/images
 <p>По окончании, внутри гостевой ОС расширим используемую файловую систему до новых границ образа при помощи fdisk, GParted или любого другого редактора разделов диска.</p>
 </section>
 <section id="qcow2-shrink">
-<span id="index-20"></span><span id="id15"></span><h2>Как уменьшить размер дискового образа QCOW2?<a class="headerlink" href="#qcow2-shrink" title="Permalink to this heading">¶</a></h2>
+<span id="index-21"></span><span id="id16"></span><h2>Как уменьшить размер дискового образа QCOW2?<a class="headerlink" href="#qcow2-shrink" title="Permalink to this heading">¶</a></h2>
 <p>Уменьшение размера дискового образа QCOW2 <a class="reference internal" href="#qcow2-resize"><span class="std std-ref">при помощи qemu-img</span></a> – это достаточно небезопасная операция, которая может привести к его повреждению, поэтому вместо отрицательных значений для <em>resize</em> сначала уменьшим размер дисковых разделов внутри самой гостевой ОС при помощи fdisk, Gparted или любого другого редактора разделов диска так, чтобы справа осталось лишь неразмеченное пространство.</p>
 <p>Далее воспользуемся утилитой <strong>qemu-img</strong> и сделаем копию образа, которая уже не будет включать неразмеченное дисковое пространство:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>qemu-img convert -f qcow2 -O qcow2 /path/to/image.qcow2 /path/to/new_image.qcow2
@@ -264,7 +277,7 @@ sudo restorecon -Rv /media/foo-bar/images
 <p>Подключим новый образ к виртуальной машине вместо старого и проверим работу. Если всё верно, старый можно удалить.</p>
 </section>
 <section id="kvm-ssd">
-<span id="index-21"></span><span id="id16"></span><h2>Как оптимизировать KVM для работы с SSD-накопителей?<a class="headerlink" href="#kvm-ssd" title="Permalink to this heading">¶</a></h2>
+<span id="index-22"></span><span id="id17"></span><h2>Как оптимизировать KVM для работы с SSD-накопителей?<a class="headerlink" href="#kvm-ssd" title="Permalink to this heading">¶</a></h2>
 <p>Каких-то особых оптимизаций производить не требуется. Достаточно лишь использовать дисковые образы гостевых ОС в формате QCOW2, а также при их подключении указать тип контроллера <strong>VirtIO</strong> и установить следующие опции:</p>
 <blockquote>
 <div><ul class="simple">
@@ -275,7 +288,7 @@ sudo restorecon -Rv /media/foo-bar/images
 <p>Конечно же как в хостовой, так и в гостевой ОС, должна быть <a class="reference internal" href="installation.html#ssd-tuning"><span class="std std-ref">включена поддержка TRIM</span></a>.</p>
 </section>
 <section id="kvm-desktop-entry">
-<span id="index-22"></span><span id="id17"></span><h2>Как создать ярлык запуска виртуальной машины KVM?<a class="headerlink" href="#kvm-desktop-entry" title="Permalink to this heading">¶</a></h2>
+<span id="index-23"></span><span id="id18"></span><h2>Как создать ярлык запуска виртуальной машины KVM?<a class="headerlink" href="#kvm-desktop-entry" title="Permalink to this heading">¶</a></h2>
 <p>Для создания ярлыка в главном меню рабочей среды, создадим файл <code class="docutils literal notranslate"><span class="pre">fedora-rawhide.desktop</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">~/.local/share/applications</span></code> следующего содержания:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Desktop Entry]</span><span class="w"></span>
 <span class="na">Name</span><span class="o">=</span><span class="s">Fedora Rawhide</span><span class="w"></span>
@@ -330,13 +343,14 @@ sudo restorecon -Rv /media/foo-bar/images
 <li class="toctree-l2"><a class="reference internal" href="#hyper-v-kvm">Как преобразовать образ виртуальной машины Hyper-V в формат, совместимый с KVM?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cpu-windows">Можно ли отключить защиту от уязвимостей CPU в гостевых Windows внутри виртуальных машин?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#image-type">Какие дисковые образы лучше: динамически расширяющиеся или фиксированного размера?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#convert-to-fixed">Как конвертировать динамически расширяющийся образ диска VirtualBox в фиксированный?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#convert-vdi-to-fixed">Как конвертировать динамически расширяющийся образ диска VirtualBox в фиксированный?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qcow2">Как конвертировать динамически расширяющийся образ диска QCOW2 в фиксированный?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kvm-cpu">Можно ли использовать KVM на CPU без поддержки аппаратной виртуализации?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kvm-move-directory">Можно ли перенести каталог с образами виртуальных машин KVM?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kvm-transfer">Как переместить виртуальную машину KVM на другой ПК?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#virtualbox-transfer">Как переместить виртуальную машину VirtualBox на другой ПК?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kvm-windows">Как правильно установить в KVM Windows?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#qcow2">Какой тип QCOW2 образов выбрать?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qcow2-type">Какой тип QCOW2 образов выбрать?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qcow2-dynamic">Что нужно знать о динамически расширяющихся образах?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qcow2-fixed">Что нужно знать об образах фиксированного размера?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#qcow2-resize">Как увеличить размер дискового образа QCOW2?</a></li>
