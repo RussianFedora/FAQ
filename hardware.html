@@ -1200,7 +1200,7 @@ sudo chmod 0644 /etc/udev/50-usb-trim.rules
 <section id="amd-pstate">
 <span id="index-80"></span><span id="id49"></span><h2>Как улучшить энергосбережение процессоров AMD?<a class="headerlink" href="#amd-pstate" title="Permalink to this heading">¶</a></h2>
 <p>Многие процессоры AMD с архитектурами Zen2, Zen3 и более новые поддерживают улучшенный механизм переключения тактовой частоты <a class="reference external" href="https://docs.kernel.org/admin-guide/pm/amd-pstate.html">amd-pstate</a>, позволяющий уменьшить энергопотребление за счёт снижения тактовой частоты в простое.</p>
-<p>Для его активации пропишем <a class="reference internal" href="administration.html#kernelpm-perm"><span class="std std-ref">следующие параметры ядра</span></a> Linux:</p>
+<p>Для его активации пропишем <a class="reference internal" href="administration.html#kernelpm-perm"><span class="std std-ref">следующий параметр ядра</span></a>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>amd_pstate=passive
 </pre></div>
 </div>
