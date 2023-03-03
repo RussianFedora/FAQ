@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Работа в системе &#8212; Неофициальный FAQ по Fedora (версия 2022.12.30)</title>
+    <title>Работа в системе &#8212; Неофициальный FAQ по Fedora (версия 2023.03.03)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -16,7 +16,7 @@
     <script src="_static/translations.js"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
     <script defer="defer" src="_static/search.js"></script>
-    <link rel="shortcut icon" href="_static/faq-icon.ico"/>
+    <link rel="icon" href="_static/faq-icon.ico"/>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
     <link rel="next" title="Сторонние приложения" href="using-applications.html" />
@@ -255,14 +255,14 @@ export QT_SCALE_FACTOR=2
 <span id="index-23"></span><span id="id13"></span><h2>Как переместить стандартные каталоги для документов, загрузок и т.д.?<a class="headerlink" href="#xdg-reallocate" title="Permalink to this heading">¶</a></h2>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">~/.config/user-dirs.dirs</span></code> в любом текстовом редакторе и внесём свои правки.</p>
 <p>Стандартные настройки:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">XDG_DESKTOP_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Рабочий стол&quot;</span><span class="w"></span>
-<span class="na">XDG_DOCUMENTS_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Документы&quot;</span><span class="w"></span>
-<span class="na">XDG_DOWNLOAD_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Загрузки&quot;</span><span class="w"></span>
-<span class="na">XDG_MUSIC_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Музыка&quot;</span><span class="w"></span>
-<span class="na">XDG_PICTURES_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Изображения&quot;</span><span class="w"></span>
-<span class="na">XDG_PUBLICSHARE_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Общедоступные&quot;</span><span class="w"></span>
-<span class="na">XDG_TEMPLATES_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Шаблоны&quot;</span><span class="w"></span>
-<span class="na">XDG_VIDEOS_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Видео&quot;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">XDG_DESKTOP_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Рабочий стол&quot;</span>
+<span class="na">XDG_DOCUMENTS_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Документы&quot;</span>
+<span class="na">XDG_DOWNLOAD_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Загрузки&quot;</span>
+<span class="na">XDG_MUSIC_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Музыка&quot;</span>
+<span class="na">XDG_PICTURES_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Изображения&quot;</span>
+<span class="na">XDG_PUBLICSHARE_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Общедоступные&quot;</span>
+<span class="na">XDG_TEMPLATES_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Шаблоны&quot;</span>
+<span class="na">XDG_VIDEOS_DIR</span><span class="o">=</span><span class="s">&quot;$HOME/Видео&quot;</span>
 </pre></div>
 </div>
 <p>Применим изменения:</p>
@@ -278,11 +278,11 @@ export QT_SCALE_FACTOR=2
 </pre></div>
 </div>
 <p>Добавим в самый конец следующие строки:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Wayland]</span><span class="w"></span>
-<span class="na">EnableHiDPI</span><span class="o">=</span><span class="s">true</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Wayland]</span>
+<span class="na">EnableHiDPI</span><span class="o">=</span><span class="s">true</span>
 
-<span class="k">[X11]</span><span class="w"></span>
-<span class="na">EnableHiDPI</span><span class="o">=</span><span class="s">true</span><span class="w"></span>
+<span class="k">[X11]</span>
+<span class="na">EnableHiDPI</span><span class="o">=</span><span class="s">true</span>
 </pre></div>
 </div>
 <p>Сохраним изменения и перезапустим систему.</p>
@@ -295,8 +295,8 @@ export QT_SCALE_FACTOR=2
 </pre></div>
 </div>
 <p>Добавим в самый конец следующие строки:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Theme]</span><span class="w"></span>
-<span class="na">EnableAvatars</span><span class="o">=</span><span class="s">false</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Theme]</span>
+<span class="na">EnableAvatars</span><span class="o">=</span><span class="s">false</span>
 </pre></div>
 </div>
 <p>Сохраним изменения и перезапустим систему.</p>
@@ -663,9 +663,9 @@ export SUDO_EDITOR=vim
 </pre></div>
 </div>
 <p>Внесём изменения в секцию <strong>daemon</strong>:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[daemon]</span><span class="w"></span>
-<span class="na">WaylandEnable</span><span class="o">=</span><span class="s">false</span><span class="w"></span>
-<span class="na">DefaultSession</span><span class="o">=</span><span class="s">gnome-xorg.desktop</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[daemon]</span>
+<span class="na">WaylandEnable</span><span class="o">=</span><span class="s">false</span>
+<span class="na">DefaultSession</span><span class="o">=</span><span class="s">gnome-xorg.desktop</span>
 </pre></div>
 </div>
 <p>Сохраним изменения и перезагрузим устройство:</p>
@@ -709,16 +709,16 @@ restorecon -Rv ~/.config/fontconfig
 <span class="cp">&lt;!DOCTYPE fontconfig SYSTEM &quot;urn:fontconfig:fonts.dtd&quot;&gt;</span>
 <span class="nt">&lt;fontconfig&gt;</span>
 <span class="nt">&lt;alias&gt;</span>
-    <span class="nt">&lt;family&gt;</span>Foo Bar<span class="nt">&lt;/family&gt;</span>
-    <span class="nt">&lt;prefer&gt;</span>
-        <span class="nt">&lt;family&gt;</span>Noto Sans<span class="nt">&lt;/family&gt;</span>
-    <span class="nt">&lt;/prefer&gt;</span>
+<span class="w">    </span><span class="nt">&lt;family&gt;</span>Foo<span class="w"> </span>Bar<span class="nt">&lt;/family&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prefer&gt;</span>
+<span class="w">        </span><span class="nt">&lt;family&gt;</span>Noto<span class="w"> </span>Sans<span class="nt">&lt;/family&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/prefer&gt;</span>
 <span class="nt">&lt;/alias&gt;</span>
 <span class="nt">&lt;alias&gt;</span>
-    <span class="nt">&lt;family&gt;</span>Foo Bar Emoji<span class="nt">&lt;/family&gt;</span>
-    <span class="nt">&lt;prefer&gt;</span>
-        <span class="nt">&lt;family&gt;</span>Noto Color Emoji<span class="nt">&lt;/family&gt;</span>
-    <span class="nt">&lt;/prefer&gt;</span>
+<span class="w">    </span><span class="nt">&lt;family&gt;</span>Foo<span class="w"> </span>Bar<span class="w"> </span>Emoji<span class="nt">&lt;/family&gt;</span>
+<span class="w">    </span><span class="nt">&lt;prefer&gt;</span>
+<span class="w">        </span><span class="nt">&lt;family&gt;</span>Noto<span class="w"> </span>Color<span class="w"> </span>Emoji<span class="nt">&lt;/family&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/prefer&gt;</span>
 <span class="nt">&lt;/alias&gt;</span>
 <span class="nt">&lt;/fontconfig&gt;</span>
 </pre></div>
@@ -841,7 +841,7 @@ restorecon -Rv ~/.config/fontconfig
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018 - 2022, EasyCoding Team and contributors.
+      &copy;2018 - 2023, EasyCoding Team and contributors.
       
     </div>
 

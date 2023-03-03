@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Виртуализация &#8212; Неофициальный FAQ по Fedora (версия 2022.12.30)</title>
+    <title>Виртуализация &#8212; Неофициальный FAQ по Fedora (версия 2023.03.03)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -16,7 +16,7 @@
     <script src="_static/translations.js"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
     <script defer="defer" src="_static/search.js"></script>
-    <link rel="shortcut icon" href="_static/faq-icon.ico"/>
+    <link rel="icon" href="_static/faq-icon.ico"/>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
     <link rel="next" title="Безопасность" href="security.html" />
@@ -115,11 +115,11 @@ sudo usermod -a -G vboxsf $(whoami)
 <section id="cpu-windows">
 <span id="windows-cpuvuln"></span><span id="index-8"></span><h2>Можно ли отключить защиту от уязвимостей CPU в гостевых Windows внутри виртуальных машин?<a class="headerlink" href="#cpu-windows" title="Permalink to this heading">¶</a></h2>
 <p>Да, <a class="reference external" href="https://support.microsoft.com/en-us/help/4072698/">согласно MSDN</a>, при помощи следующего REG файла:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">Windows Registry Editor Version 5.00</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">Windows Registry Editor Version 5.00</span>
 
-<span class="k">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]</span><span class="w"></span>
-<span class="na">&quot;FeatureSettingsOverride&quot;</span><span class="o">=</span><span class="s">dword:00000003</span><span class="w"></span>
-<span class="na">&quot;FeatureSettingsOverrideMask&quot;</span><span class="o">=</span><span class="s">dword:00000003</span><span class="w"></span>
+<span class="k">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]</span>
+<span class="na">&quot;FeatureSettingsOverride&quot;</span><span class="o">=</span><span class="s">dword:00000003</span>
+<span class="na">&quot;FeatureSettingsOverrideMask&quot;</span><span class="o">=</span><span class="s">dword:00000003</span>
 </pre></div>
 </div>
 </section>
@@ -290,19 +290,19 @@ sudo restorecon -Rv /media/foo-bar/images
 <section id="kvm-desktop-entry">
 <span id="index-23"></span><span id="id18"></span><h2>Как создать ярлык запуска виртуальной машины KVM?<a class="headerlink" href="#kvm-desktop-entry" title="Permalink to this heading">¶</a></h2>
 <p>Для создания ярлыка в главном меню рабочей среды, создадим файл <code class="docutils literal notranslate"><span class="pre">fedora-rawhide.desktop</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">~/.local/share/applications</span></code> следующего содержания:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Desktop Entry]</span><span class="w"></span>
-<span class="na">Name</span><span class="o">=</span><span class="s">Fedora Rawhide</span><span class="w"></span>
-<span class="na">Name[ru_RU]</span><span class="o">=</span><span class="s">Fedora Rawhide</span><span class="w"></span>
-<span class="na">GenericName</span><span class="o">=</span><span class="s">Start Fedora Rawhide</span><span class="w"></span>
-<span class="na">GenericName[ru_RU]</span><span class="o">=</span><span class="s">Запуск Fedora Rawhide</span><span class="w"></span>
-<span class="na">Comment</span><span class="o">=</span><span class="s">Start Fedora Rawhide</span><span class="w"></span>
-<span class="na">Comment[ru_RU]</span><span class="o">=</span><span class="s">Запуск Fedora Rawhide</span><span class="w"></span>
-<span class="na">Exec</span><span class="o">=</span><span class="s">/usr/bin/virt-manager --connect &quot;qemu:///session&quot; --show-domain-console &quot;Fedora-Rawhide&quot;</span><span class="w"></span>
-<span class="na">Icon</span><span class="o">=</span><span class="s">virtualbox</span><span class="w"></span>
-<span class="na">Categories</span><span class="o">=</span><span class="s">Development;</span><span class="w"></span>
-<span class="na">StartupNotify</span><span class="o">=</span><span class="s">false</span><span class="w"></span>
-<span class="na">Terminal</span><span class="o">=</span><span class="s">false</span><span class="w"></span>
-<span class="na">Type</span><span class="o">=</span><span class="s">Application</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Desktop Entry]</span>
+<span class="na">Name</span><span class="o">=</span><span class="s">Fedora Rawhide</span>
+<span class="na">Name[ru_RU]</span><span class="o">=</span><span class="s">Fedora Rawhide</span>
+<span class="na">GenericName</span><span class="o">=</span><span class="s">Start Fedora Rawhide</span>
+<span class="na">GenericName[ru_RU]</span><span class="o">=</span><span class="s">Запуск Fedora Rawhide</span>
+<span class="na">Comment</span><span class="o">=</span><span class="s">Start Fedora Rawhide</span>
+<span class="na">Comment[ru_RU]</span><span class="o">=</span><span class="s">Запуск Fedora Rawhide</span>
+<span class="na">Exec</span><span class="o">=</span><span class="s">/usr/bin/virt-manager --connect &quot;qemu:///session&quot; --show-domain-console &quot;Fedora-Rawhide&quot;</span>
+<span class="na">Icon</span><span class="o">=</span><span class="s">virtualbox</span>
+<span class="na">Categories</span><span class="o">=</span><span class="s">Development</span><span class="c1">;</span>
+<span class="na">StartupNotify</span><span class="o">=</span><span class="s">false</span>
+<span class="na">Terminal</span><span class="o">=</span><span class="s">false</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">Application</span>
 </pre></div>
 </div>
 <p>Здесь вместо <strong>Fedora-Rawhide</strong> укажем реальное имя виртуальной машины KVM, а <strong>qemu:///session</strong> – сеанс, в котором она создана (<strong>session</strong> – пользовательский; <strong>system</strong> – системный).</p>
@@ -382,7 +382,7 @@ sudo restorecon -Rv /media/foo-bar/images
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018 - 2022, EasyCoding Team and contributors.
+      &copy;2018 - 2023, EasyCoding Team and contributors.
       
     </div>
 

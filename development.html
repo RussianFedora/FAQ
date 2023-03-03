@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2022.12.30)</title>
+    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2023.03.03)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -16,7 +16,7 @@
     <script src="_static/translations.js"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
     <script defer="defer" src="_static/search.js"></script>
-    <link rel="shortcut icon" href="_static/faq-icon.ico"/>
+    <link rel="icon" href="_static/faq-icon.ico"/>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
     <link rel="next" title="Оптимизация и тонкая настройка" href="tips-and-tricks.html" />
@@ -131,11 +131,11 @@ git commit -m &quot;Description of our changes.&quot;
 </ol>
 </div></blockquote>
 <p>Пример файла <code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code> для работы с почтовым сервисом Gmail:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[sendemail]</span><span class="w"></span>
-<span class="w">    </span><span class="na">smtpEncryption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">tls</span><span class="w"></span>
-<span class="w">    </span><span class="na">smtpServer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">smtp.gmail.com</span><span class="w"></span>
-<span class="w">    </span><span class="na">smtpUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yourname@gmail.com</span><span class="w"></span>
-<span class="w">    </span><span class="na">smtpServerPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">587</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[sendemail]</span>
+<span class="w">    </span><span class="na">smtpEncryption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">tls</span>
+<span class="w">    </span><span class="na">smtpServer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">smtp.gmail.com</span>
+<span class="w">    </span><span class="na">smtpUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yourname@gmail.com</span>
+<span class="w">    </span><span class="na">smtpServerPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">587</span>
 </pre></div>
 </div>
 </section>
@@ -261,13 +261,13 @@ git rebase master
 </pre></div>
 </div>
 <p>Создадим простейший пример <code class="docutils literal notranslate"><span class="pre">helloworld.cpp</span></code>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[],</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">env</span><span class="p">[])</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello, World!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[],</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">env</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello, World!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Скомпилируем и слинкуем его:</p>
@@ -305,17 +305,17 @@ git rebase master
 <span id="ldpreload-safety"></span><span id="index-18"></span><h2>Безопасно ли использовать LD_PRELOAD для загрузки сторонних библиотек?<a class="headerlink" href="#ld-preload" title="Permalink to this heading">¶</a></h2>
 <p>Нет, это не безопасно, т.к. существует возможность создания внутри библиотек <a class="reference external" href="https://gcc.gnu.org/onlinedocs/gcc-8.2.0/gcc/Common-Function-Attributes.html">суперглобальных конструкторов</a>, которые будут выполняться в момент присоединения библиотеки <em>до запуска приложения</em>.</p>
 <p>Создадим и скомпилируем простой пример <code class="docutils literal notranslate"><span class="pre">example.c</span></code>:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
 
-<span class="k">static</span><span class="w"> </span><span class="n">__attribute__</span><span class="p">((</span><span class="n">constructor</span><span class="w"> </span><span class="p">(</span><span class="mi">200</span><span class="p">)))</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">bar</span><span class="p">()</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Method bar() was called.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="n">__attribute__</span><span class="p">((</span><span class="n">constructor</span><span class="w"> </span><span class="p">(</span><span class="mi">200</span><span class="p">)))</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">bar</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Method bar() was called.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="k">static</span><span class="w"> </span><span class="n">__attribute__</span><span class="p">((</span><span class="n">constructor</span><span class="w"> </span><span class="p">(</span><span class="mi">150</span><span class="p">)))</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">foo</span><span class="p">()</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Method foo() was called.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="n">__attribute__</span><span class="p">((</span><span class="n">constructor</span><span class="w"> </span><span class="p">(</span><span class="mi">150</span><span class="p">)))</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">foo</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Method foo() was called.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Данный метод содержит сразу два суперглобальных конструктора с указанием приоритетов. Чем ниже приоритет, тем скорее данный метод будет исполнен.</p>
@@ -371,46 +371,46 @@ export NM=%{_bindir}/gcc-nm
 </pre></div>
 </div>
 <p>Создадим файл <code class="docutils literal notranslate"><span class="pre">rpm-unneeded.c</span></code> с исходным текстом программы:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;solv/pool.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;solv/poolarch.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;solv/repo_rpmdb.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;solv/solver.h&gt;</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;solv/pool.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;solv/poolarch.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;solv/repo_rpmdb.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;solv/solver.h&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">Pool</span><span class="w"> </span><span class="o">*</span><span class="n">pool</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">Repo</span><span class="w"> </span><span class="o">*</span><span class="n">rpmdb</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">Solver</span><span class="w"> </span><span class="o">*</span><span class="n">solver</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">Queue</span><span class="w"> </span><span class="n">q</span><span class="p">;</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Pool</span><span class="w"> </span><span class="o">*</span><span class="n">pool</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Repo</span><span class="w"> </span><span class="o">*</span><span class="n">rpmdb</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Solver</span><span class="w"> </span><span class="o">*</span><span class="n">solver</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Queue</span><span class="w"> </span><span class="n">q</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">pool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pool_create</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">pool_setarch</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">pool_set_flag</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span><span class="w"> </span><span class="n">POOL_FLAG_IMPLICITOBSOLETEUSESCOLORS</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">pool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pool_create</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pool_setarch</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pool_set_flag</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span><span class="w"> </span><span class="n">POOL_FLAG_IMPLICITOBSOLETEUSESCOLORS</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">rpmdb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repo_create</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;@system&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">repo_add_rpmdb</span><span class="p">(</span><span class="n">rpmdb</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">pool</span><span class="o">-&gt;</span><span class="n">installed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rpmdb</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">rpmdb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repo_create</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;@system&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">repo_add_rpmdb</span><span class="p">(</span><span class="n">rpmdb</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pool</span><span class="o">-&gt;</span><span class="n">installed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rpmdb</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">solver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solver_create</span><span class="p">(</span><span class="n">pool</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">solver_set_flag</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span><span class="w"> </span><span class="n">SOLVER_FLAG_KEEP_EXPLICIT_OBSOLETES</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">solver_set_flag</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span><span class="w"> </span><span class="n">SOLVER_FLAG_BEST_OBEY_POLICY</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">solver_set_flag</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span><span class="w"> </span><span class="n">SOLVER_FLAG_YUM_OBSOLETES</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">solver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solver_create</span><span class="p">(</span><span class="n">pool</span><span class="p">);</span>
+<span class="w">    </span><span class="n">solver_set_flag</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span><span class="w"> </span><span class="n">SOLVER_FLAG_KEEP_EXPLICIT_OBSOLETES</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">solver_set_flag</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span><span class="w"> </span><span class="n">SOLVER_FLAG_BEST_OBEY_POLICY</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">solver_set_flag</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span><span class="w"> </span><span class="n">SOLVER_FLAG_YUM_OBSOLETES</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">queue_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">solver_solve</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">solver_get_unneeded</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">queue_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
+<span class="w">    </span><span class="n">solver_solve</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
+<span class="w">    </span><span class="n">solver_get_unneeded</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">count</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pool_solvid2str</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">count</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pool_solvid2str</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">solver_free</span><span class="p">(</span><span class="n">solver</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">queue_free</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">pool_free</span><span class="p">(</span><span class="n">pool</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">solver_free</span><span class="p">(</span><span class="n">solver</span><span class="p">);</span>
+<span class="w">    </span><span class="n">queue_free</span><span class="p">(</span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pool_free</span><span class="p">(</span><span class="n">pool</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Скомпилируем и слинкуем приложение:</p>
@@ -735,8 +735,8 @@ touch ~/.config/rpkg/fedpkg.conf
 </pre></div>
 </div>
 <p>Загрузим созданный файл <code class="docutils literal notranslate"><span class="pre">~/.config/rpkg/fedpkg.conf</span></code> в любом текстовом редакторе и добавим:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[fedpkg.pagure]</span><span class="w"></span>
-<span class="na">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">XXXXXXXXXX</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[fedpkg.pagure]</span>
+<span class="na">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">XXXXXXXXXX</span>
 </pre></div>
 </div>
 <p>Здесь <strong>XXXXXXXXXX</strong> – полученный от Pagure токен.</p>
@@ -1309,7 +1309,7 @@ PatchN: %{name}-other.patch
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018 - 2022, EasyCoding Team and contributors.
+      &copy;2018 - 2023, EasyCoding Team and contributors.
       
     </div>
 

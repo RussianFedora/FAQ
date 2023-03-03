@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Оборудование &#8212; Неофициальный FAQ по Fedora (версия 2022.12.30)</title>
+    <title>Оборудование &#8212; Неофициальный FAQ по Fedora (версия 2023.03.03)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -16,7 +16,7 @@
     <script src="_static/translations.js"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
     <script defer="defer" src="_static/search.js"></script>
-    <link rel="shortcut icon" href="_static/faq-icon.ico"/>
+    <link rel="icon" href="_static/faq-icon.ico"/>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
     <link rel="next" title="Разработка и сборка пакетов" href="development.html" />
@@ -253,7 +253,7 @@
 <li><p>Подключим официальный репозиторий AMD:</p></li>
 </ol>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo tee /etc/yum.repos.d/ROCm.repo <span class="s">&lt;&lt;EOF</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/yum.repos.d/ROCm.repo<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 <span class="s">[ROCm]</span>
 <span class="s">name=ROCm</span>
 <span class="s">baseurl=https://repo.radeon.com/rocm/centos8/4.0.1</span>
@@ -310,10 +310,10 @@ sudo rpm -Uvh --nodeps https://repo.radeon.com/rocm/centos8/4.0.1/rocminfo-1.4.0
 </pre></div>
 </div>
 <p>Зададим необходимые для работы <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменные окружения</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/opt/rocm-4.0.1/opencl/bin
-<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/opt/rocm-4.0.1/bin:<span class="nv">$PATH</span> <span class="se">\</span>
-    <span class="nv">ROCM_PATH</span><span class="o">=</span>/opt/rocm-4.0.1 <span class="se">\</span>
-    <span class="nv">HIP_PATH</span><span class="o">=</span>/opt/rocm-4.0.1/hip
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/opt/rocm-4.0.1/opencl/bin
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>/opt/rocm-4.0.1/bin:<span class="nv">$PATH</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nv">ROCM_PATH</span><span class="o">=</span>/opt/rocm-4.0.1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nv">HIP_PATH</span><span class="o">=</span>/opt/rocm-4.0.1/hip
 </pre></div>
 </div>
 </div></blockquote>
@@ -771,8 +771,8 @@ sudo dnf install gcc kernel-devel kernel-headers akmod-wl
 </pre></div>
 </div>
 <p>Активируем автоматическое подключение доверенных устройств при запуске:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Policy]</span><span class="w"></span>
-<span class="na">AutoEnable</span><span class="o">=</span><span class="s">true</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Policy]</span>
+<span class="na">AutoEnable</span><span class="o">=</span><span class="s">true</span>
 </pre></div>
 </div>
 <p>Любым способом определим HW-адрес устройства (отображается как при поиске, так и в списке подключённых), затем войдём в консоль настройки Blueooth сервера:</p>
@@ -1041,15 +1041,15 @@ touch ~/.config/systemd/user/mpris-proxy.service
 </pre></div>
 </div>
 <p>Откроем файл <code class="docutils literal notranslate"><span class="pre">~/.config/systemd/user/mpris-proxy.service</span></code> в любом <a class="reference internal" href="using-system.html#editor-selection"><span class="std std-ref">текстовом редакторе</span></a> и добавим следующее содержимое:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span><span class="w"></span>
-<span class="na">Description</span><span class="o">=</span><span class="s">Forward bluetooth midi controls via mpris2 so they are picked up by supporting media players</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Forward bluetooth midi controls via mpris2 so they are picked up by supporting media players</span>
 
-<span class="k">[Service]</span><span class="w"></span>
-<span class="na">Type</span><span class="o">=</span><span class="s">simple</span><span class="w"></span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/mpris-proxy</span><span class="w"></span>
+<span class="k">[Service]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/mpris-proxy</span>
 
-<span class="k">[Install]</span><span class="w"></span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span><span class="w"></span>
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
 </pre></div>
 </div>
 <p>Установим правильный контекст безопасности <a class="reference internal" href="security.html#selinux"><span class="std std-ref">SELinux</span></a>:</p>
@@ -1197,6 +1197,24 @@ sudo chmod 0644 /etc/udev/50-usb-trim.rules
 </pre></div>
 </div>
 </section>
+<section id="amd-pstate">
+<span id="index-80"></span><span id="id49"></span><h2>Как улучшить энергосбережение процессоров AMD?<a class="headerlink" href="#amd-pstate" title="Permalink to this heading">¶</a></h2>
+<p>Многие процессоры AMD с архитектурами Zen2, Zen3 и новее поддерживают улучшенный механизм переключения тактовой частоты <strong>amd-pstate</strong>, позволяющий уменьшить энергопотребление процессора, снизить минимальную частоту в простое.</p>
+<p>Для его активации пропишем следующие параметры ядра Linux:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>amd_pstate=passive
+</pre></div>
+</div>
+<p>Произведём перезагрузку системы.</p>
+<p>Установим пакет <strong>kernel-tools</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install kernel-tools
+</pre></div>
+</div>
+<p>Проверим работоспособность и выведем более подробные сведения о текущем режиме:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cpupower frequency-info
+</pre></div>
+</div>
+<p>В случае если процессор не поддерживает данную технологию, будет использован традиционный механизм <strong>acpi-cpufreq</strong>.</p>
+</section>
 </section>
 
 
@@ -1307,6 +1325,7 @@ sudo chmod 0644 /etc/udev/50-usb-trim.rules
 <li class="toctree-l2"><a class="reference internal" href="#trim-usb">Как включить поддержку TRIM на USB устройствах?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#trim-usb-manual">Как вручную выполнить TRIM на USB устройстве?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pipewire-wireplumber">Как заменить менеджер сессий PipeWire с WirePlumber на альтернативный?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#amd-pstate">Как улучшить энергосбережение процессоров AMD?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Разработка и сборка пакетов</a></li>
@@ -1328,7 +1347,7 @@ sudo chmod 0644 /etc/udev/50-usb-trim.rules
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018 - 2022, EasyCoding Team and contributors.
+      &copy;2018 - 2023, EasyCoding Team and contributors.
       
     </div>
 
