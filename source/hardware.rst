@@ -1767,7 +1767,7 @@ ICC профиль можно получить либо на сайте прои
 
     sudo systemctl reboot
 
-.. index:: amd, acpi, pstate, powersave
+.. index:: amd, acpi, pstate, powersave, frequency-info, cpufreq, kernel
 .. _amd-pstate:
 
 Как улучшить энергосбережение процессоров AMD?
@@ -1787,7 +1787,7 @@ ICC профиль можно получить либо на сайте прои
 
     systemctl reboot
 
-Для проверки работоспособности установим пакет **kernel-tools**:
+Для проверки работоспособности воспользуемся утилитой **frequency-info** из пакета **kernel-tools**:
 
 .. code-block:: text
 
