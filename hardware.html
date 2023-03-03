@@ -1199,21 +1199,24 @@ sudo chmod 0644 /etc/udev/50-usb-trim.rules
 </section>
 <section id="amd-pstate">
 <span id="index-80"></span><span id="id49"></span><h2>Как улучшить энергосбережение процессоров AMD?<a class="headerlink" href="#amd-pstate" title="Permalink to this heading">¶</a></h2>
-<p>Многие процессоры AMD с архитектурами Zen2, Zen3 и новее поддерживают улучшенный механизм переключения тактовой частоты <strong>amd-pstate</strong>, позволяющий уменьшить энергопотребление процессора, снизить минимальную частоту в простое.</p>
-<p>Для его активации пропишем следующие параметры ядра Linux:</p>
+<p>Многие процессоры AMD с архитектурами Zen2, Zen3 и более новые поддерживают улучшенный механизм переключения тактовой частоты <a class="reference external" href="https://docs.kernel.org/admin-guide/pm/amd-pstate.html">amd-pstate</a>, позволяющий уменьшить энергопотребление за счёт снижения тактовой частоты в простое.</p>
+<p>Для его активации пропишем <a class="reference internal" href="administration.html#kernelpm-perm"><span class="std std-ref">следующие параметры ядра</span></a> Linux:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>amd_pstate=passive
 </pre></div>
 </div>
-<p>Произведём перезагрузку системы.</p>
-<p>Установим пакет <strong>kernel-tools</strong>:</p>
+<p>Произведём перезагрузку системы:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>systemctl reboot
+</pre></div>
+</div>
+<p>Для проверки работоспособности установим пакет <strong>kernel-tools</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install kernel-tools
 </pre></div>
 </div>
-<p>Проверим работоспособность и выведем более подробные сведения о текущем режиме:</p>
+<p>Выведем подробные сведения о текущем режиме энергосбережения:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cpupower frequency-info
 </pre></div>
 </div>
-<p>В случае если процессор не поддерживает данную технологию, будет использован традиционный механизм <strong>acpi-cpufreq</strong>.</p>
+<p>В случае если процессор не поддерживает <strong>amd-pstate</strong>, будет использован традиционный механизм <strong>acpi-cpufreq</strong>.</p>
 </section>
 </section>
 
