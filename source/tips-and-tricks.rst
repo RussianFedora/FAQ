@@ -784,3 +784,34 @@ Fedora 36 KDE не загружается при наличии видеокар
 .. code-block:: text
 
     systemctl reboot
+
+.. index:: flash, usb, live, installation
+.. _usb-invalid-image:
+
+При загрузке с Live USB появляется ошибка Invalid image. Как исправить?
+============================================================================
+
+Начиная с версии 15.6-2 предзагрузчик shim, используемый в :ref:`Live-образах Fedora <usb-flash>`, на множестве моделей оборудования предыдущих поколений вместо запуска системы выводит следующую ошибку:
+
+.. code-block:: text
+
+    Invalid image
+    Failed to read header: Unsupported
+    Failed to load image: Unsupported
+    start_image() returned Unsupported
+
+Это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=2113005>`__. В качестве временного решения после записи ISO на USB Flash, смонтируем его и удалим файлы shim, а на их место скопируем GRUB 2:
+
+.. code-block:: text
+
+    sudo mkdir /run/media/flash
+    sudo mount -t auto /dev/sdX2 /run/media/flash
+    sudo rm -f /run/media/flash/BOOT{IA32,X64}.EFI
+    sudo mv /run/media/flash/grubia32.efi /run/media/flash/BOOTIA32.EFI
+    sudo mv /run/media/flash/grubx64.efi /run/media/flash/BOOTX64.EFI
+    sudo umount /run/media/flash
+    sudo rmdir /run/media/flash
+
+Здесь **/dev/sdX** -- устройство USB-накопителя.
+
+Из-за запуска без помощи shim, подписанного ключом Microsoft, поддержка UEFI Secure Boot будет недоступна, поэтому в UEFI BIOS отключим эту функцию на время установки системы.
