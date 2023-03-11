@@ -785,7 +785,7 @@ Fedora 36 KDE не загружается при наличии видеокар
 
     systemctl reboot
 
-.. index:: flash, usb, live, installation
+.. index:: flash, usb, live, installation, grub, shim, boot
 .. _usb-invalid-image:
 
 При загрузке с Live USB возникает ошибка Invalid image. Как исправить?
