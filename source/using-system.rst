@@ -1129,7 +1129,7 @@ GUI:
 
 .. code-block:: text
 
-    find ~ ! -user $(whoami)
+    find ~ ! -user $(whoami) -print
 
 Если таковые были найдены, автоматически исправим владельца и группу для них:
 
