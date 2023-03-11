@@ -543,7 +543,7 @@ systemctl status systemd-vconsole-setup.service
 </div>
 </section>
 <section id="live-usb-invalid-image">
-<span id="usb-invalid-image"></span><span id="index-32"></span><h2>При загрузке с Live USB появляется ошибка Invalid image. Как исправить?<a class="headerlink" href="#live-usb-invalid-image" title="Permalink to this heading">¶</a></h2>
+<span id="usb-invalid-image"></span><span id="index-32"></span><h2>При загрузке с Live USB возникает ошибка Invalid image. Как исправить?<a class="headerlink" href="#live-usb-invalid-image" title="Permalink to this heading">¶</a></h2>
 <p>Начиная с версии 15.6-2 предзагрузчик shim, используемый в <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">Live-образах Fedora</span></a>, на множестве моделей оборудования предыдущих поколений вместо запуска системы выводит следующую ошибку:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Invalid image
 Failed to read header: Unsupported
@@ -562,7 +562,7 @@ sudo rmdir /run/media/flash
 </pre></div>
 </div>
 <p>Здесь <strong>/dev/sdX</strong> – устройство USB-накопителя.</p>
-<p>Из-за запуска без помощи shim, подписанного ключом Microsoft, поддержка UEFI Secure Boot будет недоступна, поэтому в UEFI BIOS отключим эту функцию на время установки системы.</p>
+<p>Из-за запуска без помощи shim, подписанного ключом Microsoft, поддержка <a class="reference internal" href="installation.html#secure-boot"><span class="std std-ref">UEFI Secure Boot</span></a> будет недоступна, поэтому в UEFI BIOS отключим эту функцию.</p>
 </section>
 </section>
 
@@ -628,7 +628,7 @@ sudo rmdir /run/media/flash
 <li class="toctree-l2"><a class="reference internal" href="#usb">После обновления перестали работать USB принтеры и сканеры. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fedora-36-kde-nvidia">Fedora 36 KDE не загружается при наличии видеокарты NVIDIA. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#linux-firmware-intel-amd">После обновления linux-firmware перестали работать видеокарты Intel и AMD. Как исправить?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#live-usb-invalid-image">При загрузке с Live USB появляется ошибка Invalid image. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#live-usb-invalid-image">При загрузке с Live USB возникает ошибка Invalid image. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
