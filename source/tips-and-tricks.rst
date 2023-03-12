@@ -785,7 +785,7 @@ Fedora 36 KDE не загружается при наличии видеокар
 
     systemctl reboot
 
-.. index:: flash, usb, live, installation, grub, shim, boot, workaround, curl, rpm2cpio
+.. index:: flash, usb, live, installation, grub, shim, boot, workaround, curl, rpm2archive, tar
 .. _usb-invalid-image:
 
 При загрузке с Live USB возникает ошибка Invalid image. Как исправить?
@@ -802,22 +802,13 @@ Fedora 36 KDE не загружается при наличии видеокар
 
 Это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=2113005>`__, которая на данный момент не решена и затрагивает Fedora 37 и 38.
 
-В качестве обходного пути скачаем shim 15.4-5, в котором регрессия ещё отсутствовала:
-
-.. code-block:: text
-
-    curl https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Everything/x86_64/os/Packages/s/shim-ia32-15.4-5.x86_64.rpm -o /tmp/shim-ia32.rpm
-    curl https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Everything/x86_64/os/Packages/s/shim-x64-15.4-5.x86_64.rpm -o /tmp/shim-x64.rpm
-
-Распакуем загруженные RPM-пакеты во временный каталог:
+В качестве обходного пути скачаем не подверженный регрессии shim 15.4-5 и при помощи утилит **rpm2archive** и **tar** распакуем во временный каталог ``/tmp/shim``:
 
 .. code-block:: text
 
     mkdir /tmp/shim
-    pushd /tmp/shim
-    rpm2cpio /tmp/shim-ia32.rpm | cpio -idmv
-    rpm2cpio /tmp/shim-x64.rpm | cpio -idmv
-    popd
+    curl -s https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Everything/x86_64/os/Packages/s/shim-ia32-15.4-5.x86_64.rpm | rpm2archive - | tar -xz -C /tmp/shim
+    curl -s https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Everything/x86_64/os/Packages/s/shim-x64-15.4-5.x86_64.rpm | rpm2archive - | tar -xz -C /tmp/shim
 
 Смонтируем созданную ранее USB Flash с Live-образом Fedora и заменим файлы shim:
 
@@ -836,7 +827,6 @@ Fedora 36 KDE не загружается при наличии видеокар
 
 .. code-block:: text
 
-    rm -f /tmp/shim-{ia32,x64}.rpm
     rm -rf /tmp/shim
 
 Внимание! При загрузке такого модифицированного образа следует выбирать пункт **Start Fedora**, без проверки целостности, т.к. из-за замены файлов она не будет пройдена.
