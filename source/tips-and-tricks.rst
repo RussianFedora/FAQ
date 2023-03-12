@@ -785,7 +785,7 @@ Fedora 36 KDE не загружается при наличии видеокар
 
     systemctl reboot
 
-.. index:: flash, usb, live, installation, grub, shim, boot
+.. index:: flash, usb, live, installation, grub, shim, boot, workaround, curl, rpm2cpio
 .. _usb-invalid-image:
 
 При загрузке с Live USB возникает ошибка Invalid image. Как исправить?
@@ -800,18 +800,43 @@ Fedora 36 KDE не загружается при наличии видеокар
     Failed to load image: Unsupported
     start_image() returned Unsupported
 
-Это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=2113005>`__. В качестве временного решения после записи ISO на USB Flash, смонтируем его и удалим файлы shim, а на их место скопируем GRUB 2:
+Это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=2113005>`__, которая на данный момент не решена и затрагивает Fedora 37 и 38.
+
+В качестве обходного пути скачаем shim 15.4-5, в котором регрессия ещё отсутствовала:
+
+.. code-block:: text
+
+    curl https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Everything/x86_64/os/Packages/s/shim-ia32-15.4-5.x86_64.rpm -o /tmp/shim-ia32.rpm
+    curl https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Everything/x86_64/os/Packages/s/shim-x64-15.4-5.x86_64.rpm -o /tmp/shim-x64.rpm
+
+Распакуем загруженные RPM-пакеты во временный каталог:
+
+.. code-block:: text
+
+    mkdir /tmp/shim
+    pushd /tmp/shim
+    rpm2cpio /tmp/shim-ia32.rpm | cpio -idmv
+    rpm2cpio /tmp/shim-x64.rpm | cpio -idmv
+    popd
+
+Смонтируем созданную ранее USB Flash с Live-образом Fedora и заменим файлы shim:
 
 .. code-block:: text
 
     sudo mkdir /run/media/flash
     sudo mount -t auto /dev/sdX2 /run/media/flash
-    sudo rm -f /run/media/flash/BOOT{IA32,X64}.EFI
-    sudo mv /run/media/flash/grubia32.efi /run/media/flash/BOOTIA32.EFI
-    sudo mv /run/media/flash/grubx64.efi /run/media/flash/BOOTX64.EFI
+    sudo mv -f /tmp/foo/boot/efi/EFI/BOOT/BOOTIA32.EFI /run/media/flash/BOOTIA32.EFI
+    sudo mv -f /tmp/foo/boot/efi/EFI/BOOT/BOOTX64.EFI /run/media/flash/BOOTX64.EFI
     sudo umount /run/media/flash
     sudo rmdir /run/media/flash
 
 Здесь **/dev/sdX** -- устройство USB-накопителя.
 
-Из-за запуска без помощи shim, подписанного ключом Microsoft, поддержка :ref:`UEFI Secure Boot <secure-boot>` будет недоступна, поэтому в UEFI BIOS отключим эту функцию.
+Произведём очистку ненужных более файлов:
+
+.. code-block:: text
+
+    rm -f /tmp/shim-{ia32,x64}.rpm
+    rm -rf /tmp/shim
+
+Внимание! При загрузке такого модифицированного образа следует выбирать пункт **Start Fedora**, без проверки целостности, т.к. из-за замены файлов она не будет пройдена.
