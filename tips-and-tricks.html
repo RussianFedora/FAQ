@@ -552,7 +552,7 @@ start_image() returned Unsupported
 </pre></div>
 </div>
 <p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=2113005">известная проблема</a>, которая на данный момент не решена и затрагивает Fedora 37 и 38.</p>
-<p>В качестве обходного пути скачаем не подверженный регрессии shim 15.4-5 и при помощи утилит <strong>rpm2archive</strong> и <strong>tar</strong> распакуем во временный каталог <code class="docutils literal notranslate"><span class="pre">/tmp/shim</span></code>:</p>
+<p>В качестве обходного пути скачаем не подверженный регрессии shim 15.4-5 и при помощи утилит <strong>rpm2archive</strong> и <strong>tar</strong> <a class="reference internal" href="package-manager.html#rpm-extract"><span class="std std-ref">распакуем</span></a> во временный каталог <code class="docutils literal notranslate"><span class="pre">/tmp/shim</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir /tmp/shim
 curl -s https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Everything/x86_64/os/Packages/s/shim-ia32-15.4-5.x86_64.rpm | rpm2archive - | tar -xz -C /tmp/shim
 curl -s https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Everything/x86_64/os/Packages/s/shim-x64-15.4-5.x86_64.rpm | rpm2archive - | tar -xz -C /tmp/shim

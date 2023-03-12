@@ -875,6 +875,27 @@ sudo dnf repository-packages --installed updates-testing-debuginfo remove
 </pre></div>
 </div>
 </section>
+<section id="rpm-extract">
+<span id="index-87"></span><span id="id73"></span><h2>Как извлечь файлы из RPM-пакета без его установки?<a class="headerlink" href="#rpm-extract" title="Permalink to this heading">¶</a></h2>
+<section id="id74">
+<h3>Способ 1. Классический.<a class="headerlink" href="#id74" title="Permalink to this heading">¶</a></h3>
+<p>Воспользуемся <strong>rpm2cpio</strong> для преобразования RPM-пакета в CPIO-архив и при помощи одноимённого архиватора распакуем его:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir /tmp/foo-bar
+pushd /tmp/foo-bar
+rpm2cpio /path/to/foo-bar-1.0.0-1.fc37.x86_64.rpm | cpio -idmv
+popd
+</pre></div>
+</div>
+</section>
+<section id="id75">
+<h3>Способ 2. Современный.<a class="headerlink" href="#id75" title="Permalink to this heading">¶</a></h3>
+<p>Преобразуем RPM в стандартный tarball утилитой <strong>rpm2archive</strong> и осуществим извлечение файлов из него:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir /tmp/foo-bar
+cat /path/to/foo-bar-1.0.0-1.fc37.x86_64.rpm | rpm2archive - | tar -xz -C /tmp/foo-bar
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
 
@@ -985,6 +1006,7 @@ sudo dnf repository-packages --installed updates-testing-debuginfo remove
 <li class="toctree-l2"><a class="reference internal" href="#dnf-parallel-downloads">Как изменить количество одновременно загружаемых пакетов?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dnf-download-threshold">Как установить порог скорости до выбора другого зеркала?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gnome-software-flatpak-rpm">GNOME Software при установке выбирает Flatpak вместо RPM. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpm-extract">Как извлечь файлы из RPM-пакета без его установки?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="administration.html">Системное администрирование</a></li>
