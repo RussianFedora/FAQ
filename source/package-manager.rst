@@ -1373,3 +1373,31 @@ GNOME Software в конфигурации по умолчанию отдаёт 
 .. code-block:: text
 
     gsettings set org.gnome.software packaging-format-preference "['RPM', 'flatpak']"
+
+.. index:: rpm, package, extract, rpm2cpio, rpm2archive, tar, tarball, cpio
+.. _rpm-extract:
+
+Как извлечь файлы из RPM-пакета без его установки?
+======================================================
+
+Способ 1. Классический.
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Воспользуемся **rpm2cpio** для преобразования RPM-пакета в CPIO-архив и при помощи одноимённого архиватора распакуем его:
+
+.. code-block:: text
+
+    mkdir /tmp/foo-bar
+    pushd /tmp/foo-bar
+    rpm2cpio /path/to/foo-bar-1.0.0-1.fc37.x86_64.rpm | cpio -idmv
+    popd
+
+Способ 2. Современный.
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Преобразуем RPM в стандартный tarball утилитой **rpm2archive** и осуществим извлечение файлов из него:
+
+.. code-block:: text
+
+    mkdir /tmp/foo-bar
+    cat /path/to/foo-bar-1.0.0-1.fc37.x86_64.rpm | rpm2archive - | tar -xz -C /tmp/foo-bar
