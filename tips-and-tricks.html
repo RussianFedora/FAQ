@@ -552,17 +552,10 @@ start_image() returned Unsupported
 </pre></div>
 </div>
 <p>Это <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=2113005">известная проблема</a>, которая на данный момент не решена и затрагивает Fedora 37 и 38.</p>
-<p>В качестве обходного пути скачаем shim 15.4-5, в котором регрессия ещё отсутствовала:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>curl https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Everything/x86_64/os/Packages/s/shim-ia32-15.4-5.x86_64.rpm -o /tmp/shim-ia32.rpm
-curl https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Everything/x86_64/os/Packages/s/shim-x64-15.4-5.x86_64.rpm -o /tmp/shim-x64.rpm
-</pre></div>
-</div>
-<p>Распакуем загруженные RPM-пакеты во временный каталог:</p>
+<p>В качестве обходного пути скачаем не подверженный регрессии shim 15.4-5 и при помощи утилит <strong>rpm2archive</strong> и <strong>tar</strong> распакуем во временный каталог <code class="docutils literal notranslate"><span class="pre">/tmp/shim</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir /tmp/shim
-pushd /tmp/shim
-rpm2cpio /tmp/shim-ia32.rpm | cpio -idmv
-rpm2cpio /tmp/shim-x64.rpm | cpio -idmv
-popd
+curl -s https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Everything/x86_64/os/Packages/s/shim-ia32-15.4-5.x86_64.rpm | rpm2archive - | tar -xz -C /tmp/shim
+curl -s https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Everything/x86_64/os/Packages/s/shim-x64-15.4-5.x86_64.rpm | rpm2archive - | tar -xz -C /tmp/shim
 </pre></div>
 </div>
 <p>Смонтируем созданную ранее USB Flash с Live-образом Fedora и заменим файлы shim:</p>
@@ -576,8 +569,7 @@ sudo rmdir /run/media/flash
 </div>
 <p>Здесь <strong>/dev/sdX</strong> – устройство USB-накопителя.</p>
 <p>Произведём очистку ненужных более файлов:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rm -f /tmp/shim-{ia32,x64}.rpm
-rm -rf /tmp/shim
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rm -rf /tmp/shim
 </pre></div>
 </div>
 <p>Внимание! При загрузке такого модифицированного образа следует выбирать пункт <strong>Start Fedora</strong>, без проверки целостности, т.к. из-за замены файлов она не будет пройдена.</p>
