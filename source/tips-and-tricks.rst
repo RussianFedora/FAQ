@@ -825,8 +825,8 @@ Fedora 36 KDE не загружается при наличии видеокар
 
     sudo mkdir /run/media/flash
     sudo mount -t auto /dev/sdX2 /run/media/flash
-    sudo mv -f /tmp/shim/boot/efi/EFI/BOOT/BOOTIA32.EFI /run/media/flash/EFI/BOOT/BOOTIA32.EFI
-    sudo mv -f /tmp/shim/boot/efi/EFI/BOOT/BOOTX64.EFI /run/media/flash/EFI/BOOT/BOOTX64.EFI
+    sudo cp -f --preserve='mode,timestamps' /tmp/shim/boot/efi/EFI/BOOT/BOOTIA32.EFI /run/media/flash/EFI/BOOT/BOOTIA32.EFI
+    sudo cp -f --preserve='mode,timestamps' /tmp/shim/boot/efi/EFI/BOOT/BOOTX64.EFI /run/media/flash/EFI/BOOT/BOOTX64.EFI
     sudo umount /run/media/flash
     sudo rmdir /run/media/flash
 
