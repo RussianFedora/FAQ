@@ -889,7 +889,7 @@ popd
 </section>
 <section id="id75">
 <h3>Способ 2. Современный.<a class="headerlink" href="#id75" title="Permalink to this heading">¶</a></h3>
-<p>Преобразуем RPM в стандартный tarball утилитой <strong>rpm2archive</strong> и осуществим извлечение файлов из него:</p>
+<p>Конвертируем RPM в стандартный tarball утилитой <strong>rpm2archive</strong> и осуществим извлечение файлов из него:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir /tmp/foo-bar
 cat /path/to/foo-bar-1.0.0-1.fc37.x86_64.rpm | rpm2archive - | tar -xz -C /tmp/foo-bar
 </pre></div>
