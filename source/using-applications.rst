@@ -142,17 +142,17 @@
 
 Теперь можно установить :ref:`версию <telegram-fedora>` из :ref:`RPM Fusion <rpmfusion>`.
 
-.. index:: repository, codecs, multimedia, chromium, third-party
+.. index:: repository, codecs, multimedia, chromium, third-party, ffmpeg
 .. _chromium-codecs:
 
 Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?
 ==============================================================================================================================
 
-Из-за патентных ограничений браузер Chromium в репозиториях Fedora сильно кастрирован. Для восстановления полной функциональности необходимо подключить :ref:`RPM Fusion <rpmfusion>` и установить пакет с полной версией:
+Начиная с версии 110, сборки Chromium из официальных репозиториев Fedora применяют ffmpeg для работы с мультимедиа, поэтому подключим репозиторий :ref:`RPM Fusion <rpmfusion>` и установим полную версию:
 
 .. code-block:: text
 
-    sudo dnf install chromium-freeworld
+    sudo dnf install ffmpeg-libs --allowerasing
 
 .. index:: repository, codecs, multimedia, third-party, ffmpeg
 .. _firefox-codecs:
