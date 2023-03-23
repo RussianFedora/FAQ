@@ -987,6 +987,17 @@ systemctl --user enable plasma-clean-database.service
 </div>
 <p>Перезапустим графический редактор для вступления изменений в силу.</p>
 </section>
+<section id="qml">
+<span id="qml-software"></span><span id="index-83"></span><h2>Как отключить аппаратное ускорение для QML-приложений?<a class="headerlink" href="#qml" title="Permalink to this heading">¶</a></h2>
+<p>Для отключения аппаратного ускорения отрисовки QML и QtQuick, зададим <a class="reference internal" href="development.html#env-set"><span class="std std-ref">переменную окружения</span></a> <strong>QT_QUICK_BACKEND</strong> перед его запуском:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>QT_QUICK_BACKEND=software foo-bar
+</pre></div>
+</div>
+<p>При необходимости <a class="reference internal" href="using-system.html#icon-override"><span class="std std-ref">отредактируем ярлык</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Exec=env QT_QUICK_BACKEND=software foo-bar
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -1099,6 +1110,7 @@ systemctl --user enable plasma-clean-database.service
 <li class="toctree-l2"><a class="reference internal" href="#plasma-mime-clean">Как очистить кэш файлов и каталогов в KDE Plasma 5?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#plasma-mime-autoclean">Как автоматизировать очистку кэша файлов и каталогов в KDE Plasma 5?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#heif">Как добавить поддержку открытия и сохранения изображений в формате HEIF?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qml">Как отключить аппаратное ускорение для QML-приложений?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Оборудование</a></li>
