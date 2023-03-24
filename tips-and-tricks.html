@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Оптимизация и тонкая настройка &#8212; Неофициальный FAQ по Fedora (версия 2023.03.23)</title>
+    <title>Оптимизация и тонкая настройка &#8212; Неофициальный FAQ по Fedora (версия 2023.03.24)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -574,6 +574,17 @@ sudo rmdir /run/media/flash
 </div>
 <p>Внимание! При загрузке такого модифицированного образа следует выбирать пункт <strong>Start Fedora</strong>, без проверки целостности, т.к. из-за замены файлов она не будет пройдена.</p>
 </section>
+<section id="fedora-38">
+<span id="f38-performance"></span><span id="index-33"></span><h2>Производительность Fedora 38 ниже, чем у предыдущей версии. Как исправить?<a class="headerlink" href="#fedora-38" title="Permalink to this heading">¶</a></h2>
+<p>В Fedora 38 были включены два изменения, напрямую касающиеся производительности системы:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><a class="reference external" href="https://fedoraproject.org/wiki/Changes/Add_FORTIFY_SOURCE%3D3_to_distribution_build_flags">переход на _FORTIFY_SOURCE=3</a> – <a class="reference external" href="https://developers.redhat.com/articles/2022/09/17/gccs-new-fortification-level">положительно влияет</a> на безопасность системы за счёт улучшенной фортификации кода посредством добавления проверок границ массивов и векторов во время исполнения приложений;</p></li>
+<li><p><a class="reference external" href="https://fedoraproject.org/wiki/Changes/fno-omit-frame-pointer">активация -fno-omit-frame-pointer</a> – очень спорное изменение, не дающее никаких значимых преимуществ обычным пользователям системы, которое просили внедрить крупные корпорации и некоторые разработчики для облегчения отладки и профилирования их кода. Изменение сначала было <a class="reference external" href="https://pagure.io/fesco/issue/2817">отклонено</a>, но затем, после повторного голосования, <a class="reference external" href="https://pagure.io/fesco/issue/2923">принято</a>.</p></li>
+</ol>
+</div></blockquote>
+<p>Оба в совокупности приводят к <a class="reference external" href="https://lists.fedoraproject.org/archives/list/devel&#64;lists.fedoraproject.org/message/33AJZA7FSDNCVSG33PPU3CH3KV33ECOD/">падению быстродействия от 3 до 10 процентов</a> в зависимости от типа вычислительной нагрузки. К сожалению, исправить это невозможно, т.к. пришлось бы откатить данные изменения и перекомпилировать все пакеты в системе.</p>
+</section>
 </section>
 
 
@@ -639,6 +650,7 @@ sudo rmdir /run/media/flash
 <li class="toctree-l2"><a class="reference internal" href="#fedora-36-kde-nvidia">Fedora 36 KDE не загружается при наличии видеокарты NVIDIA. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#linux-firmware-intel-amd">После обновления linux-firmware перестали работать видеокарты Intel и AMD. Как исправить?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#live-usb-invalid-image">При загрузке с Live USB возникает ошибка Invalid image. Как исправить?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fedora-38">Производительность Fedora 38 ниже, чем у предыдущей версии. Как исправить?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="legal-info.html">Правовая информация</a></li>
