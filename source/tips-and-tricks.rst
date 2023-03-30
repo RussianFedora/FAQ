@@ -695,11 +695,11 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
 При возникновении лагов во время работы с документами в приложениях LibreOffice вне зависимости от настроек аппаратного ускорения, переключим :ref:`активный сеанс <session-type>` сессии с :ref:`Wayland на X11 <x11-session>`.
 
-.. index:: nvidia, driver, dnf, upgrade, bug, issue, workaround, f36
+.. index:: nvidia, driver, dnf, upgrade, bug, issue, workaround
 .. _nvidia-upgrade-bug:
 
-После обновления до Fedora 36 не работают драйверы NVIDIA. Как исправить?
-============================================================================
+После обновления системы не работают драйверы NVIDIA. Как исправить?
+=========================================================================
 
 Это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=2011120>`__, из-за которой плагин dnf system-upgrade перезагружает систему до того, как пакеты :ref:`проприетарных драйверов NVIDIA <nvidia-drivers>` будут корректно собраны и установлены.
 
@@ -715,7 +715,7 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
     systemctl reboot
 
-.. index:: printer, usb, hardware, upgrade, bug, issue, workaround, f36
+.. index:: printer, usb, hardware, upgrade, bug, issue, workaround
 .. _ipp-usb-disable:
 
 После обновления перестали работать USB принтеры и сканеры. Как исправить?
@@ -735,18 +735,18 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
     systemctl reboot
 
-.. index:: nvidia, kde, live, installation, bug, issue, uefi, workaround, sddm, wayland, f36
+.. index:: nvidia, kde, live, installation, bug, issue, uefi, workaround, sddm, wayland
 .. _kde-nvidia-bug:
 
-Fedora 36 KDE не загружается при наличии видеокарты NVIDIA. Как исправить?
-=============================================================================
+Fedora KDE не загружается при наличии видеокарты NVIDIA. Как исправить?
+===========================================================================
 
-Это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=2077359>`__, из-за которой Fedora 36 работает некорректно в :ref:`UEFI-режиме <uefi-boot>` при наличии видеокарты NVIDIA из-за использования Wayland-сеанса в менеджере входа в систему SDDM.
+Это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=2077359>`__, из-за которой Fedora 36 и выше работает некорректно в :ref:`UEFI-режиме <uefi-boot>` при наличии видеокарты NVIDIA из-за использования Wayland-сеанса в менеджере входа в систему SDDM.
 
 Устанавливаем систему
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Если Fedora 36 KDE Live не загружается, либо отображает чёрный экран, выполним следующие действия:
+Если Fedora KDE Live не загружается, либо отображает чёрный экран, выполним следующие действия:
 
   1. При загрузке с :ref:`Live-образа <usb-flash>` в меню **Troubleshooting** выберем пункт **Safe graphics mode** и установим систему в штатном режиме.
   2. Установим :ref:`проприетарные драйверы NVIDIA <nvidia-drivers>`.
