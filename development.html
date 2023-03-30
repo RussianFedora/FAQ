@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2023.03.24)</title>
+    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2023.03.30)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -69,7 +69,7 @@
 </div>
 <p>Перейдём в каталог с загруженными исходниками и переключимся на ветку для конкретной версии Fedora (если нужна версия из Rawhide – следует использовать <strong>master</strong>):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd foo-bar
-fedpkg switch-branch f37
+fedpkg switch-branch f38
 </pre></div>
 </div>
 <p>Внесём свои правки, сделаем коммит в репозиторий:</p>
@@ -97,23 +97,23 @@ git commit -m &quot;Description of our changes.&quot;
 </section>
 <section id="koji-rpm-fusion">
 <span id="rpmfusion-override"></span><span id="index-6"></span><h2>Как переопределить пакет в Koji репозитория RPM Fusion?<a class="headerlink" href="#koji-rpm-fusion" title="Permalink to this heading">¶</a></h2>
-<p>Создание build override для репозитория f37-free:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion tag f37-free-override foo-bar-1.0-1.fc37
+<p>Создание build override для репозитория f38-free:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion tag f38-free-override foo-bar-1.0-1.fc38
 </pre></div>
 </div>
-<p>Удаление build override для репозитория f37-free:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion untag f37-free-override foo-bar-1.0-1.fc37
+<p>Удаление build override для репозитория f38-free:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion untag f38-free-override foo-bar-1.0-1.fc38
 </pre></div>
 </div>
 </section>
 <section id="rpmfusion-koji-regen">
 <span id="index-7"></span><span id="id4"></span><h2>Как обновить кэши репозиториев Koji в RPM Fusion?<a class="headerlink" href="#rpmfusion-koji-regen" title="Permalink to this heading">¶</a></h2>
 <p>Запустим обновление кэшей репозиториев для free:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion regen-repo f37-free-build --nowait
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion regen-repo f38-free-build --nowait
 </pre></div>
 </div>
 <p>Запустим обновление кэшей репозиториев для nonfree:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion regen-repo f37-nonfree-build --nowait
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji-rpmfusion regen-repo f38-nonfree-build --nowait
 </pre></div>
 </div>
 </section>
@@ -756,7 +756,7 @@ cd foo-bar
 </div>
 <p>Самым простым способом загрузки является импорт готового SRPM файла, поэтому выполним именно эту процедуру:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch master
-fedpkg import /путь/к/foo-bar-1.0-1.fc37.src.rpm
+fedpkg import /путь/к/foo-bar-1.0-1.fc38.src.rpm
 </pre></div>
 </div>
 <p>Проверим внесённые изменения и если всё верно, жмём <strong>Q</strong> для выхода. Зафиксируем наши изменения:</p>
@@ -764,7 +764,7 @@ fedpkg import /путь/к/foo-bar-1.0-1.fc37.src.rpm
 </pre></div>
 </div>
 <p>При необходимости внесём изменения и в ветки поддерживаемых релизов Fedora:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch f37
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch f38
 git merge master
 </pre></div>
 </div>
@@ -782,7 +782,7 @@ fedpkg build
 </pre></div>
 </div>
 <p>При необходимости соберём и для других поддерживаемых релизов Fedora:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch f37
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg switch-branch f38
 fedpkg build
 </pre></div>
 </div>
@@ -1061,20 +1061,20 @@ end
 <p>Если раньше приходилось использовать механизм «build overrides», позволяющий вручную переопределять пакеты в сборочном репозитории, то сейчас рекомендуется для сборки двух и более пакетов применять side-теги, т.к. это более простой и безопасный способ, не создающий конфликтов и проблем с зависимостями.</p>
 <p>Мейнтейнер может запросить создание произвольного количества side-тегов и производить сборку в них по своему усмотрению.</p>
 <p>Запросим новый side-tag для F36:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg request-side-tag --base-tag f37-build
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg request-side-tag --base-tag f38-build
 </pre></div>
 </div>
-<p>В выводе <strong>fedpkg</strong> сообщит нам уникальный идентификатор созданного репозитория, например <em>f37-build-side-12345</em>.</p>
+<p>В выводе <strong>fedpkg</strong> сообщит нам уникальный идентификатор созданного репозитория, например <em>f38-build-side-12345</em>.</p>
 <p>Ждём его создания и готовности к работе:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji wait-repo f37-build-side-XXXXX
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji wait-repo f38-build-side-XXXXX
 </pre></div>
 </div>
 <p>Произведём сборку первого пакета <strong>foo</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg build --target=f37-build-side-XXXXX
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fedpkg build --target=f38-build-side-XXXXX
 </pre></div>
 </div>
 <p>Ожидаем его появления в теге:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji wait-repo --build=foo-1.0.0-1.fc37 f37-build-side-XXXXX
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koji wait-repo --build=foo-1.0.0-1.fc38 f38-build-side-XXXXX
 </pre></div>
 </div>
 <p>Собираем все остальные пакеты тем же способом.</p>
@@ -1084,7 +1084,7 @@ end
 <span id="index-73"></span><span id="id53"></span><h2>Как собрать несколько зависящих друг от друга пакетов по цепочке?<a class="headerlink" href="#koji-chain-build" title="Permalink to this heading">¶</a></h2>
 <p>Существует и более удобный способ – сборки по цепочке (chain builds), доступный для <a class="reference internal" href="generic-info.html#using-rawhide"><span class="std std-ref">Fedora Rawhide</span></a>, либо заранее созданных <a class="reference internal" href="#koji-side-tags"><span class="std std-ref">side-тегов</span></a>.</p>
 <p>Мейнтейнер может указать произвольное количество пакетов в пределах одного задания. Koji выполнит задачу строго в указанном порядке.</p>
-<p>Внимание! Каталоги с исходниками всех участников группы должны находиться на одном уровне файловой иерархии. При сборке для side-tag, перед запуском процесса необходимо зайти в каталог каждого пакета из цепочки и при помощи команды <code class="docutils literal notranslate"><span class="pre">fedpkg</span> <span class="pre">switch-branch</span> <span class="pre">f37</span></code> переключиться на нужную ветку.</p>
+<p>Внимание! Каталоги с исходниками всех участников группы должны находиться на одном уровне файловой иерархии. При сборке для side-tag, перед запуском процесса необходимо зайти в каталог каждого пакета из цепочки и при помощи команды <code class="docutils literal notranslate"><span class="pre">fedpkg</span> <span class="pre">switch-branch</span> <span class="pre">f38</span></code> переключиться на нужную ветку.</p>
 <p>Перейдём в каталог последнего пакета в цепочке (в данном примере это <strong>bar</strong>) и запустим процесс.</p>
 <p>Rawhide:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd bar
@@ -1094,8 +1094,8 @@ fedpkg chain-build libfoo1 libfoo2
 </div>
 <p>Выделенный тег:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd bar
-fedpkg switch-branch f37
-fedpkg chain-build --target f37-build-side-XXXXX libfoo1 libfoo2
+fedpkg switch-branch f38
+fedpkg chain-build --target f38-build-side-XXXXX libfoo1 libfoo2
 </pre></div>
 </div>
 <p>Данное действие создаст следующую цепочку <em>libfoo1</em> -&gt; <em>libfoo2</em> -&gt; <em>bar</em>.</p>
@@ -1108,8 +1108,8 @@ fedpkg chain-build libfoo1 : libfoo2 libfoo3 :
 </div>
 <p>Выделенный тег:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd bar
-fedpkg switch-branch f37
-fedpkg chain-build --target f37-build-side-XXXXX libfoo1 : libfoo2 libfoo3 :
+fedpkg switch-branch f38
+fedpkg chain-build --target f38-build-side-XXXXX libfoo1 : libfoo2 libfoo3 :
 </pre></div>
 </div>
 <p>В результате появится цепочка <em>libfoo1</em> -&gt; <em>libfoo2</em> + <em>libfoo3</em> -&gt; <em>bar</em>.</p>
@@ -1122,7 +1122,7 @@ fedpkg chain-build --target f37-build-side-XXXXX libfoo1 : libfoo2 libfoo3 :
 </pre></div>
 </div>
 <p>Выполним проверку <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%94%D0%B2%D0%BE%D0%B8%D1%87%D0%BD%D1%8B%D0%B9_%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81_%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9">ABI-совместимости</a> между версиями <em>1.1.0</em> и <em>1.0.0</em> пакета <em>foo-bar</em>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rpmsodiff ./foo-bar-1.1.0-1.fc37.x86_64.rpm ./foo-bar-1.0.0-1.fc37.x86_64.rpm
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rpmsodiff ./foo-bar-1.1.0-1.fc38.x86_64.rpm ./foo-bar-1.0.0-1.fc38.x86_64.rpm
 </pre></div>
 </div>
 </section>
@@ -1154,10 +1154,10 @@ git worktree remove /tmp/bar
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%prep
 %setup -q
 %if 0%{?fedora} &amp;&amp; 0%{?fedora} &gt;= 37
-%patch1 -p1
+%patch 1 -p1
 %endif
 ...
-%patchN -p1
+%patch N -p1
 </pre></div>
 </div>
 </section>
@@ -1174,7 +1174,7 @@ PatchN: %{name}-other.patch
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>%prep
 %setup -q
 %if 0%{?fedora} &amp;&amp; 0%{?fedora} &gt;= 37
-%patch1 -p1
+%patch 1 -p1
 %endif
 %autopatch -M10 -p1
 </pre></div>
