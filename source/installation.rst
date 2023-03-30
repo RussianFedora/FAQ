@@ -57,10 +57,7 @@
 
 Да. Собственный образ можно создать на базе Kickstart файлов. Более подобную информацию можно найти `здесь <https://fedoraproject.org/wiki/Livemedia-creator-_How_to_create_and_use_a_Live_CD>`__.
 
-Готовые Kickstart проекты для изучения:
-
-  * `Fedora <https://pagure.io/fedora-kickstarts>`__;
-  * `RFRemix <https://github.com/RussianFedora/rfremix-kickstarts>`__.
+Kickstart проекты официальных образов Fedora доступны `здесь <https://pagure.io/fedora-kickstarts>`__.
 
 .. index:: installation, arm, armhfp, armv7hl, aarch64, arm64
 .. _fedora-arm:

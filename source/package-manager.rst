@@ -909,21 +909,6 @@ Java 17:
 
 В случае если пакет был заменён, он не сможет быть установлен, т.к. его ЭЦП не будет соответстствовать подписи репозитория.
 
-.. index:: distribution, russianfedora, rfremix
-.. _rfremix-to-fedora:
-
-Как превратить RFRemix в Fedora и наоборот?
-===============================================
-
-Для превращения Fedora в :ref:`RFRemix <rfremix>` необходимо и достаточно подключить репозиторий :ref:`russianfedora-branding <russian-fedora>`, а чтобы вернуть всё назад -- отключить его.
-
-После подключения/отключения необходимо выполнить синхронизацию:
-
-.. code-block:: text
-
-    sudo dnf swap rfremix-release fedora-release --allowerasing
-    sudo dnf distro-sync --allowerasing
-
 .. index:: repository, copr, overlay, third-party
 .. _copr-use:
 

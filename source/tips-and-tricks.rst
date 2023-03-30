@@ -287,42 +287,6 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
 Изменения вступят в силу при следующей загрузке системы.
 
-.. index:: rfremix
-.. _rfremix-fedora:
-
-Как правильно преобразовать RFRemix в Fedora?
-=================================================
-
-Заменим пакеты с брендированием:
-
-.. code-block:: text
-
-    sudo dnf swap rfremix-release fedora-release --allowerasing
-    sudo dnf swap rfremix-logos fedora-logos --allowerasing
-
-Полностью отключим и удалим репозитории :ref:`Russian Fedora <russian-fedora>`:
-
-.. code-block:: text
-
-    sudo dnf remove 'russianfedora*'
-
-Произведём синхронизацию компонентов дистрибутива:
-
-.. code-block:: text
-
-    sudo dnf distro-sync --allowerasing
-
-.. index:: rfremix, update
-.. _rfremix-upgrade:
-
-Как правильно обновиться с RFRemix до Fedora?
-=================================================
-
-В связи с прекращением поддержки RFRemix, выполним следующие действия:
-
-  1. :ref:`преобразуем RFRemix в Fedora <rfremix-fedora>`.
-  2. :ref:`установим обновления системы штатным способом <dist-upgrade>`.
-
 .. index:: dual boot, windows
 .. _dual-boot-optimizations:
 
@@ -670,22 +634,6 @@ SWF файл -- это исполняемый файл формата Adobe Flas
 
     sudo systemctl start systemd-vconsole-setup.service
     systemctl status systemd-vconsole-setup.service
-
-.. index:: pipewire, wireplumber, bug, issue, workaround, f35
-.. _wireplumber-no-sound:
-
-После обновления до Fedora 35 отсутствует звук. Как исправить?
-=================================================================
-
-Отсутствие усстройств вывода звука после обновления до Fedora 35 при использовании звукового сервера PipeWire -- это `известная проблема <https://bugzilla.redhat.com/show_bug.cgi?id=2016253>`__, связанная с `переходом на WirePlumber <https://fedoraproject.org/wiki/Changes/WirePlumber>`__.
-
-Решим её активацией необходимого systemd-сервиса:
-
-.. code-block:: text
-
-    systemctl --global enable --now wireplumber.service
-
-Изменения вступят в силу немедленно.
 
 .. index:: libreoffice, hardware, acceleration, x11, wayland, workaround, bug, f36
 .. _libreoffice-wayland:
