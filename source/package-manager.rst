@@ -827,7 +827,7 @@ Java 17:
 
 .. code-block:: text
 
-    koji download-build kernel-6.0.8-300.fc37.x86_64 --arch=$(uname -m)
+    koji download-build kernel-6.0.8-300.fc38.x86_64 --arch=$(uname -m)
 
 .. index:: package, version, update, fesco
 .. _package-version:
@@ -1389,7 +1389,7 @@ GNOME Software в конфигурации по умолчанию отдаёт 
 
     mkdir /tmp/foo-bar
     pushd /tmp/foo-bar
-    rpm2cpio /path/to/foo-bar-1.0.0-1.fc37.x86_64.rpm | cpio -idmv
+    rpm2cpio /path/to/foo-bar-1.0.0-1.fc38.x86_64.rpm | cpio -idmv
     popd
 
 Способ 2. Современный.
@@ -1400,4 +1400,4 @@ GNOME Software в конфигурации по умолчанию отдаёт 
 .. code-block:: text
 
     mkdir /tmp/foo-bar
-    cat /path/to/foo-bar-1.0.0-1.fc37.x86_64.rpm | rpm2archive - | tar -xz -C /tmp/foo-bar
+    cat /path/to/foo-bar-1.0.0-1.fc38.x86_64.rpm | rpm2archive - | tar -xz -C /tmp/foo-bar
