@@ -525,3 +525,16 @@ Kickstart проекты официальных образов Fedora досту
   9. осуществим перезагрузку системы: ``sudo systemctl reboot``.
 
 Минимально возможная установка успешно завершена.
+
+.. index:: hibernation, suspend, swap, zram, zswap, initrd, resume, btrfs
+.. _hibernation-info:
+
+Что необходимо для работы гибернации в Fedora?
+==================================================
+
+Для корректной работы режима гибернации (suspend to disk) необходимо и достаточно выполнение следующих условий:
+
+  1. наличие незашифрованного :ref:`раздела подкачки <swap-limits>` (также допускается использование :ref:`BTRFS <fs-btrfs>` subvolume);
+  2. отключённое :ref:`сжатие памяти zram <zram-default-disable>` или :ref:`zswap <zswap>`;
+  3. установленный :ref:`параметр ядра <kernelpm-perm>` ``resume=UUID=XXXXXX``, где **XXXXXX** -- это UUID раздела подкачки;
+  4. активный модуль ``resume`` в :ref:`initrd <initrd-rebuild>`.
