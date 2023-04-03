@@ -742,6 +742,19 @@ restorecon -Rv ~/.config/fontconfig
 </pre></div>
 </div>
 </section>
+<section id="initrd-add-module">
+<span id="index-61"></span><span id="id39"></span><h2>Как добавить модуль в initrd?<a class="headerlink" href="#initrd-add-module" title="Permalink to this heading">¶</a></h2>
+<p>Создадим новый файл конфигурации <strong>foo-bar.conf</strong> в каталоге <code class="docutils literal notranslate"><span class="pre">/etc/dracut.conf.d/</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>echo &#39;add_dracutmodules+=&quot; foo-bar &quot;&#39; | sudo tee /etc/dracut.conf.d/foo-bar.conf
+</pre></div>
+</div>
+<p>Здесь <strong>foo-bar</strong> – название модуля ядра, который требуется включить. Пробелы до и после его имени в <em>add_dracutmodules</em> обязательны.</p>
+<p>Осуществим <a class="reference internal" href="#initrd-rebuild"><span class="std std-ref">пересборку initrd</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dracut -f
+</pre></div>
+</div>
+<p>Изменения вступят в силу при следующей загрузке системы.</p>
+</section>
 </section>
 
 
@@ -831,6 +844,7 @@ restorecon -Rv ~/.config/fontconfig
 <li class="toctree-l2"><a class="reference internal" href="#font-identify">Как определить, какой шрифт будет использован для указанной гарнитуры?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#font-replace">Как заменить один шрифт другим на системном уровне?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#home-permissions">Как исправить права доступа для объектов в домашнем каталоге?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initrd-add-module">Как добавить модуль в initrd?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-applications.html">Сторонние приложения</a></li>

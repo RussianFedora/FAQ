@@ -102,7 +102,7 @@
 </section>
 <section id="swap-limits">
 <span id="index-11"></span><span id="id10"></span><h2>Сколько нужно подкачки для работы гибернации?<a class="headerlink" href="#swap-limits" title="Permalink to this heading">¶</a></h2>
-<p>Для нормальной работы режима suspend to disk размер подкачки должен быть больше, либо равен объёму установленной в ПК или ноутбуке оперативной памяти.</p>
+<p>Для нормальной работы режима <a class="reference internal" href="#hibernation-info"><span class="std std-ref">suspend to disk</span></a> размер подкачки должен быть больше, либо равен объёму установленной в ПК или ноутбуке оперативной памяти.</p>
 </section>
 <section id="swap-partitions">
 <span id="index-12"></span><span id="id11"></span><h2>Что быстрее: раздел подкачки или файл подкачки?<a class="headerlink" href="#swap-partitions" title="Permalink to this heading">¶</a></h2>
@@ -414,10 +414,10 @@ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 <p>Для корректной работы режима гибернации (suspend to disk) необходимо и достаточно выполнение следующих условий:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><p>наличие незашифрованного <a class="reference internal" href="#swap-limits"><span class="std std-ref">раздела подкачки</span></a> (также допускается использование <a class="reference internal" href="#fs-btrfs"><span class="std std-ref">BTRFS</span></a> subvolume);</p></li>
+<li><p>наличие незашифрованного <a class="reference internal" href="#swap-limits"><span class="std std-ref">раздела подкачки</span></a> (также допускается использование <a class="reference internal" href="#fs-btrfs"><span class="std std-ref">BTRFS</span></a> subvolume), смонтированного и указанного в <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code>;</p></li>
 <li><p>отключённое <a class="reference internal" href="administration.html#zram-default-disable"><span class="std std-ref">сжатие памяти zram</span></a> или <a class="reference internal" href="administration.html#zswap"><span class="std std-ref">zswap</span></a>;</p></li>
-<li><p>установленный <a class="reference internal" href="administration.html#kernelpm-perm"><span class="std std-ref">параметр ядра</span></a> <code class="docutils literal notranslate"><span class="pre">resume=UUID=XXXXXX</span></code>, где <strong>XXXXXX</strong> – это UUID раздела подкачки;</p></li>
-<li><p>активный модуль <code class="docutils literal notranslate"><span class="pre">resume</span></code> в <a class="reference internal" href="using-system.html#initrd-rebuild"><span class="std std-ref">initrd</span></a>.</p></li>
+<li><p>установленный <a class="reference internal" href="administration.html#kernelpm-perm"><span class="std std-ref">параметр ядра</span></a> <code class="docutils literal notranslate"><span class="pre">resume=UUID=XXXXXX</span></code>, где <strong>XXXXXX</strong> – это <a class="reference internal" href="administration.html#get-uuid"><span class="std std-ref">UUID раздела</span></a> подкачки;</p></li>
+<li><p><a class="reference internal" href="using-system.html#initrd-add-module"><span class="std std-ref">интегрированный в initrd</span></a> модуль <code class="docutils literal notranslate"><span class="pre">resume</span></code>.</p></li>
 </ol>
 </div></blockquote>
 </section>
