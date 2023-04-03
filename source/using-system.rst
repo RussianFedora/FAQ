@@ -1136,3 +1136,25 @@ GUI:
 .. code-block:: text
 
     sudo find ~ ! -user $(whoami) -exec chown $(whoami):$(whoami) "{}" \;
+
+.. index:: initrd, dracut, module, kernel
+.. _initrd-add-module:
+
+Как добавить модуль в initrd?
+==================================
+
+Создадим новый файл конфигурации **foo-bar.conf** в каталоге ``/etc/dracut.conf.d/``:
+
+.. code-block:: text
+
+    echo 'add_dracutmodules+=" foo-bar "' | sudo tee /etc/dracut.conf.d/foo-bar.conf
+
+Здесь **foo-bar** -- название модуля ядра, который требуется включить. Пробелы до и после его имени в *add_dracutmodules* обязательны.
+
+Осуществим :ref:`пересборку initrd <initrd-rebuild>`:
+
+.. code-block:: text
+
+    sudo dracut -f
+
+Изменения вступят в силу при следующей загрузке системы.
