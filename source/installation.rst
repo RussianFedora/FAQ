@@ -534,7 +534,7 @@ Kickstart проекты официальных образов Fedora досту
 
 Для корректной работы режима гибернации (suspend to disk) необходимо и достаточно выполнение следующих условий:
 
-  1. наличие незашифрованного :ref:`раздела подкачки <swap-limits>` (также допускается использование :ref:`BTRFS <fs-btrfs>` subvolume);
+  1. наличие незашифрованного :ref:`раздела подкачки <swap-limits>` (также допускается использование :ref:`BTRFS <fs-btrfs>` subvolume), смонтированного и указанного в ``/etc/fstab``;
   2. отключённое :ref:`сжатие памяти zram <zram-default-disable>` или :ref:`zswap <zswap>`;
-  3. установленный :ref:`параметр ядра <kernelpm-perm>` ``resume=UUID=XXXXXX``, где **XXXXXX** -- это UUID раздела подкачки;
-  4. активный модуль ``resume`` в :ref:`initrd <initrd-rebuild>`.
+  3. установленный :ref:`параметр ядра <kernelpm-perm>` ``resume=UUID=XXXXXX``, где **XXXXXX** -- это :ref:`UUID раздела <get-uuid>` подкачки;
+  4. :ref:`интегрированный в initrd <initrd-add-module>` модуль ``resume``.
