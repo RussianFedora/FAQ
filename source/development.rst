@@ -1741,10 +1741,10 @@ Rawhide:
     %prep
     %setup -q
     %if 0%{?fedora} && 0%{?fedora} >= 37
-    %patch 1 -p1
+    %patch -P1 -p1
     %endif
     ...
-    %patch N -p1
+    %patch -PN -p1
 
 Способ 2. Полуавтоматический.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1765,6 +1765,6 @@ Rawhide:
     %prep
     %setup -q
     %if 0%{?fedora} && 0%{?fedora} >= 37
-    %patch 1 -p1
+    %patch -P1 -p1
     %endif
     %autopatch -M10 -p1
