@@ -1734,7 +1734,7 @@ Coredump -- это дамп закрытой памяти процесса, со
 
 .. code-block:: text
 
-    sudoedit /etc/zswap-cli.conf
+    sudoedit /etc/zswap-cli/zswap-cli.conf
 
 Активируем сервис zswap-cli:
 
