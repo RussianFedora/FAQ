@@ -85,12 +85,9 @@ media.rdd-vpx.enabled = false
 </section>
 <section id="chromium">
 <span id="hwaccel-chromium"></span><span id="index-3"></span><h2>Как активировать аппаратное ускорение декодирования мультимедиа в Chromium?<a class="headerlink" href="#chromium" title="Permalink to this heading">¶</a></h2>
-<p>В Google Chrome и Chromium аппаратное ускорение декодирования мультимедиа реализовано, но отключено в официальных сборках на этапе компиляции для GNU/Linux платформы.</p>
-<p>Репозиторий <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a> предоставляет сборку Chromium с включённой поддержкой <a class="reference internal" href="#video-hwaccel"><span class="std std-ref">VA-API</span></a>. Для её установки активируем его, установим <a class="reference internal" href="hardware.html#hwaccel-drivers"><span class="std std-ref">VA-API драйверы</span></a>, а также пакет <strong>chromium-freeworld</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo dnf install chromium-freeworld
-</pre></div>
-</div>
-<p>Далее в Chromium Freeworld зайдём в <code class="docutils literal notranslate"><span class="pre">chrome://flags</span></code> и установим для пункта <strong>Hardware decoding</strong> значение <strong>Enabled</strong>, после чего перезапустим браузер для вступления изменений в силу.</p>
+<p>Начиная с версии Chromium 110, аппаратное ускорение декодирования мультимедиа включено по умолчанию в Fedora.</p>
+<p>Установим полный <a class="reference internal" href="#browser-codecs"><span class="std std-ref">набор кодеков</span></a>, а также <a class="reference internal" href="hardware.html#hwaccel-drivers"><span class="std std-ref">VA-API драйверы</span></a> из репозитория <a class="reference internal" href="generic-info.html#rpmfusion"><span class="std std-ref">RPM Fusion</span></a>.</p>
+<p>Далее зайдём в <code class="docutils literal notranslate"><span class="pre">chrome://flags</span></code> и установим для пункта <strong>Hardware decoding</strong> значение <strong>Enabled</strong>, после чего перезапустим браузер для вступления изменений в силу.</p>
 </section>
 <section id="video-hwaccel">
 <span id="index-4"></span><span id="id4"></span><h2>В каких проигрывателях реализовано аппаратное ускорение декодирования мультимедиа?<a class="headerlink" href="#video-hwaccel" title="Permalink to this heading">¶</a></h2>
