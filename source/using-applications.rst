@@ -48,7 +48,7 @@
 
 Начиная с версии `Firefox 77.0 <https://mastransky.wordpress.com/2020/06/03/firefox-on-fedora-finally-gets-va-api-on-wayland/>`__, аппаратное ускорение декодирования мультимедиа доступно для :ref:`сеанса Wayland <session-type>`, а с `Firefox 81.0 <https://mastransky.wordpress.com/2020/09/29/firefox-81-on-fedora-with-va-api-webrtc-and-x11/>`__ и для X11.
 
-Установим полный :ref:`набор кодеков <firefox-codecs>`, а также :ref:`VA-API драйверы <hwaccel-drivers>` из репозитория :ref:`RPM Fusion <rpmfusion>`.
+Установим полный :ref:`набор кодеков <browser-codecs>`, а также :ref:`VA-API драйверы <hwaccel-drivers>` из репозитория :ref:`RPM Fusion <rpmfusion>`.
 
 Откроем модуль конфигурации ``about:config`` и изменим значения следующих переменных (при отсутствии создадим):
 
@@ -142,29 +142,25 @@
 
 Теперь можно установить :ref:`версию <telegram-fedora>` из :ref:`RPM Fusion <rpmfusion>`.
 
-.. index:: repository, codecs, multimedia, chromium, third-party, ffmpeg
-.. _chromium-codecs:
+.. index:: repository, codecs, multimedia, third-party, ffmpeg, firefox, chromium
+.. _browser-codecs:
 
-Я установил браузер Chromium из репозиториев, но он отказывается воспроизводить видео с большинства сайтов. Как исправить?
-==============================================================================================================================
+Как активировать все доступные кодеки мультимедиа браузерах?
+================================================================
 
-Начиная с версии 110, сборки Chromium из официальных репозиториев Fedora применяют ffmpeg для работы с мультимедиа, поэтому подключим репозиторий :ref:`RPM Fusion <rpmfusion>` и установим полную версию:
+Браузеры Mozilla Firefox и Chromium из официального репозитория Fedora использует ffmpeg для работы с мультимедийным контентом, поэтому подключим репозиторий :ref:`RPM Fusion <rpmfusion>` и произведём установку пакета **ffmpeg-libs**.
 
-.. code-block:: text
-
-    sudo dnf install ffmpeg-libs --allowerasing
-
-.. index:: repository, codecs, multimedia, third-party, ffmpeg
-.. _firefox-codecs:
-
-Как активировать все доступные кодеки в браузере Firefox?
-==============================================================
-
-Браузер Mozilla Firefox использует ffmpeg для работы с мультимедийным контентом, поэтому необходимо его установить из репозитория :ref:`RPM Fusion <rpmfusion>`:
+Вариант для стандартных версий Fedora с любыми рабочими средами:
 
 .. code-block:: text
 
     sudo dnf install ffmpeg-libs --allowerasing
+
+Вариант для неизменяемых систем, основанных на ostree, например :ref:`Silverblue <silverblue>`:
+
+.. code-block:: text
+
+    rpm-ostree override remove libavcodec-free libavfilter-free libavformat-free libavutil-free libpostproc-free libswresample-free libswscale-free --install ffmpeg-libs
 
 .. index:: latex, editor
 .. _latex-editor:
