@@ -75,15 +75,11 @@
 Как активировать аппаратное ускорение декодирования мультимедиа в Chromium?
 ===============================================================================
 
-В Google Chrome и Chromium аппаратное ускорение декодирования мультимедиа реализовано, но отключено в официальных сборках на этапе компиляции для GNU/Linux платформы.
+Начиная с версии Chromium 110, аппаратное ускорение декодирования мультимедиа включено по умолчанию в Fedora.
 
-Репозиторий :ref:`RPM Fusion <rpmfusion>` предоставляет сборку Chromium с включённой поддержкой :ref:`VA-API <video-hwaccel>`. Для её установки активируем его, установим :ref:`VA-API драйверы <hwaccel-drivers>`, а также пакет **chromium-freeworld**:
+Установим полный :ref:`набор кодеков <browser-codecs>`, а также :ref:`VA-API драйверы <hwaccel-drivers>` из репозитория :ref:`RPM Fusion <rpmfusion>`.
 
-.. code-block:: text
-
-    sudo dnf install chromium-freeworld
-
-Далее в Chromium Freeworld зайдём в ``chrome://flags`` и установим для пункта **Hardware decoding** значение **Enabled**, после чего перезапустим браузер для вступления изменений в силу.
+Далее зайдём в ``chrome://flags`` и установим для пункта **Hardware decoding** значение **Enabled**, после чего перезапустим браузер для вступления изменений в силу.
 
 .. index:: mpv, video player, hardware acceleration, vaapi, vdpau
 .. _video-hwaccel:
