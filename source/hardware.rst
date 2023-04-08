@@ -333,69 +333,11 @@ AMD предоставляет поддержку `OpenCL <https://ru.wikipedia.
 Как установить ROCm -- открытую реализацию OpenCL на видеокартах AMD?
 =========================================================================
 
-В данный момент AMD не предоставляет официальных сборок `ROCm <https://github.com/RadeonOpenCompute/ROCm>`__ -- открытой реализации `OpenCL <https://ru.wikipedia.org/wiki/OpenCL>`__ для Fedora, однако существует рабочий способ заставить работать её в данном дистрибутиве.
+Установим пакеты ROCm из главного репозитория Fedora:
 
-  1. Подключим официальный репозиторий AMD:
+.. code-block:: text
 
-    .. code-block:: bash
-
-      sudo tee /etc/yum.repos.d/ROCm.repo <<EOF
-      [ROCm]
-      name=ROCm
-      baseurl=https://repo.radeon.com/rocm/centos8/4.0.1
-      enabled=1
-      gpgcheck=1
-      gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-      skip_if_unavailable=True
-      EOF
-
-  2. Установим необходимые пакеты:
-
-    .. code-block:: text
-
-      sudo dnf install rocm-opencl
-
-  3. Установим правильную версию пакета **rocminfo**, предварительно проверив её наличие в репозитории **repo.radeon.com**:
-
-    .. code-block:: text
-
-      sudo dnf repoquery --location rocminfo
-      sudo rpm -Uvh --nodeps https://repo.radeon.com/rocm/centos8/4.0.1/rocminfo-1.4.0.1.rocm-rel-4.0-26-605b3a5.rpm
-
-  4. Исправим скрипт **rocm_agent_enumerator** и адаптариуем его для Fedora:
-
-    .. code-block:: text
-
-      sudo sed -i 's/^#!.*/#!\/usr\/bin\/python/' /opt/rocm-4.0.1/bin/rocm_agent_enumerator
-
-  5. Откроем файл **amdocl64_40000.icd** в текстовом редакторе:
-
-    .. code-block:: text
-
-      sudoedit /etc/OpenCL/vendors/amdocl64_40001.icd
-
-    Добавим в него корректный путь к библиотеке **libamdocl64.so**:
-
-    .. code-block:: text
-
-      /opt/rocm-4.0.1/opencl/lib/libamdocl64.so
-
-  6. Создадим OpenCL-профиль:
-
-    .. code-block:: text
-
-      sudoedit /etc/profile.d/rocm.sh
-
-    Зададим необходимые для работы :ref:`переменные окружения <env-set>`:
-
-    .. code-block:: bash
-
-      export PATH=$PATH:/opt/rocm-4.0.1/opencl/bin
-      export PATH=/opt/rocm-4.0.1/bin:$PATH \
-          ROCM_PATH=/opt/rocm-4.0.1 \
-          HIP_PATH=/opt/rocm-4.0.1/hip
-
-После выполнения всех пунктов запустим новый экземпляр терминала для применения изменений в :ref:`переменных окружения <env-get-term>`, либо осуществим новый вход в систему.
+    sudo dnf install rocminfo rocm-opencl
 
 Установим утилиту **hashcat**, которую будем использовать для проверки работоспособности OpenCL-стека:
 
