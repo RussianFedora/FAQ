@@ -2000,6 +2000,18 @@ LUKS :ref:`версии 2 <luks-version>` поддерживает возмож�
 
     sudo cryptsetup luksHeaderBackup /dev/sda2 --header-backup-file /media/foo-bar/luks-header.img
 
+.. index:: luks, encryption, cryptsetup, backup, header
+.. _luks-header-restore:
+
+Как восстановить резервную копию заголовка LUKS?
+====================================================
+
+Загрузим систему с :ref:`LiveUSB <usb-flash>` и восстановим резервную копию заголовка тома **/dev/sda2** с внешнего накопителя данных:
+
+.. code-block:: text
+
+    sudo cryptsetup luksHeaderRestore /dev/sda2 --header-backup-file /media/foo-bar/luks-header.img
+
 .. index:: luks, encryption, password, cryptsetup, upgrade
 .. _luks-upgrade-v2:
 
