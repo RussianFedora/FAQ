@@ -1987,3 +1987,27 @@ LUKS :ref:`версии 2 <luks-version>` поддерживает возмож�
 ============================================
 
 См. `здесь <https://www.easycoding.org/2022/02/14/ispolzuem-tpm-dlya-xraneniya-ssh-klyuchej.html>`__.
+
+.. index:: luks, encryption, password, cryptsetup, upgrade
+.. _luks-upgrade-v2:
+
+Как осуществить апгрейд версии LUKS?
+=======================================
+
+Выведем текущую версию и убедимся, что она равна **1**:
+
+.. code-block:: text
+
+    sudo cryptsetup luksDump /dev/sda2 | grep 'Version'
+
+Загрузим систему с :ref:`LiveUSB <usb-flash>` и обязательно создадим резервную копию заголовка на внешнем накопителе данных (при необходимости её можно будет восстановить функцией ``luksHeaderRestore`` с таким же синтаксисом):
+
+.. code-block:: text
+
+    sudo cryptsetup luksHeaderBackup /dev/sda2 --header-backup-file /media/flash/luks-header.img
+
+Произведём апгрейд LUKS до версии 2:
+
+.. code-block:: text
+
+    sudo cryptsetup convert /dev/sda2 --type luks2
