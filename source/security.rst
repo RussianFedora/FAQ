@@ -2013,12 +2013,12 @@ LUKS :ref:`версии 2 <luks-version>` поддерживает возмож�
     sudo cryptsetup luksHeaderRestore /dev/sda2 --header-backup-file /media/foo-bar/luks-header.img
 
 .. index:: luks, encryption, password, cryptsetup, upgrade
-.. _luks-upgrade-v2:
+.. _luks-upgrade:
 
 Как осуществить апгрейд версии LUKS?
 =======================================
 
-Загрузим систему с :ref:`LiveUSB <usb-flash>` и обязательно создадим :ref:`резервную копию заголовка <luks-header-backup>` на внешнем накопителе данных.
+Загрузим систему с :ref:`LiveUSB <usb-flash>` и создадим :ref:`резервную копию заголовка <luks-header-backup>` на внешнем накопителе данных.
 
 Выведем текущую версию и убедимся, что она равна **1**:
 
@@ -2031,3 +2031,29 @@ LUKS :ref:`версии 2 <luks-version>` поддерживает возмож�
 .. code-block:: text
 
     sudo cryptsetup convert /dev/sda2 --type luks2
+
+.. index:: luks, encryption, password, cryptsetup, upgrade
+.. _luks-upgrade-key:
+
+Как усилить защиту ключа LUKS?
+==================================
+
+Загрузим систему с :ref:`LiveUSB <usb-flash>` и создадим :ref:`резервную копию заголовка <luks-header-backup>` на внешнем накопителе данных.
+
+Выведем текущую версию LUKS и убедимся, что значение не ниже **2**: (если это не так, сначала :ref:`осуществим преобразование <luks-upgrade>`):
+
+.. code-block:: text
+
+    sudo cryptsetup luksDump /dev/sda2 | grep 'Version'
+
+Выведем текущий `PBKDF <https://ru.wikipedia.org/wiki/PBKDF2>`__:
+
+.. code-block:: text
+
+    sudo cryptsetup luksDump /dev/sda2 | grep 'PBKDF'
+
+Осуществим преобразование в `Argon2 <https://ru.wikipedia.org/wiki/Argon2>`__:
+
+.. code-block:: text
+
+    sudo cryptsetup luksConvertKey /dev/sda2 --pbkdf argon2id
