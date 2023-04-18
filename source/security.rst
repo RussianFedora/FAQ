@@ -1988,6 +1988,18 @@ LUKS :ref:`версии 2 <luks-version>` поддерживает возмож�
 
 См. `здесь <https://www.easycoding.org/2022/02/14/ispolzuem-tpm-dlya-xraneniya-ssh-klyuchej.html>`__.
 
+.. index:: luks, encryption, cryptsetup, backup, header
+.. _luks-header-backup:
+
+Как создать резервную копию заголовка LUKS?
+===============================================
+
+Загрузим систему с :ref:`LiveUSB <usb-flash>` и создадим резервную копию заголовка тома **/dev/sda2** на внешнем накопителе данных:
+
+.. code-block:: text
+
+    sudo cryptsetup luksHeaderBackup /dev/sda2 --header-backup-file /media/foo-bar/luks-header.img
+
 .. index:: luks, encryption, password, cryptsetup, upgrade
 .. _luks-upgrade-v2:
 
