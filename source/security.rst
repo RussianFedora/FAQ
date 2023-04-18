@@ -1910,13 +1910,75 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
 
 Версия LUKS всегда указана в разделе **Version** :ref:`информации о шифровании <luks-info>`.
 
-.. index:: luks, encryption, cryptsetup
+.. index:: luks, encryption, cryptsetup, backup, header
+.. _luks-header-backup:
+
+Как создать резервную копию заголовка LUKS?
+===============================================
+
+Загрузим систему с :ref:`LiveUSB <usb-flash>` и создадим резервную копию заголовка тома **/dev/sda2** на внешнем накопителе данных:
+
+.. code-block:: text
+
+    sudo cryptsetup luksHeaderBackup /dev/sda2 --header-backup-file /media/foo-bar/luks-header.img
+
+.. index:: luks, encryption, cryptsetup, backup, header
+.. _luks-header-restore:
+
+Как восстановить резервную копию заголовка LUKS?
+====================================================
+
+Загрузим систему с :ref:`LiveUSB <usb-flash>` и восстановим резервную копию заголовка тома **/dev/sda2** с внешнего накопителя данных:
+
+.. code-block:: text
+
+    sudo cryptsetup luksHeaderRestore /dev/sda2 --header-backup-file /media/foo-bar/luks-header.img
+
+.. index:: luks, encryption, password, cryptsetup, upgrade
 .. _luks-upgrade:
 
-Можно ли изменить используемую криптоконтейнером версию LUKS?
-================================================================
+Как осуществить апгрейд версии LUKS?
+=======================================
 
-Нет. Для изменения :ref:`версии <luks-version>` с LUKS1 на LUKS2 требуется пересоздать криптоконтейнер.
+Загрузим систему с :ref:`LiveUSB <usb-flash>` и создадим :ref:`резервную копию заголовка <luks-header-backup>` на внешнем накопителе данных.
+
+Выведем текущую :ref:`версию <luks-version>` и убедимся, что она равна **1**:
+
+.. code-block:: text
+
+    sudo cryptsetup luksDump /dev/sda2 | grep 'Version'
+
+Произведём апгрейд LUKS до версии 2:
+
+.. code-block:: text
+
+    sudo cryptsetup convert /dev/sda2 --type luks2
+
+.. index:: luks, encryption, password, cryptsetup, upgrade
+.. _luks-upgrade-key:
+
+Как усилить защиту ключа LUKS?
+==================================
+
+Загрузим систему с :ref:`LiveUSB <usb-flash>` и создадим :ref:`резервную копию заголовка <luks-header-backup>` на внешнем накопителе данных.
+
+Выведем текущую :ref:`версию LUKS <luks-version>` и убедимся, что значение не ниже **2**: (если это не так, сначала :ref:`осуществим преобразование <luks-upgrade>`):
+
+.. code-block:: text
+
+    sudo cryptsetup luksDump /dev/sda2 | grep 'Version'
+
+Выведем текущий `PBKDF <https://ru.wikipedia.org/wiki/PBKDF2>`__:
+
+.. code-block:: text
+
+    sudo cryptsetup luksDump /dev/sda2 | grep 'PBKDF'
+
+Осуществим преобразование в `Argon2 <https://ru.wikipedia.org/wiki/Argon2>`__:
+
+.. code-block:: text
+
+    sudo cryptsetup luksConvertKey /dev/sda2 --pbkdf argon2id
 
 .. index:: luks, encryption, trim, cryptsetup
 .. _luks-trim-open:
@@ -1987,73 +2049,3 @@ LUKS :ref:`версии 2 <luks-version>` поддерживает возмож�
 ============================================
 
 См. `здесь <https://www.easycoding.org/2022/02/14/ispolzuem-tpm-dlya-xraneniya-ssh-klyuchej.html>`__.
-
-.. index:: luks, encryption, cryptsetup, backup, header
-.. _luks-header-backup:
-
-Как создать резервную копию заголовка LUKS?
-===============================================
-
-Загрузим систему с :ref:`LiveUSB <usb-flash>` и создадим резервную копию заголовка тома **/dev/sda2** на внешнем накопителе данных:
-
-.. code-block:: text
-
-    sudo cryptsetup luksHeaderBackup /dev/sda2 --header-backup-file /media/foo-bar/luks-header.img
-
-.. index:: luks, encryption, cryptsetup, backup, header
-.. _luks-header-restore:
-
-Как восстановить резервную копию заголовка LUKS?
-====================================================
-
-Загрузим систему с :ref:`LiveUSB <usb-flash>` и восстановим резервную копию заголовка тома **/dev/sda2** с внешнего накопителя данных:
-
-.. code-block:: text
-
-    sudo cryptsetup luksHeaderRestore /dev/sda2 --header-backup-file /media/foo-bar/luks-header.img
-
-.. index:: luks, encryption, password, cryptsetup, upgrade
-.. _luks-upgrade:
-
-Как осуществить апгрейд версии LUKS?
-=======================================
-
-Загрузим систему с :ref:`LiveUSB <usb-flash>` и создадим :ref:`резервную копию заголовка <luks-header-backup>` на внешнем накопителе данных.
-
-Выведем текущую версию и убедимся, что она равна **1**:
-
-.. code-block:: text
-
-    sudo cryptsetup luksDump /dev/sda2 | grep 'Version'
-
-Произведём апгрейд LUKS до версии 2:
-
-.. code-block:: text
-
-    sudo cryptsetup convert /dev/sda2 --type luks2
-
-.. index:: luks, encryption, password, cryptsetup, upgrade
-.. _luks-upgrade-key:
-
-Как усилить защиту ключа LUKS?
-==================================
-
-Загрузим систему с :ref:`LiveUSB <usb-flash>` и создадим :ref:`резервную копию заголовка <luks-header-backup>` на внешнем накопителе данных.
-
-Выведем текущую версию LUKS и убедимся, что значение не ниже **2**: (если это не так, сначала :ref:`осуществим преобразование <luks-upgrade>`):
-
-.. code-block:: text
-
-    sudo cryptsetup luksDump /dev/sda2 | grep 'Version'
-
-Выведем текущий `PBKDF <https://ru.wikipedia.org/wiki/PBKDF2>`__:
-
-.. code-block:: text
-
-    sudo cryptsetup luksDump /dev/sda2 | grep 'PBKDF'
-
-Осуществим преобразование в `Argon2 <https://ru.wikipedia.org/wiki/Argon2>`__:
-
-.. code-block:: text
-
-    sudo cryptsetup luksConvertKey /dev/sda2 --pbkdf argon2id
