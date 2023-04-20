@@ -1980,6 +1980,26 @@ Cryptsetup поддерживает монтирование как :ref:`TrueCr
 
     sudo cryptsetup luksConvertKey /dev/sda2 --pbkdf argon2id
 
+.. index:: luks, encryption, password, cryptsetup, upgrade, cipher, key, cryptography
+.. _luks-upgrade-cipher:
+
+Как усилить надёжность шифрования LUKS?
+===========================================
+
+Загрузим систему с :ref:`LiveUSB <usb-flash>` и создадим полную посекторную копию раздела на внешнем накопителе данных.
+
+Выведем информацию о шифровании выбранного тома:
+
+.. code-block:: text
+
+    sudo cryptsetup luksDump /dev/sda2 | egrep 'Version|Cipher|MK bits'
+
+Перешифруем весь том в :ref:`формате LUKS2 <luks-upgrade-key>` с использованием алгоритма **AES-256-XTS-PLAIN64**:
+
+.. code-block:: text
+
+    sudo cryptsetup-reencrypt /dev/sda2 --type luks2 --pbkdf argon2id --cipher aes-xts-plain64 --key-size 512 --hash sha512
+
 .. index:: luks, encryption, trim, cryptsetup
 .. _luks-trim-open:
 
