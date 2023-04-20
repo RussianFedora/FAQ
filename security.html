@@ -1242,8 +1242,20 @@ sudo rmdir /media/data
 </pre></div>
 </div>
 </section>
+<section id="luks-upgrade-cipher">
+<span id="index-104"></span><span id="id78"></span><h2>Как усилить надёжность шифрования LUKS?<a class="headerlink" href="#luks-upgrade-cipher" title="Permalink to this heading">¶</a></h2>
+<p>Загрузим систему с <a class="reference internal" href="installation.html#usb-flash"><span class="std std-ref">LiveUSB</span></a> и создадим полную посекторную копию раздела на внешнем накопителе данных.</p>
+<p>Выведем информацию о шифровании выбранного тома:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup luksDump /dev/sda2 | egrep &#39;Version|Cipher|MK bits&#39;
+</pre></div>
+</div>
+<p>Перешифруем весь том в <a class="reference internal" href="#luks-upgrade-key"><span class="std std-ref">формате LUKS2</span></a> с использованием алгоритма <strong>AES-256-XTS-PLAIN64</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo cryptsetup-reencrypt /dev/sda2 --type luks2 --pbkdf argon2id --cipher aes-xts-plain64 --key-size 512 --hash sha512
+</pre></div>
+</div>
+</section>
 <section id="trim-luks">
-<span id="luks-trim-open"></span><span id="index-104"></span><h2>Как активировать TRIM для открытых вручную LUKS-контейнеров?<a class="headerlink" href="#trim-luks" title="Permalink to this heading">¶</a></h2>
+<span id="luks-trim-open"></span><span id="index-105"></span><h2>Как активировать TRIM для открытых вручную LUKS-контейнеров?<a class="headerlink" href="#trim-luks" title="Permalink to this heading">¶</a></h2>
 <p>Зашифрованные <a class="reference internal" href="#luks-container-create"><span class="std std-ref">LUKS-контейнеры</span></a>, открытые вручную при помощи <code class="docutils literal notranslate"><span class="pre">cryptsetup</span> <span class="pre">open</span></code>, по умолчанию не будут поддерживать <a class="reference internal" href="installation.html#ssd-trim"><span class="std std-ref">процедуру TRIM</span></a>, поэтому рассмотрим несколько способов исправить это.</p>
 <p><strong>Способ 1.</strong> Передадим <a class="reference internal" href="administration.html#kernelpm-perm"><span class="std std-ref">параметр ядра</span></a> Linux <code class="docutils literal notranslate"><span class="pre">rd.luks.options=discard</span></code>.</p>
 <p>Теперь все контейнеры, открытые утилитой, будут поддерживать TRIM. Однако действие не распространяется на указанные в файле <code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code>, т.к. он имеет более высокий приоритет.</p>
@@ -1260,7 +1272,7 @@ sudo rmdir /media/data
 <p>Убедимся, что в <a class="reference internal" href="#luks-info"><span class="std std-ref">информации о шифровании</span></a>, в разделе <strong>Flags</strong>, появился <strong>allow-discards</strong>.</p>
 </section>
 <section id="luks-trim-execute">
-<span id="index-105"></span><span id="id78"></span><h2>Как выполнить TRIM для открытых вручную LUKS-контейнеров?<a class="headerlink" href="#luks-trim-execute" title="Permalink to this heading">¶</a></h2>
+<span id="index-106"></span><span id="id79"></span><h2>Как выполнить TRIM для открытых вручную LUKS-контейнеров?<a class="headerlink" href="#luks-trim-execute" title="Permalink to this heading">¶</a></h2>
 <p>Функция автоматической очистки неиспользуемые данных TRIM выполняется либо в <a class="reference internal" href="installation.html#ssd-trim"><span class="std std-ref">реальном времени</span></a>, либо <a class="reference internal" href="installation.html#ssd-timer"><span class="std std-ref">по таймеру</span></a>, но только для автоматически смонтированных и указанных в файле <code class="docutils literal notranslate"><span class="pre">/etc/crypttab</span></code> разделов.</p>
 <p>Для зашифрованных <a class="reference internal" href="#luks-container-create"><span class="std std-ref">LUKS-контейнеров</span></a>, открытых вручную при помощи <code class="docutils literal notranslate"><span class="pre">cryptsetup</span> <span class="pre">open</span></code>, её необходимо сначала <a class="reference internal" href="#luks-trim-open"><span class="std std-ref">активировать</span></a>, а затем периодически запускать утилиту <code class="docutils literal notranslate"><span class="pre">fstrim</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo fstrim -v /media/foo-bar
@@ -1269,7 +1281,7 @@ sudo rmdir /media/data
 <p>Здесь <strong>/media/foo-bar</strong> – это точка монтирования.</p>
 </section>
 <section id="app-disable-network">
-<span id="index-106"></span><span id="id79"></span><h2>Как запретить приложению доступ к сети?<a class="headerlink" href="#app-disable-network" title="Permalink to this heading">¶</a></h2>
+<span id="index-107"></span><span id="id80"></span><h2>Как запретить приложению доступ к сети?<a class="headerlink" href="#app-disable-network" title="Permalink to this heading">¶</a></h2>
 <p>Иногда возникает необходимость ограничить какому-либо приложению доступ к сети Интернет.</p>
 <p>Установим ограничение пространствами имён ядра (более подробную информацию о них можно получить в <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">namespaces</span></code>) при помощи утилиты <strong>unshare</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>unshare -r -n foo-bar
@@ -1278,7 +1290,7 @@ sudo rmdir /media/data
 <p>Здесь вместо <strong>foo-bar</strong> укажем приложение, которое требуется запустить.</p>
 </section>
 <section id="ssh-tpm">
-<span id="index-107"></span><span id="id80"></span><h2>Как настроить хранение SSH ключей в TPM?<a class="headerlink" href="#ssh-tpm" title="Permalink to this heading">¶</a></h2>
+<span id="index-108"></span><span id="id81"></span><h2>Как настроить хранение SSH ключей в TPM?<a class="headerlink" href="#ssh-tpm" title="Permalink to this heading">¶</a></h2>
 <p>См. <a class="reference external" href="https://www.easycoding.org/2022/02/14/ispolzuem-tpm-dlya-xraneniya-ssh-klyuchej.html">здесь</a>.</p>
 </section>
 </section>
@@ -1412,6 +1424,7 @@ sudo rmdir /media/data
 <li class="toctree-l2"><a class="reference internal" href="#luks-header-restore">Как восстановить резервную копию заголовка LUKS?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#luks-upgrade">Как осуществить апгрейд версии LUKS?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#luks-upgrade-key">Как усилить защиту ключа LUKS?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#luks-upgrade-cipher">Как усилить надёжность шифрования LUKS?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#trim-luks">Как активировать TRIM для открытых вручную LUKS-контейнеров?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#luks-trim-execute">Как выполнить TRIM для открытых вручную LUKS-контейнеров?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#app-disable-network">Как запретить приложению доступ к сети?</a></li>
