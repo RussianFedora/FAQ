@@ -1769,6 +1769,14 @@ Rawhide:
     %endif
     %autopatch -M10 -p1
 
+.. index:: git, commit, signature, gpg, gnupg
+.. _git-commit-sign:
+
+Как настроить автоматическую подпись Git-коммитов?
+======================================================
+
+См. `здесь <https://www.easycoding.org/2016/04/10/vklyuchaem-avtomaticheskuyu-podpis-kommitov-v-git.html>`__.
+
 .. index:: git, commit, date, time
 .. _git-commit-datetime:
 
