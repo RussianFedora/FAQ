@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2023.05.21)</title>
+    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2023.05.22)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -1180,6 +1180,18 @@ PatchN: %{name}-other.patch
 </div>
 </section>
 </section>
+<section id="git-commit-sign">
+<span id="index-77"></span><span id="id58"></span><h2>Как настроить автоматическую подпись Git-коммитов?<a class="headerlink" href="#git-commit-sign" title="Permalink to this heading">¶</a></h2>
+<p>См. <a class="reference external" href="https://www.easycoding.org/2016/04/10/vklyuchaem-avtomaticheskuyu-podpis-kommitov-v-git.html">здесь</a>.</p>
+</section>
+<section id="git-commit-datetime">
+<span id="index-78"></span><span id="id59"></span><h2>Как создать Git-коммит с указанной датой?<a class="headerlink" href="#git-commit-datetime" title="Permalink to this heading">¶</a></h2>
+<p>Воспользуемся опциональным параметром <strong>–date</strong> для указания произвольной даты и времени для коммита:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git commit --date=&quot;2023-05-01 00:00:00&quot;
+</pre></div>
+</div>
+<p>Внимание! Если в репозитории или глобально включена <a class="reference internal" href="#git-commit-sign"><span class="std std-ref">GPG-подпись коммитов</span></a>, то в ней будет указана текущая дата и время. Решить это можно лишь изменив <a class="reference internal" href="using-system.html#set-datetime"><span class="std std-ref">настройки всей системы</span></a>.</p>
+</section>
 </section>
 
 
@@ -1288,6 +1300,8 @@ PatchN: %{name}-other.patch
 <li class="toctree-l2"><a class="reference internal" href="#abi">Как определить наличие изменений ABI между разными версиями пакета?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-backport-commits">Как переместить набор коммитов из одной ветки Git-репозитория в другую?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpmbuild-conditional-patch">Как применять патч при сборке пакета только при выполнении условия?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-commit-sign">Как настроить автоматическую подпись Git-коммитов?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-commit-datetime">Как создать Git-коммит с указанной датой?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tips-and-tricks.html">Оптимизация и тонкая настройка</a></li>
