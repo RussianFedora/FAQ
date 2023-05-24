@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2023.05.22)</title>
+    <title>Разработка и сборка пакетов &#8212; Неофициальный FAQ по Fedora (версия 2023.05.24)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -1187,7 +1187,7 @@ PatchN: %{name}-other.patch
 <section id="git-commit-datetime">
 <span id="index-78"></span><span id="id59"></span><h2>Как создать Git-коммит с указанной датой?<a class="headerlink" href="#git-commit-datetime" title="Permalink to this heading">¶</a></h2>
 <p>Воспользуемся опциональным параметром <code class="docutils literal notranslate"><span class="pre">--date</span></code> для указания произвольной даты и времени для коммита:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git commit --date=&quot;2023-05-01 00:00:00&quot;
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git commit --date=&quot;ГГГГ-ММ-ДД ЧЧ:ММ:СС&quot;
 </pre></div>
 </div>
 <p>Внимание! Если в репозитории или глобально включена <a class="reference internal" href="#git-commit-sign"><span class="std std-ref">GPG-подпись коммитов</span></a>, то в них будет указана текущая дата и время. Решить это можно лишь изменив <a class="reference internal" href="using-system.html#set-datetime"><span class="std std-ref">настройки всей системы</span></a>.</p>

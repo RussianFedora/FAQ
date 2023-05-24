@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Работа в системе &#8212; Неофициальный FAQ по Fedora (версия 2023.05.22)</title>
+    <title>Работа в системе &#8212; Неофициальный FAQ по Fedora (версия 2023.05.24)</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -756,12 +756,8 @@ restorecon -Rv ~/.config/fontconfig
 </section>
 <section id="set-datetime">
 <span id="index-62"></span><span id="id40"></span><h2>Как изменить системную дату и время?<a class="headerlink" href="#set-datetime" title="Permalink to this heading">¶</a></h2>
-<p>Установим новую дату без изменения времени:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo date --set=&quot;01 May 2023&quot;
-</pre></div>
-</div>
-<p>Установим одновременно дату и время, записанное в формате <a class="reference internal" href="administration.html#system-time-utc"><span class="std std-ref">Universal Coordinated Time</span></a>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo date --utc --set=&quot;01 May 2023 00:00:00&quot;
+<p>Установим новую дату и время, записанное в формате <a class="reference internal" href="administration.html#system-time-utc"><span class="std std-ref">Universal Coordinated Time</span></a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sudo date --utc --set=&quot;ГГГГ-ММ-ДД ЧЧ:ММ:СС&quot;
 </pre></div>
 </div>
 <p>Изменения вступят в силу немедленно, однако возможно потребуется отключить <a class="reference internal" href="#configure-ntp"><span class="std std-ref">автоматическую синхронизацию</span></a>.</p>
