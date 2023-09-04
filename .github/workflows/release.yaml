@@ -15,7 +15,7 @@ jobs:
         run: |
           sudo dnf -y install git-core
       - name: Fetching sources from repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Installing build dependencies
         run: |
           sudo dnf -y install \
