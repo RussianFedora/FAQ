@@ -69,6 +69,32 @@
 
 Перезапустим браузер для вступления изменений в силу.
 
+Для видеокарт Nvidia настройки будут отличаться, для начала нужно поставить дополнительные кодеки:
+
+.. code-block:: text
+
+    sudo dnf install meson libva-devel gstreamer1-plugins-bad-freeworld nv-codec-headers
+    
+Кроме того необходимо установить следующие переменные среды, для постоянной конфигурации может быть достаточно добавить следующие строчки в файл /etc/environment
+
+.. code-block:: text
+
+    MOZ_DISABLE_RDD_SANDBOX=1
+    LIBVA_DRIVER_NAME=nvidia
+    
+Необходимо отправить систему на перезагрузку
+
+После необходимо открыть модуль конфигурации ``about:config`` и изменим значения следующих переменных:
+
+.. code-block:: text
+
+    media.ffmpeg.vaapi.enabled  = true
+    media.rdd-ffmpeg.enabled = true
+    gfx.x11-egl.force-enabled = true
+    widget.dmabuf.force-enabled = true
+    
+Теперь перезапустим браузер для вступлений изменений.
+
 .. index:: chromium, chrome, hardware acceleration, vaapi
 .. _hwaccel-chromium:
 
