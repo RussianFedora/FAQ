@@ -1396,11 +1396,11 @@ ICC профиль можно получить либо на сайте прои
 Как активировать VA-API на видеокартах NVIDIA?
 =================================================
 
-Т.к. NVIDIA использует VDPAU для :ref:`аппаратного декодирования <video-hwaccel>` мультимедиа, для активации VA-API, установим особый драйвер-конвертер **libva-vdpau-driver**:
+Т.к. NVIDIA использует VDPAU для :ref:`аппаратного декодирования <video-hwaccel>` мультимедиа, для активации VA-API, установим особый драйвер-конвертер **nvidia-vaapi-driver**:
 
 .. code-block:: text
 
-    sudo dnf install libva-vdpau-driver
+    sudo dnf install nvidia-vaapi-driver
 
 В случае использования свободного драйвера nouveau, включим также поддержку :ref:`декодирования патентованных форматов <video-hwaccel>` в mesa.
 
