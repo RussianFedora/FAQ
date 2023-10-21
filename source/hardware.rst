@@ -97,6 +97,19 @@
 
     sudo systemctl reboot
 
+Так же есть более простой вариант установки драйверов Nvidia для современных видеокарт, а именно установка его мета пакетом.
+ВНИМАНИЕ данный способ установит сам драйвер последней версии, драйвер CUDA, а так же активирует необходимые юниты для работы спящего режима и соберет модули:
+
+.. code-block:: text
+
+    sudo dnf install nvidia-driver
+    
+Подождем несколько минут дабы модули собрались и выполним перезагрузку:
+
+.. code-block:: text
+
+    sudo systemctl reboot
+
 Более подробная информация доступна `здесь <https://www.easycoding.org/2017/01/11/pravilnaya-ustanovka-drajverov-nvidia-v-fedora.html>`__.
 
 .. index:: video, gpu, repository, nvidia, drivers, third-party, legacy
