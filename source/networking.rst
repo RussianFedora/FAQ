@@ -84,7 +84,7 @@ PPTP
 Как поднять WireGuard сервер в Fedora?
 =========================================
 
-См. `здесь <https://www.easycoding.org/2019/02/28/podnimaem-wireguard-server-na-fedora.html>`__.
+См. `здесь <https://olegon.ru/showthread.php?t=38586>`__.
 
 .. index:: server, matrix, im
 .. _matrix-server:
