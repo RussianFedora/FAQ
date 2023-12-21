@@ -79,7 +79,7 @@ FESCo -- `Fedora Engineering Steering Committee <https://docs.fedoraproject.org/
 Когда выходит следующий релиз?
 ===================================
 
-`Fedora 37 Schedule <https://fedorapeople.org/groups/schedule/f-37/f-37-key-tasks.html>`__.
+`Fedora Schedule <https://fedorapeople.org/groups/schedule/>`__.
 
 .. index:: difference, fedora, bleeding edge, distribution
 .. _differences:
@@ -112,14 +112,17 @@ Fedora -- это `bleeding edge <https://en.wikipedia.org/wiki/Bleeding_edge_tec
 Текущий выпуск Fedora поддерживает следующие DE:
 
   * `GNOME <https://getfedora.org/ru/workstation/download/>`__;
-  * `KDE Plasma <https://spins.fedoraproject.org/ru/kde/download/>`__;
-  * `XFCE <https://spins.fedoraproject.org/ru/xfce/download/>`__;
-  * `LXQt <https://spins.fedoraproject.org/ru/lxqt/download/>`__;
-  * `Mate <https://spins.fedoraproject.org/ru/mate-compiz/download/>`__;
-  * `Cinnamon <https://spins.fedoraproject.org/ru/cinnamon/download/>`__;
-  * `LXDE <https://spins.fedoraproject.org/ru/lxde/download/>`__;
-  * `SOAS <https://spins.fedoraproject.org/ru/soas/download/>`__;
-  * `i3 <https://spins.fedoraproject.org/ru/i3/download/>`__.
+  * `KDE Plasma <https://fedoraproject.org/spins/kde/download/>`__;
+  * `XFCE <https://fedoraproject.org/spins/xfce/download/>`__;
+  * `Cinnamon <https://fedoraproject.org/spins/cinnamon/download/>`__;
+  * `Mate <https://fedoraproject.org/spins/mate/download/>`__;
+  * `LXQt <https://fedoraproject.org/spins/lxqt/download/>`__;
+  * `LXDE <https://fedoraproject.org/spins/lxde/download/>`__;
+  * `SOAS <https://fedoraproject.org/spins/soas/download/>`__;
+  * `i3 <https://fedoraproject.org/spins/i3/download/>`__;
+  * `Sway <https://fedoraproject.org/spins/sway/download/>`__;
+  * `Budgie <https://fedoraproject.org/spins/budgie/download/>`__;
+  * `PHOSH <https://fedoraproject.org/spins/phosh/download/>`__.
 
 .. index:: releases, rolling, fedora, rawhide
 .. _rolling-model:

@@ -27,7 +27,7 @@
 
   * стандартный драйвер (десктопы, серии GeForce, Quadro, Titan):
 
-    * :ref:`современные поколения видеокарт (800, 900, 1000, 1600, 2000 и 3000) <nvidia-standard>`;
+    * :ref:`современные поколения видеокарт (800, 900, 1000, 1600, 2000, 3000 и 4000) <nvidia-standard>`;
     * :ref:`более старые поколения видеокарт (600, 700) <nvidia-legacy-470>`;
     * :ref:`устаревшие поколения видеокарт (400, 500) <nvidia-legacy-390>`;
 
@@ -65,13 +65,7 @@
 
 .. code-block:: text
 
-    sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-power nvidia-settings
-
-Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:
-
-.. code-block:: text
-
-    sudo dnf install xorg-x11-drv-nvidia-libs.i686
+    sudo dnf install akmod-nvidia
 
 Подождём 3-5 минут и убедимся, что модули были успешно собраны:
 
@@ -117,7 +111,7 @@
 
 .. code-block:: text
 
-    sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia-470xx xorg-x11-drv-nvidia-470xx xorg-x11-drv-nvidia-470xx-libs xorg-x11-drv-nvidia-470xx-power nvidia-settings-470xx
+    sudo dnf install xorg-x11-drv-nvidia-470xx akmod-nvidia-470xx
 
 Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:
 
@@ -169,7 +163,7 @@
 
 .. code-block:: text
 
-    sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia-390xx xorg-x11-drv-nvidia-390xx xorg-x11-drv-nvidia-390xx-libs nvidia-settings-390xx
+    sudo dnf install xorg-x11-drv-nvidia-390xx akmod-nvidia-390xx
 
 Если используется 64-битная ОС, но требуется запускать ещё и Steam и 32-битные версии игр, установим также 32-битный драйвер:
 
