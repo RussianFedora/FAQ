@@ -1,10 +1,10 @@
-# Unofficial Fedora FAQ in russian
+# Unofficial Fedora FAQ in uzbek
 
-[![GitHub version](https://img.shields.io/github/v/release/RussianFedora/FAQ?sort=semver&color=brightgreen&logo=git&logoColor=white)](https://github.com/RussianFedora/FAQ/releases)
-[![Github downloads](https://img.shields.io/github/downloads/RussianFedora/FAQ/total.svg?label=PDF%20downloads&logo=github&logoColor=white)](https://github.com/RussianFedora/FAQ/releases/latest/download/fedora-faq-ru.pdf)
-[![Pages CI status](https://github.com/RussianFedora/FAQ/actions/workflows/gh-pages.yaml/badge.svg)](https://github.com/RussianFedora/FAQ/actions/workflows/gh-pages.yaml)
-[![Release CI status](https://github.com/RussianFedora/FAQ/actions/workflows/release.yaml/badge.svg)](https://github.com/RussianFedora/FAQ/actions/workflows/release.yaml)
-[![GitHub issues](https://img.shields.io/github/issues/RussianFedora/FAQ.svg?label=issues&logo=pinboard&logoColor=white)](https://github.com/RussianFedora/FAQ/issues)
+[![GitHub version](https://img.shields.io/github/v/release/Linuxiston/fedora-faq?sort=semver&color=brightgreen&logo=git&logoColor=white)](https://github.com/Linuxiston/fedora-faq/releases)
+[![Github downloads](https://img.shields.io/github/downloads/Linuxiston/fedora-faq/total.svg?label=PDF%20downloads&logo=github&logoColor=white)](https://github.com/Linuxiston/fedora-faq/releases/latest/download/fedora-faq-ru.pdf)
+[![Pages CI status](https://github.com/Linuxiston/fedora-faq/actions/workflows/gh-pages.yaml/badge.svg)](https://github.com/Linuxiston/fedora-faq/actions/workflows/gh-pages.yaml)
+[![Release CI status](https://github.com/Linuxiston/fedora-faq/actions/workflows/release.yaml/badge.svg)](https://github.com/Linuxiston/fedora-faq/actions/workflows/release.yaml)
+[![GitHub issues](https://img.shields.io/github/issues/Linuxiston/fedora-faq.svg?label=issues&logo=pinboard&logoColor=white)](https://github.com/Linuxiston/fedora-faq/issues)
 ---
 
 We decided to find and document answers to the most of the frequently asked questions from our conferences about Fedora for convenience of end users.
@@ -24,13 +24,13 @@ sudo dnf install make python3-sphinx
 2. Clone this repository:
 
 ```bash
-git clone https://github.com/RussianFedora/FAQ.git fedora-faq-ru
+git clone https://github.com/Linuxiston/fedora-faq.git fedora-faq-uz
 ```
 
 3. Generate HTML from sources:
 
 ```bash
-cd fedora-faq-ru
+cd fedora-faq-uz
 make html
 ```
 
@@ -51,18 +51,18 @@ sudo dnf install make python3-sphinx latexmk texlive-cmap texlive-metafont-bin t
 2. Clone this repository:
 
 ```bash
-git clone https://github.com/RussianFedora/FAQ.git fedora-faq-ru
+git clone https://github.com/Linuxiston/fedora-faq.git fedora-faq-uz
 ```
 
 3. Generate PDF from sources:
 
 ```bash
-cd fedora-faq-ru
+cd fedora-faq-uz
 make latexpdf
 ```
 
 4. Open result in default PDF viewer:
 
 ```bash
-xdg-open build/latex/fedora-faq-ru.pdf
+xdg-open build/latex/fedora-faq-uz.pdf
 ```
