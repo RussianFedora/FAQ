@@ -54,4 +54,4 @@ jobs:
       - name: Uploading built PDF artifact to releases
         uses: softprops/action-gh-release@v1
         with:
-          files: build/latex/fedora-faq-ru.pdf
+          files: build/latex/fedora-faq-uz.pdf
