@@ -1,8 +1,6 @@
 ---
-name: Добавление нового вопроса
-about: Создать заявку на включение нового вопроса в FAQ
+name: Yangi savol qo'shish
+about: FAQ ga qo'shimcha savol qo'shish
 ---
 
-
-Укажите вопрос, ответ на который вы хотели бы видеть в FAQ:
-
+FAQ da javobi bilan ko'rishni xoxlagan savolingizni yozib qoldiring:

@@ -1,10 +1,8 @@
 ---
-name: Сообщить об ошибке
-about: Создать заявку с сообщением об ошибке, либо неточности в FAQ
+name: Xatolik haqida xabar berish
+about: Xatolik haqida yoki FAQ dagi kamchilik haqida xabar qoldirish
 ---
 
+Xatolik mavjud bo'lgan sahifa manzili:
 
-Страница, на которой присутствует ошибка: 
-
-Подробно опишите её:
-
+Holatni batafsil tavsiflang:

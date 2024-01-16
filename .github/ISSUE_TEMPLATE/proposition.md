@@ -1,8 +1,6 @@
 ---
-name: Пожелание или предложение
-about: Создать заявку с пожеланием или предложением относительно FAQ
+name: Taklif va xoxishlar
+about: FAQ ga bog'liq taklif va xoxish qo'shish
 ---
 
-
-Подробно опишите своё предложение:
-
+O'z taklifingizni batafsil yozing:
