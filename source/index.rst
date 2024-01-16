@@ -1,11 +1,11 @@
 ..
-    SPDX-FileCopyrightText: 2018-2023 EasyCoding Team and contributors
+    SPDX-FileCopyrightText: 2018-2023 EasyCoding Team and contributors. 2024 Linuxiston
 
     SPDX-License-Identifier: CC-BY-SA-4.0
 
 .. _index:
 
-Неофициальный FAQ по Fedora
+Fedora bo'yicha norasmiy FAQ
 ==============================
 
 .. toctree::

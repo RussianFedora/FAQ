@@ -1,21 +1,21 @@
 ..
-    SPDX-FileCopyrightText: 2018-2023 EasyCoding Team and contributors
+    SPDX-FileCopyrightText: 2018-2023 EasyCoding Team and contributors. 2024 Linuxiston
 
     SPDX-License-Identifier: CC-BY-SA-4.0
 
 .. _generic:
 
 *********************
-Основная информация
+Asosiy ma'lumotlar
 *********************
 
 .. index:: fedora, information
 .. _what-is:
 
-Что такое Fedora?
+Fedora bu nima?
 ====================
 
-Fedora -- это один из дистрибутивов GNU/Linux, разрабатываемый сообществом и спонсируемый :ref:`компанией Red Hat <rh-contribution>`.
+Fedora -- bu GNU/Linux distributivlaridan biri hisoblanib, :ref:`Red Hat kompaniyasi <rh-contribution>` homiyligida ochiq hamjamiyat tomonidan ishlab chiqariladi.
 
 .. index:: fedora, red hat
 .. _rh-contribution:
