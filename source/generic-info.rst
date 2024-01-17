@@ -13,152 +13,151 @@ Asosiy ma'lumotlar
 .. _what-is:
 
 Fedora bu nima?
-====================
+================
 
 Fedora -- bu GNU/Linux distributivlaridan biri hisoblanib, :ref:`Red Hat kompaniyasi <rh-contribution>` homiyligida ochiq hamjamiyat tomonidan ishlab chiqariladi.
 
 .. index:: fedora, red hat
 .. _rh-contribution:
 
-Как сильно дистрибутив зависит от компании Red Hat?
+Distrbituvi Red Hat kompaniyasiga qanchalik bog'langan?
 =======================================================
 
-Red Hat является основным спонсором дистрибутива: предоставляет ресурсы и оборудование для сборки дистрибутива.
+Red Hat distributivning asosiy homiysi hisoblanib, ushbu distributivni yig'ish uchun qurilmalar va resurslarni taqdim etadi.
 
-И, хотя многие крупные изменения вносятся сотрудниками данной компании на окладе, все они на общих основаниях проходят контроль :ref:`независимого сообщества <fesco>`. Инициативы, не соответствующие принципам Fedora, отклоняются.
+Bundan tashqari ushbu distributivga kiritiladigan ko'plab ushbu kompaniya hodimlari tomonidan kiritilsada, bularning barchasi :ref:`mustaqil hamjamiyat <fesco>` tomonidan tekshiruvdan o'tadi. Fedora prinsiplariga mos kelmaydigan tashabbuslar esa rad etiladi. 
 
-То же касается и процесса :ref:`package review <becoming-maintainer>` для всех пакетов в основных репозиториях.
+Va yuqoridagi holatlar :ref: `package review <becoming-maintainer>` jarayonida ham taaluqli.
 
 .. index:: fedora, fesco
 .. _fesco:
 
-Что такое FESCo?
-===================
+FESCo bu nima?
+===============
 
-FESCo -- `Fedora Engineering Steering Committee <https://docs.fedoraproject.org/en-US/fesco/>`__. Это избираемый :ref:`общим голосованием <elections>` орган, занимающийся непосредственным управлением и развитием дистрибутива.
+FESCo -- `Fedora Engineering Steering Committee <https://docs.fedoraproject.org/en-US/fesco/>`__. Bu :ref:`umumiy ovoz berish <elections>` yo'li bilan saylanadigan organ bo'lib, distributivni rivojlantirish va boshqaruv bilan shug'ullanadi.
 
-Основные задачи комитета:
+Ushbu komitetning asosiy vazifalari:
 
-  * принятие или отклонение новых инициатив и изменений в дистрибутиве;
-  * решение ряда технических вопросов;
-  * наделение некоторых мейнтейнеров расширенными правами;
-  * управление группами по интересам (SIG, Special Interest Groups);
-  * разрешение некоторых конфликтных ситуаций.
+  * distributivga yangi o'zgarishlar va tashabbuslarni qabul qilish yoki rad etish;
+  * distributiv bilan bog'liq bo'lgan texnik muammolarga yechim izlash;
+  * ba'zi ta'minotchilarga kengaytirilgan huquqlar berish;
+  * manfaatlar bo'yicha guruhlarni boshqarish (SIG, Special Interest Groups);
+  * ziddiyatli holatlarni bartaraf etish.
 
 .. index:: fedora, elections
 .. _elections:
 
-Кто может принимать участие в голосованиях?
-==============================================
+Ovoz berishda kimlar qatnashishi mumkin?
+=========================================
 
-Информация о проходящих голосованиях всегда заранее публикуется в :ref:`списках рассылки <get-help>`, а также `блогах сообщества <https://communityblog.fedoraproject.org/>`__.
+Bo'lib o'tadigan ovoz berish jarayonlari bo'yicha ma'lumotlar :ref:`mailing list <get-help>` ro'yxatlarida, shuningdek `hamjamiyat bloglarida <https://communityblog.fedoraproject.org/>`__ oldindan e'lon qilinadi.
 
-Принять участие в большинстве из них могут все участники сообщества, которые когда-либо вносили вклад в развитие дистрибутива: мейнтейнеры, дизайнеры, авторы статей, редакторы и т.д.
+Ovoz berishning aksariyatida distributivning rivojlanishiga hissa qo'shgan barcha hamjamiyat a'zolari ishtirok etishlari mumkin: ta'minotchilar, dizaynerlar, maqola mualliflari, muharrirlar va boshqalar.
 
-Однако существуют и специальные открытые голосования (например по выбору новых фонов рабочего стола), оставить свой голос в которых могут все желающие.
+Shu bilan birga, har kim ovoz berishi mumkin bo'lgan maxsus ochiq ovozlar (masalan, yangi ish stoli fonini tanlash bo'yicha) ham mavjud.
 
 .. index:: releases, fedora
 .. _releases:
 
-Как часто выходят релизы?
-============================
+Odatda relizlar qancha vaqtda chiqariladi?
+===========================================
 
-Полный цикл разработки одного релиза составляет от 6 до 8 месяцев.
+Bir relizni ishlab chiqarishning to'liq sikli 6 oydan 8 oygacha bo'lgan muddatni tashkil etadi.
 
 .. index:: releases, fedora
 .. _supported:
 
-Сколько релизов поддерживается?
-==================================
+Nechta reliz faol qo'llab-quvvatlanadi?
+=======================================
 
-Два: текущий стабильный и предыдущий.
+2 ta: joriy barqaror (stable) va undan oldingi.
 
 .. index:: releases, fedora
 .. _next-release:
 
-Когда выходит следующий релиз?
+Keyingi reliz qachon chiqariladi?
 ===================================
 
-`Fedora 37 Schedule <https://fedorapeople.org/groups/schedule/f-37/f-37-key-tasks.html>`__.
+`Fedora 39 Schedule <https://fedorapeople.org/groups/schedule/f-40/f-40-all-tasks.html>`__.
 
 .. index:: difference, fedora, bleeding edge, distribution
 .. _differences:
 
-В чём отличие от других дистрибутивов?
-==========================================
+Ushbu distributivning boshqa distributivlardan qanday farqlari bor?
+===================================================================
 
-Fedora -- это `bleeding edge <https://en.wikipedia.org/wiki/Bleeding_edge_technology>`__ дистрибутив. Он всегда находится на острие прогресса. Сначала новые разработки появляются здесь и лишь спустя определённое время в остальных дистрибутивах. Из-за этого некоторые называют федору «тестовым полигоном», но это в корне неверно, ибо :ref:`релизы <supported>` достаточно стабильны.
+Fedora -- bu `bleeding edge <https://en.wikipedia.org/wiki/Bleeding_edge_technology>`__ distributiv. U har doim taraqqiyotning boshida turadi. Odatda, yangi ishlanmalar bu yerda va faqat ma'lum vaqtdan keyin boshqa distributivlarda paydo bo'ladi. Shu sababdan ham ko'pchilik Fedorani "sinov poligoni" deb ataydi, lekin aslida bu unchalik ham to'g'ri emas, balki Fedora :ref:`relizlari <supported>` yetarli darajada barqaror.
 
 .. index:: fedora, download, iso, respins
 .. _download:
 
-Где скачать Fedora?
-======================
+Fedorani qayerdan yuklab olish mumkin?
+======================================
 
-Загрузить ISO образ дистрибутива можно с официального сайта:
+Distributivning ISO fayllarini distributivning rasmiy saytidan yuklab olish mumkin:
 
-  * `Fedora Workstation (с GNOME) <https://getfedora.org/ru/workstation/download/>`__;
-  * `Fedora с другими DE <https://spins.fedoraproject.org/ru/>`__;
-  * `официальные торренты <https://torrents.fedoraproject.org/>`__.
+  * `Fedora Workstation (GNOME ish stoli bilan) <https://getfedora.org/workstation/download/>`__;
+  * `Fedora boshqa ish stollari bilan <https://spins.fedoraproject.org/>`__;
+  * `rasmiy torrentlar <https://torrents.fedoraproject.org/>`__.
 
-Также существуют еженедельные `автоматические сборки <https://dl.fedoraproject.org/pub/alt/live-respins/>`__ («respins»), содержащие все выпущенные на данный момент обновления.
+Bundan tashqari haftalik `avtomatik yig'iladigan <https://dl.fedoraproject.org/pub/alt/live-respins/>` ("respinlar") ham mavjud, ular hozirgi vaqtda chiqarilgan barcha yangilanishlarni o'z ichiga oladi.
 
 .. index:: de, desktop, environment
 .. _de-supported:
 
-Какие DE поддерживаются?
-===========================
+Qanday ish stollarini qo'llab-quvvatlaydi?
+==========================================
 
-Текущий выпуск Fedora поддерживает следующие DE:
+Fedoraning ayni vaqtdagi talqini quyidagi ish stollarini qo'llab-quvvatlaydi:
 
-  * `GNOME <https://getfedora.org/ru/workstation/download/>`__;
-  * `KDE Plasma <https://spins.fedoraproject.org/ru/kde/download/>`__;
-  * `XFCE <https://spins.fedoraproject.org/ru/xfce/download/>`__;
-  * `LXQt <https://spins.fedoraproject.org/ru/lxqt/download/>`__;
-  * `Mate <https://spins.fedoraproject.org/ru/mate-compiz/download/>`__;
-  * `Cinnamon <https://spins.fedoraproject.org/ru/cinnamon/download/>`__;
-  * `LXDE <https://spins.fedoraproject.org/ru/lxde/download/>`__;
-  * `SOAS <https://spins.fedoraproject.org/ru/soas/download/>`__;
-  * `i3 <https://spins.fedoraproject.org/ru/i3/download/>`__.
+  * `GNOME <https://getfedora.org/workstation/download/>`__;
+  * `KDE Plasma <https://spins.fedoraproject.org/kde/download/>`__;
+  * `XFCE <https://spins.fedoraproject.org/xfce/download/>`__;
+  * `LXQt <https://spins.fedoraproject.org/lxqt/download/>`__;
+  * `Mate <https://spins.fedoraproject.org/mate-compiz/download/>`__;
+  * `Cinnamon <https://spins.fedoraproject.org/cinnamon/download/>`__;
+  * `LXDE <https://spins.fedoraproject.org/lxde/download/>`__;
+  * `SOAS <https://spins.fedoraproject.org/soas/download/>`__;
+  * `i3 <https://spins.fedoraproject.org/i3/download/>`__.
 
 .. index:: releases, rolling, fedora, rawhide
 .. _rolling-model:
 
-Я хочу использовать rolling модель обновлений. Это возможно?
-===============================================================
+Men rolling usulidagi yangilanishlardan foydalanishni xoxlayman. Buning imkoni bormi?
+=====================================================================================
 
-Да, ибо существует :ref:`Fedora Rawhide <using-rawhide>`.
+Albatta, buning uchun :ref:`Fedora Rawhide <using-rawhide>`dan foydalaning.
 
 .. index:: rawhide, rolling, fedora
 .. _using-rawhide:
 
-Возможно ли использовать Rawhide на постоянной основе?
-=========================================================
+Rawhidedan doimiy foydalanish uchun o'rnatsa bo'ladimi?
+=======================================================
 
-Вполне, ибо его качество уже давно на уровне альфа-версий других дистрибутивов.
+Bemalol, chunki uning holati boshqa distributivlarning alfa holatidagi talqinlariga mos tushadi.
 
 .. index:: boot, grub, loader, boot
 .. _grub-loader:
 
-Какая версия загрузчика Grub используется в Fedora?
-======================================================
+Fedorada Grubning qaysi talqinidan foydalaniladi?
+=================================================
 
 :ref:`Grub 2 <grub-reinstall>`.
 
 .. index:: repository, installation, software
 .. _software-installation:
 
-Откуда следует устанавливать ПО?
-====================================
+Dasturlarni qayerdan o'rnatish kerak?
+=====================================
+Fedorada ham boshqa barcha distributivlar singari dasturlarni distributivning o'z repozitoriyalaridan, :ref:`ishonchli tomonlarning repozitoriyalaridan <3rd-repositories>` yoki  Flatpak paketlari orqali o'rnatish kerak.
 
-В Fedora, а равно как и любых других пакетных дистрибутивах, следует устанавливать программное обеспечение исключительно из репозиториев дистрибутива, :ref:`доверенных сторонних репозиториев <3rd-repositories>`, либо посредством самодостаточных Flatpak пакетов.
-
-Ни в коем случае не следует использовать установку посредством :ref:`make install <make-install>`, т.к. это породит в системе большое количество никем не отслеживаемых зависимостей и создаст множество проблем при дальнейшем использовании системы.
+Imkoni boricha dasturlarni :ref:`make install <make-install>` usuli bilan o'rnatmaslik kerak, chunki bu usul distributivning boshqa qismlariga zarar yetkazishi mumkin va bu distirbutivdan foydalanishda ko'plab bartaraf qilish mumkin bo'lgan muammolarni keltirib chiqaradi.
 
 .. index:: repository, rpmfusion, third-party
 .. _rpmfusion:
 
-Что такое RPM Fusion?
+RPM Fusion bu nima?
 ========================
 
 Это самый популярный сторонний репозиторий, содержащий пакеты, которые по какой-то причине нельзя распространять в главном репозитории: кодеки мультимедиа, драйверы, проприетарные прошивки для различных устройств.
@@ -254,7 +253,7 @@ RFRemix -- это ремикс оргинального дистрибутива
 Форумы:
 
   * `Fedora Discussion на английском языке <https://discussion.fedoraproject.org/>`__;
-  * `Fedora Ask на русском языке <https://ask.fedoraproject.org/ru/questions/>`__;
+  * `Fedora Ask на русском языке <https://ask.fedoraproject.org/questions/>`__;
   * `Fedora Ask на английском языке <https://ask.fedoraproject.org/en/questions/>`__.
 
 Списки рассылки:
