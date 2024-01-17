@@ -14,44 +14,44 @@ from os import getenv
 from time import strftime
 
 # Configuring static version for the packaged builds.
-rel_version = '2023.05.30'
+rel_version = "2024.01.17"
 
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
 #
-needs_sphinx = '1.6'
+needs_sphinx = "1.6"
 keep_warnings = False
 
 # Add any Sphinx extension module names here, as strings. They can be
-# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
+# extensions coming with Sphinx (named "sphinx.ext.*") or your custom
 # ones.
-extensions = ['sphinx.ext.ifconfig',
-    'sphinx.ext.githubpages']
+extensions = ["sphinx.ext.ifconfig",
+    "sphinx.ext.githubpages"]
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-# source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+# source_suffix = [".rst", ".md"]
+source_suffix = ".rst"
 
 # The master toctree document.
-master_doc = 'index'
+master_doc = "index"
 
 # General information about the project.
-project = 'Неофициальный FAQ по Fedora'
-copyright = '2018 - {}, EasyCoding Team and contributors'.format(strftime('%Y'))
-author = 'EasyCoding Team and contributors'
+project = "Fedora bo'yicha norasmiy FAQ"
+copyright = "2018 - {}, EasyCoding Team, Linuxiston and contributors".format(strftime("%Y"))
+author = "EasyCoding Team, Linuxiston and contributors"
 
-# The version info for the project you're documenting, acts as replacement for
+# The version info for the project you"re documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = strftime('%Y.%m.%d') if getenv('CI_ACTION') else rel_version
+version = strftime("%Y.%m.%d") if getenv("CI_ACTION") else rel_version
 # The full version, including alpha/beta/rc tags.
 release = version
 
@@ -60,15 +60,15 @@ release = version
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = 'ru'
+language = "uz"
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['Thumbs.db', '.DS_Store']
+exclude_patterns = ["Thumbs.db", ".DS_Store"]
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = "sphinx"
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
@@ -78,45 +78,45 @@ todo_include_todos = False
 
 # Load CSS files for the custom search engine.
 html_css_files = [
-    'https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css'
+    "https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"
 ]
 
 # Load JavaScript files for the custom search engine.
 html_js_files = [
-    ('https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js', {'defer': 'defer'}),
-    ('search.js', {'defer': 'defer'})
+    ("https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js", {"defer": "defer"}),
+    ("search.js", {"defer": "defer"})
 ]
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = "alabaster"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
 html_theme_options = {
-    'font_family': 'sans-serif',
-    'head_font_family': 'serif',
-    'font_size': '16px',
-    'show_powered_by': False,
-    'github_user': 'RussianFedora',
-    'github_repo': 'FAQ',
-    'github_banner': 'forkme_right_green.png',
-    'github_button': False,
-    'logo': 'faq-icon.png',
-    'touch_icon': 'faq-icon.png',
-    'logo_name': False
+    "font_family": "sans-serif",
+    "head_font_family": "serif",
+    "font_size": "16px",
+    "show_powered_by": False,
+    "github_user": "Linuxiston",
+    "github_repo": "fedora-faq",
+    "github_banner": "forkme_right_green.png",
+    "github_button": False,
+    "logo": "faq-icon.png",
+    "touch_icon": "faq-icon.png",
+    "logo_name": False
 }
 
 # Override default HTML title for HTML and HTML Help pages.
-html_title = '{} (версия {})'.format(project, version)
+html_title = "{} (talqin {})".format(project, version)
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ["_static"]
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
@@ -124,15 +124,15 @@ html_static_path = ['_static']
 # This is required for the alabaster theme
 # refs: http://alabaster.readthedocs.io/en/latest/installation.html#sidebars
 html_sidebars = {
-    '**': [
-        'searchbox.html',
-        'navigation.html',
-        'relations.html'
+    "**": [
+        "searchbox.html",
+        "navigation.html",
+        "relations.html"
     ]
 }
 
 # Add favicon for generated HTML pages.
-html_favicon = '_static/faq-icon.ico'
+html_favicon = "_static/faq-icon.ico"
 
 # Other HTML options
 html_copy_source = False
@@ -143,35 +143,35 @@ html_show_sphinx = False
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'fedora-faq-ru'
+htmlhelp_basename = "fedora-faq-uz"
 
 
 # -- Options for LaTeX output ---------------------------------------------
 
 # For additional options see: https://www.sphinx-doc.org/en/master/latex.html
-latex_engine = 'xelatex'
+latex_engine = "xelatex"
 latex_elements = {
-    'fontpkg': r'''
+    "fontpkg": r"""
 \setmainfont{DejaVu Serif}
 \setromanfont{DejaVu Sans}
 \setsansfont{DejaVu Sans}
 \setmonofont{DejaVu Sans Mono}
-''',
-    'preamble': r'''
+""",
+    "preamble": r"""
 \makeatletter
 \renewcommand{\sphinxtableofcontentshook}{%
   \renewcommand*\l@section{\@dottedtocline{1}{1.5em}{3.2em}}%
 }
 \makeatother
-'''
+"""
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'fedora-faq-ru.tex', 'Неофициальный FAQ по Fedora',
-     'EasyCoding Team and contributors', 'manual'),
+    (master_doc, "fedora-faq-ru.tex", "Fedora bo'yicha norasmiy FAQ",
+     "EasyCoding Team, Linuxiston and contributors", "manual"),
 ]
 
 
@@ -180,7 +180,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'fedora-faq-ru', 'Неофициальный FAQ по Fedora',
+    (master_doc, "fedora-faq-uz", "Fedora bo'yicha norasmiy FAQ",
      [author], 1)
 ]
 
@@ -191,7 +191,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'fedora-faq-ru', 'Неофициальный FAQ по Fedora',
-     author, 'fedora-faq-ru', 'Неофициальный FAQ по Fedora на русском языке.',
-     'Miscellaneous'),
+    (master_doc, "fedora-faq-uz", "Fedora bo'yicha norasmiy FAQ",
+     author, "fedora-faq-uz", "Fedora bo'yicha o'zbek tilidagi norasmiy FAQ.",
+     "Miscellaneous"),
 ]
